@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Actual_Visit__c</fullName>
+    <formula>IF(OR( NOT(AND(ISNULL( Actual_Appointments_Week__c),ISBLANK(Actual_Appointments_Week__c))),NOT(AND(ISNULL(  Actual_Presentation_Week__c ),ISBLANK(Actual_Presentation_Week__c))),NOT(AND(ISNULL(  Actual_Product_Demo_Week__c ),ISBLANK(Actual_Product_Demo_Week__c))),NOT(AND(ISNULL(  Actual_Evaluations_Week__c ),ISBLANK(Actual_Evaluations_Week__c))),NOT(AND(ISNULL(  Actual_Commercialization_week__c ),ISBLANK(Actual_Commercialization_week__c))),NOT(AND(ISNULL(  Actual_Upgrade_week__c ),ISBLANK(Actual_Upgrade_week__c)))),true,false)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Prospect Actual Visit</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

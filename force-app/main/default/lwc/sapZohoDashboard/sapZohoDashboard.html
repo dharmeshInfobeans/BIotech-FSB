@@ -1,0 +1,82 @@
+<template>
+
+    <lightning-card title="Dashboard">
+
+        <div class="slds-p-horizontal_medium slds-p-bottom_small filter-row">
+            <lightning-combobox
+                label="Filter by Year"
+                placeholder="All Years"
+                value={selectedYear}
+                options={yearOptions}
+                onchange={handleYearFilterChange}>
+            </lightning-combobox>
+        </div>
+
+        <div class="dashboard">
+
+            <div class="card blue">
+                <h2>{dashboard.totalLedgers}</h2>
+                <p>Total Ledgers</p>
+            </div>
+
+            <div class="card orange">
+                <h2>{dashboard.sent}</h2>
+                <p>Sent for Sign</p>
+            </div>
+
+            <div class="card green">
+                <h2>{dashboard.fetched}</h2>
+                <p>Fetched</p>
+            </div>
+
+            <div class="card success">
+                <h2>{dashboard.signed}</h2>
+                <p>Signed</p>
+            </div>
+
+            <div class="card red">
+                <h2>{dashboard.declined}</h2>
+                <p>Declined</p>
+            </div>
+
+        </div>
+
+    </lightning-card>
+
+    <lightning-card title="Quarter Wise Summary">
+
+        <div class="slds-p-around_medium">
+
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered customTable">
+
+                <thead>
+                    <tr class="header">
+                        <th>Quarter</th>
+                        <th class="center">Total Ledgers</th>
+                        <th class="center">Sent for Sign</th>
+                        <th class="center">Fetched</th>
+                        <th class="center">Signed</th>
+                        <th class="center">Declined</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <template for:each={quarterSummary} for:item="item">
+                        <tr key={item.quarter}>
+                            <td><strong>{item.quarter}</strong></td>
+                            <td class="center">{item.totalLedgers}</td>
+                            <td class="center">{item.sent}</td>
+                            <td class="center">{item.fetched}</td>
+                            <td class="center">{item.signed}</td>
+                            <td class="center failed">{item.declined}</td>
+                        </tr>
+                    </template>
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </lightning-card>
+
+</template>

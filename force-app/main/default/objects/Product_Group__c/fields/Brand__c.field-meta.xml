@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Brand__c</fullName>
+    <label>Product_Description</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Eyecryl Toric</fullName>
+                <default>false</default>
+                <label>Eyecryl Toric</label>
+            </value>
+            <value>
+                <fullName>Eyecryl ACTV Toric</fullName>
+                <default>false</default>
+                <label>Eyecryl ACTV Toric</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Phakic Toric</fullName>
+                <default>false</default>
+                <label>Eyecryl Phakic Toric</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Phakic</fullName>
+                <default>false</default>
+                <label>Eyecryl Phakic</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE</fullName>
+                <default>false</default>
+                <label>BIO BLUE</label>
+            </value>
+            <value>
+                <fullName>BIORING</fullName>
+                <default>false</default>
+                <label>BIORING</label>
+            </value>
+            <value>
+                <fullName>Bio Blade</fullName>
+                <default>false</default>
+                <label>Bio Blade</label>
+            </value>
+            <value>
+                <fullName>Bio Decalin</fullName>
+                <default>false</default>
+                <label>Bio Decalin</label>
+            </value>
+            <value>
+                <fullName>Bio Hyalur</fullName>
+                <default>false</default>
+                <label>Bio Hyalur</label>
+            </value>
+            <value>
+                <fullName>Bio Octane</fullName>
+                <default>false</default>
+                <label>Bio Octane</label>
+            </value>
+            <value>
+                <fullName>Bio CTR</fullName>
+                <default>false</default>
+                <label>Bio CTR</label>
+            </value>
+            <value>
+                <fullName>Biosil</fullName>
+                <default>false</default>
+                <label>Biosil</label>
+            </value>
+            <value>
+                <fullName>Biovisc Ortho</fullName>
+                <default>false</default>
+                <label>Biovisc Ortho</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Sert Toric</fullName>
+                <default>false</default>
+                <label>Eyecryl Sert Toric</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Actv</fullName>
+                <default>false</default>
+                <label>Eyecryl Actv</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Plus 600</fullName>
+                <default>false</default>
+                <label>Eyecryl Plus 600</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Plus Clear</fullName>
+                <default>false</default>
+                <label>Eyecryl Plus Clear</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Plus Natural HD</fullName>
+                <default>false</default>
+                <label>Eyecryl Plus Natural HD</label>
+            </value>
+            <value>
+                <fullName>Eyecryl Sert</fullName>
+                <default>false</default>
+                <label>Eyecryl Sert</label>
+            </value>
+            <value>
+                <fullName>Eyevisc</fullName>
+                <default>false</default>
+                <label>Eyevisc</label>
+            </value>
+            <value>
+                <fullName>FLAVIN</fullName>
+                <default>false</default>
+                <label>FLAVIN</label>
+            </value>
+            <value>
+                <fullName>Optiflex Genesis</fullName>
+                <default>false</default>
+                <label>Optiflex Genesis</label>
+            </value>
+            <value>
+                <fullName>TP6130</fullName>
+                <default>false</default>
+                <label>TP6130</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX TRIO</fullName>
+                <default>false</default>
+                <label>OPTIFLEX TRIO</label>
+            </value>
+            <value>
+                <fullName>BIOVISC ORTHO PLUS 2ML</fullName>
+                <default>false</default>
+                <label>BIOVISC ORTHO PLUS 2ML</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Colombia_User_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Colombia User Access</label>
+        <sharedTo>
+            <group>Colombia_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>COLOMBIA</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Target_Data_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Target Data Access</label>
+        <sharedTo>
+            <group>Campaign_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country__c</field>
+            <operation>equals</operation>
+            <value>MOROCCO</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+</SharingRules>

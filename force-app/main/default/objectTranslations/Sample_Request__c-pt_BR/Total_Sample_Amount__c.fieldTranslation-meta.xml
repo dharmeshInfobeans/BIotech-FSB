@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Sum of All Samples Amount --></help>
+    <label>Quantidade total da amostra</label>
+    <name>Total_Sample_Amount__c</name>
+</CustomFieldTranslation>

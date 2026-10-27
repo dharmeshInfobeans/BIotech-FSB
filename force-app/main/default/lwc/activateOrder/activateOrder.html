@@ -1,0 +1,114 @@
+<template>
+  <!-- <lightning-card> -->
+
+  <!-- <div class="slds-modal__header">
+      <h2 class="slds-text-heading_medium">Quick Action Header</h2>
+    </div> -->
+  <header class="slds-modal__header">
+    <h2 id="modalheading" class="slds-modal__title slds-hyphenate">
+      Add Consignee
+    </h2>
+  </header>
+
+  <table>
+    <tbody>
+      <tr>
+        <td></td>
+      <td style = "text-align: right; padding-top: 1%;">
+        <lightning-button label="Add New Consignee" onclick={navigateToNewAccountPage}></lightning-button>
+      </td>
+      </tr>
+      <tr>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-combobox name="Contact Person" label="Contact Person" value={contactSelected} required
+              options={shipCodeoptions} onchange={handleContactChange} > </lightning-combobox>
+          </div>
+        </td>
+      </tr>
+      <tr>        
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Consignee Name" type="text" value={ConsigneeNameSelected} disabled="true"></lightning-input>
+          </div>
+        </td>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Order Message" type="text"
+              title="On order activation, you can not add/modify order products" value={orderMessage}
+              disabled="true"></lightning-input>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-combobox name="Dispatch Through" label="Dispatch Through" value={selectedDispatchMode}
+              options={dispatchOptions} onchange={handleDispatchChnage} required="true"> </lightning-combobox>
+          </div>
+        </td>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Destination" type="text" value={destination}
+              onchange={handleDestination}></lightning-input>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Consignee City" type="text" value={city} disabled="true"></lightning-input>
+          </div>
+        </td>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Consignee Street" type="text" value={street} disabled="true"></lightning-input>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Consignee State/Province" type="text" value={state}
+              disabled="true"></lightning-input>
+          </div>
+        </td>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Consignee Country" type="text" value={country} disabled="true"></lightning-input>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Consignee Zip/Postal Code" type="text" value={zipCode}
+              disabled="true"></lightning-input>
+          </div>
+        </td>
+        <td class="slds-p-around_x-small">
+          <div>
+            <lightning-input label="Telephone" type="text" value={telephone} disabled="true"></lightning-input>
+          </div>
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+  <!-- <div class="slds-modal__footer">
+      <lightning-button class="slds-p-around_x-small" label="Save" variant="brand"
+        onclick={handleSave}></lightning-button>
+      <lightning-button class="slds-p-around_x-small" label="Cancel" variant="neutral"
+        onclick={handleCancel}></lightning-button>
+    </div> -->
+  <footer class="slds-modal__footer">
+    <lightning-button class="slds-p-around_x-small" label="Save" variant="brand"
+      onclick={handleSave}></lightning-button>
+    <lightning-button class="slds-p-around_x-small" label="Cancel" variant="neutral"
+      onclick={handleCancel}></lightning-button>
+  </footer>
+  <!-- </lightning-card> -->
+
+
+
+</template>

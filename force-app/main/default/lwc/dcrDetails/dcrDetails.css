@@ -1,0 +1,208 @@
+/* DCR Details Second Page Styles - SLDS 2 Compatible */
+
+/* Ensure scrollability */
+:host {
+    display: block;
+    height: 100%;
+    overflow-y: auto;
+}
+.wrap-text {
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+/* Page header styling */
+.slds-page-header {
+    background-color: var(--slds-g-color-neutral-base-95, #f3f3f3);
+    border-bottom: 1px solid var(--slds-g-color-border-base-1, #dddbda);
+}
+
+/* Main content wrapper */
+.slds-var-p-around_medium {
+    padding-bottom: 1rem;
+}
+
+/* Card styling for better visual hierarchy */
+.slds-card {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.slds-card__header {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--slds-g-color-border-base-1, #e5e5e5);
+}
+
+.slds-card__header-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+.slds-card__body {
+    padding: 0.75rem 1rem;
+}
+
+.slds-card__body_inner {
+    padding: 0.75rem 1rem;
+}
+
+/* Definition list for customer details - inline layout */
+.slds-dl_horizontal {
+    display: grid;
+    grid-template-columns: auto minmax(120px, 1fr) auto minmax(80px, 1fr) auto minmax(80px, 1fr);
+    gap: 0.5rem 1.5rem;
+    align-items: center;
+}
+
+.slds-dl_horizontal__label {
+    color: var(--slds-g-color-neutral-base-30, #706e6b);
+    font-weight: 600;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.slds-dl_horizontal__label p {
+    margin: 0;
+    padding: 0;
+}
+
+.slds-dl_horizontal__detail {
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.slds-dl_horizontal__detail p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Table styling */
+.slds-table {
+    border-collapse: collapse;
+}
+
+.slds-table thead th {
+    background-color: var(--slds-g-color-neutral-base-95, #fafaf9);
+    font-weight: 700;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+}
+
+.slds-table tbody td {
+    padding: 0.5rem;
+    font-size: 0.875rem;
+}
+
+/* Form field spacing */
+.slds-grid.slds-wrap .slds-col {
+    padding: 0.375rem 0.5rem;
+}
+
+/* Form footer - regular flow, not sticky */
+.form-footer-buttons {
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.form-footer-buttons lightning-button {
+    min-width: 100px;
+}
+
+/* Error state for textarea */
+.slds-has-error {
+    border-color: var(--slds-g-color-error-base-40, #c23934);
+}
+
+/* Spinner overlay */
+.slds-spinner_container.slds-is-fixed {
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+/* Alert banner */
+.slds-notify_alert {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+}
+
+/* Empty state text */
+.slds-text-align_center {
+    padding: 1.5rem 1rem;
+}
+
+/* Responsive adjustments for mobile and tablet */
+@media (max-width: 1024px) {
+    .slds-dl_horizontal {
+        grid-template-columns: auto 1fr;
+        gap: 0.25rem 1rem;
+    }
+}
+/* Add near the top-level rules, NOT inside @media */
+.table-scroll-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+.dcr-stage-table {
+    min-width: 1050px; /* was 900px — bumped for the new Unqualified Remarks column */
+}
+.dcr-stage-table th,
+.dcr-stage-table td {
+    white-space: nowrap;
+}
+.dcr-stage-table td .wrap-text {
+    white-space: normal;
+    max-width: 200px;
+}
+
+@media (max-width: 767px) {
+    .slds-dl_horizontal {
+        grid-template-columns: auto 1fr;
+        gap: 0.25rem 0.5rem;
+    }
+
+    .slds-dl_horizontal__label,
+    .slds-dl_horizontal__detail {
+        font-size: 0.8125rem;
+    }
+
+    .form-footer-buttons {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .form-footer-buttons lightning-button {
+        width: 100%;
+    }
+
+    .slds-card {
+        margin-bottom: 0.75rem;
+    }
+
+    .slds-card__header,
+    .slds-card__body,
+    .slds-card__body_inner {
+        padding: 0.5rem 0.75rem;
+    }
+    /* .table-scroll-wrapper {
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dcr-stage-table {
+    min-width: 900px; 
+}
+
+.dcr-stage-table th,
+.dcr-stage-table td {
+    white-space: nowrap;
+}
+
+.dcr-stage-table td .wrap-text {
+    white-space: normal; 
+    max-width: 200px;
+} */
+
+}

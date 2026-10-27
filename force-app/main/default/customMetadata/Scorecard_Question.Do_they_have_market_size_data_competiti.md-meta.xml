@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Do they have market size data, competiti</label>
+    <protected>false</protected>
+    <values>
+        <field>Is_Active__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>Is_Mandatory__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>QuestionText__c</field>
+        <value xsi:type="xsd:string">Do they have market size data, competitive Market Share Data , Customer Universe Data, Customer Pricing Information &amp; Competition Pricing Data.</value>
+    </values>
+    <values>
+        <field>Question_Type__c</field>
+        <value xsi:type="xsd:string">Picklist</value>
+    </values>
+    <values>
+        <field>Section__c</field>
+        <value xsi:type="xsd:string">Evidence_They_can_sell</value>
+    </values>
+</CustomMetadata>

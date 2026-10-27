@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_CIS</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    New_Customer__c,
+    NOT(CE_CIS_Approval__c),
+    ISCHANGED(Lead_Stage__c),
+    OR(
+        ISPICKVAL(Lead_Stage__c, &quot;Evaluations&quot;),
+        ISPICKVAL(Lead_Stage__c, &quot;Commercialization&quot;)
+    )
+)</errorConditionFormula>
+    <errorMessage>Please get CE-CIS approved before proceeding to the next stage.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,20 @@
+<apex:page controller="AccountBranchFormController" showHeader="false" standardStylesheets="false" lightningStylesheets="true"> 
+     
+    <apex:includeLightning />
+    <apex:slds rendered="true"/>
+    <div style="width:100%;height:100px;" id="lexContainer"> 
+        
+    </div>
+
+    <script>
+    
+    $Lightning.use("c:AccountBranchFormApp", function() {
+        $Lightning.createComponent("c:AccountBranchForm",
+                                   {"accountId":"{!accntId}"},
+                                   "lexContainer",
+                                   function(cmp) {
+                                      console.log('Done Creating Comp!!');  
+                                   });
+    });
+    </script> 
+</apex:page>

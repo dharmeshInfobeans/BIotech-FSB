@@ -1,0 +1,274 @@
+<template>
+    <div class="detail-container">
+
+        <!-- Back + Header -->
+        <div class="detail-header">
+            <lightning-button-icon
+                icon-name="utility:back"
+                alternative-text="Back to Queue"
+                title="Back to Queue"
+                onclick={handleBack}
+                class="back-btn"
+            ></lightning-button-icon>
+
+            <template lwc:if={hasDetail}>
+                <div class="header-main">
+                    <div class="header-left">
+                        <h1 class="request-title">{detail.name}</h1>
+                        <div class="header-meta">
+                            <span class={statusClass}>{detail.status}</span>
+                            <template lwc:if={detail.requestType}>
+                                <span class="meta-tag">{detail.requestType}</span>
+                            </template>
+                            <template lwc:if={detail.currentStage}>
+                                <span class="meta-stage">Stage: {detail.currentStage}</span>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <span class="submitted-label">Submitted</span>
+                        <span class="submitted-date">{formattedSubmittedDate}</span>
+                        <lightning-button-icon
+                            icon-name="utility:refresh"
+                            alternative-text="Refresh"
+                            title="Refresh"
+                            onclick={handleRefresh}
+                        ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Error -->
+        <template lwc:if={error}>
+            <div class="error-box">{error}</div>
+        </template>
+
+        <template lwc:if={hasDetail}>
+
+            <!-- Rejection Banner -->
+            <template lwc:if={hasRejection}>
+                <div class="rejection-banner">
+                    <div class="rejection-title">&#9888; {detail.status}</div>
+                    <div class="rejection-reason">{detail.rejectionComments}</div>
+                </div>
+            </template>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="card-heading">Distributor Details</div>
+                    <div class="field-row">
+                        <span class="field-label">Account</span>
+                        <span class="field-value">{detail.distributorName}</span>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">CRM Email</span>
+                        <span class="field-value">{detail.crmEmail}</span>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">RSM Email</span>
+                        <span class="field-value">{detail.rsmEmail}</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-heading">Product Details</div>
+                    <div class="field-row">
+                        <span class="field-label">Product(s)</span>
+                        <span class="field-value">{detail.allProductNames}</span>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <div class="card-heading">Country &amp; Region</div>
+                    <div class="field-row">
+                        <span class="field-label">Country</span>
+                        <span class="field-value">{detail.country}</span>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">Region</span>
+                        <span class="field-value">{detail.region}</span>
+                    </div>
+                </div>
+
+                <template lwc:if={hasDocumentsByProduct}>
+                    <div class="info-card doc-card">
+                        <div class="card-heading">Documents by Product</div>
+                        <template for:each={detail.documentsByProduct} for:item="group">
+                            <div key={group.productName} class="doc-product-group">
+                                <div class="doc-product-name">{group.productName}</div>
+                                <div class="doc-tags">
+                                    <template for:each={group.docTypes} for:item="docType">
+                                        <span key={docType} class="doc-tag">{docType}</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template lwc:elseif={hasDocTypes}>
+                    <div class="info-card doc-card">
+                        <div class="card-heading">Document Types Requested</div>
+                        <div class="doc-tags">
+                            <template for:each={documentTypeList} for:item="doc">
+                                <span key={doc.key} class="doc-tag">{doc.label}</span>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <template lwc:if={hasRemarks}>
+                    <div class="info-card remarks-card">
+                        <div class="card-heading">Distributor Remarks</div>
+                        <p class="remarks-text">{detail.remarks}</p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Actions -->
+            <template lwc:if={canTakeAction}>
+                <div class="section-block actions-block">
+                    <div class="section-title">Actions</div>
+
+                    <!-- Action Buttons -->
+                    <template lwc:if={showActionButtons}>
+                        <div class="action-buttons">
+                                <lightning-button
+                                    label="Approve"
+                                    variant="success"
+                                    icon-name="utility:check"
+                                    onclick={handleApprove}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                                <lightning-button
+                                    label="Send Back"
+                                    variant="neutral"
+                                    icon-name="utility:undo"
+                                    onclick={handleOpenSendBack}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                                <lightning-button
+                                    label="Reject"
+                                    variant="destructive"
+                                    icon-name="utility:close"
+                                    onclick={handleOpenReject}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                            </div>
+                    </template>
+
+                    <!-- Send Back Form -->
+                    <template lwc:if={showSendBackForm}>
+                        <div class="action-form">
+                            <div class="action-form-title">Send Back to Distributor</div>
+                            <lightning-textarea
+                                label="Reason for Sending Back"
+                                value={actionComments}
+                                placeholder="Explain what the distributor needs to update or provide..."
+                                onchange={handleCommentsChange}
+                                required>
+                            </lightning-textarea>
+                            <div class="form-buttons slds-m-top_small">
+                                <lightning-button
+                                    label="Confirm Send Back"
+                                    variant="brand"
+                                    onclick={handleConfirmSendBack}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                                <lightning-button
+                                    label="Cancel"
+                                    onclick={handleCancelForm}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Reject Form -->
+                    <template lwc:if={showRejectForm}>
+                        <div class="action-form action-form--reject">
+                            <div class="action-form-title">Reject Request</div>
+                            <lightning-textarea
+                                label="Rejection Reason"
+                                value={actionComments}
+                                placeholder="Provide the reason for rejection..."
+                                onchange={handleCommentsChange}
+                                required>
+                            </lightning-textarea>
+                            <div class="form-buttons slds-m-top_small">
+                                <lightning-button
+                                    label="Confirm Rejection"
+                                    variant="destructive"
+                                    onclick={handleConfirmReject}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                                <lightning-button
+                                    label="Cancel"
+                                    onclick={handleCancelForm}
+                                    disabled={actionInProgress}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </template>
+
+                </div>
+            </template>
+
+            <!-- Child Requests -->
+            <template lwc:if={hasChildren}>
+                <div class="section-block">
+                    <div class="section-title">
+                        Subsequent Requests
+                        <span class="count-badge">{childCount}</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="detail-table">
+                            <thead>
+                                <tr>
+                                    <th>Request #</th>
+                                    <th>Product</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Submitted</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={childRequests} for:item="child">
+                                    <tr key={child.id}>
+                                        <td>{child.name}</td>
+                                        <td>{child.productName}</td>
+                                        <td>{child.requestType}</td>
+                                        <td><span class={child.statusClass}>{child.status}</span></td>
+                                        <td>{child.formattedDate}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Approval History -->
+            <div class="section-block">
+                <div class="section-title">Approval History &amp; Audit</div>
+                <c-approval-history-timeline record-id={recordId}></c-approval-history-timeline>
+            </div>
+
+        </template>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="empty-state">Loading request details...</div>
+        </template>
+
+        <!-- Toast -->
+        <template lwc:if={toastMessage}>
+            <div class={toastClass} role="alert">
+                <span class="toast-text">{toastMessage}</span>
+                <button class="toast-close" onclick={dismissToast} title="Dismiss">&#x2715;</button>
+            </div>
+        </template>
+
+    </div>
+</template>

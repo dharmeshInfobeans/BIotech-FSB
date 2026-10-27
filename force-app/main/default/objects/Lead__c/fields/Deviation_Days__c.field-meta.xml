@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deviation_Days__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  NOT(ISBLANK(Campaign__c)),
+  IF(
+    NOT(ISBLANK(Campaign__r.End_Date__c)),
+    IF(
+      ISPICKVAL(Campaign__r.Categorize__c, &quot;Biotech Driven Event&quot;),
+      IF(
+        (DATEVALUE(CreatedDate) - Campaign__r.End_Date__c) &gt; 2,
+        DATEVALUE(CreatedDate) - Campaign__r.End_Date__c - 2,
+        0
+      ),
+      IF(
+        ISPICKVAL(Campaign__r.Categorize__c, &quot;Society Driven Event&quot;),
+        IF(
+          (DATEVALUE(CreatedDate) - Campaign__r.End_Date__c) &gt; 5,
+          DATEVALUE(CreatedDate) - Campaign__r.End_Date__c - 5,
+          0
+        ),
+        0
+      )
+    ),
+    0
+  ),
+  0
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Deviation Days</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Type__c</fullName>
+    <description>Distinguishes a new product registration from a child additional document request. Used for filtering in queue LWCs and reports.</description>
+    <label>Request Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New Registration</fullName>
+                <default>true</default>
+                <label>New Registration</label>
+            </value>
+            <value>
+                <fullName>Additional Document Request</fullName>
+                <default>false</default>
+                <label>Additional Document Request</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

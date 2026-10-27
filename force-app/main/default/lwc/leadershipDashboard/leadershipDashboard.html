@@ -1,0 +1,290 @@
+<template>
+    <div class="dash-root">
+
+        <!-- ── Header ──────────────────────────────────────────────────────── -->
+        <div class="dash-header">
+            <div class="dash-title">
+                <lightning-icon icon-name="utility:chart" size="small" class="slds-m-right_x-small"></lightning-icon>
+                Leadership Dashboard
+            </div>
+            <div class="dash-actions">
+                <template lwc:if={lastRefreshed}>
+                    <span class="refresh-label">Updated {lastRefreshed}</span>
+                </template>
+                <lightning-button-icon
+                    icon-name="utility:refresh"
+                    alternative-text="Refresh"
+                    title="Refresh dashboard"
+                    onclick={handleRefresh}
+                    disabled={isLoading}>
+                </lightning-button-icon>
+            </div>
+        </div>
+
+        <!-- ── Loading ─────────────────────────────────────────────────────── -->
+        <template lwc:if={isLoading}>
+            <div class="loading-overlay">
+                <lightning-spinner alternative-text="Loading dashboard" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- ── Error ───────────────────────────────────────────────────────── -->
+        <template lwc:if={loadError}>
+            <div class="error-box">
+                <lightning-icon icon-name="utility:error" size="small" class="slds-m-right_x-small"></lightning-icon>
+                {loadError}
+            </div>
+        </template>
+
+        <!-- ── Dashboard content ───────────────────────────────────────────── -->
+        <template lwc:if={hasData}>
+
+            <!-- ── KPI Row ──────────────────────────────────────────────── -->
+            <div class="kpi-row">
+
+                <div class="kpi-card kpi-pending">
+                    <div class="kpi-icon-wrap">
+                        <lightning-icon icon-name="utility:clock" size="small"></lightning-icon>
+                    </div>
+                    <div class="kpi-value">{kpi.pendingApprovals}</div>
+                    <div class="kpi-label">Pending Approvals</div>
+                </div>
+
+                <div class="kpi-card kpi-overdue">
+                    <div class="kpi-icon-wrap">
+                        <lightning-icon icon-name="utility:warning" size="small"></lightning-icon>
+                    </div>
+                    <div class="kpi-value">{kpi.overdueCount}</div>
+                    <div class="kpi-label">Overdue (&gt;7 days)</div>
+                </div>
+
+                <div class="kpi-card kpi-turnaround">
+                    <div class="kpi-icon-wrap">
+                        <lightning-icon icon-name="utility:timer" size="small"></lightning-icon>
+                    </div>
+                    <div class="kpi-value kpi-value-sm">{kpi.avgTurnaroundDays}</div>
+                    <div class="kpi-label">Avg Turnaround</div>
+                </div>
+
+                <div class="kpi-card kpi-submitted">
+                    <div class="kpi-icon-wrap">
+                        <lightning-icon icon-name="utility:upload" size="small"></lightning-icon>
+                    </div>
+                    <div class="kpi-value">{kpi.submittedThisMonth}</div>
+                    <div class="kpi-label">Submitted This Month</div>
+                </div>
+
+                <div class="kpi-card kpi-approved">
+                    <div class="kpi-icon-wrap">
+                        <lightning-icon icon-name="utility:check" size="small"></lightning-icon>
+                    </div>
+                    <div class="kpi-value">{kpi.approvedThisMonth}</div>
+                    <div class="kpi-label">Approved This Month</div>
+                </div>
+
+                <div class="kpi-card kpi-rejected">
+                    <div class="kpi-icon-wrap">
+                        <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+                    </div>
+                    <div class="kpi-value">{kpi.rejectedThisMonth}</div>
+                    <div class="kpi-label">Rejected This Month</div>
+                </div>
+
+            </div>
+
+            <!-- ── Middle row: Stage + Country ──────────────────────────── -->
+            <div class="chart-row">
+
+                <!-- By Stage -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <lightning-icon icon-name="utility:stage" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                        Active Requests by Stage
+                    </div>
+                    <template lwc:if={noActiveRequests}>
+                        <p class="no-data-msg">No active requests at this time.</p>
+                    </template>
+                    <template lwc:else>
+                        <div class="bar-list">
+                            <template for:each={byStage} for:item="item">
+                                <div key={item.status} class="bar-row">
+                                    <div class="bar-label" title={item.status}>{item.status}</div>
+                                    <div class="bar-track">
+                                        <lightning-progress-bar
+                                            value={item.pct}
+                                            size="x-small">
+                                        </lightning-progress-bar>
+                                    </div>
+                                    <div class="bar-count">{item.count}</div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- By Country -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <lightning-icon icon-name="utility:location" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                        Active Requests by Country
+                    </div>
+                    <template lwc:if={noCountryData}>
+                        <p class="no-data-msg">No country data available.</p>
+                    </template>
+                    <template lwc:else>
+                        <div class="bar-list">
+                            <template for:each={byCountry} for:item="item">
+                                <div key={item.country} class="bar-row">
+                                    <div class="bar-label" title={item.country}>{item.country}</div>
+                                    <div class="bar-track bar-track-country">
+                                        <lightning-progress-bar
+                                            value={item.pct}
+                                            size="x-small">
+                                        </lightning-progress-bar>
+                                    </div>
+                                    <div class="bar-count">{item.count}</div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+
+            <!-- ── Bottom row: Trends + Overdue ─────────────────────────── -->
+            <div class="chart-row">
+
+                <!-- 6-Month Trends -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <lightning-icon icon-name="utility:trending" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                        6-Month Request Trends
+                    </div>
+                    <div class="trend-legend">
+                        <span class="legend-submitted">&#9632; Submitted</span>
+                        <span class="legend-approved">&#9632; Approved / Completed</span>
+                    </div>
+                    <table class="trend-table">
+                        <thead>
+                            <tr>
+                                <th class="th-month">Month</th>
+                                <th class="th-num">Sub</th>
+                                <th class="th-bar"></th>
+                                <th class="th-num">App</th>
+                                <th class="th-bar"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={trends} for:item="t">
+                                <tr key={t.monthLabel}>
+                                    <td class="td-month">{t.monthLabel}</td>
+                                    <td class="td-num">{t.submitted}</td>
+                                    <td class="td-bar">
+                                        <div class="bar-submitted-wrap">
+                                            <lightning-progress-bar
+                                                value={t.submittedPct}
+                                                size="x-small">
+                                            </lightning-progress-bar>
+                                        </div>
+                                    </td>
+                                    <td class="td-num td-approved">{t.approved}</td>
+                                    <td class="td-bar">
+                                        <div class="bar-approved-wrap">
+                                            <lightning-progress-bar
+                                                value={t.approvedPct}
+                                                size="x-small">
+                                            </lightning-progress-bar>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Overdue Requests -->
+                <div class="chart-card">
+                    <div class="chart-title">
+                        <lightning-icon icon-name="utility:warning" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                        Overdue Requests
+                        <template lwc:if={hasOverdue}>
+                            <span class="overdue-badge">{overdueCount}</span>
+                        </template>
+                    </div>
+
+                    <template lwc:if={hasOverdue}>
+                        <div class="overdue-list">
+                            <template for:each={overdueRequests} for:item="item">
+                                <div key={item.id}
+                                     class="overdue-row"
+                                     data-recid={item.id}
+                                     onclick={handleOpenRequest}
+                                     role="button"
+                                     tabindex="0">
+                                    <div class="overdue-top">
+                                        <span class="overdue-name">{item.name}</span>
+                                        <span class="overdue-days-badge">{item.daysPending}d</span>
+                                    </div>
+                                    <div class="overdue-meta">
+                                        <span>{item.distributor}</span>
+                                        <span class="sep">·</span>
+                                        <span>{item.country}</span>
+                                        <span class="sep">·</span>
+                                        <span class="overdue-status">{item.status}</span>
+                                    </div>
+                                    <div class="overdue-submitted">Submitted: {item.submittedDate}</div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <div class="no-overdue">
+                            <lightning-icon icon-name="utility:check" size="small"></lightning-icon>
+                            <p>No overdue requests — all caught up!</p>
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+
+            <!-- ── Quick Reports ─────────────────────────────────────────── -->
+            <div class="reports-section">
+                <div class="section-heading">
+                    <lightning-icon icon-name="utility:report" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                    Quick Reports
+                </div>
+                <div class="report-cards">
+
+                    <div class="report-card" data-report="pending" onclick={handleViewReport} role="button" tabindex="0">
+                        <lightning-icon icon-name="utility:list" size="small" class="report-card-icon"></lightning-icon>
+                        <div class="report-card-body">
+                            <div class="report-card-title">Pending Approvals</div>
+                            <div class="report-card-desc">All active requests awaiting action</div>
+                        </div>
+                        <lightning-icon icon-name="utility:forward" size="x-small" class="report-arrow"></lightning-icon>
+                    </div>
+
+                    <div class="report-card" data-report="history" onclick={handleViewReport} role="button" tabindex="0">
+                        <lightning-icon icon-name="utility:history" size="small" class="report-card-icon"></lightning-icon>
+                        <div class="report-card-body">
+                            <div class="report-card-title">Approval History</div>
+                            <div class="report-card-desc">Complete audit trail of all approval actions</div>
+                        </div>
+                        <lightning-icon icon-name="utility:forward" size="x-small" class="report-arrow"></lightning-icon>
+                    </div>
+
+                    <div class="report-card" data-report="aging" onclick={handleViewReport} role="button" tabindex="0">
+                        <lightning-icon icon-name="utility:clock" size="small" class="report-card-icon"></lightning-icon>
+                        <div class="report-card-body">
+                            <div class="report-card-title">Aging Report</div>
+                            <div class="report-card-desc">Requests by age and stage — overdue highlights</div>
+                        </div>
+                        <lightning-icon icon-name="utility:forward" size="x-small" class="report-arrow"></lightning-icon>
+                    </div>
+
+                </div>
+            </div>
+
+        </template>
+    </div>
+</template>

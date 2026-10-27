@@ -1,0 +1,450 @@
+<aura:component controller="AccountBranchFormController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="acc" type="Account" />
+    <aura:attribute name="accName" type="String" />
+    <aura:attribute name="accountId" type="String"  />
+    <aura:attribute name="showLoadingSpinner" type="Boolean" default="false" />
+    <aura:attribute name="fileName" type="String" />
+    <!--<aura:attribute name="cusAccGrpPKVL" type="Object"/>-->
+    <aura:attribute name="cusGrpPKVL" type="Object"/>
+    <aura:attribute name="delPriorPKVL" type="Object"/>
+    <aura:attribute name="distChanPKVL" type="Object"/>
+    <aura:attribute name="indKeyPKVL" type="Object"/>
+    <aura:attribute name="termPayKeyPKVL" type="Object"/>
+    <aura:attribute name="subStatusPKVL" type="Object"/>
+    <aura:attribute name="salesDistrictPKVL" type="Object[]"/>
+    <aura:attribute name="filteredSalesDistrictPKVL" type="object[]"/>
+    <aura:attribute name="delPlantPKVL" type="Object[]"/>
+    <aura:attribute name="regionCodePKVL" type="Object[]"/>
+    <!--<aura:attribute name="cusAccGrp" type="String"/>-->
+    <aura:attribute name="cusGrp" type="String"/>
+    <aura:attribute name="delPriority" type="String"/>
+    <aura:attribute name="distChan" type="String"/>
+    <aura:attribute name="indKey" type="String"/>
+    <aura:attribute name="termPayKey" type="String"/>
+    <aura:attribute name="subStatus" type="String"/>
+    <aura:attribute name="salesDistrict" type="String"/>
+    <aura:attribute name="delPlant" type="String"/>
+    <aura:attribute name="regionCode" type="String"/>
+    
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="brancFormDataCusSetList" type="BranchFormDataVsLocation__c[]" />
+    <!--<aura:attribute name="salesDistrictSet" type="Set" default="[]"/>
+    <aura:attribute name="deliveryPlantSet" type="Set" default="[]"/>
+    <aura:attribute name="regionCodeSet" type="Set" default="[]"/>-->
+    
+    <aura:attribute name="cusTypePKVL" type="Object"/>
+    <aura:attribute name="cusTypePKVL2" type="Object"/>
+    <aura:attribute name="cusType1" type="String"/>
+    <aura:attribute name="cusType2" type="String"/>
+    <aura:attribute name="totalCusMapped1" type="Integer"/>
+    <aura:attribute name="accOverdue1" type="Integer"/>
+    <aura:attribute name="perOfOverdue1" type="Integer"/>
+    <aura:attribute name="colList1" type="Integer"/>
+    <aura:attribute name="overdueAccLst1" type="Integer"/>
+    <aura:attribute name="perOfLstOverdue1" type="Integer"/>
+    <aura:attribute name="grossSales1" type="Integer"/>
+    <aura:attribute name="grnValue1" type="Integer"/>
+    <aura:attribute name="perMaxLimit1" type="Integer"/>
+    <aura:attribute name="totalCusMapped2" type="Integer"/>
+    <aura:attribute name="accOverdue2" type="Integer"/>
+    <aura:attribute name="perOfOverdue2" type="Integer"/>
+    <aura:attribute name="colList2" type="Integer"/>
+    <aura:attribute name="overdueAccLst2" type="Integer"/>
+    <aura:attribute name="perOfLstOverdue2" type="Integer"/>
+    <aura:attribute name="grossSales2" type="Integer"/>
+    <aura:attribute name="grnValue2" type="Integer"/>
+    <aura:attribute name="perMaxLimit2" type="Integer"/>
+    <aura:attribute name="disableBCustomerType" type="Boolean" default="false"/>
+    <aura:attribute name="disableNBCustomerType" type="Boolean" default="false"/>
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{! c.doInit }" />
+    <aura:handler name="change" value="{! v.accountId }" action="{! c.handleIdChange }"/>
+    <aura:handler name="change" value="{! v.salesDistrictPKVL }" action="{! c.salesDistrictPKVLChange }"/>
+    <lightning:notificationsLibrary aura:id="notifLib"/>
+    <lightning:navigation aura:id="navService" /> 
+    
+    <aura:if isTrue="{! v.showSpinner }">
+    	<lightning:spinner alternativeText="Loading....."/>
+    </aura:if>
+    
+    
+    <c:PickList sObjectName="Account" fieldName="Sub_Status__c" picklistValues="{! v.subStatusPKVL }" />    
+    <!--<c:PickList sObjectName="Account" fieldName="Customer_Account_Group__c" picklistValues="{! v.cusAccGrpPKVL }" />-->
+    <c:PickList sObjectName="Account" fieldName="Customer_Group__c" picklistValues="{! v.cusGrpPKVL }" />
+    <!--<c:PickList sObjectName="Account" fieldName="Delivery_Priority__c" picklistValues="{! v.delPriorPKVL }" />-->
+    <c:PickList sObjectName="Account" fieldName="Distributor_Channel__c" picklistValues="{! v.distChanPKVL }" />
+    <c:PickList sObjectName="Account" fieldName="Industry_Key__c" picklistValues="{! v.indKeyPKVL }" />
+    <c:PickList sObjectName="Account" fieldName="Terms_Of_Payment_Key__c" picklistValues="{! v.termPayKeyPKVL }" />
+    <c:PickList sObjectName="Account" fieldName="SOP_B_Customer_Type__c" picklistValues="{! v.cusTypePKVL }" />
+    <c:PickList sObjectName="Account" fieldName="SOP_NB_Customer_Type__c" picklistValues="{! v.cusTypePKVL2 }" />
+    <!--<c:PickList sObjectName="Account" fieldName="Sales_District__c" picklistValues="{! v.salesDistrictPKVL }" />
+    <c:PickList sObjectName="Account" fieldName="Delivering_Plant__c" picklistValues="{! v.delPlantPKVL }" />
+    <c:PickList sObjectName="Account" fieldName="Region_Code__c" picklistValues="{! v.regionCodePKVL }" />-->
+    
+    
+    <lightning:card title="Branch WebForm">
+        <lightning:accordion aura:id="accordion" activeSectionName="B">
+            <lightning:accordionSection name="A" label="Basic Info">
+                <!--<aura:set attribute="actions">
+                    <lightning:buttonMenu aura:id="menu" alternativeText="Show menu" iconSize="x-small" menuAlignment="right">
+                        <lightning:menuItem value="New" label="Menu Item One" />
+                        <lightning:menuItem value="Edit" label="Menu Item Two" />
+                    </lightning:buttonMenu>
+                </aura:set>-->
+                <aura:set attribute="body">
+                    
+                    <div class="slds-grid slds-wrap slds-grid--pull-padded slds-grid--align-center ">             
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="name" disabled="true" value="{!v.acc.Name}" label="Name" />
+                        </div>
+                        
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="status" disabled="true" value="{! v.acc.Status__c }" label="Status" />
+                        </div>
+                           <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:select aura:id="subStat" disabled="true" name="subStat" label="Sub Status" value="{! v.subStatus }" >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.subStatusPKVL}" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.subStatus }" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="input5" disabled="true" value="{! v.acc.Phone }" label="Phone" />
+                        </div>
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="bStreet" disabled="true" value="{! v.acc.BillingStreet }" label="Street" />
+                        </div>
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="bCity" disabled="true" value="{! v.acc.BillingCity }" label="City" />
+                        </div>
+                       
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="bState" disabled="true" value="{! v.acc.BillingState }" label="State" />
+                        </div>
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="bCountry" disabled="true" value="{! v.acc.BillingCountry }" label="Country" />
+                        </div>
+                         <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="bZipCode" disabled="true" value="{! v.acc.BillingPostalCode }" label="City Postal Code" />
+                        </div>
+                       
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="countryKey" disabled="true" value="{! v.acc.Country_Key__c }" label="Country Key" />
+                        </div>
+                     
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input disabled="true" name="curr"  value="{! v.acc.Currency__c }" label="Currency" />
+                        </div>
+                       <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:select aura:id="distChan" disabled="true" name="distChan" label="Distributor Channel"  value="{! v.distChan }" >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.distChanPKVL}" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.distChan }"/>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                         <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:select aura:id="cusGrp" disabled="true" name="cusGrp" label="Customer Group" value="{! v.cusGrp }"  >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.cusGrpPKVL}" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.cusGrp }"/>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:select aura:id="indKey" disabled="true" name="indKey" label="Industry Key" value="{! v.indKey }"   >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.indKeyPKVL}" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.indKey }"/>
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                         <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:select aura:id="termPayKey" disabled="true" name="termPayKey" label="Term Of Payment Key" value="{! v.termPayKey }"  >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.termPayKeyPKVL }" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.termPayKey }" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>
+                           <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="recAccGL" disabled="true" value="{! v.acc.Reconciliation_Account_GL__c }" label="Reconciliation Account In General Ledger" />
+                        </div>
+                           <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input name="priceProc"  disabled="true" value="{! v.acc.Pricing_Procedure_Assigned__c }" label="Pricing Procedure Assigned To Customer" />
+                        </div>
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            
+                        </div>
+                        
+                    </div> 
+                </aura:set>
+            </lightning:accordionSection>
+            <lightning:accordionSection name="B" label="Information To Fill">
+                <aura:set attribute="body">
+                    <div class="slds-grid slds-wrap slds-grid--pull-padded slds-grid--align-center ">             
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <lightning:input disabled="true" name="compCode"  value="{! v.acc.Company_Code__c }" label="Company Code" />
+                        </div>
+                        
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                        <lightning:select aura:id="sDis" required="true" name="salesDistrict" label="Sales District" value="{! v.salesDistrict }"  >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.filteredSalesDistrictPKVL }" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.salesDistrict }" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>                   
+
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                        <lightning:select aura:id="deliveryPlant" required="true" name="deliveryPlant" label="Delivery Plant" value="{! v.delPlant }"  >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.delPlantPKVL }" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.delPlant }" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>  
+                         <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                        <lightning:select aura:id="regCode" required="true" name="regCode" label="Region Code" value="{! v.regionCode }"  >
+                                <option  text="--None--" value="" selected=""/>
+                                <aura:iteration items="{!v.regionCodePKVL }" var="option">
+                                    <option  text="{!option}" value="{!option}" selected="{!option == v.regionCode }" />
+                                </aura:iteration>
+                            </lightning:select>
+                        </div>  
+                     
+                        
+                     
+                        
+                        <div class="slds-col--padded slds-container--small slds-size--1-of-2 slds-medium-size--1-of-1 slds-large-size--1-of-2">
+                            <!--<lightning:input name="curr"  value="{! v.acc.Currency__c }" label="Currency" />-->
+                        </div>
+                        
+                    </div> 
+                </aura:set>
+            </lightning:accordionSection>
+            <lightning:accordionSection name="C" label="SOP Matrix">
+                <!-- <lightning:datatable
+                                     columns="{! v.columns }"
+                                     data="{! v.data }"
+                                     keyField="id"
+                                     errors="{! v.errors }"
+                                     hideCheckboxColumn="true"
+                                     />-->
+                
+                <lightning:card title="">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-max-large--table_stacked-horizontal">
+                        <thead>
+                            <tr class="slds-line-height_reset slds-text-heading--label">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Employee Name">Employee Name</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Employee Code">Employee Code</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Designation">Designation</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="No. of Customer Mapped in SAP">No. of Customer Mapped in SAP</div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="No. of Account Overdue">No. of Account Overdue</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="slds-hint-parent">
+                                <th data-label="Opportunity Name" scope="row">
+                                    <div class="slds-truncate" title="Cloudhub">{!v.acc.Owner.Name}</div>
+                                </th>
+                                <td data-label="Account Name">
+                                    <div class="slds-truncate" title="Cloudhub">{!v.acc.Owner.Employee_Code__c}</div>
+                                </td>
+                                <td data-label="Close Date">
+                                    <div class="slds-truncate" title="4/14/2015">{!v.acc.Owner.UserRole.Name}</div>
+                                </td>
+                                <td data-label="Prospecting">
+                                   <!-- <div class="slds-truncate" title="Prospecting">{!v.data.customerMapped}</div>-->
+                                     <lightning:input required="true" label="" onchange="{! c.onTotalCusMapChange }" aura:id="numOfCusMappedSAP"  type="number" name="numOfCusMappedSAP"  value="{! v.acc.No_Of_Customer_Mapped_SAP__c }" min="0"/>
+                                </td>
+                                <td data-label="Confidence">
+                                   <!-- <div class="slds-truncate" title="20%">{!v.data.accOverdue}</div>-->
+                                    <lightning:input required="true" label="" aura:id="numOfAccOverdue"  type="number" name="numOfAccOverdue" value="{! v.acc.No_Of_Account_Overdue__c }"  min="0"/>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </lightning:card>
+                
+                
+                <lightning:card title="">
+                    <div style="width: 99%; height:98%;" class="slds-scrollable_x slds-scrollable_y">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset ">
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Customer Type">Select Customer Type</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Customer Mapped">Total Customer Mapped To Sales Rep</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Accounts Overdue">Accounts Overdue</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Percent Overdue">% Of Overdue<br/>(max limit is 10%)</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Collection List">Collection target of <br/> Sales Rep</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Overdue Account List">Overdue Amt of <br/>Sales Rep A/Cs</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Percent List Overdue">% Of Overdue<br/>(max limit is 10%)</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Gross Sales">Gross Sales of<br/> Sales Rep</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="GRN Value">GRN Value of Customers <br/>mapped to Sales Rep</div>
+                                </th>
+                                <th class="slds-cell-wrap" scope="col">
+                                    <div class="slds-truncate" title="Percent Max Limit">Max Limit is 7%</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        
+                        
+                        
+                        
+                        <tbody>
+                            <tr class="slds-hint-parent">
+                                <td data-label="Customer Type" scope="row">
+                                    <!--<div class="slds-truncate" title="Customer Type">{!v.acc.employeeName}</div>-->
+                                    
+                                    <lightning:select required="true" label="" aura:id="cusType1" disabled="{!v.disableBCustomerType}" name="cusType1"  value="{! v.cusTypePKVL[1] }" onchange="{! c.onCusType1Change }"  >
+                                        <option  text="{! v.cusTypePKVL[1] }" value="{! v.cusTypePKVL[1] }" selected="{! v.cusTypePKVL[1] }"/>
+                                    </lightning:select>
+                                </td>
+                                <td data-label="Customer Mapped">
+                                    <lightning:input required="true" label="" aura:id="totalCusMapped" type="number" name="totalCusMapped"  value="{!v.totalCusMapped1}" min="0" onchange="{! c.onTotalCusMapChange }"/>
+                                </td>
+                                <td data-label="Accounts Overdue">
+                                    <lightning:input required="true" label="" aura:id="accOverdue"  type="number" name="accOverdue"  value="{!v.accOverdue1}" min="0" onchange="{! c.onAccOverdueChange }" />
+                                </td>
+                                <td data-label="Percent Overdue" >
+                                    <lightning:input  required="true" label="" aura:id="perAccOverdue"  disabled="true" type="number" name="perAccOverdue"  value="{!v.perOfOverdue1}" formatter="percent" step="0.01" min="0"/>
+                                    <!--<input class="inputTextRedBgColor" required="true" aura:id="perAccOverdue"  disabled="true" type="number" name="perAccOverdue"  value="{!v.perOfOverdue1}" formatter="percent" step="0.01" min="0"/>-->
+                                </td>
+                                <td data-label="Collection List">
+                                    <lightning:input required="true" label="" aura:id="colList" type="number" name="collectionList"  value="{!v.colList1}" min="0" onchange="{! c.onCollectionListChange }"/>
+                                </td>
+                                <td data-label="Overdue Account List">
+                                    <lightning:input required="true" label="" aura:id="accOverdueLst" type="number" name="accOverdueList"  value="{!v.overdueAccLst1}" min="0" onchange="{! c.onAccOverdueListChange }"/>
+                                </td>
+                                <td data-label="Percent List Overdue">
+                                    <lightning:input required="true" label="" aura:id="perLstOverdue" disabled="true" type="number" name="percentListOverdue"  value="{!v.perOfLstOverdue1}" formatter="percent" step="0.01" min="0"/>
+                                </td>
+                                <td data-label="Gross Sales">
+                                    <lightning:input required="true"  label="" aura:id="grossSales" type="number" name="grossSales"  value="{!v.grossSales1}" min="0" step="0.01" onchange="{! c.OnGrnAndGrossSales1Change }" />
+                                </td>
+                                <td data-label="GRN Value">
+                                    <lightning:input required="true" label="" aura:id="grnValue" type="number" name="grnValue"  value="{!v.grnValue1}" min="0" step="0.01" onchange="{! c.OnGrnAndGrossSales1Change }"/>
+                                </td>
+                                <td data-label="Max Limit">
+                                    <lightning:input required="true" label="" disabled="true" aura:id="maxLimit" type="number" name="Max Limit"  value="{!v.perMaxLimit1}" formatter="percent" step="0.01" min="0.00" max="0.07" onchange="{! c.onMaxLmtChange }"/>
+                                </td>
+                            </tr>
+                            <tr class="slds-hint-parent">
+                                <td data-label="Customer Type2" scope="row">
+                                    <!--<div class="slds-truncate" title="Customer Type">{!v.acc.employeeName}</div>-->
+                                    <!--<lightning:select required="true" label="" aura:id="cusType2" disabled="{!v.disableNBCustomerType}" name="cusType2"  value="{! v.cusType2 }" onchange="{! c.onCusType2Change }" >-->
+                                    <lightning:select required="true" label="" aura:id="cusType2" disabled="{!v.disableNBCustomerType}" name="cusType2"  value="{! v.cusTypePKVL2[0] }" onchange="{! c.onCusType2Change }" >
+                                        <option  text="{! v.cusTypePKVL2[0] }" value="{! v.cusTypePKVL2[0] }" selected="{!v.cusTypePKVL2[0] }"/>
+                                        <!--<option  text="None" value="" selected=""/>-->
+                                        <!--<aura:iteration items="{! v.cusTypePKVL2[0] }" var="opt">
+                                            <option  text="{!opt}" value="{!opt}" selected="{! opt == v.cusType2  }" />
+                                        </aura:iteration>-->
+                                    </lightning:select>
+                                </td>
+                                <td data-label="Customer Mapped2">                      
+                                    <lightning:input required="true" label="" aura:id="totalCusMapped2" type="number" name="totalCusMapped"  value="{!v.totalCusMapped2}" min="0" onchange="{! c.onTotalCusMapChange }" />
+                                </td>
+                                <td data-label="Accounts Overdue2">
+                                    <lightning:input required="true" label="" aura:id="accOverdue2"  type="number" name="accOverdue"  value="{!v.accOverdue2}" min="0" onchange="{! c.onAccOverdueChange }"/>
+                                </td>
+                                <td data-label="Percent Overdue2">
+                                    <lightning:input required="true" label="" aura:id="perAccOverdue2" disabled="true" type="number" name="perAccOverdue"  value="{!v.perOfOverdue2}" formatter="percent" step="0.01" min="0"/>
+                                    
+                                </td>
+                                <td data-label="Collection List2">
+                                    <lightning:input required="true" label="" aura:id="colList2" type="number" name="collectionList"  value="{!v.colList2}" min="0" onchange="{! c.onCollectionListChange }"/>
+                                </td>
+                                <td data-label="Overdue Account List2">
+                                    <lightning:input required="true" label="" aura:id="accOverdueLst2" type="number" name="accOverdueList"  value="{!v.overdueAccLst2}" min="0" onchange="{! c.onAccOverdueListChange }"/>
+                                </td>
+                                <td data-label="Percent List Overdue2">
+                                    <lightning:input required="true" label="" aura:id="perLstOverdue2" disabled="true" type="number" name="percentListOverdue"  value="{!v.perOfLstOverdue2}" formatter="percent" step="0.01" min="0"/>
+                                </td>
+                                <td data-label="Gross Sales2">
+                                    <lightning:input required="true" label="" aura:id="grossSales2" type="number" name="grossSales2"  value="{!v.grossSales2}" min="0" step="0.01" onchange="{! c.OnGrnAndGrossSales2Change }"/>
+                                </td>
+                                <td data-label="GRN Value2">
+                                    <lightning:input required="true" label="" aura:id="grnValue2" type="number" name="grnValue"  value="{!v.grnValue2}" min="0" step="0.01" onchange="{! c.OnGrnAndGrossSales2Change }"/>
+                                </td>
+                                <td data-label="Max Limit2">
+                                    <lightning:input required="true" label="" disabled="true" aura:id="maxLimit2" type="number" name="maxLimit2"  value="{!v.perMaxLimit2}" formatter="percent" step="0.01" min="0.00" max="0.07" onchange="{! c.onMaxLmtChange }"/>
+                                </td>
+                            </tr>
+                             <tr class="slds-hint-parent slds-text-align_center">
+                                <td class="slds-text-align_center" data-label="Total" scope="row">
+                                    <ui:outputText class="slds-text-title_bold slds-text-title_caps " value="TOTAL"></ui:outputText>
+				                </td>
+                                <td data-label="Customer Mapped2">
+                                   
+                                    <lightning:input disabled="true" label="" aura:id="ttotalCusMapped" type="number" name="totalCusMapped"   min="0"/>
+                                </td>
+                                <td data-label="Accounts Overdue2">
+                              
+                                    <lightning:input label="" aura:id="taccOverdue" disabled="true"  type="number" name="accOverdue"   min="0"/>
+                                </td>
+                                <td data-label="Percent Overdue2">
+                                    <lightning:input label="" aura:id="tperAccOverdue" disabled="true" type="number" name="perAccOverdue"  formatter="percent" step="0.01" min="0"/>
+                                    
+                                </td>
+                                <td data-label="Collection List2">
+                                    <lightning:input label="" aura:id="tcolList" disabled="true" type="number" name="collectionList"   min="0"/>
+                                </td>
+                                <td data-label="Overdue Account List2">
+                                    <lightning:input label="" aura:id="taccOverdueLst" disabled="true" type="number" name="accOverdueList"   min="0"/>
+                                </td>
+                                <td data-label="Percent List Overdue2">
+                                    <lightning:input label="" aura:id="tperLstOverdue" disabled="true" type="number" name="percentListOverdue"  formatter="percent" step="0.01" min="0"/>
+                                </td>
+                                <td data-label="Gross Sales2">
+                                    <lightning:input label="" aura:id="tgrossSales" disabled="true" type="number" name="grossSales2"   min="0" step="0.01"/>
+                                </td>
+                                <td data-label="GRN Value2">
+                                    <lightning:input label="" aura:id="tgrnValue" disabled="true" type="number" name="grnValue"   min="0" step="0.01"/>
+                                </td>
+                                <td data-label="Max Limit2">
+                                    <lightning:input label="" aura:id="tmaxLimit" disabled="true" type="number" name="maxLimit2"   formatter="percent" step="0.01" min="0.00" max="0.07"/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    </div>
+                </lightning:card>
+                
+            </lightning:accordionSection>
+        </lightning:accordion>
+        <lightning:button iconName="utility:save" class="slds-align_absolute-center" variant="brand" type="submit" name="save" label="Save" onclick="{! c.saveAccDet }" />
+    </lightning:card>
+</aura:component>

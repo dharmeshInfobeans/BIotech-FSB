@@ -1,0 +1,168 @@
+<template>
+
+    <!-- =========================================================
+         Confirmation Modal
+         ========================================================= -->
+
+    <template if:true={showConfirm}>
+
+        <section
+            role="dialog"
+            tabindex="-1"
+            aria-modal="true"
+            aria-labelledby="resync-modal-title"
+            class="slds-modal slds-fade-in-open resync-modal">
+
+            <div class="slds-modal__container">
+
+
+                <!-- =================================================
+                     Modal Header
+                     ================================================= -->
+
+                <header
+                    class="slds-modal__header resync-modal__header">
+
+                    <h2
+                        id="resync-modal-title"
+                        class="resync-modal__title">
+
+                        Resync this order to SAP?
+
+                    </h2>
+
+                </header>
+
+
+                <!-- =================================================
+                     Modal Body
+                     ================================================= -->
+
+                <div
+                    class="slds-modal__content
+                           slds-p-around_medium
+                           resync-modal__body">
+
+
+                    <!-- =================================================
+                         Current Status
+                         ================================================= -->
+
+                    <p class="resync-modal__copy">
+
+                        This resends the order to SAP right now.
+
+                        The current status is
+
+                        <span class={statusPillClass}>
+
+                            {currentStatus}
+
+                        </span>.
+
+                    </p>
+
+
+                    <!-- =================================================
+                         Retry Count
+                         ================================================= -->
+
+                    <p class="resync-modal__retry-count">
+
+                        Resync attempts:
+
+                        <strong>
+
+                            {retryCount}
+
+                        </strong>
+
+                    </p>
+
+
+                    <!-- =================================================
+                         Last SAP Response
+                         ================================================= -->
+
+                    <template if:true={lastMessage}>
+
+                        <p class="resync-modal__last-message">
+
+                            Last response: {lastMessage}
+
+                        </p>
+
+                    </template>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     Modal Footer
+                     ================================================= -->
+
+                <footer
+                    class="slds-modal__footer
+                           resync-modal__footer">
+
+
+                    <!-- =================================================
+                         Cancel
+                         ================================================= -->
+
+                    <button
+                        type="button"
+                        class="resync-btn resync-btn_ghost"
+                        onclick={handleCancel}
+                        disabled={isLoading}>
+
+                        Cancel
+
+                    </button>
+
+
+                    <!-- =================================================
+                         Resync Now
+                         ================================================= -->
+
+                    <button
+                        type="button"
+                        class="resync-btn resync-btn_primary"
+                        onclick={handleConfirmResync}
+                        disabled={isLoading}>
+
+                        <template if:true={isLoading}>
+
+                            Resyncing…
+
+                        </template>
+
+
+                        <template if:false={isLoading}>
+
+                            Resync now
+
+                        </template>
+
+                    </button>
+
+
+                </footer>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================================
+             Backdrop
+             ========================================================= -->
+
+        <div
+            class="slds-backdrop slds-backdrop_open">
+        </div>
+
+    </template>
+
+</template>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Fuente</label>
+    <name>Source__c</name>
+    <picklistValues>
+        <masterLabel>Advertisements</masterLabel>
+        <translation><!-- Advertisements --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biotech Connect App</masterLabel>
+        <translation><!-- Biotech Connect App --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Partner</masterLabel>
+        <translation><!-- Business Partner --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Doctor’s Directory</masterLabel>
+        <translation><!-- Doctor’s Directory --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Doctor’s Referral</masterLabel>
+        <translation><!-- Doctor’s Referral --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing Activities</masterLabel>
+        <translation><!-- Marketing Activities --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Others</masterLabel>
+        <translation><!-- Others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Training Programs</masterLabel>
+        <translation><!-- Training Programs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Website / Social Media Accounts / Google Ads</masterLabel>
+        <translation><!-- Website / Social Media Accounts / Google Ads --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

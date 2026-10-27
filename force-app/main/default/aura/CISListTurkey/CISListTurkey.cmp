@@ -1,0 +1,56 @@
+<aura:component >
+    <aura:attribute name="readOnly" type="Boolean" default="false" />
+    <aura:attribute name="CISWrapper" type="Object" />
+    <aura:attribute name="companyPicklistValues" type="List" />
+    <aura:attribute name="productPicklistValues" type="List" />
+    
+    <aura:handler name="CalculateTotal" event="c:CISEvent" action="{!c.calculateTotalValue}"/>
+    
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-no-row-hover" style="border-bottom:0px;">
+        <thead>
+            <tr class="slds-line-height_reset">
+                <th class="" scope="col" style="width:20px">
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Company">{!$Label.c.CISLIst_cmp}</div>
+                </th>
+                <th class="" scope="col">
+                    <div class="slds-truncate" title="Categories">{!$Label.c.CISList_cmp_cat}</div>
+                </th>
+                <th class="surgeryCol" scope="col">
+                    <div class="slds-truncate" title="No. of Surgeries">{!$Label.c.CISList_cmp_surgery}</div>
+                </th>
+                <th class="priceCol" scope="col">
+                    <div class="slds-truncate" title="Avg. Purchase Price">{!$Label.c.CISList_cmp_avg_price}</div>
+                </th>
+                <th class="valueCol" scope="col">
+                    <div class="slds-truncate" title="Value">{!$Label.c.CISList_cmp_value}</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.CISWrapper.CISItemList}" var="item">
+                <c:CISLineItem item="{!item}" 
+                               companyPicklistValues="{!v.companyPicklistValues}" 
+                               productPicklistValues="{!v.productPicklistValues}"
+                               readOnly="{!v.readOnly}"
+                               />
+            </aura:iteration>
+            <tr class="slds-line-height_reset">
+                
+                <td colspan="3" style="padding-top: 15px;">
+                    <aura:if isTrue="{!!v.readOnly}">
+                        <lightning:button variant="brand" label='{!$Label.c.CISList_comp_add_row}' title="Add Row" onclick="{! c.addRow }" />
+                    </aura:if>
+                </td>
+                <td colspan="2" style="text-align:right;    padding-top: 15px;">
+                    <b>{!$Label.c.CIS_cmp_total}:</b>
+                </td>
+                <td style="padding-top: 15px;">
+                    <b> <lightning:formattedNumber value="{!v.CISWrapper.totalValue}" style="currency" minimumFractionDigits="0"/> </b>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+</aura:component>

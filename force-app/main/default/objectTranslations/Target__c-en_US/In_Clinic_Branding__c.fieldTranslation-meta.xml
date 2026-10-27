@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- In-Clinic Branding --></label>
+    <name>In_Clinic_Branding__c</name>
+    <picklistValues>
+        <masterLabel>Brochures</masterLabel>
+        <translation><!-- Brochures --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cataract Counselling Kit</masterLabel>
+        <translation><!-- Cataract Counselling Kit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PEL</masterLabel>
+        <translation><!-- PEL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic Counselling Kit</masterLabel>
+        <translation><!-- Phakic Counselling Kit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic Welcome Kit</masterLabel>
+        <translation><!-- Phakic Welcome Kit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Poster</masterLabel>
+        <translation><!-- Poster --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

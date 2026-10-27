@@ -1,0 +1,9 @@
+.THIS .slds-tabs_default__content{
+    padding:0px !important;
+}
+.THIS thead th{
+    padding:.5rem !important;
+}
+.THIS .grandTotal{
+    font-size: 16px;
+}

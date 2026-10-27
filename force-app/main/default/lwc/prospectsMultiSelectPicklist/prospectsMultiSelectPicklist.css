@@ -1,0 +1,106 @@
+.slds-form-element__label {
+    font-weight: 700;
+}
+
+.ms-container {
+    position: relative;
+}
+
+.ms-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+}
+
+.ms-trigger .slds-truncate {
+    flex: 1 1 auto;
+    text-align: left;
+}
+
+.ms-caret {
+    flex: 0 0 auto;
+    margin-left: 0.5rem;
+}
+
+.ms-trigger:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.ms-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 6999;
+}
+
+.ms-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 7000;
+    margin-top: 2px;
+    background: white;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem;
+    box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.16);
+}
+
+.ms-search {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #dddbda;
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+.ms-search-icon {
+    flex: 0 0 auto;
+    margin-right: 0.5rem;
+    color: #706e6b;
+}
+
+.ms-search-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    border: none;
+    outline: none;
+    font-size: 0.8125rem;
+    background: transparent;
+}
+
+.ms-list {
+    max-height: 15rem;
+    overflow-y: auto;
+    padding: 0.25rem 0;
+}
+
+.ms-option {
+    padding: 0;
+}
+
+.ms-option-label {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    width: 100%;
+}
+
+.ms-option-label:hover {
+    background-color: #f3f2f2;
+}
+
+.ms-option-label input[type='checkbox'] {
+    margin-right: 0.5rem;
+    flex: 0 0 auto;
+}
+
+.ms-empty {
+    padding: 0.5rem 0.75rem;
+    color: #706e6b;
+}

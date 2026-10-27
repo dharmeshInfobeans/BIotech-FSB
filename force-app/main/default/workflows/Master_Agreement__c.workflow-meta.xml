@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Master_Agreement_Expiration_Alert_Email</fullName>
+        <description>Master Agreement Expiration Alert Email</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CRM_Teams</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Master_Agreement_Expiration_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Request_for_Deletion_of_Draft_Orders_Due_to_Agreement_Amendment_Email_Alert</fullName>
+        <description>Request for Deletion of Draft Orders Due to Agreement Amendment Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>CRM_Teams</recipient>
+            <type>group</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Request_for_Deletion_of_Draft_Orders_Template</template>
+    </alerts>
+</Workflow>

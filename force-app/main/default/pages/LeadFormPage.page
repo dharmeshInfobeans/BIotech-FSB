@@ -1,0 +1,762 @@
+<!--=====================================================================
+* 
+* Name: LeadFormPage 
+* Description: This form will take care the UI of Lead web form
+* Created Date: 28-08-2022
+* Created By: (Plus91labs)-Pankaj Sen
+* 
+* Date Modified                        Description of the update
+*           
+=====================================================================-->
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" lightningStylesheets="true" docType="html-5.0" controller="LeadFormPageController">
+    <!--  ----------------------------------------------------------------------  -->
+    <!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
+    <!--  If necessary, please modify the charset parameter to specify the        -->
+    <!--  character set of your HTML page.                                        -->
+    <!--  ----------------------------------------------------------------------  -->
+    <html>
+        <head>
+            <apex:slds />
+            <meta  charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+            <style>
+                .btn {
+                width: 200px;
+                height: 40px;
+                border: 2px solid #81e4ff;
+                border-radius: 30px;
+                color: #1fc2de !important;
+                background-color: white;
+                
+                
+                }
+                
+                .btn:hover {
+                color:white;
+                text-transform: uppercase;
+                background-color: #2997ab;
+                border: 4px solid white;
+                
+                }
+                .slds-select-box {
+                position: absolute;
+                z-index: 1000;
+                max-height: 200px;
+                overflow-y: auto;
+                border: 1px solid #d9d9d9;
+                background-color: #ffffff;
+                display: none; /* Initially hide the dropdown */
+                width: 100%;
+                }
+                .slds-select-box ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                }
+                .slds-select-box li {
+                padding: 10px;
+                cursor: pointer;
+                }
+                .slds-select-box li:hover {
+                background-color: #f4f4f4;
+                }
+                .slds-select-container {
+                position: relative;
+                }
+                .slds-form-element__control input {
+                width: 100%;
+                }
+                .options{
+                cursor: pointer;
+                position: absolute;
+                width: 100%;
+                z-index: 999;
+                background-color: rgb(255, 255, 255);
+                }
+                
+            </style>
+            
+        </head>
+        <body >
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-size_12-of-12">
+                    <img src="{!$Resource.Banner}" style="width:100%;"/>
+                </div>
+            </div>  
+            
+            <form action="page_submission_URL" method="POST">
+                
+                
+                
+                <div class="slds-scope">
+                    
+                    
+                    <div class="slds-p-left_medium slds-p-right_medium">
+                        
+                        <div class="slds-grid slds-gutters slds-wrap">
+                            
+                            <div class="slds-p-vertical_xx-large"></div>
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="phone-id" style="font-weight:bold;">Campaign Name</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" for="CampaingName" value="{!cmpName}" class="slds-input"  name="CampaingName" disabled="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="email-id" style="font-weight:bold;">Campaign Date</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" for="CampaingDate" value="{!cmpDate}" class="slds-input" name="CampaingDate" disabled="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium {!IF(hideLeadProduct,'slds-hide','')}" >
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="leadSelect" style="font-weight:bold;color:Black;">
+                                        Select Lead:
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <div class="searchable-select">
+                                                <input type="text" id="leadSearchInput" onkeyup="searchLeads()" placeholder="Search Leads..." />
+                                                <div id="leadSelect" class ="selectoption" onchange="handleLeadChange(this.value)">
+                                                    
+                                                </div>
+                                                <div class="options" id="leadOptionsList" style="max-height: 100px; overflow-y: auto; border: 1px solid #ccc; padding: 5px; display: none;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium {!IF(hideLeadProduct,'slds-hide','')}">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" for="productname" style="font-weight:bold;color:black;">Lead Product</label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="productname" name="product_name" class="slds-input" placeholder="" minlength="0" maxlength="16" title="" disabled="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        First Name <span style="color:red;">*</span> </label>  
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="firstname" name="first_name" class="slds-input" placeholder="First Name"   minlength="0" maxlength="16" title="Fill the Name in the Correct form" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Last Name <span style="color:red;">*</span> </label>  
+                                    <div class="slds-form-element__control">
+                                        <input  type="text" id="lastname" class="slds-input" name="last_name" placeholder="Last Name"  minlength="0" maxlength="16" title="Fill the Name in the Correct form" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Email ID <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="email" name="email" class="slds-input" placeholder="Email ID"  onchange="handleDataChange()" required="true" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Mobile no. With Country code <span style="color:red;">*</span>
+                                    </label>                                    
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="phoneData"   minlength="10" maxlength="13"   name="phoneData"  placeholder="Mobile no." onchange="handleDataChange()" pattern="[0-9]{10,13}" required="true" class="slds-input"/>  
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Hospital / Clinic Name <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="Company"  class="slds-input"  name="Company"  placeholder="Hospital /Clinic name"  onKeyPress="handleChange()" minlength="0" maxlength="16"  required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <!-- Country -->
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Country <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <select id="billingcountry" class="slds-select" onchange="loadStates()">
+                                            <option value="">--Select Country--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- <div class="slds-form-element">
+<label class="slds-form-element__label" for="lastname" style="font-weight:bold;color:red;">*</label>
+<div class="slds-form-element__control">
+<input type="text" id="billingcountry" class="slds-input"  name="billingCountry"  placeholder="Country"  onKeyPress="handleChange()" minlength="0" maxlength="13" title="Fill the Country in the Correct form" required="true"/>
+</div>
+</div> -->
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <!-- State -->
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        State <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <select id="billingState" class="slds-select" onchange="loadCities()">
+                                            <option value="">--Select State--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!--  <div class="slds-form-element">
+<label class="slds-form-element__label" for="lastname" style="font-weight:bold;color:red;">*</label>
+<div class="slds-form-element__control">
+<input type="text" id="billingState" class="slds-input"  name="billingState"  placeholder="State / Province" onKeyPress="handleChange()" minlength="0" maxlength="18" title="Fill the State in the Correct form" required="true"/>
+</div>
+</div>-->
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <!-- City -->
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        City <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <select id="billingCity" class="slds-select">
+                                            <option value="">--Select City--</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <!-- <div class="slds-form-element">
+<label class="slds-form-element__label" for="lastname" style="font-weight:bold;color:red;">*</label>
+<div class="slds-form-element__control">
+<input type="text" id="billingCity" class="slds-input" name="billingCity"  placeholder="City" onKeyPress="handleChange()" minlength="0" maxlength="18" title="Fill the City in the Correct form" required="true"/>
+</div>
+</div>-->
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Street <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <input type="text" id="billingStreet" class="slds-input" name="billingStreet" placeholder="Street"  onKeyPress="handleChange()" minlength="0" maxlength="25" required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        ZIP / Postal Code <span style="color:red;">*</span> </label>                                  <div class="slds-form-element__control">
+                                    <input type="text" id="billingCode" class="slds-input"  name="billingCode"  placeholder="Zip / Postal Code" onKeyPress="handleChange()" minlength="0" maxlength="10" title="Fill the Code in the Correct form"  required="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-around_medium">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label" style="font-weight:bold;color:black;">
+                                        Member Type <span style="color:red;">*</span>
+                                    </label>
+                                    <div class="slds-form-element__control">
+                                        <div class="slds-select_container">
+                                            <!-- Use HTML select tag for dropdown -->
+                                            <apex:outputPanel rendered="{!hideLeadProduct}">
+                                                
+                                                <select id="membertype" class="slds-select" required="true" disabled="disabled">
+                                                    <option value="" disabled="disabled" selected="selected">--Select Member Type--</option>
+                                                    <!-- Iterate over memberTypeOptions to generate option fields -->
+                                                    <apex:repeat value="{!memberTypeOptions}" var="option">
+                                                        <option value="{!option.value}">{!option.label}</option>
+                                                    </apex:repeat>
+                                                </select>
+                                            </apex:outputPanel>
+                                            
+                                            <apex:outputPanel rendered="{!NOT(hideLeadProduct)}">
+                                                <select id="membertype" class="slds-select" required="true">
+                                                    <option value="" disabled="disabled" selected="selected">--Select Member Type--</option>
+                                                    <!-- Iterate over memberTypeOptions to generate option fields -->
+                                                    <apex:repeat value="{!memberTypeOptions}" var="option">
+                                                        <option value="{!option.value}">{!option.label}</option>
+                                                    </apex:repeat>
+                                                </select>
+                                            </apex:outputPanel>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>      
+                            <!--To finish our form we just add an slds styled button-->
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </form>
+            
+            <center>
+                <label style="font-weight:bold;"><span style="font-weight:bold;color:red;">*</span>Select Product</label><br/>
+                <apex:repeat value="{!productDataList}" var="pro">
+                    <label class="container" >{!pro}
+                        <input type="checkbox" value="{!pro}" onchange="handleGetProduct(this)" id="product" />
+                        <span class="checkmark"></span>
+                    </label>
+                </apex:repeat>
+            </center>
+            <br/>
+            <center>
+                <apex:outputPanel rendered="{!NOT(ISBLANK(publicFileUrl))}">
+                    
+                    <div style="width:80%; height:400px; border:1px solid #ccc; margin-top:20px;">
+                        <div style="width:87%; margin:auto;">
+                            <iframe src="{!publicFileUrl}"
+                                    width="100%" 
+                                    height="310px"
+                                    style="border:none;border-radius:7px;">
+                            </iframe>
+                        </div>
+                        <div style="padding:50px;color:#1f1f1f; font-weight:bold; font-size:18px;">
+                            <input type="checkbox" checked="true" id="termsCheckbox" onchange="handleTermsCheck()" />
+                            <label>I agree to Terms Conditions</label>
+                        </div>
+                        
+                    </div>
+                </apex:outputPanel>
+            </center>
+            
+            <br/>    <br/>
+            <center>
+                <button type="submit" class="btn" id="submitBtn" onclick="handleSubmit()"  disabled="{!NOT(ISBLANK(publicFileUrl))}">
+                    Submit
+                </button>
+            </center>
+            
+            
+            <input type="hidden" value="{!recordId}" id="recordId" style="width:0px;"/>
+            
+        </body>
+        
+        
+    </html>
+    <script>
+    var submitButton='';
+    var productData=[];
+    var selLeadId='';
+    
+    function handleChange() {
+        /* if(document.getElementById("firstname").value=='' || document.getElementById("firstname").value==undfined) {
+            document.getElementById("firstname").style.border = "thick solid ";
+        }*/
+        
+        
+        
+    }
+    //
+    
+    //window.onload = function() {
+    //   loadCountries();
+    // };  
+    window.onload = function() {
+        loadCountries();
+        
+        setTimeout(function(){
+            var dropdown = document.getElementById("membertype");
+            if (dropdown) {
+                dropdown.value = "Attendee";
+            }
+        }, 500);
+        
+        setTimeout(function(){
+            var fileUrl = "{!publicFileUrl}";
+            var btn = document.getElementById("submitBtn");
+            var checkbox = document.getElementById("termsCheckbox");
+            
+            if (btn) {
+                
+                if (!fileUrl || fileUrl.trim() === '') {
+                    btn.disabled = false;
+                }
+                if (fileUrl && checkbox && checkbox.checked) {
+                    btn.disabled = false;
+                }
+            }
+        }, 100);
+    };
+    
+    // Load Countries
+    function loadCountries() {
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.LeadFormPageController.getCountries}',
+            function(result, event) {
+                if(event.status) {
+                    populateDropdown('billingcountry', result);
+                }
+            }
+        );
+    }
+    
+    function loadStates() {
+        let country = document.getElementById('billingcountry').value;
+        
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.LeadFormPageController.getStates}',
+            country,
+            function(result, event) {
+                if(event.status) {
+                    populateDropdown('billingState', result);
+                    populateDropdown('billingCity', []); // clear cities
+                }
+            }
+        );
+    }
+    
+    
+    function loadCities() {
+        let state = document.getElementById('billingState').value;
+        
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.LeadFormPageController.getCities}',
+            state,
+            function(result, event) {
+                if(event.status) {
+                    populateDropdown('billingCity', result);
+                }
+            }
+        );
+    }
+    
+    function populateDropdown(id, list) {
+        let dropdown = document.getElementById(id);
+        dropdown.innerHTML = '<option value="">--Select --</option>';
+        
+        list.forEach(function(item) {
+            let opt = document.createElement('option');
+            opt.value = item;
+            opt.text = item;
+            dropdown.add(opt);
+        });
+    }
+    
+    
+    function searchLeads() {
+        var leadname = document.getElementById('leadSearchInput').value;
+        var recordId = document.getElementById('recordId').value;/*Add changes*/
+        Visualforce.remoting.Manager.invokeAction(
+            '{!$RemoteAction.LeadFormPageController.leaddata}',
+            leadname,
+            recordId,
+            function(result, event) {
+                if (event.status) {
+                    populateLeadDropdown(result);
+                } else {
+                    console.error(event.message);
+                }
+            }
+        );
+    }
+    
+    function populateLeadDropdown(leads) {
+        var selectElement = document.getElementById('leadSelect');
+        var optionsList = document.getElementById('leadOptionsList');
+        optionsList.innerHTML = ''; // Clear existing options
+        console.log('leads',leads);
+        leads.forEach(function(lead) {
+            var div = document.createElement('div');
+            div.textContent = lead.Name;
+            div.dataset.value = lead.Id;
+            div.onclick = function() {
+                selectElement.value = lead.Id;
+                handleLeadChange(lead.Id);
+                document.getElementById('leadSearchInput').value = lead.Name;
+                optionsList.style.display = 'none';
+            };
+            optionsList.appendChild(div);
+        });
+        optionsList.style.display = 'block';
+        
+        
+        if(leads.length>0) {
+            document.getElementById('firstname').value = '';
+            document.getElementById('lastname').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phoneData').value = '';
+            document.getElementById('Company').value = '';
+            document.getElementById('billingStreet').value = '';
+            document.getElementById('billingCity').value = '';
+            document.getElementById('billingState').value = '';
+            document.getElementById('billingCode').value = '';
+            document.getElementById('billingcountry').value = '';
+            
+            //    document.getElementById('description').value = '';
+            document.getElementById('productname').value = '';
+            
+        }
+    }
+    
+    function handleLeadChange(leadId) {
+        var optionsList = document.getElementById('leadOptionsList');
+        selLeadId='';
+        selLeadId=leadId;
+        console.log('Selected LeadId',selLeadId);
+        if (leadId !== "" && leadId !== "Select Lead:") {
+            Visualforce.remoting.Manager.invokeAction(
+                '{!$RemoteAction.LeadFormPageController.getLeadDetails}',
+                leadId,
+                function(result, event) {
+                    if (event.status) {
+                        console.log('Product value from server:', result.product__c); // Check this value
+                        document.getElementById('firstname').value = result.First_Name__c || '';
+                        document.getElementById('lastname').value = result.Last_Name__c || '';
+                        document.getElementById('email').value = result.Email__c || '';
+                        document.getElementById('phoneData').value = result.Mobile__c || '';
+                        document.getElementById('Company').value = result.Company__c || '';
+                        document.getElementById('billingStreet').value = result.Billing_Street__c || '';
+                        document.getElementById('billingCity').value = result.Billing_City__c || '';
+                        document.getElementById('billingState').value = result.Billing_state__c || '';
+                        document.getElementById('billingCode').value = result.Billing_code__c || '';
+                        document.getElementById('billingcountry').value = result.Country__c || '';
+                        // ✅ Load states after setting country
+                        setTimeout(() => {
+                            loadStates();
+                            
+                            setTimeout(() => {
+                            document.getElementById('billingState').value =
+                            result.Billing_state__c || '';
+                            
+                            loadCities();
+                            
+                            setTimeout(() => {
+                            document.getElementById('billingCity').value =
+                            result.Billing_City__c || '';
+                        }, 500);
+                            
+                        }, 500);
+                            
+                        }, 500);
+                            //   document.getElementById('description').value = result.Description__c || '';
+                            document.getElementById('productname').value = result.Product__c || '';
+                            optionsList.style.display = 'none';
+                        } else {
+                            console.error(event.message);
+                        }
+                        }
+                            );
+                        } else {
+                            document.getElementById('firstname').value = '';
+                            document.getElementById('lastname').value = '';
+                            document.getElementById('email').value = '';
+                            document.getElementById('phoneData').value = '';
+                            document.getElementById('Company').value = '';
+                            document.getElementById('billingStreet').value = '';
+                            document.getElementById('billingCity').value = '';
+                            document.getElementById('billingState').value = '';
+                            document.getElementById('billingCode').value = '';
+                            document.getElementById('billingcountry').value = '';
+                            //  document.getElementById('description').value = '';
+                            document.getElementById('productname').value = '';
+                            optionsList.style.display = 'none';
+                        }
+                        }
+                            
+                            
+                            function handleGetProduct(ele){
+                            console.log('ele',ele.checked);
+                            if(ele.checked){
+                            productData.push(ele.value);
+                        }else {
+                            productData.splice(productData.indexOf(ele.value),1);
+                        } 
+                            console.log('Product data',productData);
+                            console.log('Product data',productData.length);
+                        }
+                            
+                            function handleDataChange() {
+                            console.log('test data');
+                        }
+                            function handleTermsCheck() {
+                            var checkbox = document.getElementById("termsCheckbox");
+                            var submitBtn = document.getElementById("submitBtn");
+                            
+                            if (!checkbox) {
+                            submitBtn.disabled = true;
+                            return;
+                        }
+                            submitBtn.disabled = !checkbox.checked;
+                        }
+                            
+                            function handleSubmit() {
+                            // Disable button on first click
+                            var submitBtn = document.getElementById("submitBtn");
+                            submitBtn.disabled = true;
+                            submitBtn.innerHTML = "Submitting...";
+                            
+                            
+                            var phoneData=document.getElementById('phoneData').value;
+                            console.log('Phone',phoneData);
+                            var billingState=document.getElementById('billingState').value;
+                            var recordId=document.getElementById('recordId').value;
+                            var firstName=document.getElementById('firstname').value;
+                            var lastName=document.getElementById('lastname').value;
+                            var email=document.getElementById('email').value;
+                            var Company=document.getElementById('Company').value;
+                            var billingCity=document.getElementById('billingCity').value;
+                            console.log('billingCity',billingCity);
+                            var billingcountry=document.getElementById('billingcountry').value;
+                            var billingStreet=document.getElementById('billingStreet').value;
+                            var billingCode=document.getElementById('billingCode').value;
+                            var selectedMemberType = document.getElementById("membertype").value;
+                            //  var leadId = document.getElementById("leadId").value;
+                            var checkbox = document.getElementById("termsCheckbox");
+                            var fileUrl = "{!publicFileUrl}";
+                            
+                            if (fileUrl && fileUrl.trim() !== '') {
+                            if (!checkbox || !checkbox.checked) {
+                            alert("Please accept Terms & Conditions first.");
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = "Submit";
+                            return;
+                        }
+                        }
+                            
+                            
+                            console.log("Form submitting...");
+                            
+                            
+                            console.log('selectedMemberType',selectedMemberType);
+                            console.log('Company',Company);
+                            
+                            if(firstName==''){
+                            console.log('First Name',firstName);
+                            document.getElementById("firstname").style.border = "1px solid red";
+                        }
+                            else if(firstName!='') {
+                            document.getElementById("firstname").style.border = "1px solid black";
+                            
+                        }
+                            if(lastName=='') {
+                            document.getElementById("lastname").style.border = "1px solid red";
+                        }
+                            if(lastName!='') {
+                            document.getElementById("lastname").style.border = "1px solid black";
+                        }
+                            if(billingCity=='') {
+                            document.getElementById("billingCity").style.border = "1px solid red";
+                        }
+                            else if(billingCity!='') {
+                            document.getElementById("billingCity").style.border = "1px solid black";
+                        }
+                            
+                            if(billingState=='') {
+                            document.getElementById("billingState").style.border = "1px solid red";
+                        }
+                            else if(billingState!='') {
+                            document.getElementById("billingState").style.border = "1px solid black";
+                        }
+                            if(billingcountry=='') {
+                            document.getElementById("billingcountry").style.border = "1px solid red";
+                        }
+                            else if(billingcountry!='') {
+                            document.getElementById("billingcountry").style.border = "1px solid black";
+                        }
+                            else if(Company !='') {
+                            console.log('Company---not null',Company);
+                            document.getElementById("Company").style.border = "1px solid black";
+                        }
+                            else if(Company == '') {
+                            console.log('Company--- null',Company);
+                            document.getElementById("Company").style.border = "1px solid red";
+                        }
+                            if(selectedMemberType =='--Select Member Type--'){ //*********Addded below by gyadeen
+                            document.getElementById("membertype").style.border = "1px solid red";
+                        }
+                            else if(selectedMemberType!=='--Select Member Type--'){
+                            document.getElementById("membertype").style.border = "1px solid black";
+                        } //*****************Added above  By gyadeen
+                            if(billingStreet == '') {
+                            document.getElementById("billingStreet").style.border = "1px solid red";
+                        } else {
+                            document.getElementById("billingStreet").style.border = "1px solid black";
+                        }
+                            if(email=='') {
+                            document.getElementById("email").style.border = "1px solid red";
+                        }
+                            else if(email!='') {
+                            document.getElementById("email").style.border = "1px solid black";
+                        }
+                            if(phoneData=='') {
+                            document.getElementById("phoneData").style.border = "1px solid red";
+                        }
+                            else if(phoneData!='') {
+                            document.getElementById("phoneData").style.border = "1px solid black";
+                        }
+                            if(productData.length==0) {
+                            alert('Please select the Product');
+                        }
+                            
+                            if(firstName =='' || lastName =='' || billingStreet == '' || billingCity =='' || email=='' || billingState=='' || billingcountry =='' && phoneData=='' || productData.length == 0 || Company ==''){
+                            console.log('Please fill the all');
+                            alert('Please fill the all required fields');
+                            submitBtn.disabled = false;        // enable back
+                            submitBtn.innerHTML = "Submit";    // reset text
+                            return; // stop further execution
+                        }
+                            if(firstName!='' && lastName!='' && billingCity!='' &&  billingState!='' && billingcountry!='' && phoneData!='' && productData.length>0 && Company !='') {
+                            
+                            LeadFormPageController.insertLeadData(selectedMemberType,phoneData,billingState,firstName, lastName, email, Company, billingCity, billingcountry, billingStreet, billingCode,recordId,productData,selLeadId, function(result,event){
+                            console.log('result',result);
+                            console.log('event',event); 
+                            if (result === 'success') {
+                            let h = 'https://biotechcrm--full.sandbox.my.salesforce-sites.com/ThankuPage';
+                            window.open(h, "_self");
+                            
+                        }else {
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = "Submit";
+                        }
+                            
+                            if(result =='No data'){
+                            alert('Kindly do the Login before performing the activities');
+                            window.close();
+                        }
+                            
+                            if(result=='error') {
+                            alert('You are already register');
+                        }
+                            if(result=='Invalid' || result==null) {
+                            alert('Invalid data');
+                        }
+                            
+                        });
+                            console.log('Test data'); 
+                        }
+                            
+                            
+                        }
+                            
+                            
+                            
+                            </script>
+    
+</apex:page>

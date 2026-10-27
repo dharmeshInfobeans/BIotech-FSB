@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Company Display --></label>
+    <name>Company_Display__c</name>
+    <picklistValues>
+        <masterLabel>Alcon</masterLabel>
+        <translation><!-- Alcon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alkem</masterLabel>
+        <translation><!-- Alkem --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Allergan</masterLabel>
+        <translation><!-- Allergan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Amo</masterLabel>
+        <translation><!-- Amo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Appasamy</masterLabel>
+        <translation><!-- Appasamy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aurolab</masterLabel>
+        <translation><!-- Aurolab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B &amp; L</masterLabel>
+        <translation><!-- B &amp; L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biotech</masterLabel>
+        <translation><!-- Biotech --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cadila</masterLabel>
+        <translation><!-- Cadila --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Caregen</masterLabel>
+        <translation><!-- Caregen --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dr. Reddy&apos;s</masterLabel>
+        <translation><!-- Dr. Reddy&apos;s --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Galderma</masterLabel>
+        <translation><!-- Galderma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hanita</masterLabel>
+        <translation><!-- Hanita --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hoya</masterLabel>
+        <translation><!-- Hoya --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IOC</masterLabel>
+        <translation><!-- IOC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intas</masterLabel>
+        <translation><!-- Intas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lupin</masterLabel>
+        <translation><!-- Lupin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Md Skin Solutions</masterLabel>
+        <translation><!-- Md Skin Solutions --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mertz</masterLabel>
+        <translation><!-- Mertz --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Modi Mundi</masterLabel>
+        <translation><!-- Modi Mundi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Omni Lens</masterLabel>
+        <translation><!-- Omni Lens --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Q-Med</masterLabel>
+        <translation><!-- Q-Med --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rayner</masterLabel>
+        <translation><!-- Rayner --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sanofi</masterLabel>
+        <translation><!-- Sanofi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Staar</masterLabel>
+        <translation><!-- Staar --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Teoksan</masterLabel>
+        <translation><!-- Teoksan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VSY</masterLabel>
+        <translation><!-- VSY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vivacy Laboratories</masterLabel>
+        <translation><!-- Vivacy Laboratories --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zeiss</masterLabel>
+        <translation><!-- Zeiss --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zydus</masterLabel>
+        <translation><!-- Zydus --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

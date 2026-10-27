@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>This contains Branch Form&apos;s Sales District, Delivery Plant, Region Code as per Branch Location
+Note: Each field&apos;s value should match with the account&apos;s field value</description>
+    <enableFeeds>false</enableFeeds>
+    <label>BranchFormDataVsLocation</label>
+    <visibility>Public</visibility>
+</CustomObject>

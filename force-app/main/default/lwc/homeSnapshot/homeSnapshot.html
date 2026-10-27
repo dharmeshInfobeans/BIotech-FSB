@@ -1,0 +1,102 @@
+<template>
+    <div class="snapshot-root">
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={hasError}>
+            <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+                Couldn't load your snapshot. Try refreshing the page.
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <template if:false={hasError}>
+                <!-- Top KPI tiles -->
+                <div class="slds-grid slds-wrap slds-gutters_x-small kpi-row">
+                    <template for:each={kpiTiles} for:item="tile">
+                        <div key={tile.key} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-5 slds-p-vertical_x-small">
+                            <div class={tile.cssClass}>
+                                <p class="tile-label">{tile.label}</p>
+                                <p class="tile-value">{tile.value}</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Center: My Prospect & Opportunity Overview -->
+                <div class="overview-card slds-p-around_medium slds-m-top_small">
+                    <div class="overview-header">
+                        <div>
+                            <h2 class="overview-title">My Prospect &amp; Opportunity Overview</h2>
+                            <p class="overview-subtitle">Role-based snapshot for {periodLabel}</p>
+                        </div>
+                        <div class="quarter-filter">
+                            <lightning-combobox
+                                name="year"
+                                label="Year"
+                                variant="label-hidden"
+                                value={selectedYear}
+                                options={yearOptions}
+                                onchange={handleYearChange}
+                            ></lightning-combobox>
+                            <lightning-combobox
+                                name="quarter"
+                                label="Quarter"
+                                variant="label-hidden"
+                                value={selectedQuarter}
+                                options={quarterOptions}
+                                onchange={handleQuarterChange}
+                            ></lightning-combobox>
+                        </div>
+                    </div>
+
+                    <div class="slds-grid slds-wrap slds-gutters_medium slds-m-top_small">
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                            <h3 class="chart-title">Prospect &amp; Opportunity Generation - Month wise</h3>
+                            <div class="chart-container">
+                                <canvas class="generation-chart"></canvas>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_1-of-2">
+                            <h3 class="chart-title">Opportunity Pipeline by Stage</h3>
+                            <div class="chart-container">
+                                <canvas class="pipeline-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom: dashboard links -->
+                <div class="dashboards-section slds-m-top_medium">
+                    <h2 class="dashboards-title">Detailed Dashboards</h2>
+                    <p class="dashboards-subtitle">Open the complete dashboard for deeper analysis</p>
+
+                    <template if:true={noDashboardTilesVisible}>
+                        <p class="no-dashboards-message">No dashboards are configured for your profile yet.</p>
+                    </template>
+
+                    <div class="slds-grid slds-wrap slds-gutters_small slds-m-top_small">
+                        <template for:each={dashboardTiles} for:item="tile">
+                            <div key={tile.key} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 slds-large-size_1-of-5 slds-p-vertical_x-small">
+                                <div
+                                    class="dashboard-tile"
+                                    data-key={tile.key}
+                                    data-record-id={tile.recordId}
+                                    onclick={handleDashboardTileClick}
+                                >
+                                    <span class="dashboard-tile-number">{tile.number}</span>
+                                    <p class="dashboard-tile-title">{tile.title}</p>
+                                    <p class="dashboard-tile-subtitle">{tile.subtitle}</p>
+                                    <p class="dashboard-tile-link">Open dashboard &rarr;</p>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

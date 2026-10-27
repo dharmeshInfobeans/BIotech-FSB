@@ -1,0 +1,351 @@
+<apex:page controller="ApprovalController">
+    <html>
+        <head>
+            <apex:slds />
+            <meta charset="UTF-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
+             <style>
+                
+                
+                .TdBody{
+                
+                max-width: 347px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                vertical-align: top;
+                }
+                body {
+                margin: 10px;
+                font-family: Arial, sans-serif;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                
+                }
+                
+                .pageBlockContainer {
+                width: 98%;
+                
+                
+                background-color: rgba(216, 240, 241, 0.9);
+                border-radius: 10px;
+                /* box-shadow: inset 4px 1px 13px 2px rgba(0, 0, 0, 0.1); */
+                padding: 20px;
+                text-align: center;
+                }
+                
+                .pageBlockTitle {
+                font-size: 20px;
+                margin-bottom: 20px;
+                color: #333;
+                }
+                
+                .comment-section {
+                margin-bottom: 20px;
+                }
+                
+                .text-area {
+                width: 100%;
+                height: 50px;
+                padding: 12px;
+                font-size: 14px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+                transition: box-shadow 0.3s ease;
+                }
+                
+                .text-area:focus {
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                border-color: #80bdff;
+                outline: none;
+                }
+                
+                .button-section {
+                <!--  display: flex;-->
+                justify-content: space-between;
+                }
+                
+                .approve-button, .reject-button {
+                font-size: small;
+                height: 28px;
+                width: 80px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+                }
+                
+                .approve-button {
+                background: #26c326;
+                
+                }
+                
+                .reject-button {
+                background: #eb3434;
+                }
+                
+                
+                
+                .error-message {
+                color: red;
+                font-size: 12px;
+                display: none;
+                margin-top: 10px;
+                }
+                .slds-scope{
+                width: 100%;
+                margin-left:20px;
+                }
+                
+                
+                .logo {
+               width: 300px;
+                }
+                
+                .mainForm{
+                width: 100%;max-width: 100%;
+               
+    justify-content: end;
+                }
+                
+                
+                
+                
+                @media (max-width: 600px) {
+                .pageBlockTitle {
+                font-size: 20px;
+                }
+                }
+                
+                 @media (max-width: 1100px) {
+                .pageBlockTitle {
+                font-size: 20px;
+                }
+                .mainForm{
+                width: 733px;
+            justify-content: center;
+                }
+                }
+                
+            </style>
+
+            <script>
+        function validateInput() {
+        var JSMSAPcode = document.getElementById("SAPcode").value;
+       var errorMessage = document.getElementById('error-message');        
+        // Regular expression to match only alphabetical characters (no numbers or special characters) with at least 8 characters
+        
+        // Validate SAP code length and format (only 10-digit numbers allowed)
+        if (JSMSAPcode.length !== 7 || !/^\d{7}$/.test(JSMSAPcode)) {
+            errorMessage.innerText = "Please enter a valid SAP code (exactly 7 digits).";
+            errorMessage.style.display = 'block'; // Show the error message
+            return; // Stop submission if validation fails
+        } else {
+            errorMessage.style.display = 'none'; // Hide error if valid
+        }
+
+    }
+    function handleSubmit(action) {
+        var roleData = document.getElementById("JSMKey").value;
+        var JSMSAPcode = document.getElementById("SAPcode").value;
+        var recordId = document.getElementById("recordId").value;
+        var errorMessage = document.getElementById('error-message');
+
+        console.log('RoleData', roleData);
+        console.log('Action', action);
+
+        // Validate SAP code length and format (only 10-digit numbers allowed)
+        if (JSMSAPcode.length !== 7 || !/^\d{7}$/.test(JSMSAPcode)) {
+            errorMessage.innerText = "Please enter a valid SAP code (exactly 7 digits).";
+            errorMessage.style.display = 'block'; // Show the error message
+            return; // Stop submission if validation fails
+        } else {
+            errorMessage.style.display = 'none'; // Hide error if valid
+        }
+
+        // Call the Apex controller method if validation passes
+        ApprovalController.JSMSAPcodemethod(action, JSMSAPcode, recordId, roleData, function(result, event) {
+            if (event.status) {
+                console.log(result);
+                if (result.status === 'error') {
+                    alert(result.message); // Display error message from server
+                } else if (result.status === 'success') {
+                    window.location.href = "{!thanksurl}";
+                } else {
+                    alert('An unknown error occurred.');
+                }
+            } else {
+                alert('An error occurred during submission: ' + event.message);
+            }
+        });
+    }
+</script>
+
+        </head>
+        <body style="width: 95vw; display: flex;background-color: #dcecfb;  justify-content: center; flex-direction: row-reverse; flex-wrap: wrap; height: auto; background-size: cover; position: absolute; left: 0; right: auto;">            
+            
+           <!-- <div class="logo" >
+                <img src="{!URLFOR($Resource.biotech_logo_vf)}" alt="Logo" />    
+            </div>-->
+            
+            <div class="mainForm" >
+                <apex:form style="border: 2px solid #453939; margin: 12px;padding: -11px;border-radius: 7px;">
+                    
+                    <div style="display: flex; justify-content: center; margin: 0 0px;">
+                        <table class="slds-table slds-table_bordered slds-table_cell-buffer word-wrap" style="width: 100%;max-width: 100%;"> 
+                        <thead>
+                          <!--  <tr>
+                                <th colspan="4" style="text-align: center;">Requester Details</th>
+                            </tr>-->
+                        </thead>
+                        <tbody>
+                            <!--<tr>
+                                <td>Requester Name</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Owner.Name}</td>
+                            </tr>
+                            <tr>
+                                <td>Requester Designation</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Owner.UserRole.Name}</td>
+                            </tr>-->
+                            <tr>
+                                <td colspan="4" style="text-align: center;"><b>Lead Details</b></td>
+                            </tr>
+                            <tr>
+                                <th>Lead Name</th>
+                                <td>:</td>
+                                <div>
+                                    <td colspan="2"  class="TdBody">{!leaddata.Name}</td>
+                                </div>
+                            </tr>
+                            <tr>
+                                <th>Ce-Cis / Phakic Rating</th>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.CE_CIS_Rating__c}/{!leaddata.Phakic_Rating__c}</td>
+                            </tr>
+                            <tr>
+                                <th>Mobile Number</th>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Mobile__c}</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Email__c}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: center;"><b>Address Details</b></td>
+                            </tr>
+                            <tr>
+                                <td>Hospital Name</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Company__c}</td>
+                            </tr>
+                           <!-- <tr>
+                                <td>Billing Address</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Address__c}</td>
+                            </tr>
+                            <tr>
+                                <td>Billing Street</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Billing_Street__c}</td>
+                            </tr>
+                            <tr>
+                                <td>City</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Billing_City__c}</td>
+                            </tr>
+                            <tr>
+                                <td>State / Province</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Billing_state__c}</td>
+                            </tr>
+                            <tr>
+                                <td>Country</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Billing_Country__c}</td>
+                            </tr>-->
+                                <tr>
+                                    <td>Address</td>
+                                    <td>:</td>
+                                    <td colspan="2">{!leaddata.Billing_Street__c} {!leaddata.Billing_code__c} {!leaddata.Billing_City__c} {!leaddata.Billing_state__c} , {!leaddata.Country__c}</td>
+                                </tr>
+                            <tr>
+                                
+                                <td colspan="4" style="text-align: center;"><b>Documents Uploaded</b></td>
+                            </tr>
+                            <apex:repeat value="{!fileInfos}" var="Item">
+                                <tr>
+                                    <td>{!Item.name}</td>
+                                    <td>:</td>
+                                    <td colspan="2"><a href="{!Item.url}">View</a></td>
+                                </tr>
+                            </apex:repeat>
+                          
+                            <tr>
+                                <td colspan="4" style="text-align: center;"><b>Requestor / Approver Comment</b></td>
+                            </tr>
+                            
+                            
+                            <tr>
+                                <td>RSM Comments</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.RSM_Comments__c}</td>
+                            </tr>
+                            <tr>
+                                <td>ZSM Comments</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.ZSM_Comments__c}</td>
+                            </tr>
+                            <tr>
+                                <td>GM NSM Comments</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.GM_NSM_Comments__c}</td>
+                            </tr>
+                            <tr>
+                                <td>Admin Comments</td>
+                                <td>:</td>
+                                <td colspan="2">{!leaddata.Admin_Comments__c}</td>
+                            </tr>
+                            <!-- <tr>
+                                <td>Action</td>
+                                <td>:</td>
+                                <td colspan="2">
+                                    Rejected &nbsp;
+                                    <apex:inputCheckbox value="{!leaddata.RSM_Not_Approve__c}" disabled="true"/>
+                                    Approved &nbsp;
+                                    <apex:inputCheckbox value="{!leaddata.RSM_Approve__c}" disabled="true"/>
+                                </td>          
+                            </tr> -->
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <apex:pageMessages />
+               <center> <div class="pageBlockContainer">
+                    <div class="pageBlockTitle">Please fill SAP code</div>
+                    <div class="comment-section">
+                        <input type="hidden" value="JSM" id="JSMKey"/>
+                        <input type="text" id="SAPcode" class="text-area" placeholder="Enter SAP code" oninput="validateInput()"/>
+                        <input type="hidden" value="{!recordId}" id="recordId"/>
+                        <div id="error-message" class="error-message"></div>
+                    </div>
+                    <div class="button-section">
+                        <button type="button" onclick="handleSubmit('Submit')" class="Submit" id="Submit">
+                            Submit
+                        </button>
+                    </div>
+                   </div></center>
+                </apex:form>
+          </div>
+        </body>
+    </html>
+</apex:page>

@@ -1,0 +1,351 @@
+<!--
+@File Name          : createEvent.html
+@Description        : 
+@Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+@Group              : 
+@Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+@Last Modified On   : 07-11-2020
+@Modification Log   : 
+Ver       Date            Author      		    Modification
+1.0    10/9/2019   Rahul Rjk     Initial Version
+-->
+<template>
+  <template if:false={spiner}>
+    <lightning-card title={cardtitle} icon-name="standard:record">
+      <div class="slds-m-around_medium">
+        <div class="addBDRButton">
+          <template if:true={isCustomerVisit}>
+            <button type="button" class="slds-button slds-button_brand" onclick={handleAddBdr}>Link Lead</button>
+            <!-- button Name Mofied by gyadeen-->
+          </template>
+        </div>
+        <!-- <label class="slds-form-element__label">Event Type</label>
+              <select class="slds-select" name="eventType" data-id="eventType" onchange={handleChangeEventType}>
+                <template for:each={eventType} for:item="option">
+                  <option key={option.label} value={option.label}>{option.label}</option>
+                </template>
+              </select> -->
+        <template if:true={isCustomerVisit}>
+          <!--//*******************************Added below changes By Gyadeen Ahirwar***********************************-->
+          <div class="slds-grid slds-grid_vertical-align-left">
+            <div class="slds-col">
+              <span><div class="slds-col slds-size_6-of-12">
+      CE Rating:<br>
+      <span style="margin-left: 15px;">{cerating}</span>
+            </div></span>
+          </div>
+          <div class="slds-col">
+            <span><div class="slds-col slds-size_6-of-12">
+      Phakic rating:<br>
+      <span style="margin-left: 15px;">{cisrating}</span>
+          </div></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      <div class="slds-col">
+        <span></span>
+      </div>
+      </div>
+
+      <!--//*******************************Added above By Gyadeen Ahirwar***********************************-->
+      <template if:true={customercheck}>
+        <div class="read-only-header">
+          <h3><b>Contact Name : {contactname}</b></h3>
+        </div>
+      </template>
+      <!--//*******************************Added above By Gyadeen Ahirwar***********************************-->
+      <lightning-input type="text" value={accountname} label={labels.Related_to__c} disabled class="data">
+      </lightning-input>
+  </template>
+
+
+  <!-- <lightning-input type="date" name="date" value={dateValueToShow} label="Date" disabled class="data"></lightning-input> -->
+  <p style="margin-top: 10px;">{labels.Date__c}</p>
+  <p class="datetoshow">{dateValueToShow}</p>
+  <!-- <p>{dateValueToShow}</p> -->
+  <template if:true={isLeave}>
+    <lightning-textarea name="notes" class="data" label={labels.notes__c} required onchange={handleChangeField}>
+    </lightning-textarea>
+
+    <span class="astric">&#42;</span>&nbsp;<label class="slds-form-element__label">{labels.Leave__c}</label>
+    <select class="slds-select data" name="leaveOptions" data-id="leaveOptions" onchange={handleChangeField}>
+                    <option value="">None</option>
+                    <template for:each={leaveOptions} for:item="option">
+                      <option key={option.label} value={option.value}>{option.label}</option>
+                    </template>
+                  </select>
+
+  </template>
+  <template if:true={cofopenscreen}>
+    <div class="slds-grid slds-gutters">
+      <div class="slds-col">
+
+        <span >
+                    <div class="center-text">
+                      <h2><b>Compensation Off</b></h2>
+                  </div>
+<lightning-datatable 
+key-field="Id"
+data={holidaylist}
+columns={columns}
+onrowselection={handleRowSelection}
+selected-rows={selectedRowsData}
+max-row-selection="1">
+</lightning-datatable>
+
+                  </span>
+
+      </div>
+
+    </div>
+  </template>
+  <template if:true={isHoliday}>
+    <lightning-textarea name="notes" class="data" label={labels.notes__c} required onchange={handleChangeField}>
+    </lightning-textarea>
+  </template>
+  <template if:true={isOutOfOffice}>
+    <lightning-textarea name="notes" class="data" label={labels.notes__c} required onchange={handleChangeField}>
+    </lightning-textarea>
+
+    <span class="astric">&#42;</span>&nbsp;<label class="slds-form-element__label">{labels.Call_Type__c}</label>
+    <select class="slds-select data" name="reviewCallType" data-id="callType" required onchange={handleChangeField}>
+                  <option value="">None</option>
+                  <template for:each={reviewCallOptions} for:item="option">
+                    <option key={option.label} value={option.label}>{option.label}</option>
+                  </template>
+                </select>
+
+
+  </template>
+  <template if:true={isCustomerVisit}>
+
+    <lightning-input type="text" name="subject" label={labels.Subject__c} class="data" required
+      onchange={handleChangeField}></lightning-input>
+    <span class="astric">&#42;</span>&nbsp;<label class="slds-form-element__label">{labels.Meeting_Type__c}</label>
+    <select class="slds-select data" name="MeetingType" data-id="MeetingType" onchange={handleChangeField}>
+                  <option value="select">{labels.please_select__c}</option>
+                  <template for:each={MeetingTypeOption} for:item="option">
+                    <option key={option.label} value={option.value}>{option.label}</option>
+                  </template>
+                </select>
+
+    <span class="astric">&#42;</span>&nbsp;<label class="slds-form-element__label">{labels.Call_Type__c}</label>
+    <select class="slds-select data" name="CallType" data-id="callType" onchange={handleChangeField} disabled={callTypeDisable}>
+                  <option value="select">{labels.please_select__c}</option>
+                  <template for:each={callTypeOption} for:item="option">
+                    <option key={option.label} value={option.label}>{option.label}</option>
+                  </template>
+                </select>
+    <!---//*******************************************Added below By gyadeen*******************************************************-->
+    <template if:true={incliningbranding}>
+      <span class="astric">&#42;</span>&nbsp;
+      <label class="slds-form-element__label">Sub Call type</label>
+      <select class="slds-select data" name="subCallType" data-id="SubcallType" onchange={handleChangeField}>
+        <option value="">{labels.please_select__c}</option>
+        <template for:each={subCallTypeOptions} for:item="option">
+            <option key={option.value} value={option.value}>{option.label}</option>
+        </template>
+    </select>
+    </template>
+    <!----- Comment as per the feedback of Biotech side------->
+    <!-- <template if:true={incliningbranding}>
+      <lightning-input type="file" value={uploadedFileName} accept=".xlsx, .xls, .csv, .png, .doc, .docx, .pdf"
+        label="File upload" onchange={openfileUpload} required></lightning-input> -->
+      <!-- ⭐ Show uploaded File Name -->
+      <!-- <template if:true={uploadedFileName}>
+        <p style="color:blue; font-weight:bold; margin-top:5px;">
+          Uploaded File: {uploadedFileName}
+        </p>
+      </template>
+    </template> -->
+   <!----- Comment as per the feedback of Biotech side------->
+    <template if:true={isPhakicTraining}>
+      <span class="astric">&#42;</span>&nbsp;
+      <label class="slds-form-element__label">Level Type</label>
+      <select class="slds-select data" name="Leveltype" data-id="Leveltype" onchange={handleChangeField}>
+            <option value="select">{labels.please_select__c}</option>
+            <template for:each={levelTypeOptions} for:item="option">
+                <option key={option.value} value={option.value}>{option.label}</option>
+            </template>
+        </select>
+    </template>
+
+    <!---//*******************************************Added above By gyadeen*******************************************************-->
+
+    <template if:true={contactoption}>
+      <lightning-combobox name="contact" label={labels.Contact__c} placeholder={labels.please_select__c}
+        options={contactoption} onchange={handleChangeField}>
+      </lightning-combobox>
+      <!-- <label class="slds-form-element__label">Contacts</label>
+                  <select class="slds-select" id="select-01" multiple name="Products" data-id="products" onchange={handleChange}>
+                    <template for:each={contactoption} for:item="contact">
+                      <option key={contact.label} value={contact.value}>{contact.label}</option>
+                    </template>
+                  </select>        -->
+    </template>
+    <!-- <c-searchable-select-list onsearch={onSeacrhProduct} label="Product"></c-searchable-select-list> -->
+    <br>
+    <template if:true={enableproductoption}>
+      <c-multi-select-picklist-with-search product={productdata} multi-select="true" showastrick="true"
+        label={labels.product__c} labels={labels} onselectproduct={handleSelectProduct} subcalltype={subCallType}>
+      </c-multi-select-picklist-with-search>
+    </template>
+    <template if:false={enableproductoption}>
+
+      <c-multi-select-picklist-with-search showastrick="true" multi-select="true" onselectproduct={handleSelectProduct}
+        label={labels.product__c} labels={labels} product={productdata} calltype={callType}>
+      </c-multi-select-picklist-with-search>
+    </template>
+    <!-- <c-custom-lookup-component iconname="standard:account" 
+            object-name="Account"
+            searchfield="Name"
+            label="Account"
+            onselectedrec={handleRecordSelected}>
+              </c-custom-lookup-component>
+              <c-custom-lookup-component iconname="standard:contact" 
+              object-name="Contact"
+              searchfield="Name"
+              label="Contact"
+              onselectedrec={handleRecordSelected}>
+              </c-custom-lookup-component> -->
+    <!-- 
+              <c-custom-lookup-component iconname="standard:user" 
+              object-name="User"
+              searchfield="Name"
+              label="User"
+              onselectedrec={handleRecordSelected}>
+                </c-custom-lookup-component> -->
+    <lightning-input class="slds-m-vertical_x-small data" data-id="JointAssignee" type="checkbox"
+      label={labels.joint_assignee__c} name="jointassignee" onchange={handleChangeField}></lightning-input>
+
+    <template if:true={showJointAssignee}>
+      <!-- <label class="slds-form-element__label">{labels.user__c}</label>
+                <select class="slds-select data" id="select-02" multiple name="users" data-id="users" onchange={handleChangeUser}>
+                  <template for:each={usersOptions} for:item="user">
+                    <option key={user.label} value={user.value}>{user.label}</option>
+                  </template>
+                </select>    -->
+      <c-multi-select-user-picklist-with-search multi-select="true" onselectuser={handleSelectUser}
+        label={labels.user__c} labels={labels}></c-multi-select-user-picklist-with-search>
+    </template>
+
+    <lightning-textarea name="notes" class="data" label={labels.notes__c} onchange={handleChangeField}>
+    </lightning-textarea>
+    <lightning-combobox name="Address" label="Event Address" placeholder={adressData} options={adresslist}
+      onchange={handleChangeField}>
+
+    </lightning-combobox>
+  </template>
+
+
+
+  <!-- <lightning-input type="time" name="start-time" label="Start Time" class="data" required></lightning-input>
+              <lightning-input type="time" name="end-time" label="End Time" class="data" required></lightning-input> -->
+
+  <!-- <lightning-input class="slds-m-vertical_x-small data" data-id="out-of-office" type="checkbox" label="Out of Office" name="out-of-office"></lightning-input> -->
+
+  </div>
+  </lightning-card>
+
+
+  <template if:true={addBdrMpdal}>
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+      aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+      <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <h1 class="leadheader"><b>Lead Name-{accountname}</b></h1>
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text" onclick={closeModal}>Close</span>
+              </button>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1"
+          style="height: -webkit-fill-available;">
+          <div style="width:100%;height: -webkit-fill-available;overflow:auto;">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered "
+              style="width:100%;max-height:60px;overflow:auto;">
+              <tr>
+                <th>
+                  <p><b>Product Name</b></p>
+                </th>
+                <th>
+                  <p><b>Planned Stage</b></p>
+                </th>
+                <th>
+
+                  <p><b>Planned Date</b></p>
+                </th>
+                <th>
+
+                  <p><b>Completed Stage</b></p>
+                </th>
+                <th>
+
+                  <p><b>Actual Date</b></p>
+                </th>
+
+              </tr>
+              <tbody>
+                <template for:each={leadData} for:item="item">
+                  <tr key={item.key}>
+                    <td class="slds-cell-wrap">
+                      {item.ProductName}
+                    </td>
+                    <td>
+                      {item.Stage}
+                    </td>
+                    <td>
+                      {item.PlannedDate}
+                    </td>
+                    <td>
+                      {item.Stage}
+                    </td>
+                    <td>
+                      {item.ActualDate}
+                    </td>
+                  </tr>
+                </template>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" onclick={closeModal}>{labels.Cancel_Button__c}</button>
+        </footer>
+      </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+  </template>
+  <footer class="slds-modal__footer">
+
+    <button type="button" class="slds-button slds-button_neutral" onclick={handleCancel}>{labels.Cancel_Button__c}</button>
+    <template if:false={cofscreen}>
+      <button type="button" class="slds-button slds-button_brand" onclick={handleSave} disabled={saveButtonDisabled}>{labels.save__c}</button>
+    </template>
+    <template if:true={cofscreen}>
+      <button type="button" class="slds-button slds-button_brand" onclick={handlenext} disabled={saveButtonDisabled}>Next</button>
+    </template>
+  </footer>
+</template>
+<template if:true={spinner}>
+  <c-spinner></c-spinner>
+</template>
+</template>

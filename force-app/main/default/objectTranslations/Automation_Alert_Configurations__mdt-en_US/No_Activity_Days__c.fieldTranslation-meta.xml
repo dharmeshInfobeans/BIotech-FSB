@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Days without activity before sending an alert. --></help>
+    <label><!-- No Activity Days --></label>
+    <name>No_Activity_Days__c</name>
+</CustomFieldTranslation>

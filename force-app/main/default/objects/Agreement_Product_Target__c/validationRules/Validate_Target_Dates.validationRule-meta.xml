@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Target_Dates</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    NOT(ISBLANK( Agreement_Product__r.Master_Agreement__r.Agreement_Start_Date__c )),
+    NOT(ISBLANK(Agreement_Product__r.Master_Agreement__r.Agreement_End_Date__c )),
+    OR(
+         Start_Date__c  &lt; Agreement_Product__r.Master_Agreement__r.Agreement_Start_Date__c ,
+         End_Date__c  &gt; Agreement_Product__r.Master_Agreement__r.Agreement_End_Date__c ,
+        Start_Date__c &gt; End_Date__c
+    )
+)</errorConditionFormula>
+    <errorMessage>Target Start Date and End Date must be within the Agreement Start Date and End Date. Also, Start Date must not be after End Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,136 @@
+:host {
+    display: block;
+}
+
+.chart-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #d8dde6;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.chart-download-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 1px solid #c9c7c5;
+    border-radius: 0.25rem;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.chart-download-btn:hover {
+    background: #f3f2f2;
+}
+
+.chart-download-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.chart-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.9rem 0.75rem 0.65rem;
+}
+
+.title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    width: 22rem;
+    max-width: 100%;
+    padding: 0.4rem 1rem;
+    background: #eef3fc;
+    border: 1px solid #c9d4e3;
+    border-radius: 0.35rem;
+}
+
+.chart-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16325c;
+    letter-spacing: 0.01em;
+}
+
+.chart-container {
+    position: relative;
+    /* 360px of actual plot area plus the chart's own 100px top label-safety padding and 14px
+       bottom spacing (see renderChart's layout.padding) - added here as extra height rather than
+       eaten out of the 360px, so those margins don't come at the cost of a visibly squeezed plot
+       area. */
+    height: 474px;
+    width: 100%;
+}
+
+.ratio-badge {
+    margin: 0;
+    color: #04844b;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+/* Drill-down modal - click a bar/point to see the records behind it. */
+.dd-content {
+    min-height: 20rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.dd-search {
+    margin-bottom: 0.75rem;
+    flex: 0 0 auto;
+}
+
+.dd-search-icon {
+    margin-top: 0.1rem;
+}
+
+.dd-status {
+    flex: 1 1 auto;
+    min-height: 12rem;
+    color: #706e6b;
+}
+
+.dd-error {
+    color: #ba0517;
+}
+
+.dd-table-wrap {
+    overflow-x: auto;
+    flex: 1 1 auto;
+}
+
+.dd-table th,
+.dd-table td {
+    white-space: nowrap;
+}
+
+.dd-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dd-page-label {
+    color: #706e6b;
+    font-size: 0.8125rem;
+}
+
+.dd-page-buttons {
+    display: flex;
+    gap: 0.5rem;
+}

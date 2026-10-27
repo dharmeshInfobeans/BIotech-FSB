@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registration_Request__c</fullName>
+    <description>Master-Detail relationship to the parent Registration Request. Document Basket sharing and visibility are controlled by the parent record.</description>
+    <label>Registration Request</label>
+    <referenceTo>Registration_Request__c</referenceTo>
+    <relationshipLabel>Document Baskets</relationshipLabel>
+    <relationshipName>Document_Baskets</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

@@ -1,0 +1,416 @@
+<template>
+	<template if:true={isLoading}>
+    <div class="loader-backdrop">
+        <lightning-spinner 
+            alternative-text="Loading..." 
+            size="small">
+        </lightning-spinner>
+    </div>
+</template>
+<template if:false={isLoading}>
+	<div class="qa-root">
+		<template if:true={schemeavailable}>
+			<div
+				style="background-color:#e45f08;color:white;padding:8px;border-radius:5px;font-weight:bold;line-height:1.5;">
+				There is already an ongoing scheme with Scheme Number
+				<strong>{alreadyschemeavailable.Scheme_Number__c}</strong>,
+				valid from <strong>{alreadyschemeavailable.Start_Date__c}</strong>
+				to <strong>{alreadyschemeavailable.Valid_Upto__c}</strong>.
+				You cannot generate another scheme at this time. Thank you!
+			</div>
+		</template>
+
+		<template if:true={showdefaultdata}>
+			<lightning-quick-action-panel>
+
+				<h1 class="slds-text-heading_medium slds-text-title_bold"
+					style="text-decoration:underline;text-align:center;font-size:18px;width:100%;">
+					Scheme Information
+				</h1>
+
+				<template if:false={screenOne}>
+					<template if:true={dataIsAvailable}>
+
+						<div class="slds-box slds-theme_default slds-m-around_medium">
+							<!-- <div class="slds-grid slds-grid_align-spread slds-m-around_medium"
+							style="gap:30px;margin-bottom:10px;justify-content:flex-start;">
+
+							<div class="slds-col slds-size_1-of-2">
+								<lightning-input type="search" value={searchInput} name="name"
+									label="Scheme Name" placeholder="type here..."
+									onchange={handleKeyUp}>
+								</lightning-input>
+							</div>
+
+							<div class="slds-col slds-size_1-of-4"
+								style="display:flex;justify-content:flex-end;align-items:center;margin-top:10px;">
+								<lightning-button label="Search" onclick={applyFilter}></lightning-button>
+							</div>
+						</div> -->
+							<!-- //added by anshul -->
+							<!-- <lightning-layout multiple-rows vertical-align="end" class="search-row">
+
+
+								<lightning-layout-item size="12" small-device-size="12" medium-device-size="8"
+									large-device-size="8" padding="around-small">
+
+									<lightning-input type="search" value={searchInput} label="Scheme Name"
+										placeholder="Type here..." onchange={handleKeyUp}>
+									</lightning-input>
+
+								</lightning-layout-item>
+
+								<lightning-layout-item size="12" small-device-size="12" medium-device-size="4"
+									large-device-size="4" padding="around-small" class="search-btn-container">
+
+									<lightning-button label="Search" variant="brand" onclick={applyFilter}>
+									</lightning-button>
+
+								</lightning-layout-item>
+
+							</lightning-layout> -->
+
+							<div class="search-row-sticky">
+
+								<lightning-input class="search-input-flex" type="search" value={searchInput}
+									label="Scheme Name" placeholder="Search Scheme Number, Scheme Name..." onchange={handleKeyUp}>
+								</lightning-input>
+								<!-- 
+								<lightning-button class="search-btn-fixed" label="Search" variant="brand"
+									onclick={applyFilter} disabled >
+								</lightning-button> -->
+
+							</div>
+
+
+
+							<table class="slds-table custom-table">
+								<thead>
+									<tr class="tableRow">
+										<th></th>
+										<th>Scheme Name</th>
+										<th>Scheme Number</th>
+										<th>Scheme Description</th>
+										<th>Tenure</th>
+										<th>Valid Upto</th>
+										
+									</tr>
+								</thead>
+
+								<tbody>
+									<template for:each={displayedData} for:item="item">
+										<tr key={item.Id}>
+											<td data-label="">
+												<lightning-input type="radio" name="slectedtem" data-id={item.Id}
+													checked={item.isSelected} onchange={onItemSelect}>
+												</lightning-input>
+											</td>
+
+											<td data-label="Scheme Name">
+												<a href="javascript:void(0);" data-id={item.Id} onclick={handleClickscheme}>
+													{item.Name}
+												</a>
+
+											</td>
+
+											<td data-label="Scheme Type">{item.Scheme_Number__c}</td>
+											<td data-label="Scheme Description">{item.Scheme_Desc__c}</td>
+											<td data-label="Tenure">{item.Tenure__c}</td>
+											<td data-label="Valid Upto">{item.Valid_Upto__c}</td>
+										</tr>
+									</template>
+								</tbody>
+							</table>
+						</div>
+
+						<div style="display:flex;justify-content:space-between;width:100%;">
+							<div class="btn-row" style="width:60%;display:flex;justify-content:flex-end;">
+								<lightning-button label="Cancel" onclick={onCancel}></lightning-button>
+								<lightning-button label="Next" variant="brand" onclick={handlenextsecondscreen}
+									disabled={disable}>
+								</lightning-button>
+							</div>
+
+							<div style="width:40%;display:flex;justify-content:flex-end;">
+								<div class="right-section">
+									<lightning-button icon-name="utility:back" onclick={schemehandlePreviousPage}
+										disabled={schemeisFirstPage}>
+									</lightning-button>
+
+									<span class="page-info">
+									Page {schemecurrentPage} of {schemetotalPages}
+								</span>
+
+									<lightning-button icon-name="utility:forward" onclick={schemehandleNextPage}
+										disabled={schemeisLastPage}>
+									</lightning-button>
+								</div>
+							</div>
+						</div>
+
+					</template>
+				</template>
+
+				<template if:false={dataIsAvailable}>
+					<p style="color:red;text-align:center;font-size:16px;">
+						{validateApprover}
+					</p>
+				</template>
+
+				<template if:false={screenTwo}>
+					<div class="slds-box slds-theme_default slds-m-around_medium">
+
+						<center>
+							<lightning-button label="Previous" variant="neutral" onclick={handlePrevClick}>
+							</lightning-button>
+						</center>
+
+						<table class="slds-table custom-table">
+							<thead>
+								<tr>
+									<th>Item Name</th>
+									<th>Credit Note</th>
+									<template if:true={showCreditPercentageColumn}>
+										<th>Credit Percentage</th>
+									</template>
+									<th>Net Price</th>
+									<th>Product Description</th>
+									<th>Reg Price</th>
+									<th>Scheme No.</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								<template for:each={schemeLineItem} for:item="lineItem">
+									<tr key={lineItem.Scheme_Information__c}>
+										<td data-label="Scheme Name">{lineItem.Name}</td>
+										<td data-label="Credit Note">{lineItem.Credit_Note__c}</td>
+										<template if:true={showCreditPercentageColumn}>
+											<td data-label="Credit Percentage">
+												{lineItem.Credit_Percentage__c}
+											</td>
+										</template>
+									
+										<td data-label="Net Price">{lineItem.Net_Price__c}</td>
+										<td data-label="Product Description">{lineItem.Product_Description__c}</td>
+										<td data-label="Reg Price">{lineItem.Reg_Price__c}</td>
+										<td data-label="Scheme No.">{lineItem.Scheme_No__c}</td>
+									</tr>
+								</template>
+							</tbody>
+						</table>
+					</div>
+				</template>
+
+			</lightning-quick-action-panel>
+		</template>
+
+		<template if:true={havechildaccounts}>
+			<lightning-card title="Child Accounts" icon-name="standard:account">
+				<div class="slds-box slds-theme_default slds-scrollable slds-m-around_medium">
+
+					<table class="slds-table custom-table">
+						<thead>
+							<tr>
+								<th>
+									<lightning-input type="checkbox" onchange={handleSelectAll} checked={isAllSelected}>
+									</lightning-input>
+								</th>
+								<th>Parent SAP Code</th>
+								<th>Parent Name</th>
+								<th>Child SAP Code</th>
+								<th>Account Name</th>
+								<th>State</th>
+								<th>City</th>
+								<th>CE-CIS Rating</th>
+								<th>Phakic Rating</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<template for:each={paginatedAccounts} for:item="obj">
+								<tr key={obj.Id}>
+									<td>
+										<lightning-input type="checkbox" data-id={obj.Id} checked={obj.isSelected}
+											onchange={handleClick}>
+										</lightning-input>
+									</td>
+									<td data-label="Parent SAP Code">{obj.parentSapCode}</td>
+									<td data-label="Parent Name">{obj.parentName}</td>
+									<td data-label="Child SAP Code">{obj.SAP_Code__c}</td>
+									<td data-label="Account Name">{obj.Name}</td>
+									<td data-label="State">{obj.BillingState}</td>
+									<td data-label="City">{obj.BillingCity}</td>
+									<td data-label="CE-CIS Rating">{obj.CE_CIS_Rating__c}</td>
+									<td data-label="Phakic Rating">{obj.Phakic_Rating__c}</td>
+								</tr>
+							</template>
+						</tbody>
+					</table>
+
+					<div class="btn-row" style="display:flex;justify-content:center;margin-top:7px;">
+						<lightning-button label="Previous" variant="brand" onclick={previousfirstscreen}>
+						</lightning-button>
+						<lightning-button label="Next" onclick={nextthirdscreen}>
+						</lightning-button>
+					</div>
+
+				</div>
+			</lightning-card>
+		</template>
+
+		<template if:true={handlethirsscreen}>
+			<template if:true={parentaccountscheme}>
+				<div class="slds-m-around_medium">
+					<h6 class="slds-text-heading_medium slds-m-bottom_small">
+						Parent Customer Scheme Details
+					</h6>
+					<table class="slds-table custom-table">
+						<thead>
+							<tr>
+								<th>SAP Code</th>
+								<th>Customer Name</th>
+								<th>Scheme Number</th>
+								<th>Scheme Name</th>
+								<th>Scheme Description</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<template for:each={parentschemelist} for:item="prtschem">
+								<tr key={prtschem.Id}>
+									<td data-label="Customer SAP">{prtschem.Customer_SAP_code__c}</td>
+									<td data-label="Customer Name">{prtschem.Account_Name__c}</td>
+									<td data-label="Scheme Number">{prtschem.Scheme_Number__c}</td>
+									<td data-label="Scheme Name">{prtschem.Scheme_Name__c}</td>
+									<td data-label="Scheme Description">{prtschem.Scheme_Description__c}</td>
+									<td data-label="Start Date">{prtschem.Start_Date__c}</td>
+									<td data-label="End date">{prtschem.End_Date__c}</td>
+
+								</tr>
+							</template>
+						</tbody>
+					</table>
+
+				</div>
+			</template>
+			<template if:true={childaccountscheme}>
+				<div class="slds-m-around_medium">
+
+					<h6 class="slds-text-heading_medium slds-m-bottom_small">
+						Child Customer Scheme Details
+					</h6>
+					<table class="slds-table custom-table">
+						<thead>
+							<tr>
+								<th>SAP Code</th>
+								<th>Customer Name</th>
+								<th>Scheme Number</th>
+								<th>Scheme Name</th>
+								<th>Scheme Description</th>
+								<th>Start Date</th>
+								<th>End Date</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<template for:each={childschemelist} for:item="childsche">
+								<tr key={childsche.Id}>
+									<td data-label="Customer SAP">{childsche.Customer_SAP_code__c}</td>
+									<td data-label="Customer Name">{childsche.Account_Name__c}</td>
+									<td data-label="Scheme Number">{childsche.Scheme_Number__c}</td>
+									<td data-label="Scheme Name">{childsche.Scheme_Name__c}</td>
+									<td data-label="Scheme Description">{childsche.Scheme_Description__c}</td>
+									<td data-label="Start Date">{childsche.Start_Date__c}</td>
+									<td data-label="End date">{childsche.End_Date__c}</td>
+								</tr>
+							</template>
+						</tbody>
+					</table>
+
+				</div>
+			</template>
+			<div class="slds-m-around_medium">
+
+				<table class="slds-table custom-table">
+					<thead>
+						<tr>
+							<th>SAP Code</th>
+							<th>Account Name</th>
+							<th>Scheme Number</th>
+							<th>Scheme Name</th>
+							<th>Start Date</th>
+							<th>End Date</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<template for:each={parentAccountList} for:item="row">
+							<tr key={row.Id}>
+								<td data-label="SAP Code">{row.SAP_Code__c}</td>
+								<td data-label="Account Name">{row.Name}</td>
+								<td data-label="Scheme Number">{schemenumberonly}</td>
+								<td data-label="Scheme Name">{schemennameonly}</td>
+								<td data-label="Start Date">
+									<lightning-input type="date" data-row-id={row.Id} data-field="Start_Date__c"
+										value={row.Start_Date__c} onchange={handleDateChange} variant="label-hidden"
+										required>
+									</lightning-input>
+								</td>
+								<td data-label="End Date">
+									<lightning-input type="date" data-field="End_Date__c" value={row.End_Date__c}
+										disabled variant="label-hidden">
+									</lightning-input>
+								</td>
+							</tr>
+						</template>
+					</tbody>
+				</table>
+
+			</div>
+
+			<div class="btn-row">
+				<lightning-button label="Previous" variant="brand" onclick={previoussecondscreen}>
+				</lightning-button>
+
+				<lightning-button label="Cancel" onclick={onCancel}>
+				</lightning-button>
+
+				<lightning-button label="Submit Request" variant="brand" onclick={createCustomRrquestRecords}
+					disabled={enablesubmit}>
+				</lightning-button>
+			</div>
+		</template>
+
+		<template if:true={showConfirm}>
+    <section role="dialog" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+
+            <header class="slds-modal__header slds-text-align_center">
+                <h2 class="slds-text-heading_medium">
+                    Confirm Scheme Application
+                </h2>
+            </header>
+
+			<div class="custom_modal slds-modal__content slds-p-around_large slds-text-align_center slds-text-heading_medium">
+				{message}
+			</div>
+
+		<footer class="slds-modal__footer slds-text-align_center">
+			<lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+		
+			<lightning-button variant="brand" label="OK" onclick={handleOk} class="slds-m-left_small">
+			</lightning-button>
+		</footer>
+
+        </div>
+    </section>
+
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+
+	</div>
+</template>
+</template>

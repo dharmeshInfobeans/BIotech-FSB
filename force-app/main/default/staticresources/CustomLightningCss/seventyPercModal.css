@@ -1,0 +1,8 @@
+.slds-modal__container{
+    width: 70%;
+    max-width: 840px;
+    min-width: 480px;
+}
+.cuf-content, .modal-body{
+	padding: 0px !important;
+}

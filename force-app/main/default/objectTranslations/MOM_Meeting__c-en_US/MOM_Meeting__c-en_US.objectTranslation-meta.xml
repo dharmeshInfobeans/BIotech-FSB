@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>MOM Meeting</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>MOM Meetings</value>
+    </caseValues>
+    <layouts>
+        <layout>MOM Meeting Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Discussion Summary --></label>
+            <section>Discussion Summary</section>
+        </sections>
+        <sections>
+            <label><!-- Meeting Information --></label>
+            <section>Meeting Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Distributor is required to finalize a meeting. --></errorMessage>
+        <name>Distributor_Required_On_Finalize</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You are not authorized to create MOM Meeting records. Please contact your System Administrator to request access. --></errorMessage>
+        <name>MOM_Creation_Access_Check</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Meeting Date cannot be in the future. --></errorMessage>
+        <name>Meeting_Date_Not_Future</name>
+    </validationRules>
+</CustomObjectTranslation>

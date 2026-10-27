@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- First Mobile Telephone No.: Dialing --></label>
+    <name>First_Mobile_Telephone_No_Dialing__c</name>
+</CustomFieldTranslation>

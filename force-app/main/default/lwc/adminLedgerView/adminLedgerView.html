@@ -1,0 +1,329 @@
+<template>
+    <div class="admin-page">
+
+        <!-- Hero -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <lightning-icon icon-name="utility:shield" size="small" class="hero-icon"></lightning-icon>
+                    <div>
+                        <h2>Admin — Ledger Management</h2>
+                        <p>View, filter, preview, download and delete all customer ledger records.</p>
+                    </div>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-pill">
+                        <span class="stat-num">{totalCount}</span>
+                        <span class="stat-label">Total</span>
+                    </div>
+                    <div class="stat-pill warning">
+                        <span class="stat-num">{sentCount}</span>
+                        <span class="stat-label">Sent</span>
+                    </div>
+                    <div class="stat-pill success">
+                        <span class="stat-num">{signedCount}</span>
+                        <span class="stat-label">Signed</span>
+                    </div>
+                    <div class="stat-pill error">
+                        <span class="stat-num">{declinedCount}</span>
+                        <span class="stat-label">Declined</span>
+                    </div>
+                    <div class="stat-pill pending">
+                        <span class="stat-num">{expiredCount}</span>
+                        <span class="stat-label">Expired</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Card -->
+        <div class="filter-card">
+            <div class="filter-header">
+                <lightning-icon icon-name="utility:filterList" size="xx-small" class="filter-icon"></lightning-icon>
+                <span class="filter-title">Filters</span>
+                <template if:true={hasActiveFilters}>
+                    <span class="filter-count">{activeFilterCount} active</span>
+                </template>
+            </div>
+
+            <div class="filter-grid">
+                <div class="input-wrapper">
+                    <lightning-input
+                        type="search"
+                        label="Search Account / Ledger"
+                        placeholder="Type to search..."
+                        value={searchText}
+                        onchange={handleSearchChange}>
+                    </lightning-input>
+                </div>
+                <div class="input-wrapper">
+                    <lightning-input
+                        type="search"
+                        label="SAP Code"
+                        placeholder="Search by SAP code..."
+                        value={filterSapCode}
+                        onchange={handleSapCodeChange}>
+                    </lightning-input>
+                </div>
+                <div class="input-wrapper">
+                    <lightning-combobox
+                        label="Status"
+                        placeholder="All Statuses"
+                        value={filterStatus}
+                        options={statusOptions}
+                        onchange={handleStatusChange}>
+                    </lightning-combobox>
+                </div>
+                <div class="input-wrapper">
+                   <lightning-combobox
+                        label="Year"
+                        placeholder="All Years"
+                        value={filterYear}
+                        options={yearOptions}
+                        onchange={handleYearChange}>
+                   </lightning-combobox>
+                </div>
+
+                <div class="input-wrapper">
+                    <lightning-combobox
+                     label="Quarter"
+                     placeholder="All Quarters"
+                     value={filterQuarter}
+                     options={quarterOptions}
+                     onchange={handleQuarterChange}>
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <div class="filter-actions">
+                <template if:true={hasActiveFilters}>
+                    <div class="active-chips">
+                        <template if:true={searchText}>
+                            <span class="chip">
+                                <lightning-icon icon-name="utility:search" size="xx-small" class="chip-icon"></lightning-icon>
+                                {searchText}
+                                <button class="chip-remove" data-filter="search" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                        <template if:true={filterSapCode}>
+                            <span class="chip">
+                                <lightning-icon icon-name="utility:number_input" size="xx-small" class="chip-icon"></lightning-icon>
+                                {filterSapCode}
+                                <button class="chip-remove" data-filter="sapCode" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                        <template if:true={filterStatus}>
+                            <span class="chip">
+                                <lightning-icon icon-name="utility:record" size="xx-small" class="chip-icon"></lightning-icon>
+                                {filterStatusLabel}
+                                <button class="chip-remove" data-filter="status" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                        <template if:true={filterYear}> 
+                            <span class="chip">{filterYear}<button class="chip-remove" data-filter="year" onclick={handleRemoveFilter}> ✕</button></span>
+                        </template>
+
+                        <template if:true={filterQuarter}>
+                            <span class="chip"> {filterQuarter} <button class="chip-remove" data-filter="quarter" onclick={handleRemoveFilter}> ✕ </button></span>
+                        </template>
+                    </div>
+                </template>
+                <div class="filter-btn-group">
+                    <button class="btn secondary" onclick={handleResetFilters}>
+                        <lightning-icon icon-name="utility:undo" size="xx-small" class="btn-icon-secondary"></lightning-icon>
+                        Reset
+                    </button>
+                    <button class="btn primary" onclick={loadRecords}>
+                        <lightning-icon icon-name="utility:refresh" size="xx-small" class="btn-icon-primary"></lightning-icon>
+                        Refresh
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="loading-box">
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+                <p>Loading ledger records...</p>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={error}>
+            <div class="alert error">
+                <lightning-icon icon-name="utility:error" size="x-small" class="alert-icon-error"></lightning-icon>
+                <span>{error}</span>
+            </div>
+        </template>
+
+        <!-- Success -->
+        <template if:true={successMessage}>
+            <div class="alert success">
+                <lightning-icon icon-name="utility:success" size="x-small" class="alert-icon-success"></lightning-icon>
+                <span>{successMessage}</span>
+            </div>
+        </template>
+
+        <!-- Table -->
+        <template if:true={hasResults}>
+            <div class="results-card fade-in">
+                <div class="results-header">
+                    <div class="header-left">
+                        <h3>All Ledger Records</h3>
+                        <p>{filteredData.length} record(s) found</p>
+                    </div>
+                    <div class="header-right">
+                        <template if:true={hasSelected}>
+                            <button class="btn danger" onclick={handleBulkDelete}>
+                                <lightning-icon icon-name="utility:delete" size="xx-small" class="btn-icon-danger"></lightning-icon>
+                                Delete Selected ({selectedRows.length})
+                            </button>
+                        </template>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th class="col-checkbox">
+                                    <div class="checkbox-container">
+                                        <input type="checkbox" id="selectAll" checked={isAllSelected} onchange={handleSelectAll} />
+                                        <label for="selectAll" class="checkbox-label"></label>
+                                    </div>
+                                </th>
+                                <th class="sortable-header" onclick={handleSortAccountName}>
+                                  <div class="header-content">
+                                  <span>Account Name</span>
+                                  <span>{sortArrow}</span>
+                                  </div>
+                              </th> 
+                                <th>SAP Code</th>
+                                <th>Ledger Name</th>
+                                <th>Contact Name</th>
+                                <th>Contact Email</th>
+                                <th>Status</th>
+                                <th>From Date</th>
+                                <th>To Date</th>
+                                <th class="col-actions">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={pagedData} for:item="row">
+                                <tr key={row.ledgerId} class="table-row">
+                                    <td class="col-checkbox">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" checked={row.selected} disabled={row.selectDisabled} data-id={row.ledgerId} onchange={handleRowSelect} id={row.ledgerId} />
+                                            <label for={row.ledgerId} class="checkbox-label"></label>
+                                        </div>
+                                    </td>
+                                    <td><span class="account-name">{row.accountName}</span></td>
+                                    <td><span class="nowrap">{row.sapCode}</span></td>
+                                    <td><span class="ledger-name">{row.ledgerName}</span></td>
+                                    <td><span class="nowrap">{row.contactName}</span></td>
+                                    <td><span class="nowrap">{row.contactEmail}</span></td>
+                                    <td><span class={row.ledgerStatusClass}>{row.statusLabel}</span></td>
+                                    <td><span class="nowrap date-cell">{row.fromDateLabel}</span></td>
+                                    <td><span class="nowrap date-cell">{row.toDateLabel}</span></td>
+                                    <td class="col-actions">
+                                        <div class="action-group">
+                                            <button class="row-btn preview" onclick={handlePreview} data-version={row.versionId} data-name={row.ledgerName} title="Preview">
+                                                <lightning-icon icon-name="utility:preview" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                <span>Preview</span>
+                                            </button>
+                                            <template if:true={row.canDownload}>
+                                                <button class="row-btn download" onclick={handleDownload} data-version={row.versionId} data-id={row.ledgerId} title="Download PDF">
+                                                    <lightning-icon icon-name="utility:download" size="xx-small" class="row-btn-icon-download"></lightning-icon>
+                                                    <span>PDF</span>
+                                                </button>
+                                            </template>
+                                            <template if:true={row.canDelete}>
+                                                <button class="row-btn delete" onclick={handleDeleteRow} data-id={row.ledgerId} title="Delete">
+                                                    <lightning-icon icon-name="utility:delete" size="xx-small" class="row-btn-icon-delete"></lightning-icon>
+                                                    <span>Delete</span>
+                                                </button>
+                                            </template>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-footer">
+                    <button class="pagination-btn" onclick={handlePrevious} disabled={disablePrevious}>
+                        <lightning-icon icon-name="utility:chevronleft" size="xx-small"></lightning-icon>
+                        Previous
+                    </button>
+                    <span class="page-indicator">Page <strong>{pageNumber}</strong> of <strong>{totalPages}</strong></span>
+                    <button class="pagination-btn" onclick={handleNext} disabled={disableNext}>
+                        Next
+                        <lightning-icon icon-name="utility:chevronright" size="xx-small"></lightning-icon>
+                    </button>
+                </div>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template if:true={showEmptyState}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:file" size="large" class="empty-icon"></lightning-icon>
+                <h3>No Records Found</h3>
+                <p>Try adjusting your filters or refresh to reload all records.</p>
+                <button class="btn primary" onclick={handleResetFilters}>Clear Filters</button>
+            </div>
+        </template>
+
+        <!-- Delete Confirm Modal -->
+        <template if:true={showDeleteModal}>
+            <div class="modal-backdrop">
+                <div class="modal-box">
+                    <div class="modal-header">
+                        <lightning-icon icon-name="utility:warning" size="small" class="modal-warn-icon"></lightning-icon>
+                        <h3>Confirm Delete</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to permanently delete <strong>{deleteTargetCount}</strong> ledger record(s).</p>
+                        <p class="modal-sub">This action cannot be undone. The associated PDF files will also be removed.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn secondary" onclick={handleCancelDelete}>Cancel</button>
+                        <button class="btn danger" onclick={handleConfirmDelete}>
+                            <lightning-icon icon-name="utility:delete" size="xx-small" class="btn-icon-danger"></lightning-icon>
+                            Yes, Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- Preview Modal -->
+        <template if:true={showPreviewModal}>
+            <div class="modal-backdrop">
+                <div class="modal-box preview-modal">
+                    <div class="modal-header">
+                        <div class="preview-title-group">
+                            <lightning-icon icon-name="utility:file" size="x-small" class="preview-file-icon"></lightning-icon>
+                            <h3>{previewLedgerName}</h3>
+                        </div>
+                        <button class="close-btn" onclick={handleClosePreview}>✕</button>
+                    </div>
+                    <div class="modal-body preview-body">
+                        <iframe src={previewUrl} class="pdf-frame" title="Ledger Preview"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn secondary" onclick={handleClosePreview}>Close</button>
+                        <button class="btn primary" onclick={handleDownloadFromPreview}>
+                            <lightning-icon icon-name="utility:download" size="xx-small" class="btn-icon-primary"></lightning-icon>
+                            Download
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>

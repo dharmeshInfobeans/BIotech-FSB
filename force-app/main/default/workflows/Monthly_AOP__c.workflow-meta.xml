@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Record_Type_International</fullName>
+        <field>RecordTypeId</field>
+        <lookupValue>International</lookupValue>
+        <lookupValueType>RecordType</lookupValueType>
+        <name>Record Type - International</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>LookupValue</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Target_Amount</fullName>
+        <field>Target_Amount__c</field>
+        <formula>Target_Quantity__c * Product__r.MSP__c</formula>
+        <name>Update Target Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Calculate Target Amount For Monthly AOP</fullName>
+        <actions>
+            <name>Update_Target_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(NOT(ISNULL(Target_Quantity__c)),NOT(ISNULL(Product__r.MSP__c)),NOT(ISNULL(Product__c)))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

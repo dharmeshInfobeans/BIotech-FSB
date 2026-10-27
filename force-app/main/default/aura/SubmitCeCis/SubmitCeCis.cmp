@@ -1,0 +1,24 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutheader,force:hasSObjectName" access="global">
+
+    <aura:html tag="style">
+         .cuf-content {
+
+            padding: 0 0rem !important;
+
+        }
+      .slds-modal__container {
+            max-width: 90rem !important;
+        	height: auto !important;
+            width: 90% !important;
+            overflow: hidden !important;
+        }
+        .slds-modal__content {
+            padding: 0px;
+        	 height: 80vh !important;
+             max-height: 80vh !important;
+            overflow: auto !important; 
+        }
+    </aura:html>
+    
+<c:ceCisLwc recordId="{!v.recordId}" onclose="{!c.closeqa}" ></c:ceCisLwc>
+</aura:component>

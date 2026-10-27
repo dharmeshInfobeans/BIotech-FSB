@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Grupo</label>
+    <name>Group__c</name>
+    <picklistValues>
+        <masterLabel>ACCESS TO INNOVATION SERIES</masterLabel>
+        <translation><!-- ACCESS TO INNOVATION SERIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOTECH KNOWLEDGE SERIES</masterLabel>
+        <translation><!-- BIOTECH KNOWLEDGE SERIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>COFFEE CHAT SERIES</masterLabel>
+        <translation><!-- COFFEE CHAT SERIES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OTHER</masterLabel>
+        <translation><!-- OTHER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SALES SPECIALIST ROLE</masterLabel>
+        <translation><!-- SALES SPECIALIST ROLE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TAKE A BREAK SERIES</masterLabel>
+        <translation><!-- TAKE A BREAK SERIES --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

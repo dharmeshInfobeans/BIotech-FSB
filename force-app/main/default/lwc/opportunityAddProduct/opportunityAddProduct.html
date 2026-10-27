@@ -1,0 +1,308 @@
+<template>
+    <template if:true={showModal1}>
+        <div class="backdrop"></div>
+        <div class="modal-overlay">
+            <div class="modal-container">
+
+                <!-- Header -->
+                <div class="modal-header">
+                    <div class="modal-header-inner">
+                        <div class="modal-icon-box">
+                            <lightning-icon icon-name="standard:product" size="small"></lightning-icon>
+                        </div>
+                        <div>
+                            <h1 class="modal-title">Select Product</h1>
+                            <p class="modal-subtitle">Choose products from your opportunity group</p>
+                        </div>
+                    </div>
+                    <button class="modal-close-btn" onclick={handleClose} title="Close">
+                        <lightning-icon icon-name="utility:close" variant="brand" size="small"></lightning-icon>
+                    </button>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" style={progressStyle}></div>
+                </div>
+
+                <!-- Spinner -->
+                <template if:true={loading}>
+                    <div class="spinner-wrapper">
+                        <div class="slds-spinner_container">
+                            <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                                <span class="slds-assistive-text">Loading</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Body -->
+                <div class="modal-body">
+
+                    <!-- Step 1 -->
+                    <div class="field-section">
+                        <div class="step-row">
+                            <div class="step-dot step-dot-active">1</div>
+                            <span class="step-label step-label-active">Product Family</span>
+                            <div class="step-line"></div>
+                            <span class="auto-badge">Auto Selected</span>
+                        </div>
+                        <div class="readonly-field">
+                            <span class="readonly-value">{selectedProductFamily}</span>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- Step 2 -->
+                    <div class="field-section">
+                        <div class="step-row">
+                            <div class="step-dot step-dot-active">2</div>
+                            <span class="step-label step-label-active">Product Description</span>
+                            <div class="step-line"></div>
+                            <span class="auto-badge">Auto Selected</span>
+                        </div>
+                        <div class="readonly-field">
+                            <span class="readonly-value">{selectedProductDescription}</span>
+                        </div>
+                    </div>
+
+                    <div class="section-divider"></div>
+
+                    <!-- Step 3 -->
+                    <div class="field-section">
+                        <div class="step-row">
+                            <div class={step3DotClass}>3</div>
+                            <span class={step3LabelClass}>Select Products</span>
+                            <div class="step-line"></div>
+                            <span class="required-badge">Required</span>
+                        </div>
+                        <p class="field-hint">Select one or more products from the list below</p>
+
+                        <template if:true={hasProducts}>
+                            <div class="table-wrapper">
+                                <lightning-datatable
+                                    key-field="Id"
+                                    data={productData}
+                                    columns={columns}
+                                    selected-rows={selectedRowIds}
+                                    onrowselection={handleRowSelection}>
+                                </lightning-datatable>
+                            </div>
+                            <div class="pagination-row">
+                                <lightning-button-icon
+                                    icon-name="utility:chevronleft"
+                                    onclick={handlePreviousPage}
+                                    disabled={isPreviousDisabled}
+                                    variant="border-filled"
+                                    size="small">
+                                </lightning-button-icon>
+                                <span class="page-info">Page {pageNumber} of {totalPages}</span>
+                                <lightning-button-icon
+                                    icon-name="utility:chevronright"
+                                    onclick={handleNextPage}
+                                    disabled={isNextPageDisabled}
+                                    variant="border-filled"
+                                    size="small">
+                                </lightning-button-icon>
+                            </div>
+                            <template if:true={hasProductSelected}>
+                                <div class="selection-count">
+                                    <lightning-icon icon-name="utility:check" size="xx-small" class="check-icon"></lightning-icon>
+                                    {selectedProductCount} Product{productCountSuffix} Selected
+                                </div>
+                            </template>
+                        </template>
+
+                        <template if:true={showEmptyState}>
+                            <div class="empty-state">
+                                <p class="empty-text">No products found for the selected filters.</p>
+                            </div>
+                        </template>
+
+                    </div>
+
+                </div>
+
+                <!-- Summary Bar -->
+                <div class="summary-bar">
+                    <div class="summary-card">
+                        <div class="summary-label">FAMILY</div>
+                        <div class="summary-value-active">{summaryFamilyText}</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">DESCRIPTION</div>
+                        <div class="summary-value-active">{summaryDescText}</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">PRODUCTS</div>
+                        <div class={summaryProdClass}>{summaryProductText}</div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="modal-footer">
+                    <lightning-button
+                        variant="neutral"
+                        label="Cancel"
+                        onclick={handleClose}>
+                    </lightning-button>
+
+                <lightning-button
+                        variant="brand"
+                        label="Next"
+                         onclick={handleNext} disabled={isNextDisabled} class="slds-m-left_x-small">
+                    </lightning-button>
+                  <!--   <button class={nextBtnClass} onclick={handleNext} disabled={isNextDisabled}>
+                        Next
+                    </button> -->
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+
+    <template if:true={showModal2}>
+        <div class="backdrop"></div>
+        <div class="modal-overlay">
+            <div class="modal-container">
+
+                <!-- Header -->
+                <div class="modal-header">
+                    <div class="modal-header-inner">
+                        <div class="modal-icon-box">
+                            <lightning-icon icon-name="standard:product" size="small"></lightning-icon>
+                        </div>
+                        <div>
+                            <h1 class="modal-title">Product Details</h1>
+                            <p class="modal-subtitle">Enter quantity for each selected product</p>
+                        </div>
+                    </div>
+                    <button class="modal-close-btn" onclick={handleClose} title="Close">
+                        <lightning-icon icon-name="utility:close" variant="brand" size="small"></lightning-icon>
+                    </button>
+                </div>
+
+                <!-- Progress Bar full -->
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" style="width:100%"></div>
+                </div>
+
+                <!-- Spinner -->
+                <template if:true={loading}>
+                    <div class="spinner-wrapper">
+                        <div class="slds-spinner_container">
+                            <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                                <span class="slds-assistive-text">Loading</span>
+                                <div class="slds-spinner__dot-a"></div>
+                                <div class="slds-spinner__dot-b"></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Body -->
+                <div class="modal-body">
+
+                    <template if:true={hasSelectedRows}>
+                        <div class="details-table-wrapper">
+                            <table class="slds-table slds-table_cell-buffer slds-table_bordered details-table">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th scope="col" class="table-th">Product Description</th>
+                                        <template if:true={isProduct}>
+                                            <th scope="col" class="table-th">Product ASP</th>
+                                        </template>
+                                        <template if:true={isEquipment}>
+                                            <th scope="col" class="table-th">Product MSP</th>
+                                        </template>
+                                        <th scope="col" class="table-th">
+                                            <template if:true={isProduct}>
+                                                Quantity <abbr title="required" class="slds-required">*</abbr>
+                                            </template>
+                                            <template if:true={isEquipment}>
+                                                Monthly Quantity <abbr title="required" class="slds-required">*</abbr>
+                                            </template>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={selectedRows} for:item="product">
+                                        <tr key={product.Id} class="table-tr">
+                                            <td class="table-td">{product.Brand__c}</td>
+                                            <template if:true={isProduct}>
+                                                <td class="table-td">{product.PF_ASP__c}</td>
+                                            </template>
+                                            <template if:true={isEquipment}>
+                                                <td class="table-td">{product.Product_MSP__c}</td>
+                                            </template>
+                                            <td class="table-td">
+                                                <lightning-input
+                                                    type="number"
+                                                    min="1"
+                                                    step="1"
+                                                    placeholder="Enter Qty"
+                                                    value={product.Quantity__c}
+                                                    data-id={product.Id}
+                                                    data-field="Quantity__c"
+                                                    onchange={handleInputChange}>
+                                                </lightning-input>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+
+                    <template if:false={hasSelectedRows}>
+                        <div class="empty-state">
+                            <p class="empty-text">No products selected.</p>
+                        </div>
+                    </template>
+
+                </div>
+
+                <!-- Summary Bar -->
+                <div class="summary-bar">
+                    <div class="summary-card">
+                        <div class="summary-label">FAMILY</div>
+                        <div class="summary-value-active">{summaryFamilyText}</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">DESCRIPTION</div>
+                        <div class="summary-value-active">{summaryDescText}</div>
+                    </div>
+                    <div class="summary-card">
+                        <div class="summary-label">PRODUCTS</div>
+                        <div class="summary-value-active">{selectedProductCount}</div>
+                    </div>
+                </div>
+
+                 <!-- Footer-->
+                <div class="modal-footer">
+                    <lightning-button
+                        variant="neutral"
+                        label="Back"
+                        onclick={handleBack}>
+                    </lightning-button>
+                    <lightning-button
+                        variant="Brand"
+                        label="Save"
+                        onclick={handleSave}>
+                    </lightning-button>
+                 <!--   <button class="pill-btn pill-btn-back" onclick={handleBack}>
+                        Back
+                    </button>
+                    <button class="pill-btn pill-btn-save" onclick={handleSave}>
+                        Save
+                    </button>-->
+                </div>
+
+            </div>
+        </div>
+    </template>
+</template>

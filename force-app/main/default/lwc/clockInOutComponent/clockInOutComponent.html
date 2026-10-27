@@ -1,0 +1,17 @@
+<template>
+    <lightning-card  >
+        <div class="container">
+            <div class="slds-align_absolute-center">
+                <p class="slds-p-horizontal_medium">
+                    Date and Time:
+                </p><b>{formattedDateTime}</b>
+            </div>
+            <div class="container-btn">
+                <lightning-button label="Clock In" variant="success" onclick={handleClockIn} disabled={isClockedIn} class="clock-in-button"></lightning-button>
+                <lightning-button label="Clock Out" variant="destructive" onclick={handleClockOut}  class="clock-out-button"></lightning-button>
+                
+            </div>
+            <lightning-button-icon  variant="brand"  onclick={navigateToTabPage} icon-name="standard:event" alternative-text="event" title="event"></lightning-button-icon>
+        </div>
+    </lightning-card>
+</template>

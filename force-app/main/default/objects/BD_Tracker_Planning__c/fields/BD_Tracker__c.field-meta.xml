@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BD_Tracker__c</fullName>
+    <label>BD Tracker</label>
+    <referenceTo>BD_Tracker__c</referenceTo>
+    <relationshipLabel>BD Tracker Plannings</relationshipLabel>
+    <relationshipName>BD_Tracker_Plannings</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

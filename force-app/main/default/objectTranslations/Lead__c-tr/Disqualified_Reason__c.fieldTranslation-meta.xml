@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Vasıfsız Nedeni</label>
+    <name>Disqualified_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Existing Customer</masterLabel>
+        <translation><!-- Existing Customer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Govt. doctor</masterLabel>
+        <translation>devlet doktoru</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No potential</masterLabel>
+        <translation>Potansiyel yok</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No surgical practice.</masterLabel>
+        <translation>Cerrahi Uygulama Yok</translation>
+    </picklistValues>
+</CustomFieldTranslation>

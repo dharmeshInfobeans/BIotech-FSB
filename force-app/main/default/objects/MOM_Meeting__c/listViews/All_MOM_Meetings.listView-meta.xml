@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_MOM_Meetings</fullName>
+    <columns>NAME</columns>
+    <columns>Meeting_Date__c</columns>
+    <columns>Meeting_Type__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Distributor__c</columns>
+    <columns>Region_Set__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All MOM Meetings</label>
+</ListView>

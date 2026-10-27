@@ -1,0 +1,78 @@
+.tile {
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    text-align: center;
+    background: #ffffff;
+    /* A fixed floor height (not just height:100%) matters because a tile alone on the row's last
+       line - always the case when the tile count isn't a multiple of the columns-per-row, as with
+       11 tiles at 5-per-row - has no taller sibling on that line for flexbox's default stretch
+       behavior to match, so it would otherwise size to only its own content and end up visibly
+       taller/shorter than every other tile. */
+    min-height: 6rem;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.tile-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #3e3e3c;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.4rem;
+    border-bottom: 1px solid #e0e5ec;
+}
+
+.tile-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #16325c;
+}
+
+.tile-pct {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #706e6b;
+}
+
+.tile-total {
+    background: #f4f6f9;
+}
+
+.tile-success {
+    background: #eafaf1;
+}
+
+.tile-danger {
+    background: #fdecea;
+}
+
+.tile-warning {
+    background: #fff4e5;
+}
+
+.tile-info {
+    background: #eaf4fd;
+}
+
+.tile-success .tile-pct,
+.tile-success .tile-value {
+    color: #04844b;
+}
+
+.tile-danger .tile-pct,
+.tile-danger .tile-value {
+    color: #c23934;
+}
+
+.tile-warning .tile-pct,
+.tile-warning .tile-value {
+    color: #b45500;
+}
+
+.tile-info .tile-pct,
+.tile-info .tile-value {
+    color: #0176d3;
+}

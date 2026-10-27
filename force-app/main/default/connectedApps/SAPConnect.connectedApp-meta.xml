@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>dharmeshkumar.vaishnav@infobeans.com</contactEmail>
+    <label>SAPConnect</label>
+    <oauthConfig>
+        <callbackUrl>https://test.salesforce.com/services/oauth2/callback</callbackUrl>
+        <consumerKey>3MVG9CP2Kv.52YFurGOwC0BCkz2OGMwAPVwvMMUnDdsMVrdvUTW99ffdvRj_pDIA9poAB7Xh7Pw==</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <isClientCredentialEnabled>true</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isDPopEnabled>false</isDPopEnabled>
+        <isDeviceFlowEnabled>false</isDeviceFlowEnabled>
+        <isEnforceRefreshTokenTTL>false</isEnforceRefreshTokenTTL>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isIpBindingEnabled>false</isIpBindingEnabled>
+        <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
+        <isPKImTLSEnabled>false</isPKImTLSEnabled>
+        <isPkceRequired>true</isPkceRequired>
+        <isRefreshTokenRotationEnabled>false</isRefreshTokenRotationEnabled>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <isSecretRequiredForTokenExchange>false</isSecretRequiredForTokenExchange>
+        <isTokenExchangeEnabled>false</isTokenExchangeEnabled>
+        <scopes>Full</scopes>
+        <scopes>RefreshToken</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>

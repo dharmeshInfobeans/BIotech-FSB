@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Data Upload Utility</label>
+    <navType>Standard</navType>
+    <tabs>Campaign_Member__c</tabs>
+    <tabs>Campaign__c</tabs>
+    <tabs>Lead__c</tabs>
+    <tabs>Target__c</tabs>
+    <tabs>Secondary_Sales_Line_Item__c</tabs>
+    <tabs>Scheme_Information__c</tabs>
+    <tabs>Scheme_Request__c</tabs>
+    <tabs>Product_Group__c</tabs>
+    <tabs>Product_M__c</tabs>
+    <tabs>Integration_Log__c</tabs>
+    <tabs>Org_Role_Hierarchy__c</tabs>
+    <tabs>Org_Role_Hierarchy_Assignment__c</tabs>
+    <tabs>Sample_Request_Feedback__c</tabs>
+    <tabs>Approval_Chain__c</tabs>
+    <tabs>Approval_Configuration__c</tabs>
+    <tabs>Equipment_Product_Group__c</tabs>
+    <tabs>Equipment_Product__c</tabs>
+    <tabs>Customer_Ledger__c</tabs>
+    <tabs>Customer_Ledger_Log__c</tabs>
+    <tabs>Sales_Target_Header__c</tabs>
+    <tabs>Sales_Target_Line__c</tabs>
+    <tabs>Incentive_Target__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>Data_Upload_Utility_UtilityBar</utilityBar>
+</CustomApplication>

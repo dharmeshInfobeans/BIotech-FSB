@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>List</customSettingsType>
+    <description>One record per user whose dashboard visibility should be scoped to specific
+        Country__c value(s) instead of role-hierarchy-based scoping. Name = Username (exact match).
+        Countries__c = comma-separated Country__c values, replacing their normal hierarchy/share
+        visibility. List Custom Setting (not CMDT) so rows can be created directly in production
+        (Setup -&gt; Custom Settings -&gt; Manage), no metadata record deploy needed.</description>
+    <enableFeeds>false</enableFeeds>
+    <label>Dashboard Country Override</label>
+    <visibility>Public</visibility>
+</CustomObject>

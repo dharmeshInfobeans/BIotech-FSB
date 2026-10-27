@@ -1,0 +1,107 @@
+<template>
+<lightning-quick-action-panel header="Get Approximate Freight">
+     <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </template>
+
+       <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" style="width: 12%;"><div class="slds-truncate" title="Split Order">Split Order</div></th>
+                    <th scope="col" style="width: 12%;"><div class="slds-truncate" title="Order Product">Order Product</div></th>
+                    <th scope="col" style="width: 10%;"><div class="slds-truncate" title="Order Qty">Order Qty</div></th>
+                    <th scope="col" style="width: 10%;"><div class="slds-truncate" title="Ideal Qty">Ideal Qty</div></th>
+                    <th scope="col" style="width: 13%;"><div class="slds-truncate" title="Transport Mode">Transport Mode</div></th>
+                    <th scope="col" style="width: 8%;"><div class="slds-truncate" title="Plant Code">Plant Code</div></th>
+                    <th scope="col" style="width: 13%;"><div class="slds-truncate" title="Freight Forwarder">Freight Forwarder</div></th>
+                    <th scope="col" style="width: 10%;"><div class="slds-truncate" title="Box (CM)">Box (CM)</div></th>
+                    <th scope="col" style="width: 7%;"><div class="slds-truncate" title="Weight">Weight</div></th>
+                    <th scope="col" style="width: 10%;"><div class="slds-truncate" title="Approx. Freight">Approx. Freight</div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={splitOrders} for:item="split">
+                    <template for:each={split.products} for:item="product">
+                        <tr key={product.id}>
+                            <template if:true={product.isFirstInGroup}>
+                                <td data-label="Split Order" rowspan={split.rowCount} class="slds-cell-wrap slds-theme_shade">
+                                    <b>{split.id}</b><br/>
+                                  <a href="javascript:void(0);"
+   data-split-id={split.id}
+   onclick={handleGetFreight}
+   class="slds-text-link slds-m-top_x-small"
+   aria-disabled={split.isGetFreightDisabled}>
+    Get Freight
+</a>
+                                </td>
+                            </template>
+                            <td data-label="Order Product"><div class="slds-truncate" title={product.orderProduct}>{product.orderProduct}</div></td>
+                            <td data-label="Order Quantities">
+                                <lightning-input 
+                                    type="number" 
+                                    name="orderQuantity" 
+                                    variant="label-hidden" 
+                                    value={product.orderQuantity}
+                                    data-split-id={split.id}
+                                    data-product-id={product.id}
+                                    onchange={handleQuantityChange}
+                                    placeholder="Enter Qty">
+                                </lightning-input>
+                            </td>
+                            <td data-label="Ideal Quantities"><div class="slds-truncate" title={product.idealQuantity}>{product.idealQuantity}</div></td>
+                            <td data-label="Transport Mode">
+                                 <lightning-combobox
+                                    name="transportMode"
+                                    variant="label-hidden"
+                                    value={product.transportMode}
+                                    placeholder="Select..."
+                                    options={transportOptions}
+                                    data-split-id={split.id}
+                                    data-product-id={product.id}
+                                    onchange={handleTransportModeChange}>
+                                </lightning-combobox>
+                            </td>
+                            <td data-label="Plant Code">{product.plantCode}</td>
+                            <td data-label="Freight Forwarder Name">{product.freightForwarderName}</td>
+                            <td data-label="Box Dimensions (CM)">{product.boxDimensions}</td>
+                            <td data-label="Net Weight (KG)">{product.netWeight}</td>
+                            <td data-label="Approx. Freight">{product.approxFreight}</td>
+                        </tr>
+                    </template>
+                </template>
+            </tbody>
+            <tfoot>
+                <tr class="slds-text-heading_small slds-theme_shade">
+                    <td colspan="2"><b>Total</b></td>
+                    <td><b>{totalOrderQuantity}</b></td>
+                    <td><b>{totalIdealQuantity}</b></td>
+                    <td colspan="4"></td>
+                    <td><b>{totalNetWeight}</b></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+
+    
+    <div class="addRowButtom">
+    
+        <lightning-button class="slds-button slds-button_brand"
+        style="width: auto; display: inline-block;"
+        variant="brand"
+        label="+ Add Product"
+        onclick={handleAddRow}
+        disabled={lockComponent}>
+    </lightning-button>
+    
+    
+    </div>
+    <div slot="footer" class="button-container">
+        <lightning-button label="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Save OP Quantity" variant="brand" onclick={handleSaveQuantity} disabled={isSaveDisabled} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Approve Freight" variant="brand" onclick={handleApproveFreight} disabled={isApproveDisabled} class="slds-m-left_x-small"></lightning-button>
+    
+    </div>
+    
+    
+</lightning-quick-action-panel>
+</template>

@@ -1,0 +1,47 @@
+<aura:component
+  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader,force:appHostable,lightning:availableForFlowScreens">
+  
+  <aura:html tag="style">
+    .cuf-content { padding: 0 0rem !important; } .slds-p-around--medium {
+    padding: 0rem !important; } .slds-modal__content{ height:unset !important;
+    max-height:unset !important; } .slds-modal__container{ max-width:80rem
+    !important; width:50% !important; }
+  </aura:html>
+  <aura:attribute name="recordId" type="string" />
+
+  <c:activateOrder orderId="{!v.recordId}" onclosemodal="{!c.closeQuickAction}"/>
+</aura:component>
+
+
+
+<!-- <aura:component
+  implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader"
+  access="global" controller="ActivateOrderController">
+
+  <aura:attribute type="String" name="city" />
+  <aura:attribute type="String" name="street" />
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <div class="slds-m-around_xx-large">
+    <lightning:recordEditForm objectApiName="Order__c" aura:id="orderForm" onload="{!c.handleOnLoad}"
+      onsubmit="{!c.handleOnSubmit}" onsuccess="{!c.handleOnSuccess}" onerror="{!c.handleOnError}"
+      recordId="{!v.recordId}">
+      <div class="slds-form-element">
+        <label class="slds-form-element__label" for="select-01">Select Ship To Code</label>
+        <div class="slds-select_container">
+          <ui:inputSelect label="Industry" class="dynamic" aura:id="shipToCode" change="{!c.onPicklistChange}" />
+        </div>
+      </div>
+      <lightning:inputField fieldName="Account__c" disabled="true" aura:id="accountField" />
+      <lightning:inputField fieldName="Consignee_City__c" value="{!v.city}" />
+      <lightning:inputField fieldName="Consignee_Street__c" value="{!v.street}" />
+      <lightning:inputField fieldName="Customer_Po_No__c" />
+      <lightning:inputField fieldName="Order_Message__c" disabled="true" />
+
+
+      <lightning:button variant="brand" type="submit" name="save" label="Save" />
+
+    </lightning:recordEditForm>
+  </div>
+
+
+</aura:component> -->

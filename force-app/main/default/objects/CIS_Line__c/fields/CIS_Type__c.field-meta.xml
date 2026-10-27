@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CIS_Type__c</fullName>
+    <defaultValue>CASE($Profile.Name, 
+					&apos;Admin_Tur&apos;, &apos;Turkey&apos;, 
+     &apos;Turkey Sales&apos;,&apos;Turkey&apos;,
+					&apos;Admin_Dom&apos;,&apos;Domestic&apos;,
+					&apos;Domestic Sales&apos;,&apos;Domestic&apos;,
+					&apos;Admin_Int&apos;,&apos;International&apos;,
+					&apos;International Sales&apos;,&apos;International&apos;,
+     &apos;International&apos;)</defaultValue>
+    <label>CIS Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Domestic</fullName>
+                <default>false</default>
+                <label>Domestic</label>
+            </value>
+            <value>
+                <fullName>Turkey</fullName>
+                <default>false</default>
+                <label>Turkey</label>
+            </value>
+            <value>
+                <fullName>International</fullName>
+                <default>false</default>
+                <label>International</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,11 @@
+.THIS.mypopover {
+    
+}
+.THIS.popoverclass {
+    min-height: 100px;
+    min-width: 400px;
+
+}
+.THIS.no-pointer .pointer {
+  visibility: hidden;
+}

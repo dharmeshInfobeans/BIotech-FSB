@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Product_Category --></label>
+    <name>Category__c</name>
+    <picklistValues>
+        <masterLabel>CATARACT PRODUCTS</masterLabel>
+        <translation><!-- CATARACT PRODUCTS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPHTHALMOLOGY</masterLabel>
+        <translation><!-- OPHTHALMOLOGY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ORTHOPAEDICS</masterLabel>
+        <translation><!-- ORTHOPAEDICS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REFRACTIVE PRODUCTS</masterLabel>
+        <translation><!-- REFRACTIVE PRODUCTS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VISCOELASTICS PRODUCTS</masterLabel>
+        <translation><!-- VISCOELASTICS PRODUCTS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VITREORETINAL PRODUCTS</masterLabel>
+        <translation><!-- VITREORETINAL PRODUCTS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

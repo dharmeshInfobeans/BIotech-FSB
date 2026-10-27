@@ -1,0 +1,101 @@
+<!--
+  @File Name          : searchEventTile.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 07-11-2020
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    11/8/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+        <!-- <div class="event-tile">   -->
+                        <!-- <div class="slds-media">
+                                <div class="slds-media__body" onclick={cardClick}>
+                                        <p>{event.Subject}</p>
+                                        <p>{event.ActivityDate}</p>
+                                        <p><lightning-formatted-date-time value={event.StartDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p>
+                                        <p><lightning-formatted-date-time value={event.EndDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p>
+                                </div>
+                        </div> -->
+                <!-- <template if:true={showDetailModal}>
+                                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                                  <div class="slds-modal__container">
+                                        <header class="slds-modal__header slds-modal__header_empty">
+                                                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close"
+                                                        onclick={closeModal}>
+                                                        <lightning-icon icon-name="utility:close" variant="inverse" alternative-text="Close" class="icon">
+                                                        </lightning-icon>
+                                                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                                                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                                        </svg>
+                                                        <span class="slds-assistive-text">Close</span>
+                                                </button>
+                                            </header>
+                                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                     
+                                      <lightning-layout multiple-rows>
+                                        <lightning-layout-item flexibility="auto" size="12" small-device-size="12"
+                                            medium-device-size="6" large-device-size="6" padding="around-small"  onclick={newEvent}>
+                                            <div class="custom-box slds-box slds-p-around_medium slds-text-align_center">
+                                               <p><b>Account Name : </b>{eventlist.Account__r.Name}</p>
+                                               <p><b>Subject : </b>{event.Subject}</p>
+                                               <p><b>Visit Date : </b>{event.ActivityDate}</p>
+                                                <p><b>Status : </b>{event.P91_FF__Status__c}</p>
+                                               <p><lightning-formatted-date-time value={event.StartDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p>
+                                               <p><lightning-formatted-date-time value={event.EndDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p>
+                                              
+                                            </div>
+                                        </lightning-layout-item>
+                                    </lightning-layout> 
+                                    
+                                    </div>
+                                  </div>
+                                </section>
+                                <div class="slds-backdrop slds-backdrop_open"></div>
+                </template> -->
+        
+        <!-- </div>    -->
+                        <div class="login-container">
+                            <!-- <div class="profile-img">
+                              {event.AccountNamePattern}
+                            </div> -->
+                            <!-- <h1>
+                                <b><p class="textBreak">{event.Account__r.Name}</p></b>
+                            </h1> -->
+                            <div class="description">
+                                <div class="slds-grid slds-wrap" style="width: 100%;">
+                                    <div class="slds-col slds-size_6-of-12">
+                                        <span>
+                                            <b>Subject</b><p class="textBreak">{event.Subject}</p>
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-size_6-of-12" style="text-align: end;">
+                                        <span >
+                                            <b>Status</b><p class="textBreak">{event.P91_FF__Status__c}</p>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="slds-grid slds-wrap" style="width: 100%;">
+                                    <div class="slds-col slds-size_4-of-12">
+                                        <span>
+                                            <b>Activity Date</b><p class="textBreak">{event.ActivityDate}</p>
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-size_4-of-12" style="text-align: end;">
+                                        <span >
+                                            <!-- <b>Start Time</b><p><lightning-formatted-date-time value={event.StartDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p> -->
+                                        </span>
+                                    </div>
+                                    <div class="slds-col slds-size_4-of-12" style="text-align: end;">
+                                        <span >
+                                            <!-- <b>End Time</b><p><lightning-formatted-date-time value={event.EndDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p> -->
+                                            <b>Start Time</b><p><lightning-formatted-date-time value={event.StartDateTime} hour="numeric" minute="numeric"></lightning-formatted-date-time></p>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div> 
+                   
+        </template>

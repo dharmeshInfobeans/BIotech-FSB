@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Terms_options__c</fullName>
+    <label>Payment Terms</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PT16</fullName>
+                <default>false</default>
+                <label>50% Advance with Order &amp; 50% before Shipment</label>
+            </value>
+            <value>
+                <fullName>PT34</fullName>
+                <default>false</default>
+                <label>100% Payment in 30 Days of Invoice</label>
+            </value>
+            <value>
+                <fullName>PT40</fullName>
+                <default>false</default>
+                <label>50% advance order and 50% in 30days From INV.</label>
+            </value>
+            <value>
+                <fullName>PT41</fullName>
+                <default>false</default>
+                <label>50% placing order and 50% in 60 days from INV Date</label>
+            </value>
+            <value>
+                <fullName>PT43</fullName>
+                <default>false</default>
+                <label>100% Advance payment  time of placing an order</label>
+            </value>
+            <value>
+                <fullName>PT45</fullName>
+                <default>false</default>
+                <label>50% before shipment &amp; 50% in 45 Days from Invoice</label>
+            </value>
+            <value>
+                <fullName>PT46</fullName>
+                <default>false</default>
+                <label>50% advance &amp; 50% in 15 days from Invoice</label>
+            </value>
+            <value>
+                <fullName>PT47</fullName>
+                <default>false</default>
+                <label>100% payment in 15 Days from Invoice</label>
+            </value>
+            <value>
+                <fullName>PT49</fullName>
+                <default>false</default>
+                <label>100% payment in 180 Days from  Invoice</label>
+            </value>
+            <value>
+                <fullName>PT51</fullName>
+                <default>false</default>
+                <label>30% advance with order &amp; 70% in 60 days from Inv</label>
+            </value>
+            <value>
+                <fullName>PT52</fullName>
+                <default>false</default>
+                <label>100% Payment in 60 Days from invoice</label>
+            </value>
+            <value>
+                <fullName>PT54</fullName>
+                <default>false</default>
+                <label>100% Payment in 75 Days from invoice</label>
+            </value>
+            <value>
+                <fullName>PT55</fullName>
+                <default>false</default>
+                <label>10th of Subsequent month for previous month invoic</label>
+            </value>
+            <value>
+                <fullName>PT58</fullName>
+                <default>false</default>
+                <label>100% Payment in 90 days from Invoice Date</label>
+            </value>
+            <value>
+                <fullName>PT62</fullName>
+                <default>false</default>
+                <label>50% after 90 days &amp; 50% after 180 D from INV</label>
+            </value>
+            <value>
+                <fullName>PT64</fullName>
+                <default>false</default>
+                <label>100% Payment in 45 Days from Invoice</label>
+            </value>
+            <value>
+                <fullName>PT66</fullName>
+                <default>false</default>
+                <label>100% Payment in 100 days from Invoice Date</label>
+            </value>
+            <value>
+                <fullName>PT69</fullName>
+                <default>false</default>
+                <label>50% Advance before Shipment &amp; 50% in 90 D From INV</label>
+            </value>
+            <value>
+                <fullName>PT74</fullName>
+                <default>false</default>
+                <label>100%pymnt in 1stday of subsequnt mon for Pre monin</label>
+            </value>
+            <value>
+                <fullName>PT87</fullName>
+                <default>false</default>
+                <label>100% Payment via Letter of Credit</label>
+            </value>
+            <value>
+                <fullName>PT88</fullName>
+                <default>false</default>
+                <label>100% payment in 6 equal instalments after2nd month</label>
+            </value>
+            <value>
+                <fullName>PT01</fullName>
+                <default>false</default>
+                <label>100% Advance before Shipment</label>
+            </value>
+            <value>
+                <fullName>PT56</fullName>
+                <default>false</default>
+                <label>30% Adv. 70% in 7 equal instalment from  Inv date</label>
+            </value>
+            <value>
+                <fullName>PT57</fullName>
+                <default>false</default>
+                <label>100% Payment against LC in 90 days from Invoice</label>
+            </value>
+            <value>
+                <fullName>PT80</fullName>
+                <default>false</default>
+                <label>25% Advance &amp; 75% in 60 Days from Invoice Date</label>
+            </value>
+            <value>
+                <fullName>PT91</fullName>
+                <default>false</default>
+                <label>30% advance at the time of placing order and 70% 6 equal instalments</label>
+            </value>
+            <value>
+                <fullName>PT92</fullName>
+                <default>false</default>
+                <label>100% Payment in 120 Days from Invoice</label>
+            </value>
+            <value>
+                <fullName>PT85</fullName>
+                <default>false</default>
+                <label>100% Payment in 270 Days from date of shipment</label>
+            </value>
+            <value>
+                <fullName>PT94</fullName>
+                <default>false</default>
+                <label>30% advance 70% in 9 equal instalments from Inv date</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

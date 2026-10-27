@@ -1,0 +1,35 @@
+.custom-container{
+	color : black;
+}
+
+.restricted-box {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
+    background: #fafafa;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.icon {
+    margin-bottom: 1rem;
+    fill: #c23934;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #c23934;
+    margin-bottom: 0.5rem;
+}
+
+.message {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 0.8rem;
+}
+
+.sub-note {
+    font-size: 0.9rem;
+    color: #555;
+}

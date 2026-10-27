@@ -1,0 +1,292 @@
+<template>
+    <lightning-card >
+        <div class="slds-p-around_medium">
+            <!-- Loading Spinner -->
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+
+            <!-- Error Message -->
+            <template if:true={error}>
+                <div class="slds-m-bottom_medium">
+                    <lightning-alert variant="error" title="Error" message={error}></lightning-alert>
+                </div>
+            </template>
+
+            <!-- Success Message -->
+            <template if:true={successMessage}>
+                <div class="slds-m-bottom_medium">
+                    <lightning-alert variant="success" title="Success" message={successMessage}></lightning-alert>
+                </div>
+            </template>
+
+            <!-- Main Content -->
+            <template if:false={isLoading}>
+                <div class="admin-config-layout">
+                    <!-- Vertical Menu Navigation -->
+                    <div class="menu-sidebar">
+                        <nav class="menu-nav" role="navigation">
+                            <ul class="menu-list">
+                                <li class="menu-item">
+                                    <a 
+                                        class="menu-link {scorecardTabClass}" 
+                                        href="#" 
+                                        role="menuitem"
+                                        onclick={handleMainTabChange} 
+                                        data-tab="scorecard"
+                                        aria-selected={isScorecardTabActive}>
+                                        <lightning-icon icon-name="standard:form" size="small" class="menu-icon"></lightning-icon>
+                                        <span class="menu-text">Scorecard Configuration</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a 
+                                        class="menu-link {regionApproverTabClass}" 
+                                        href="#" 
+                                        role="menuitem"
+                                        onclick={handleMainTabChange} 
+                                        data-tab="regionApprovers"
+                                        aria-selected={isRegionApproversTabActive}>
+                                        <lightning-icon icon-name="standard:approval" size="small" class="menu-icon"></lightning-icon>
+                                        <span class="menu-text">Region Approvers</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <!-- Content Area -->
+                    <div class="content-area">
+
+                <!-- Scorecard Configuration Tab Content -->
+                <template if:true={isScorecardTabActive}>
+                    <!-- Section Tabs -->
+                    <template if:true={sections.length}>
+                        <div class="tab-section-wrapper">
+                            <lightning-tabset class="custom-tabset" value={selectedSectionKey} onselect={handleTabSelect}>
+                        <template for:each={sections} for:item="section">
+                            <lightning-tab key={section.sectionKey} label={section.sectionLabel} value={section.sectionKey}>
+                                <div class="slds-m-top_large">
+                                    <!-- Section Weightage -->
+                                    <div class="slds-box slds-theme_shade slds-m-bottom_large">
+                                        <h3 class="slds-text-heading_medium slds-m-bottom_small">
+                                            Section Weightage
+                                        </h3>
+                                        <div class="slds-grid slds-gutters">
+                                            <div class="slds-col slds-size_1-of-4">
+                                                <lightning-input
+                                                    type="number"
+                                                    label="Weightage"
+                                                    value={section.weightage}
+                                                    data-section-key={section.sectionKey}
+                                                    onchange={handleWeightageChange}
+                                                    step="0.01"
+                                                    min="0"
+                                                    max="100">
+                                                </lightning-input>
+                                            </div>
+                                            <div class="slds-col slds-size_3-of-4 slds-align-middle">
+                                                <lightning-button
+                                                    label="Save Weightage"
+                                                    variant="brand"
+                                                    onclick={handleSaveWeightage}
+                                                    class="slds-m-top_large">
+                                                </lightning-button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Questions and Options -->
+                                    <template if:true={section.questions}>
+                                        <template for:each={section.questions} for:item="question">
+                                            <div key={question.questionKey} class="slds-box slds-m-bottom_medium">
+                                                <div class="slds-grid slds-gutters slds-m-bottom_small">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <h4 class="slds-text-heading_small">
+                                                            Question: {question.questionText}?
+                                                        </h4>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <div class="slds-grid slds-gutters">
+                                                            <div class="slds-col">
+                                                                <lightning-input
+                                                                    type="checkbox"
+                                                                    label="Is Mandatory"
+                                                                    checked={question.isMandatory}
+                                                                    data-question-key={question.questionKey}
+                                                                    data-section-key={section.sectionKey}
+                                                                    onchange={handleQuestionMandatoryChange}>
+                                                                </lightning-input>
+                                                            </div>
+                                                            <div class="slds-col">
+                                                                <lightning-input
+                                                                    type="checkbox"
+                                                                    label="Is Active"
+                                                                    checked={question.isActive}
+                                                                    data-question-key={question.questionKey}
+                                                                    data-section-key={section.sectionKey}
+                                                                    onchange={handleQuestionActiveChange}>
+                                                                </lightning-input>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Answer Options -->
+                                                <template if:true={question.options}>
+                                                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                                                        <thead>
+                                                            <tr class="slds-line-height_reset">
+                                                                <th scope="col">
+                                                                    <div class="slds-truncate" title="Option">Option</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div class="slds-truncate" title="Answer">Answer</div>
+                                                                </th>
+                                                                <th scope="col">
+                                                                    <div class="slds-truncate" title="Score">Score</div>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <template for:each={question.options} for:item="option">
+                                                                <tr key={option.optionKey}>
+                                                                    <td data-label="Option">
+                                                                        <div class="slds-truncate" title={option.optionLabel}>
+                                                                            {option.optionLabel}
+                                                                        </div>
+                                                                    </td>
+                                                                    <td data-label="Answer">
+                                                                        <div class="slds-truncate" title={option.Answer}>
+                                                                            {option.Answer}
+                                                                        </div>
+                                                                    </td>
+                                                                    <td data-label="Score">
+                                                                        <lightning-input
+                                                                            type="number"
+                                                                            value={option.score}
+                                                                            data-option-key={option.optionKey}
+                                                                            data-question-key={question.questionKey}
+                                                                            data-section-key={section.sectionKey}
+                                                                            onchange={handleScoreChange}
+                                                                            step="0.01"
+                                                                            min="0">
+                                                                        </lightning-input>
+                                                                    </td>
+                                                                </tr>
+                                                            </template>
+                                                        </tbody>
+                                                    </table>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </template>
+
+                                    <!-- Save All Changes Button -->
+                                    <div class="slds-m-top_large slds-text-align_right">
+                                        <lightning-button
+                                            label="Save All Changes"
+                                            variant="brand"
+                                            onclick={handleSaveAll}
+                                            disabled={isSaving}>
+                                        </lightning-button>
+                                    </div>
+                                </div>
+                            </lightning-tab>
+                        </template>
+                            </lightning-tabset>
+                        </div>
+                    </template>
+
+                    <!-- No Sections Message -->
+                    <template if:false={sections.length}>
+                        <div class="slds-text-align_center slds-p-around_large">
+                            <p>No sections found. Please configure Scorecard Sections in Custom Metadata.</p>
+                        </div>
+                    </template>
+                </template>
+
+                <!-- Region Approvers Tab Content -->
+                <template if:true={isRegionApproversTabActive}>
+                    <div class="slds-box slds-theme_shade slds-m-top_large">
+                        <h3 class="slds-text-heading_medium slds-m-bottom_medium">
+                            Region-Wise Approver Configuration
+                        </h3>
+                        
+                        <div class="slds-grid slds-gutters slds-m-bottom_large">
+                            <div class="slds-col slds-size_1-of-3">
+                                <lightning-combobox
+                                    label="Region"
+                                    value={selectedRegion}
+                                    options={regionOptions}
+                                    onchange={handleRegionChange}
+                                    placeholder="Select a region"
+                                    required
+                                    allow-search="true">
+                                </lightning-combobox>
+                            </div>
+                        </div>
+
+                        <template if:true={isLoadingRegionApprover}>
+                            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                        </template>
+
+                        <template if:false={isLoadingRegionApprover}>
+                            <template if:true={selectedRegion}>
+                                <lightning-record-edit-form 
+                                        object-api-name="Region_Approver__c" 
+                                        record-id={regionApproverRecordId}
+                                        onload={handleFormLoad}>
+                                    <!-- Add Region field for new records -->
+                                    <!-- <template if:false={regionApproverRecordId}>
+                                        <div class="slds-m-bottom_medium">
+                                            <lightning-input-field
+                                                field-name="Region__c"
+                                                value={selectedRegion}
+                                                required>
+                                            </lightning-input-field>
+                                        </div>
+                                    </template> -->
+                                    
+                                    <div class="slds-grid slds-gutters slds-m-bottom_large">
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <lightning-input-field
+                                                field-name="Approver_1__c"
+                                                onchange={handleApprover1Change}
+                                                required>
+                                            </lightning-input-field>
+                                        </div>
+                                        <div class="slds-col slds-size_1-of-2">
+                                            <lightning-input-field
+                                                field-name="Approver_2__c"
+                                                onchange={handleApprover2Change}>
+                                            </lightning-input-field>
+                                        </div>
+                                    </div>
+                                </lightning-record-edit-form>
+                            </template>
+                            <template if:false={selectedRegion}>
+                                <div class="slds-text-align_center slds-p-around_large">
+                                    <p class="slds-text-color_weak">Please select a region to configure approvers</p>
+                                </div>
+                            </template>
+
+                            <template if:true={selectedRegion}>
+                                <div class="slds-text-align_right slds-m-top_medium">
+                                    <lightning-button
+                                        label="Save Region Approvers"
+                                        variant="brand"
+                                        onclick={handleSaveRegionApprover}
+                                        disabled={isSaving}>
+                                    </lightning-button>
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </template>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

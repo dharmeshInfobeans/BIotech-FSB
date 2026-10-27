@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Assignment Stage --></label>
+    <name>Assignment_Stage__c</name>
+    <picklistValues>
+        <masterLabel>Accepted by RSM – Pending SDE Assignment</masterLabel>
+        <translation><!-- Accepted by RSM – Pending SDE Assignment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Allocated – Pending RSM Acceptance</masterLabel>
+        <translation><!-- Allocated – Pending RSM Acceptance --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Duplicate</masterLabel>
+        <translation><!-- Duplicate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending Allocation</masterLabel>
+        <translation><!-- Pending Allocation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SDE Assigned</masterLabel>
+        <translation><!-- SDE Assigned --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent Back for Reallocation</masterLabel>
+        <translation><!-- Sent Back for Reallocation --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

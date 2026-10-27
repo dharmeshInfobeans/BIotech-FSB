@@ -1,0 +1,255 @@
+<template>
+    <div class="pending-page">
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Signed Document</h2>
+                    <p>The signed document has been generated and is ready to view.</p>
+                </div>
+                <div class="hero-badge-container">
+                    <span class="hero-badge">Live Status</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="loading-container">
+                <div class="spinner-wrapper">
+                    <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+                </div>
+                <h3>Fetching Signed Document...</h3>
+                <p>Please wait while we load the records.</p>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={error}>
+            <div class="alert-banner error">
+                <lightning-icon icon-name="utility:error" size="x-small" variant="error" class="alert-icon"></lightning-icon>
+                <div class="alert-message">{error}</div>
+            </div>
+        </template>
+
+        <!-- Success -->
+        <template if:true={successMessage}>
+            <div class="alert-banner success">
+                <lightning-icon icon-name="utility:success" size="x-small" variant="success" class="alert-icon"></lightning-icon>
+                <div class="alert-message">{successMessage}</div>
+            </div>
+        </template>
+
+        <!-- Results: only rendered when there are ANY base records loaded -->
+        <template if:true={hasResults}>
+            <div class="results-card fade-in">
+
+                <!-- Filter Bar -->
+                <div class="filter-bar">
+                    <div class="filter-bar-inner">
+                        <div class="filter-bar-item filter-bar-item-sapcode">
+                            <lightning-input
+                                type="search"
+                                label="SAP Code"
+                                placeholder="Search by SAP code..."
+                                value={filterSapCode}
+                                onchange={handleSapCodeChange}>
+                            </lightning-input>
+                        </div>
+                        <!-- <div class="filter-bar-item">
+                            <lightning-combobox
+                                label="Sign Status"
+                                placeholder="All Statuses"
+                                value={filterSignStatus}
+                                options={signStatusOptions}
+                                onchange={handleSignStatusChange}>
+                            </lightning-combobox>
+                        </div> -->
+                        <div class="filter-bar-item">
+                            <lightning-combobox
+                                label="Year"
+                                placeholder="All Years"
+                                value={filterYear}
+                                options={yearOptions}
+                                onchange={handleYearChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="filter-bar-item">
+                            <lightning-combobox
+                                label="Quarter"
+                                placeholder="All Quarters"
+                                value={filterQuarter}
+                                options={quarterOptions}
+                                onchange={handleQuarterChange}>
+                            </lightning-combobox>
+                        </div>
+                        <div class="filter-bar-item filter-bar-reset">
+                            <button class="action-btn secondary-btn" onclick={handleResetFilters}>
+                                <lightning-icon icon-name="utility:undo" size="xx-small" class="btn-icon-secondary"></lightning-icon>
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Active filter chips -->
+                    <template if:true={hasActiveFilters}>
+                        <div class="active-chips-row">
+                            <span class="chips-label">Active:</span>
+                            <template if:true={filterSapCode}>
+                                <span class="filter-chip">
+                                    <lightning-icon icon-name="utility:number_input" size="xx-small" class="chip-icon"></lightning-icon>
+                                    {filterSapCode}
+                                    <button class="chip-remove" data-filter="sapCode" onclick={handleRemoveFilter}>✕</button>
+                                </span>
+                            </template>
+                            <template if:true={filterSignStatus}>
+                                <span class="filter-chip">
+                                    <lightning-icon icon-name="utility:record" size="xx-small" class="chip-icon"></lightning-icon>
+                                    {filterSignStatusLabel}
+                                    <button class="chip-remove" data-filter="signStatus" onclick={handleRemoveFilter}>✕</button>
+                                </span>
+                            </template>
+                            <template if:true={filterYear}>
+                                <span class="filter-chip">
+                                    <lightning-icon icon-name="utility:date_input" size="xx-small" class="chip-icon"></lightning-icon>
+                                    {filterYear}
+                                    <button class="chip-remove" data-filter="year" onclick={handleRemoveFilter}>✕</button>
+                                </span>
+                            </template>
+                            <template if:true={filterQuarter}>
+                                <span class="filter-chip">
+                                    <lightning-icon icon-name="utility:filterList" size="xx-small" class="chip-icon"></lightning-icon>
+                                    {filterQuarterLabel}
+                                    <button class="chip-remove" data-filter="quarter" onclick={handleRemoveFilter}>✕</button>
+                                </span>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="results-header">
+                    <div class="header-left">
+                        <h3>Signed Statements</h3>
+                        <p>{displayedCount} record(s) found</p>
+                    </div>
+                    <div class="header-right">
+                        <!-- <button class="action-btn primary" onclick={handleSendSelected} disabled={isSendDisabled}>
+                            <lightning-icon icon-name="utility:send" size="xx-small" variant="inverse" class="btn-icon-left"></lightning-icon>
+                            Send Selected ({selectedRows.length})
+                        </button> -->
+                        <button class="action-btn refresh" onclick={loadRecords}>
+                            <lightning-icon icon-name="utility:refresh" size="xx-small" class="btn-icon-refresh"></lightning-icon>
+                            Refresh
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Matching rows: only show table + pagination when the filtered set is non-empty -->
+                <template if:true={hasFilteredResults}>
+                    <div class="table-container">
+                        <table class="premium-table">
+                            <thead>
+                                <tr>
+                                    <!-- <th class="col-checkbox">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" checked={isAllSelected} onchange={handleSelectAll} id="selectAllCheckbox" />
+                                            <label for="selectAllCheckbox" class="checkbox-label"></label>
+                                        </div>
+                                    </th> -->
+                                    <th class="sortable-header" onclick={handleSortAccountName}>
+                                        <div class="header-content">
+                                            <span>Account Name</span>
+                                            <span>{sortArrow}</span>
+                                        </div>
+                                    </th>
+                                    <th class="col-sapcode">SAP Code</th>
+                                    <th>Ledger Name</th>
+                                    <th>Contact Name</th>
+                                    <th>Contact Email</th>
+                                    <!-- <th>Ledger Status</th> -->
+                                    <th>Sign Status</th>
+                                    <!-- <th class="col-actions">Actions</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={pagedData} for:item="row">
+                                    <tr key={row.ledgerId} class="table-row">
+                                        <!-- <td class="col-checkbox">
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" checked={row.selected} data-id={row.ledgerId} onchange={handleRowSelect} id={row.ledgerId} />
+                                                <label for={row.ledgerId} class="checkbox-label"></label>
+                                            </div>
+                                        </td> -->
+                                        <td><span class="account-name">{row.accountName}</span></td>
+                                        <td class="col-sapcode"><span class="code-mono">{row.sapCode}</span></td>
+                                        <td><span class="ledger-name">{row.ledgerName}</span></td>
+                                        <td><span class="contact-name">{row.contactName}</span></td>
+                                        <td><span class="contact-email">{row.contactEmail}</span></td>
+                                        <!-- <td><span class={row.ledgerStatusClass}>{row.ledgerStatus}</span></td> -->
+                                        <td><span class={row.signStatusClass}>{row.signStatus}</span></td>
+                                        <!-- <td class="col-actions">
+                                            <div class="action-button-group">
+                                                <button class="row-btn download" onclick={handleDownloadPdf} data-version={row.versionId} title="Download PDF">
+                                                    <lightning-icon icon-name="utility:download" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                    <span>PDF</span>
+                                                </button>
+                                                <button class="row-btn send" onclick={handleSendForSignRow} data-id={row.ledgerId} data-account={row.accountId} title="Send for Sign">
+                                                    <lightning-icon icon-name="utility:send" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                    <span>Send</span>
+                                                </button>
+                                            </div>
+                                        </td> -->
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination-footer">
+                        <button class="pagination-btn" onclick={handlePrevious} disabled={disablePrevious}>
+                            <lightning-icon icon-name="utility:chevronleft" size="xx-small" class="page-arrow-left"></lightning-icon>
+                            Previous
+                        </button>
+                        <span class="page-indicator">
+                            Page <strong>{pageNumber}</strong> of <strong>{totalPages}</strong>
+                        </span>
+                        <button class="pagination-btn" onclick={handleNext} disabled={disableNext}>
+                            Next
+                            <lightning-icon icon-name="utility:chevronright" size="xx-small" class="page-arrow-right"></lightning-icon>
+                        </button>
+                    </div>
+                </template>
+
+                <!-- No rows match the current filter selection -->
+                <template if:false={hasFilteredResults}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:search" size="large" class="empty-icon"></lightning-icon>
+                        <h3>No Matching Records</h3>
+                        <p>No statements match the selected filters.</p>
+                        <button class="action-btn secondary-btn" onclick={handleResetFilters}>
+                            <lightning-icon icon-name="utility:undo" size="xx-small" class="btn-icon-secondary"></lightning-icon>
+                            Reset Filters
+                        </button>
+                    </div>
+                </template>
+
+            </div>
+        </template>
+
+        <!-- Empty State: no base records at all -->
+        <template if:true={showEmptyState}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:check" size="large" class="empty-icon"></lightning-icon>
+                <h3>All Caught Up!</h3>
+                <p>No pending or draft ledger statements found.</p>
+                <button class="action-btn refresh" onclick={loadRecords}>
+                    <lightning-icon icon-name="utility:refresh" size="xx-small" class="btn-icon-refresh"></lightning-icon>
+                    Refresh
+                </button>
+            </div>
+        </template>
+
+    </div>
+</template>

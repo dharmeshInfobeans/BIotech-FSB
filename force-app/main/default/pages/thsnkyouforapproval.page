@@ -1,0 +1,19 @@
+<apex:page showHeader="false" sidebar="false">
+    <style>
+        .thank-you-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            font-size: 36px;
+            color: #4CAF50;
+        }
+    </style>
+    <div class="thank-you-container">
+        <div>
+            <p>Thank You for Your Submission!</p>
+        </div>
+    </div>
+</apex:page>

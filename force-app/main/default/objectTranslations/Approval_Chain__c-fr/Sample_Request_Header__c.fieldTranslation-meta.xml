@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>En-tête de demande d’échantillon</label>
+    <name>Sample_Request_Header__c</name>
+    <relationshipLabel><!-- Approval Chains --></relationshipLabel>
+</CustomFieldTranslation>

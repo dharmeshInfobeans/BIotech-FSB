@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" 
+                access="global" controller="WeeklyForecastController">
+    
+    <aura:attribute name ="monthWiseWeekobj" type='Object' />
+     <aura:attribute name="isRender" type="boolean" default='True'/> 
+    
+    
+    <aura:iteration items="{!v.monthWiseWeekobj}" var="monthlyLst" indexVar="index">
+        <td scope="col" class="{!monthlyLst.thCls}" colSpan = '1'> 
+            <table Style="border-right-style: solid;border-right-width: 1px;">
+                <tr>
+                    <aura:iteration items="{!monthlyLst.weeklyForecastObj}" var="weekRec" indexVar="index">
+                        <td style="text-align: center;border-right-style: solid;border-right-width: 1px;">
+                            <lightning:input class ="custom-width" type="number" aura:id ="forecastQty" value="{!weekRec.forecastQty}" 
+                                            onchange="{!c.updateForecastTotal}" disabled = "{!monthlyLst.isDisabled}"
+                                             pattern="^(0|[1-9][0-9]*)$" min="0" formatter="decimal" /></td>
+                    </aura:iteration>
+                    <td style="text-align: center;"><lightning:input class ="custom-width" type="number" aura:id = "totalMOPQty" value="{!monthlyLst.mopValue}" disabled = "true"/></td>
+                    <td style="text-align: center;"><lightning:input class ="custom-width" type="number" aura:id = "totalForecastQty" value="{!monthlyLst.totalForecast}" disabled = "true"/></td>
+                    <td style="text-align: center;"><lightning:input class ="custom-width" type="number" aura:id = "forecastActualVariance" value="{!monthlyLst.forecastActualVariance}" disabled = "true"/></td>
+                </tr>
+            </table>
+        </td>
+    </aura:iteration>
+</aura:component>

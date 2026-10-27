@@ -1,0 +1,56 @@
+<template>
+	<div class="MainContainer">
+		<div class="Header">
+			<template if:true={showCampaign}>
+				<center>
+					<template if:true={showCampaignError}>
+					<a class="CityError" onclick={showCityModal}>Please click on it to fill the City in the Campaign</a>
+					<lightning-helptext content="Click on it to fill the city"></lightning-helptext>
+				</template>
+				<template if:false={showCampaignError}>
+					<a class="CityError1" onclick={showCityModal}>Do you want to update city of Campaign,Please click on it</a>
+					<lightning-helptext content="Click on it to update the city"></lightning-helptext>
+				</template>
+				</center>
+			</template>
+			<template if:false={showCampaign}>
+				<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+					class="slds-modal slds-fade-in-open slds-modal_medium">
+					<div class="slds-modal__container">
+						<div class="slds-modal__header">
+							<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Select City</h1>
+						</div>
+						<div class="slds-modal__content" id="modal-content-id-1" style="padding:20px;">
+						<!--	<lightnixng-combobox name="progress" label="City" 
+								placeholder="Select city" options={cityData} onchange={handleSelectCity} value={city}>
+							</lightning-combobox>
+						</div>-->
+							<c-searchable-combobox  label="city"
+												options={cityData} value={city}
+												
+												class="NewForm" 
+												 placeholder="Select city" onchange={handleSelectCity}  >
+											</c-searchable-combobox>
+											<div style="color:white;">
+												<p>Sit nulla est ex deserunt exercitation anim occaecat. Nostrud ullamco deserunt aute id consequat veniam incididunt duis in sint irure nisi. Mollit officia cillum Lorem ullamco minim nostrud elit officia tempor esse quis. Cillum sunt ad dolore quis
+        aute consequat ipsum magna exercitation reprehenderit magna. Tempor cupidatat consequat elit dolor adipisicing.</p>
+      <p>Dolor eiusmod sunt ex incididunt cillum quis nostrud velit duis sit officia. Lorem aliqua enim laboris do dolor eiusmod officia. Mollit incididunt nisi consectetur esse laborum eiusmod pariatur proident. Eiusmod et adipisicing culpa deserunt nostrud
+        ad veniam nulla aute est. Labore esse esse cupidatat amet velit id elit consequat minim ullamco mollit enim excepteur ea.</p>
+											</div>
+						</div>
+						<div class="slds-modal__footer">
+							<button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+								onclick={handleBack}>Back</button>
+							<button class="slds-button slds-button_brand" onclick={handleUpdateCampaign}>Save</button>
+						</div>
+					</div>
+				</section>
+				<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+			</template>
+		</div>
+		<div class="Body">
+		</div>
+		<div class="Footer">
+		</div>
+	</div>
+</template>

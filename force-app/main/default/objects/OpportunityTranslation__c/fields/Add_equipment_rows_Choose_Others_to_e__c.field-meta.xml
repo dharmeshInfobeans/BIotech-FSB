@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_equipment_rows_Choose_Others_to_e__c</fullName>
+    <description>Add equipment rows. Choose &quot;Others&quot; to enter a custom equipment name and company.</description>
+    <externalId>false</externalId>
+    <label>Add equipment rows. Choose &quot;Others&quot; to e</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

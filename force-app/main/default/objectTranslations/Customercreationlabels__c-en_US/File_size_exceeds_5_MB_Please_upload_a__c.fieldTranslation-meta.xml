@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- File size exceeds 5 MB. Please upload a --></label>
+    <name>File_size_exceeds_5_MB_Please_upload_a__c</name>
+</CustomFieldTranslation>

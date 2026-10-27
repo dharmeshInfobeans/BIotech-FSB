@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>CIS Header</label>
+    <protected>false</protected>
+    <values>
+        <field>insmassapp__ApprovalProcess__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>insmassapp__AvailableFields__c</field>
+        <value xsi:nil="true"/>
+    </values>
+    <values>
+        <field>insmassapp__DefaultFields__c</field>
+        <value xsi:type="xsd:string">Leads__c;Account__c;Ce_Cis_Rating__c;Phakic_Rating__c;User__c</value>
+    </values>
+    <values>
+        <field>insmassapp__Fields__c</field>
+        <value xsi:type="xsd:string">Leads__c;Account__c;Ce_Cis_Rating__c;Phakic_Rating__c;User__c</value>
+    </values>
+    <values>
+        <field>insmassapp__IsDisplayChatter__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>insmassapp__IsDisplayComments__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>insmassapp__IsDisplayView__c</field>
+        <value xsi:type="xsd:boolean">true</value>
+    </values>
+    <values>
+        <field>insmassapp__IsSelectedDefault__c</field>
+        <value xsi:type="xsd:boolean">false</value>
+    </values>
+    <values>
+        <field>insmassapp__ObjectName__c</field>
+        <value xsi:type="xsd:string">CIS_Header__c</value>
+    </values>
+</CustomMetadata>

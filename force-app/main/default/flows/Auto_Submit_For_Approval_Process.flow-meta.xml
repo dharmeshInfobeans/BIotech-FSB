@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Auto_Submit_To_Approver_2_Of_International_Account_Approval_Process</name>
+        <label>Auto Submit To Approver 2 Of International Account Approval Process</label>
+        <locationX>61</locationX>
+        <locationY>198</locationY>
+        <actionName>submit</actionName>
+        <actionType>submit</actionType>
+        <inputParameters>
+            <name>objectId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>comment</name>
+            <value>
+                <elementReference>SubmitterComment</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>submitterId</name>
+            <value>
+                <elementReference>SubmitterId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>submit</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <interviewLabel>Auto Submit For Approval Process {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Auto Submit For Approval Process</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <startElementReference>Auto_Submit_To_Approver_2_Of_International_Account_Approval_Process</startElementReference>
+    <status>Draft</status>
+    <textTemplates>
+        <description>Submitter Comment For Approval Process</description>
+        <name>SubmitterComment</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>Please approve this account...</text>
+    </textTemplates>
+    <variables>
+        <description>RecordId of Record which is to be submitted for Approval</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description>UserId Of Submitter To  Approval Process</description>
+        <name>SubmitterId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

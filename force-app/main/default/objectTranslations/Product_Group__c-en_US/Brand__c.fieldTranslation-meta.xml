@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Product_Description --></label>
+    <name>Brand__c</name>
+    <picklistValues>
+        <masterLabel>BIO BLUE</masterLabel>
+        <translation><!-- BIO BLUE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIORING</masterLabel>
+        <translation><!-- BIORING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOVISC ORTHO PLUS 2ML</masterLabel>
+        <translation><!-- BIOVISC ORTHO PLUS 2ML --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Blade</masterLabel>
+        <translation><!-- Bio Blade --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio CTR</masterLabel>
+        <translation><!-- Bio CTR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Decalin</masterLabel>
+        <translation><!-- Bio Decalin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Hyalur</masterLabel>
+        <translation><!-- Bio Hyalur --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Octane</masterLabel>
+        <translation><!-- Bio Octane --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biosil</masterLabel>
+        <translation><!-- Biosil --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biovisc Ortho</masterLabel>
+        <translation><!-- Biovisc Ortho --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl ACTV Toric</masterLabel>
+        <translation><!-- Eyecryl ACTV Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Actv</masterLabel>
+        <translation><!-- Eyecryl Actv --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Phakic</masterLabel>
+        <translation><!-- Eyecryl Phakic --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Phakic Toric</masterLabel>
+        <translation><!-- Eyecryl Phakic Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Plus 600</masterLabel>
+        <translation><!-- Eyecryl Plus 600 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Plus Clear</masterLabel>
+        <translation><!-- Eyecryl Plus Clear --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Plus Natural HD</masterLabel>
+        <translation><!-- Eyecryl Plus Natural HD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Sert</masterLabel>
+        <translation><!-- Eyecryl Sert --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Sert Toric</masterLabel>
+        <translation><!-- Eyecryl Sert Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyecryl Toric</masterLabel>
+        <translation><!-- Eyecryl Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyevisc</masterLabel>
+        <translation><!-- Eyevisc --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FLAVIN</masterLabel>
+        <translation><!-- FLAVIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX TRIO</masterLabel>
+        <translation><!-- OPTIFLEX TRIO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optiflex Genesis</masterLabel>
+        <translation><!-- Optiflex Genesis --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TP6130</masterLabel>
+        <translation><!-- TP6130 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

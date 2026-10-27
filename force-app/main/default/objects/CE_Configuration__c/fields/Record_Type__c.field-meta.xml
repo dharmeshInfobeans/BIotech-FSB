@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Record_Type__c</fullName>
+    <label>Record Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Distributor</fullName>
+                <default>false</default>
+                <label>Domestic-Distributor</label>
+            </value>
+            <value>
+                <fullName>Brazil_Doctor</fullName>
+                <default>false</default>
+                <label>Brazil Doctor</label>
+            </value>
+            <value>
+                <fullName>Brazil_Distributor</fullName>
+                <default>false</default>
+                <label>Brazil Distributor</label>
+            </value>
+            <value>
+                <fullName>Columbia_Distributor</fullName>
+                <default>false</default>
+                <label>Columbia Distributor</label>
+            </value>
+            <value>
+                <fullName>Columbia_Doctor</fullName>
+                <default>false</default>
+                <label>Columbia Doctor</label>
+            </value>
+            <value>
+                <fullName>Dealer_Portal</fullName>
+                <default>false</default>
+                <label>Dealer Portal</label>
+            </value>
+            <value>
+                <fullName>Ophthalmic_Vision</fullName>
+                <default>false</default>
+                <label>Ophthalmic Vision</label>
+            </value>
+            <value>
+                <fullName>Ortho_Dermal</fullName>
+                <default>false</default>
+                <label>Ortho Dermal</label>
+            </value>
+            <value>
+                <fullName>Distributor_T</fullName>
+                <default>false</default>
+                <label>Turkey distributor</label>
+            </value>
+            <value>
+                <fullName>Doctor_T</fullName>
+                <default>false</default>
+                <label>Turkey-Doctor</label>
+            </value>
+            <value>
+                <fullName>Domestic_Ortho</fullName>
+                <default>false</default>
+                <label>Domestic - Ortho</label>
+            </value>
+            <value>
+                <fullName>Doctor_D</fullName>
+                <default>false</default>
+                <label>Domestic-Doctor/Hospital</label>
+            </value>
+            <value>
+                <fullName>International_Ophthalmic_Vision</fullName>
+                <default>false</default>
+                <label>International - Ophthalmic &amp; Vision</label>
+            </value>
+            <value>
+                <fullName>International_Ortho</fullName>
+                <default>false</default>
+                <label>International - Ortho</label>
+            </value>
+            <value>
+                <fullName>International_Dermal</fullName>
+                <default>false</default>
+                <label>International -Dermal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

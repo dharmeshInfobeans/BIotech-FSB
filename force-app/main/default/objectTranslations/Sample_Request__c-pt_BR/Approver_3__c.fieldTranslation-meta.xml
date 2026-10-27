@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- RH --></help>
+    <label>Aprovador 3</label>
+    <name>Approver_3__c</name>
+    <relationshipLabel>Solicitações de amostra (aprovador 3)</relationshipLabel>
+</CustomFieldTranslation>

@@ -1,0 +1,164 @@
+/* ==============================
+   Tabs
+============================== */
+.tabs {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 6px;
+}
+
+.tab {
+    cursor: pointer;
+    font-size: 14px;
+    color: #5f6fff;
+    padding-bottom: 6px;
+}
+
+.tab.active {
+    font-weight: 600;
+    border-bottom: 2px solid #5f6fff;
+}
+
+/* ==============================
+   Card
+============================== */
+.card {
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ==============================
+   Title
+============================== */
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1f1f1f;
+}
+
+/* ==============================
+   Table
+============================== */
+.table {
+    margin-top: 10px;
+}
+
+.table-header {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 0.6fr;
+    align-items: center;
+    font-weight: 600;
+    font-size: 13px;
+    background: #f3f6fb;
+    padding: 10px;
+    border-radius: 6px;
+    color: #3e3e3e;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr 0.6fr;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.product-name {
+    font-size: 14px;
+    color: #333;
+}
+
+/* ==============================
+   Input
+============================== */
+lightning-input {
+    width: 80%;
+}
+
+.unit {
+    font-size: 13px;
+    color: #777;
+    text-align: left;
+}
+
+/* ==============================
+   Pagination
+============================== */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+    font-size: 13px;
+    color: #444;
+}
+
+.pagination button {
+    background: #f0f2ff;
+    border: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   Save Button
+============================== */
+.save-btn {
+    width: 100%;
+    background: #5f6fff;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.save-btn:disabled {
+    background: #c5c9ff;
+    cursor: not-allowed;
+}
+
+/* ==============================
+   Error Message
+============================== */
+.slds-text-color_error {
+    font-size: 13px;
+}
+
+/* ==============================
+   Responsive (Mobile Friendly)
+============================== */
+@media (max-width: 480px) {
+    .card {
+        padding: 16px;
+    }
+
+    .table-header,
+    .table-row {
+        grid-template-columns: 1.4fr 1fr 0.6fr;
+        font-size: 12px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,32 @@
+.addBDRButton{
+    text-align: -webkit-right;
+    position: absolute;
+    /* margin-left: 75%; */
+    margin-top: -40px;
+    width: 95%;
+}
+
+.astric {
+    color: red;
+  }
+
+  .datetoshow{
+    border: 1px solid #c1c0bf;
+    background: #ecebea;
+    padding: 5px;
+    border-radius: 5px;
+  }
+
+  .data{
+    padding: 5px;
+  }
+  .center-text {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    color: dodgerblue;
+}
+.leadheader{
+ text-align: center;
+}

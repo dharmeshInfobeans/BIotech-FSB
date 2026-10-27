@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlowDefinition xmlns="http://soap.sforce.com/2006/04/metadata">
+    <activeVersionNumber>2</activeVersionNumber>
+    <description>It is used to closed the opportunity after 60 days from the creation date if the stage is not closed lost/won at the time of creation.</description>
+    <masterLabel>Closed Opportunity After 60 days</masterLabel>
+</FlowDefinition>

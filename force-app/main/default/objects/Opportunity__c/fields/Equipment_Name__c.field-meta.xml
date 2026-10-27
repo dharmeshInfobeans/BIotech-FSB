@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Equipment_Name__c</fullName>
+    <label>Equipment Name</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A Scan</fullName>
+                <default>true</default>
+                <label>A Scan</label>
+            </value>
+            <value>
+                <fullName>Autoclaves</fullName>
+                <default>false</default>
+                <label>Autoclaves</label>
+            </value>
+            <value>
+                <fullName>Autoref Keratometer</fullName>
+                <default>false</default>
+                <label>Autoref Keratometer</label>
+            </value>
+            <value>
+                <fullName>Autorefractometer</fullName>
+                <default>false</default>
+                <label>Autorefractometer</label>
+            </value>
+            <value>
+                <fullName>B Scan</fullName>
+                <default>false</default>
+                <label>B Scan</label>
+            </value>
+            <value>
+                <fullName>Fundus Camera</fullName>
+                <default>false</default>
+                <label>Fundus Camera</label>
+            </value>
+            <value>
+                <fullName>Lensmeter</fullName>
+                <default>false</default>
+                <label>Lensmeter</label>
+            </value>
+            <value>
+                <fullName>Microscope</fullName>
+                <default>false</default>
+                <label>Microscope</label>
+            </value>
+            <value>
+                <fullName>OCT</fullName>
+                <default>false</default>
+                <label>OCT</label>
+            </value>
+            <value>
+                <fullName>Optical Biometer</fullName>
+                <default>false</default>
+                <label>Optical Biometer</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+            <value>
+                <fullName>Phaco</fullName>
+                <default>false</default>
+                <label>Phaco</label>
+            </value>
+            <value>
+                <fullName>Scheimpflug</fullName>
+                <default>false</default>
+                <label>Scheimpflug</label>
+            </value>
+            <value>
+                <fullName>Tonometer</fullName>
+                <default>false</default>
+                <label>Tonometer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

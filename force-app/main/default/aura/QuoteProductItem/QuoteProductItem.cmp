@@ -1,0 +1,132 @@
+<aura:component>
+
+    <aura:attribute name="orderProductRecord" type="object" />
+    <aura:attribute name="ListSubProductWrapper" type="List" />
+    <aura:attribute name="ProductSelectionPopup" type="Boolean" default='false' />
+    <aura:attribute name="addedSubProducts" type="object[]" />
+    <aura:attribute name="order" type="object[]" />
+    <aura:attribute name="isInputFiedDisabled" type="Boolean" default='true' />
+    <aura:attribute name="oldQuantity" type="Integer" default='0' />
+
+    <aura:registerEvent name="orderProductRecordProviderEvent" type="c:OrderProductRecordProvider" />
+
+    <aura:registerEvent name="removeQuoteItemEvent" type="c:QuoteItemEvent" />
+
+    <aura:registerEvent name="calculateAllQliTotalPrices" type="c:QuoteItemEvent" />
+
+    <aura:registerEvent name="autoSaveQli" type="c:QuoteItemEvent" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <tr class="slds-hint-parent" style="background-color: lightgoldenrodyellow">
+
+        <td role="gridcell" tabindex="0" class="slds-text-align_right" style="width:4.5">
+            <aura:if isTrue="{!v.orderProductRecord.ModelCount gt 0}">
+                <div class="slds-checkbox_add-button" style='float:left;'>
+                    <input type="button" class="slds-assistive-text" id="{!'chk_' + v.orderProductRecord.UniqueKey}"
+                        onclick='{!c.openSelectModelsPopup}' />
+                    <label for="{!'chk_' + v.orderProductRecord.UniqueKey}" class="slds-checkbox_faux">
+                        <span class="slds-assistive-text">{!v.orderProductRecord.UniqueKey}</span>
+                    </label>
+                </div>
+            </aura:if>
+
+            <div>
+                <span onclick="{!c.removeQuoteItem}">
+                    <lightning:icon
+                        class="{!'slds-icon slds-icon_x-large slds-icon-text-default '+ (v.orderProductRecord.ModelCount gt 0 ? 'dltIcAlnPlus' : 'dltIcAlnNoPlus')}"
+                        size='small' iconName="utility:delete" />
+                </span>
+            </div>
+        </td>
+
+        <th scope="row">
+            <div class="slds-truncate slds-p-left_medium" title="{!v.orderProductRecord.Name}">
+                {!v.orderProductRecord.ProductName}</div>
+        </th>
+
+        <td colspan='2' role="gridcell">
+            &nbsp;
+        </td>
+        
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.orderProductRecord.Category__c}"></div>
+            {!v.orderProductRecord.Category}
+        </td>
+
+        <td role="gridcell" />
+        <td role="gridcell" />
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.orderProductRecord.Price}"></div>
+            {!v.orderProductRecord.currencyCode} &nbsp; {!v.orderProductRecord.SalesPrice}
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate" style="width: 5rem;" title="{!v.orderProductRecord.Quantity}"></div>
+            <lightning:input type="number" name="quantity" style="width: 6.5rem;" label=" "
+                value="{!v.orderProductRecord.Quantity}" min="0" onfocusout="{!c.autoSave}"
+                onchange='{!c.calculateQuoteItemPrice}'
+                readonly="{!v.orderProductRecord.subOrderProducts.length > 0 || v.order.Status__c=='Active'}" />
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate" style="width: 5rem;" title="{!v.orderProductRecord.foc}"></div> {!v.orderProductRecord.FocQuantity}
+            <!--<lightning:input type="number" name="FOC" style="width: 5rem;" label=" "
+                value="{!v.orderProductRecord.FocQuantity}" min="0" onfocusout="{!c.autoSave}"
+                onchange='{!c.calculateFoc}'
+                readonly="{!v.orderProductRecord.subOrderProducts.length > 0 || v.order.Status__c=='Active'}" /> -->
+        </td>
+        <td role="gridcell"><!--codeAdded-->
+            <div class="slds-truncate" style="width: 3rem;" title="{!v.orderProductRecord.totalQuantity}"></div>
+            {!v.orderProductRecord.totalQuantity}
+
+        </td><!--code end-->
+
+        <td role="gridcell" />
+        <td role="gridcell">
+            {!v.orderProductRecord.currencyCode} &nbsp; {!v.orderProductRecord.TotalPrice}
+        </td>
+        <td role="gridcell" />
+
+    </tr>
+
+    <aura:iteration items="{!v.orderProductRecord.subOrderProducts}" var="subProduct">
+        <tr class="slds-hint-parent">
+
+            <td colspan='2'>
+                &nbsp;
+            </td>
+            
+            <td role="gridcell" />
+            
+            <td role="gridcell">
+                {!subProduct.ModelTxt}
+            </td>
+
+            <td role="gridcell">
+                {!subProduct.SelectedPower}
+            </td>
+
+            <td role="gridcell">
+                {!subProduct.SelectedCylendricalPower}
+            </td>
+
+            <td role="gridcell">
+                {!subProduct.selectedaxisAngle}
+            </td>
+
+            <td role="gridcell">
+                {!v.orderProductRecord.currencyCode} &nbsp; {!subProduct.SalesPrice}
+            </td>
+            <td role="gridcell">
+                {!subProduct.Quantity}
+            </td>
+            <td role="gridcell">{!subProduct.FocQuantity}</td>
+            <td role="gridcell">{!subProduct.totalQuantity}</td><!--Code add-->
+            <td role="gridcell">
+                {!v.orderProductRecord.currencyCode} &nbsp;{!subProduct.TotalPrice}
+            </td>
+
+            <td role="gridcell" />
+            <td role="gridcell" />
+        </tr>
+    </aura:iteration>
+</aura:component>

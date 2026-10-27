@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Measurement_Criteria__c</fullName>
+    <label>Measurement Criteria</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Parameter__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Target vs Actuals</fullName>
+                <default>false</default>
+                <label>Target vs Actuals</label>
+            </value>
+            <value>
+                <fullName>Per Quarter per Team Member</fullName>
+                <default>false</default>
+                <label>Per Quarter per Team Member</label>
+            </value>
+            <value>
+                <fullName>Self &amp; Team</fullName>
+                <default>false</default>
+                <label>Self &amp; Team</label>
+            </value>
+            <value>
+                <fullName>No of Deals</fullName>
+                <default>false</default>
+                <label>No of Deals</label>
+            </value>
+            <value>
+                <fullName>Total Customers</fullName>
+                <default>false</default>
+                <label>Total Customers</label>
+            </value>
+            <value>
+                <fullName>State</fullName>
+                <default>false</default>
+                <label>State</label>
+            </value>
+            <value>
+                <fullName>Test Results</fullName>
+                <default>false</default>
+                <label>Test Results</label>
+            </value>
+            <value>
+                <fullName>Growth over last year</fullName>
+                <default>false</default>
+                <label>Growth over last year</label>
+            </value>
+            <value>
+                <fullName>Self</fullName>
+                <default>false</default>
+                <label>Self</label>
+            </value>
+            <value>
+                <fullName>Team Targets</fullName>
+                <default>false</default>
+                <label>Team Targets</label>
+            </value>
+            <value>
+                <fullName>Active Deals</fullName>
+                <default>false</default>
+                <label>Active Deals</label>
+            </value>
+            <value>
+                <fullName>Per Team Member</fullName>
+                <default>false</default>
+                <label>Per Team Member</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Learn &amp; Growth Training</controllingFieldValue>
+            <valueName>Test Results</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phakic Training Program(No of Dr.)</controllingFieldValue>
+            <controllingFieldValue>New/Customer Conversion</controllingFieldValue>
+            <valueName>Growth over last year</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No of Active Customers</controllingFieldValue>
+            <controllingFieldValue>Opex to Sales Ratio</controllingFieldValue>
+            <controllingFieldValue>Operation Discpline(OT)</controllingFieldValue>
+            <controllingFieldValue>Salesforce Reporting</controllingFieldValue>
+            <valueName>Self &amp; Team</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No of Active Customers</controllingFieldValue>
+            <controllingFieldValue>Opex to Sales Ratio</controllingFieldValue>
+            <controllingFieldValue>Operation Discpline(OT)</controllingFieldValue>
+            <controllingFieldValue>Salesforce Reporting</controllingFieldValue>
+            <valueName>Self</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>No of Active Customers</controllingFieldValue>
+            <valueName>Per Team Member</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Target vs Sales</controllingFieldValue>
+            <controllingFieldValue>Product-Single</controllingFieldValue>
+            <controllingFieldValue>Product-Combination</controllingFieldValue>
+            <controllingFieldValue>CME - RTM</controllingFieldValue>
+            <valueName>Target vs Actuals</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>New/Customer Conversion</controllingFieldValue>
+            <valueName>Per Quarter per Team Member</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer Category ST &amp; EA</controllingFieldValue>
+            <valueName>Total Customers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>High Performance Team</controllingFieldValue>
+            <valueName>State</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>High Performance Team</controllingFieldValue>
+            <valueName>Team Targets</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

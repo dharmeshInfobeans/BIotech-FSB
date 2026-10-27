@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Quadrant --></label>
+    <name>Quadrant__c</name>
+    <picklistValues>
+        <masterLabel>EA</masterLabel>
+        <translation><!-- EA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EB</masterLabel>
+        <translation><!-- EB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SL</masterLabel>
+        <translation><!-- SL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ST</masterLabel>
+        <translation><!-- ST --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

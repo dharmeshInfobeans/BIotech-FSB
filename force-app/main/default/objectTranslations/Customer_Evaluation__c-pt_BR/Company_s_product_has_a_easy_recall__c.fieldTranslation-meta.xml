@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Which company&apos;s product has a easy recall in the minds of Doctors (for our range of products) --></help>
+    <label><!-- Company&apos;s product has a easy recall --></label>
+    <name>Company_s_product_has_a_easy_recall__c</name>
+</CustomFieldTranslation>

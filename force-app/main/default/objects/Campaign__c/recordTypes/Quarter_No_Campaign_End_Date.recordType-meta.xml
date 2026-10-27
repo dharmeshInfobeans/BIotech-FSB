@@ -1,0 +1,1437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quarter_No_Campaign_End_Date</fullName>
+    <active>false</active>
+    <label>Quarter No - Campaign End Date</label>
+    <picklistValues>
+        <picklist>Activity_Type__c</picklist>
+        <values>
+            <fullName>CME</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CONFERENCES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIVE SURGERY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PAPER PRESENTATION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC TRAINING-Level 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC TRAINING-Level 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC USER MEETING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC VIRTUAL LAB TRAINING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT TRAINING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RTM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SYMPOSIUM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TRADE BOOTH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TRIO USER MEETING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WEBINAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WETLAB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Campaign_stage__c</picklist>
+        <values>
+            <fullName>CME</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High Impact CME</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RTM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>User Meeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual exp%2E Lab</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Wet Labs</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Categorize__c</picklist>
+        <values>
+            <fullName>Biotech Driven Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Society Driven Event</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Country__c</picklist>
+        <values>
+            <fullName>ALBANIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ALGERIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ARGENTINA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AUSTRALIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AZERBAIJAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BANGLADESH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BELGIUM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BOLIVIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BOSNIA-HERZ%2E</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BRAZIL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BULGARIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CAMBODIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CHILE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CHINA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COLOMBIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COSTA RICA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CROATIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CYPRUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CZECH  REPUBLIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DENMARK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DOMINICAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ECUADOR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EGYPT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ETHIOPIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FRANCE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GERMANY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GHANA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GREECE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GUATEMALA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HONG KONG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HUNGARY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INDONESIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRAQ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISRAEL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ITALY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JAPAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JORDAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KENYA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KUWAIT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LATAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LATVIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LEBANON</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIBYA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LITHUANIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MACEDONIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MALAYSIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MALI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MALTA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MAURITIUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MEXICO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOLDOVA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MONGOLIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOROCCO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MOZAMBIQUE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NAMIBIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NETHERLANDS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NEW ZEALAND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NICARAGUA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NIGERIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NORWAY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OMAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER MARKETS_LATAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PAKISTAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PALESTINE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PAN-EUROPEAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PARAGUAY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PERU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHILIPPINES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>POLAND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PORTUGAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ROMANIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RUSSIAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RWANDA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SAUDI ARABIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SENEGAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SERBIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SIERRA LEONE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SINGAPORE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SLOVAKIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SLOVENIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOUTH AFRICA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOUTH KOREA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SPAIN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SRI LANKA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SUADI ARABIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SUDAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SWITZERLAND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SYRIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TAIWAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TANZANIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TOGO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TUNISIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TURKEY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>URUGUAY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UZBEKISTAN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VENEZUELA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VIETNAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>YEMEN</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Focus_Product__c</picklist>
+        <values>
+            <fullName>ASHFY 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ASHFY600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BI-HYALUR DUO-%281%2E0 %26 2%2E4 ML%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BI-HYALUR DUO-%281%2E4 %26 2%2E4 ML%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLADE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLADES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE 1ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE 1ML VIAL %28MONO PACK%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE 90 0%2E5 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE DUO 0%2E5ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE PLUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE RANGE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO CHOL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO CTR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN 5ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN 7ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 1%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 10 MG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 14 MG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR CS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR DUO 1%2E0 %25 %26 2%2E4 %25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR EV 1%2E6ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR EV 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR HV 1 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR HV 2%2E4%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR LVD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR PLUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR PLUS 1%2E4%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR PLUS 1%2E6ML</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR RANGE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR SV 1%2E6ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR SV 3%2E0%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO OCTANE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO OCTANE PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO RING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO SPEARS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOBLUE 90 PLUS 0%2E5 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOHYALUR 1%25 HA 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOHYALUR HV 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOHYALUR PLUS 1%2E4%25 HA 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 10 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 1000 CST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 1300 CST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 5000 CST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOVISION PMMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL 600 ROH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL ACTV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL ACTV DIHFY 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL ACTV TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PHAKIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PHAKIC TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PHAKIC-TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS %28ASHFY 600%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS CLEAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS HSAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS NATURAL HD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS S600MZ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL SERT EDOF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL SERT EDOF TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 2%25%282ML PFS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 2ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 3ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 5ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC HPMC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FLUROCEIN STRIPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GLODERM - DERMAL RANGE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GLODERM 30L 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INJECTOR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRIS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRIS RETRACTOR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRIS RETRACTORS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MF TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX COMFORT NY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX GENESIS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX GENESIS COMFORT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX GENESIS COMFORT NY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX INJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX TRIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX TRIO TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX TRIO-TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTIFLEX TRIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC-TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PMMA ESCLERAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RIBOFLAVIN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SCHIRMER STRIPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SILICONE OILS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SODIUM HYALURONATE EV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SODIUM HYALURONATE SV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Schirmer Strip</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TP6130</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TRIO-TORIC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Group__c</picklist>
+        <values>
+            <fullName>ACCESS TO INNOVATION SERIES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOTECH KNOWLEDGE SERIES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COFFEE CHAT SERIES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SALES SPECIALIST ROLE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TAKE A BREAK SERIES</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Level_type__c</picklist>
+        <values>
+            <fullName>Level 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Level 2</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>List_Of_Activities__c</picklist>
+        <values>
+            <fullName>CME</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CONFERENCES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LIVE SURGERY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PAPER PRESENTATION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC TRAINING-Level 1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC TRAINING-Level 2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC USER MEETING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC VIRTUAL LAB TRAINING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT TRAINING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RTM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SYMPOSIUM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TRADE BOOTH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TRIO USER MEETING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WEBINAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WETLAB</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Operation__c</picklist>
+        <values>
+            <fullName>DISTRIBUTOR3X3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Direct</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hybrid</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER DISTRIBUTOR</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Region__c</picklist>
+        <values>
+            <fullName>APAC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EASTERN EUROPE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LATAM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MIDDLE EAST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NORTH AFRICA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>REST OF AFRICA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SAARC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>USA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WESTERN EUROPE</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>State__c</picklist>
+        <values>
+            <fullName>ACRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ADANA REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ALAGOAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AMAPÁ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AMAZONAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ANKARA REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ANTIOQUIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ATLANTICO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Andhra Pradesh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BAHIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIHAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BOLIVAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BOYACA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CALDAS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CAUCA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CEARÁ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CESAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CORDOBA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CUNDINAMARCA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chhattisgarh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delhi</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ESPÍRITO SANTO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOIÁS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gujarat</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HUILA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Haryana</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISTAMBUL REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISTANBUL-1 REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISTANBUL-2 REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IZMIR REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JAMMU</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>JHARKHAND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Karnataka</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kashmir</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kerala</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MAGDALENA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MAHARASHTRA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MARANHÃO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MATO GROSSO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MATO GROSSO DO SUL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>META</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MINAS GERAIS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Madhya Pradesh</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NARIÑO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NORTE DE SANTANDER</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>North_East</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OCAÑA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Odisha</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PARANÁ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PARAÍBA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PARÁ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PERNAMBUCO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PIAUÍ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Punjab</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>QUINDIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RIO DE JANEIRO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RIO GRANDE DO NORTE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RIO GRANDE DO SUL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RISARALDA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RONDÔNIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RORAIMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rajasthan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SANTA CATARINA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SANTANDER</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SERGIPE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SUCRE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SÃO PAULO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TOCANTINS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TOLIMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tamilnadu</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Telangana</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UTTAR PRADESH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Uttarakhand</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VALLE DEL CAUCA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>West Bengal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delayed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Planned</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Zone__c</picklist>
+        <values>
+            <fullName>ALL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CENTRAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CORPORATE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EAST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NATIONAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NORTH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOUTH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WEST</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Package_Range__c</fullName>
+    <label>Package Range</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>5k - 7k</fullName>
+                <default>false</default>
+                <label>5k - 7k</label>
+            </value>
+            <value>
+                <fullName>8k - 10k</fullName>
+                <default>false</default>
+                <label>8k - 10k</label>
+            </value>
+            <value>
+                <fullName>15k -18k</fullName>
+                <default>false</default>
+                <label>15k -18k</label>
+            </value>
+            <value>
+                <fullName>18k - 20k</fullName>
+                <default>false</default>
+                <label>18k - 20k</label>
+            </value>
+            <value>
+                <fullName>22k - 24k</fullName>
+                <default>false</default>
+                <label>22k - 24k</label>
+            </value>
+            <value>
+                <fullName>25k - 30k</fullName>
+                <default>false</default>
+                <label>25k - 30k</label>
+            </value>
+            <value>
+                <fullName>28k - 30k</fullName>
+                <default>false</default>
+                <label>28k - 30k</label>
+            </value>
+            <value>
+                <fullName>35k - 45k</fullName>
+                <default>false</default>
+                <label>35k - 45k</label>
+            </value>
+            <value>
+                <fullName>50k - 60k</fullName>
+                <default>false</default>
+                <label>50k - 60k</label>
+            </value>
+            <value>
+                <fullName>80k - 90k</fullName>
+                <default>false</default>
+                <label>80k - 90k</label>
+            </value>
+            <value>
+                <fullName>90k - 100k</fullName>
+                <default>false</default>
+                <label>90k - 100k</label>
+            </value>
+            <value>
+                <fullName>500 - 1000</fullName>
+                <default>false</default>
+                <label>500 - 1000</label>
+            </value>
+            <value>
+                <fullName>1000 - 1500</fullName>
+                <default>false</default>
+                <label>1000 - 1500</label>
+            </value>
+            <value>
+                <fullName>1500 - 2000</fullName>
+                <default>false</default>
+                <label>1500 - 2000</label>
+            </value>
+            <value>
+                <fullName>2000 - 4000</fullName>
+                <default>false</default>
+                <label>2000 - 4000</label>
+            </value>
+            <value>
+                <fullName>4000 - 8000</fullName>
+                <default>false</default>
+                <label>4000 - 8000</label>
+            </value>
+            <value>
+                <fullName>0-2k</fullName>
+                <default>false</default>
+                <label>0-2k</label>
+            </value>
+            <value>
+                <fullName>2k-4k</fullName>
+                <default>false</default>
+                <label>2k-4k</label>
+            </value>
+            <value>
+                <fullName>4k-6k</fullName>
+                <default>false</default>
+                <label>4k-6k</label>
+            </value>
+            <value>
+                <fullName>6k-8k</fullName>
+                <default>false</default>
+                <label>6k-8k</label>
+            </value>
+            <value>
+                <fullName>10k-12k</fullName>
+                <default>false</default>
+                <label>10k-12k</label>
+            </value>
+            <value>
+                <fullName>12k-14k</fullName>
+                <default>false</default>
+                <label>12k-14k</label>
+            </value>
+            <value>
+                <fullName>14k-16k</fullName>
+                <default>false</default>
+                <label>14k-16k</label>
+            </value>
+            <value>
+                <fullName>16k-20k</fullName>
+                <default>false</default>
+                <label>16k-20k</label>
+            </value>
+            <value>
+                <fullName>20k-25k</fullName>
+                <default>false</default>
+                <label>20k-25k</label>
+            </value>
+            <value>
+                <fullName>2000 - 2500</fullName>
+                <default>false</default>
+                <label>2000 - 2500</label>
+            </value>
+            <value>
+                <fullName>2500 - 3000</fullName>
+                <default>false</default>
+                <label>2500 - 3000</label>
+            </value>
+            <value>
+                <fullName>3000 - 3500</fullName>
+                <default>false</default>
+                <label>3000 - 3500</label>
+            </value>
+            <value>
+                <fullName>3500 - 4000</fullName>
+                <default>false</default>
+                <label>3500 - 4000</label>
+            </value>
+            <value>
+                <fullName>Above 4000</fullName>
+                <default>false</default>
+                <label>Above 4000</label>
+            </value>
+            <value>
+                <fullName>658,00-1.200,00</fullName>
+                <default>false</default>
+                <label>658,00-1.200,00</label>
+            </value>
+            <value>
+                <fullName>2.501,00-3.500,00</fullName>
+                <default>false</default>
+                <label>2.501,00-3.500,00</label>
+            </value>
+            <value>
+                <fullName>0-2000</fullName>
+                <default>false</default>
+                <label>0-2000</label>
+            </value>
+            <value>
+                <fullName>2001-4000</fullName>
+                <default>false</default>
+                <label>2001-4000</label>
+            </value>
+            <value>
+                <fullName>4001-6000</fullName>
+                <default>false</default>
+                <label>4001-6000</label>
+            </value>
+            <value>
+                <fullName>6001-8000</fullName>
+                <default>false</default>
+                <label>6001-8000</label>
+            </value>
+            <value>
+                <fullName>8001-10000</fullName>
+                <default>false</default>
+                <label>8001-10000</label>
+            </value>
+            <value>
+                <fullName>10001-12000</fullName>
+                <default>false</default>
+                <label>10001-12000</label>
+            </value>
+            <value>
+                <fullName>12001-14000</fullName>
+                <default>false</default>
+                <label>12001-14000</label>
+            </value>
+            <value>
+                <fullName>14001-16000</fullName>
+                <default>false</default>
+                <label>14001-16000</label>
+            </value>
+            <value>
+                <fullName>16001-20000</fullName>
+                <default>false</default>
+                <label>16001-20000</label>
+            </value>
+            <value>
+                <fullName>20001-25000</fullName>
+                <default>false</default>
+                <label>20001-25000</label>
+            </value>
+            <value>
+                <fullName>1k-2k</fullName>
+                <default>false</default>
+                <label>1k-2k</label>
+            </value>
+            <value>
+                <fullName>4k-5k</fullName>
+                <default>false</default>
+                <label>4k-5k</label>
+            </value>
+            <value>
+                <fullName>6k-7k</fullName>
+                <default>false</default>
+                <label>6k-7k</label>
+            </value>
+            <value>
+                <fullName>8k-9k</fullName>
+                <default>false</default>
+                <label>8k-9k</label>
+            </value>
+            <value>
+                <fullName>13k-15k</fullName>
+                <default>false</default>
+                <label>13k-15k</label>
+            </value>
+            <value>
+                <fullName>15k-20k</fullName>
+                <default>false</default>
+                <label>15k-20k</label>
+            </value>
+            <value>
+                <fullName>R$ 658,00 - R$ 1.200,00</fullName>
+                <default>false</default>
+                <label>R$ 658,00 - R$ 1.200,00</label>
+            </value>
+            <value>
+                <fullName>R$ 1201,00 - R$ 2.500,00</fullName>
+                <default>false</default>
+                <label>R$ 1201,00 - R$ 2.500,00</label>
+            </value>
+            <value>
+                <fullName>R$ 2.501,00 - R$ 3.500,00</fullName>
+                <default>false</default>
+                <label>R$ 2.501,00 - R$ 3.500,00</label>
+            </value>
+            <value>
+                <fullName>R$ 3.501,00 - R$ 4.000,00</fullName>
+                <default>false</default>
+                <label>R$ 3.501,00 - R$ 4.000,00</label>
+            </value>
+            <value>
+                <fullName>R$ 4.001,00 - R$ 4.500,00</fullName>
+                <default>false</default>
+                <label>R$ 4.001,00 - R$ 4.500,00</label>
+            </value>
+            <value>
+                <fullName>R$ 4.501,00 - R$ 5.200,00</fullName>
+                <default>false</default>
+                <label>R$ 4.501,00 - R$ 5.200,00</label>
+            </value>
+            <value>
+                <fullName>R$ 5.201,00 - R$ 6.000,00</fullName>
+                <default>false</default>
+                <label>R$ 5.201,00 - R$ 6.000,00</label>
+            </value>
+            <value>
+                <fullName>R$ 6.001,00 - R$ 6.800,00</fullName>
+                <default>false</default>
+                <label>R$ 6.001,00 - R$ 6.800,00</label>
+            </value>
+            <value>
+                <fullName>R$ 6.801,00 -R$ R$ 7.500,00</fullName>
+                <default>false</default>
+                <label>R$ 6.801,00 -R$ R$ 7.500,00</label>
+            </value>
+            <value>
+                <fullName>R$ 7501,00 - R$ 9.000,00</fullName>
+                <default>false</default>
+                <label>R$ 7501,00 - R$ 9.000,00</label>
+            </value>
+            <value>
+                <fullName>R$ 9.001,00 - R$ 15.000,00</fullName>
+                <default>false</default>
+                <label>R$ 9.001,00 - R$ 15.000,00</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

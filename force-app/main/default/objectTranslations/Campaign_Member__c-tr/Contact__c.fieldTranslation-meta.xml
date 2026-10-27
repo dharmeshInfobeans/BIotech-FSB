@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>İletişim Kişisi/Doktor Adı</label>
+    <name>Contact__c</name>
+    <relationshipLabel><!-- Campaign Members --></relationshipLabel>
+</CustomFieldTranslation>

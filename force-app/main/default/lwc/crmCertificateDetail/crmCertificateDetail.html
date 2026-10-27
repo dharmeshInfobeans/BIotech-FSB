@@ -1,0 +1,182 @@
+<template>
+    <div class="detail-container">
+
+        <!-- Header -->
+        <div class="page-header">
+            <button class="back-btn" onclick={handleBack}>
+                <lightning-icon icon-name="utility:chevronleft" size="x-small" class="back-icon"></lightning-icon>
+                Certificate Queue
+            </button>
+            <h1 class="page-title">Certificate Verification</h1>
+        </div>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="spinner-wrap">
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={hasError}>
+            <div class="error-box">
+                <lightning-icon icon-name="utility:error" size="small" variant="error"></lightning-icon>
+                <span>Failed to load details. Please refresh.</span>
+            </div>
+        </template>
+
+        <!-- Products -->
+        <template lwc:if={hasProducts}>
+            <template for:each={products} for:item="prod">
+                <div key={prod.productId} class="product-card">
+                    <div class="product-header">
+                        <span class="product-name">{prod.productName}</span>
+                        <span class={prod.statusClass}>
+                            <template lwc:if={prod.orderUnlocked}>Order Unlocked</template>
+                            <template lwc:else>{prod.certificateStatus}</template>
+                        </span>
+                    </div>
+
+                    <!-- Distributor Government Approval Note -->
+                    <template lwc:if={prod.distributorComments}>
+                        <div class="crm-distributor-comment">
+                            <lightning-icon icon-name="utility:chat" size="x-small"></lightning-icon>
+                            <div class="crm-comment-body">
+                                <span class="crm-comment-label">Distributor Note (Government Approval):</span>
+                                <span class="crm-comment-text">{prod.distributorComments}</span>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Certificates -->
+                    <template lwc:if={prod.hasCerts}>
+                        <div class="cert-list">
+                            <template for:each={prod.certificates} for:item="cert">
+                                <div key={cert.certId} class="cert-name-row">
+                                    <lightning-icon icon-name="doctype:attachment" size="x-small" class="cert-icon"></lightning-icon>
+                                    <span class="cert-name">{cert.certName}</span>
+                                    <template lwc:if={cert.downloadUrl}>
+                                        <a class="cert-download-link" data-doc-id={cert.contentDocumentId} onclick={handlePreview}>Preview</a>
+                                        <a class="cert-download-link" href={cert.downloadUrl} target="_blank">Download</a>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="no-certs-text">No certificates uploaded.</p>
+                    </template>
+
+                    <!-- Action buttons (only for Under CRM Review) -->
+                    <template lwc:if={prod.isUnderReview}>
+                        <div class="action-row">
+                            <lightning-button
+                                label="Verify"
+                                variant="success"
+                                icon-name="utility:check"
+                                data-product-id={prod.productId}
+                                onclick={handleVerify}
+                                disabled={actionInProgress}></lightning-button>
+                            <lightning-button
+                                label="Send Back"
+                                variant="neutral"
+                                icon-name="utility:redo"
+                                data-product-id={prod.productId}
+                                onclick={handleOpenSendBack}
+                                disabled={actionInProgress}></lightning-button>
+                            <lightning-button
+                                label="Reject"
+                                variant="destructive-text"
+                                icon-name="utility:close"
+                                data-product-id={prod.productId}
+                                onclick={handleOpenReject}
+                                disabled={actionInProgress}></lightning-button>
+                        </div>
+                    </template>
+
+                    <!-- Verified badge + Unlock Order -->
+                    <template lwc:if={prod.isVerified}>
+                        <div class="verified-msg">
+                            <lightning-icon icon-name="utility:check" size="x-small" variant="success"></lightning-icon>
+                            Certificate verified.
+                        </div>
+                    </template>
+                    <template lwc:if={prod.canUnlock}>
+                        <div class="unlock-area">
+                            <lightning-button
+                                label="Unlock Order"
+                                variant="success"
+                                icon-name="utility:unlock"
+                                data-product-id={prod.productId}
+                                onclick={handleUnlockOrder}
+                                disabled={actionInProgress}></lightning-button>
+                        </div>
+                    </template>
+
+                    <!-- Rejected info -->
+                    <template lwc:if={prod.isRejected}>
+                        <div class="rejected-box">
+                            <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                            <span>{prod.rejectionComments}</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </template>
+
+        <!-- Send Back modal -->
+        <template lwc:if={showSendBackForm}>
+            <section class="modal-backdrop" onclick={handleCancelSendBack}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Send Back Certificate</h2>
+                    <lightning-textarea
+                        label="Reason for sending back"
+                        value={sendBackComments}
+                        onchange={handleSendBackCommentsChange}
+                        max-length="5000"
+                        placeholder="e.g., Certificate image is unclear / Wrong product certificate uploaded"></lightning-textarea>
+                    <div class="modal-actions">
+                        <lightning-button label="Cancel" onclick={handleCancelSendBack}></lightning-button>
+                        <lightning-button
+                            label="Confirm Send Back"
+                            variant="brand"
+                            onclick={handleConfirmSendBack}
+                            disabled={actionInProgress}></lightning-button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Reject modal -->
+        <template lwc:if={showRejectForm}>
+            <section class="modal-backdrop" onclick={handleCancelReject}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Reject Certificate</h2>
+                    <lightning-textarea
+                        label="Reason for rejection"
+                        value={rejectComments}
+                        onchange={handleRejectCommentsChange}
+                        max-length="5000"
+                        placeholder="e.g., Certificate not needed / Additional certificate required"></lightning-textarea>
+                    <div class="modal-actions">
+                        <lightning-button label="Cancel" onclick={handleCancelReject}></lightning-button>
+                        <lightning-button
+                            label="Confirm Reject"
+                            variant="destructive"
+                            onclick={handleConfirmReject}
+                            disabled={actionInProgress}></lightning-button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Toast -->
+        <template lwc:if={toastMessage}>
+            <div class={toastClass} role="alert">
+                <span class="toast-text">{toastMessage}</span>
+                <button class="toast-close" onclick={dismissToast}>&#x2715;</button>
+            </div>
+        </template>
+
+    </div>
+</template>

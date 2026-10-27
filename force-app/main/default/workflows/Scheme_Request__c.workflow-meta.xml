@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>Admin_Approval</fullName>
+        <field>Admin_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>Admin Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Admin_Reject</fullName>
+        <field>Admin_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>Admin Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Admin_Rejected</fullName>
+        <field>Admin_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>Admin Rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Admin_approved</fullName>
+        <field>Admin_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>Admin approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Field_Update_3</fullName>
+        <field>Status__c</field>
+        <literalValue>Admin</literalValue>
+        <name>Field Update 3</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Final_Approve</fullName>
+        <field>Final_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>Final Approve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Final_rejected</fullName>
+        <field>final_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>Final rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RSMReject_false</fullName>
+        <field>RSM_Reject__c</field>
+        <literalValue>0</literalValue>
+        <name>RSMReject false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RSM_Field</fullName>
+        <field>RSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>RSM Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RSM_Reject</fullName>
+        <field>RSM_Approval__c</field>
+        <literalValue>0</literalValue>
+        <name>RSM Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RSM_Reject1</fullName>
+        <field>RSM_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>RSM Reject1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RSM_aprroved</fullName>
+        <field>RSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>RSM aprroved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>RSM_rejected</fullName>
+        <field>RSM_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>RSM rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Approval_statsu</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Update Approval statsu</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_Approval</fullName>
+        <field>ZSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>ZSM Approval</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_Approval_false</fullName>
+        <field>ZSM_Approval__c</field>
+        <literalValue>0</literalValue>
+        <name>ZSM Approval false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_Approved_status</fullName>
+        <field>Status__c</field>
+        <literalValue>ZSM Approved</literalValue>
+        <name>ZSM Approved status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_Approveds</fullName>
+        <field>ZSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>ZSM Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_REJECT</fullName>
+        <field>ZSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>ZSM REJECT</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_Reject_Data</fullName>
+        <field>ZSM_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>ZSM Reject Data</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_approved</fullName>
+        <field>ZSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>ZSM approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>ZSM_rejected</fullName>
+        <field>ZSM_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>ZSM rejected</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>admin_approved_false</fullName>
+        <field>Admin_Approval__c</field>
+        <literalValue>0</literalValue>
+        <name>admin approved false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>admin_reject_false</fullName>
+        <field>Admin_Reject__c</field>
+        <literalValue>0</literalValue>
+        <name>admin reject false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>final_reject_RSM</fullName>
+        <field>final_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>final reject RSM</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>rejected_approval_status</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>rejected approval status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>rsm_approval_false</fullName>
+        <field>RSM_Approval__c</field>
+        <literalValue>0</literalValue>
+        <name>rsm approval false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>step_1_field</fullName>
+        <field>Status__c</field>
+        <literalValue>ZSM Approved</literalValue>
+        <name>step 1 field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>step_2_field_Update</fullName>
+        <field>Status__c</field>
+        <literalValue>ZSM Approval</literalValue>
+        <name>step 2 field Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Status</fullName>
+        <field>Status__c</field>
+        <literalValue>RSM Approved</literalValue>
+        <name>update Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_approval_fields</fullName>
+        <field>RSM_Approval__c</field>
+        <literalValue>1</literalValue>
+        <name>update approval fields</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_fields_rsm</fullName>
+        <field>RSM_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>update fields rsm</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_reject_field</fullName>
+        <field>ZSM_Reject__c</field>
+        <literalValue>1</literalValue>
+        <name>update reject field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_statsu</fullName>
+        <field>Status__c</field>
+        <literalValue>GM NSM Approved</literalValue>
+        <name>update statsu</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_status_fields</fullName>
+        <field>Approval_Status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>update status fields</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>zsm_checkbox_approval_false</fullName>
+        <field>ZSM_Approval__c</field>
+        <literalValue>0</literalValue>
+        <name>zsm checkbox approval false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>zsm_reject_false</fullName>
+        <field>ZSM_Reject__c</field>
+        <literalValue>0</literalValue>
+        <name>zsm reject false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

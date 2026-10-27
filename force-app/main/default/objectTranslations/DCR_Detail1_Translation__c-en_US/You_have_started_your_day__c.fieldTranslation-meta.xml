@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- You have started your day --></label>
+    <name>You_have_started_your_day__c</name>
+</CustomFieldTranslation>

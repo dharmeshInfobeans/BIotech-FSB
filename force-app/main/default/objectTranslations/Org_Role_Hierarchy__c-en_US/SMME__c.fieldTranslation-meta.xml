@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Senior Manager - Marketing East --></help>
+    <label><!-- SMME --></label>
+    <name>SMME__c</name>
+    <relationshipLabel><!-- Org Role Hierarchies (SMME) --></relationshipLabel>
+</CustomFieldTranslation>

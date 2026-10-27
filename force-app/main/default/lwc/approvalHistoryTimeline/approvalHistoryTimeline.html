@@ -1,0 +1,183 @@
+<template>
+    <!-- Loading state -->
+    <template lwc:if={isLoading}>
+        <div class="loading-wrap">
+            <lightning-spinner alternative-text="Loading history" size="small"></lightning-spinner>
+        </div>
+    </template>
+
+    <!-- Error state -->
+    <template lwc:if={loadError}>
+        <div class="slds-m-around_small">
+            <div class="slds-notify slds-notify_alert slds-theme_error" role="alert">
+                <p>{loadError}</p>
+            </div>
+        </div>
+    </template>
+
+    <!-- Empty state -->
+    <template lwc:if={isEmpty}>
+        <div class="empty-state">
+            <lightning-icon icon-name="utility:clock" size="small" class="slds-m-right_x-small"></lightning-icon>
+            <span>No approval actions recorded yet.</span>
+        </div>
+    </template>
+
+    <!-- Main content -->
+    <template lwc:if={hasEntries}>
+
+        <!-- ── Stats bar ───────────────────────────────────────────────────── -->
+        <div class="stats-bar">
+            <div class="stat-chip">
+                <span class="stat-value">{stats.totalActions}</span>
+                <span class="stat-label">Actions</span>
+            </div>
+            <div class="stat-chip">
+                <span class="stat-value">{stats.totalElapsed}</span>
+                <span class="stat-label">Total Elapsed</span>
+            </div>
+            <div class="stat-chip stat-chip-pending">
+                <span class="stat-value">{stats.pendingDuration}</span>
+                <span class="stat-label">Pending Now</span>
+            </div>
+            <div class="stat-chip">
+                <span class="stat-value">{stats.avgPerStage}</span>
+                <span class="stat-label">Avg per Stage</span>
+            </div>
+        </div>
+
+        <!-- ── Tab toggle ──────────────────────────────────────────────────── -->
+        <div class="tab-bar">
+            <button
+                class={timelineTabClass}
+                onclick={showTimeline}>
+                <lightning-icon icon-name="utility:list" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                Timeline
+            </button>
+            <button
+                class={tableTabClass}
+                onclick={showTable}>
+                <lightning-icon icon-name="utility:table" size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                Table
+            </button>
+            <button class="tab-refresh" onclick={handleRefresh} title="Refresh">
+                <lightning-icon icon-name="utility:refresh" size="x-small"></lightning-icon>
+            </button>
+        </div>
+
+        <!-- ── Timeline view ──────────────────────────────────────────────── -->
+        <template lwc:if={isTimelineView}>
+            <div class="timeline-wrap">
+                <template for:each={entries} for:item="entry">
+                    <div key={entry.entryId} class="timeline-entry">
+
+                        <!-- Connector line + dot -->
+                        <div class="timeline-left">
+                            <div class={entry.dotClass}></div>
+                            <div class="timeline-line"></div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="timeline-content">
+
+                            <!-- Duration chip (time waited before this action) -->
+                            <template lwc:if={entry.durationLabel}>
+                                <div class="duration-chip">{entry.durationLabel}</div>
+                            </template>
+
+                            <!-- Action + stage -->
+                            <div class="entry-header">
+                                <span class="entry-action">{entry.action}</span>
+                                <template lwc:if={entry.stage}>
+                                    <span class="entry-stage">{entry.stage}</span>
+                                </template>
+                            </div>
+
+                            <!-- Approver + date -->
+                            <div class="entry-meta">
+                                <lightning-icon icon-name="utility:user" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                <span>{entry.performedByName}</span>
+                                <span class="meta-sep">·</span>
+                                <lightning-icon icon-name="utility:clock" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                <span>{entry.performedDateLabel}</span>
+                            </div>
+
+                            <!-- Status change pill -->
+                            <template lwc:if={entry.fromStatus}>
+                                <div class="status-change">
+                                    <span class="status-pill pill-from">{entry.fromStatus}</span>
+                                    <lightning-icon icon-name="utility:forward" size="xx-small" class="arrow-icon"></lightning-icon>
+                                    <span class="status-pill pill-to">{entry.toStatus}</span>
+                                </div>
+                            </template>
+
+                            <!-- Comments -->
+                            <template lwc:if={entry.comments}>
+                                <div class="entry-comments">
+                                    <lightning-icon icon-name="utility:comments" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+                                    <span>{entry.comments}</span>
+                                </div>
+                            </template>
+
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- ── Table view ─────────────────────────────────────────────────── -->
+        <template lwc:if={isTableView}>
+            <div class="table-wrap">
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Action</th>
+                            <th>Stage</th>
+                            <th>From Status</th>
+                            <th>To Status</th>
+                            <th>Approver</th>
+                            <th>Date / Time</th>
+                            <th>Wait Time</th>
+                            <th>Comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={entries} for:item="row">
+                            <tr key={row.entryId}>
+                                <td class="col-index">{row.entryIndex}</td>
+                                <td class="col-action">
+                                    <span class={row.dotClass} style="display:inline-block;margin-right:6px;"></span>
+                                    {row.action}
+                                </td>
+                                <td>{row.stage}</td>
+                                <td>
+                                    <template lwc:if={row.fromStatus}>
+                                        <span class="status-pill pill-from">{row.fromStatus}</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template lwc:if={row.toStatus}>
+                                        <span class="status-pill pill-to">{row.toStatus}</span>
+                                    </template>
+                                </td>
+                                <td>{row.performedByName}</td>
+                                <td class="col-date">{row.performedDateLabel}</td>
+                                <td class="col-duration">
+                                    <template lwc:if={row.durationLabel}>
+                                        <span class="duration-chip">{row.durationLabel}</span>
+                                    </template>
+                                    <template lwc:else>
+                                        <span class="col-na">—</span>
+                                    </template>
+                                </td>
+                                <td class="col-comments">{row.comments}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+        </template>
+
+    </template>
+</template>

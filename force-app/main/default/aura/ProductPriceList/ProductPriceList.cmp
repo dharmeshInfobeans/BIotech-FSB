@@ -1,0 +1,374 @@
+<aura:component controller='OrderProductSelectionController'>
+    <aura:attribute name="recordId" type="Id" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:attribute name="pricebookEntries" type="Agreement_Product__c[]" />
+    
+    <aura:attribute name="mouseStart" type="string" />
+    <aura:attribute name="oldWidth" type="string" />
+    
+    <aura:attribute name="selectedProducts" type="Agreement_Product__c[]"/>
+    
+    <aura:attribute name="selectedSortColumn" type="string"/>
+    <aura:attribute name="arrowDirection" type="string"/>
+    <aura:attribute name="sort" type="string"/>
+    <aura:attribute name="sortOrder" type="string"/>
+    <aura:attribute name="hasMorePbeRecord" type="boolean" default="false"/>
+    <aura:attribute name="msgPbeList" type="string" default="No Record to display"/>
+    <aura:attribute name="spinner" type="boolean" default="false"/>
+    
+    <aura:attribute name="isSelectDefaultProducts" type="boolean" default="false"/>
+    
+    <aura:attribute name="productsWithLessStock" type="Agreement_Product__c[]"/>
+    
+    <aura:attribute name="selectedOrderItems" type="list"/>
+    
+    <aura:attribute name="searchProductStr" type="string" />
+    <aura:attribute name="selectedProductCnt" type="Integer" default='0'/>
+    
+    <aura:handler name="selectProductEvent" event="c:ProductSelectionEvent" action="{!c.selectProduct}"/>
+    <aura:handler name="removeProductEvent" event="c:ProductSelectionEvent" action="{!c.removeSelectedItem}"/>
+    
+    <aura:registerEvent name="addProductToQliEvent" type="c:ProductSelectionEvent"/>
+    
+    
+    <aura:handler name="change" value="{!v.selectedOrderItems}" action="{!c.resetPbeList}"/>
+    
+    
+    <aura:attribute name="pageNumber"
+                    type="Integer"
+                    default="1"
+                    description="For pagination, which page of records to display."/>
+    
+    <aura:attribute name="pageSize"
+                    type="Integer"
+                    default="500"
+                    description="For pagination, how many records per page to display."/>
+    
+    <aura:attribute name="scrollCheckIntervalId"
+                    type="String"
+                    description="In the renderer.js, the interval id for periodically checking scroll position. Used when unrendering component to cancel interval check."
+                    access="private"/>
+    
+    
+    <div class="slds-card__body slds-grid slds-grow" id="modal-content-id-1">
+        <div class="slds-grid slds-grid_vertical">
+            <lightning:card title="{!$Label.c.Select_Products}">
+                
+                <aura:set attribute="body">
+                    <div class="slds-p-horizontal_large slds-shrink-none slds-theme_shade">
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label slds-assistive-text" for="searchProduct">{!$Label.c.Search}</label>
+                            <div class="slds-form-element__control">
+                                <div class="slds-combobox_container">
+                                    <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                                        <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right">
+                                            <lightning:input type="search" aura:id="searchProduct" value='{!v.searchProductStr}'
+                                                             label=" " name="search" oncommit="{!c.searchProductItems}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slds-pill_container slds-pill_container_bare">
+                            <div id="listbox-unique-id" role="listbox">
+                                <ul class="slds-listbox" role="presentation">
+                                    <li role="presentation" class="slds-listbox__item">
+                                        <aura:iteration items="{!v.selectedProducts}" var="selectedQli" indexVar='selectedKey'>
+                                            <c:SelectedProductList selectedPbeRec="{!selectedQli}" aura:id="selectedProductListCmp"/>
+                                        </aura:iteration>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="slds-text-title slds-m-top_x-small" aria-live="polite">{!v.selectedProductCnt}&nbsp;{!$Label.c.Item_s_Selected}</div>
+                    </div>
+                </aura:set>   
+                
+                <aura:set attribute="actions">
+                    <lightning:button label="{!$Label.c.Add_Products}" onclick='{!c.addSelectedProductsToQli}'/>
+                    <!--     <lightning:button label="Clear" />  -->
+                </aura:set>
+            </lightning:card>
+            
+            <div class="slds-scrollable slds-grow">
+                <lightning:spinner variant="brand" size="large" aura:id="productListSpinner" 
+                                   class='slds-spinner_container slds-is-fixed'  />
+                
+                <table role="grid" class="slds-table slds-table_fixed-layout slds-table_bordered slds-table_resizable-cols slds-no-row-hover slds-scrollable_none">
+                    
+                    
+                    <thead class="tableRow">
+                        <tr class="slds-line-height_reset" >
+                            <th style="width: 5rem"></th>
+                            <th data-value = 'Product__r.Name' aria-label =" Product Name" style="width:500px" class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col" 
+                                >  <!-- onclick="{!c.sortColumnList}" --> 
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="Name">{!$Label.c.Product_Name}</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Product__r.Dummy_Product_Description__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Product__r.Dummy_Product_Description__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                        
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable" data-value = 'Product__r.Dummy_Product_Description__c' 
+                                     onmousedown="{!c.calculateWidth}" ondrag="{!c.setNewWidth}">
+                                    <label for="cell-resize-handle-238" class="slds-assistive-text">Product__r.Dummy_Product_Description__c</label>
+                                    <lightning:input type="range" label="Number" name="number" aura:id='Product__r.Dummy_Product_Description__c'
+                                                     class="slds-resizable__input slds-assistive-text"  min="100" max="1000" tabindex="-1"  />
+                                    
+                                    <span class="slds-resizable__handle" data-value = 'Product__r.Dummy_Product_Description__c' 
+                                          ondragstart="{!c.start}" ondragend="{!c.end}">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th> 
+                            <!-- added by Bhakti -->
+                            <th data-value = 'Product__r.Category__c' aria-label ="Product Name"  class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col" 
+                                >  <!-- onclick="{!c.sortColumnList}" --> 
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="Name">Category</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Product__r.Category__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Product__r.Category__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                        
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable" data-value = 'Product__r.Category__c' 
+                                     onmousedown="{!c.calculateWidth}" ondrag="{!c.setNewWidth}">
+                                    <label for="cell-resize-handle-238" class="slds-assistive-text">Product__r.Category__c</label>
+                                    <lightning:input type="range" label="Number" name="number" aura:id='Product__r.Category__c'
+                                                     class="slds-resizable__input slds-assistive-text"  min="100" max="1000" tabindex="-1"  />
+                                    
+                                    <span class="slds-resizable__handle" data-value = 'Product__r.Category__c' 
+                                          ondragstart="{!c.start}" ondragend="{!c.end}">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th>  
+                            
+                            <!-- added by Bhakti -->
+                            <th data-value = 'Is_Backup__c' aria-label ="Is Backup"  class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col" 
+                                >  <!-- onclick="{!c.sortColumnList}" --> 
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="Name">Is Backup</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Is_Backup__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Is_Backup__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                        
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable" data-value = 'Is_Backup__c' 
+                                     onmousedown="{!c.calculateWidth}" ondrag="{!c.setNewWidth}">
+                                    <label for="cell-resize-handle-238" class="slds-assistive-text">Is_Backup__c</label>
+                                    <lightning:input type="range" label="Number" name="number" aura:id='Is_Backup__c'
+                                                     class="slds-resizable__input slds-assistive-text"  min="100" max="1000" tabindex="-1"  />
+                                    
+                                    <span class="slds-resizable__handle" data-value = 'Is_Backup__c' 
+                                          ondragstart="{!c.start}" ondragend="{!c.end}">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th>
+                            
+                            
+                            <th aria-label="Product Code" data-value = 'Product__r.Dummy_Product_Code__c' class="slds-is-sortable slds-is-resizable slds-text-title_caps" 
+                                scope="col">  <!-- onclick="{!c.sortColumnList}" -->  
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="Product Code" >{!$Label.c.Product_Code}</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Product__r.Dummy_Product_Code__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Product__r.Dummy_Product_Code__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable" ondragstart="{!c.calculateWidth}" ondragend="{!c.setNewWidth}">
+                                    <label for="cell-resize-handle-238" class="slds-assistive-text">{!$Label.c.Unit_Price}</label>
+                                    
+                                    <lightning:input type="range" label="Number" name="number" aura:id='range_UnitPrice'
+                                                     class="slds-resizable__input slds-assistive-text"  min="100" max="1000" tabindex="-1"  />
+                                    
+                                    <span class="slds-resizable__handle" data-value = 'UnitPrice' 
+                                          >
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th> 
+                            
+                            <th aria-label="Product Family" data-value = 'Product__c.Family__c' 
+                                class="slds-is-sortable slds-is-resizable slds-text-title_caps" scope="col">   <!--onclick="{!c.sortColumnList}" -->   
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="Product Family">{!$Label.c.Division}</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Product__r.Division__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Product__r.Division__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable">
+                                    <label for="cell-resize-handle-241" class="slds-assistive-text">Product Family column width</label>
+                                    <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-241" tabindex="-1" />
+                                    <span class="slds-resizable__handle">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th>
+                            <th aria-label="List Price" data-value = 'UnitPrice' class="slds-is-sortable slds-is-resizable slds-text-title_caps" 
+                                scope="col" >  <!-- onclick="{!c.sortColumnList}" -->
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="List Price">{!$Label.c.Price}</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Price__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Price__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable">
+                                    <label for="cell-resize-handle-240" class="slds-assistive-text">List Price column width</label>
+                                    <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-240" tabindex="-1" />
+                                    <span class="slds-resizable__handle">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th>
+
+                            
+                            <th aria-label="Ideal Stock Required" data-value = 'Ideal_Stock_Required__c' class="slds-is-sortable slds-is-resizable slds-text-title_caps" 
+                                scope="col"> <!--  onclick="{!c.sortColumnList}" --> 
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="List Price">{!$Label.c.Ideal_Stock_Required}</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Ideal_Stock_Required__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Ideal_Stock_Required__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable">
+                                    <label for="cell-resize-handle-240" class="slds-assistive-text">Ideal Stock Required column width</label>
+                                    <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-240" tabindex="-1" />
+                                    <span class="slds-resizable__handle">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th>
+                            
+                            <th aria-label="Difference" data-value = 'Dealer_Stock_Managements__r.Difference__c' class="slds-is-sortable slds-is-resizable slds-text-title_caps" 
+                                scope="col">  <!-- onclick="{!c.sortColumnList}" --> 
+                                <a href="javascript:void(0);" class="slds-th__action slds-text-link_reset" tabindex="-1">
+                                    <span class="slds-assistive-text">Sort </span>
+                                    <span class="slds-truncate" title="List Price">{!$Label.c.Difference}</span>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder =='asc' , v.selectedSortColumn == 'Dealer_Stock_Managements__r.Difference__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowdown" />
+                                    </aura:if>
+                                    
+                                    <aura:if isTrue="{!and(v.sortOrder !='asc' , v.selectedSortColumn == 'Dealer_Stock_Managements__r.Difference__c') }">
+                                        <lightning:icon size="xx-small" iconName="utility:arrowup" />
+                                    </aura:if>
+                                    
+                                    <div class="slds-icon_container">
+                                    </div>
+                                    <span class="slds-assistive-text" aria-live="assertive" aria-atomic="true"></span>
+                                </a>
+                                <div class="slds-resizable">
+                                    <label for="cell-resize-handle-240" class="slds-assistive-text">Difference column width</label>
+                                    <input type="range" min="20" max="1000" class="slds-resizable__input slds-assistive-text" id="cell-resize-handle-240" tabindex="-1" />
+                                    <span class="slds-resizable__handle">
+                                        <span class="slds-resizable__divider"></span>
+                                    </span>
+                                </div>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{!v.pricebookEntries}" var="pbe">
+                            <aura:if isTrue='{!!pbe.IsHide}'>
+                                <c:ProductItem pbeRec="{!pbe}" selectedPbeRecList="{!v.selectedProducts}" aura:id="productListItemCmp"/>
+                            </aura:if>
+                        </aura:iteration>
+                        <tr>
+                            <td colSpan = '7' style='height:50px; text-align:center;'> 
+                                
+                                <aura:if isTrue="{!v.spinner}">
+                                    <div role="status" id='spinnerDiv' class="slds-spinner slds-spinner_medium">
+                                        <span class="slds-assistive-text">{!$Label.c.Loading}</span>
+                                        <div class="slds-spinner__dot-a"></div>
+                                        <div class="slds-spinner__dot-b"></div>
+                                    </div>
+                                </aura:if>
+                                
+                                <aura:if isTrue="{!!v.hasMorePbeRecord}">
+                                    {!v.msgPbeList}
+                                </aura:if>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

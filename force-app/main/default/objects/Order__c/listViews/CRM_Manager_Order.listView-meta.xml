@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CRM_Manager_Order</fullName>
+    <filterScope>Queue</filterScope>
+    <label>CRM Manager</label>
+    <queue>CRM_Manager</queue>
+    <sharedTo>
+        <allInternalUsers></allInternalUsers>
+    </sharedTo>
+</ListView>

@@ -1,0 +1,72 @@
+.timeline {
+    position: relative;
+    margin-left: 12px;
+    padding-left: 20px;
+    border-left: 2px solid #d8dde6;
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.timeline-marker {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #d8dde6;
+    position: absolute;
+    left: -25px;
+    top: 0;
+}
+
+.timeline-marker.success {
+    background-color: #5cb85c;
+}
+
+.timeline-marker.nosuccess {
+    background-color: #d9534f;
+}
+
+.timeline-marker.bydefaultSet {
+    background-color: yellow;
+}
+
+
+.timeline-content {
+    padding-left: 10px;
+}
+
+.timeline-title {
+    font-weight: bold;
+}
+
+.hover-comment {
+    display: none;
+    position: absolute;
+    left: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+}
+
+.timeline-marker.success:hover + .timeline-content .hover-comment,
+.timeline-content .hover-comment:hover {
+    display: block;
+}
+.headerController{
+    padding-left: 340px;
+    margin-top: -36px;
+}
+.timelineNew {
+    position: relative;
+    margin-left: 120px;
+    padding-left: 20px;
+   
+}
+.timeline-marker.nosuccess:hover + .timeline-content .hover-comment,
+.timeline-content .hover-comment:hover {
+    display: block;
+}

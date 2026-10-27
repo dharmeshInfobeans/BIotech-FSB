@@ -1,0 +1,694 @@
+<apex:page applyHtmlTag="false"
+           showHeader="false"
+           renderAs="pdf"
+           standardController="Master_Agreement__c"
+           extensions="AgreementVFExtension"
+           >
+    <html>
+        <head>
+            <style>
+                @page {
+                size: A4;
+                margin-top: 4cm;
+                margin-bottom: 2cm;
+                margin-left: 1.5cm;
+                margin-right: 1.5cm;
+                
+                @top-center {
+                content: element(header);
+                }
+                @bottom-left {
+                content: element(footer);
+                }
+                }
+                
+                div.header {
+                position: running(header);
+                text-align: center;
+                font-weight: bold;
+                font-size: 14px;
+                height: 100px;
+                }
+                
+                div.footer {
+                display: block;
+                position: running(footer);
+                font-size: 10px;
+                }
+                
+                .pagenumber:before {
+                content: counter(page);
+                }
+                
+                .pagecount:before {
+                content: counter(pages);
+                }
+                
+                .header-table {
+                width: 100%;
+                border-bottom: 2px solid black;
+                }
+                
+                .header-table td {
+                padding: 5px;
+                font-size: 12px;
+                font-weight: bold;
+                }
+                
+                .logo-container {
+                width: 120px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+                
+                .logo {
+                max-width: 100%;
+                max-height: 100%;
+                }
+                
+                .content {
+                margin-top: 150px;
+                font-family: "Times New Roman", Times, serif;
+                font-size: 14px;
+                text-align: justify;
+                line-height: 1.5;
+                }
+                
+                .section-title {
+                font-weight: bold;
+                font-size: 14px;
+                margin-top: 10px;
+                }
+                
+                .section-content {
+                margin-left: 15px;
+                }
+                
+                .bold {
+                font-weight: bold;
+                }
+                
+                .lowercase {
+                text-transform: lowercase;
+                }
+                
+                .rich-text-content {
+                font-family: "Times New Roman", Times, serif !important;
+                font-size: 14px !important;
+                line-height: 1.5;
+                text-align: justify;
+                }
+                
+                /* Scoped styling within .nested-list-container */
+                .nested-list-container {
+                counter-reset: main-counter;
+                }
+                
+                .nested-list-container ol {
+                counter-reset: sub-counter;
+                margin-left: 20px; /* Consistent indentation for all levels */
+                padding-left: 0;
+                }
+                
+                .nested-list-container ol > li {
+                counter-increment: main-counter;
+                list-style-type: none;
+                margin-top: 12px; /* Adjusted to match spacing between divs */
+                line-height: 1.5;
+                }
+                
+                .nested-list-container ol > li::before {
+                content: counter(main-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 2 */
+                .nested-list-container ol ol {
+                counter-reset: sub-counter;
+                }
+                
+                .nested-list-container ol ol > li {
+                counter-increment: sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 3 */
+                .nested-list-container ol ol ol {
+                counter-reset: sub-sub-counter;
+                }
+                
+                .nested-list-container ol ol ol > li {
+                counter-increment: sub-sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 4 */
+                .nested-list-container ol ol ol ol {
+                counter-reset: sub-sub-sub-counter;
+                }
+                
+                .nested-list-container ol ol ol ol > li {
+                counter-increment: sub-sub-sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) "." counter(sub-sub-sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 5 */
+                .nested-list-container ol ol ol ol ol {
+                counter-reset: sub-sub-sub-sub-counter;
+                }
+                
+                .nested-list-container ol ol ol ol ol > li {
+                counter-increment: sub-sub-sub-sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol ol ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) "." counter(sub-sub-sub-counter) "." counter(sub-sub-sub-sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                .no-break {
+                page-break-inside: avoid;
+                display: inline-block;
+                width: 100%;
+                } 
+                ql-indent-1 { margin-left: 20px; }
+                .ql-indent-2 { margin-left: 40px; }
+                .ql-indent-3 { margin-left: 60px; }
+                .ql-indent-4 { margin-left: 80px; }
+            </style>
+        </head>
+        <body>
+            
+            <apex:outputPanel rendered="{!IsmessagePresent}" layout="none">
+                <apex:pageMessages />
+                <h2 style="color: red; text-align: center;">{!message}</h2>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!NOT(IsmessagePresent)}" layout="none">
+                <!-- Your
+
+<!-- HEADER -->
+                <div class="header">
+                    <table class="header-table">
+                        <!-- First Row: Title -->
+                        <tr>
+                            <td colspan="2" style="text-align: center; font-size: 16px;">DISTRIBUTION AGREEMENT</td>
+                        </tr>
+                        <!-- Second Row: Logo -->
+                        <tr>
+                            <td rowspan="3" style="width: 20%;" class="logo-container">
+                                <apex:image url="{!URLFOR($Resource.biotech_Logo)}" 
+                                            styleClass="logo"
+                                            width="96px"
+                                            height="48px"
+                                            alt="Biotech Logo"/>
+                            </td>
+                            <td style="text-align: right;">
+                                <strong>Document No.:</strong> {!Master_Agreement__c.Document_No__c}
+                            </td>
+                        </tr>
+                        <!-- Third Row: Version Number -->
+                        <tr>
+                            <td style="text-align: right;">
+                                <strong>Agreement No.:</strong> {!Master_Agreement__c.Agreement_Number__c}
+                            </td>
+                            
+                        </tr>
+                        <!-- Fourth Row: Document No. -->
+                        <tr>
+                            <td style="text-align: right;">
+                                <strong>Version No.:</strong> {!Master_Agreement__c.Version__c}
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <!-- FOOTER -->
+                <div class="footer">
+                    
+                      <div style="color: White; font-size: 8px; text-align: left;">\i2\</div>
+                    <hr />
+                    <div>Page <span class="pagenumber"/> of <span class="pagecount"/></div>
+                </div>
+                <!-- MAIN CONTENT -->
+                <div class="content">
+                    <div class="rich-text-content">                       
+                        <p>
+                            This <b>Distribution Agreement</b> is entered into on 
+                            <b>{!Master_Agreement__c.Agreement_StartDate_mmmm_format__c}</b> 
+                            and effective from <b>{!Master_Agreement__c.Agreement_StartDate_mmmm_format__c}</b>.
+                        </p>
+                        
+                        <p><b>BETWEEN:</b></p>
+                        <p>
+                            <b>{!Master_Agreement__c.Agreement_Signed_With__c}</b>, a Company incorporated under the Swiss Companies Act 
+                            having its Registered Office at 
+                            <b>{!SignedWithBranchAddress}</b> 
+                            hereinafter, for the sake of brevity, referred to as <b>“Biotech”</b>
+                            <!--<b>“{!Master_Agreement__c.Agreement_Signed_With__c}”</b>, -->
+                            which expression, unless repugnant to the context, shall include its successors in title and permitted assigns, 
+                            of the <b>ONE PART</b>.
+                        </p>
+                        
+                        <p><b>AND</b></p>
+                        <p>
+                            <b>{!Master_Agreement__c.Account__r.Name}</b> 
+                            having its Registered Office at 
+                            <span class="lowercase">
+                                {!Master_Agreement__c.Account__r.BillingStreet}, 
+                                {!Master_Agreement__c.Account__r.BillingCity}, 
+                                {!Master_Agreement__c.Account__r.BillingState}, 
+                                {!Master_Agreement__c.Account__r.BillingCountry}
+                            </span> 
+                            hereinafter, for the sake of brevity, referred to as <b>“the Distributor”</b>, 
+                            which expression, unless repugnant to the context, shall include its successors in title, 
+                            of the <b>OTHER PART</b>.
+                        </p>
+                        <div style="{!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                            
+                            
+                            
+                            <p><b>AND</b></p>
+                            <p>
+                                <b>{!Master_Agreement__c.Notifying_Party_Company_Name__c}</b> 
+                                having its Registered Office at 
+                                <span class="lowercase">
+                                    {!Master_Agreement__c.Notifying_Party_Address__c}, 
+                                    
+                                </span> 
+                                hereinafter, for the sake of brevity, referred to as <b>“the Notifying Party”</b> 
+                            </p>
+                        </div>
+                        <p>
+                            Hereinafter collectively referred to as <b>"Parties"</b> and individually as <b>"Party"</b>.
+                            
+                        </p>
+                        
+                        <p>
+                            This Agreement includes required content and defines responsibilities between a 
+                            manufacturer and a distributor of medical devices in compliance with 
+                            <b>Medical Device Regulation, MDR (EU) 2017/745</b> and <b>ISO 13485:2016</b>.
+                        </p>
+                    </div>
+                    
+                    
+                    <!-- RICH CONTENT -->        
+                    <div name="clause">  
+                        
+                        <div class="rich-text-content" >
+                            <apex:outputText escape="false" value="{!Recitals}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 0;page-break-before: always;">
+                            <apex:outputText escape="false" value="{!Definations}"/>
+                        </div>
+                        
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 1;">
+                            <apex:outputText escape="false" value="{!APPOINTMENTOFDISTRIBUTOR}"/>
+                        </div>  
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 2;">
+                            <apex:outputText escape="false" value="{!MARKETING}"/>
+                        </div>  
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 3;page-break-before: always;">
+                            <apex:outputText escape="false" value="{!ANNUALMINIMUMSHIPMENTS}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 4;">
+                            <apex:outputText escape="false" value="{!PURCHASESANDSUPPLYOFPRODUCT}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 5;">
+                            <apex:outputText escape="false" value="{!PAYMENTPROCEDURESTESTINGOFPRODUCTS}"/>
+                        </div>
+                        
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 7;page-break-before: always;">
+                            <apex:outputText escape="false" value="{!Cluses8}"/>
+                        </div>
+                        
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 8;">
+                            <apex:outputText escape="false" value="{!WARRANTIESANDINDEMNIFICATIONS}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 9;">
+                            <apex:outputText escape="false" value="{!PRODUCTRECEIPTTRACEABILITYANDSTORAG}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 10;">
+                            <apex:outputText escape="false" value="{!FORCEMAJEURECOMPLIANCEWITHLAWS}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 12;">
+                            <apex:outputText escape="false" value="{!TERMSANDTERMINATION}"/>
+                        </div>
+                        
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 13;">
+                            <apex:outputText escape="false" value="{!BRAND}"/> 
+                            <div >
+                                <!--style="margin-left: 1.5cm;"-->
+                                <apex:outputPanel rendered="{!brandNames.size>0}">
+                                    
+                                    <apex:pageBlock >
+                                        <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif; font-size: 14px;">
+                                            <thead>
+                                                <tr style="page-break-inside: avoid;">
+                                                    <th style="width: 10%; border: 1px solid #000; padding: 8px; background-color: #f2f2f2; text-align: center;">Sr. No.</th>
+                                                    <th style="width: 20%; border: 1px solid #000; padding: 8px; background-color: #f2f2f2; text-align: left;">Brand</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <apex:variable var="rowIndex" value="{!0}"/>
+                                                <apex:repeat value="{!brandNames}" var="brand">
+                                                    <apex:variable var="rowIndex" value="{!rowIndex + 1}"/>
+                                                    <tr style="page-break-inside: avoid;">
+                                                        <td style="border: 1px solid #000; padding: 8px; text-align: center; font-weight: bold;">{!rowIndex}</td>
+                                                        <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!brand}</td>
+                                                    </tr>
+                                                </apex:repeat>
+                                            </tbody>
+                                        </table>
+                                    </apex:pageBlock>
+                                </apex:outputPanel>
+                            </div>
+                        </div>
+                        
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 14;">
+                            <apex:outputText escape="false" value="{!CONFIDENTIALITYPUBLICITYDISPUTERE}"/>
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 16;">
+                            <apex:outputText escape="false" value="{!MISCELLANEOUS}"/>
+                        </div>
+                        
+                        <div name="Manufacturing details"  >
+                            <apex:outputPanel rendered="{!agreementProducts.size>0}">
+                                
+                                <apex:pageBlock >
+                                    <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif !important; font-size: 14px;">
+                                        <thead>
+                                            <tr style="page-break-inside: avoid;">
+                                                <th style="width: 10%; border: 1px solid #000; padding: 8px; background-color: #f2f2f2; text-align: center;">Sr. No.</th>
+                                                <th style="width: 20%; border: 1px solid #000; padding: 8px; background-color: #f2f2f2; text-align: left;">Product Name</th>
+                                                <th style="width: 60%; border: 1px solid #000; padding: 8px; background-color: #f2f2f2; text-align: left;">Manufacturing Site</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <apex:variable var="rowIndex" value="{!0}"/>
+                                            <apex:repeat value="{!agreementProducts}" var="ap">
+                                                <apex:variable var="rowIndex" value="{!rowIndex + 1}"/>
+                                                <tr style="page-break-inside: avoid;">
+                                                    <td style="border: 1px solid #000; padding: 8px; text-align: center; font-weight: bold;">{!rowIndex}</td>
+                                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Product__r.Name}</td>
+                                                    <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Product__r.Plant__r.Manufacturing_Site__c}</td>
+                                                </tr>
+                                            </apex:repeat>
+                                        </tbody>
+                                    </table>
+                                </apex:pageBlock>
+                            </apex:outputPanel>
+                            
+                            
+                        </div>
+                        <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 17;">
+                            <apex:outputText escape="false" value="{!REMARK1}"/>
+                        </div>
+                    </div>
+                    
+                    <!-- Attendee CONTENT -->
+                    
+                    <apex:outputPanel layout="block" style="width: 100%; margin: 20px auto;"> 
+                        <!-- Single Table for Biotech & Distributor Information -->
+                        <div style="margin-bottom: 20px;" class="no-break">
+                            <apex:pageBlock title="">
+                                <table style="width: 100%; border-collapse: collapse; table-layout: auto;">
+                                    <tr>
+                                        <th style="padding: 5px; text-align: left; width: 10%; border-bottom: 1px solid black;">Details</th>
+                                        <th style="padding: 5px; text-align: left; width: 40%; border-bottom: 1px solid black;">
+                                            {!Master_Agreement__c.Agreement_Signed_With__c}
+                                        </th>
+                                        <th style="padding: 10px; text-align: left; width: 50%; border-bottom: 1px solid black;border-left: 1px solid black;">
+                                            {!Master_Agreement__c.Account__r.Name}
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th style="padding: 5px;">Attention</th>
+                                        <td style="padding: 5px; word-wrap: break-word; white-space: normal;">Mr. Mehul Asnani</td>
+                                        <td style="padding: 5px; word-wrap: break-word; white-space: normal;border-left: 1px solid black;">
+                                            {!Master_Agreement__c.Distributer_Contact_Name__c}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="padding: 5px;">Address</th>
+                                        <td style="padding: 5px;">{!SignedWithBranchAddress}</td>
+                                        <td style="padding: 5px;border-left: 1px solid black;">{!Master_Agreement__c.Distributer_Address__c}</td>
+                                    </tr>
+                                    <tr>
+                                        <th style="padding: 5px;">Email Id</th>
+                                        <td style="padding: 5px;">mehulasnani@biotechhealthcare.com</td>
+                                        <td style="padding: 5px;border-left: 1px solid black;">
+                                            <a href="mailto:{!Master_Agreement__c.Distributer_Email__c}">
+                                                {!Master_Agreement__c.Distributer_Email__c}
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th style="padding: 5px;">Ph. No.</th>
+                                        <td style="padding: 5px;"></td>
+                                        <td style="padding: 5px;border-left: 1px solid black;">{!Master_Agreement__c.Distributer_phone_no__c}</td>
+                                    </tr>
+                                </table>
+                            </apex:pageBlock>
+                        </div>
+                        
+                        <!-- Agreement Statement -->
+                        <div style="margin-top: 20px;" class="no-break">
+                            <apex:pageBlock title="">
+                                <p style="padding: 10px;">IN WITNESS WHEREOF, the Parties have caused this Agreement to be executed by their duly authorized representatives as of the day and year first above written.</p>
+                            </apex:pageBlock>
+                        </div>
+                        
+                        <!-- Signature Section -->
+                        <div style="margin-top: 20px;" class="no-break"> <!-- Applied no-break only to the signature section -->
+                            <apex:pageBlock >
+                                <table style="width: 100%; border-collapse: collapse; table-layout: fixed;">
+                                    <tr>
+                                        <th style="padding: 8px; width: 33%; text-align: left;">For {!Master_Agreement__c.Agreement_Signed_With__c}</th>
+                                        <th style="padding: 8px; width: 33%; text-align: left;">For {!Master_Agreement__c.Account__r.Name}</th>
+                                        <th style="padding: 8px; width: 34%; text-align: left; 
+                                                   {!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                                            For {!Master_Agreement__c.Notifying_Party_Company_Name__c}
+                                        </th>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="padding: 8px; height: 80px; color: #fff;">\s3\</td>
+                                        <td style="padding: 8px; height: 80px; color: #fff;">\s1\</td>
+                                        <td style="padding: 8px; height: 80px; color: #fff; 
+                                                   {!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                                             \s3\
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 8px;"><b>Mr. Mehul Asnani</b></td>
+                                        <td style="padding: 8px;"><b>{!Master_Agreement__c.Distributer_Contact_Name__c}</b></td>
+                                        <td style="padding: 8px; 
+                                                   {!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                                            <b>{!Master_Agreement__c.Notifying_Party_Name__c}</b>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="padding: 8px;">Founder &amp; President</td>
+                                        <td style="padding: 8px;">{!Master_Agreement__c.Distributer_Contact_Designation__c}</td>
+                                        <td style="padding: 8px; 
+                                                   {!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                                            {!Master_Agreement__c.Notifying_Party_Designation__c}
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="padding: 8px; height: 50px;"></td>
+                                        <td style="padding: 8px; height: 50px;"></td>
+                                        <td style="padding: 8px; height: 50px; 
+                                                   {!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                                            
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <th style="padding: 10px; text-align: left;">
+                                            <div style="border-top: 1px solid black; width: 100px; margin-bottom: 5px;"></div>Witness
+                                        </th>
+                                        <th style="padding: 10px; text-align: left;">
+                                            <div style="border-top: 1px solid black; width: 100px; margin-bottom: 5px;"></div>Witness
+                                        </th>
+                                        <th style="padding: 10px; text-align: left; 
+                                                   {!IF(NOT(Master_Agreement__c.Show_Notifying_Party_Details__c), 'display:none;', '')}">
+                                            <div style="border-top: 1px solid black; width: 100px; margin-bottom: 5px;"></div>Witness
+                                        </th>
+                                    </tr>
+                                </table>
+                            </apex:pageBlock>
+                        </div>
+                        
+                    </apex:outputPanel>
+                    
+                    
+                    <!-- ANNEXURE “A”-->
+                    <div style="page-break-before: always;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">ANNEXURE “A”</h3>
+                        <h3 style="text-align: center; font-weight: bold; margin-bottom: 10px;">PRODUCTS</h3>
+                        <apex:outputPanel rendered="{!agreementProducts.size>0}">
+                            
+                            <apex:pageBlock >
+                                <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif !important; font-size: 14px;">
+                                    <thead>
+                                        <tr style="page-break-inside: avoid; background-color: #99ccff; color: black;">
+                                            <th style="width: 20%; border: 1px solid #000; padding: 8px; text-align: left;">Generic Name.</th>
+                                            <th style="width: 30%; border: 1px solid #000; padding: 8px; text-align: left;">Model Number</th>
+                                            <th style="width: 15%; border: 1px solid #000; padding: 8px; text-align: left;">Category</th>
+                                            <th style="width: 35%; border: 1px solid #000; padding: 8px; text-align: left;">Port of Loading</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:variable var="rowIndex" value="{!0}"/>
+                                        <apex:repeat value="{!agreementProducts}" var="ap">
+                                            <apex:variable var="rowIndex" value="{!rowIndex + 1}"/>
+                                            <tr style="page-break-inside: avoid;">
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left; font-weight: bold;">{!ap.Product__r.Generic_Name__c}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!productVSModelNames[ap.Product__r.Name]}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Product__r.Category__c}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Product__r.plant__r.Port_of_Loading__c}</td>
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                        <div class="rich-text-content " >
+                            <apex:outputText escape="false" value="{!ANNEXUREA}"/>
+                        </div>
+                    </div>
+                    
+                    <!-- ANNEXURE “B”-->
+                    <div style="page-break-before: always;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">ANNEXURE “B”</h3>
+                        <h3 style="text-align: center; font-weight: bold; margin-bottom: 10px;">TERRITORY</h3>
+                        
+                        <div class="rich-text-content " >
+                            <apex:outputText escape="false" value="{!ANNEXUREB}"/>
+                        </div>
+                    </div>
+                    
+                    <!-- ANNEXURE “C”-->
+                    <div style="page-break-before: always;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">ANNEXURE “C”</h3>
+                        <div class="rich-text-content " >
+                            <apex:outputText escape="false" value="{!ANNEXUREC}"/>
+                        </div>
+                        
+                    </div>
+                    
+                    <!-- ANNEXURE “D-->
+                    <div style="page-break-before: always;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">ANNEXURE “D”</h3>
+                        <h3 style="text-align: center; font-weight: bold; margin-bottom: 10px;">PRICE LIST FOR THE PRODUCTS</h3>
+                        <apex:outputPanel rendered="{!agreementProducts.size>0}">
+                            
+                            <apex:pageBlock >
+                                <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif !important; font-size: 14px;">
+                                    <thead>
+                                        <tr style="page-break-inside: avoid; background-color: #99ccff; color: black;">
+                                            <th style="width: 25%; border: 1px solid #000; padding: 8px; text-align: left;">Product</th>
+                                            <th style="width: 10%; border: 1px solid #000; padding: 8px; text-align: center;">Price ({!Master_Agreement__c.CurrencyIsoCode})</th>
+                                            <th style="width: 32%; border: 1px solid #000; padding: 8px; text-align: center;">FOC(%)</th>
+                                            <th style="width: 8%; border: 1px solid #000; padding: 8px; text-align: left;">Incoterm</th>
+                                            <th style="width: 25%; border: 1px solid #000; padding: 8px; text-align: left;">Payment Term</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <apex:variable var="rowIndex" value="{!0}"/>
+                                        <apex:repeat value="{!agreementProducts}" var="ap">
+                                            <apex:variable var="rowIndex" value="{!rowIndex + 1}"/>
+                                            <tr style="page-break-inside: avoid;">
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left; font-weight: bold;">{!ap.Product__r.Name}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!ap.Price__c}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!ap.FOC_Text__c}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Incoterms__c}</td>
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!paymentTermApiNameVsLabel[ap.Payment_Terms_options__c]}</td>
+                                                
+                                            </tr>
+                                        </apex:repeat>
+                                    </tbody>
+                                </table>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                        
+                        
+                    </div>
+                    
+                    <!-- ANNEXURE “E”-->
+                    <div style="page-break-before: always;">
+                        <h3 style="text-align: center; margin-bottom: 15px;">ANNEXURE “E”</h3>
+                        <h3 style="text-align: center; font-weight: bold; margin-bottom: 10px;">BUSINESS PLAN</h3>
+                        <apex:outputPanel rendered="{!IsTergetPresent}">
+                            
+                            <apex:pageBlock >
+                                <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif !important; font-size: 14px;">
+                                    
+                                    <!-- Header Row 1: Product & Years -->
+                                    <tr style="page-break-inside: avoid; background-color: #99ccff; color: black;">
+                                        <th style="border: 1px solid #000; padding: 8px; text-align: left;" rowspan="2">Product Name</th>
+                                        <th style="border: 1px solid #000; padding: 8px; text-align: left;" rowspan="2">Product Price ({!Master_Agreement__c.CurrencyIsoCode})</th>
+                                        <apex:repeat value="{!allYears}" var="year">
+                                            <th style="border: 1px solid #000; padding: 8px; text-align: center;" colspan="2">{!year}</th>
+                                        </apex:repeat>
+                                    </tr>
+                                    <!-- Header Row 2: Target Quantity & Target Value -->
+                                    <tr style="page-break-inside: avoid; background-color: #99ccff; color: black;">
+                                        <apex:repeat value="{!allYears}" var="year">
+                                            <th style="border: 1px solid #000; padding: 8px; text-align: center;">Target Qty</th>
+                                            <th style="border: 1px solid #000; padding: 8px; text-align: center;">Target Value</th>
+                                        </apex:repeat>
+                                    </tr>
+                                    <!-- Data Rows -->
+                                    <apex:repeat value="{!productNames}" var="product">
+                                        <tr style="page-break-inside: avoid;">
+                                            <td style="border: 1px solid #000; padding: 8px; text-align: left; font-weight: bold;">{!product}</td>
+                                            <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!productPrice[product]}</td>
+                                            
+                                            <apex:repeat value="{!allYears}" var="year">
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!productData[product][year][0]}</td> 
+                                                <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!productData[product][year][1]}</td>
+                                            </apex:repeat>
+                                        </tr>
+                                    </apex:repeat>
+                                    <!-- Total Row -->
+                                    <tr style="background-color: #f3f3f3; font-weight: bold;">
+                                        <td colspan="2" style="padding: 8px; page-break-inside: avoid;border: 1px solid #000; background-color: #99ccff; color: black;">Total</td>
+                                        <apex:repeat value="{!allYears}" var="year">
+                                            <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!totalQuantityByYear[year]}</td>
+                                            <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!totalValueByYear[year]}</td>
+                                        </apex:repeat>
+                                    </tr>
+                                </table>
+                            </apex:pageBlock>
+                        </apex:outputPanel>
+                    </div>
+                    
+                </div>
+            </apex:outputPanel>
+        </body>
+    </html>
+</apex:page>

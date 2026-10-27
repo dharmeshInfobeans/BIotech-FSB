@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SPPowerMin_should_Less_than_SPPowerMin1</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF((Spherical_Power_Minimum__c &gt;Spherical_Power_Minimum1__c), true, false)</errorConditionFormula>
+    <errorDisplayField>Spherical_Power_Minimum__c</errorDisplayField>
+    <errorMessage>&quot;Spherical Power Minimum&quot; should be lesser than &quot;Spherical Power Minimum1&quot;.</errorMessage>
+</ValidationRule>

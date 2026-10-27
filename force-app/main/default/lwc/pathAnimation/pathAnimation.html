@@ -1,0 +1,13 @@
+<template>
+    <div class="path-container">
+        <!-- Replace the input with a dynamic approach in real use -->
+        <lightning-input type="text" label="Status" value={status} onchange={handleStatusChange}></lightning-input>
+
+        <!-- Animation elements -->
+        <div class="animation-container" if:true={showAnimation}>
+            <div class="heart">💖</div>
+            <div class="balloon">🎈</div>
+            <!-- You can add more elements here -->
+        </div>
+    </div>
+</template>

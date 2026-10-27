@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Active__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Deselect &apos;IsActive&apos; only if an amended agreement is already approved and you are activating a new agreement. Do not change this checkbox randomly.</inlineHelpText>
+    <label>Is Active ?</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

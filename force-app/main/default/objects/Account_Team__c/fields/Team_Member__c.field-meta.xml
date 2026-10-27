@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Team_Member__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Team Member</label>
+    <lookupFilter>
+        <active>false</active>
+        <booleanFilter>(1 AND 2) OR 3 OR 4</booleanFilter>
+        <filterItems>
+            <field>User.UserType</field>
+            <operation>equals</operation>
+            <valueField>$User.User_Type__c</valueField>
+        </filterItems>
+        <filterItems>
+            <field>User.Employee_Code__c</field>
+            <operation>notEqual</operation>
+            <value>D00001</value>
+        </filterItems>
+        <filterItems>
+            <field>User.L1_Manager__c</field>
+            <operation>equals</operation>
+            <value>Current User: User ID</value>
+        </filterItems>
+        <filterItems>
+            <field>User.L2Manager__c</field>
+            <operation>equals</operation>
+            <value>Current User: User ID</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Account_Team</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

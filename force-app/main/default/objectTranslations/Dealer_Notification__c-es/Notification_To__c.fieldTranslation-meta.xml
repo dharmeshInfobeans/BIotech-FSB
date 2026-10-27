@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Notification To --></label>
+    <name>Notification_To__c</name>
+    <picklistValues>
+        <masterLabel>All Dealers</masterLabel>
+        <translation><!-- All Dealers --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Specific Dealer</masterLabel>
+        <translation><!-- Specific Dealer --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

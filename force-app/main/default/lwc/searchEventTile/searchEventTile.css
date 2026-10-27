@@ -1,0 +1,39 @@
+.login-container {
+    /* height: 125px;
+    padding: 10px;
+    border-radius: 5px;
+    background: white;
+    position: relative;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.5); */
+ }
+
+ .profile-img {
+    height: 55px;
+    width: 55px;
+    background-size: cover;
+    background-position: 50%;
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    left: -15px;
+    border-radius: 50%;
+    line-height: 60px;
+    text-align: center;
+    font-size: 25px;
+    background-color: #1589ee;
+  }
+
+  h1{
+    font-family: 'Sriracha', arial;
+    text-align: center;
+    color: black;
+  }
+  .description{
+    margin-top: 4px;
+  }
+
+  .textBreak{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }

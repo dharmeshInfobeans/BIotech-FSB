@@ -1,0 +1,278 @@
+<apex:component controller="PFI_SC_AttachmentCntrlr" access="global">
+<apex:attribute name="orderObjId" description="order id" type="Id" assignTo="{!orderRecordId}" access="global"/>
+   <html>
+      <head>
+         <style>
+             .amt_cls_char{
+                 border: 1px solid black;
+                 width:100%;
+                 margin-top:-18px;
+             }
+
+
+            .Banker_CLS {
+                font-family: arial, sans-serif;
+                font-size: 14px;
+                width: 100%;
+
+            }
+            .cls_banker {
+                text-align: left;
+                padding: 3px;
+               word-spacing: 1px;
+               white-space: -moz-pre-wrap;
+            }
+            .FOB1 {
+                position:relative;
+                font-family: arial, sans-serif;
+                font-size: 14px;
+                margin-left:150px;
+                width: auto;
+            }
+            .cls_fob1 {
+                text-align: left;
+                padding: 3px;
+            }
+            .OuterDiv{
+                border: 1px solid black;
+            }
+            .product_table {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                text-align: center;
+            }
+             @page {
+                border:1px solid black;
+                   @bottom-left {
+                        content: element(footer);
+
+                    }
+                }
+                div.footer {
+                    position: running(footer);
+                    width: 100%;
+
+
+                }
+         </style>
+      </head>
+      <body>
+    <apex:outputText value="{!fetchData}"></apex:outputText>
+         <div class="OuterDiv">
+            <table border="1" style="border:1px solid black;" cellspacing="0" cellpadding="9" width="100%" >
+               <tr>
+                  <td colspan="3" style="border:0 solid white; border-bottom: 1px solid black;">
+                       <div style="font-size: 25px;font-weight: 600;width:100%;display:{!If(bankDetails.Beneficiary_Name__c == 'MOSS VISION INC LIMITED' ,'None','')}">
+                        <center>{!bankDetails.Beneficiary_Name__c}</center>
+                     </div>
+                     <div style="margin-left:-45px;font-size: 25px;font-weight: 600;width:100%;display:{!If(bankDetails.Beneficiary_Name__c == 'MOSS VISION INC LIMITED' ,'','None')}">
+                        <center>{!bankDetails.Beneficiary_Name__c}</center>
+                     </div>
+                     <div style="font-size: 18px;width:70%;text-align:center;margin-left:50px">
+                        <center>{!bankDetails.Address__c}</center>
+                     </div>
+                  </td>
+                    <td  style="border:0 solid white;border-bottom: 1px solid black;display:{!If(bankDetails.Beneficiary_Name__c == 'MOSS VISION INC LIMITED' ,'','None')}">
+                     <span ></span>
+                  </td>
+                  <td  style="border:0 solid white;border-bottom: 1px solid black;display:{!If(bankDetails.Beneficiary_Name__c == 'MOSS VISION INC LIMITED' ,'None','')}">
+                     <img src="{!$Resource.Biotech_logo}" style="width: 170px;height:170px margin-left: -50px;"/>
+                  </td>
+               </tr>
+               <tr>
+                  <th colspan="9" style="border-bottom:1px solid black;width:100%;border-right: 0px;">
+                     <center>Proforma Invoice</center>
+                  </th>
+               </tr>
+               <tr style="text-align: -webkit-center;">
+                  <td rowspan="2" height="100" width="50%">CONSIGNEE <div>
+                      {!orderObj.Consignee_Name__c}
+                     </div>
+                       <div>
+                        {!orderObj.Consignee_Street__c}
+                     </div>
+                     <div>
+                       {!orderObj.Consignee_Zip_Postal_Code__c}  {!orderObj.Consignee_City__c}
+                     </div>
+                     <div>
+                       {!orderObj.Consignee_State_Province__c}
+                      </div>
+                     <div>
+                        {!orderObj.Consignee_Country__c}
+                     </div>
+                     <div>
+                        Tel:{!orderObj.Telephone__c} Fax: {!orderObj.Fax__c}
+                     </div>
+               </td>
+                  <td colspan="2" height="80" width="25%"> <div style="text-align: center;" >
+                           Proforma Invoice No. <div>
+                         {!orderObj.Proforma_Invoice_No__c}
+                      </div>
+                      </div><br/>
+                        <div style="text-align: center;" >
+                            Contract Doc No. <div>
+                           {!orderObj.CONTRACT_NO__c}
+                            </div>
+                        </div></td>
+                  <td colspan="2"  style="border-right: 1px; text-align: center;" height="80" width="25%">Date:&nbsp; <apex:outputText value="{0,date,MMM dd, yyyy}">
+                    <apex:param value="{!orderObj.PFI_Date__c}" />
+                 </apex:outputText></td>
+               </tr>
+               <tr style="text-align:center;">
+                  <td colspan="2" height="80" width="25%"> <div >
+                           PO:{!orderObj.Customer_Po_No__c}
+                        </div></td>
+                  <td style="border-right: 1px;" colspan="2" height="80" width="25%"></td>
+               </tr>
+
+               <!-- <tr>
+                  <th colspan="9"><center>Performa Invoice</center></th>
+                  </tr>   -->
+               <!-- ********************product table **************************************************************-->
+              <table style="width:100%" class="product_table">
+                <tr>
+                    <th class="product_table">PARTICULAR</th>
+                  <!--  <th class="product_table">Pack/Model</th>  -->
+                  <th class="product_table"> Incoterms</th>
+                  <th class="product_table"> Payment Terms</th>
+                    <th class="product_table"> Commercial Quantity(In No.)</th>
+                    <th class="product_table"> FOC Quantity</th>
+                    <th class="product_table">RATE  <br/>{!orderObj.CurrencyIsoCode}</th>
+                    <th class="product_table">AMOUNT <br/> {!orderObj.CurrencyIsoCode}</th>
+                </tr>
+                <apex:repeat value="{!proList}" var="prodOrder">
+                    <tr>
+
+                        <td class="product_table">{!prodOrder.Product__r.name}</td>
+                    <!--    <td class="product_table">{!prodOrder.Model_Txt__c}</td>  -->
+                    <td class="product_table">{!prodOrder.Agreement_Product__r.Incoterms__c}</td>
+                    <td class="product_table"><apex:outputField value="{!prodOrder.Agreement_Product__r.Payment_Terms_options__c}" /></td>
+                    <td class="product_table">{!prodOrder.Quantity__c}</td>
+                         <td class="product_table">{!prodOrder.FOC_Quantity__c}</td>
+                        <td class="product_table">{!prodOrder.Average_Price__c}</td>
+                        <td class="product_table">{!prodOrder.Total_Price__c}</td>
+                    </tr>
+                </apex:repeat>
+
+                   <tr>
+                    <td class="product_table">Freight</td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+					<td class="product_table">{!orderObj.Freight_Amount_SplitOrder_Based__c}</td>
+
+
+                 </tr>
+                   <tr>
+                    <td class="product_table">Total Value in &nbsp;{!orderObj.CurrencyIsoCode} </td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table">{!totalAmountInDecimal}</td>
+
+
+                 </tr>
+                  <tr>
+                   <th colspan="7" class="product_table" style=" text-align: center;" >Amount chargeable in words: {!totalAmount}</th>
+                  </tr>
+
+               </table>
+
+            </table>
+             <table>
+                 <tr>
+                  <td class="cls_banker" style="font-weight:normal;font-size:15px;padding-left:17px;">*&nbsp;Order Remarks : {!orderObj.Order_Remarks__c}</td>
+                 </tr>
+             </table>
+
+          <br/>
+         <!--****************************************** FOB********************************* -->
+
+
+         <br/>
+         <!--***********************Our Banker*********************** -->
+        <table class="Banker_CLS" style="margin-left:20px;">
+             <!--  <td class="cls_banker" style="display:{!If(ma.Incoterms__c == 'FOB' ,'','None')}">{!$Label.FOB}</td>  -->
+
+            <!-- <tr>
+               <td class="cls_banker" >* Incoterms: {!MA.Incoterms__c}</td>
+            </tr> -->
+            <tr>
+               <td class="cls_banker">* Delivery :{!$Label.Delivery1}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">* Dispatch Through : &nbsp;<apex:outputField value="{!orderObj.Dispatch_Through__c}" /></td>
+            </tr>
+            <tr>
+               <td class="cls_banker">* Destination : {!orderObj.Destination__c}</td>
+            </tr>
+            <!-- <tr>
+               <td class="cls_banker" >* Payment :{!MA.Manner_of_Payment__c}</td>
+            </tr> -->
+            <tr>
+               <td class="cls_banker">* Port of Loading : {!orderObj.PLANT__r.Port_of_Loading__c}</td>
+            </tr>
+             <tr>
+
+            </tr>
+
+            <tr>
+               <td class="cls_banker">* Our Banker are:-</td>
+            </tr>
+            <tr>
+               <td class="cls_banker"> Account Name :{!bankDetails.Beneficiary_Name__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Account No.:{!bankDetails.Account_No__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">IBAN : {!bankDetails.IBAN__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Bank Code :{!bankDetails.Bank_Code__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Bank :{!bankDetails.Bank__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Bank Address :{!bankDetails.Bank_Address__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Swift Code: {!bankDetails.Swift_Code__c}</td>
+            </tr>
+            <!--************************sort code detail********************* -->
+            <div style="margin-left:20px;display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+
+             <tr>
+               <td  class="cls_banker">{!bankDetails.Bank_Sort1st__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker"> {!bankDetails.Bank_sort_name__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">{!bankDetails.Bank_Sort_Street__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Swift Code: {!bankDetails.Bank_SWIFT_CODE__c}</td>
+            </tr>
+            <tr>
+               <td class="cls_banker">Account No.:{!bankDetails.Bank_Account_no_sort__c}</td>
+            </tr>
+            <tr>
+               <td  class="cls_banker">Aba Routing No.: {!bankDetails.Bank_ROUTING_NO__c}</td>
+            </tr>
+           </div>
+         </table>
+         </div>
+           <apex:outputText escape="False" value="{!$Label.Proforma_last_doc}"/>
+           <div class="footer">
+
+            </div>
+      </body>
+   </html>
+</apex:component>

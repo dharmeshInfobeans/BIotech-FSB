@@ -1,0 +1,22 @@
+.center-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 520px;
+}
+
+/* Bigger approval text */
+.approval-text {
+    font-size: 1.75rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+/* SLDS success green */
+.success-icon {
+    --slds-c-icon-color-foreground-default: #2e844a;
+}

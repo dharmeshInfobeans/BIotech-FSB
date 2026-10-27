@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Product__c</columns>
+    <columns>Branch__c</columns>
+    <columns>Week_Number__c</columns>
+    <columns>Forecast_Qty__c</columns>
+    <columns>Actual_Qty__c</columns>
+    <columns>Month__c</columns>
+    <columns>Year__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Branch__c</field>
+        <operation>equals</operation>
+        <value>Mumbai</value>
+    </filters>
+    <label>All</label>
+</ListView>

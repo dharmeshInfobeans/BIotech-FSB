@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_Pending_Bucket__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(Days_Pending__c), &quot;No Data&quot;,
+  IF(Days_Pending__c &lt;= 3, &quot;0-3 days&quot;,
+    IF(Days_Pending__c &lt;= 7, &quot;4-7 days&quot;,
+      IF(Days_Pending__c &lt;= 14, &quot;8-14 days&quot;,
+        IF(Days_Pending__c &lt;= 30, &quot;15-30 days&quot;,
+          &quot;30+ days&quot;
+        )
+      )
+    )
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days Pending Bucket</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

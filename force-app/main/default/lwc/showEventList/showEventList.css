@@ -1,0 +1,91 @@
+.profile-img {
+    height: 55px;
+    width: 55px;
+    background-size: cover;
+    background-position: 50%;
+    position: absolute;
+    top: -20px;
+    color: #fff;
+    left: -15px;
+    border-radius: 50%;
+    line-height: 60px;
+    text-align: center;
+    font-size: 25px;
+    background-color: #1589ee;
+  }
+
+  h1{
+    font-family: 'Sriracha', arial;
+    color: white;
+    font-size: 15px;
+  }
+  .description{
+    margin-top: 4px;
+  }
+
+  .textBreak{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  
+.onsitePlanned{
+  background-color: #FB6239;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.onsiteNotPlanned{
+  background-color: #39aafbd6;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.onlinePlanned{
+  background-color: #C8AA03;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.onlineNotPlanned{
+  background-color: #257c12;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.offsitePlanned{
+  background-color: #D004B1;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.offsiteNotPlanned{
+  background-color: #CE5FF7;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.notDefined{
+  background-color: #2449f9d6;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.default{
+  background-color: #F1B55A;
+  color: white;
+  border-radius: 10px 10px 10px 10px;
+  padding: 9px;
+  height: fit-content;
+}
+.addBDRButton{
+  text-align: -webkit-right;
+}

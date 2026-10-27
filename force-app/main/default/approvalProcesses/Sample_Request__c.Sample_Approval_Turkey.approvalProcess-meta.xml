@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Status__c</field>
+        <field>Total_Sample_Amount__c</field>
+        <field>Month__c</field>
+        <field>Year__c</field>
+        <field>Monthly_Plan__c</field>
+        <field>Description__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Set_Status_To_Sent_To_Approver2</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>Approver_1__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Sample_Request__c.Approver_1__c</field>
+                <operation>notEqual</operation>
+                <value>null</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Sample_Request__c.Status__c</field>
+                <operation>equals</operation>
+                <value>Not Submitted,Rejected By Approver1,Sent To Approver1</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Step 1</label>
+        <name>Step_1</name>
+        <rejectionActions>
+            <action>
+                <name>Set_Status_To_Rejected_By_Approver1</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Approver_2__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Sample_Request__c.Approver_2__c</field>
+                <operation>notEqual</operation>
+                <value>null</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Sample_Request__c.Status__c</field>
+                <operation>equals</operation>
+                <value>Sent To Approver2</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Approver2 Admin</label>
+        <name>Approver2_Admin</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND( OR(
+				    Monthly_Plan__r.Account__r.RecordType.DeveloperName == &apos;Distributor_T&apos;,
+							 Monthly_Plan__r.Account__r.RecordType.DeveloperName == &apos;Doctor_T&apos;
+       ),
+       NOT(ISNULL(Approver_1__c)), 
+       Total_Sample_Amount__c &gt; 0	
+			)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Set_Status_To_Approved_By_Approver2</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Set_Status_To_Rejected_By_Approver2</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Set_Status_To_Sent_To_Approver1</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Sample Approval Turkey</label>
+    <processOrder>2</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

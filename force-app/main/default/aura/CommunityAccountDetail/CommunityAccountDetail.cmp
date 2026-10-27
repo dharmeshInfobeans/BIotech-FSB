@@ -1,0 +1,18 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes"
+                controller = "CommunityAccountInfo" access="global" >
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name = "objAccount" type = "object"/>
+    <lightning:layout >
+        <lightning:layoutItem size ="10">
+    <div class = "slds-card" style= "height:2rem;padding-top:0.25rem;">
+        <center>
+            <p style="font-size: 18px; color : red"><b> {!$Label.c.Account_Name}: <a href="{!'/s/detail/'+v.objAccount.Id}" target="_self">{!v.objAccount.Name}</a></b></p>
+        </center>
+    	
+    </div>
+            </lightning:layoutItem>
+        <lightning:layoutItem size = "2" > 
+        	<c:languagePicker></c:languagePicker>
+        </lightning:layoutItem>
+    </lightning:layout>
+</aura:component>

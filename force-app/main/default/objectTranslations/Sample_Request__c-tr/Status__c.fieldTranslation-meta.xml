@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Approver&apos;s Status --></help>
+    <label>Onay durumu</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation>onaylı</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approved By Approver1</masterLabel>
+        <translation>Onaylayan tarafından Onaylandı 1</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approved By Approver2</masterLabel>
+        <translation>Onaylayan tarafından Onaylandı 2</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Submitted</masterLabel>
+        <translation>Gönderilemedi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation>Reddedilen</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected By Approver1</masterLabel>
+        <translation>Onaylayan tarafından reddedildi 1</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected By Approver2</masterLabel>
+        <translation>Onaylayan tarafından reddedildi 2</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent To Approver</masterLabel>
+        <translation>Onaylayana Gönderildi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent To Approver1</masterLabel>
+        <translation>Onaylayıcı1&apos;e gönderildi</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent To Approver2</masterLabel>
+        <translation>Onay2&apos;ye gönderildi</translation>
+    </picklistValues>
+</CustomFieldTranslation>

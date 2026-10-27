@@ -1,0 +1,325 @@
+<template>
+    <template if:false={spinner}>
+    <lightning-layout multiple-rows="true" class="slds-scrollable_y" style="height: 40vh;background:white;">
+    
+            <template for:each={evelists} for:item = "event">
+                <lightning-layout-item key={event.Id} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small" class="layoutItem" style="width: 100%;border-bottom: 1px solid gray;">
+                    <div class={event.cardColor} data-id={event.Id} onclick={editEventDetail}>
+                        <h1>
+                            <b><p class="textBreak">{event.AccountName}</p></b>
+                        </h1>
+                        <div class="description">
+                            <div if:false={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Subject__c} :</b>
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.Subject}</p>
+                                    </span>
+                                </div>
+
+                                
+                            </div>
+                            <div if:true={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Subject__c} :</b>
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.Leavevalue}</p>
+                                    </span>
+                                </div>
+
+                                
+                            </div>
+                            <div if:true={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Leave_Type__c}:</b>
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.Leavetype}</p>
+                                    </span>
+                                </div>
+
+                                
+                            </div>
+                            <div if:true={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Leave_Status__c}:</b>
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.LeaveStatus}</p>
+                                    </span>
+                                </div>
+
+                                
+                            </div>
+                            <div  if:false={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                              <div class="slds-col slds-size_6-of-12">
+                                  <span>
+                                      <b>Product Name:</b>
+                                  </span>
+                              </div>
+                              <div class="slds-col slds-size_6-of-12">
+                                  <span >
+                                      <p class="textBreak">{event.Product}</p>
+                                  </span>
+                              </div>
+
+                              
+                          </div>
+                            <div  if:false={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Status__c} :</b>
+                                    </span>
+                                </div>
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.stage}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div  if:false={event.Leavetype} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Meeting_Type__c} :</b>
+                                    </span>
+                                </div>
+                                <div  class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.meetimgType}</p>       
+                                    </span>
+                                </div>
+                            </div>
+<!-- //************************************************************************************Gyadeen Ahirwar************************-->
+                             <div if:false={event.objectname} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div if:false={event.Leavetype} class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>{labels.Call_Type__c} :</b>
+                                    </span>
+                                </div>
+                                <div if:false={event.Leavetype} class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.CallType}</p>
+                                    </span>
+                                </div>
+                            </div>
+                            <div if:true={event.objectname} class="slds-grid slds-wrap" style="width: 100%;">
+                                <div if:false={event.Leavetype} class="slds-col slds-size_6-of-12">
+                                    <span>
+                                        <b>Lead Completed Stage :</b>
+                                    </span>
+                                </div>
+                                <div if:false={event.Leavetype} class="slds-col slds-size_6-of-12">
+                                    <span >
+                                        <p class="textBreak">{event.Leadstage}</p>
+                                    </span>
+                                </div>
+                            </div>
+<!-- //************************************************************************************ Above code added By gyadeen Ahirwar****************** -->
+                        </div> 
+                      </div> 
+                </lightning-layout-item>
+            </template>
+    </lightning-layout>
+
+    <template if:true={showEditEventModal}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        onclick={handleCancel}
+                        title="Close">
+                    <lightning-icon 
+                        icon-name="utility:close"
+                        alternative-text="Close"
+                        class="slds-button__icon slds-button__icon_large"
+                        size="small">
+                    </lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+            
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">
+                    {eventObj.AccountName}
+                </h2>
+            </header>
+
+              <div class="slds-modal__content slds-p-around_medium">
+                  <template if:true={otherType}>
+                    <lightning-input type="text" name="subject" label={labels.Subject__c} class="data" value={eventObj.Subject} disabled></lightning-input>
+                    <lightning-input if:false={eventObj.Leavetype} type="text" name="status"  label={labels.Status__c} value={eventObj.stage} class="data" disabled ></lightning-input>
+                    <lightning-input if:true={eventObj.Leavetype} type="text" name="Leave type"  label="Leave Type" value={eventObj.Leavetype} class="data" disabled ></lightning-input>
+                    <lightning-input if:true={eventObj.LeaveStatus} type="text" name="Leave Status"  label="Leave Status" value={eventObj.LeaveStatus} class="data" disabled ></lightning-input>
+                    <lightning-input  if:false={eventObj.Leavetype} type="text" name="CISRating"  label={labels.CIS_Rating__c} value={eventObj.CISRating} class="data" disabled ></lightning-input> 
+                    <lightning-input  type="date" name="ActivityDate"  label={labels.Date__c} value={eventObj.ActivityDate} class="data" onchange={handleChangeField}></lightning-input>
+                    <lightning-textarea name="DCR_Description__c" class="data" label={labels.notes__c} value={eventObj.Description} onchange={handleChangeField}></lightning-textarea>
+                  </template>
+                  <template if:false={otherType}>
+                    <div class="addBDRButton">
+                        <button type="button" class="slds-button slds-button_brand" onclick={handleUpdateBDPlan}>Update Lead</button>
+                      </div>
+                    <lightning-input type="text" name="account" label={labels.Related_to__c} class="data" value={eventObj.AccountName} disabled></lightning-input>
+                    <lightning-input type="text" name="subject" label={labels.Subject__c} class="data" value={eventObj.Subject} disabled></lightning-input>
+                    <lightning-input type="text" name="CISRating"  label={labels.CIS_Rating__c} value={eventObj.CISRating} class="data" disabled ></lightning-input> 
+
+                    <lightning-input type="date" name="ActivityDate"  label={labels.Date__c} value={eventObj.ActivityDate} class="data" onchange={handleChangeField} disabled={eventstage}></lightning-input>
+                    <!-- <lightning-input type="text" name="date"  label="Related To" value={eventObj.What.Name} class="data" disabled ></lightning-input> -->
+                    <lightning-input type="text" name="status"  label={labels.Status__c} value={eventObj.stage} class="data" disabled ></lightning-input>
+
+                    <lightning-input type="date" name="Follow_Up_Date__c"  label={labels.follow_up_date__c} value={eventObj.FollowUpDate} class="data" onchange={handleChangeField}></lightning-input>
+                    <c-multi-select-picklist-with-search showastrick="false" selected-values={eventObj.Product} multi-select="true" onselectproduct={handleSelectProduct} label={labels.product__c} labels={labels}></c-multi-select-picklist-with-search>
+
+                    <lightning-textarea name="DCR_Description__c" class="data" label={labels.notes__c} value={eventObj.Description} onchange={handleChangeField}></lightning-textarea>
+                  </template>
+              </div>
+              <footer class="slds-modal__footer" style="font-size: 0.7rem;">
+                <button class="slds-button slds-button_destructive" onclick={handleDelete}>{labels.delete__c}</button>
+                <button class="slds-button slds-button_neutral" onclick={handleCancel}>{labels.Cancel_Button__c}</button>
+                <button class="slds-button slds-button_brand" onclick={updateEvent}>{labels.update__c}</button>
+              </footer>
+            </div>
+          </section>
+          <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+    <template if:true={updateBdPlan}>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+          <div class="slds-modal__container">
+            <header class="slds-modal__header">
+              <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                  <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg>
+                <span class="slds-assistive-text" onclick={closeModal}>Close</span>
+              </button>
+            </header>
+
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height: -webkit-fill-available;">
+                <div style="width:100%;height: -webkit-fill-available;overflow:auto;">
+                  <table class="slds-table slds-table_cell-buffer slds-table_bordered " style="width:100%;max-height:60px;overflow:auto;">
+                    <tr>
+                      <th>    
+                          <p><b>Product Name</b></p>
+                      </th>
+                      <th>    
+                          <p><b>Planned Stage</b></p>
+                      </th>
+                      <th>    
+                          
+                          <p><b>Planned Date</b></p>
+                      </th>
+                      <th>    
+                          
+                          <p><b>Completed Stage</b></p>
+                      </th>
+                       <th>    
+                          
+                          <p><b>Actual Date</b></p>
+                      </th>
+                      
+                    </tr>
+                      <tbody>
+                      <template for:each={leadData} for:item="item">
+                        <tr key={item.key}>
+                          <td class="slds-cell-wrap">
+                                {item.ProductName}    
+                            </td>
+                            <td>    
+                                {item.Stage}    
+                            </td>
+                            <td>    
+                                {item.PlannedDate}    
+                            </td>
+                            <td>    
+                                {item.Stage}     
+                            </td>
+                            <td>    
+                                {item.ActualDate}     
+                            </td>
+                          </tr>
+                      </template>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            <!--
+             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2" style="height: -webkit-fill-available;">
+              <div style="width:100%;height: -webkit-fill-available;overflow:auto;">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered " style="width:100%;max-height:60px;overflow:auto;">
+                    <tr>
+                      <th>   
+                        <b>{customLabels.Selected_BD_Plans}</b>
+                     </th>
+                     <th>    
+                        <b>{customLabels.Type_of_Planning}</b>   
+                     </th>
+                     <th>    
+                        <b>{customLabels.Plan_Week}</b>    
+                     </th>
+                     <th>    
+                        <b>{customLabels.Product}</b> 
+                     </th>
+                     <th>    
+                        <b>{customLabels.Contact}</b> 
+                     </th>
+                     <th>    
+                        <b>{customLabels.MileStone_Stage}</b> 
+                     </th>
+                     <th>    
+                        <b>{customLabels.Plan_Year}</b>    
+                     </th>
+                  </tr>
+                   <tbody>
+                    <template for:each={bdplanlist} for:item="item">
+                      <tr key={item.Id}>
+                        <td>
+                           <lightning-input type="checkbox" data-id={item.Id} value={item.isCheck} checked={item.isCheck} onchange={handleClickCheckbox}> </lightning-input>
+                        </td>
+                        <td>    
+                           {item.BDTrackerPhase}    
+                        </td>
+                        <td>    
+                           {item.MilestonePlanWeek}     
+                        </td>
+                        <td>    
+                           {item.ProductId}     
+                        </td>
+                        <td>   
+                           {item.contactname}    
+                        </td>
+                        <td>    
+                           {item.MileStoneStage}     
+                        </td>
+                        <td>    
+                           {item.PlanYear}
+                        </td>
+                     </tr>
+                    </template>
+                   </tbody>
+                </table>
+             </div>
+            </div>
+            -->
+            <footer class="slds-modal__footer" style="font-size: 0.7rem;">
+              <button class="slds-button slds-button_neutral" onclick={closeBdrModal}>{labels.Cancel_Button__c}</button>
+            </footer>
+          </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+       </template>
+</template>
+    <template if:true={spinner}>
+        <c-spinner></c-spinner>
+    </template>
+</template>

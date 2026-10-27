@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>One record per Profile Name. Drives which of the 5 dashboard link tiles the Home Snapshot component shows for the running user - a custom, admin-maintainable substitute for real Salesforce Dashboard-folder sharing, since all 4 standard Dashboards currently live in one shared folder and can&apos;t express per-dashboard-per-profile visibility that way. Looked up by Profile.Name (case-sensitive exact match) at runtime, not by Profile Id, so this survives a profile being recreated/cloned as long as the name is kept.</description>
+    <label>Dashboard Tile Access</label>
+    <pluralLabel>Dashboard Tile Access</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

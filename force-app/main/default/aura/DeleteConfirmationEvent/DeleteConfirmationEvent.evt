@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Event template" >
+    <aura:attribute name="deleteThisLineItem" type="String" description="Used in deleting Opportunity Product Line Item"/>
+</aura:event>

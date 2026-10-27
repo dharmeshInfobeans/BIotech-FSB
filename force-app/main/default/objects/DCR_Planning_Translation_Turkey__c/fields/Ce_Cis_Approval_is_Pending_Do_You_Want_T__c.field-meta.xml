@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ce_Cis_Approval_is_Pending_Do_You_Want_T__c</fullName>
+    <externalId>false</externalId>
+    <label>Ce-Cis Approval is Pending Do You Want T</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,26 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickActionWithoutHeader" access="global" >
+    
+  <aura:html tag="style">
+        
+      .slds-modal__container {
+      max-width: 110rem;
+      }
+
+        .cuf-content,
+        .slds-p-around--medium {
+            padding: 0rem !important;
+        }
+
+        .slds-modal__content {
+          <!--  padding: 0.75rem 0.75rem 0.75rem !important; -->
+            height: unset !important;
+            max-height: unset !important;
+        }
+      <!-- .slds-modal__close {
+        slds-c-icon-color-foreground: white !important;
+        slds-c-icon-color-foreground-default: white !important;
+    }-->
+    </aura:html>
+    <c:customApprovalProcess recordId="{!v.recordId}" onclose="{!c.handleClose}" />
+	
+</aura:component>

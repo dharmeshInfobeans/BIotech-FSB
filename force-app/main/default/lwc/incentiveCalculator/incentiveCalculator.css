@@ -1,0 +1,22 @@
+.custom-container{
+	color : black;
+}
+.year-picklist,
+.month-picklist {
+    width: 140px;
+}
+
+.inline-field {
+    display: flex;
+    align-items: center; /* 🔥 Vertical centering */
+}
+
+.inline-label {
+    margin-right: 0.5rem;
+    font-weight: 600;
+    line-height: 1; /* Prevent top bias */
+}
+
+.inline-combobox {
+    width: 140px;
+}

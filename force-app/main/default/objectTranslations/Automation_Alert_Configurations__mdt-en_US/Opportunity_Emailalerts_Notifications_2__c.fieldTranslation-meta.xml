@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Will trigger on 175th day if not action taken to the opportunity. --></help>
+    <label><!-- Opportunity Emailalerts/Notifications 2 --></label>
+    <name>Opportunity_Emailalerts_Notifications_2__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TargetNotAllowedForBackAP</fullName>
+    <active>true</active>
+    <errorConditionFormula>Agreement_Product__r.Is_Backup__c</errorConditionFormula>
+    <errorMessage>Agreement Target Product record creation is not allowed for backup Agreement Product.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Agreement Product --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Agreement Product --></value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Add/Edit Agreement Products Columns --></label>
+        <name>Add_Edit_Agreement_Products_Columns</name>
+    </fieldSets>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Agreement Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Details --></label>
+            <section>Other Details</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Agreement Product Read Only</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Details --></label>
+            <section>Other Details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Agreement Products No --></nameFieldLabel>
+</CustomObjectTranslation>

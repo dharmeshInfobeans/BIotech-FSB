@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgreementDateValidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>Agreement_End_Date__c &lt;=  Agreement_Start_Date__c</errorConditionFormula>
+    <errorMessage>The Agreement End Date cannot be less than or equal to the Start Date.</errorMessage>
+</ValidationRule>

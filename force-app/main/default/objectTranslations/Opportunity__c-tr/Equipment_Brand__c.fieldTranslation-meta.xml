@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Ekipman Markası</label>
+    <name>Equipment_Brand__c</name>
+    <picklistValues>
+        <masterLabel>Alcon</masterLabel>
+        <translation><!-- Alcon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Appasamy</masterLabel>
+        <translation><!-- Appasamy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B&amp;L</masterLabel>
+        <translation><!-- B&amp;L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biomedix</masterLabel>
+        <translation><!-- Biomedix --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CSO Sirius</masterLabel>
+        <translation><!-- CSO Sirius --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Enbio</masterLabel>
+        <translation><!-- Enbio --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Haag - Streit</masterLabel>
+        <translation><!-- Haag - Streit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Heidelberg</masterLabel>
+        <translation><!-- Heidelberg --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Huvitz</masterLabel>
+        <translation><!-- Huvitz --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Huwitz</masterLabel>
+        <translation><!-- Huwitz --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>I Care</masterLabel>
+        <translation><!-- I Care --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>I Optik</masterLabel>
+        <translation><!-- I Optik --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Keeler</masterLabel>
+        <translation><!-- Keeler --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Labomed</masterLabel>
+        <translation><!-- Labomed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Leica</masterLabel>
+        <translation><!-- Leica --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MMD</masterLabel>
+        <translation><!-- MMD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Matronix</masterLabel>
+        <translation><!-- Matronix --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Nidek</masterLabel>
+        <translation><!-- Nidek --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oculus Pentacam</masterLabel>
+        <translation><!-- Oculus Pentacam --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oertli</masterLabel>
+        <translation><!-- Oertli --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optopol</masterLabel>
+        <translation><!-- Optopol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optos</masterLabel>
+        <translation><!-- Optos --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Others</masterLabel>
+        <translation><!-- Others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quantel</masterLabel>
+        <translation><!-- Quantel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Remidio</masterLabel>
+        <translation><!-- Remidio --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sonomed</masterLabel>
+        <translation><!-- Sonomed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Statim</masterLabel>
+        <translation><!-- Statim --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Takagi</masterLabel>
+        <translation><!-- Takagi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tomey</masterLabel>
+        <translation><!-- Tomey --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Topcon</masterLabel>
+        <translation><!-- Topcon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tuttnauer</masterLabel>
+        <translation><!-- Tuttnauer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zeiss</masterLabel>
+        <translation><!-- Zeiss --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ziemer</masterLabel>
+        <translation><!-- Ziemer --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

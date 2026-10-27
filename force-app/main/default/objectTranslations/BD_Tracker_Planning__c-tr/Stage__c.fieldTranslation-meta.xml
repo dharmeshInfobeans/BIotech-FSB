@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Aşama</label>
+    <name>Stage__c</name>
+    <picklistValues>
+        <masterLabel>Commercialization</masterLabel>
+        <translation>Ticarileştirme</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Evaluation</masterLabel>
+        <translation>Değerlendirme</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Discussion</masterLabel>
+        <translation>Ürün Tartışması</translation>
+    </picklistValues>
+</CustomFieldTranslation>

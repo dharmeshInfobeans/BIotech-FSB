@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <choices>
+        <name>True</name>
+        <choiceText>Yes</choiceText>
+        <dataType>Boolean</dataType>
+    </choices>
+    <choices>
+        <name>Yes</name>
+        <choiceText>Yes</choiceText>
+        <dataType>String</dataType>
+        <userInput>
+            <isRequired>false</isRequired>
+        </userInput>
+        <value>
+            <stringValue>Yes</stringValue>
+        </value>
+    </choices>
+    <description>Set up an advance delivery notification vai text or email</description>
+    <interviewLabel>Set Up Delivery Notification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Set Up Delivery Notification</label>
+    <processType>Flow</processType>
+    <screens>
+        <name>Set_Up_Delivery_Notification</name>
+        <label>Set Up Delivery Notification</label>
+        <locationX>390</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Greeting</name>
+            <fieldText>Would you like to have us text or email you prior to the scheduled delivery?</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Text_Notification</name>
+            <choiceReferences>True</choiceReferences>
+            <dataType>Boolean</dataType>
+            <fieldText>Text Notification</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Email_Notification</name>
+            <choiceReferences>True</choiceReferences>
+            <dataType>Boolean</dataType>
+            <fieldText>Email Notification</fieldText>
+            <fieldType>RadioButtons</fieldType>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Notifywhen</name>
+            <fieldText>When would you like to receive shipping notifications?</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Notification_Date</name>
+            <dataType>Date</dataType>
+            <fieldText>Notification Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <startElementReference>Set_Up_Delivery_Notification</startElementReference>
+    <status>Active</status>
+</Flow>

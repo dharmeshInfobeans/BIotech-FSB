@@ -1,0 +1,74 @@
+.disabled-link {
+    pointer-events: none;
+    color: #d8dde6; /* make it look disabled (light gray) */
+    text-decoration: none;
+    cursor: not-allowed;
+}
+
+.slds-p-around_medium {
+    max-height: 400px;    /* height limit for scroll */
+    overflow-y: auto;     /* vertical scroll */
+}
+
+/* freeze table header */
+.slds-table thead th {
+    position: sticky;
+    top: 0;
+    background: #f3f3f3;  /* keeping header visible */
+    z-index: 2;           /* ensuring it stays above rows */
+}
+
+.slds-table td {
+    vertical-align: center;
+    padding: 0.25rem 0.5rem; /* adjust if needed */
+}
+.center-rowspan {
+    vertical-align: middle;
+    text-align: center;
+    min-height: 80px; /* Adjust based on the expected height of spanned rows */
+}
+/* freightEstimator.css */
+.clickable-text {
+    color: #0070d2;      /* Salesforce link blue */
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 14px;     /* optional */
+}
+
+.clickable-text:hover {
+    color: #005fb2;      /* hover effect */
+}
+.table-scroll-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Prevent header overlap */
+.table-scroll-container table thead th {
+    position: sticky;
+    top: 0;
+    background: #f3f3f3;
+    z-index: 2;
+}
+
+
+
+td{
+    text-align: center !important;
+}
+
+.footer-cell-color{
+    background-color:#F3F3F3;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+}
+/* Add separator between split orders */
+tbody tr:last-of-type td[rowspan] {
+  border-bottom: 0px solid #d8dde6;
+}
+
+.rowBackGround:hover td {
+  background-color: cornsilk;   
+  cursor: pointer;
+}

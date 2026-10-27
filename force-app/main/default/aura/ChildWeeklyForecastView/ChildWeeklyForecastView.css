@@ -1,0 +1,28 @@
+.THIS .custom-red-background {
+    background-color: #ff5c33;
+    border-color: #C0C0C0;
+}
+.THIS .custom-green-background {
+    background-color: #77ff33;
+    border-color: #C0C0C0;
+}
+.THIS .custom-blue-background {
+    background-color: #E8E8E8;
+    border-color: 	#C0C0C0;
+}
+.THIS .custom-width {
+    width : 4.5rem;
+}
+.THIS input::-webkit-outer-spin-button {
+    display:none;
+}
+
+.THIS input::-webkit-inner-spin-button {
+    display:none;
+}
+.THIS input.slds-input {
+    opacity: 1 !important;
+}
+.THIS .custom-width-td {
+    width : 2rem;
+}

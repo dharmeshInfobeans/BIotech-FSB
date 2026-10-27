@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Tipo de activación</label>
+    <name>Activation_Type__c</name>
+    <picklistValues>
+        <masterLabel>KRA</masterLabel>
+        <translation><!-- KRA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MIS</masterLabel>
+        <translation><!-- MIS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

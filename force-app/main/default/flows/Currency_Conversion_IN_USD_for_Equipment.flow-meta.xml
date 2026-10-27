@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_USD_Rate</name>
+        <label>Assign USD Rate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>USDRate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Itrate_Each_Currency.ConversionRate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Itrate_Each_Currency</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Other_Currency_Rate</name>
+        <label>Other Currency Rate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>OtherCurrencyRate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Itrate_Each_Currency.ConversionRate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Itrate_Each_Currency</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Current_Currency_OR_USD</name>
+        <label>Current Currency OR USD</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Other_Currency_Rate</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>USD</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Itrate_Each_Currency.IsoCode</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>USD</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_USD_Rate</targetReference>
+            </connector>
+            <label>USD</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>INRValue</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Total_PF_ASP__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Equipment_Net_Value</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Equipment_Net_Value__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Equipment_Total_Product_Deal_Value</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Total_Product_Deal_Value__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Monthly_Product_Deal_Value</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Monthly_Product_Deal_Value__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Product_Deal_Value_Yearly</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Product_Deal_Value_Yearly__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Total_Product_ASP</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Total_Product_ASP__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Total_Product_Deal_Value</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Total_Product_Deal_Value__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Total_Product_MSP</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Total_Product_MSP__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>INRValue_Total_Value</name>
+        <dataType>Number</dataType>
+        <expression>VALUE(TEXT({!$Record.Total_Value__c} / {!OtherCurrencyRate}))</expression>
+        <scale>10</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue} * {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Equip_Total_Product_Deal_Value</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Equipment_Total_Product_Deal_Value}* {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Equipment_Net_Value</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Equipment_Net_Value} * {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Monthly_Product_Deal_Value</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Monthly_Product_Deal_Value} * {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Product_Deal_Value_Yearly</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Product_Deal_Value_Yearly}* {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Total_Product_ASP</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Total_Product_ASP}* {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Total_Product_MSP</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Total_Product_MSP}* {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>USDConversion_Total_Value</name>
+        <dataType>Number</dataType>
+        <expression>{!INRValue_Total_Value}* {!USDRate}</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Currency Conversion IN USD for Equipment {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Currency Conversion IN USD for Equipment v1</label>
+    <loops>
+        <name>Itrate_Each_Currency</name>
+        <label>Itrate Each Currency</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Currency_Conversion_Rate</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Current_Currency_OR_USD</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_USD_Conversion_Value_Equipment</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Currency_Conversion_Rate</name>
+        <label>Get Currency Conversion Rate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Itrate_Each_Currency</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>IsoCode</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.CurrencyIsoCode</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>IsoCode</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>USD</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <limit>
+            <numberValue>2.0</numberValue>
+        </limit>
+        <object>CurrencyType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_USD_Conversion_Value_Equipment</name>
+        <label>Update USD Conversion Value Equipment</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Equipment_Net_Value_USD__c</field>
+            <value>
+                <elementReference>USDConversion_Equipment_Net_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Equipment_Product_Deal_Value_USD__c</field>
+            <value>
+                <elementReference>USDConversion_Equip_Total_Product_Deal_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Monthly_Product_Deal_Value_USD__c</field>
+            <value>
+                <elementReference>USDConversion_Monthly_Product_Deal_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product_Deal_Value_Yearly_USD__c</field>
+            <value>
+                <elementReference>USDConversion_Product_Deal_Value_Yearly</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Total_Value_USD__c</field>
+            <value>
+                <elementReference>USDConversion_Total_Value</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Currency_Conversion_Rate</targetReference>
+        </connector>
+        <object>Opportunity__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>OtherCurrencyRate</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>17</scale>
+    </variables>
+    <variables>
+        <name>USDRate</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>17</scale>
+    </variables>
+</Flow>

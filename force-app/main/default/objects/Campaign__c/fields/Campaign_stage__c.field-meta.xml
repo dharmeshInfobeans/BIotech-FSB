@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_stage__c</fullName>
+    <label>Campaign stage</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CME</fullName>
+                <default>false</default>
+                <label>CME</label>
+            </value>
+            <value>
+                <fullName>RTM</fullName>
+                <default>false</default>
+                <label>RTM</label>
+            </value>
+            <value>
+                <fullName>User Meeting</fullName>
+                <default>false</default>
+                <label>User Meeting</label>
+            </value>
+            <value>
+                <fullName>High Impact CME</fullName>
+                <default>false</default>
+                <label>High Impact CME</label>
+            </value>
+            <value>
+                <fullName>Virtual exp. Lab</fullName>
+                <default>false</default>
+                <label>Virtual exp. Lab</label>
+            </value>
+            <value>
+                <fullName>Wet Labs</fullName>
+                <default>false</default>
+                <label>Wet Labs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

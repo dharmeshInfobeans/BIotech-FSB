@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Unqualified Reason --></label>
+    <name>Disqualified_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Existing Customer</masterLabel>
+        <translation><!-- Existing Customer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Govt. doctor</masterLabel>
+        <translation><!-- Govt. doctor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No potential</masterLabel>
+        <translation><!-- No potential --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No surgical practice.</masterLabel>
+        <translation><!-- No surgical practice. --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,47 @@
+<!--
+  @File Name          : searchEvent.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 07-10-2020
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    11/7/2019   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <div class="eventsContainer">
+            <!-- <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-size_1-of-12">
+                            <span>
+                                    <div class="previous" onclick={clickBack}><lightning-icon icon-name="utility:back" class="slds-icon"></lightning-icon></div>
+                            </span>
+                            </div>
+                            <div class="slds-col slds-size_11-of-12 slds-p-left_x-small">
+                            <span>
+                                    <div class="head">
+                                           Search Event
+                                    </div>
+                            </span>
+                    </div>
+             </div>
+ -->
+
+            <div class="slds-form-element">
+                    <div class="slds-form-element__control">
+                            <input type="text" 
+                            placeholder="Search"
+                                                class="searchInput"
+                                                onkeyup={handleKeyChange} ></input>
+                                            
+                    </div>
+                </div> 
+            <lightning-layout multiple-rows="true" vertical-align="end" class="slds-scrollable_y">
+                            <template for:each={events} for:item="event">
+                                <lightning-layout-item key={event.Id} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small" class="layoutItem" style="border-bottom: 1px solid gray;">
+                                      <c-search-event-tile event={event}></c-search-event-tile>  
+                                </lightning-layout-item>
+                            </template>
+                    </lightning-layout>
+    </div>
+</template>

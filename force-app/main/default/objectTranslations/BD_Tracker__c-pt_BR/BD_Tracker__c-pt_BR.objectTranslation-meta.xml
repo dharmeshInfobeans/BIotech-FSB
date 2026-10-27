@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- BD Tracker --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- BD Tracker --></value>
+    </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>BD Tracker Layout</layout>
+        <sections>
+            <label><!-- BD Actual Details --></label>
+            <section>BD Actual Details</section>
+        </sections>
+        <sections>
+            <label><!-- BD Plan Details --></label>
+            <section>BD Plan Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- BD Tracker Name --></nameFieldLabel>
+</CustomObjectTranslation>

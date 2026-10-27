@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Certificate Status --></label>
+    <name>Certificate_Status__c</name>
+    <picklistValues>
+        <masterLabel>Pending Upload</masterLabel>
+        <translation><!-- Pending Upload --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation><!-- Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Under CRM Review</masterLabel>
+        <translation><!-- Under CRM Review --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uploaded</masterLabel>
+        <translation><!-- Uploaded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Verified</masterLabel>
+        <translation><!-- Verified --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

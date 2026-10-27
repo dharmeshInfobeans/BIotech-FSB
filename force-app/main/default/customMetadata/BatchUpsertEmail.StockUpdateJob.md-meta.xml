@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>StockUpdateJob</label>
+    <protected>false</protected>
+    <values>
+        <field>Emails__c</field>
+        <value xsi:type="xsd:string">niket.chaturvedi@biotechhealthcare.com,shivam.kumar@biotechhealthcare.com,misinternational@biotechhealthcare.com,gopal.khandelwal@parasus.com,dharmeshkumar.vaishnav@infobeans.com</value>
+    </values>
+    <values>
+        <field>RecipientEmail__c</field>
+        <value xsi:nil="true"/>
+    </values>
+</CustomMetadata>

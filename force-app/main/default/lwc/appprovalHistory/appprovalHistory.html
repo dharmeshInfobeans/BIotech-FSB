@@ -1,0 +1,71 @@
+<template>
+    <lightning-card title={labels.Sample_Request_Approval_History__c} icon-name="standard:approval">
+        <div class="slds-m-around_medium approval-wrapper">
+
+            <template if:true={isLoading}>
+                <div class="slds-is-relative" style="height:80px;">
+                    <lightning-spinner alternative-text={labels.Loading__c} size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <template if:true={errorMessage}>
+                <div class="slds-notify slds-notify_alert slds-theme_error" style="margin-bottom:1rem;">
+                    <span>{errorMessage}</span>
+                </div>
+            </template>
+            <template if:false={isLoading}>
+
+                <div class="timeline-container">
+                    <template for:each={approvals} for:item="step">
+                        <div key={step.id} class="timeline-row">
+
+                            <div class="icon-column">
+                                <div class={step.cssClass}>
+                                    <lightning-icon icon-name={step.icon} size={step.size} alternative-text={step.status}>
+                                    </lightning-icon>
+                                </div>
+                                <div class="connector-line"></div>
+                            </div>
+
+                            <div class="text-column">
+                                <div class="step-label">{step.label}</div>
+                                <template if:false={step.showActionLabel}>
+                                <div class="step-status">{step.statusLabel}</div>
+                                </template>
+                                <template if:true={step.showActionLabel}>
+                                    <template if:true={step.isApproved}>
+                                        <div class="step-approved-by">{step.actionLabel}</div>
+                                    </template>
+                                    <template if:true={step.isRejected}>
+                                        <div class="step-approved-by">{step.actionLabel}</div>
+                                    </template>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <div class="legend-container">
+                    <div class="legend-item">
+                        <span class="legend-dot no-action-dot"></span>
+                        <span class="legend-text">{labels.No_Action__c}</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot approved-dot"></span>
+                        <span class="legend-text">{labels.Approved__c}</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot rejected-dot"></span>
+                        <span class="legend-text">{labels.Rejected__c}</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="legend-dot pending-dot"></span>
+                        <span class="legend-text">{labels.Pending__c}</span>
+                    </div>
+                </div>
+
+            </template>
+
+        </div>
+    </lightning-card>
+</template>

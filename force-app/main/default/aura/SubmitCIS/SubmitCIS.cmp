@@ -1,0 +1,194 @@
+<aura:component controller="SubmitCISController" implements="forceCommunity:availableForAllPageTypes,force:hasRecordId" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="readOnly" type="Boolean" default="false" />
+    <aura:attribute name="approvalMode" type="Boolean" default="false" />
+    <aura:attribute name="headerId" type="String" default="" />
+    <aura:attribute name="lastHeaderId" type="String" default="" />
+    <aura:attribute name="currency" type="String" default="" />
+    <aura:attribute name="grandTotal" type="Decimal" />
+    <aura:attribute name="CISWrapperList" type="List" />
+    
+    <aura:attribute name="approvalStatus" type="String" />
+    
+    <aura:attribute name="approvalComment" type="String" />
+    
+    
+    
+    
+    <aura:attribute name="companyPicklistValues" type="List" />
+    <aura:attribute name="productPicklistValues" type="List" />
+    
+    <aura:attribute name="isError" type="Boolean" default="false" />
+    <aura:attribute name="errorMessage" type="String" default="" />
+    
+    <aura:attribute name="showCISChildComp" type="Boolean" default="true" />
+    <aura:attribute name="monthPKVL" type="Object"/>
+    <aura:attribute name="selectedMonthVal" type="String"/>
+    <aura:attribute name="monthMap" type="Map" default="{ 0: 'Jan', 1: 'Feb',2: 'Mar',3: 'Apr',4: 'May',5: 'Jun',6: 'Jul',7: 'Aug',8: 'Sep',9: 'Oct',10: 'Nov',11: 'Dec' }" />
+    <aura:attribute name="currMonth" type="String"/>
+    <aura:attribute name="prevMonth" type="String"/>
+    <aura:attribute name="prev2prevMonth" type="String"/>
+    <aura:attribute name="currYear" type="Integer"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="CalculateTotal" event="c:CISEvent" action="{!c.calculateTotalValue}"/>
+    
+    <aura:if isTrue="{!$Browser.isPhone}">
+        <aura:html tag="style">
+            .slds-modal__content{
+            height: 100%;
+            }
+            .slds-modal__container {
+            justify-content: space-between;
+            }
+            .mobileScroller{
+            height:102%;
+            }
+        </aura:html>
+        <aura:set attribute="else">
+            <aura:html tag="style">
+                .modal-container{
+                width: 90%;
+                max-width: 90%;
+                }
+                .modal{
+                margin-bottom:50px;
+                }
+                .modalContainer{
+                margin-top:45px !important;
+                }
+                .priceCol,.surgeryCol,.valueCol{
+                width:200px;
+                }
+                
+            </aura:html>
+        </aura:set>
+    </aura:if>
+    
+    <!--<c:PickList sObjectName="CIS_Header__c" fieldName="Month__c" picklistValues="{! v.monthPKVL }" />   --> 
+    
+    <lightning:spinner aura:id="spinner" alternativeText="Loading" size="small" class="slds-hide" /> 
+    <section style="outline: none !important;" role="dialog" tabindex="-1"  aria-modal="true" aria-describedby="modal-content-id-1" class="modal slds-modal slds-fade-in-open">
+        <div class="slds-modal__container modalContainer" style="width:100%;margin:0px;padding:0px;max-width:100%;">
+            <header class="slds-modal__header">
+                <aura:if isTrue="{!!$Browser.isPhone}">
+                    <button onclick="{!c.closeModal}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                        <lightning:icon iconName="utility:close" variant="inverse" size="small" />
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </aura:if>
+                <h2 id="modal-heading-01" class="">
+                    <aura:if isTrue="{!v.approvalMode}">
+                        
+                        <div class="slds-grid slds-wrap" >
+                            
+                            <div class="slds-col slds-size_1-of-1 slds-align_absolute-center slds-text-heading_medium slds-hyphenate">Approve/Reject CIS</div> <br/><br/><br/><br/>
+                            <div class="slds-col slds-size_1-of-1 slds-align_absolute-center  slds-text-title_caps" style="font-weight: bold;color:#8B0000;width:100%;">
+                                <lightning:select class="slds-size--1-of-4" aura:id="monthVal"  disabled="{! v.approvalMode }" name="month" label="Month" value="{! v.selectedMonthVal }" onchange="{! c.onMonthChange }">
+                                    
+                                    <aura:iteration items="{!v.monthPKVL}" var="option">
+                                        <option  text="{!option}" value="{!option}" selected="{!option == v.currMonth }" />
+                                    </aura:iteration>
+                                </lightning:select>
+                            </div>
+                        </div>
+                        <aura:set attribute="else">
+                            <div class="slds-grid slds-wrap" >
+                                
+                                <div class="slds-col slds-size_1-of-1 slds-align_absolute-center slds-text-heading_medium slds-hyphenate">New CIS (Monthly)</div> <br/><br/><br/><br/>
+                                <div class="slds-col slds-size_1-of-1  slds-align_absolute-center slds-text-title_caps" style="font-weight: bold;color:#8B0000;width:100%;">
+                                    <lightning:select class="slds-size--1-of-4" aura:id="monthVal"  name="month" label="Month" value="{! v.selectedMonthVal }" onchange="{! c.onMonthChange }">
+                                        
+                                        <aura:iteration items="{!v.monthPKVL}" var="option">
+                                            <option  text="{!option}" value="{!option}" selected="{!option == v.currMonth }" />
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                            </div>
+                        </aura:set>
+                    </aura:if>
+                    
+                </h2>
+            </header>
+            <div class="slds-modal__content" id="modal-content-id-1" style="overflow: auto;">
+                
+                <div class="mobileScroller">
+                    <aura:if isTrue="{! v.showCISChildComp }">
+                        <lightning:tabset>                        
+                            <aura:iteration items="{!v.CISWrapperList}" var="CISWrapper">
+                                <lightning:tab label="{!CISWrapper.budget + CISWrapper.indicator}" class="redBtn"  >
+                                    <c:CISList 
+                                               companyPicklistValues="{!v.companyPicklistValues}" 
+                                               productPicklistValues="{!v.productPicklistValues}"
+                                               CISWrapper="{!CISWrapper}"
+                                               readOnly="{!v.readOnly}"
+                                               currency="{!v.currency}"
+                                               />
+                                </lightning:tab>
+                            </aura:iteration>
+                        </lightning:tabset>
+                    </aura:if>
+                    <aura:if isTrue="{!v.approvalMode}">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-horizontal_large">
+                                <div class="slds-form">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <lightning:select value="{!v.approvalStatus}" label="Approval Status" required="true">
+                                            <option value="Approve">Approve</option>
+                                            <option value="Reject">Reject</option>
+                                        </lightning:select>
+                                    </div>
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <lightning:textarea value="{!v.approvalComment}"  label="Comments" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_8-of-12">
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+            <footer class="slds-modal__footer" style="text-align:left">
+                <div class="slds-grid slds-wrap">
+                    <aura:if isTrue="{!!$Browser.isPhone}">
+                        <div  class="slds-col slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_5-of-12">
+                        </div>
+                    </aura:if>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_5-of-12">
+                        <span class="grandTotal">
+                            <aura:if isTrue="{!!$Browser.isPhone}">Grand </aura:if>Total: <lightning:formattedNumber value="{!v.grandTotal}" style="currency" currencyCode="{!v.currency}" minimumFractionDigits="0" />
+                        </span>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_2-of-12" style="text-align:right">
+                        <button class="slds-button slds-button_neutral" onclick="{!c.closeModal}">Cancel</button>
+                        <aura:if isTrue="{!!v.readOnly}">
+                            <button class="slds-button slds-button_brand" onclick="{!c.submitCIS}">Save</button>
+                        </aura:if>
+                        <aura:if isTrue="{!v.approvalMode}">
+                            <button class="slds-button slds-button_brand" onclick="{!c.approveCIS}">Submit</button>
+                        </aura:if>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+    
+    <aura:if isTrue="{!v.isError}">
+        <div class="slds-notify_container slds-is-relative">
+            <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                <lightning:icon variant="inverse" iconName="utility:error" size="small" class="slds-m-right_small slds-no-flex slds-align-top"/>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small">{!v.errorMessage}</h2>
+                </div>
+                <div class="slds-notify__close">
+                    <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick="{!c.hideToast}">
+                        <lightning:icon iconName="utility:close" size="small" variant="inverse" />
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    
+</aura:component>

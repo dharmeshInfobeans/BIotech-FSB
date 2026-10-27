@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FieldSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Generate_Sample_Request_Header</fullName>
+    <description>This is used in the LWC Component in the Opportunity.</description>
+    <displayedFields>
+        <field>Customer__c</field>
+        <isFieldManaged>false</isFieldManaged>
+        <isRequired>false</isRequired>
+    </displayedFields>
+    <label>Generate Sample Request Header</label>
+</FieldSet>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Type__c</fullName>
+    <label>Activity Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CONFERENCES</fullName>
+                <default>false</default>
+                <label>CONFERENCES</label>
+            </value>
+            <value>
+                <fullName>PHAKIC USER MEETING</fullName>
+                <default>false</default>
+                <label>PHAKIC USER MEETING</label>
+            </value>
+            <value>
+                <fullName>PRODUCT TRAINING</fullName>
+                <default>false</default>
+                <label>PRODUCT TRAINING</label>
+            </value>
+            <value>
+                <fullName>RTM</fullName>
+                <default>false</default>
+                <label>RTM</label>
+            </value>
+            <value>
+                <fullName>TRIO USER MEETING</fullName>
+                <default>false</default>
+                <label>TRIO USER MEETING</label>
+            </value>
+            <value>
+                <fullName>WETLAB</fullName>
+                <default>false</default>
+                <label>WETLAB</label>
+            </value>
+            <value>
+                <fullName>PHAKIC VIRTUAL LAB TRAINING</fullName>
+                <default>false</default>
+                <label>PHAKIC VIRTUAL LAB TRAINING</label>
+            </value>
+            <value>
+                <fullName>SYMPOSIUM</fullName>
+                <default>false</default>
+                <label>SYMPOSIUM</label>
+            </value>
+            <value>
+                <fullName>LIVE SURGERY</fullName>
+                <default>false</default>
+                <label>LIVE SURGERY</label>
+            </value>
+            <value>
+                <fullName>WEBINAR</fullName>
+                <default>false</default>
+                <label>WEBINAR</label>
+            </value>
+            <value>
+                <fullName>CME</fullName>
+                <default>false</default>
+                <label>CME</label>
+            </value>
+            <value>
+                <fullName>PHAKIC TRAINING-Level 1</fullName>
+                <default>false</default>
+                <label>PHAKIC TRAINING-Level 1</label>
+            </value>
+            <value>
+                <fullName>PHAKIC TRAINING-Level 2</fullName>
+                <default>false</default>
+                <label>PHAKIC TRAINING-Level 2</label>
+            </value>
+            <value>
+                <fullName>TRADE BOOTH</fullName>
+                <default>false</default>
+                <label>TRADE BOOTH</label>
+            </value>
+            <value>
+                <fullName>PAPER PRESENTATION</fullName>
+                <default>false</default>
+                <label>PAPER PRESENTATION</label>
+            </value>
+            <value>
+                <fullName>Events</fullName>
+                <default>false</default>
+                <label>Events</label>
+            </value>
+            <value>
+                <fullName>APP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>APP</label>
+            </value>
+            <value>
+                <fullName>CME/WEBINAR/LIVE SURGERY/SYMPOSIUM</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CME/WEBINAR/LIVE SURGERY/SYMPOSIUM</label>
+            </value>
+            <value>
+                <fullName>CTP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CTP</label>
+            </value>
+            <value>
+                <fullName>Customer Evaluations</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Customer Evaluations</label>
+            </value>
+            <value>
+                <fullName>DECODE</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DECODE</label>
+            </value>
+            <value>
+                <fullName>FOCUS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>FOCUS</label>
+            </value>
+            <value>
+                <fullName>IN CLINIC BRANDING</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>IN CLINIC BRANDING</label>
+            </value>
+            <value>
+                <fullName>In-Clinic</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>In-Clinic</label>
+            </value>
+            <value>
+                <fullName>KOLS / FOLS DEVELOPMENT</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>KOLS / FOLS DEVELOPMENT</label>
+            </value>
+            <value>
+                <fullName>NO. OF ENROLLMENTS IN SEP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>NO. OF ENROLLMENTS IN SEP</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>PHAKIC TRAINING</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PHAKIC TRAINING</label>
+            </value>
+            <value>
+                <fullName>PMS COLLECTED</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PMS COLLECTED</label>
+            </value>
+            <value>
+                <fullName>SPEAKER ENGAGEMENT PROGRAM (SIGNED OFF)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SPEAKER ENGAGEMENT PROGRAM (SIGNED OFF)</label>
+            </value>
+            <value>
+                <fullName>TAKE A BREAK SESSION</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TAKE A BREAK SESSION</label>
+            </value>
+            <value>
+                <fullName>TESTIMONIAL</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TESTIMONIAL</label>
+            </value>
+            <value>
+                <fullName>TESTIMONIAL EDITING</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TESTIMONIAL EDITING</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

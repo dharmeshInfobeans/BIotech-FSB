@@ -1,0 +1,136 @@
+<template>
+    <div class="queue-container">
+        <!-- Header -->
+        <div class="queue-header">
+            <div>
+                <span class="queue-title">Regulatory Queue</span>
+                <span class="count-badge">{totalCount}</span>
+            </div>
+        </div>
+
+        <!-- Search -->
+        <div class="search-bar">
+            <lightning-input
+                type="search"
+                placeholder="Search by name, distributor, country, or product..."
+                onchange={handleSearch}
+                value={searchText}>
+            </lightning-input>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <button
+                class={filterBtnAll}
+                data-filter="All"
+                onclick={handleFilter}>All</button>
+            <button
+                class={filterBtnPendingReview}
+                data-filter="Pending Review"
+                onclick={handleFilter}>Pending Review</button>
+            <button
+                class={filterBtnUnderReview}
+                data-filter="Under Review"
+                onclick={handleFilter}>Under Review</button>
+            <button
+                class={filterBtnAdditionalDocs}
+                data-filter="Additional Docs"
+                onclick={handleFilter}>Additional Docs</button>
+            <button
+                class={filterBtnCompleted}
+                data-filter="Completed"
+                onclick={handleFilter}>Completed</button>
+            <button
+                class={filterDocCycleClass}
+                onclick={handleDocCycleFilter}>Has Doc Cycles</button>
+            <div class="filter-priority">
+                <lightning-combobox
+                    label="Priority"
+                    variant="label-hidden"
+                    placeholder="All Priorities"
+                    value={filterPriority}
+                    options={priorityOptions}
+                    onchange={handlePriorityFilter}
+                ></lightning-combobox>
+            </div>
+            <div class="filter-priority">
+                <lightning-combobox
+                    label="Country"
+                    variant="label-hidden"
+                    placeholder="All Countries"
+                    value={filterCountry}
+                    options={countryOptions}
+                    onchange={handleCountryFilter}
+                ></lightning-combobox>
+            </div>
+        </div>
+
+        <!-- Loading Spinner -->
+        <template lwc:if={isLoading}>
+            <div style="text-align:center; padding: 32px;">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error State -->
+        <template lwc:if={hasError}>
+            <div class="empty-state">
+                <p>Error loading queue. Please refresh the page.</p>
+            </div>
+        </template>
+
+        <!-- Table -->
+        <template lwc:if={showTable}>
+            <template lwc:if={hasRecords}>
+                <table class="queue-table">
+                    <thead>
+                        <tr>
+                            <th>Request Name</th>
+                            <th>Distributor</th>
+                            <th>Country</th>
+                            <th>Product</th>
+                            <th>Status</th>
+                            <th>Days</th>
+                            <th>Cycles</th>
+                            <th>Priority</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={sortedQueue} for:item="row">
+                            <tr key={row.recId} class={row.rowClass}>
+                                <td>{row.name}</td>
+                                <td>{row.distributorName}</td>
+                                <td>{row.country}</td>
+                                <td>{row.productName}</td>
+                                <td>
+                                    <span class={row.statusPillClass}>{row.status}</span>
+                                </td>
+                                <td>{row.daysPending}</td>
+                                <td>{row.cycleCount}</td>
+                                <td>
+                                    <span class={row.priorityClass}>{row.priority}</span>
+                                </td>
+                                <td>
+                                    <button
+                                        class="view-btn"
+                                        data-id={row.recId}
+                                        onclick={handleViewDetail}>
+                                        View Details
+                                    </button>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <!-- Empty State -->
+            <template lwc:else>
+                <div class="empty-state">
+                    <p>No requests found matching your criteria.</p>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

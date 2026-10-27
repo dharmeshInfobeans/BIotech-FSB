@@ -1,0 +1,75 @@
+<template>
+    <lightning-card>
+        <!-- <h2 class="title">In-Transit Stocks</h2> -->
+        <h2 class="title">{label.In_Transit_Stocks_SS}</h2>
+      <!--  <div class="slds-m-around_medium">
+
+           <div class="month-filter">
+        <lightning-combobox
+            label="Month"
+            value={selectedMonth}
+            options={monthOptions}
+            onchange={handleMonthChange}>
+        </lightning-combobox>
+          </div> -->
+
+            <br/>
+<div class="table-wrapper">
+            <lightning-datatable
+                key-field="id"
+                data={records}
+                columns={columns}
+                hide-checkbox-column={hideCheckboxColumn}
+                onrowselection={handleRowSelection}>
+            </lightning-datatable>
+
+            <br/>
+<div class="slds-align_absolute-center slds-m-top_small">
+
+    <lightning-button-icon
+        icon-name="utility:chevronleft"
+        onclick={handlePrevious}
+        disabled={disablePrevious}>
+    </lightning-button-icon>
+
+<div class="pagination-container">
+    <span class="slds-m-horizontal_small">
+        {pageNumber} of {totalPages}
+    </span>
+
+    <lightning-button-icon
+        icon-name="utility:chevronright"
+        onclick={handleNext}
+        disabled={disableNext}>
+    </lightning-button-icon>
+</div>
+</div>
+</div>
+
+      <!-- <div class="approve-container">
+                <lightning-button
+                    label={label.Approve_To_Inward_Stock}
+                    variant="brand"
+                    onclick={handleApproveSales}
+                    disabled={isApproveDisabled}
+                    class="approve-btn">
+                </lightning-button>
+            </div> -->
+        <template if:true={hasEditAccess}>
+            <div class="approve-container">
+                <lightning-button
+                    label={label.Approve_To_Inward_Stock}
+                    variant="brand"
+                    onclick={handleApproveSales}
+                    disabled={isApproveDisabled}
+                    class="approve-btn">
+                </lightning-button>
+            </div>
+        </template>
+        <template if:false={hasEditAccess}>
+            <div class="slds-text-color_weak slds-p-around_small">
+                Read Only Access
+            </div>
+        </template>
+    </lightning-card>
+</template>

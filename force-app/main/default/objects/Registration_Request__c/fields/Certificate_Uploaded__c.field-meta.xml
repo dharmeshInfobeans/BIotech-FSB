@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Certificate_Uploaded__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Indicates whether the final Registration Certificate has been uploaded by the RA Team. Order Tab activates only when this is true.</description>
+    <label>Certificate Uploaded</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

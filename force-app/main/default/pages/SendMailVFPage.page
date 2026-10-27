@@ -1,0 +1,421 @@
+<apex:page controller="SendMailVFController"
+           showHeader="false"
+           sidebar="false"
+           standardStylesheets="false">
+    
+    
+    
+  <style>
+    body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #dcecfb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+
+    .mainForm {
+        width: 100%;
+        max-width: 950px;
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        padding: 15px;
+
+        /* ✅ RESPONSIVE FIX */
+        width: 100%;
+        max-width: 950px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .required-star {
+        color: red;
+        font-weight: bold;
+        margin-left: 2px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* ✅ Prevent overflow */
+    }
+
+    table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        vertical-align: top;
+        white-space: normal;
+        word-break: break-word;
+    }
+
+    .section-title {
+        background: #f1f5f9;
+        font-weight: bold;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .pageBlockContainer {
+        margin-top: 25px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #fafafa;
+        box-sizing: border-box;
+    }
+
+    .pageBlockTitle {
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .text-area {
+        width: 100%;
+        padding: 8px;
+        height: 60px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-top: 8px;
+        box-sizing: border-box;
+        resize: none;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+    }
+
+    .button-section {
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .approve-button, 
+    .reject-button {
+        padding: 10px 25px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .approve-button {
+        background-color: #2e844a;
+    }
+
+    .reject-button {
+        background-color: #c23934;
+    }
+
+    /* ✅ Center button */
+    .button-center {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* ✅ Salesforce-style Blue Button */
+    .btn {
+        background-color: #0176d3;
+        color: #ffffff;
+        padding: 12px 32px;
+        border-radius: 6px;
+        border: none;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #014486;
+    }
+
+    /* ✅ FILE INPUT RESPONSIVE */
+    input[type="file"] {
+      width: 180px !important;
+      display: inline-block;
+    }
+
+    /* ✅ MOBILE RESPONSIVE FIX */
+    @media (max-width: 600px) {
+
+        body {
+            align-items: flex-start;
+        }
+
+        .card {
+            padding: 12px;
+        }
+
+        table td {
+            padding: 6px;
+            font-size: 13px;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+        }
+
+        .approve-button,
+        .reject-button {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .text-area {
+            height: 70px;
+        }
+    }
+</style>
+
+    
+<script>
+function validateInput() {
+    var ManagerComment = document.getElementById("reportyComments").value;
+    var errorMessage = document.getElementById("errorMessage");
+
+    const regex = /^(?=.*[A-Za-z0-9]).*$/;
+
+    if (!regex.test(ManagerComment.trim())) {
+        errorMessage.style.display = 'block';
+        return false;
+    } else {
+        errorMessage.style.display = 'none';
+        return true;
+    }
+}
+
+function handleSubmit(action) {
+
+    if (!validateInput()) return;
+
+    var fileInput = document.getElementById("fileInput");
+    var file = fileInput.files[0];
+
+    var subcalltype = document.getElementById("subcalltype").value;
+
+    var skipFileRequired = 
+        subcalltype === 'Patient Education Videos' || 
+        subcalltype === 'Vision Simulator';
+
+    // file required check
+    if (!file && !skipFileRequired) {
+        alert("Attachment required !");
+        return;
+    }
+
+    // file validation only if file exists
+    if (file) {
+        var allowedExtensions = ['pdf','jpg','jpeg','png','mp4','mov'];
+        var fileExtension = file.name.split('.').pop().toLowerCase();
+
+        if (!allowedExtensions.includes(fileExtension)) {
+            alert("Only PDF, Images, Videos allowed.");
+            return;
+        }
+
+        var maxSize = 3.5 * 1024 * 1024;
+        if (file.size > maxSize) {
+            alert("File must be less than 3.5MB");
+            return;
+        }
+    }
+
+    var recordId = document.getElementById("recordId").value;
+    var reportyComment = document.getElementById("reportyComments").value;
+
+    // 🔥 if file present
+    if (file) {
+
+        var reader = new FileReader();
+
+        reader.onload = function () {
+            var base64 = reader.result.split(',')[1];
+
+            SendMailVFController.processReSubmit(
+                reportyComment,
+                recordId,
+                file.name,
+                base64,
+                callbackHandler
+            );
+        };
+
+        reader.readAsDataURL(file);
+
+    } else {
+        // 🔥 no file case
+        SendMailVFController.processReSubmit(
+            reportyComment,
+            recordId,
+            '',
+            '',
+            callbackHandler
+        );
+    }
+}
+
+function callbackHandler(result, event){
+    if (event.status) {
+        if (result.status === 'success') {
+            window.location.href = "{!thanksurl}";
+        } else {
+            alert(result.message);
+        }
+    } else {
+        alert("Error: " + event.message);
+    }
+}
+
+</script>
+
+    <div class="mainForm">
+        <apex:form enctype="multipart/form-data">
+            
+            <div class="card">
+                
+                <table>
+                    <tbody>
+                        
+                        <tr>
+                            <td colspan="2" class="section-title">Event Details</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Your Name</td>
+                            
+                            <td colspan="1">{!eventData.Owner.FirstName} {!eventData.Owner.LastName}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>SAP Code (Lead / Account)</td>
+                            
+                            <td colspan="1">{!sapCode} - {!recordname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>CE-CIS / Phakic Rating</td>
+                            
+                            <td colspan="1">{!ceCisRating} / {!phakicRating}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Country</td>
+                            
+                            <td colspan="1">{!countryname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>State</td>
+                            
+                            <td colspan="1">{!statename}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>City</td>
+                            
+                            <td colspan="1">{!Cityname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Street</td>
+                            
+                            <td colspan="1">{!streetname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Subject</td>
+                            
+                            <td colspan="1">{!subject}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Activity Name</td>
+                            
+                            <td colspan="1">{!calltype}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Sub Header Name</td>
+                            
+                            <td colspan="1">{!subcalltype}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Manager Comment</td>
+                            
+                            <td colspan="1">{!Comment}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2" class="section-title">Documents Uploaded</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>{!name}</td>
+                            
+                            <td colspan="1">
+                                <a href="{!publicurl}" target="_blank">View</a>
+                            </td>
+                        </tr>
+                        
+                                               
+                        <tr>
+                            <td>Re-Upload New Document  <span class="required-star">*</span></td>
+                            
+                            <td colspan="1">
+                                <input  type="file" id="fileInput" onclick="event.stopPropagation();"/>
+
+                            </td>
+                        </tr>
+                                               
+                    </tbody>
+                </table>
+                
+                <!-- COMMENT SECTION -->
+                <div class="pageBlockContainer">
+                    <div class="pageBlockTitle">
+                        Enter Your Comment <span class="required-star">*</span>
+                        <input type="hidden" value="Manager" id="Managerkey"/>
+                        <input id="reportyComments" class="text-area" placeholder="Please enter comment." oninput="validateInput()"/>
+                        <input type="hidden" value="{!recordId}" id="recordId"/>
+                        <input type="hidden" id="subcalltype" value="{!subcalltype}"/>
+                        <div id="errorMessage" class="error-message">Please enter comment.</div>
+                        
+                        
+                    </div>
+                    
+                </div>
+                
+                
+                <!-- ACTION BUTTON -->
+                <div class="button-center">
+                    <button type="button"
+                            class="btn"
+                            onclick="handleSubmit('submit')" id="submit" >
+                        Re-Submit Approval
+                    </button>
+                    
+                </div>  
+                
+            </div>
+        </apex:form>
+    </div>
+    
+</apex:page>

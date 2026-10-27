@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Orders_Orders_Orders_Awaiting_SAP_Sync</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Order_Activation_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Buyer_Account__c</columns>
+    <columns>Consignee_Name__c</columns>
+    <columns>CONTRACT_NO__c</columns>
+    <columns>Total_Amount__c</columns>
+    <columns>Consignee_City__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active,Sent for Approval</value>
+    </filters>
+    <filters>
+        <field>Advance_Received__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Integration_enabled_for_Created_By_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Order_Activation_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>10/28/2024</value>
+    </filters>
+    <label>Orders Awaiting SAP Sync</label>
+    <sharedTo>
+        <group>CRM_Teams</group>
+        <role>International_Admin</role>
+    </sharedTo>
+</ListView>

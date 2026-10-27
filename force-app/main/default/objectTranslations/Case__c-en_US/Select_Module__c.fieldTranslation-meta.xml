@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please Select a Module --></help>
+    <label><!-- Select Module --></label>
+    <name>Select_Module__c</name>
+    <picklistValues>
+        <masterLabel>Sample Request, Customer Creation</masterLabel>
+        <translation><!-- Sample Request, Customer Creation --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

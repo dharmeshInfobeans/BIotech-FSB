@@ -1,0 +1,19 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false">
+
+    <html>
+
+        <head>
+
+            <body>
+
+                <p style="text-align:center; font-size: 50px; margin-top: 200px">Thank you for Registration<br/>
+
+                   </p>
+
+            </body>
+
+        </head>
+
+    </html>
+
+</apex:page>

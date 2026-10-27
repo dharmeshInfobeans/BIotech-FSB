@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Evaluation_Rating__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF((No_of_Procedures_Cataract__c + No_of_Procedures_Glaucoma__c + No_of_Procedures_Pediatric__c + No_of_Procedures_Refractive__c + No_of_Procedures_Retina__c+VALUE(Number_of_Arthroscopy__c)+VALUE(Number_of_procedures_PRP__c)+Value(Number_of_Procedures_Viscosupplementat__c)+VALUE(Number_of_Joint_Replacement_Surgeries__c)) &gt;= 1201 ,
+ &apos;A&apos;, 
+ IF((No_of_Procedures_Cataract__c + No_of_Procedures_Glaucoma__c + No_of_Procedures_Pediatric__c + No_of_Procedures_Refractive__c + No_of_Procedures_Retina__c+VALUE(Number_of_Arthroscopy__c)+VALUE(Number_of_procedures_PRP__c)+Value(Number_of_Procedures_Viscosupplementat__c)+VALUE(Number_of_Joint_Replacement_Surgeries__c)) &gt;= 601 , 
+ &apos;B&apos;, 
+ IF((No_of_Procedures_Cataract__c + No_of_Procedures_Glaucoma__c + No_of_Procedures_Pediatric__c + No_of_Procedures_Refractive__c + No_of_Procedures_Retina__c+VALUE(Number_of_Arthroscopy__c)+VALUE(Number_of_procedures_PRP__c)+Value(Number_of_Procedures_Viscosupplementat__c)+VALUE(Number_of_Joint_Replacement_Surgeries__c)) &gt;= 251 ,
+ &apos;C&apos; , &apos;D&apos;) ) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Customer Evaluation Rating</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

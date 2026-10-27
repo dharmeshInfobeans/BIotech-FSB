@@ -1,0 +1,9 @@
+<aura:component
+    implements="lightning:actionOverride,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
+    access="global">
+
+     <div class="slds-size_1-of-1">
+        <c:oppproductsmanager />
+    </div>
+    
+</aura:component>

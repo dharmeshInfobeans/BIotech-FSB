@@ -1,0 +1,58 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="StockManagementController">
+    <!-- CustomDataTableController -->
+    
+    <!-- Attributes -->
+    <aura:attribute name="options" type="List" access="public"/>
+    <aura:attribute name="selectedValue" type="String" access="public"/>
+    <aura:attribute name="wrapper" type="object" />
+    <aura:attribute name="selectedYear" type="String"/>
+    
+    <tr class="slds-hint-parent" style="height:20px;">
+        <td data-label="{!v.wrapper.productName}" scope="row"  class = "table-header-row7-data"  style="Z-INDEX: 1;height=10">
+           <div class="slds-list_horizontal">
+         <!--   <td>vertical line css  class="innerTd"-->
+             <aura:if isTrue="{!(v.wrapper.difference &lt; 0)}">
+                 <div style="width: 2rem;height: 1rem;">
+            <lightning:icon iconName="utility:warning" class=""  variant="error" alternativeText="Warning!" title="Stock is low" />
+                 </div>
+             <aura:set attribute="else">
+            <div style="width: 2rem;"></div>
+            </aura:set>
+            </aura:if>
+        <!--    </td> -->
+           <td style="border:none;">
+            <div  style="margin: 1rem;" title="{!v.wrapper.productName}">{!v.wrapper.productName}</div><!--class="slds-cell-wrap"-->
+           </td>
+           </div>
+        </td>
+        <td data-label="{!v.wrapper.openingStock}"   class = "table-header-row8-data"   style="Z-INDEX: 1;height=0.5rem;left: 20.45rem;">
+            <lightning:input type="number" maxlength="5" value="{!v.wrapper.openingStock}"  name='Opening_Stock' class="slds-p-bottom_small column-width" onchange="{!c.calculateAvgQtyTillDt}"/>
+        </td>
+        <aura:iteration items="{! v.wrapper.dasWrapperLst}" var="dasWrapper">
+            <td data-label="{!dasWrapper.soldQuantity}"  style="height=0.5rem">
+                <lightning:input type="number" maxlength="5" value="{!dasWrapper.soldQuantity}" name='Sold_Quantity' class="slds-p-bottom_small column-width" onchange="{!c.calculateAvgQtyTillDt}" disabled="{!!dasWrapper.isEditable}"/>
+            </td>
+        </aura:iteration>
+        
+        <td data-label="{!v.wrapper.totalInCountrySalesTillDate}"  style="height=0.5rem">
+            <lightning:input type="number" value="{!v.wrapper.totalInCountrySalesTillDate}" class="slds-p-bottom_small column-width" disabled="true"/>
+        </td>
+        <td data-label="{!v.wrapper.averageQuantityTillDate}"  style="height=0.5rem">
+            <lightning:input type="number" value="{!v.wrapper.averageQuantityTillDate}" class="slds-p-bottom_small column-width" disabled="true"/>
+        </td>
+        <td data-label="{!v.wrapper.idealStockRequred}"  style="height=0.5rem">
+            <lightning:input type="number" value="{!v.wrapper.idealStockRequred}" class="slds-p-bottom_small column-width" onchange="{!c.calculateAvgQtyTillDt}" disabled="true"/>
+        </td>
+        <td data-label="{!v.wrapper.openOrdersWithBioTech}"  style="height=0.5rem">
+            <lightning:input type="number" value="{!v.wrapper.openOrdersWithBioTech}" class="slds-p-bottom_small column-width" onchange="{!c.calculateAvgQtyTillDt}"/>
+        </td>
+        <td data-label="{!v.wrapper.stockInTransit}"  style="height=0.5rem">
+            <lightning:input type="number" value="{!v.wrapper.stockInTransit}" class="slds-p-bottom_small column-width" onchange="{!c.calculateAvgQtyTillDt}"/>
+        </td>
+        <td data-label="{!v.wrapper.difference}"  style="height=0.5rem">
+            <lightning:input type="number" value="{!v.wrapper.difference}" class="slds-p-bottom_small column-width" disabled="true"/>
+        </td>
+        
+  	</tr>
+    
+</aura:component>

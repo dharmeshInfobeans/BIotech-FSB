@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Standard Campaign</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Standard Campaigns</value>
+    </caseValues>
+    <quickActions>
+        <label><!-- Child Campaign --></label>
+        <name>Child_Campaign</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

@@ -1,0 +1,189 @@
+<template>
+    <div class="queue-container">
+
+        <!-- Header -->
+        <div class="queue-header">
+            <h1 class="queue-title">Leadership Request Queue</h1>
+            <lightning-button-icon
+                icon-name="utility:refresh"
+                alternative-text="Refresh"
+                title="Refresh"
+                onclick={handleRefresh}
+            ></lightning-button-icon>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-row">
+            <div class="summary-card card-total">
+                <div class="card-value">{totalCount}</div>
+                <div class="card-label">Showing</div>
+            </div>
+            <div class="summary-card card-pending">
+                <div class="card-value">{pendingCount}</div>
+                <div class="card-label">Pending</div>
+            </div>
+            <div class="summary-card card-overdue">
+                <div class="card-value">{overdueCount}</div>
+                <div class="card-label">Overdue</div>
+            </div>
+            <div class="summary-card card-approval">
+                <div class="card-value">{pendingApprovalCount}</div>
+                <div class="card-label">Awaiting Approval</div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-search">
+                <lightning-input
+                    type="search"
+                    label="Search"
+                    variant="label-hidden"
+                    placeholder="Search by request #, distributor, country, product..."
+                    value={searchTerm}
+                    onchange={handleSearch}
+                ></lightning-input>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Status"
+                    variant="label-hidden"
+                    placeholder="All Statuses"
+                    value={filterStatus}
+                    options={statusOptions}
+                    onchange={handleStatusFilter}
+                ></lightning-combobox>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Country"
+                    variant="label-hidden"
+                    placeholder="All Countries"
+                    value={filterCountry}
+                    options={countryOptions}
+                    onchange={handleCountryFilter}
+                ></lightning-combobox>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Distributor"
+                    variant="label-hidden"
+                    placeholder="All Distributors"
+                    value={filterDistributor}
+                    options={distributorOptions}
+                    onchange={handleDistributorFilter}
+                ></lightning-combobox>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Priority"
+                    variant="label-hidden"
+                    placeholder="All Priorities"
+                    value={filterPriority}
+                    options={priorityOptions}
+                    onchange={handlePriorityFilter}
+                ></lightning-combobox>
+            </div>
+            <template lwc:if={hasFilters}>
+                <div class="filter-clear">
+                    <lightning-button
+                        label="Clear Filters"
+                        onclick={handleClearFilters}
+                    ></lightning-button>
+                </div>
+            </template>
+        </div>
+
+        <!-- Error -->
+        <template lwc:if={error}>
+            <div class="error-box">{error}</div>
+        </template>
+
+        <!-- Results Bar + Legend -->
+        <div class="results-bar">
+            <span class="results-count">{resultsLabel}</span>
+            <div class="legend">
+                <span class="legend-item">
+                    <span class="legend-dot dot-overdue"></span>
+                    <span class="legend-text">Overdue (&gt;7 days)</span>
+                </span>
+                <span class="legend-item">
+                    <span class="legend-dot dot-approval"></span>
+                    <span class="legend-text">Pending Approval</span>
+                </span>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <template lwc:if={hasResults}>
+                <table class="queue-table">
+                    <thead>
+                        <tr>
+                            <th class="th-priority">Priority</th>
+                            <th class="th-sortable" data-field="name" onclick={handleSort}>
+                                Request # <span class="sort-icon">{sortArrow_name}</span>
+                            </th>
+                            <th class="th-sortable" data-field="distributorName" onclick={handleSort}>
+                                Distributor <span class="sort-icon">{sortArrow_distributorName}</span>
+                            </th>
+                            <th class="th-sortable" data-field="country" onclick={handleSort}>
+                                Country / Region <span class="sort-icon">{sortArrow_country}</span>
+                            </th>
+                            <th class="th-sortable" data-field="productName" onclick={handleSort}>
+                                Product <span class="sort-icon">{sortArrow_productName}</span>
+                            </th>
+                            <th class="th-sortable" data-field="status" onclick={handleSort}>
+                                Status <span class="sort-icon">{sortArrow_status}</span>
+                            </th>
+                            <th class="th-sortable" data-field="submittedDate" onclick={handleSort}>
+                                Submitted <span class="sort-icon">{sortArrow_submittedDate}</span>
+                            </th>
+                            <th class="th-sortable" data-field="daysPending" onclick={handleSort}>
+                                Days Pending <span class="sort-icon">{sortArrow_daysPending}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRequests} for:item="req">
+                            <tr
+                                key={req.recId}
+                                class={req.rowClass}
+                                data-recid={req.recId}
+                                onclick={handleRowClick}
+                            >
+                                <td>
+                                    <span class={req.priorityClass}>{req.priority}</span>
+                                </td>
+                                <td class="td-name">
+                                    <span class="request-link">{req.name}</span>
+                                </td>
+                                <td>{req.distributorName}</td>
+                                <td>{req.countryRegion}</td>
+                                <td>{req.productName}</td>
+                                <td>
+                                    <span class={req.statusClass}>{req.status}</span>
+                                </td>
+                                <td>{req.formattedDate}</td>
+                                <td class={req.daysPendingClass}>{req.daysPendingLabel}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:else>
+                <div class="empty-state">
+                    <p>No requests found<template lwc:if={hasFilters}> matching your filters</template>.</p>
+                    <template lwc:if={hasFilters}>
+                        <lightning-button
+                            label="Clear Filters"
+                            onclick={handleClearFilters}
+                        ></lightning-button>
+                    </template>
+                </div>
+            </template>
+        </div>
+
+    </div>
+</template>

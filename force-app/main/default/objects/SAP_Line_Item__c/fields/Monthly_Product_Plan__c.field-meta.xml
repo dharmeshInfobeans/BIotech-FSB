@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_Product_Plan__c</fullName>
+    <label>Monthly Product Plan</label>
+    <referenceTo>Monthly_Product_Plan__c</referenceTo>
+    <relationshipLabel>SAP Line Item</relationshipLabel>
+    <relationshipName>SAP_Line_Item</relationshipName>
+    <relationshipOrder>1</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

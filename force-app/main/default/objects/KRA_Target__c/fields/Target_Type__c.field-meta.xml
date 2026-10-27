@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Type__c</fullName>
+    <label>Target Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>OT</fullName>
+                <default>false</default>
+                <label>OT</label>
+            </value>
+            <value>
+                <fullName>CME-RTM</fullName>
+                <default>false</default>
+                <label>CME-RTM</label>
+            </value>
+            <value>
+                <fullName>Salesforce Reporting</fullName>
+                <default>false</default>
+                <label>Salesforce Reporting</label>
+            </value>
+            <value>
+                <fullName>Learn &amp; Growth Training</fullName>
+                <default>false</default>
+                <label>Learn &amp; Growth Training</label>
+            </value>
+            <value>
+                <fullName>Active Customer</fullName>
+                <default>false</default>
+                <label>Active Customer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

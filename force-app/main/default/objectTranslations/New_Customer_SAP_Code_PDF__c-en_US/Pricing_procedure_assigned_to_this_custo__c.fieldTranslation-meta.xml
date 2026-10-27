@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Pricing procedure assigned to this custo --></label>
+    <name>Pricing_procedure_assigned_to_this_custo__c</name>
+</CustomFieldTranslation>

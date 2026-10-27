@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Registration Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Registration Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>Registration Request Layout</layout>
+        <sections>
+            <label><!-- Document Information --></label>
+            <section>Document Information</section>
+        </sections>
+        <sections>
+            <label><!-- Location --></label>
+            <section>Location</section>
+        </sections>
+        <sections>
+            <label><!-- Remarks --></label>
+            <section>Remarks</section>
+        </sections>
+        <sections>
+            <label><!-- Request Information --></label>
+            <section>Request Information</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

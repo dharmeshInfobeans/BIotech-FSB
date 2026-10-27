@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Action --></label>
+    <name>Action__c</name>
+    <picklistValues>
+        <masterLabel>Cleanup Executed</masterLabel>
+        <translation><!-- Cleanup Executed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Document Expired</masterLabel>
+        <translation><!-- Document Expired --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ledger Initiated</masterLabel>
+        <translation><!-- Ledger Initiated --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manually Cancelled</masterLabel>
+        <translation><!-- Manually Cancelled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PDF Saved</masterLabel>
+        <translation><!-- PDF Saved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Retry Attempted</masterLabel>
+        <translation><!-- Retry Attempted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SAP Fetch Failed</masterLabel>
+        <translation><!-- SAP Fetch Failed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SAP Fetch Started</masterLabel>
+        <translation><!-- SAP Fetch Started --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SAP Fetch Success</masterLabel>
+        <translation><!-- SAP Fetch Success --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Signature Completed</masterLabel>
+        <translation><!-- Signature Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Signature Declined</masterLabel>
+        <translation><!-- Signature Declined --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Signed PDF Downloaded</masterLabel>
+        <translation><!-- Signed PDF Downloaded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Status Check Performed</masterLabel>
+        <translation><!-- Status Check Performed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zoho Sign Send Failed</masterLabel>
+        <translation><!-- Zoho Sign Send Failed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zoho Sign Send Started</masterLabel>
+        <translation><!-- Zoho Sign Send Started --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zoho Sign Send Success</masterLabel>
+        <translation><!-- Zoho Sign Send Success --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutheader,lightning:actionOverride" access="global"><aura:html tag="style">
+    .slds-modal__container{
+    width: 100% !important;
+    max-width: 100% !important;
+    padding:10px;
+    }
+    
+    .slds-modal__content {
+    
+    }</aura:html><c:campaignAttendance  recordId="{!v.recordId}"  onclose="{!c.closeqa}" ></c:campaignAttendance></aura:component>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_Email_To_New_Account_Team_Member</fullName>
+        <description>Send Email To New Account Team Member</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Team_Member_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Account_Team_Member_Email_Notification_Template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Update_Team_Member_Email</fullName>
+        <description>This will update team member&apos;s email on email field</description>
+        <field>Team_Member_Email__c</field>
+        <formula>Team_Member__r.Email</formula>
+        <name>Update Team Member Email</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Send Email To New Account Team Member</fullName>
+        <actions>
+            <name>Send_Email_To_New_Account_Team_Member</name>
+            <type>Alert</type>
+        </actions>
+        <actions>
+            <name>Update_Team_Member_Email</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( NOT(ISNULL(Team_Member__c)), 					NOT(ISNULL(Account__c)),    					NOT(ISBLANK(TEXT(Account_Access__c))) 			)</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+</Workflow>

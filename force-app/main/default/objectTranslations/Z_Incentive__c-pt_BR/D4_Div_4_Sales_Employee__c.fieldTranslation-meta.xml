@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- D4 - Div 4 Sales Employee --></label>
+    <name>D4_Div_4_Sales_Employee__c</name>
+</CustomFieldTranslation>

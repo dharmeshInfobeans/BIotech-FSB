@@ -1,0 +1,4 @@
+<aura:component
+    implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,force:appHostable">
+    <c:generateInvoicePDF recordId="{!v.recordId}" onclosemodal="{!c.closeQuickAction}" />
+</aura:component>

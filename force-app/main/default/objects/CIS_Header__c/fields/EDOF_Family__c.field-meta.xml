@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EDOF_Family__c</fullName>
+    <label>EDOF Family</label>
+    <summarizedField>CIS_Line__c.No_of_Surguries__c</summarizedField>
+    <summaryFilterItems>
+        <field>CIS_Line__c.Product__c</field>
+        <operation>equals</operation>
+        <value>EDOF Family</value>
+    </summaryFilterItems>
+    <summaryForeignKey>CIS_Line__c.CIS_Header__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

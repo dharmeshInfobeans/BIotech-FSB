@@ -1,0 +1,77 @@
+<apex:page renderAs="pdf" controller="AccountInformationPdfController" contentType="text/html;charset=UTF-8"  >
+    
+   <head>
+
+        <style>
+            
+                  @font-face {
+            font-family: 'TurkishFont';
+            src: url('{!URLFOR($Resource.NotoSansFont)}') format('truetype');
+        }
+        body, table, td, th, span, div {
+            font-family: 'TurkishFont', Arial, sans-serif;
+        }
+
+            
+            
+    table {
+        page-break-inside: auto;
+    }
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+    td {
+        page-break-inside: avoid;
+    }
+</style>
+    </head>
+    <body>
+        
+    
+    <center>
+    <table style="border-collapse: collapse;font-weight: bold ;font-family: Calibri, sans-serif;width: 94%;page-break-inside: avoid;">
+        <thead style="width: 100%;">
+            <tr>
+                <th colspan="2" style="font-size: 11px; border: 0.5px solid black; padding: 2px; background-color: #f2f2f2; font-weight: bold;">* Marked are mandatory</th>
+                
+            </tr>
+            <tr>
+                <th style="font-size: 11px; width: 45%;border: 0.5px solid black; padding: 2px; font-weight: bold; text-align: center;">Particulars</th>
+                <th style="font-size: 13px; width: 55%;border: 0.5px solid black; padding: 2px; font-weight: bold; text-align: center;">Details Required to be filled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!pdfData}" var="d">
+              
+                <tr style="height:23px;">
+                    <td style="border: 0.5px solid black; padding: 2px; font-size: 10px;">{!d.field}</td>
+                    <td style="border: 0.5px solid black; padding: 2px; font-size: 13px;">{!d.value}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+    
+<div style="width:94%;border:1px solid black;page-break-inside: avoid;">
+    <table style="width:100%;border-collapse: collapse; border: 1px solid black;font-family: Calibri, sans-serif;font-weight: bold">
+        <tbody>
+            <tr>
+                <td style="text-align: right; padding: 4px; border: none; font-size: 11px; width: 15%;">Name:</td>
+                <td style="padding: 4px; border: none; font-size: 13px; width: 35%;">India Admin</td>
+                <td style="text-align: right; padding: 4px; border: none; font-size: 11px; width: 15%;">Initiated By:</td>
+                <td style="padding: 4px; border: none; font-size: 13px; width: 35%;">{!acc.Owner.Name}</td>
+            </tr>
+            <tr>
+                <td style="text-align: right; padding: 4px; border: none; font-size: 11px;">Signature:</td>
+                <td style="padding: 20px 4px 4px 4px; border: none; font-size: 13px;">&nbsp;</td>
+                <td style="border: none;"></td>
+                <td style="border: none;"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+        </center>
+        </body>
+    
+    
+</apex:page>

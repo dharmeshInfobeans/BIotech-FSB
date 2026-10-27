@@ -1,0 +1,66 @@
+.button{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+
+.main-card {
+    border-radius: 12px;
+}
+
+.table-section {
+    border-top: 1px solid #ccc;
+}
+
+.section-header {
+    text-align: center;
+    font-weight: 700;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.table-row {
+    display: grid;
+    grid-template-columns: 30% 5% 65%;
+    padding: 10px 16px;
+    border-bottom: 1px solid #ddd;
+    align-items: center;
+}
+
+.label {
+    font-weight: 500;
+}
+
+.colon {
+    text-align: center;
+}
+
+.value {
+    word-break: break-word;
+}
+
+.link a {
+    color: #1b6ef3;
+    cursor: pointer;
+}
+
+.approval-box {
+    background: #dff3f5;
+    padding: 24px;
+    text-align: center;
+}
+
+.approval-title {
+    font-size: 22px;
+    margin-bottom: 16px;
+}
+
+.button-group {
+    margin-top: 20px;
+}
+
+.button-group lightning-button {
+    margin: 0 12px;
+}

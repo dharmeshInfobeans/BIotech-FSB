@@ -1,0 +1,28 @@
+<template>
+
+<div class="slds-grid slds-gutters">
+  <div class="slds-col">
+    <span><c-searchable-combobox label={labels.Country__c}
+                                            options={billingCountryList} value={leadMap.Country__c}
+                                            onchange={handleInslead} disabled={showDetails} data-id="country"
+                                            class="NewForm" messagewheninvalid={labels.Please_fill_the_country__c}
+                                            name="Country"></c-searchable-combobox></span>
+  </div>
+  <div class="slds-col">
+    <span> <div if:true={state}><c-searchable-combobox  label={labels.State_Province__c}
+        options={stateList} value={leadMap.state}
+        onchange={handleChange} disabled={Statedesables} data-id="State"
+        class="NewForm" messagewheninvalid={labels.Please_fill_the_country__c}
+        name="state" placeholder={leadMap.state}>
+    </c-searchable-combobox></div>
+    <div if:false={state}><c-searchable-combobox  label={labels.State_Province__c}
+        options={stateList} value={statevalue}
+        onchange={handleChange} disabled={Statedesables} data-id="State"
+        class="NewForm" messagewheninvalid={labels.Please_fill_the_country__c}
+        name="state" placeholder={leadMap.state}>
+    </c-searchable-combobox></div>
+    </span>
+  </div>
+</div>
+
+</template>

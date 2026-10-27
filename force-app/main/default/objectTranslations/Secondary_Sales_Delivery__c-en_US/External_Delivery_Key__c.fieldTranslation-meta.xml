@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- SAPOrderNumber_MaterialNumber_DeliveryNumber --></help>
+    <label><!-- External Delivery Key --></label>
+    <name>External_Delivery_Key__c</name>
+</CustomFieldTranslation>

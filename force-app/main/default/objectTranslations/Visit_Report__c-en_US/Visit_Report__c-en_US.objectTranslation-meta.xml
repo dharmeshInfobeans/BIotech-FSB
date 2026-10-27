@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Visit Report</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Visit Reports</value>
+    </caseValues>
+    <layouts>
+        <layout>CME-RTM</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>High Performance Team</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Learn &amp; Growth Training</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Visit Report Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Section --></label>
+            <section>New Section</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- CME-RTM --></label>
+        <name>CME_RTM</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- High Performance Team --></label>
+        <name>High_Performance_Team</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Learn &amp; Growth Training --></label>
+        <name>Learn_Growth_Training</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Record Type --></label>
+        <name>Record_Type</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

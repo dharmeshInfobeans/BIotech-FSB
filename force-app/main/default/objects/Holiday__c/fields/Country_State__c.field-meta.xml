@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Country_State__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(Country__c) &amp; &quot;-&quot; &amp;  IF( ISPICKVAL(Country__c, &quot;INDIA&quot;), TEXT(State__c), &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Country State</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

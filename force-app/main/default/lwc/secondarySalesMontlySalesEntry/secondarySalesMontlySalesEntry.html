@@ -1,0 +1,84 @@
+<template>
+    <div class="card">
+                <!-- <h2 class="title">Monthly Sales Entry</h2> -->
+                <h2 class="title">{label.Monthly_Sales_Entry}</h2> 
+                <div class="month-section">
+                    <!-- <label class="month-label">Month :</label> -->
+                    <label class="month-label">{label.Month_1} :</label>
+                    <lightning-combobox
+                        value={selectedMonth}
+                        options={monthOptions}
+                        onchange={handleMonthChange}
+                        variant="label-hidden">
+                    </lightning-combobox>
+                </div>
+            
+        <template if:false={isLoading}>
+            <template if:true={pagedProducts}>
+                <div class="table">
+                    <div class="table-header">
+                        <!-- <span>Product Name</span>
+                        <span>Unit Sold This Month</span>
+                        <span>Units</span> -->
+                        <span>{label.Product_Name_Secondary_sales}</span>
+                        <span>{label.Unit_Sold_This_Month}</span>
+                        <span>{label.Units}</span>
+                    </div>
+
+                    <template for:each={pagedProducts} for:item="product">
+                        <div class="table-row" key={product.id}>
+                            <span class="product-name">
+                                {product.name}
+                            </span>
+                            <lightning-input type="number" value={product.monthlySales} data-id={product.productId}
+                                onchange={handleStockChange} disabled={product.disableInput}>
+                            </lightning-input>
+                            <!-- <span class="unit">Units</span> -->
+                            <span class="unit">{label.Units}</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={pagedProducts.length}>
+            </template>
+            <template if:false={products.length}>
+                <!-- <div class="slds-p-around_medium slds-text-align_center">
+                    No products available for this distributor.
+                </div> -->
+                <div class="slds-p-around_medium slds-text-align_center">
+                    {label.No_products_available_for_this_distributor}
+                </div>
+            </template>
+        </template>
+
+        <template if:true={totalRecords}>
+            <div class="pagination">
+                <button onclick={handlePrev} disabled={isFirstPage}>
+                    ‹
+                </button>
+
+                <span> {startRecord} – {endRecord} of {totalRecords}</span>
+                <button onclick={handleNext} disabled={isLastPage}>
+                    ›
+                </button>
+            </div>
+        </template>
+
+        <!-- <button class="save-btn" onclick={handleSave}>
+            {label.Save_Monthly_Sales}
+        </button> -->
+
+        <template if:true={hasEditAccess}>
+            <button class="save-btn" onclick={handleSave}>
+                {label.Save_Monthly_Sales}
+            </button>
+        </template>
+        <template if:false={hasEditAccess}>
+            <div class="slds-text-color_weak">
+                Read Only Access
+            </div>
+        </template>
+
+    </div>
+</template>

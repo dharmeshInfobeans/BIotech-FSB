@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>M5 – Div 5 Gerente</label>
+    <name>M5_Div_5_Manager__c</name>
+</CustomFieldTranslation>

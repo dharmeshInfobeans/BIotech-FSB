@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlexiPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentInstanceProperties>
+                    <name>endDayOfMonth</name>
+                    <value>31</value>
+                </componentInstanceProperties>
+                <componentName>SalesPlanningInt</componentName>
+                <identifier>SalesPlanningInt</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>region1</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <itemInstances>
+            <componentInstance>
+                <componentName>AOPDetailCompInt</componentName>
+                <identifier>AOPDetailCompInt</identifier>
+            </componentInstance>
+        </itemInstances>
+        <name>region2</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <flexiPageRegions>
+        <name>region3</name>
+        <type>Region</type>
+    </flexiPageRegions>
+    <masterLabel>Sales Planning Int</masterLabel>
+    <template>
+        <name>flexipage:appHomeTemplateTwoColumnsStacked</name>
+    </template>
+    <type>AppPage</type>
+</FlexiPage>

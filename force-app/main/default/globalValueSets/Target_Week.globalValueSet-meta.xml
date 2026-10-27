@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>Week - 1</fullName>
+        <default>false</default>
+        <label>Week - 1</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 2</fullName>
+        <default>false</default>
+        <label>Week - 2</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 3</fullName>
+        <default>false</default>
+        <label>Week - 3</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 4</fullName>
+        <default>false</default>
+        <label>Week - 4</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 5</fullName>
+        <default>false</default>
+        <label>Week - 5</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 6</fullName>
+        <default>false</default>
+        <label>Week - 6</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 7</fullName>
+        <default>false</default>
+        <label>Week - 7</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 8</fullName>
+        <default>false</default>
+        <label>Week - 8</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 9</fullName>
+        <default>false</default>
+        <label>Week - 9</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 10</fullName>
+        <default>false</default>
+        <label>Week - 10</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 11</fullName>
+        <default>false</default>
+        <label>Week - 11</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 12</fullName>
+        <default>false</default>
+        <label>Week - 12</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 13</fullName>
+        <default>false</default>
+        <label>Week - 13</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 14</fullName>
+        <default>false</default>
+        <label>Week - 14</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 15</fullName>
+        <default>false</default>
+        <label>Week - 15</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 16</fullName>
+        <default>false</default>
+        <label>Week - 16</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 17</fullName>
+        <default>false</default>
+        <label>Week - 17</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 18</fullName>
+        <default>false</default>
+        <label>Week - 18</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 19</fullName>
+        <default>false</default>
+        <label>Week - 19</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 20</fullName>
+        <default>false</default>
+        <label>Week - 20</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 21</fullName>
+        <default>false</default>
+        <label>Week - 21</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 22</fullName>
+        <default>false</default>
+        <label>Week - 22</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 23</fullName>
+        <default>false</default>
+        <label>Week - 23</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 24</fullName>
+        <default>false</default>
+        <label>Week - 24</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 25</fullName>
+        <default>false</default>
+        <label>Week - 25</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 26</fullName>
+        <default>false</default>
+        <label>Week - 26</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 27</fullName>
+        <default>false</default>
+        <label>Week - 27</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 28</fullName>
+        <default>false</default>
+        <label>Week - 28</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 29</fullName>
+        <default>false</default>
+        <label>Week - 29</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 30</fullName>
+        <default>false</default>
+        <label>Week - 30</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 31</fullName>
+        <default>false</default>
+        <label>Week - 31</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 32</fullName>
+        <default>false</default>
+        <label>Week - 32</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 33</fullName>
+        <default>false</default>
+        <label>Week - 33</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 34</fullName>
+        <default>false</default>
+        <label>Week - 34</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 35</fullName>
+        <default>false</default>
+        <label>Week - 35</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 36</fullName>
+        <default>false</default>
+        <label>Week - 36</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 37</fullName>
+        <default>false</default>
+        <label>Week - 37</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 38</fullName>
+        <default>false</default>
+        <label>Week - 38</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 39</fullName>
+        <default>false</default>
+        <label>Week - 39</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 40</fullName>
+        <default>false</default>
+        <label>Week - 40</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 41</fullName>
+        <default>false</default>
+        <label>Week - 41</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 42</fullName>
+        <default>false</default>
+        <label>Week - 42</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 43</fullName>
+        <default>false</default>
+        <label>Week - 43</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 44</fullName>
+        <default>false</default>
+        <label>Week - 44</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 45</fullName>
+        <default>false</default>
+        <label>Week - 45</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 46</fullName>
+        <default>false</default>
+        <label>Week - 46</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 47</fullName>
+        <default>false</default>
+        <label>Week - 47</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 48</fullName>
+        <default>false</default>
+        <label>Week - 48</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 49</fullName>
+        <default>false</default>
+        <label>Week - 49</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 50</fullName>
+        <default>false</default>
+        <label>Week - 50</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 51</fullName>
+        <default>false</default>
+        <label>Week - 51</label>
+    </customValue>
+    <customValue>
+        <fullName>Week - 52</fullName>
+        <default>false</default>
+        <label>Week - 52</label>
+    </customValue>
+    <masterLabel>Target Week</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

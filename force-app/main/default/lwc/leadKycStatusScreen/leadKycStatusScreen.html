@@ -1,0 +1,119 @@
+<template>
+	<lightning-card title={getcustomermodulelabel.Approval_Tracker__c} icon-name="custom:custom63">
+		<div class="slds-m-around_medium" style="display:flex;">
+			<div class="timeline">
+				<template if:true={rsmshow}>
+				<div class="timeline-item">
+					
+					<div class={getRsmMarkerClass} onmouseover={showRsmComments} onmouseout={hideRsmComments}></div>
+					<div class="timeline-content">
+						<p class="timeline-title">{getcustomermodulelabel.RSM_Approve__c}</p>
+						<template if:true={rsmApproved}>
+							<p>{rsmInfo}</p>
+							<div class="hover-comment" if:true={rsmCommentsVisible}>{rsmComments}</div>
+						</template>
+						<template if:true={rsmRejected}>
+							<p>{rsmInfoRej}</p>
+							<div class="hover-comment" if:true={rsmCommentsVisible}>{rsmComments}</div>
+						</template>
+						<template if:true={rsmPending}>
+							<p>Pending</p>
+							<div class="hover-comment" if:true={rsmCommentsVisible}>{rsmComments}</div>
+						</template>
+					</div>
+				</div>
+				</template>
+				<template if:true={zsmshow}>
+				<div class="timeline-item">
+					<div class={getZsmMarkerClass} onmouseover={showZsmComments} onmouseout={hideZsmComments}></div>
+					<div class="timeline-content">
+						<p class="timeline-title">{getcustomermodulelabel.ZSM_Approve__c}</p>
+						<template if:true={zsmApproved}>
+							<p>{zsmInfo}</p>
+							<div class="hover-comment" if:true={zsmCommentsVisible}>{zsmComments}</div>
+						</template>
+						<template if:true={zsmRejected}>
+							<p>{zsmInfoRej}</p>
+							<div class="hover-comment" if:true={zsmCommentsVisible}>{zsmComments}</div>
+						</template>
+						<template if:true={zsmPending}>
+							<p>Pending</p>
+							<div class="hover-comment" if:true={zsmCommentsVisible}>{zsmComments}</div>
+						</template>
+					</div>
+				</div>
+				</template>
+
+				<!-- ======================= -->
+               <template if:true={gmnsmshow}>
+				<div class="timeline-item">
+					<div class={getGmMarkerClass} onmouseover={showGmComments} onmouseout={hideGmComments}></div>
+					<div class="timeline-content">
+						<p class="timeline-title">{getcustomermodulelabel.GM_NSM_Approve__c}</p>
+						<template if:true={gmApproved}>
+							<p>{gmInfo}</p>
+							<div class="hover-comment" if:true={gmCommentsVisible}>{gmComments}</div>
+						</template>
+						<template if:true={gmRejected}>
+							<p>{gmInfoRej}</p>
+							<div class="hover-comment" if:true={gmCommentsVisible}>{gmComments}</div>
+						</template>
+						<template if:true={gmPending}>
+							<p>Pending</p>
+							<div class="hover-comment" if:true={gmCommentsVisible}>{gmComments}</div>
+						</template>
+					</div>
+				</div>
+				</template>
+				<template if:true={adminshow}>
+				<div class="timeline-item">
+					<div class={getAdminMarkerClass} onmouseover={showAdminComments} onmouseout={hideAdminComments}>
+					</div>
+					<div class="timeline-content">
+						<p class="timeline-title">{getcustomermodulelabel.Admin_Approve__c}</p>
+						<template if:true={adminApproved}>
+							<p>{adminInfo}</p>
+							<div class="hover-comment" if:true={adminCommentsVisible}>{adminComments}</div>
+						</template>
+						<template if:true={adminRejected}>
+							<p>{adminInfoRej}</p>
+							<div class="hover-comment" if:true={adminCommentsVisible}>{adminComments}</div>
+						</template>
+						<template if:true={adminPending}>
+							<p>Pending</p>
+							<div class="hover-comment" if:true={adminCommentsVisible}>{adminComments}</div>
+						</template>
+					</div>
+				</div>
+				</template>
+			</div>
+
+			<div>
+				<div class="timelineNew">
+					<div class="timeline-item">
+						<p class="timeline-marker bydefaultSet"></p>
+						<div class="timeline-title" style="margin-top: -3px;">{getcustomermodulelabel.No_Action__c}</div>
+					</div>
+				</div>
+				<div class="timelineNew">
+					<div class="timeline-item">
+						<p class="timeline-marker success"></p>
+						<div class="timeline-title" style="margin-top: -3px;">{getcustomermodulelabel.Approved__c}</div>
+					</div>
+				</div>
+				<div class="timelineNew">
+					<div class="timeline-item">
+						<p class="timeline-marker nosuccess"></p>
+						<div class="timeline-title" style="margin-top: -3px;">{getcustomermodulelabel.Rejected__c}</div>
+					</div>
+				</div>
+					<div class="timelineNew">
+					<div class="timeline-item">
+						<p class="timeline-marker pending"></p>
+						<div class="timeline-title" style="margin-top: -3px;">{getcustomermodulelabel.Pending__c}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</lightning-card>
+</template>

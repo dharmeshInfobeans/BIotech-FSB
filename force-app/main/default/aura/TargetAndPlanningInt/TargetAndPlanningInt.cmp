@@ -1,0 +1,123 @@
+<aura:component
+                controller="TargetAndPlanningController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                >
+    <aura:attribute name="targetMonth" type="String" required="true" default=""/> <!--REQUIRED Attribute -->
+    <aura:attribute name="targetYear" type="Integer" />
+    <aura:attribute name="startDay" type="Decimal" description="Start Day for Sales planning"/>
+    <aura:attribute name="endDay" type="Decimal" description="Last Day for sales planning"/>
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="target" type="Object" description="Product and Target" />
+    <aura:attribute name="account" type="Object" description="Account and monthly plan"/>
+    <aura:attribute name="planned" type="Object[]"  />
+    <aura:attribute name="mp" type="Object" />
+    <aura:attribute name="mpps" type="Object[]" default="[]" />
+    <aura:attribute name="mppsApex" type="Object"  />
+    <!--<aura:attribute name="showExistingMPPs" type="Boolean" default="false" />-->
+    <aura:attribute name="renderingDone" type="Boolean" default="true" />
+    <aura:attribute name="firstTimeLoaded" type="Boolean" default="false" />
+    <aura:attribute name="existingMppEachCellQtyMap" type="Map" default="{}" description="This map holds the value of existing MPP's planned Qty against 'Prod.Id+' '+Acc.Id'+' '+'mp.id' like-->'a040l000008qiVEAAY 0010l00000aUPMpAAO a090l000003Lf4sASE':12  (Used to fill Input Cell Values)  " />
+    <aura:attribute name="cloneMap" type="Map" default="{}" />
+    <!--<aura:attribute name="testMap2" type="Map" default="{}" />-->
+    <aura:attribute name="existingMppPlndQtyMap" type="Map" default="{}" description="This map holds the value of existing MPP's planned Qty against 'Prod.Id+Acc.Id' like-->'a040l000008qiVEAAY0010l00000aUPMpAAO':12 .  (Used to update Target(p tag) Values with existing planned qty)"  />
+    <aura:attribute name="totalTarget" type="Object[]" default="[]" description="This array holds existing mpp's planned qty against prodId like-->{'Id':'a040l000008qiVEAAY','Planned_Quantity__c':12} , it is used for grouping(by ID) and then filtering to sum all column values" />
+    <aura:attribute name="cellIdValueMap" type="Map" default="{}" />
+    <aura:attribute name="aopList" type="List" description="Used Only For International-->Stores List of All Annual AOP Returned FROM APEX in the form [{'Id':'[prodId+AccId]','Qty':'[Annual Qty]','Id':'[prodId+AccId]','Qty':'[Annual Qty]'}]"/>
+    <aura:attribute name="aopMap" type="Map" default="{}" description="Stores Annual AOPs--> Key as 'ProdId+AccID' and Values as 'Prod.Target_Quantity__c' "/>
+    <aura:attribute name="actualAopMap" type="Map" default="{}" description=""/>
+    <aura:attribute name="aopMapMod" type="Map" default="{}" description="It is clone of aopMap-->Used For Modifying Values"/>
+    <aura:attribute name="aopIdByAccIdMap" type="Map" default="{}" description="It stores prod's aop Id vs accountId+prodId, which is then used in Monthly_Target__c field of MPP record during saving"/>
+    <aura:attribute name="activeInputTextBoxMap" type="Map" default="{}" description=""/>
+    <aura:attribute name="showError" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="toggleIcon" type="Boolean" default="false" />
+    <aura:attribute name="allRowCellIds" type="Object[]" default="[]"/>
+    <aura:attribute name="refreshThisComp" type="Boolean" default="false" description="Parent Component will set and reset this value using event"/>
+    <aura:attribute name="errorMessage" type="String" default="" />
+    <aura:attribute name="monthMap" type="Map" default="{ 0: 'Jan', 1: 'Feb',2: 'Mar',3: 'Apr',4: 'May',5: 'Jun',6: 'Jul',7: 'Aug',8: 'Sep',9: 'Oct',10: 'Nov',11: 'Dec' }" />
+    <aura:attribute name="nextMonth" type="String" description="This attribute will be used in tab selection for parent component" />
+    <aura:attribute name="prevMonth" type="String" description="This attribute will be used in tab selection for parent component" />
+    <aura:attribute name="lockOrUnlockThisTab" type="Boolean" description="This value will be passed from parent and is used to enable or disable this tab" />
+    <aura:handler name="init" value="{!this}" action="{! c.doInit }" />
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <aura:handler name="change" value="{! v.toggleIcon}" action="{! c.onToggleValueChangeHandler }"/>
+    <aura:handler name="change" value="{! v.refreshThisComp}" action="{! c.onRefreshChildFuncHandler }"/>
+    <aura:registerEvent name="aopDetailAppEvt" type="c:AOPDetailAppEvt"/>
+    
+    <aura:registerEvent name="switchTabIntEvt" type="c:showTabIntEvt"/>
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:navigation aura:id="navService"/>
+    
+    <aura:method name="refreshChildMethod" action="{! c.onRefreshChildFuncHandler }" access="PUBLIC">
+         <aura:attribute name="param1" type="String" />
+    </aura:method>
+    
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner alternativeText="Loading Data..." /> 
+    </aura:if>
+    <aura:if isTrue="{! v.showError }">
+        <ui:message title="Error" severity="error" closable="true">
+            {!v.errorMessage}
+        </ui:message>
+        <aura:set attribute="else">
+            <!--<div class="slds-align_absolute-center" onclick="{! c.onIconClick}">
+                <lightning:icon  iconName="{! (v.toggleIcon) ? 'utility:lock' : 'action:password_unlock' }" size="small" alternativeText="Lock/Unlock Filled Data" title="Click to lock/unlock planned quantity which is saved" />
+            </div><br/>-->
+            <div style="width: 95%; height:95%;" class="slds-scrollable_x slds-scrollable_y">
+                <table id="myTable"
+                       class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered  " role="grid"
+                       >
+                    <thead>
+                        <tr class="slds-line-height_reset slds-text-heading--label">
+                            <th class="" scope="col">
+                                <div class="slds-truncate " title="Account Names">Accounts </div>
+                            </th>
+                            <aura:iteration items="{! v.target }" var="item" indexVar="rowCnt">
+                                <th class="" scope="col" >
+                                    <!--<div onmouseout="{! c.onMouseOut }" onmouseover="{! c.onMouseOverHandler }" data-tprodid="{! item.Id }" data-tprodname="{! item.Name }" data-tprodtarget="{! item.Monthly_AOP__r[0].Target_Quantity__c }" >-->
+                                        
+                                    <a href=""  onclick="{! c.onProductNameClick }" data-prodid="{! item.Id }" ><h6  >{! item.Name }</h6> </a>
+                                        <!--<output value="{item.Monthly_AOP__r.Target_Amount__c}"/>-->
+                                   <!-- <a href="" onclick="{! c.onAOPClick }" data-aopid="{! item.Monthly_AOP__r[0].Id }" ><h5 id="{! item.Id+v.targetMonth }"  class="mypopover slds-text-color_error" data-prodname="{! item.Name }" data-totalprodtarget="{! item.Monthly_AOP__r[0].Target_Quantity__c }" >{! item.Monthly_AOP__r[0].Remaining_Qty__c +' / '+item.Monthly_AOP__r[0].Target_Quantity__c } </h5></a>-->
+                                    
+                                    
+                                </th>
+                            </aura:iteration>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{! v.account }" var="mp" indexVar="accindex">
+                            <tr class="slds-hint-parent" >
+                                <td data-label="Account Name" role="gridcell">
+                                    <div class="slds-truncate" title="{! mp.Account__r.Name }"><a href="" data-accid="{! mp.Account__r.Id }" onclick="{! c.onAnchorClick }">{!mp.Account__r.Name}</a></div>
+                                </td>
+                                <aura:iteration items="{! v.target }" var="prod" indexVar="index">
+                                    <td role="gridcell" >
+                                        <!--<input id="{! prod.Id+' '+mp.Account__c+' '+mp.Id}" class="slds-input slds-truncate" data-prodtarget="{! prod.Monthly_AOP__r[0].Target_Quantity__c}" data-index="{!index}" data-prodid="{!prod.Id}" data-prodname="{!prod.Name}" data-accid="{! mp.Account__r.Id }" data-mpid="{! mp.Id }" data-mpname="{! mp.Name }" data-maopid="{! prod.Monthly_AOP__r[0].Id }" data-month="{! mp.Month__c}" data-year="{! mp.Year__c }" data-ownerid="{! mp.Account__r.OwnerId }"  onchange ="{! c.onInputChange }" type="text"  />-->
+                                        <input id="{! prod.Id+' '+mp.Account__c+' '+mp.Id}" class="slds-input slds-truncate"  data-index="{!index}" data-prodid="{!prod.Id}" data-prodname="{!prod.Name}" data-accid="{! mp.Account__r.Id }" data-mpid="{! mp.Id }" data-mpname="{! mp.Name }"  data-month="{! mp.Month__c}" data-year="{! mp.Year__c }" data-finyear="{! mp.Financial_Year__c }" data-ownerid="{! mp.Account__r.OwnerId }" data-finyeardate="{! mp.Financial_Year_Date__c }" data-accsapcode="{! mp.Account__r.SAP_Code__c}" data-prodcode="{! prod.Dummy_Product_Code__c}" onchange ="{! c.onInputChange }" type="number" min="0" />
+                                        
+                                        <a href="" onclick="{! c.onAOPClick }" onmouseover="{! c.onAOPMouseOverFireAppEvt }" onmouseout="{! c.onAOPMouseOutFireAppEvt }" data-accandprodid="{! mp.Account__c+prod.Id }"  data-mpid="{! mp.Id }" data-mpfisyear="{! mp.Financial_Year__c }" data-mpmonth="{! mp.Month__c }" ><strong><p id="{! prod.Id+mp.Account__c+mp.Month__c }" data-inputtaghtmlid="{! prod.Id+' '+mp.Account__c+' '+mp.Id }" class="slds-text-color_error slds-text-align_center" onclick="{! c.onParaClick}" ></p></strong></a>                            
+                                    </td>
+                                </aura:iteration>
+                                
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table><br/>
+                <div class="slds-align_absolute-center">
+                    <lightning:button variant="brand" disabled="{! v.lockOrUnlockThisTab }" label="Save" onclick="{! c.onSave }"/>
+                    <lightning:button variant="brand" disabled="{! v.lockOrUnlockThisTab }" label="Reload" onclick="{! c.onReloadHandler }"/>
+                    <!--<lightning:button variant="brand" label="Reset" onclick="{! c.onResetHandler }"/>-->
+                   <!-- <lightning:button variant="brand" label="Refresh" onclick="{! c.onRefreshChildFuncHandler }"/>-->
+                </div>
+                
+            </div>
+            
+            
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

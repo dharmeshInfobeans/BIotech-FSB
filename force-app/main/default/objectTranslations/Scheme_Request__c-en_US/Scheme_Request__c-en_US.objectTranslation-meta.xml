@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Scheme Request</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Scheme Requests</value>
+    </caseValues>
+    <layouts>
+        <layout>Scheme Request Layout</layout>
+        <sections>
+            <label><!-- Approver Information --></label>
+            <section>Approver Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- SAP Information --></label>
+            <section>SAP Information</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Sync Scheme To SAP --></label>
+        <name>Sync_Scheme_To_SAP</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

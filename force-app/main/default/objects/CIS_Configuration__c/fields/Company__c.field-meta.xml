@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company__c</fullName>
+    <label>Company</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Biotech</fullName>
+                <default>false</default>
+                <label>Biotech</label>
+            </value>
+            <value>
+                <fullName>Alcon</fullName>
+                <default>false</default>
+                <label>Alcon</label>
+            </value>
+            <value>
+                <fullName>Amo</fullName>
+                <default>false</default>
+                <label>Amo</label>
+            </value>
+            <value>
+                <fullName>Zeiss</fullName>
+                <default>false</default>
+                <label>Zeiss</label>
+            </value>
+            <value>
+                <fullName>Hoya</fullName>
+                <default>false</default>
+                <label>Hoya</label>
+            </value>
+            <value>
+                <fullName>B &amp; L</fullName>
+                <default>false</default>
+                <label>B &amp; L</label>
+            </value>
+            <value>
+                <fullName>Staar</fullName>
+                <default>false</default>
+                <label>Staar</label>
+            </value>
+            <value>
+                <fullName>Rayner</fullName>
+                <default>false</default>
+                <label>Rayner</label>
+            </value>
+            <value>
+                <fullName>Hanita</fullName>
+                <default>false</default>
+                <label>Hanita</label>
+            </value>
+            <value>
+                <fullName>VSY</fullName>
+                <default>false</default>
+                <label>VSY</label>
+            </value>
+            <value>
+                <fullName>IOC</fullName>
+                <default>false</default>
+                <label>IOC</label>
+            </value>
+            <value>
+                <fullName>Aurolab</fullName>
+                <default>false</default>
+                <label>Aurolab</label>
+            </value>
+            <value>
+                <fullName>Appasamy</fullName>
+                <default>false</default>
+                <label>Appasamy</label>
+            </value>
+            <value>
+                <fullName>Omni Lens</fullName>
+                <default>false</default>
+                <label>Omni Lens</label>
+            </value>
+            <value>
+                <fullName>Allergan</fullName>
+                <default>false</default>
+                <label>Allergan</label>
+            </value>
+            <value>
+                <fullName>Galderma</fullName>
+                <default>false</default>
+                <label>Galderma</label>
+            </value>
+            <value>
+                <fullName>Mertz</fullName>
+                <default>false</default>
+                <label>Mertz</label>
+            </value>
+            <value>
+                <fullName>Teoksan</fullName>
+                <default>false</default>
+                <label>Teoksan</label>
+            </value>
+            <value>
+                <fullName>Vivacy Laboratories</fullName>
+                <default>false</default>
+                <label>Vivacy Laboratories</label>
+            </value>
+            <value>
+                <fullName>Q-Med</fullName>
+                <default>false</default>
+                <label>Q-Med</label>
+            </value>
+            <value>
+                <fullName>Caregen</fullName>
+                <default>false</default>
+                <label>Caregen</label>
+            </value>
+            <value>
+                <fullName>Md Skin Solutions</fullName>
+                <default>false</default>
+                <label>Md Skin Solutions</label>
+            </value>
+            <value>
+                <fullName>Sanofi</fullName>
+                <default>false</default>
+                <label>Sanofi</label>
+            </value>
+            <value>
+                <fullName>Dr. Reddy&apos;s</fullName>
+                <default>false</default>
+                <label>Dr. Reddy&apos;s</label>
+            </value>
+            <value>
+                <fullName>Lupin</fullName>
+                <default>false</default>
+                <label>Lupin</label>
+            </value>
+            <value>
+                <fullName>Alkem</fullName>
+                <default>false</default>
+                <label>Alkem</label>
+            </value>
+            <value>
+                <fullName>Cadila</fullName>
+                <default>false</default>
+                <label>Cadila</label>
+            </value>
+            <value>
+                <fullName>Zydus</fullName>
+                <default>false</default>
+                <label>Zydus</label>
+            </value>
+            <value>
+                <fullName>Intas</fullName>
+                <default>false</default>
+                <label>Intas</label>
+            </value>
+            <value>
+                <fullName>Modi Mundi</fullName>
+                <default>false</default>
+                <label>Modi Mundi</label>
+            </value>
+            <value>
+                <fullName>IO Care</fullName>
+                <default>false</default>
+                <label>IO Care</label>
+            </value>
+            <value>
+                <fullName>Ophtec</fullName>
+                <default>false</default>
+                <label>Ophtec</label>
+            </value>
+            <value>
+                <fullName>B+L</fullName>
+                <default>false</default>
+                <label>B+L</label>
+            </value>
+            <value>
+                <fullName>Physiol</fullName>
+                <default>false</default>
+                <label>Physiol</label>
+            </value>
+            <value>
+                <fullName>J&amp;J</fullName>
+                <default>false</default>
+                <label>J&amp;J</label>
+            </value>
+            <value>
+                <fullName>Sifi</fullName>
+                <default>false</default>
+                <label>Sifi</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+            <value>
+                <fullName>Artisan</fullName>
+                <default>false</default>
+                <label>Artisan</label>
+            </value>
+            <value>
+                <fullName>pti Ocuflex</fullName>
+                <default>false</default>
+                <label>pti Ocuflex</label>
+            </value>
+            <value>
+                <fullName>Envision</fullName>
+                <default>false</default>
+                <label>Envision</label>
+            </value>
+            <value>
+                <fullName>Cima Technology</fullName>
+                <default>false</default>
+                <label>Cima Technology</label>
+            </value>
+            <value>
+                <fullName>Eyeiol</fullName>
+                <default>false</default>
+                <label>Eyeiol</label>
+            </value>
+            <value>
+                <fullName>Lefeline</fullName>
+                <default>false</default>
+                <label>Lefeline</label>
+            </value>
+            <value>
+                <fullName>Freedom</fullName>
+                <default>false</default>
+                <label>Freedom</label>
+            </value>
+            <value>
+                <fullName>Seelens Hanita</fullName>
+                <default>false</default>
+                <label>Seelens Hanita</label>
+            </value>
+            <value>
+                <fullName>Acriva</fullName>
+                <default>false</default>
+                <label>Acriva</label>
+            </value>
+            <value>
+                <fullName>Cima</fullName>
+                <default>false</default>
+                <label>Cima</label>
+            </value>
+            <value>
+                <fullName>Field1</fullName>
+                <default>false</default>
+                <label>Field1</label>
+            </value>
+            <value>
+                <fullName>Field2</fullName>
+                <default>false</default>
+                <label>Field2</label>
+            </value>
+            <value>
+                <fullName>Field3</fullName>
+                <default>false</default>
+                <label>Field3</label>
+            </value>
+            <value>
+                <fullName>Adapt</fullName>
+                <default>false</default>
+                <label>Adapt</label>
+            </value>
+            <value>
+                <fullName>Leedsay</fullName>
+                <default>false</default>
+                <label>Leedsay</label>
+            </value>
+            <value>
+                <fullName>Mediphacos</fullName>
+                <default>false</default>
+                <label>Mediphacos</label>
+            </value>
+            <value>
+                <fullName>Vertek</fullName>
+                <default>false</default>
+                <label>Vertek</label>
+            </value>
+            <value>
+                <fullName>Visionline</fullName>
+                <default>false</default>
+                <label>Visionline</label>
+            </value>
+            <value>
+                <fullName>BVI</fullName>
+                <default>false</default>
+                <label>BVI</label>
+            </value>
+            <value>
+                <fullName>Hi Care</fullName>
+                <default>false</default>
+                <label>Hi Care</label>
+            </value>
+            <value>
+                <fullName>Aurloab</fullName>
+                <default>false</default>
+                <label>Aurloab</label>
+            </value>
+            <value>
+                <fullName>Action</fullName>
+                <default>false</default>
+                <label>Action</label>
+            </value>
+            <value>
+                <fullName>Care Group</fullName>
+                <default>false</default>
+                <label>Care Group</label>
+            </value>
+            <value>
+                <fullName>Tiger Group</fullName>
+                <default>false</default>
+                <label>Tiger Group</label>
+            </value>
+            <value>
+                <fullName>Optaline ( Local Manufacturing Company )</fullName>
+                <default>false</default>
+                <label>Optaline ( Local Manufacturing Company )</label>
+            </value>
+            <value>
+                <fullName>Aikon</fullName>
+                <default>false</default>
+                <label>Aikon</label>
+            </value>
+            <value>
+                <fullName>Iris Medical</fullName>
+                <default>false</default>
+                <label>Iris Medical</label>
+            </value>
+            <value>
+                <fullName>TEOXAN</fullName>
+                <default>false</default>
+                <label>TEOXAN</label>
+            </value>
+            <value>
+                <fullName>CROMA-PHARMA</fullName>
+                <default>false</default>
+                <label>CROMA-PHARMA</label>
+            </value>
+            <value>
+                <fullName>BURGEON</fullName>
+                <default>false</default>
+                <label>BURGEON</label>
+            </value>
+            <value>
+                <fullName>NEUVIA</fullName>
+                <default>false</default>
+                <label>NEUVIA</label>
+            </value>
+            <value>
+                <fullName>FILLMED</fullName>
+                <default>false</default>
+                <label>FILLMED</label>
+            </value>
+            <value>
+                <fullName>BIO-PLUS</fullName>
+                <default>false</default>
+                <label>BIO-PLUS</label>
+            </value>
+            <value>
+                <fullName>ALSANZA</fullName>
+                <default>false</default>
+                <label>ALSANZA</label>
+            </value>
+            <value>
+                <fullName>Fidia</fullName>
+                <default>false</default>
+                <label>Fidia</label>
+            </value>
+            <value>
+                <fullName>Virchow</fullName>
+                <default>false</default>
+                <label>Virchow</label>
+            </value>
+            <value>
+                <fullName>Dermalis</fullName>
+                <default>false</default>
+                <label>Dermalis</label>
+            </value>
+            <value>
+                <fullName>Dermali</fullName>
+                <default>false</default>
+                <label>Dermali</label>
+            </value>
+            <value>
+                <fullName>Zambon</fullName>
+                <default>false</default>
+                <label>Zambon</label>
+            </value>
+            <value>
+                <fullName>Atlasmed</fullName>
+                <default>false</default>
+                <label>Atlasmed</label>
+            </value>
+            <value>
+                <fullName>TRB Pharma</fullName>
+                <default>false</default>
+                <label>TRB Pharma</label>
+            </value>
+            <value>
+                <fullName>Adium</fullName>
+                <default>false</default>
+                <label>Adium</label>
+            </value>
+            <value>
+                <fullName>Gardor</fullName>
+                <default>false</default>
+                <label>Gardor</label>
+            </value>
+            <value>
+                <fullName>Bennet HELLAS</fullName>
+                <default>false</default>
+                <label>Bennet HELLAS</label>
+            </value>
+            <value>
+                <fullName>YURIA-PHARM Oycrane</fullName>
+                <default>false</default>
+                <label>YURIA-PHARM Oycrane</label>
+            </value>
+            <value>
+                <fullName>Apherm Italy</fullName>
+                <default>false</default>
+                <label>Apherm Italy</label>
+            </value>
+            <value>
+                <fullName>Biofarma</fullName>
+                <default>false</default>
+                <label>Biofarma</label>
+            </value>
+            <value>
+                <fullName>Alfakjn Italy</fullName>
+                <default>false</default>
+                <label>Alfakjn Italy</label>
+            </value>
+            <value>
+                <fullName>LIBYTEC ROMANIA</fullName>
+                <default>false</default>
+                <label>LIBYTEC ROMANIA</label>
+            </value>
+            <value>
+                <fullName>REGENYAL ITALY</fullName>
+                <default>false</default>
+                <label>REGENYAL ITALY</label>
+            </value>
+            <value>
+                <fullName>Innate Pharma USA</fullName>
+                <default>false</default>
+                <label>Innate Pharma USA</label>
+            </value>
+            <value>
+                <fullName>MYLAL Pharma Group IRELAND</fullName>
+                <default>false</default>
+                <label>MYLAL Pharma Group IRELAND</label>
+            </value>
+            <value>
+                <fullName>Anika</fullName>
+                <default>false</default>
+                <label>Anika</label>
+            </value>
+            <value>
+                <fullName>Surgitech</fullName>
+                <default>false</default>
+                <label>Surgitech</label>
+            </value>
+            <value>
+                <fullName>Innate/Pronto</fullName>
+                <default>false</default>
+                <label>Innate/Pronto</label>
+            </value>
+            <value>
+                <fullName>Bioventus</fullName>
+                <default>false</default>
+                <label>Bioventus</label>
+            </value>
+            <value>
+                <fullName>Biolab</fullName>
+                <default>false</default>
+                <label>Biolab</label>
+            </value>
+            <value>
+                <fullName>Βennet  HELLAS</fullName>
+                <default>false</default>
+                <label>Βennet  HELLAS</label>
+            </value>
+            <value>
+                <fullName>LCA Pharma -France</fullName>
+                <default>false</default>
+                <label>LCA Pharma -France</label>
+            </value>
+            <value>
+                <fullName>FERRING PHARMACEUTICALS</fullName>
+                <default>false</default>
+                <label>FERRING PHARMACEUTICALS</label>
+            </value>
+            <value>
+                <fullName>BIOMET</fullName>
+                <default>false</default>
+                <label>BIOMET</label>
+            </value>
+            <value>
+                <fullName>Mylan</fullName>
+                <default>false</default>
+                <label>Mylan</label>
+            </value>
+            <value>
+                <fullName>Laboratorios Bagó</fullName>
+                <default>false</default>
+                <label>Laboratorios Bagó</label>
+            </value>
+            <value>
+                <fullName>IBSA</fullName>
+                <default>false</default>
+                <label>IBSA</label>
+            </value>
+            <value>
+                <fullName>SOFAR</fullName>
+                <default>false</default>
+                <label>SOFAR</label>
+            </value>
+            <value>
+                <fullName>GENZYME UK</fullName>
+                <default>false</default>
+                <label>GENZYME UK</label>
+            </value>
+            <value>
+                <fullName>VIVACY</fullName>
+                <default>false</default>
+                <label>VIVACY</label>
+            </value>
+            <value>
+                <fullName>TRB</fullName>
+                <default>false</default>
+                <label>TRB</label>
+            </value>
+            <value>
+                <fullName>Ecupharma</fullName>
+                <default>false</default>
+                <label>Ecupharma</label>
+            </value>
+            <value>
+                <fullName>Pronto Pharma</fullName>
+                <default>false</default>
+                <label>Pronto Pharma</label>
+            </value>
+            <value>
+                <fullName>LCA Pharmaceutical</fullName>
+                <default>false</default>
+                <label>LCA Pharmaceutical</label>
+            </value>
+            <value>
+                <fullName>Laboratoires Genevrier</fullName>
+                <default>false</default>
+                <label>Laboratoires Genevrier</label>
+            </value>
+            <value>
+                <fullName>MDT int.</fullName>
+                <default>false</default>
+                <label>MDT int.</label>
+            </value>
+            <value>
+                <fullName>Pierre Fabre</fullName>
+                <default>false</default>
+                <label>Pierre Fabre</label>
+            </value>
+            <value>
+                <fullName>CROMA</fullName>
+                <default>false</default>
+                <label>CROMA</label>
+            </value>
+            <value>
+                <fullName>Aptissen</fullName>
+                <default>false</default>
+                <label>Aptissen</label>
+            </value>
+            <value>
+                <fullName>Sanofi - Genziem</fullName>
+                <default>false</default>
+                <label>Sanofi - Genziem</label>
+            </value>
+            <value>
+                <fullName>Yaral Pharma / IBSA</fullName>
+                <default>false</default>
+                <label>Yaral Pharma / IBSA</label>
+            </value>
+            <value>
+                <fullName>Biomedcial Group</fullName>
+                <default>false</default>
+                <label>Biomedcial Group</label>
+            </value>
+            <value>
+                <fullName>BioPolymer</fullName>
+                <default>false</default>
+                <label>BioPolymer</label>
+            </value>
+            <value>
+                <fullName>ALBOMED</fullName>
+                <default>false</default>
+                <label>ALBOMED</label>
+            </value>
+            <value>
+                <fullName>ICL</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ICL</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

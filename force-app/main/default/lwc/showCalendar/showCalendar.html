@@ -1,0 +1,67 @@
+<!--
+  @File Name          : showCalendar.html
+  @Description        : 
+  @Author             : Jyoti Singh
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 11/7/2019, 2:10:33 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/9/2019   Jyoti Singh     Initial Version
+-->
+<template>
+        <div aria-hidden="false" aria-label="Date picker" class="slds-datepicker datepicker"
+             role="dialog">
+            <div class="slds-datepicker__filter slds-grid">
+                <div class="slds-datepicker__filter_month slds-grid slds-grid_align-spread slds-grow">
+                    <div class="slds-align-middle">
+                        <button class="slds-button slds-button_icon slds-button_icon-container" title="Previous Month"
+                            onclick={moveLeft}>
+                            <lightning-button-icon icon-name="utility:left" alternative-text="Previous Month">
+                            </lightning-button-icon>
+                            <span class="slds-assistive-text">Previous Month</span>
+                        </button>
+                    </div>
+                    <h2 aria-atomic="true" aria-live="assertive" class="slds-align-middle" id="month">
+                        {month}&nbsp;&nbsp;&nbsp;&nbsp;{year}</h2>
+                    <div class="slds-align-middle">
+                        <button class="slds-button slds-button_icon slds-button_icon-container" title="Next Month"
+                            onclick={moveRight}>
+                            <lightning-button-icon icon-name="utility:right" alternative-text="Next Month">
+                            </lightning-button-icon>
+                            <span class="slds-assistive-text">Next Month</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <table aria-labelledby="month" aria-multiselectable="true" class="slds-datepicker__month" role="grid">
+                <thead>
+                    <tr id="weekdays">
+                        <th id="Monday" scope="col">
+                            <abbr title="Monday">Mon</abbr>
+                        </th>
+                        <th id="Tuesday" scope="col">
+                            <abbr title="Tuesday">Tue</abbr>
+                        </th>
+                        <th id="Wednesday" scope="col">
+                            <abbr title="Wednesday">Wed</abbr>
+                        </th>
+                        <th id="Thursday" scope="col">
+                            <abbr title="Thursday">Thu</abbr>
+                        </th>
+                        <th id="Friday" scope="col">
+                            <abbr title="Friday">Fri</abbr>
+                        </th>
+                        <th id="Saturday" scope="col">
+                            <abbr title="Saturday">Sat</abbr>
+                        </th>
+                        <th id="Sunday" scope="col">
+                            <abbr title="Sunday">Sun</abbr>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody class="calendar__body" onclick={selectHandler} lwc:dom="manual">
+                </tbody>
+            </table>
+        </div>
+</template>

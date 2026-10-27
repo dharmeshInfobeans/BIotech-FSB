@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Record Type --></label>
+    <name>Record_Type__c</name>
+    <picklistValues>
+        <masterLabel>Dermal</masterLabel>
+        <translation><!-- Dermal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ortho</masterLabel>
+        <translation><!-- Ortho --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

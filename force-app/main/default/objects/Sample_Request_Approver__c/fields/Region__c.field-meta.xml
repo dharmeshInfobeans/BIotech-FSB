@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Region__c</fullName>
+    <label>Region</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GUJARAT</fullName>
+                <default>false</default>
+                <label>GUJARAT</label>
+            </value>
+            <value>
+                <fullName>TAMIL NADU</fullName>
+                <default>false</default>
+                <label>TAMIL NADU</label>
+            </value>
+            <value>
+                <fullName>DELHI</fullName>
+                <default>false</default>
+                <label>DELHI</label>
+            </value>
+            <value>
+                <fullName>East UP1</fullName>
+                <default>false</default>
+                <label>East UP1</label>
+            </value>
+            <value>
+                <fullName>ANDHRA</fullName>
+                <default>false</default>
+                <label>ANDHRA</label>
+            </value>
+            <value>
+                <fullName>BIHAR</fullName>
+                <default>false</default>
+                <label>BIHAR</label>
+            </value>
+            <value>
+                <fullName>ROM 2</fullName>
+                <default>false</default>
+                <label>ROM 2</label>
+            </value>
+            <value>
+                <fullName>TAMILNADU</fullName>
+                <default>false</default>
+                <label>TAMILNADU</label>
+            </value>
+            <value>
+                <fullName>KARNATAKA</fullName>
+                <default>false</default>
+                <label>KARNATAKA</label>
+            </value>
+            <value>
+                <fullName>WEST BENGAL</fullName>
+                <default>false</default>
+                <label>WEST BENGAL</label>
+            </value>
+            <value>
+                <fullName>TELANGANA</fullName>
+                <default>false</default>
+                <label>TELANGANA</label>
+            </value>
+            <value>
+                <fullName>RAJASTHAN</fullName>
+                <default>false</default>
+                <label>RAJASTHAN</label>
+            </value>
+            <value>
+                <fullName>JHARKHAND</fullName>
+                <default>false</default>
+                <label>JHARKHAND</label>
+            </value>
+            <value>
+                <fullName>KERALA</fullName>
+                <default>false</default>
+                <label>KERALA</label>
+            </value>
+            <value>
+                <fullName>PUNJAB</fullName>
+                <default>false</default>
+                <label>PUNJAB</label>
+            </value>
+            <value>
+                <fullName>ROM 1</fullName>
+                <default>false</default>
+                <label>ROM 1</label>
+            </value>
+            <value>
+                <fullName>ORISSA</fullName>
+                <default>false</default>
+                <label>ORISSA</label>
+            </value>
+            <value>
+                <fullName>MUMBAI</fullName>
+                <default>false</default>
+                <label>MUMBAI</label>
+            </value>
+            <value>
+                <fullName>NORTH EAST</fullName>
+                <default>false</default>
+                <label>NORTH EAST</label>
+            </value>
+            <value>
+                <fullName>UTTARAKHAND</fullName>
+                <default>false</default>
+                <label>UTTARAKHAND</label>
+            </value>
+            <value>
+                <fullName>WEST_UP</fullName>
+                <default>false</default>
+                <label>WEST_UP</label>
+            </value>
+            <value>
+                <fullName>HARYANA</fullName>
+                <default>false</default>
+                <label>HARYANA</label>
+            </value>
+            <value>
+                <fullName>DELHI-2</fullName>
+                <default>false</default>
+                <label>DELHI-2</label>
+            </value>
+            <value>
+                <fullName>EAST_UP_1</fullName>
+                <default>false</default>
+                <label>EAST_UP_1</label>
+            </value>
+            <value>
+                <fullName>DELHI-1</fullName>
+                <default>false</default>
+                <label>DELHI-1</label>
+            </value>
+            <value>
+                <fullName>EAST_UP_2</fullName>
+                <default>false</default>
+                <label>EAST_UP_2</label>
+            </value>
+            <value>
+                <fullName>MADHYA PRADESH</fullName>
+                <default>false</default>
+                <label>MADHYA PRADESH</label>
+            </value>
+            <value>
+                <fullName>KASHMIR</fullName>
+                <default>false</default>
+                <label>KASHMIR</label>
+            </value>
+            <value>
+                <fullName>Gwalior</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Gwalior</label>
+            </value>
+            <value>
+                <fullName>Indore</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Indore</label>
+            </value>
+            <value>
+                <fullName>MUMBAI-2</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>MUMBAI-2</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

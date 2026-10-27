@@ -1,0 +1,179 @@
+<template>
+    <div class="slds-card slds-p-around_medium bg-card">
+        <!-- Header -->
+        <div class="slds-page-header slds-m-bottom_medium header-container">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:service_contract" size="medium"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title-meta">Internal Console</span>
+                                        <span class="slds-page-header__title slds-truncate" title="Dealer Weekly Forecast">Dealer Weekly Forecast Console</span>
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter Panel -->
+        <div class="slds-grid slds-wrap slds-gutters slds-m-bottom_medium slds-p-around_small filter-panel">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12">
+                <lightning-input label="Customer" value={customerName} readonly class="filter-input"></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12">
+                <lightning-combobox label="FROM Month" value={fromselectedMonth} options={monthOptions} onchange={handleFromMonthChange} class="filter-input"></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12">
+                <lightning-combobox label="FROM Year" value={fromselectedYear} options={yearOptions} onchange={handleFromYearChange} class="filter-input"></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12">
+                <lightning-combobox label="TO Month" value={toselectedMonth} options={monthOptions} onchange={handleToMonthChange} class="filter-input"></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12">
+                <lightning-combobox label="TO Year" value={toselectedYear} options={yearOptions} onchange={handleToYearChange} class="filter-input"></lightning-combobox>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-12 go-button-container">
+                <lightning-button label="Go" variant="brand" icon-name="utility:search" onclick={handleGoClick} class="slds-stretch go-btn"></lightning-button>
+            </div>
+        </div>
+
+        <!-- Error Alert -->
+        <template if:true={errorMessage}>
+            <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_medium" role="alert">
+                <lightning-icon icon-name="utility:error" size="x-small" variant="inverse" class="slds-m-right_x-small"></lightning-icon>
+                <h2>{errorMessage}</h2>
+            </div>
+        </template>
+
+        <!-- Loading Spinner -->
+        <template if:true={isLoading}>
+            <div class="spinner-container">
+                <lightning-spinner alternative-text="Loading forecast details..." size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Forecast Table Content -->
+        <template if:true={showTable}>
+            <div class="table-container slds-m-bottom_medium">
+                <div class="scroll-table-wrapper">
+                    <table class="slds-table slds-table_bordered slds-table_col-solid slds-table_edit slds-no-row-hover forecast-table">
+                        <thead>
+                            <!-- First Row Headers: Month-Year groupings -->
+                            <tr class="slds-line-height_reset">
+                                <th class="sticky-col first-header-col bg-header" scope="col" rowspan="2">
+                                    <div class="slds-truncate header-label" title="Product Name">Product Name</div>
+                                </th>
+                                <th class="sticky-col second-header-col bg-header" scope="col" rowspan="2">
+                                    <div class="slds-truncate header-label" title="Target Qty">Target Qty</div>
+                                </th>
+                                <th class="sticky-col third-header-col bg-header" scope="col" rowspan="2">
+                                    <div class="slds-truncate header-label" title="Actual Qty till Date">Actual Qty</div>
+                                </th>
+                                <th class="sticky-col fourth-header-col bg-header" scope="col" rowspan="2">
+                                    <div class="slds-truncate header-label" title="Gap">Gap</div>
+                                </th>
+                                <template for:each={monthHeaders} for:item="month">
+                                    <th key={month.key} colspan={month.colspan} class="bg-header-month text-center">
+                                        <span class="month-header-label">{month.monthName} - {month.year}</span>
+                                    </th>
+                                </template>
+                            </tr>
+                            <!-- Second Row Headers: Weeks and Month Totals -->
+                            <tr class="slds-line-height_reset">
+                                <template for:each={weekHeaders} for:item="week">
+                                    <th key={week.key} class="bg-header-week text-center week-col-width">
+                                        <span class="week-header-label">{week.label}</span>
+                                    </th>
+                                </template>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={products} for:item="product" for:index="prodIndex">
+                                <tr key={product.productId} class="slds-hint-parent row-data-height">
+                                    <!-- Sticky Product details -->
+                                    <td class="sticky-col first-header-col bg-sticky-cell">
+                                        <div class="slds-truncate cell-link" title={product.productName}>
+                                            <a href="javascript:void(0);" tabindex="-1">{product.productName}</a>
+                                        </div>
+                                    </td>
+                                    <td class="sticky-col second-header-col bg-sticky-cell text-center">
+                                        <div class="slds-truncate" title={product.targetQty}>
+                                            <span>{product.targetQty}</span>
+                                        </div>
+                                    </td>
+                                    <td class="sticky-col third-header-col bg-sticky-cell text-center">
+                                        <div class="slds-truncate" title={product.totalActualQty}>
+                                            <span>{product.totalActualQty}</span>
+                                        </div>
+                                    </td>
+                                    <td class="sticky-col fourth-header-col bg-sticky-cell text-center">
+                                        <div class="slds-truncate" title={product.qtyGap}>
+                                            <span>{product.qtyGap}</span>
+                                        </div>
+                                    </td>
+                                    <!-- Dynamic month weeks -->
+                                    <template for:each={product.lstMonthWiseWeeks} for:item="month" for:index="monthIndex">
+                                        <!-- Weeks in Month -->
+                                        <template for:each={month.weeklyForecastObj} for:item="week" for:index="weekIndex">
+                                            <td key={week.uniqueKey} class="text-center cell-input-width">
+                                                <lightning-input 
+                                                    type="number" 
+                                                    variant="label-hidden" 
+                                                    value={week.forecastQty} 
+                                                    disabled={month.isDisabled}
+                                                    min="0"
+                                                    data-prod-index={prodIndex}
+                                                    data-month-index={monthIndex}
+                                                    data-week-index={weekIndex}
+                                                    onchange={handleForecastQtyChange}
+                                                    class="table-input">
+                                                </lightning-input>
+                                            </td>
+                                        </template>
+                                        <!-- Month Total -->
+                                        <td key={month.monthYear} class="text-center cell-input-width bg-month-total">
+                                            <lightning-input 
+                                                type="number" 
+                                                variant="label-hidden" 
+                                                value={month.totalForecast} 
+                                                disabled
+                                                class="table-input total-input">
+                                            </lightning-input>
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Footer Save Bar -->
+            <div class="slds-grid slds-grid_align-center slds-p-around_small footer-bar">
+                <lightning-button 
+                    label="Save Forecast" 
+                    variant="brand" 
+                    icon-name="utility:save" 
+                    onclick={handleSaveClick}>
+                </lightning-button>
+            </div>
+        </template>
+
+        <!-- No Records Found state -->
+        <template if:false={showTable}>
+            <template if:false={isLoading}>
+                <div class="no-records-panel">
+                    <p class="no-records-text">No forecast records to display. Select a date range and click Go.</p>
+                </div>
+            </template>
+        </template>
+    </div>
+</template>

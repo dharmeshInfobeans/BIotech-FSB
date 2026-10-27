@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Manually maintained, for dashboard use. Do not rely on this being automatically kept in sync. --></help>
+    <label><!-- Actual Upgrade Week Dashboard --></label>
+    <name>Actual_Upgrade_Week_Dashboard__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Sample Request Header</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Sample Request Headers</value>
+    </caseValues>
+    <fieldSets>
+        <label><!-- Generate Sample Request Header --></label>
+        <name>Generate_Sample_Request_Header</name>
+    </fieldSets>
+    <layouts>
+        <layout>Sample Request Header Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- New Custom Fields For Sap Mapping --></label>
+            <section>New Custom Fields For Sap Mapping</section>
+        </sections>
+        <sections>
+            <label><!-- SAP Details --></label>
+            <section>SAP Details</section>
+        </sections>
+    </layouts>
+    <quickActions>
+        <label><!-- Add Feedback --></label>
+        <name>Add_Feedback</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Custom Approval --></label>
+        <name>Custom_Approval</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Feedback History --></label>
+        <name>Feedback_History</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Order Sync To SAP --></label>
+        <name>Order_Sync_To_SAP</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Resync Order to SAP --></label>
+        <name>Resync_Order_to_SAP</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Sample Approval Requests --></label>
+        <name>Sample_Approval_Requests</name>
+    </quickActions>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Add_Feedback --></label>
+        <name>Add_Feedback</name>
+    </webLinks>
+    <webLinks>
+        <label><!-- Feedback_Approval_Requests --></label>
+        <name>Feedback_Approval_Requests</name>
+    </webLinks>
+</CustomObjectTranslation>

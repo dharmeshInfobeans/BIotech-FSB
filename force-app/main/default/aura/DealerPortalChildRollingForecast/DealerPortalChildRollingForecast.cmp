@@ -1,0 +1,53 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" controller="DealerPortalForecastController">
+    
+    <aura:attribute name ="monthWiseWeekobj" type='Object' />
+     <aura:attribute name="isRender" type="boolean" default='True'/> 
+        <aura:attribute name ="weeklyProduct" type='Object' />
+
+    
+    <td data-label="Product Name" scope="row" class="table-header-row7-data" style="Z-INDEX: 1;position: sticky;left: 0;top: 0;background-color: white;">
+        <div  title="{!v.weeklyProduct.productName}">
+            <a href="javascript:void(0);" tabindex="-1">{!v.weeklyProduct.productName}</a>
+        </div>
+    </td>   
+    <!--<td data-label="Target Qty" scope="row" class="table-header-row8-data" style="Z-INDEX: 1;position: sticky;left: 15rem;top: 0;background-color: white;">-->
+    <td data-label="Target Qty" scope="row" class="table-header-row8-data" style="Z-INDEX: 1;position: sticky;left: 12rem;top: 0;background-color: white;">    
+        <div class="slds-truncate" title="{!v.weeklyProduct.targetQty}">
+            <a href="javascript:void(0);" tabindex="-1">{!v.weeklyProduct.targetQty}</a>
+        </div>
+    </td>
+    <!--<td data-label="Agreement Value" scope="row" style="Z-INDEX: 1;position: sticky;left: 22rem;top: 0;background-color: white;">-->
+    <!--<td data-label="Agreement Value" scope="row" style="Z-INDEX: 1;position: sticky;left: 16.5rem;top: 0;background-color: white;">
+        <div class="slds-truncate" title="{!v.weeklyProduct.agreementValue}">
+            <a href="javascript:void(0);" tabindex="-1">{!v.weeklyProduct.currencyISOCode}&nbsp;{!v.weeklyProduct.agreementValue}</a>
+        </div>
+    </td>--><!--commented on 23/4-->  
+    <td data-label="Actual Qty" scope="row" style="Z-INDEX: 1;position: sticky;left: 19rem;top: 0;background-color: white;">
+        <div class="slds-truncate" title="{!v.weeklyProduct.totalActualQty}">
+            <a href="javascript:void(0);" tabindex="-1">{!v.weeklyProduct.totalActualQty}</a>
+        </div>
+    </td>  
+    <td data-label="Gap" scope="row" style="Z-INDEX: 1;position: sticky;left: 25rem;top: 0;background-color: white;">
+        <div class="slds-truncate" title="{!v.weeklyProduct.qtyGap}">
+            <a href="javascript:void(0);" tabindex="-1">{!v.weeklyProduct.qtyGap}</a>
+        </div>
+    </td>  
+    <aura:iteration items="{!v.monthWiseWeekobj}" var="monthlyLst" indexVar="index">       
+        <td scope="col" class="{!monthlyLst.thCls}" colSpan = '1' style="Z-INDEX: 1;position: sticky;left: 28.5rem;top: 0;background-color: white;"> 
+            <table Style="border-right-style: solid;border-right-width: 1px;">
+                <tr>
+                    <aura:iteration items="{!monthlyLst.weeklyForecastObj}" var="weekRec" indexVar="index">
+                        <td style="text-align: center;border-right-style: solid;border-right-width: 1px; Z-INDEX: 1;position: sticky; background-color: white; top: 0;" >
+                            <lightning:input class ="custom-width" type="number" aura:id ="forecastQty" value="{!weekRec.forecastQty}" 
+                                            onchange="{!c.updateForecastTotal}" disabled = "{!monthlyLst.isDisabled}"
+                                             pattern="^(0|[0-9][0-9]*)$" min="0" formatter="decimal" />
+                        </td>
+                    </aura:iteration>
+                    <td style="text-align: center; Z-INDEX: 1;position: sticky; background-color: white; top: 0;"><lightning:input class ="custom-width" type="number" aura:id = "totalForecastQty" value="{!monthlyLst.totalForecast}" disabled = "true"/></td>                
+                    <!--<td style="text-align: center; Z-INDEX: 1;position: sticky; background-color: white; top: 0;padding-right: 1rem;"><lightning:input class ="custom-width" type="number" aura:id = "monthlyActualQty" value="{!monthlyLst.totalMonthlyActualQty}" disabled = "true"/></td>-->          
+                </tr>
+            </table>
+        </td>
+    </aura:iteration>
+</aura:component>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Evaluation_Week_Dashboard__c</fullName>
+    <description>Plain Number field for the Pro-Active Pipeline dashboard&apos;s use on Opportunity__c, mirroring Lead__c&apos;s Actual_Evaluation_Week_Dashboard__c. No formula field or automation feeds this yet - populated manually until a source/sync process is defined.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Manually maintained, for dashboard use. Do not rely on this being automatically kept in sync.</inlineHelpText>
+    <label>Actual Evaluation Week Dashboard</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

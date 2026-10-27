@@ -1,0 +1,14 @@
+<aura:component implements="flexipage:availableForRecordHome,flexipage:availableForAllPageTypes,force:hasRecordId,force:lightningQuickActionwithoutheader,lightning:actionOverride" access="global">
+    <aura:html tag="style">
+        .slds-modal__container {
+            width: 70vw !important;
+            max-width: 1200px !important;
+        }
+        @media only screen and (max-width: 480px) {
+            .slds-modal__container {
+                width: 95vw !important;
+            }
+        }
+    </aura:html>
+    <c:customLeadForm recordId="{!v.recordId}" onclose="{!c.closeqa}" ></c:customLeadForm>
+</aura:component>

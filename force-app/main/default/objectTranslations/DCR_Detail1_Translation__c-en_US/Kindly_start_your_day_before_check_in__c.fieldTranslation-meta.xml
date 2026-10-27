@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Kindly start your day before check in --></label>
+    <name>Kindly_start_your_day_before_check_in__c</name>
+</CustomFieldTranslation>

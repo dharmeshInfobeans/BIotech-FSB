@@ -1,0 +1,166 @@
+<template>
+    <lightning-tabset>
+        <lightning-tab label="Initial Stock">
+            <div class="card">
+                <h2 class="title">Initial Stock Setup</h2>
+                <template if:true={isLoading}>
+                    <div class="slds-p-around_medium slds-align_absolute-center">
+                        <lightning-spinner alternative-text="Loading products" size="medium"></lightning-spinner>
+                    </div>
+                </template>
+
+                <template if:true={hasError}>
+                    <div class="slds-text-color_error slds-p-around_small">
+                        {errorMessage}
+                    </div>
+                </template>
+
+        <template if:false={isLoading}>
+            <template if:true={pagedProducts}>
+                <div class="table">
+                    <div class="table-header">
+                        <span>Product Name</span>
+                        <span>Initial Stock</span>
+                        <span>Units</span>
+                    </div>
+
+                    <template for:each={pagedProducts} for:item="product">
+                        <div class="table-row" key={product.id}>
+                            <span class="product-name">
+                                {product.name}
+                            </span>
+
+                            <lightning-input type="number" min="0" value={product.stock} data-id={product.id}
+                                onchange={handleStockChange}>
+                            </lightning-input>
+
+                            <span class="unit">Units</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={pagedProducts.length}>
+            </template>
+            <template if:false={pagedProducts.length}>
+                <div class="slds-p-around_medium slds-text-align_center">
+                    No products available for this distributor.
+                </div>
+            </template>
+        </template>
+
+        <template if:true={totalRecords}>
+            <div class="pagination">
+                <button onclick={handlePrev} disabled={isFirstPage}>
+                    ‹
+                </button>
+
+                <span> {startRecord} – {endRecord} of {totalRecords}</span>
+                <button onclick={handleNext} disabled={isLastPage}>
+                    ›
+                </button>
+            </div>
+        </template>
+
+        <button class="save-btn" onclick={handleSave}>
+            Save Initial Stock
+        </button>
+
+
+    </div>
+        </lightning-tab>
+        <lightning-tab label="Monthly Sales Entry" title="2nd tab extended title" style="margin-left: 50px;">
+            Two Content !!!!!<c-secondary-sales-montly-sales-entry></c-secondary-sales-montly-sales-entry>
+        </lightning-tab>
+        <lightning-tab label="Secondary Sale Review" style="margin-left: 50px;">
+            Three Content !!!!!
+        </lightning-tab>
+    </lightning-tabset>
+</template>
+
+<!-- <template>
+
+    <div class="tabs">
+        <span class="tab active">Initial Stock</span>
+        <span class="tab">Monthly Sales Entry</span>
+        <span class="tab">Secondary Sale Review</span>
+    </div>
+
+    <div class="card">
+        <h2 class="title">Initial Stock Setup</h2>
+
+        <template if:true={isLoading}>
+            <div class="slds-p-around_medium slds-align_absolute-center">
+                <lightning-spinner alternative-text="Loading products" size="medium">
+                </lightning-spinner>
+            </div>
+        </template>
+
+        <template if:true={hasError}>
+            <div class="slds-text-color_error slds-p-around_small">
+                {errorMessage}
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+            <template if:true={pagedProducts}>
+                <div class="table">
+                    <div class="table-header">
+                        <span>Product Name</span>
+                        <span>Initial Stock</span>
+                        <span>Units</span>
+                    </div>
+
+                    <template for:each={pagedProducts} for:item="product">
+                        <div class="table-row" key={product.id}>
+                            <span class="product-name">
+                                {product.name}
+                            </span>
+
+                            <lightning-input type="number" min="0" value={product.stock} data-id={product.id}
+                                onchange={handleStockChange}>
+                            </lightning-input>
+
+                            <span class="unit">Units</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <template if:true={pagedProducts.length}>
+            </template>
+            <template if:false={pagedProducts.length}>
+                <div class="slds-p-around_medium slds-text-align_center">
+                    No products available for this distributor.
+                </div>
+            </template>
+        </template>
+
+        <template if:true={totalRecords}>
+            <div class="pagination">
+                <button
+                    onclick={handlePrev}
+                    disabled={isFirstPage}>
+                    ‹
+                </button>
+
+                <span>
+                    {startRecord} – {endRecord} of {totalRecords}
+                </span>
+
+                <button
+                    onclick={handleNext}
+                    disabled={isLastPage}>
+                    ›
+                </button>
+            </div>
+        </template>
+
+        <button class="save-btn" onclick={handleSave}>
+            Save Initial Stock
+        </button>
+
+
+    </div>
+
+</template> -->

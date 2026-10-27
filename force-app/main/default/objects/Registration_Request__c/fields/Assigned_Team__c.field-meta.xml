@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_Team__c</fullName>
+    <description>Derived from Current_Stage__c. Maps stage to responsible team for bottleneck reporting.</description>
+    <externalId>false</externalId>
+    <formula>CASE( TEXT(Current_Stage__c),
+    &quot;Distributor Submission&quot;, &quot;Distributor&quot;,
+    &quot;Functional Head Review&quot;, &quot;Distributor&quot;,
+    &quot;Leadership Review&quot;, &quot;Leadership Team&quot;,
+    &quot;Management Review&quot;, &quot;Leadership Team&quot;,
+    &quot;Regulatory Processing&quot;, &quot;Regulatory Team&quot;,
+    &quot;Document Collection&quot;, &quot;Regulatory Team&quot;,
+    &quot;Completed&quot;, &quot;Completed&quot;,
+    &quot;Unknown&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Assigned Team</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

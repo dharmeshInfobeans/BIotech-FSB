@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Upgrade_Week_Dashboard__c</fullName>
+    <description>Plain Number field manually populated with a copy of Actual_Upgrade_Week_Number__c&apos;s value. Exists because that formula field is flagged non-groupable by the platform; this field lets the Pro-Active Pipeline dashboard filter/query on the exact same value without that restriction. Populated and kept up to date manually - no automation writes to this field.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Manually maintained copy of Actual Upgrade Week Number, for dashboard use. Do not rely on this being automatically kept in sync.</inlineHelpText>
+    <label>Actual Upgrade Week Dashboard</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

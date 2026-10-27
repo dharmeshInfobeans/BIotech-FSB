@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Dealer Notification</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Dealer Notifications</value>
+    </caseValues>
+    <layouts>
+        <layout>Dealer Notification Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- You can not update fields. --></errorMessage>
+        <name>Restrict_NotificationTo_field_update</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select dealer --></errorMessage>
+        <name>Select_Dealer</name>
+    </validationRules>
+</CustomObjectTranslation>

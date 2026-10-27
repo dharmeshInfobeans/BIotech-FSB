@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Signed_With_Is_Changed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>every time the agreement is activated it signed with value is compatred to previous one and this boolean value is updated.</description>
+    <label>Agreement Signed With Is Changed</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

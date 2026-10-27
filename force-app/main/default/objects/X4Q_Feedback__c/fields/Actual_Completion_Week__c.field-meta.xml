@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Completion_Week__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+NOT(ISBLANK(Closed_Date__c)),
+&quot;W&quot; &amp; TEXT(
+FLOOR(
+(Closed_Date__c - DATE(YEAR(Closed_Date__c), 1, 1)) / 7
+) + 1
+),
+NULL
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Actual Completion Week</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,18 @@
+<apex:page standardController="Master_Agreement__c" extensions="AgreementVFExtension" showHeader="false" sidebar="false" cache="TRUE">
+    
+    <apex:iframe src="/apex/GenerateAgreement?id={!agreement.Id}" height="500px"/>
+
+    <apex:form >
+        <div style="width:100%" align="center">
+            <apex:commandButton value="Save & Attach" action="{!saveAttach}" status="action"/>
+            &nbsp;
+            <apex:commandButton value="Cancel" action="{!cancel}"/>
+            
+            <apex:actionStatus id="action">
+                <apex:facet name="start"><img src="/img/loading.gif"/></apex:facet>
+                <apex:facet name="stop"></apex:facet>
+            </apex:actionStatus>
+        </div>
+    </apex:form>
+
+</apex:page>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Acendis Aesthetics GmbH** Partner Executive</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Acendis Aesthetics GmbH** Partner Executive</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Ortho_Dermal</parentRole>
+</Role>

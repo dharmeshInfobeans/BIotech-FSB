@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Sr. Executive Marketing - Patna Employee ID --></help>
+    <label><!-- SEMP EMPID --></label>
+    <name>SEMP_EMPID__c</name>
+</CustomFieldTranslation>

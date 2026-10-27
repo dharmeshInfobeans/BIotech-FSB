@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Customer Opening Detail --></label>
+    <name>Customer_Opening_Detail__c</name>
+    <picklistValues>
+        <masterLabel>Before 1 Year Customer</masterLabel>
+        <translation><!-- Before 1 Year Customer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Within 1 Year Customer</masterLabel>
+        <translation><!-- Within 1 Year Customer --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

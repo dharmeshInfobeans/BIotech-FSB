@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reason_For_Cancel__c</fullName>
+    <label>Reason For Cancel</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>No Action Performed.</fullName>
+                <default>false</default>
+                <label>No Action Performed.</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

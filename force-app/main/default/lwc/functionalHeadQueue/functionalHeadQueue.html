@@ -1,0 +1,256 @@
+<template>
+    <div class="queue-container">
+
+        <!-- ── Active Queue View ── -->
+        <template lwc:if={showPastRequests}>
+
+            <!-- Past Requests Header -->
+            <div class="queue-header">
+                <div class="past-header-left">
+                    <button class="back-btn" onclick={handleBackToQueue}>&#8592; Back to Queue</button>
+                    <h1 class="queue-title">Past Requests</h1>
+                </div>
+            </div>
+
+            <!-- Past Filter Bar -->
+            <div class="filter-bar">
+                <div class="filter-search">
+                    <lightning-input
+                        type="search"
+                        label="Search"
+                        variant="label-hidden"
+                        placeholder="Search by request #, distributor, country, product..."
+                        value={pastSearchTerm}
+                        onchange={handlePastSearch}
+                    ></lightning-input>
+                </div>
+                <div class="filter-select">
+                    <lightning-combobox
+                        label="Status"
+                        variant="label-hidden"
+                        placeholder="All Statuses"
+                        value={pastFilterStatus}
+                        options={pastStatusOptions}
+                        onchange={handlePastStatusFilter}
+                    ></lightning-combobox>
+                </div>
+            </div>
+
+            <!-- Past Error -->
+            <template lwc:if={pastError}>
+                <div class="error-box">{pastError}</div>
+            </template>
+
+            <!-- Past Loading -->
+            <template lwc:if={pastLoading}>
+                <div class="loading-wrap">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Past Results -->
+            <template lwc:if={hasPastResults}>
+                <div class="results-bar">
+                    <span class="results-count">{pastResultsLabel}</span>
+                </div>
+                <div class="table-wrapper">
+                    <table class="queue-table">
+                        <thead>
+                            <tr>
+                                <th class="th-sortable" data-field="name" onclick={handlePastSort}>
+                                    Request # <span class="sort-icon">{pastArrow_name}</span>
+                                </th>
+                                <th class="th-sortable" data-field="distributorName" onclick={handlePastSort}>
+                                    Distributor <span class="sort-icon">{pastArrow_distributorName}</span>
+                                </th>
+                                <th class="th-sortable" data-field="country" onclick={handlePastSort}>
+                                    Country / Region <span class="sort-icon">{pastArrow_country}</span>
+                                </th>
+                                <th class="th-sortable" data-field="productName" onclick={handlePastSort}>
+                                    Product <span class="sort-icon">{pastArrow_productName}</span>
+                                </th>
+                                <th class="th-sortable" data-field="fhAction" onclick={handlePastSort}>
+                                    Your Action <span class="sort-icon">{pastArrow_status}</span>
+                                </th>
+                                <th>Current Status</th>
+                                <th class="th-sortable" data-field="submittedDate" onclick={handlePastSort}>
+                                    Submitted <span class="sort-icon">{pastArrow_submittedDate}</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={filteredPastRequests} for:item="req">
+                                <tr key={req.recId} class="queue-row" data-recid={req.recId} onclick={handleRowClick}>
+                                    <td class="td-name"><span class="request-link">{req.name}</span></td>
+                                    <td>{req.distributorName}</td>
+                                    <td>{req.country}</td>
+                                    <td>{req.productName}</td>
+                                    <td><span class={req.statusPillClass}>{req.fhAction}</span></td>
+                                    <td class="current-status-text">{req.status}</td>
+                                    <td>{req.formattedDate}</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <template lwc:elseif={pastLoading}></template>
+            <template lwc:else>
+                <div class="empty-state">
+                    <p>No past requests found<template lwc:if={pastSearchTerm}> matching your search</template>.</p>
+                </div>
+            </template>
+
+        </template>
+
+        <!-- ── Active Queue View ── -->
+        <template lwc:else>
+
+        <!-- Header -->
+        <div class="queue-header">
+            <h1 class="queue-title">Functional Head Request Queue</h1>
+            <div class="header-actions">
+                <button class="past-requests-btn" onclick={handleViewPastRequests}>Past Requests</button>
+                <lightning-button-icon
+                    icon-name="utility:refresh"
+                    alternative-text="Refresh"
+                    title="Refresh"
+                    onclick={handleRefresh}
+                ></lightning-button-icon>
+            </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="summary-row">
+            <div class="summary-card card-total">
+                <div class="card-value">{totalCount}</div>
+                <div class="card-label">Pending Review</div>
+            </div>
+            <div class="summary-card card-overdue">
+                <div class="card-value">{overdueCount}</div>
+                <div class="card-label">Overdue (&gt;7 days)</div>
+            </div>
+        </div>
+
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-search">
+                <lightning-input
+                    type="search"
+                    label="Search"
+                    variant="label-hidden"
+                    placeholder="Search by request #, distributor, country, product..."
+                    value={searchTerm}
+                    onchange={handleSearch}
+                ></lightning-input>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Country"
+                    variant="label-hidden"
+                    placeholder="All Countries"
+                    value={filterCountry}
+                    options={countryOptions}
+                    onchange={handleCountryFilter}
+                ></lightning-combobox>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Distributor"
+                    variant="label-hidden"
+                    placeholder="All Distributors"
+                    value={filterDistributor}
+                    options={distributorOptions}
+                    onchange={handleDistributorFilter}
+                ></lightning-combobox>
+            </div>
+            <div class="filter-select">
+                <lightning-combobox
+                    label="Priority"
+                    variant="label-hidden"
+                    placeholder="All Priorities"
+                    value={filterPriority}
+                    options={priorityOptions}
+                    onchange={handlePriorityFilter}
+                ></lightning-combobox>
+            </div>
+            <template lwc:if={hasFilters}>
+                <div class="filter-clear">
+                    <lightning-button label="Clear Filters" onclick={handleClearFilters}></lightning-button>
+                </div>
+            </template>
+        </div>
+
+        <!-- Error -->
+        <template lwc:if={error}>
+            <div class="error-box">{error}</div>
+        </template>
+
+        <!-- Results Bar -->
+        <div class="results-bar">
+            <span class="results-count">{resultsLabel}</span>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <template lwc:if={hasResults}>
+                <table class="queue-table">
+                    <thead>
+                        <tr>
+                            <th class="th-priority">Priority</th>
+                            <th class="th-sortable" data-field="name" onclick={handleSort}>
+                                Request # <span class="sort-icon">{sortArrow_name}</span>
+                            </th>
+                            <th class="th-sortable" data-field="distributorName" onclick={handleSort}>
+                                Distributor <span class="sort-icon">{sortArrow_distributorName}</span>
+                            </th>
+                            <th class="th-sortable" data-field="country" onclick={handleSort}>
+                                Country / Region <span class="sort-icon">{sortArrow_country}</span>
+                            </th>
+                            <th class="th-sortable" data-field="productName" onclick={handleSort}>
+                                Product <span class="sort-icon">{sortArrow_productName}</span>
+                            </th>
+                            <th class="th-sortable" data-field="submittedDate" onclick={handleSort}>
+                                Submitted <span class="sort-icon">{sortArrow_submittedDate}</span>
+                            </th>
+                            <th class="th-sortable" data-field="daysPending" onclick={handleSort}>
+                                Days Pending <span class="sort-icon">{sortArrow_daysPending}</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={filteredRequests} for:item="req">
+                            <tr
+                                key={req.recId}
+                                class={req.rowClass}
+                                data-recid={req.recId}
+                                onclick={handleRowClick}
+                            >
+                                <td><span class={req.priorityClass}>{req.priority}</span></td>
+                                <td class="td-name"><span class="request-link">{req.name}</span></td>
+                                <td>{req.distributorName}</td>
+                                <td>{req.country}</td>
+                                <td>{req.productName}</td>
+                                <td>{req.formattedDate}</td>
+                                <td class={req.daysPendingClass}>{req.daysPendingLabel}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </template>
+
+            <template lwc:else>
+                <div class="empty-state">
+                    <p>No requests pending review<template lwc:if={hasFilters}> matching your filters</template>.</p>
+                    <template lwc:if={hasFilters}>
+                        <lightning-button label="Clear Filters" onclick={handleClearFilters}></lightning-button>
+                    </template>
+                </div>
+            </template>
+        </div>
+
+        </template><!-- end lwc:else (active queue) -->
+
+    </div>
+</template>

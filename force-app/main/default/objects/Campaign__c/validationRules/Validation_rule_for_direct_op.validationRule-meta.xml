@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_rule_for_direct_op</fullName>
+    <active>false</active>
+    <errorConditionFormula>IF( ISPICKVAL( Operation__c,&quot;Direct&quot;) &amp;&amp; ISPICKVAL( Region__c , &quot;APAC&quot;),AND(! ISPICKVAL( Country__c , &quot;INDIA&quot;),! ISPICKVAL( Country__c , &quot;THAILAND&quot;)),
+IF(ISPICKVAL( Operation__c,&quot;Direct&quot;) &amp;&amp; ISPICKVAL( Region__c , &quot;EASTERN EUROPE&quot;),! ISPICKVAL( Country__c , &quot;TURKEY&quot;),
+IF( ISPICKVAL( Operation__c,&quot;Direct&quot;) &amp;&amp; ISPICKVAL( Region__c , &quot;LATAM&quot;),AND(! ISPICKVAL( Country__c , &quot;BRAZIL&quot;),! ISPICKVAL( Country__c , &quot;COLOMBIA&quot;)),
+IF(AND(ISPICKVAL(Operation__c, &quot;Direct&quot;), ISPICKVAL(Region__c, &quot;WESTERN EUROPE&quot;)),AND(!ISPICKVAL( Country__c , &quot;SPAIN&quot;),!ISPICKVAL( Country__c , &quot;GERMANY&quot;)), false))))</errorConditionFormula>
+    <errorMessage>Please select the correct combination of Operation region and country --1</errorMessage>
+</ValidationRule>

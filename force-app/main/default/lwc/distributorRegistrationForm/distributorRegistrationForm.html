@@ -1,0 +1,521 @@
+<template>
+    <div class="reg-form-wrapper">
+
+        <!-- ── Loading ─────────────────────────────────────────────────────── -->
+        <template lwc:if={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_xx-large">
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- ── Load error ───────────────────────────────────────────────────── -->
+        <template lwc:elseif={hasLoadError}>
+            <div class="error-banner slds-p-around_medium">
+                <lightning-icon icon-name="utility:error" size="x-small" variant="error" class="slds-m-right_x-small"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+
+        <!-- ── No Account linked ────────────────────────────────────────────── -->
+        <template lwc:elseif={hasNoAccount}>
+            <div class="slds-box slds-theme_shade slds-p-around_medium slds-text-align_center">
+                <lightning-icon icon-name="utility:warning" size="small" variant="warning" class="slds-m-right_x-small"></lightning-icon>
+                <span>Your user account is not linked to a distributor. Please contact your administrator.</span>
+            </div>
+        </template>
+
+        <!-- ── Success screen ───────────────────────────────────────────────── -->
+        <template lwc:elseif={isSuccess}>
+            <div class="success-screen slds-align_absolute-center slds-p-around_xx-large">
+                <div class="success-content slds-text-align_center">
+                    <lightning-icon icon-name="action:approval" size="large" variant="success" class="slds-m-bottom_medium"></lightning-icon>
+                    <h2 class="slds-text-heading_medium slds-m-bottom_x-small">{labelSubmittedSuccess}</h2>
+                    <p class="slds-text-body_regular slds-m-bottom_small text-muted">
+                        Request <strong>{submittedName}</strong> has been submitted successfully.
+                    </p>
+                    <p class="slds-text-body_small slds-m-bottom_large text-muted">
+                        {successSubMessage}
+                    </p>
+                    <lightning-button
+                        label={labelSubmitAnother}
+                        variant="brand"
+                        onclick={handleNewRequest}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+        <!-- ── Form ─────────────────────────────────────────────────────────── -->
+        <template lwc:else>
+
+            <!-- Form Header -->
+            <div class="form-page-header slds-m-bottom_medium">
+                <div class="header-row">
+                    <div>
+                        <h1 class="slds-text-heading_medium">{labelPageTitle}</h1>
+                        <p class="slds-text-body_small text-muted">{labelPageSubtitle}</p>
+                    </div>
+                    <!-- Language Picker -->
+                    <div class="lang-picker">
+                        <button class="lang-toggle" type="button" onclick={toggleLangDropdown}
+                                aria-haspopup="listbox" aria-expanded={langDropdownOpen}>
+                            <span class="lang-badge">{currentLanguageBadge}</span>
+                            <span class="lang-toggle-label">{currentLanguageLabel}</span>
+                            <lightning-icon icon-name="utility:chevrondown" size="xx-small"
+                                            class="lang-chevron"></lightning-icon>
+                        </button>
+                        <template lwc:if={langDropdownOpen}>
+                            <div class="lang-overlay" onclick={closeLangDropdown}></div>
+                            <ul class="lang-dropdown" role="listbox">
+                                <template for:each={languageDropdownItems} for:item="lang">
+                                    <li key={lang.code} class={lang.itemClass} role="option"
+                                        data-code={lang.code} onclick={handleLangSelect}
+                                        aria-selected={lang.isSelected}>
+                                        <span class="lang-badge-item">{lang.badge}</span>
+                                        <span class="lang-name">{lang.label}</span>
+                                        <template lwc:if={lang.isSelected}>
+                                            <lightning-icon icon-name="utility:check" size="xx-small"
+                                                            class="lang-check"></lightning-icon>
+                                        </template>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 1: Request Type ──────────────────────────────────── -->
+            <div class="form-section">
+                <div class="section-label">{labelSectionRequestType}</div>
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <lightning-combobox
+                            label={labelTypeOfRequest}
+                            value={formData.requestType}
+                            options={translatedRequestTypeOptions}
+                            onchange={handleRequestTypeChange}
+                            required>
+                        </lightning-combobox>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 2: Distributor Information (read-only) ──────────── -->
+            <div class="form-section">
+                <div class="section-label">{labelSectionDistributor}</div>
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="readonly-field">
+                            <span class="slds-form-element__label">{labelCustomerName}</span>
+                            <div class="readonly-value">{distributorInfo.accountName}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="readonly-field">
+                            <span class="slds-form-element__label">{labelCustomerCode}</span>
+                            <div class="readonly-value">{distributorInfo.gstin}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="readonly-field">
+                            <span class="slds-form-element__label">{labelCountry}</span>
+                            <div class="readonly-value">{distributorInfo.country}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="readonly-field">
+                            <span class="slds-form-element__label">{labelRegion}</span>
+                            <div class="readonly-value">{regionDisplay}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="readonly-field">
+                            <span class="slds-form-element__label">{labelAddress}</span>
+                            <div class="readonly-value">{distributorInfo.address}</div>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                        <div class="readonly-field">
+                            <span class="slds-form-element__label">{labelEmailAddress}</span>
+                            <div class="readonly-value">{distributorInfo.email}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section 3: Agreement Details (New Request only) ─────────── -->
+            <template lwc:if={isNewRequest}>
+                <div class="form-section">
+                    <div class="section-label">{labelSectionAgreement}</div>
+                    <div class="slds-grid slds-gutters slds-wrap">
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label={labelAgreementSignedWith}
+                                value={formData.agreementSignedWith}
+                                options={agreementSignedWithOptions}
+                                placeholder="Select"
+                                data-field="agreementSignedWith"
+                                onchange={handleFieldChange}
+                                disabled
+                                required>
+                            </lightning-combobox>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label={labelDuration}
+                                value={formData.duration}
+                                options={durationOptions}
+                                placeholder="Select duration"
+                                data-field="duration"
+                                onchange={handleFieldChange}
+                                disabled
+                                required>
+                            </lightning-combobox>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <div class="readonly-field">
+                                <span class="slds-form-element__label">{labelRsmName}</span>
+                                <div class="readonly-value">{distributorInfo.rsmName}</div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <div class="readonly-field">
+                                <span class="slds-form-element__label">{labelRsmEmail}</span>
+                                <div class="readonly-value">{distributorInfo.rsmEmail}</div>
+                            </div>
+                        </div>
+
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <div class="readonly-field">
+                                <span class="slds-form-element__label">{labelCrmName}</span>
+                                <div class="readonly-value">{distributorInfo.crmName}</div>
+                            </div>
+                        </div>
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <div class="readonly-field">
+                                <span class="slds-form-element__label">{labelCrmEmail}</span>
+                                <div class="readonly-value">{distributorInfo.crmEmail}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </template>
+
+            <!-- Additional Certificate: Select Completed Request ─────────── -->
+            <template lwc:if={isAdditionalCert}>
+                <div class="form-section">
+                    <div class="section-label">{labelSectionSelectCompleted}</div>
+                    <div class="slds-grid slds-gutters slds-wrap">
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                            <lightning-combobox
+                                label={labelCompletedRequest}
+                                value={selectedParentRequestId}
+                                options={completedRequestOptions}
+                                placeholder="Select a completed request"
+                                onchange={handleParentRequestChange}
+                                required>
+                            </lightning-combobox>
+                        </div>
+                    </div>
+                    <template lwc:if={selectedParentRequest}>
+                        <div class="slds-grid slds-gutters slds-wrap slds-m-top_small">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <div class="readonly-field">
+                                    <span class="slds-form-element__label">{labelAgreementSignedWith}</span>
+                                    <div class="readonly-value">{activeAgreement.agreementSignedWith}</div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <div class="readonly-field">
+                                    <span class="slds-form-element__label">{labelRemainingDuration}</span>
+                                    <div class="readonly-value">{remainingDurationLabel}</div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-m-top_x-small">
+                                <div class="readonly-field">
+                                    <span class="slds-form-element__label">{labelProducts}</span>
+                                    <template lwc:if={hasSelectedParentProducts}>
+                                        <div class="product-pills">
+                                            <template for:each={selectedParentProducts} for:item="prod">
+                                                <span key={prod.key} class="product-pill">{prod.name}</span>
+                                            </template>
+                                        </div>
+                                    </template>
+                                    <template lwc:else>
+                                        <div class="readonly-value">—</div>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Section 4: Manufacturing (New Request only) ────────────────── -->
+            <template lwc:if={isNewRequest}>
+            <div class="form-section">
+                <div class="section-header-row">
+                    <div class="section-label">{labelSectionManufacturing}</div>
+                    <lightning-button
+                        label={labelAddBtn}
+                        variant="brand"
+                        onclick={handleAddProductRow}
+                        disabled={isSaving}>
+                    </lightning-button>
+                </div>
+
+                <div class="slds-m-bottom_small">
+                    <lightning-combobox
+                        label={labelVertical}
+                        value={formData.vertical}
+                        options={verticalOptions}
+                        placeholder="Select vertical"
+                        onchange={handleVerticalChange}
+                        required>
+                    </lightning-combobox>
+                </div>
+
+                <template lwc:if={formData.vertical}>
+                    <div class="product-table">
+                        <div class="product-table-header">
+                            <span class="col-no">{labelColNo}</span>
+                            <span class="col-product">{labelColProduct}</span>
+                            <span class="col-action">{labelColAction}</span>
+                        </div>
+                        <template for:each={productRowsWithIndex} for:item="row">
+                            <div key={row.rowId} class="product-table-row">
+                                <span class="col-no">{row.displayIndex}</span>
+                                <span class="col-product">
+                                    <lightning-combobox
+                                        label=""
+                                        variant="label-hidden"
+                                        value={row.productId}
+                                        options={row.availableOptions}
+                                        placeholder="Select product"
+                                        data-rowid={row.rowId}
+                                        onchange={handleProductChange}>
+                                    </lightning-combobox>
+                                </span>
+                                <span class="col-action">
+                                    <lightning-button-icon
+                                        icon-name="utility:delete"
+                                        variant="bare"
+                                        alternative-text="Remove"
+                                        data-rowid={row.rowId}
+                                        onclick={handleRemoveProductRow}>
+                                    </lightning-button-icon>
+                                </span>
+                            </div>
+                        </template>
+                    </div>
+                    <template lwc:if={hasProducts}>
+                        <div class="slds-p-top_x-small">
+                            <span class="slds-text-body_small text-muted">{productOptions.length} product(s) available for selected vertical.</span>
+                        </div>
+                    </template>
+                </template>
+                <template lwc:else>
+                    <p class="slds-text-body_small text-muted slds-p-top_small">{labelSelectVerticalHint}</p>
+                </template>
+            </div>
+            </template>
+
+            <!-- Section 5a: Document Types (New Request only) ─────────────── -->
+            <template lwc:if={isNewRequest}>
+            <div class="form-section">
+                <div class="section-header-row">
+                    <div class="section-label">{labelSectionDocuments}</div>
+                    <template lwc:if={selectedDocTypeCount}>
+                        <span class="doc-count-badge">{selectedDocCountLabel}</span>
+                    </template>
+                </div>
+                <p class="slds-text-body_small text-muted slds-m-bottom_small">
+                    {labelDocInstruction}
+                </p>
+                <div class="doc-type-grid">
+                    <template for:each={documentTypeCards} for:item="card">
+                        <div key={card.value}
+                             class={card.cardClass}
+                             data-value={card.value}
+                             onclick={handleDocTypeToggle}
+                             role="checkbox"
+                             aria-checked={card.ariaChecked}
+                             aria-disabled={card.isDisabled}
+                             tabindex="0"
+                             onkeypress={handleDocTypeKeyPress}>
+                            <template lwc:if={card.isSelected}>
+                                <div class="doc-card-check">
+                                    <lightning-icon icon-name="utility:check" size="xx-small" variant="inverse"></lightning-icon>
+                                </div>
+                            </template>
+                            <template lwc:if={card.isDisabled}>
+                                <div class="doc-card-check doc-card-check--provided">
+                                    <lightning-icon icon-name="utility:check" size="xx-small"></lightning-icon>
+                                </div>
+                            </template>
+                            <div class="doc-card-icon">
+                                <lightning-icon icon-name={card.icon} size="small" class={card.iconClass}></lightning-icon>
+                            </div>
+                            <div class="doc-card-label">{card.label}</div>
+                            <template lwc:if={card.isDisabled}>
+                                <div class="doc-card-provided-label">{labelAlreadyProvided}</div>
+                            </template>
+                            <template lwc:if={card.hasAssigned}>
+                                <div class="doc-card-products">
+                                    <template for:each={card.assignedProducts} for:item="prod">
+                                        <span key={prod.key} class="doc-card-product-pill">{prod.label}</span>
+                                    </template>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            </template>
+
+            <!-- Section 5b: Document Types per product (Additional Cert only) -->
+            <template lwc:if={isAdditionalCert}>
+                <template lwc:if={selectedParentRequest}>
+                    <div class="form-section">
+                        <div class="section-header-row">
+                            <div class="section-label">{labelSectionDocuments}</div>
+                            <template lwc:if={certSelectedCount}>
+                                <span class="doc-count-badge">{certSelectedCountLabel}</span>
+                            </template>
+                        </div>
+                        <p class="slds-text-body_small text-muted slds-m-bottom_small">
+                            {labelDocInstructionCert}
+                        </p>
+                        <template for:each={certProductDocRows} for:item="productRow">
+                            <div key={productRow.productId} class="cert-product-section">
+                                <div class="cert-product-heading">{productRow.productName}</div>
+                                <div class="doc-type-grid">
+                                    <template for:each={productRow.docCards} for:item="card">
+                                        <div key={card.value}
+                                             class={card.cardClass}
+                                             data-value={card.value}
+                                             data-productid={productRow.productId}
+                                             onclick={handleCertDocTypeToggle}
+                                             role="checkbox"
+                                             aria-checked={card.ariaChecked}
+                                             aria-disabled={card.isDisabled}
+                                             tabindex="0">
+                                            <template lwc:if={card.isSelected}>
+                                                <div class="doc-card-check">
+                                                    <lightning-icon icon-name="utility:check" size="xx-small" variant="inverse"></lightning-icon>
+                                                </div>
+                                            </template>
+                                            <template lwc:if={card.isDisabled}>
+                                                <div class="doc-card-check doc-card-check--provided">
+                                                    <lightning-icon icon-name="utility:check" size="xx-small"></lightning-icon>
+                                                </div>
+                                            </template>
+                                            <div class="doc-card-icon">
+                                                <lightning-icon icon-name={card.icon} size="small"></lightning-icon>
+                                            </div>
+                                            <div class="doc-card-label">{card.label}</div>
+                                            <template lwc:if={card.isDisabled}>
+                                                <div class="doc-card-provided-label">{labelAlreadyProvided}</div>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </template>
+
+            <!-- Section 6: Remarks ──────────────────────────────────────────── -->
+            <div class="form-section">
+                <div class="section-label">{labelSectionRemarks}</div>
+                <p class="slds-text-body_small text-muted slds-m-bottom_small">
+                    {labelRemarksInstruction}
+                </p>
+                <lightning-textarea
+                    label={labelRemarks}
+                    value={formData.remarks}
+                    placeholder={labelRemarksPlaceholder}
+                    max-length="1000"
+                    data-field="remarks"
+                    onchange={handleFieldChange}>
+                </lightning-textarea>
+            </div>
+
+            <!-- Error banner ────────────────────────────────────────────── -->
+            <template lwc:if={errorMessage}>
+                <div class="error-banner slds-m-top_small">
+                    <lightning-icon icon-name="utility:error" size="x-small" variant="error" class="slds-m-right_x-small"></lightning-icon>
+                    <span>{errorMessage}</span>
+                </div>
+            </template>
+
+            <!-- Action buttons ──────────────────────────────────────────── -->
+            <div class="form-actions slds-m-top_medium">
+                <lightning-button
+                    label={labelSubmitRequest}
+                    variant="brand"
+                    icon-name="utility:upload"
+                    onclick={handleSubmit}
+                    disabled={isSaving}>
+                </lightning-button>
+                <template lwc:if={isSaving}>
+                    <lightning-spinner alternative-text="Saving..." size="small" class="slds-m-left_small inline-spinner"></lightning-spinner>
+                </template>
+            </div>
+
+        </template>
+
+        <!-- ── Document-Product Modal ──────────────────────────────────────── -->
+        <template lwc:if={showDocModal}>
+            <div class="modal-backdrop"></div>
+            <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal-header">
+                    <h3 id="modal-title" class="modal-title">{modalTitle}</h3>
+                    <p class="modal-subtitle">{labelModalSubtitle}</p>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-select-all-row">
+                        <lightning-input
+                            type="checkbox"
+                            label={labelSelectAllProducts}
+                            checked={modalAllSelected}
+                            onchange={handleModalSelectAll}>
+                        </lightning-input>
+                    </div>
+                    <div class="modal-divider"></div>
+                    <template for:each={modalProducts} for:item="prod">
+                        <div key={prod.productId} class="modal-product-row">
+                            <lightning-input
+                                type="checkbox"
+                                label={prod.label}
+                                checked={prod.checked}
+                                data-productid={prod.productId}
+                                onchange={handleModalProductToggle}>
+                            </lightning-input>
+                        </div>
+                    </template>
+                </div>
+                <div class="modal-footer">
+                    <lightning-button
+                        label={labelCancel}
+                        variant="neutral"
+                        onclick={handleModalCancel}>
+                    </lightning-button>
+                    <lightning-button
+                        label={labelConfirm}
+                        variant="brand"
+                        onclick={handleModalConfirm}
+                        disabled={modalConfirmDisabled}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>

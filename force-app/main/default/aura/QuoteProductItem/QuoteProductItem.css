@@ -1,0 +1,12 @@
+.THIS .slds-form-element__label{
+    display: none; visibility: hidden; 
+}
+.THIS .dltIcAlnPlus{
+    padding-left: 0.7rem;
+}
+.THIS .dltIcAlnNoPlus{
+    padding-left: 1.2rem;
+}
+.THIS .mainProductRowColor{
+    background-color: 'lightgoldenrodyellow' !important; 
+}

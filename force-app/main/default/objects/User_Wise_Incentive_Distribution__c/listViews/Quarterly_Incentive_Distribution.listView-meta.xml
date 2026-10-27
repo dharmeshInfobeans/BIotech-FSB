@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quarterly_Incentive_Distribution</fullName>
+    <columns>NAME</columns>
+    <columns>User__c</columns>
+    <columns>Role__c</columns>
+    <columns>Year__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Product__c</columns>
+    <columns>Total_MOP_Qty__c</columns>
+    <columns>Invoiced_Qty__c</columns>
+    <columns>Closed_Qty__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>User_Wise_Incentive_Distribution__c.Quarterly_Incentive_Distribution</value>
+    </filters>
+    <label>Quarterly Incentive Distributions</label>
+</ListView>

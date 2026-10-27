@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Sales District --></label>
+    <name>Sales_District__c</name>
+    <picklistValues>
+        <masterLabel>INS05</masterLabel>
+        <translation><!-- INS05 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

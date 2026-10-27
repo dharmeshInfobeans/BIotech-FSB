@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Approval_Duration_Days__c</fullName>
+    <description>Number of days from Submitted to Completed. Blank until completed.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+    AND( NOT(ISBLANK(Completed_Date__c)), NOT(ISBLANK(Submitted_Date__c)) ),
+    ROUND( (Completed_Date__c - Submitted_Date__c) * 24 / 24, 0),
+    null
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Total Approval Duration (Days)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

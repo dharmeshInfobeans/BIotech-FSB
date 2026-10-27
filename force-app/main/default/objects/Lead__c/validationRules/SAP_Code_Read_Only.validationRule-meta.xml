@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SAP_Code_Read_Only</fullName>
+    <active>true</active>
+    <description>SAP Code Read Only for India Leads</description>
+    <errorConditionFormula>AND(
+    CONTAINS(TEXT(Country__c), &quot;India&quot;),
+    ISCHANGED(SAP_Code__c),
+    NOT(CONTAINS($Profile.Name , &quot;Admin&quot;)),
+    NOT(CONTAINS($Profile.Name , &quot;Integration&quot;))
+)</errorConditionFormula>
+    <errorMessage>&quot;Error: SAP Code cannot be updated on the record. Please Connect With Admin !&quot;</errorMessage>
+</ValidationRule>

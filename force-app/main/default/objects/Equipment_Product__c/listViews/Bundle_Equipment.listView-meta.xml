@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bundle_Equipment</fullName>
+    <columns>NAME</columns>
+    <columns>Is_Available__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_ACTIVITY</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Bundle_Equipment__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <label>Bundle Equipment</label>
+</ListView>

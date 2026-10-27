@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disqualified_reason_error</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(!ISBLANK(TEXT( Disqualified_Reason__c )),OR(ISBLANK( Unqualified_Remarks__c ),ISBLANK( Unqualified_Remarks__c )))</errorConditionFormula>
+    <errorMessage>Please fill in the reason for unqualified the lead</errorMessage>
+</ValidationRule>

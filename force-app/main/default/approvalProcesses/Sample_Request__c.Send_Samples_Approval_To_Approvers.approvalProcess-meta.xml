@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Status__c</field>
+        <field>Total_Sample_Amount__c</field>
+        <field>Month__c</field>
+        <field>Monthly_Plan__c</field>
+        <field>Year__c</field>
+        <field>Description__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Approver_1__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Goes to Approver1 (RSM), when total sample amount is less than or equal to 30000</description>
+        <entryCriteria>
+            <formula>Monthly_Plan__r.Sample_Amount_This_Month__c &lt;= 30000</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Step 1</label>
+        <name>Step_1</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Approver_2__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Goes to Approver2 (ZSM), when Total Sum is between 30001 and 50000</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Sample_Request__c.Approver_2__c</field>
+                <operation>notEqual</operation>
+                <value>null</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Monthly_Plan__c.Sample_Amount_This_Month__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;INR 30,000&quot;</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Monthly_Plan__c.Sample_Amount_This_Month__c</field>
+                <operation>lessOrEqual</operation>
+                <value>&quot;INR 50,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Step2</label>
+        <name>Step2</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Approver_3__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <description>Goes to Approver3(RH) when total sum is greater than Rs. 50000</description>
+        <entryCriteria>
+            <criteriaItems>
+                <field>Sample_Request__c.Approver_3__c</field>
+                <operation>notEqual</operation>
+                <value>null</value>
+            </criteriaItems>
+            <criteriaItems>
+                <field>Monthly_Plan__c.Sample_Amount_This_Month__c</field>
+                <operation>greaterThan</operation>
+                <value>&quot;INR 50,000&quot;</value>
+            </criteriaItems>
+        </entryCriteria>
+        <label>Step3</label>
+        <name>Step3</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND( OR(
+				    Monthly_Plan__r.Account__r.RecordType.DeveloperName == &apos;Distributor&apos;,
+							 Monthly_Plan__r.Account__r.RecordType.DeveloperName == &apos;Doctor_D&apos;
+       ),
+       NOT(ISNULL(Approver_1__c)), 
+       Monthly_Plan__r.Sample_Amount_This_Month__c &lt;&gt; 0	
+			)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Send_Email_To_Branch_For_Sample_Verification</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Update_Status_To_Approved</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Update_Status_To_Rejected</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Set_Status_To_Sent_To_Approver</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Send Samples Approval To Approvers (Dom)</label>
+    <processOrder>3</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

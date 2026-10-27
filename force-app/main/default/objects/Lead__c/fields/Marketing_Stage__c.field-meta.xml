@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Stage__c</fullName>
+    <label>Marketing Stage</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>SDE Assigned</fullName>
+                <default>false</default>
+                <label>SDE Assigned</label>
+            </value>
+            <value>
+                <fullName>Inclinic Branding</fullName>
+                <default>false</default>
+                <label>Inclinic Branding</label>
+            </value>
+            <value>
+                <fullName>Decode</fullName>
+                <default>false</default>
+                <label>Decode</label>
+            </value>
+            <value>
+                <fullName>Focus</fullName>
+                <default>false</default>
+                <label>Focus</label>
+            </value>
+            <value>
+                <fullName>CTP</fullName>
+                <default>false</default>
+                <label>CTP</label>
+            </value>
+            <value>
+                <fullName>Testimonial</fullName>
+                <default>false</default>
+                <label>Testimonial</label>
+            </value>
+            <value>
+                <fullName>Wet Labs</fullName>
+                <default>false</default>
+                <label>Wet Labs</label>
+            </value>
+            <value>
+                <fullName>KOL/FOL Development</fullName>
+                <default>false</default>
+                <label>KOL/FOL Development</label>
+            </value>
+            <value>
+                <fullName>High Impact CME</fullName>
+                <default>false</default>
+                <label>High Impact CME</label>
+            </value>
+            <value>
+                <fullName>Virtual exp. Lab</fullName>
+                <default>false</default>
+                <label>Virtual exp. Lab</label>
+            </value>
+            <value>
+                <fullName>User Meeting</fullName>
+                <default>false</default>
+                <label>User Meeting</label>
+            </value>
+            <value>
+                <fullName>RTM</fullName>
+                <default>false</default>
+                <label>RTM</label>
+            </value>
+            <value>
+                <fullName>CME</fullName>
+                <default>false</default>
+                <label>CME</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

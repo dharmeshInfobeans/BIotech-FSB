@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Product Family --></label>
+    <name>Product_Family__c</name>
+    <picklistValues>
+        <masterLabel>BIO BLADES</masterLabel>
+        <translation><!-- BIO BLADES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE RANGE</masterLabel>
+        <translation><!-- BIO BLUE RANGE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO CTR</masterLabel>
+        <translation><!-- BIO CTR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO DECALIN</masterLabel>
+        <translation><!-- BIO DECALIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR RANGE - General</masterLabel>
+        <translation><!-- BIO HYALUR RANGE - General --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR RANGE - Special</masterLabel>
+        <translation><!-- BIO HYALUR RANGE - Special --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO OCTANE</masterLabel>
+        <translation><!-- BIO OCTANE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO RING</masterLabel>
+        <translation><!-- BIO RING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL ACTV FAMILY</masterLabel>
+        <translation><!-- EYECRYL ACTV FAMILY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PHAKIC FAMILY</masterLabel>
+        <translation><!-- EYECRYL PHAKIC FAMILY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL SERT EDOF FAMILY</masterLabel>
+        <translation><!-- EYECRYL SERT EDOF FAMILY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL TORIC</masterLabel>
+        <translation><!-- EYECRYL TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYEVISC HPMC</masterLabel>
+        <translation><!-- EYEVISC HPMC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Equipment</masterLabel>
+        <translation><!-- Equipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HYDROPHILIC 600 / HSAS/ CLEAR</masterLabel>
+        <translation><!-- HYDROPHILIC 600 / HSAS/ CLEAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HYDROPHOBIC ASHFY / HD</masterLabel>
+        <translation><!-- HYDROPHOBIC ASHFY / HD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX GENESIS</masterLabel>
+        <translation><!-- OPTIFLEX GENESIS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX TRIO FAMILY</masterLabel>
+        <translation><!-- OPTIFLEX TRIO FAMILY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POPULAR HYDROPHOBIC MONOFOCAL</masterLabel>
+        <translation><!-- POPULAR HYDROPHOBIC MONOFOCAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RIBOFLAVIN</masterLabel>
+        <translation><!-- RIBOFLAVIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SILICONE OILS</masterLabel>
+        <translation><!-- SILICONE OILS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

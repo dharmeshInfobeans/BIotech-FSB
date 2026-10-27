@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Is_Axis_Changed</name>
+        <label>Is Axis Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Is_Diaptor_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Decision_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Axis__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.Axis__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Axis_Fields</targetReference>
+            </connector>
+            <label>Axis is Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Cylinder_Power_Changed</name>
+        <label>Is Cylinder Power Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Is_Axis_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Cylinder_Power_is_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CylinderPower__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.CylinderPower__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Cylinder_Power</targetReference>
+            </connector>
+            <label>Cylinder Power is Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Diaptor_Changed</name>
+        <label>Is Diaptor Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Diaptor_is_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Diaptor__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.Diaptor__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Diaptor_Field</targetReference>
+            </connector>
+            <label>Diaptor is Changed</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>axisText</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.Axis__c})</expression>
+    </formulas>
+    <formulas>
+        <name>cylinderPowerText</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.CylinderPower__c})</expression>
+    </formulas>
+    <formulas>
+        <name>diaptorText</name>
+        <dataType>String</dataType>
+        <expression>TEXT({!$Record.Diaptor__c})</expression>
+    </formulas>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <interviewLabel>Update Text Fields {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Text Fields</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Axis_Fields</name>
+        <label>Update Axis Fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Diaptor_Changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Axis_Formula__c</field>
+            <value>
+                <elementReference>axisText</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Cylinder_Power</name>
+        <label>Update Cylinder Power</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Axis_Changed</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Cylinder_Power_Formula__c</field>
+            <value>
+                <elementReference>cylinderPowerText</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Diaptor_Field</name>
+        <label>Update Diaptor Field</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Diaptor_Formula__c</field>
+            <value>
+                <elementReference>diaptorText</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Cylinder_Power_Changed</targetReference>
+        </connector>
+        <object>Product_M__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

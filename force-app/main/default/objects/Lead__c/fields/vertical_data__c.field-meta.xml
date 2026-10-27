@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>vertical_data__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(OR( ISPICKVAL( Product__c ,&quot;OPTIVISC&quot;),ISPICKVAL( Product__c ,&quot;OPTIVISC PLUS&quot;),ISPICKVAL( Product__c ,&quot;OPTIVISC M&quot;),ISPICKVAL( Product__c ,&quot;OPTIVISC SINGLE&quot;),ISPICKVAL( Product__c ,&quot;BIOVISC 20 MG&quot;),ISPICKVAL( Product__c ,&quot;BIOVISC PLUS 40 MG&quot;),ISPICKVAL( Product__c ,&quot;BIOVISC SINGLE 90 MG&quot;),ISPICKVAL( Product__c ,&quot;BIOVISC M 40 MG&quot;)),&quot;Ortho&quot;,
+
+
+IF(OR(ISPICKVAL( Product__c ,&quot;GLODERM 20&quot;),ISPICKVAL( Product__c ,&quot;GLODERM 30&quot;),ISPICKVAL( Product__c ,&quot;GLODERM 20L&quot;),ISPICKVAL( Product__c ,&quot;GLODERM 30L&quot;)),&quot;Dermal&quot;,&quot;Opthalmic&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>vertical data</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

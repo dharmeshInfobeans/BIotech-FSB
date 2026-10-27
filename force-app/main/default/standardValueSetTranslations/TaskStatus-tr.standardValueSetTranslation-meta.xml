@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Completed</masterLabel>
+        <translation>Tamamlandı</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Delayed</masterLabel>
+        <translation><!-- Delayed --></translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Work in Progress</masterLabel>
+        <translation><!-- Work in Progress --></translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

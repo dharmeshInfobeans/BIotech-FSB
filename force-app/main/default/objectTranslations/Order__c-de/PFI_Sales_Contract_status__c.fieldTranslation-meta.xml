@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>PFI/Verkaufsvertragsstatus</label>
+    <name>PFI_Sales_Contract_status__c</name>
+    <picklistValues>
+        <masterLabel>Proforma Invoice</masterLabel>
+        <translation><!-- Proforma Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Contract</masterLabel>
+        <translation><!-- Sales Contract --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

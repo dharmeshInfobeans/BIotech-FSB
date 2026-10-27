@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Is_Quantity_Changed</name>
+        <label>Is Quantity Changed?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Quantity__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Quantity__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Count_Total_Price</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>CalculateTotalPrice</name>
+        <dataType>Currency</dataType>
+        <expression>{!$Record.Quantity__c} * {!$Record.Unit_Price__c}</expression>
+        <scale>2</scale>
+    </formulas>
+    <interviewLabel>Update Total Price On Order Product {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Total Price On Order Product</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Count_Total_Price</name>
+        <label>Count Total Price</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>Sub_Total_Price__c</field>
+            <value>
+                <elementReference>CalculateTotalPrice</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Total_Price__c</field>
+            <value>
+                <elementReference>CalculateTotalPrice</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Quantity_Changed</targetReference>
+        </connector>
+        <object>Order_Product__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

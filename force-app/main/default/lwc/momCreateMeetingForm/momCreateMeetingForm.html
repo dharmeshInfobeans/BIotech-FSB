@@ -1,0 +1,311 @@
+<template>
+    <div class="form-page">
+
+        <!-- ── Section 1: Meeting Details ──────────────────────────────────── -->
+        <lightning-card title="Meeting Details" icon-name="standard:event">
+            <div class="slds-p-around_medium">
+                <div class="slds-grid slds-gutters slds-wrap">
+
+                    <!-- Meeting Topic (required, half width) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 field-col">
+                        <lightning-input
+                            type="text"
+                            label="Meeting Topic"
+                            value={meeting.meetingTopic}
+                            required
+                            max-length="255"
+                            data-field="meetingTopic"
+                            onchange={handleMeetingFieldChange}>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Meeting Attendees (half width, chip UI) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 field-col">
+                        <label class="picker-label">Meeting Attendees</label>
+                        <div class="attendees-cell">
+                            <template for:each={meetingAttendees} for:item="email">
+                                <span key={email} class="attendee-chip">
+                                    <span class="chip-email">{email}</span>
+                                    <button class="chip-remove"
+                                            data-email={email}
+                                            onclick={handleMeetingAttendeeRemove}
+                                            title="Remove">&#x00D7;</button>
+                                </span>
+                            </template>
+                            <div class="attendee-input-row">
+                                <input
+                                    type="email"
+                                    class="attendee-email-input"
+                                    placeholder="Add email..."
+                                    oninput={handleMeetingAttendeeInput}
+                                    onkeydown={handleMeetingAttendeeKeyDown} />
+                                <button class="attendee-add-btn"
+                                        onclick={handleMeetingAttendeeAdd}
+                                        title="Add email">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Distributor (optional) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 field-col">
+                        <label class="picker-label">
+                            Distributor
+                        </label>
+                        <template lwc:if={showPickers}>
+                            <lightning-record-picker
+                                label="Distributor"
+                                variant="label-hidden"
+                                object-api-name="Account"
+                                placeholder="Search accounts..."
+                                onchange={handleDistributorChange}>
+                            </lightning-record-picker>
+                        </template>
+                    </div>
+
+                    <!-- Meeting Date (required) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 field-col">
+                        <lightning-input
+                            type="date"
+                            label="Meeting Date"
+                            value={meeting.meetingDate}
+                            required
+                            data-field="meetingDate"
+                            onchange={handleMeetingFieldChange}>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Meeting Type (required) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 field-col">
+                        <lightning-combobox
+                            label="Meeting Type"
+                            value={meeting.meetingType}
+                            options={meetingTypeOptions}
+                            placeholder="-- Select --"
+                            required
+                            data-field="meetingType"
+                            onchange={handleMeetingFieldChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Region (required) -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 field-col">
+                        <lightning-combobox
+                            label="Region"
+                            value={meeting.region}
+                            options={regionOptions}
+                            placeholder="-- Select --"
+                            required
+                            data-field="region"
+                            onchange={handleMeetingFieldChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Discussion Summary (required, full width) -->
+                    <div class="slds-col slds-size_1-of-1 field-col">
+                        <lightning-textarea
+                            label="Discussion Summary"
+                            value={meeting.discussionSummary}
+                            max-length="32768"
+                            required
+                            data-field="discussionSummary"
+                            onchange={handleMeetingFieldChange}>
+                        </lightning-textarea>
+                    </div>
+
+                </div>
+            </div>
+        </lightning-card>
+
+        <!-- ── Section 2: Action Items ──────────────────────────────────────── -->
+        <lightning-card class="slds-m-top_medium">
+            <span slot="title">
+                Action Items
+                <template lwc:if={hasRows}>
+                    <lightning-badge label={rowCountLabel} class="count-badge"></lightning-badge>
+                </template>
+            </span>
+
+            <div class="slds-p-horizontal_medium slds-p-bottom_small card-body">
+
+                <!-- Grid -->
+                <template lwc:if={showGrid}>
+                    <div class="table-wrapper">
+
+                        <!-- Header row -->
+                        <div class="grid-header">
+                            <div class="col-desc">Description <span class="required-star">*</span></div>
+                            <div class="col-attendees">Attendees</div>
+                            <div class="col-priority">Priority <span class="required-star">*</span></div>
+                            <div class="col-category">Biotech Department <span class="required-star">*</span></div>
+                            <div class="col-func">Responsible Department <span class="required-star">*</span></div>
+                            <div class="col-del"></div>
+                        </div>
+
+                        <!-- Data rows -->
+                        <template for:each={rows} for:item="row">
+                            <div key={row.key} class={row.rowClass}>
+
+                                <div>
+                                    <lightning-input
+                                        variant="label-hidden"
+                                        label="Description"
+                                        placeholder="Enter description"
+                                        value={row.subject}
+                                        data-key={row.key}
+                                        data-field="subject"
+                                        onchange={handleFieldChange}
+                                        class={row.subjectClass}>
+                                    </lightning-input>
+                                </div>
+
+                                <div class="attendees-cell">
+                                    <template for:each={row.attendees} for:item="email">
+                                        <span key={email} class="attendee-chip">
+                                            <span class="chip-email">{email}</span>
+                                            <button class="chip-remove"
+                                                    data-key={row.key}
+                                                    data-email={email}
+                                                    onclick={handleAttendeeRemove}
+                                                    title="Remove">&#x00D7;</button>
+                                        </span>
+                                    </template>
+                                    <div class="attendee-input-row">
+                                        <input
+                                            type="email"
+                                            class="attendee-email-input"
+                                            placeholder="Add email..."
+                                            data-key={row.key}
+                                            oninput={handleAttendeeEmailInput}
+                                            onkeydown={handleAttendeeKeyDown} />
+                                        <button class="attendee-add-btn"
+                                                data-key={row.key}
+                                                onclick={handleAttendeeAdd}
+                                                title="Add email">+</button>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <lightning-combobox
+                                        variant="label-hidden"
+                                        label="Priority"
+                                        value={row.priority}
+                                        options={priorityOptions}
+                                        data-key={row.key}
+                                        data-field="priority"
+                                        onchange={handleFieldChange}>
+                                    </lightning-combobox>
+                                </div>
+
+                                <div>
+                                    <lightning-combobox
+                                        variant="label-hidden"
+                                        label="Biotech Department"
+                                        value={row.category}
+                                        options={categoryOptions}
+                                        placeholder="-- Select --"
+                                        data-key={row.key}
+                                        data-field="category"
+                                        onchange={handleFieldChange}>
+                                    </lightning-combobox>
+                                </div>
+
+                                <div>
+                                    <lightning-combobox
+                                        variant="label-hidden"
+                                        label="Responsible Department"
+                                        value={row.responsibleDepartment}
+                                        options={row.departmentOptions}
+                                        placeholder="-- Select --"
+                                        disabled={row.isCategoryEmpty}
+                                        data-key={row.key}
+                                        data-field="responsibleDepartment"
+                                        onchange={handleFieldChange}>
+                                    </lightning-combobox>
+                                </div>
+
+                                <div class="col-del-cell">
+                                    <template lwc:if={canDeleteRow}>
+                                        <lightning-button-icon
+                                            icon-name="utility:delete"
+                                            variant="bare"
+                                            size="small"
+                                            alternative-text="Remove row"
+                                            title="Remove this action item"
+                                            data-key={row.key}
+                                            onclick={handleDeleteRow}
+                                            class="delete-btn">
+                                        </lightning-button-icon>
+                                    </template>
+                                </div>
+
+                            </div>
+                        </template>
+
+                    </div>
+                    <p class="required-note">
+                        <span class="required-star">*</span> Indicates a required field
+                    </p>
+                </template>
+
+                <!-- Empty state -->
+                <template lwc:if={showEmptyState}>
+                    <div class="empty-state">
+                        <lightning-icon
+                            icon-name="utility:checklist"
+                            size="large"
+                            class="empty-icon">
+                        </lightning-icon>
+                        <h3 class="empty-title">No Action Items Yet</h3>
+                        <p class="empty-body">
+                            Click <strong>Add Row</strong> below to add action items
+                            to this meeting.
+                        </p>
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- Add Row in card footer -->
+            <div slot="footer">
+                <lightning-button
+                    label="Add Row"
+                    icon-name="utility:add"
+                    title="Add a new action item"
+                    onclick={handleAddRow}
+                    disabled={isSubmitting}>
+                </lightning-button>
+            </div>
+        </lightning-card>
+
+        <!-- ── Form Buttons ─────────────────────────────────────────────────── -->
+        <div class="form-footer slds-m-top_medium">
+            <lightning-button
+                label="Reset Form"
+                title="Clear all fields and start over"
+                onclick={handleReset}
+                disabled={isSubmitting}>
+            </lightning-button>
+            <lightning-button
+                class="slds-m-left_x-small"
+                label="Create Meeting"
+                variant="brand"
+                icon-name="utility:new"
+                title="Create MOM meeting and action items"
+                onclick={handleSubmit}
+                disabled={isSubmitting}>
+            </lightning-button>
+        </div>
+
+        <!-- ── Submitting overlay ───────────────────────────────────────────── -->
+        <template lwc:if={isSubmitting}>
+            <div class="submitting-overlay">
+                <lightning-spinner
+                    alternative-text="Creating meeting..."
+                    size="medium">
+                </lightning-spinner>
+                <p class="submitting-label">Creating meeting&hellip;</p>
+            </div>
+        </template>
+
+    </div>
+</template>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This formula fields indicate whether you can create/update account team record. --></help>
+    <label>Permitir Criação</label>
+    <name>Allow_Creation__c</name>
+</CustomFieldTranslation>

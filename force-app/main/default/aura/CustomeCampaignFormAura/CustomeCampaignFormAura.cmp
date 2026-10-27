@@ -1,0 +1,57 @@
+<aura:component
+    implements="flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId,lightning:actionOverride"
+    access="global">
+
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="isOpen" type="Boolean" default="true"/>
+
+    <!-- Modal width override -->
+  <aura:html tag="style">
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .slds-modal__container {
+            max-width: 70rem !important;
+            width: 70% !important;
+        }
+    }
+
+    /* Tablet */
+    @media (max-width: 1023px) {
+        .slds-modal__container {
+            max-width: 95% !important;
+            width: 95% !important;
+            margin: 0 auto;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .slds-modal__container {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0;
+            border-radius: 0;
+        }
+    }
+</aura:html>
+
+
+    <!-- MODAL -->
+    <aura:if isTrue="{!v.isOpen}">
+        
+
+                <!-- HEADER -->
+                                <div>
+                    <c:campaignMember
+                        recordId="{!v.recordId}"
+                        is-override="true"
+                        onclose="{!c.closeModal}"/>
+                </div>
+
+                <!-- FOOTER (optional) -->
+
+
+        <!-- BACKDROP -->
+    </aura:if>
+
+</aura:component>

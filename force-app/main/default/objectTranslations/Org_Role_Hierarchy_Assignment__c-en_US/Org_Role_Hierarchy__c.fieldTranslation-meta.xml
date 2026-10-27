@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Hierarchy --></label>
+    <name>Org_Role_Hierarchy__c</name>
+    <relationshipLabel><!-- Org Role Hierarchy Assignments --></relationshipLabel>
+</CustomFieldTranslation>

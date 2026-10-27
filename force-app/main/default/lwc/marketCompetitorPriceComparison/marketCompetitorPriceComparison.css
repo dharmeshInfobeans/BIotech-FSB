@@ -1,0 +1,30 @@
+.custom-container{
+	color : black;
+}
+
+.scrollable-table-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.scrollable-table-container table thead th {
+    position: sticky;
+    top: 0;
+    background: white; 
+    z-index: 10; 
+}
+
+.my-button {
+    background-color: lightgray;
+    color: black;
+    padding: 8px 16px;
+    margin: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.brand-buttons .selected-button {
+    background-color: #0176d3 !important;  /* Force override */
+    color: #ffffff !important;
+    font-weight: bold;
+}

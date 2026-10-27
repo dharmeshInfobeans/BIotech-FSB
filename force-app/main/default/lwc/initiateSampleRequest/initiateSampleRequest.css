@@ -1,0 +1,90 @@
+.delete-button {
+    position: relative;
+    top: 10px;
+}
+
+.custom-container{
+	color : black;
+}
+.tableHeader {
+    font-size:13px;
+}
+.tableBody {
+    width:20px;
+}
+.lastData {
+    font-weight: bold;
+    
+}
+.warning-message {
+    color: red;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid red;
+    background-color: #ffe6e6;
+    border-radius: 5px;
+}
+
+.inputStyling{
+    width: 5rem;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.slds-dropdown {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+.slds-listbox__option {
+    cursor: pointer;
+    padding: 0.5rem;
+}
+.slds-listbox__option:hover {
+    background-color: #f3f3f3;
+}
+
+.cisHeader {
+    border-bottom: 1px solid black;
+}
+.Head {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    font-size: 15px;
+}
+
+.footer {
+    margin-top: 5%;
+    /*padding: 10px;*/
+    background: #f3f3f3;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Hide mobile layout by default */
+.mobile-view {
+    display: none;
+}
+
+/* For smaller screens, hide table and show card view */
+@media only screen and (max-width: 768px) {
+    .desktop-view {
+        display: none;
+    }
+    .mobile-view {
+        display: block;
+    }
+}

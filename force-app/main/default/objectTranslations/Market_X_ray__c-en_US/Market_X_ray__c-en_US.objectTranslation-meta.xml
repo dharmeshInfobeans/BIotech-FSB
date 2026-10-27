@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Market X-ray</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Market X-Rays</value>
+    </caseValues>
+    <layouts>
+        <layout>Market X-ray Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <webLinks>
+        <label><!-- Request_for_Change --></label>
+        <name>Request_for_Change</name>
+    </webLinks>
+</CustomObjectTranslation>

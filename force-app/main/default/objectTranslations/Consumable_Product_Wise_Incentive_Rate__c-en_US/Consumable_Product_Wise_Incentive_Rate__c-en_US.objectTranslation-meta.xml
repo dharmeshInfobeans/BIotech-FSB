@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Consumable Product Wise Incentive Rate</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Consumable Product Wise Incentive Rates</value>
+    </caseValues>
+    <layouts>
+        <layout>Domestic Consumable Product Incentive Rate Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>International Consumable Product Incentive Rate Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Domestic Consumable Product Incentive Rate --></label>
+        <name>Domestic_Consumable_Product_Incentive_Rate</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- International Consumable Product Incentive Rate --></label>
+        <name>International_Consumable_Product_Incentive_Rate</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

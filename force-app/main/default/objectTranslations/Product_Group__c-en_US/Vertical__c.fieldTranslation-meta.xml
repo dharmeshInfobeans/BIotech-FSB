@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Vertical --></label>
+    <name>Vertical__c</name>
+    <picklistValues>
+        <masterLabel>Dermal</masterLabel>
+        <translation><!-- Dermal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing &amp; Clinical</masterLabel>
+        <translation><!-- Marketing &amp; Clinical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPHTHALMOLOGY</masterLabel>
+        <translation><!-- OPHTHALMOLOGY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ORTHOPAEDICS</masterLabel>
+        <translation><!-- ORTHOPAEDICS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

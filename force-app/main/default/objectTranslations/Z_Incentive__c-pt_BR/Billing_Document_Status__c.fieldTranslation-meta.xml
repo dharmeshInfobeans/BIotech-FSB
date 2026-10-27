@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Billing Document Status --></label>
+    <name>Billing_Document_Status__c</name>
+    <picklistValues>
+        <masterLabel>Closed By GRN / CN</masterLabel>
+        <translation><!-- Closed By GRN / CN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed By GRN and payment</masterLabel>
+        <translation><!-- Closed By GRN and payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed By Partial Payment</masterLabel>
+        <translation><!-- Closed By Partial Payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Closed By Payment</masterLabel>
+        <translation><!-- Closed By Payment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPEN</masterLabel>
+        <translation><!-- OPEN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partial Closed By GRN / CN</masterLabel>
+        <translation><!-- Partial Closed By GRN / CN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Partial Closed By SA</masterLabel>
+        <translation><!-- Partial Closed By SA --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

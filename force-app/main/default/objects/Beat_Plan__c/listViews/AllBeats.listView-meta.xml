@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllBeats</fullName>
+    <columns>NAME</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>Assigned_To__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Beat_Date__c</columns>
+    <columns>Event_Type__c</columns>
+    <columns>Event_type_Name__c</columns>
+    <columns>Approval_status__c</columns>
+    <columns>L1_Manager__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Beat_Date__c</field>
+        <operation>equals</operation>
+        <value>2/10/2026</value>
+    </filters>
+    <filters>
+        <field>Assigned_To__c</field>
+        <operation>equals</operation>
+        <value>Anish Desai</value>
+    </filters>
+    <label>All Beats</label>
+</ListView>

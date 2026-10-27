@@ -1,0 +1,344 @@
+<template>
+    <lightning-quick-action-panel title="Mark Attendance" size="full">
+
+        <div class="sf-wrapper">
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 LOCK BANNER
+            ══════════════════════════════════════════════════════════════ -->
+            <template if:true={isLocked}>
+                <div class={lockBannerClass}>
+                    <div class="lock-banner__icon-wrap">
+                        <lightning-icon icon-name="utility:lock" size="small" alternative-text="Locked"></lightning-icon>
+                    </div>
+                    <div class="lock-banner__body">
+                        <p class="lock-banner__title">Attendance Marking is Locked</p>
+                        <template if:false={canReopen}>
+                            <p class="lock-banner__advisory">{lockWarningMsg}</p>
+                        </template>
+                    </div>
+                    <div class="lock-banner__actions">
+                        <lightning-button
+                            label={reopenLabel}
+                            variant={reopenVariant}
+                            icon-name="utility:unlock"
+                            onclick={handleReopenClick}
+                            disabled={isReopenLoading}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 RE-OPEN CONFIRMATION MODAL
+            ══════════════════════════════════════════════════════════════ -->
+            <template if:true={showReopenConfirm}>
+                <div class="confirm-backdrop">
+                    <div class="confirm-modal">
+                        <div class="confirm-modal__header">
+                            <div class="confirm-modal__header-icon">
+                                <lightning-icon icon-name="utility:unlock" size="medium" alternative-text="Re-open"></lightning-icon>
+                            </div>
+                            <div class="confirm-modal__header-text">
+                                <h2 class="confirm-modal__title">Re-open Campaign</h2>
+                                <p class="confirm-modal__subtitle">Authorised Action Required</p>
+                            </div>
+                        </div>
+                        <div class="confirm-modal__divider"></div>
+                        <div class="confirm-modal__body">
+                            <div class="confirm-modal__campaign-name">
+                                <lightning-icon icon-name="standard:campaign" size="x-small"></lightning-icon>
+                                <span>{campaignName}</span>
+                            </div>
+                            <p class="confirm-modal__message">
+                                You are about to re-open this campaign for attendance marking.
+                                This action will be logged with your name, employee code, and
+                                timestamp for audit purposes.
+                            </p>
+                            <div class="confirm-modal__notice">
+                                <lightning-icon icon-name="utility:info" size="x-small" class="confirm-modal__notice-icon"></lightning-icon>
+                                <span>
+                                    The campaign will <strong>auto-lock again</strong> immediately
+                                    after attendance is saved. Ensure all attendance records are
+                                    updated before saving.
+                                </span>
+                            </div>
+                        </div>
+                        <div class="confirm-modal__divider"></div>
+                        <div class="confirm-modal__footer">
+                            <lightning-button variant="neutral" label="Cancel" onclick={handleConfirmCancel}></lightning-button>
+                            <lightning-button variant="brand" label="Yes, Re-open Campaign" icon-name="utility:unlock" onclick={handleConfirmReopen}></lightning-button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- ═══════════════════════════════════════════════════════════
+                 POST-SAVE SUMMARY MODAL
+                 Shows after a successful save when some leads already existed
+            ══════════════════════════════════════════════════════════════ -->
+            <template if:true={showSaveSummary}>
+                <div class="confirm-backdrop">
+                    <div class="confirm-modal summary-modal">
+
+                        <!-- Header -->
+                        <div class="confirm-modal__header summary-modal__header">
+                            <div class="confirm-modal__header-icon summary-modal__header-icon">
+                                <lightning-icon icon-name="utility:check" size="medium" alternative-text="Saved"></lightning-icon>
+                            </div>
+                            <div class="confirm-modal__header-text">
+                                <h2 class="confirm-modal__title">Attendance Saved</h2>
+                                <p class="confirm-modal__subtitle">Prospect Creation Summary</p>
+                            </div>
+                        </div>
+
+                        <div class="confirm-modal__divider"></div>
+
+                        <div class="confirm-modal__body summary-modal__body">
+                            
+                            <template if:true={hasSummaryCreated}>
+                                <div class="summary-section">
+                                    <div class="summary-section__header summary-section__header--created">
+                                        <lightning-icon icon-name="utility:add" size="x-small"></lightning-icon>
+                                        <span>{summaryCreatedCount} New Prospect(s) Created</span>
+                                    </div>
+                                    <ul class="summary-list">
+                                        <template for:each={summaryCreated} for:item="item">
+                                            <li key={item.pgLabel} class="summary-list__item summary-list__item--created">
+                                                <lightning-icon icon-name="utility:check" size="x-small" class="icon-ok"></lightning-icon>
+                                                <span class="summary-list__member">{item.memberName}</span>
+                                                <span class="summary-list__sep">—</span>
+                                                <span class="summary-list__product">{item.pgLabel}</span>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+
+                            <!-- Skipped (existing) leads section -->
+                            <template if:true={hasSummarySkipped}>
+                                <div class="summary-section">
+                                    <div class="summary-section__header summary-section__header--skipped">
+                                        <lightning-icon icon-name="utility:warning" size="x-small"></lightning-icon>
+                                        <span>{summarySkippedCount} Prospect(s) Already Existed — Not Duplicated</span>
+                                    </div>
+                                    <ul class="summary-list">
+                                        <template for:each={skippedDetails} for:item="item">
+                                            <li key={item} class="summary-list__item summary-list__item--skipped">
+                                                <lightning-icon icon-name="utility:ban" size="x-small" class="icon-dup"></lightning-icon>
+                                                <div class="summary-list__detail">
+                                                    <div>
+                                                        <!-- <span class="summary-list__member">{item.memberName}</span>
+                                                        <span class="summary-list__sep">—</span>
+                                                        <span class="summary-list__product">{item.pgLabel}</span> -->
+                                                    </div>
+                                                    <div class="summary-list__lead-name">
+                                                        Existing Prospect: <strong>{item}</strong>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </template>
+                                    </ul>
+                                </div>
+                            </template>
+
+                        </div>
+
+                        <div class="confirm-modal__divider"></div>
+
+                        <div class="confirm-modal__footer">
+                            <lightning-button
+                                variant="brand"
+                                label="Done"
+                                icon-name="utility:check"
+                                onclick={handleSummaryClose}>
+                            </lightning-button>
+                        </div>
+
+                    </div>
+                </div>
+            </template>
+
+            <!-- Sub-header -->
+            <div class="sf-subheader">
+                <div class="sf-campaign-info">
+                    <span class="sf-campaign-badge">Campaign</span>
+                    <div>
+                        <div class="sf-campaign-name">{campaignName}</div>
+                    </div>
+                </div>
+                <div class="sf-progress-wrap">
+                    <span class="sf-progress-label">Attendance:</span>
+                    <div class="sf-progress-bar">
+                        <div class="sf-progress-fill" style={progressStyle}></div>
+                    </div>
+                    <span class="sf-progress-count">{markedCount} / {totalCount}</span>
+                </div>
+            </div>
+
+            <!-- Attendee table -->
+            <div class="sf-table-wrap">
+                <div class="sf-scroll-x">
+                    <table class="sf-table">
+                        <thead>
+                            <tr>
+                                <th class="th-status">Status</th>
+                                <th class="th-attend">Attendance</th>
+                                <th class="th-name">Customer Name</th>
+                                <th class="th-type">Type</th>
+                                <th class="th-product">Product Group</th>
+                                <th class="th-contact">Contact Person</th>
+                            </tr>
+                        </thead>
+
+                        <template for:each={attendeesList} for:item="item">
+                            <tbody key={item.Id}>
+                                <tr class={item.rowClass}>
+
+                                    <td>
+                                        <template if:true={item.duplicate}>
+                                            <span class="sf-badge bdg-dup">
+                                                <lightning-icon icon-name="utility:warning" size="x-small" class="icon-dup"></lightning-icon>
+                                                Duplicate
+                                            </span>
+                                        </template>
+                                        <template if:false={item.duplicate}>
+                                            <span class="sf-badge bdg-ok">
+                                                <lightning-icon icon-name="utility:check" size="x-small" class="icon-ok"></lightning-icon>
+                                                OK
+                                            </span>
+                                        </template>
+                                    </td>
+
+                                    <td class="td-center">
+                                        <div class="tgl-wrap">
+                                            <lightning-input
+                                                type="toggle"
+                                                label=""
+                                                name="Attended__c"
+                                                message-toggle-active="Present"
+                                                message-toggle-inactive="Absent"
+                                                onchange={handleToggle}
+                                                data-id={item.Id}
+                                                checked={item.checked}
+                                                disabled={item.disableToggle}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="sf-name">{item.CustomerName}</div>
+                                        <div class="sf-sub">{item.FirstName} {item.LastName}</div>
+                                    </td>
+
+                                    <td>
+                                        <template if:true={item.isExisting}>
+                                            <span class="sf-badge bdg-type-exist">{item.Type}</span>
+                                        </template>
+                                        <template if:false={item.isExisting}>
+                                            <span class="sf-badge bdg-type-new">{item.Type}</span>
+                                        </template>
+                                    </td>
+
+                                    <!-- ══════════════════════════════════════════════
+                                         PRODUCT GROUP COLUMN
+                                         NEW: each checkbox can show an "Existing Lead"
+                                         badge with the lead name when hasExistingLead=true
+                                    ═══════════════════════════════════════════════════ -->
+                                    <td class="td-product">
+                                        <div class="product-cell">
+
+                                            <template if:true={item.disable}>
+                                                <div class="pills-row">
+                                                    <template for:each={item.FilterValueLabels} for:item="pgItem">
+                                                        <span key={pgItem.id} class="sf-pill sf-pill-done">
+                                                            {pgItem.label}
+                                                        </span>
+                                                    </template>
+                                                    <span class="sf-badge bdg-marked">
+                                                        <lightning-icon icon-name="utility:check" size="x-small" class="icon-ok"></lightning-icon>
+                                                        Already Marked
+                                                    </span>
+                                                </div>
+                                            </template>
+
+                                            <template if:false={item.disable}>
+                                                <div class="checkbox-list">
+                                                    <template for:each={item.checkboxOptions} for:item="opt">
+                                                        <div key={opt.id} class="checkbox-row">
+                                                            <div class="checkbox-row__input-wrap">
+                                                                <lightning-input
+                                                                    type="checkbox"
+                                                                    label={opt.label}
+                                                                    checked={opt.checked}
+                                                                    disabled={opt.disabled}
+                                                                    data-id={item.Id}
+                                                                    data-pgid={opt.id}
+                                                                    onchange={handleProductCheck}
+                                                                    class="pg-checkbox">
+                                                                </lightning-input>
+                                                            </div>
+
+                                                            <!-- NEW: existing-lead indicator per product -->
+                                                            <template if:true={opt.hasExistingLead}>
+                                                                <div class="existing-lead-badge" title={opt.existingLeadName}>
+                                                                    <lightning-icon
+                                                                        icon-name="utility:ban"
+                                                                        size="x-small"
+                                                                        class="icon-dup">
+                                                                    </lightning-icon>
+                                                                    <span class="existing-lead-badge__label">Prospect exists:</span>
+                                                                    <span class="existing-lead-badge__name">{opt.existingLeadName}</span>
+                                                                </div>
+                                                            </template>
+
+                                                        </div>
+                                                    </template>
+                                                </div>
+                                            </template>
+
+                                        </div>
+                                    </td>
+
+                                    <td>
+                                        <div class="sf-contact">{item.ContactName}</div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </template>
+                    </table>
+                </div>
+
+                <template if:false={hasAttendees}>
+                    <div class="empty-state">
+                        <lightning-icon icon-name="utility:groups" size="large"></lightning-icon>
+                        <p>No attendees found for this campaign.</p>
+                    </div>
+                </template>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div slot="footer" class="sf-footer">
+            <span class="sf-footer-info">
+                <strong>{markedCount}</strong> of {totalCount} attendees marked present
+            </span>
+            <div class="sf-btn-group">
+                <lightning-button variant="neutral" label="Cancel" onclick={closeAction}></lightning-button>
+                <lightning-button
+                    variant="brand"
+                    label="Save Attendance"
+                    onclick={handleSave}
+                    disabled={isSaveDisabled}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <template if:true={spinner}>
+            <lightning-spinner alternative-text="Saving..." size="medium"></lightning-spinner>
+        </template>
+
+    </lightning-quick-action-panel>
+</template>

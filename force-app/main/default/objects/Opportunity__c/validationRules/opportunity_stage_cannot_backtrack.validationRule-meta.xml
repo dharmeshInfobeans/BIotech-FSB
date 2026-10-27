@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>opportunity_stage_cannot_backtrack</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+    ISCHANGED(Status__c),
+
+    CASE(
+        RecordType.DeveloperName,
+
+        &quot;Product&quot;,
+            CASE(
+                TEXT(Status__c),
+                &quot;Presentation&quot;,1,
+                &quot;Demo&quot;,2,
+                &quot;Evaluation&quot;,3,
+                &quot;Negotiation&quot;,4,
+                &quot;Closed Lost&quot;,5,
+                &quot;Closed Won&quot;,5,
+                0
+            ),
+
+        &quot;Equipment&quot;,
+            CASE(
+                TEXT(Status__c),
+                &quot;Demo&quot;,1,
+                &quot;Negotiation&quot;,2,
+                &quot;Closed Lost&quot;,3,
+                &quot;Closed Won&quot;,3,
+                0
+            ),
+
+        0
+    )
+
+    &lt;
+
+    CASE(
+        RecordType.DeveloperName,
+
+        &quot;Product&quot;,
+            CASE(
+                TEXT(PRIORVALUE(Status__c)),
+                &quot;Presentation&quot;,1,
+                &quot;Demo&quot;,2,
+                &quot;Evaluation&quot;,3,
+                &quot;Negotiation&quot;,4,
+                &quot;Closed Lost&quot;,5,
+                &quot;Closed Won&quot;,5,
+                0
+            ),
+
+        &quot;Equipment&quot;,
+            CASE(
+                TEXT(PRIORVALUE(Status__c)),
+                &quot;Demo&quot;,1,
+                &quot;Negotiation&quot;,2,
+                &quot;Closed Lost&quot;,3,
+                &quot;Closed Won&quot;,3,
+                0
+            ),
+
+        0
+    )
+)</errorConditionFormula>
+    <errorMessage>Status cannot be changed to a previous stage.</errorMessage>
+</ValidationRule>

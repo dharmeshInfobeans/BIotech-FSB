@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Terms &amp; Condition</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Terms &amp; Conditions</value>
+    </caseValues>
+    <layouts>
+        <layout>Terms &amp; Condition Layout</layout>
+        <sections>
+            <label><!-- Annexure --></label>
+            <section>Annexure</section>
+        </sections>
+        <sections>
+            <label><!-- Cluses --></label>
+            <section>Cluses</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

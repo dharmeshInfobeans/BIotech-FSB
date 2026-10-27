@@ -1,0 +1,25 @@
+<aura:component controller="ExpenseTrackerController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    
+   <!-- <iframe src="procesys.archisys.biz/autoLogin?token=a28966bac17b8eef99c5afa5eb594130" height="720px" width="1000px" />-->
+    <aura:attribute name="user" type="User" access="private"/>
+    <aura:attribute name="urlConfigData" type="UrlConfigData__c" />
+    <aura:attribute name="urlConfigMap" type="object" />
+    <aura:attribute name="iframeUrl" type="String" />
+    <aura:attribute name="width" type="String" />
+    <aura:attribute name="height" type="String" />
+    <aura:attribute name="scrolling" type="String" />
+    <aura:attribute name="frameBorder" type="String" />
+    <aura:attribute name="style" type="String" />
+    <aura:attribute name="sandbox" type="String" />
+    <aura:handler name="init" value="{!this}" action="{! c.doInit }" />
+    
+    <iframe src="{!v.iframeUrl}"
+            width="{!v.width}"
+            height="{!v.height}"
+            style="{!v.style}"
+            frameBorder="{!v.frameBorder}"
+            sandbox="{!v.sandbox}"
+            scrolling="{!v.scrolling}"/>
+    
+
+</aura:component>

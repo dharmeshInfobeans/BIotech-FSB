@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Allow_Creation__c</fullName>
+    <description>This formula fields indicate whether you can create/update account team record.(Used in Trigger)</description>
+    <formula>IF( OR(AND($Profile.Name == &apos;System Administrator&apos;,
+							   	Team_Member__r.Employee_Code__c !=  $Label.CEO_Employee_Code)
+							,
+						 AND(($Profile.Name == &apos;Admin_Tur&apos; || $Profile.Name == &apos;Turkey Sales&apos;),
+												TEXT(Team_Member__r.User_Type__c) ==  TEXT(CreatedBy.User_Type__c),
+							    	Team_Member__r.Employee_Code__c !=  $Label.CEO_Employee_Code)							
+						) ,
+			 True,
+			 If((Account__r.RecordType.DeveloperName == &apos;Distributor&apos;   ||
+	   Account__r.RecordType.DeveloperName == &apos;Doctor_D&apos;      ||
+	   Account__r.RecordType.DeveloperName == &apos;Distributor_T&apos; ||
+	   Account__r.RecordType.DeveloperName == &apos;Doctor_T&apos; ) &amp;&amp;
+   ( TEXT(Team_Member__r.User_Type__c) ==  TEXT(CreatedBy.User_Type__c) &amp;&amp;
+				 Team_Member__r.ManagerId    ==   CreatedById           &amp;&amp;
+					Team_Member__r.Employee_Code__c !=  $Label.CEO_Employee_Code 
+				),
+			 True,
+			 IF((Account__r.RecordType.DeveloperName == &apos;Ophthalmic_Vision&apos;   ||
+	       Account__r.RecordType.DeveloperName == &apos;Ortho_Dermal&apos; ) &amp;&amp;
+							( TEXT(Team_Member__r.User_Type__c) ==  TEXT(CreatedBy.User_Type__c) &amp;&amp;
+								 Team_Member__r.Employee_Code__c !=  $Label.CEO_Employee_Code ),
+							True,
+				   False
+				  )
+		))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>This formula fields indicate whether you can create/update account team record.</inlineHelpText>
+    <label>Allow Creation</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

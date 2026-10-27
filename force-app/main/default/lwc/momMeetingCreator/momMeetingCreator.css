@@ -1,0 +1,320 @@
+/* ── Table wrapper ────────────────────────────────────────────────────────── */
+.table-wrapper {
+    overflow-x: clip;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+}
+
+/* ── CSS Grid layout — read mode (7 cols) ─────────────────────────────────── */
+.grid-header,
+.grid-row {
+    display: grid;
+    grid-template-columns: 20% 14% 9% 7% 9% 8% 10% 15% 8%;
+    min-width: 1400px;
+    align-items: center;
+}
+
+/* ── Edit mode (10 cols, adds delete column) ──────────────────────────────── */
+.editing .grid-header,
+.editing .grid-row {
+    grid-template-columns: 19% 13% 8% 7% 8% 7% 9% 15% 7% 7%;
+}
+
+/* ── Grid header ──────────────────────────────────────────────────────────── */
+.grid-header {
+    background-color: #f3f2f2;
+    border-bottom: 2px solid #c9c7c5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.grid-header > div {
+    padding: 0.5rem 0.75rem;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #3e3e3c;
+    white-space: nowrap;
+}
+
+/* ── Grid data rows ───────────────────────────────────────────────────────── */
+.grid-row {
+    border-bottom: 1px solid #e8e8e8;
+    transition: background-color 0.12s ease;
+}
+
+.grid-row:last-child {
+    border-bottom: none;
+}
+
+.grid-row:hover {
+    background-color: #f7f9fb;
+}
+
+.grid-row > div {
+    padding: 0.4rem 0.5rem;
+}
+
+.col-del-cell {
+    text-align: center;
+}
+
+/* ── Attendees cell ───────────────────────────────────────────────────────── */
+.attendees-cell {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.25rem;
+    padding: 0.25rem 0;
+}
+
+/* ── Attendee email chips ─────────────────────────────────────────────────── */
+.attendee-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    background: #e8f4fd;
+    border: 1px solid #b3d9f5;
+    border-radius: 12px;
+    padding: 2px 6px 2px 8px;
+    font-size: 0.7rem;
+    color: #0176d3;
+    white-space: nowrap;
+    max-width: 180px;
+}
+
+.chip-email {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.chip-remove {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #0176d3;
+    font-size: 0.85rem;
+    line-height: 1;
+    padding: 0 2px;
+    opacity: 0.7;
+    flex-shrink: 0;
+}
+
+.chip-remove:hover { opacity: 1; color: #c23934; }
+
+/* ── Attendee email input row ─────────────────────────────────────────────── */
+.attendee-input-row {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+}
+
+.attendee-email-input {
+    flex: 1;
+    min-width: 0;
+    height: 24px;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0 6px;
+    font-size: 0.75rem;
+    outline: none;
+}
+
+.attendee-email-input:focus {
+    border-color: #0176d3;
+    box-shadow: 0 0 0 1px #0176d3;
+}
+
+.attendee-add-btn {
+    height: 24px;
+    width: 24px;
+    padding: 0;
+    border: 1px solid #0176d3;
+    border-radius: 4px;
+    background: #0176d3;
+    color: #fff;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.attendee-add-btn:hover { background: #014486; border-color: #014486; }
+
+/* ── Read-only cell value ─────────────────────────────────────────────────── */
+.read-value {
+    display: block;
+    font-size: 0.8125rem;
+    color: #3e3e3c;
+    padding: 0.3rem 0.25rem;
+    min-height: 1.5rem;
+    word-break: break-word;
+}
+
+/* ── Status badge pill ────────────────────────────────────────────────────── */
+.status-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.badge-completed-ontime { background-color: #00b050; color: #ffffff; }
+.badge-completed-late   { background-color: #c6efce; color: #155724; }
+.badge-wip-overdue      { background-color: #ffc000; color: #000000; }
+.badge-wip-pending      { background-color: #ffff00; color: #5a5a00; }
+.badge-no-action        { background-color: #a6a6a6; color: #ffffff; }
+
+/* ── Error row ────────────────────────────────────────────────────────────── */
+.row-error {
+    background-color: #fef0f0 !important;
+    box-shadow: inset 4px 0 0 0 #c23934;
+}
+
+.row-error:hover {
+    background-color: #fde8e8 !important;
+}
+
+/* ── Input error border ───────────────────────────────────────────────────── */
+.input-error {
+    --slds-c-input-color-border: #c23934;
+    --lwc-colorBorderInputActive: #c23934;
+    --lwc-colorBorderInput: #c23934;
+}
+
+/* ── Required indicator ───────────────────────────────────────────────────── */
+.required-star {
+    color: #c23934;
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+.required-note {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    padding-left: 0.25rem;
+}
+
+/* ── Row count badge ──────────────────────────────────────────────────────── */
+.count-badge {
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+/* ── Delete button ────────────────────────────────────────────────────────── */
+.delete-btn {
+    opacity: 0.4;
+    transition: opacity 0.15s ease;
+}
+
+.grid-row:hover .delete-btn,
+.row-error .delete-btn {
+    opacity: 1;
+}
+
+/* ── Empty state ──────────────────────────────────────────────────────────── */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    color: #706e6b;
+    text-align: center;
+    border: 2px dashed #dddbda;
+    border-radius: 8px;
+    background-color: #fafaf9;
+    margin-bottom: 0.5rem;
+}
+
+.empty-icon {
+    --lwc-colorTextIconDefault: #b0adab;
+}
+
+.empty-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #3e3e3c;
+    margin: 0.75rem 0 0.25rem;
+}
+
+.empty-body {
+    font-size: 0.875rem;
+    color: #706e6b;
+    margin: 0;
+    max-width: 320px;
+}
+
+/* ── Card body (overlay anchor) ───────────────────────────────────────────── */
+.card-body {
+    position: relative;
+    min-height: 80px;
+}
+
+/* ── Saving overlay ───────────────────────────────────────────────────────── */
+.saving-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.78);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    border-radius: 4px;
+    backdrop-filter: blur(2px);
+}
+
+.saving-label {
+    font-size: 0.875rem;
+    color: #706e6b;
+    margin-top: 0.75rem;
+    font-style: italic;
+}
+
+/* ── Footer action bar ────────────────────────────────────────────────────── */
+.action-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+
+.action-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .action-bar {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .action-bar-left,
+    .action-bar-right {
+        width: 100%;
+        display: flex;
+    }
+
+    .action-bar-left  { justify-content: flex-start; }
+    .action-bar-right { justify-content: flex-end; }
+
+    .table-wrapper {
+        overflow-x: clip;
+    }
+}

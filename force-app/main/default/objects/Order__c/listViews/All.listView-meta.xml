@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>Account__c</columns>
+    <columns>NAME</columns>
+    <columns>Biotech_Po_No__c</columns>
+    <columns>Customer_Po_No__c</columns>
+    <columns>Status__c</columns>
+    <columns>Order_Date__c</columns>
+    <columns>Order_Activation_Date__c</columns>
+    <columns>Total_Amount__c</columns>
+    <columns>PFI_Sales_Contract_status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>All</label>
+</ListView>

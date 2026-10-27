@@ -1,0 +1,57 @@
+.THIS .tier-one {
+    color: red; 
+    font-weight: bold;
+}
+.THIS .tier-two {
+  background-color: pink;
+}
+.THIS .tier-three { 
+  background-color: orange;
+}
+.THIS .tier-four { 
+  	color: green; 
+    font-weight: bold;
+}
+.THIS.slds-spinner_container {  
+  z-index: 10000;
+  position: fixed;   
+}
+.THIS .tier-five{
+    	color: rgb(89, 3, 102); 
+    font-weight: bold;
+}
+.THIS .tier-Six{
+    	color: Blue; 
+    font-weight: bold;
+}
+.THIS .tier-seven{
+    color: MediumSpringGreen; 
+    font-weight: bold;
+}
+.THIS .tier-eight{
+    color: Magenta; 
+    font-weight: bold;
+}
+.THIS .tier-nine{
+    color: SlateBlue; 
+    font-weight: bold;
+}
+.THIS .tier-Ten{
+  color: rgb(166, 55, 4); 
+  font-weight: bold;
+}
+.THIS .tier-Eleven{
+  color: rgba(1, 119, 128, 0.619); 
+  font-weight: bold;
+}
+.THIS .tier-Twelve{
+  color: rgba(97, 2, 78, 0.619); 
+  font-weight: bold;
+}
+.THIS .tier-Thirteen{
+  color: rgba(74, 4, 165, 0.619); 
+  font-weight: bold;
+}
+.THIS.slds-table {
+    height: 10%;
+}

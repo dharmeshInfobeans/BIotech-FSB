@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <brand>
+        <headerColor>#0070D2</headerColor>
+        <shouldOverrideOrgTheme>true</shouldOverrideOrgTheme>
+    </brand>
+    <description>Secondary Sales Module</description>
+    <formFactors>Small</formFactors>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <isNavTabPersistenceDisabled>false</isNavTabPersistenceDisabled>
+    <isOmniPinnedViewEnabled>false</isOmniPinnedViewEnabled>
+    <label>Secondary Sales</label>
+    <navType>Standard</navType>
+    <tabs>standard-Account</tabs>
+    <tabs>Secondary_Sales_Header__c</tabs>
+    <tabs>Secondary_Sales_Line_Item__c</tabs>
+    <tabs>Secondary_Sales_Order__c</tabs>
+    <tabs>Secondary_Sales_Order_Line__c</tabs>
+    <tabs>Secondary_Sales_Delivery__c</tabs>
+    <tabs>Customer_Ledger__c</tabs>
+    <tabs>Customer_Ledger_Log__c</tabs>
+    <tabs>Sales_Target_Header__c</tabs>
+    <tabs>Sales_Target_Line__c</tabs>
+    <tabs>Incentive_Target__c</tabs>
+    <uiType>Lightning</uiType>
+</CustomApplication>

@@ -1,0 +1,3 @@
+<apex:page renderAs="pdf" controller="TestApex" language="{!pageLanguage}">
+    <h1>{!$Label.my_D_label}</h1>
+</apex:page>

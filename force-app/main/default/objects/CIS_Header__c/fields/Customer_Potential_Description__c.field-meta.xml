@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Potential_Description__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Customer_Potential__c, 
+&apos;P&apos;, &apos;&gt;= 250K&apos;, 
+&apos;Q&apos;, &apos;100K - 200K&apos;, 
+&apos;R&apos;, &apos;50K - 100K&apos;, 
+&apos;S&apos;, &apos;25K - 50K&apos;, 
+&apos;T&apos;, &apos;&lt; 25K&apos;,					
+&apos;&apos;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Customer Potential Description</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

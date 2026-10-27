@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- FORCE MAJEURE &amp; COMPLIANCE WITH LAWS --></label>
+    <name>FORCE_MAJEURE_COMPLIANCE_WITH_LAWS__c</name>
+</CustomFieldTranslation>

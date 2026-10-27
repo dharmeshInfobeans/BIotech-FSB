@@ -1,0 +1,127 @@
+<template>
+    <div class="chart-card">
+        <button
+            class="chart-download-btn"
+            title="Download this chart's full data as Excel"
+            onclick={handleDownloadChartExcel}
+            disabled={downloadChartDisabled}
+        >
+            <lightning-icon icon-name="utility:download" size="x-small"></lightning-icon>
+        </button>
+        <div class="chart-header">
+            <div class="title-box">
+                <h2 class="chart-title">{title}</h2>
+                <template if:true={overallRatioLabel}>
+                    <p class="ratio-badge">{overallRatioLabel}</p>
+                </template>
+            </div>
+        </div>
+        <div class="chart-container slds-p-around_small">
+            <canvas></canvas>
+        </div>
+    </div>
+
+    <template if:true={drillDownOpen}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_medium">
+            <div class="slds-modal__container">
+                <header class="slds-modal__header">
+                    <button
+                        class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close"
+                        onclick={closeDrillDown}
+                    >
+                        <lightning-icon icon-name="utility:close" size="small" variant="inverse"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 class="slds-modal__title slds-hyphenate">{drillDownTitle}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium dd-content">
+                    <div class="slds-form-element dd-search">
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left">
+                            <lightning-icon icon-name="utility:search" size="x-small" class="slds-input__icon slds-input__icon_left dd-search-icon"></lightning-icon>
+                            <input
+                                type="text"
+                                class="slds-input"
+                                placeholder="Search name, owner, zone, country, stage, SAP code..."
+                                value={drillDownSearchTerm}
+                                oninput={handleDrillDownSearchInput}
+                            />
+                        </div>
+                    </div>
+
+                    <template if:true={drillDownLoading}>
+                        <div class="slds-align_absolute-center dd-status">
+                            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                        </div>
+                    </template>
+
+                    <template if:true={drillDownError}>
+                        <div class="slds-align_absolute-center dd-status dd-error">Couldn't load these records. Please try again.</div>
+                    </template>
+
+                    <template if:true={drillDownIsEmpty}>
+                        <div class="slds-align_absolute-center dd-status">No records found.</div>
+                    </template>
+
+                    <template if:true={drillDownHasNoResults}>
+                        <div class="slds-align_absolute-center dd-status">No records match "{drillDownSearchTerm}".</div>
+                    </template>
+
+                    <template if:true={drillDownHasResults}>
+                        <div class="dd-table-wrap">
+                            <table class="slds-table slds-table_bordered slds-table_striped dd-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Owner</th>
+                                        <th>Zone</th>
+                                        <th>Country</th>
+                                        <th>Stage</th>
+                                        <th>SAP Code</th>
+                                        <template if:true={showMatchedViaColumn}>
+                                            <th>Matched Via</th>
+                                        </template>
+                                        <th>Created</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={drillDownPagedRecords} for:item="rec">
+                                        <tr key={rec.recordId}>
+                                            <td>
+                                                <a href={rec.recordUrl} target="_blank" rel="noopener">{rec.name}</a>
+                                            </td>
+                                            <td>{rec.ownerName}</td>
+                                            <td>{rec.zone}</td>
+                                            <td>{rec.country}</td>
+                                            <td>{rec.stage}</td>
+                                            <td>{rec.sapCode}</td>
+                                            <template if:true={showMatchedViaColumn}>
+                                                <td>{rec.matchedVia}</td>
+                                            </template>
+                                            <td>{rec.createdDate}</td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </template>
+                </div>
+                <footer class="slds-modal__footer dd-footer">
+                    <span class="dd-page-label">{drillDownPageLabel}</span>
+                    <div class="dd-page-buttons">
+                        <lightning-button
+                            label="Download Excel"
+                            icon-name="utility:download"
+                            onclick={handleDrillDownDownloadExcel}
+                            disabled={drillDownDownloadDisabled}
+                        ></lightning-button>
+                        <lightning-button label="Previous" onclick={handleDrillDownPrevPage} disabled={drillDownPrevDisabled}></lightning-button>
+                        <lightning-button label="Next" onclick={handleDrillDownNextPage} disabled={drillDownNextDisabled}></lightning-button>
+                        <lightning-button variant="brand" label="Close" onclick={closeDrillDown}></lightning-button>
+                    </div>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" onclick={closeDrillDown}></div>
+    </template>
+</template>

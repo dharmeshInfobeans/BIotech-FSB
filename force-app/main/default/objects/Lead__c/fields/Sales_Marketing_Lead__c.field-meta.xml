@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Marketing_Lead__c</fullName>
+    <description>Lead bifurcation into Sales &amp; Marketing lead</description>
+    <externalId>false</externalId>
+    <formula>IF(
+NOT(ISBLANK(Campaign_Id__c)),
+&quot;Marketing Lead&quot;,
+IF(
+OR(
+ISPICKVAL(Lead_Source__c, &quot;Digital Platforms&quot;),
+ISPICKVAL(Lead_Source__c, &quot;Website&quot;),
+ISPICKVAL(Lead_Source__c, &quot;Social Media&quot;)
+),
+&quot;Digital Marketing Leads&quot;,
+&quot;Sales Lead&quot;
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText>Lead bifurcation into Sales &amp; Marketing lead</inlineHelpText>
+    <label>Sales / Marketing Lead</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

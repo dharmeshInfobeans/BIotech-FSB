@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Back_Comment_Required_When_Other</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Send_Back_Reason__c, &quot;Other – Add Comment&quot;),
+    ISBLANK(Send_Back_Reason_Comments__c)
+)</errorConditionFormula>
+    <errorDisplayField>Send_Back_Reason_Comments__c</errorDisplayField>
+    <errorMessage>Please add comments in &quot;Send Back Reason Comments&quot; when &quot;Other – Add Comment&quot; is selected as the Send Back Reason.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,107 @@
+<aura:component controller="DealerPortalForecastController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global">
+    <ltng:require scripts="{!$Resource.jQuery}" afterScriptsLoaded="{!c.doInitJquery}" />
+
+	<aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="isShowSpinner" type="boolean" default='false'/> 
+    <aura:attribute name="isShowRecords" type="boolean" default='false'/> 
+    <aura:attribute name="isShowData" type="boolean" default='false'/> 
+    <aura:attribute name="regionLst" type="List"/>
+    <aura:attribute type="Product__c[]" name="productList"/>
+    <aura:attribute name="selectedCustomerMap" type="Map"/>
+    <aura:attribute name ="customerName" type='String' />
+    <aura:attribute name="customerMap" type="Map"/>
+    <aura:attribute name="lastYear" type="Integer" />
+
+    <aura:attribute name="currentDate" type="Date"/>
+    <aura:attribute name ="weeklyForecastWrapper" type='Object' />
+    <aura:attribute name="fromselectedMonth" type="Integer"/>
+    <aura:attribute name="fromselectedYear" type="Integer"/>
+    <aura:attribute name="toselectedMonth" type="Integer"/>
+    <aura:attribute name="toselectedYear" type="Integer"/>
+    <aura:attribute name ="isDisabled" type='Boolean' />
+    <aura:attribute name ="message" type='String' />
+    <aura:attribute name="selectedCustomerCode" type="String"/>
+    <aura:attribute name="pageNumber"
+                    type="Integer"
+                    default="1"
+                    description="For pagination, which page of records to display."/>
+    
+    <aura:attribute name="pageSize"
+                    type="Integer"
+                    default="10"
+                    description="For pagination, how many records per page to display."/>
+    
+    <aura:handler name="refreshChildComponent" event="c:refreshChildComponent" action="{!c.onClickGoButton}"/>
+    
+    
+    <div >
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="height:10%; width:100%;">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <!--<th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Region">{!$Label.c.Region}</div>
+                    </th>-->
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Customer">{!$Label.c.Customer}</div>
+                    </th>
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Month">FROM</div>
+                    </th>
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Year">TO</div>
+                    </th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="slds-hint-parent">
+                    <td data-label="{!$Label.c.Customer}" scope="row">
+                        <div class="slds-truncate" title="{!$Label.c.Customer}" >
+                            <ui:outputText value="{!v.customerName}"/> 
+                        </div>
+                    </td>
+                    <td data-label="FROM" scope="row">
+                        <div class="slds-truncate" title="Month" >
+                            <ui:inputSelect   aura:id="frommonthPickListValues"/>  
+                        </div>
+                        <div class="slds-truncate" title="Year" >
+                            <ui:inputSelect  aura:id="fromyearPickListValues" />
+                        </div>
+                    </td>
+                    <td data-label="TO" scope="row">
+                        <div class="slds-truncate" title="Month" >
+                            <ui:inputSelect   aura:id="tomonthPickListValues"/>  
+                        </div>
+                        <div class="slds-truncate" title="Year" >
+                            <ui:inputSelect  aura:id="toyearPickListValues" />
+                        </div>
+                    </td>
+                    <td data-label="Go" scope="row">
+                        <lightning:button label="{!$Label.c.Go}" iconName="utility:search" iconPosition="left" onclick="{!c.onClickGoButton}" variant="brand" />
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>       
+    </div>
+    <br/>
+    <aura:if isTrue="{!v.isShowRecords==false}">
+        <div style="height:410px; background-color:white; margin-top:-10px">
+            <p style="text-align:center; padding-top:15%;">{!$Label.c.No_Records_Found}</p>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isShowRecords}">
+        <c:DealerPortalWeeklyForecast aura:id='childWeeklyCmp'  
+                              weeklyForecastObj = "{!v.weeklyForecastWrapper}" 
+                              fromselectedMonth = "{!v.fromselectedMonth}"
+                              fromselectedYear = "{!v.fromselectedYear}"
+                              toselectedMonth = "{!v.toselectedMonth}"
+                              toselectedYear = "{!v.toselectedYear}"
+                              selectedCustomerCode = "{!v.selectedCustomerCode}"
+                              pageNumber = "{!v.pageNumber}"
+                              pageSize = "{!v.pageSize}"></c:DealerPortalWeeklyForecast>
+    </aura:if>
+    <aura:if isTrue="{!v.isShowSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+</aura:component>

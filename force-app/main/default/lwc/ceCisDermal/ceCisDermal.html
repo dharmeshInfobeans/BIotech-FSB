@@ -1,0 +1,179 @@
+<template>
+
+	<div class="slds-grid slds-wrap">
+		<template if:true={ortho}>
+			<div class="slds-col slds-size_2-of-12">
+				<!-- <lightning-input type="number" label={label.LvcProcedure} title="No. of LVc procedures"
+                onchange={handleLvc} value={lvcData}  disabled={saveButtonError} message-when-value-missing="Please enter the value" required style="width:100px;">
+            </lightning-input>-->
+				<lightning-combobox name="DermalPackage" label="Package Of Injections For Patient"
+					placeholder="Select here" options={dermalPackage} onchange={handleDataChange}></lightning-combobox>
+			</div>
+		</template>
+		<template if:true={dermal}>
+			<div class="slds-col slds-size_2-of-12">
+				<lightning-combobox label="Package Of 1ML Injections" name="PackageOf1MLInjections"
+					placeholder="Select here" options={packageOf1MlInjection} onchange={handleDataChange}>
+				</lightning-combobox>
+			</div>
+			<div class="slds-col slds-size_2-of-12">
+				<lightning-input type="text" label="No. Of Mesotheraphy Procedure" style="margin-left:2px;">
+				</lightning-input>
+			</div>
+		</template>
+		<div class="slds-col slds-size_4-of-12">
+
+			<div class="slds-align_absolute-center" style="font-size:20px;">
+				<span style={label.CisFooter}>{label.newCeCis}</span>
+			</div>
+		</div>
+	</div>
+	<br>
+
+	<div class="TableData slds-scrollable" style="height:230px;">
+		<table class="slds-table slds-table_cell-buffer slds-table_bordered"
+			aria-label="Example default base table of Opportunities">
+			<thead>
+				<tr class="slds-line-height_reset">
+					<th class="tableBody" scope="col">
+						<div class="slds-truncate tableHeader" title="Delete"></div>
+					</th>
+					<th class="tableBody" scope="col">
+						<div class="slds-truncate tableHeader" title="Company Name">Company</div>
+					</th>
+					<th class="tableBody" scope="col">
+						<div class="slds-truncate tableHeader" title="Categories Name">Product </div>
+					</th>
+					<th class="tableBody" scope="col">
+						<template if:true={dermal}>
+							<div class="slds-truncate tableHeader" title="value">No. Of Procedure</div>
+						</template>
+						<template if:true={ortho}>
+							<div class="slds-truncate tableHeader" title="value">No. Of Injections Per Year</div>
+
+						</template>
+
+					</th>
+					<!--<th class="tableBody" scope="col">
+						<div class="slds-truncate tableHeader" title="value">{label.CisType}</div>
+					</th>-->
+
+				</tr>
+			</thead>
+			<tbody>
+				<template for:each={showDataList} for:item="item">
+					<tr class="slds-hint-parent" key={item.key}>
+						<td data-label="">
+							<div class="slds-truncate" title="Cloudhub">
+								<lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+									class="slds-m-left_xx-small" title="Delete" data-val={item.key}
+									onclick={handleDelete} disabled={saveButtonError} data-label={item.label}>
+								</lightning-button-icon>
+							</div>
+						</td>
+						<td data-label="company ">
+
+							<div class="" title="Cloudhub">
+								<lightning-combobox name="Company" label="" placeholder="Select Company"
+									options={CompaniesList} onchange={handleDataChange} data-label="Company"
+									data-val={item.key} disabled={saveButtonError}></lightning-combobox>
+							</div>
+
+
+						</td>
+						<td data-label="Category ">
+							<div class="" title="Cloudhub">
+								<lightning-combobox name="Product" label="" placeholder="Select Product"
+									options={item.ProductList} onchange={handleDataChange} data-label="Product"
+									data-val={item.key} disabled={saveButtonError}></lightning-combobox>
+							</div>
+						</td>
+
+						<td data-label="Value">
+							<div class="" title="Cloudhub">
+								<lightning-input type="text" title="Enter valid Number" onchange={handleDataChange}
+									data-label="Value" data-val={item.key} disabled={saveButtonError}></lightning-input>
+							</div>
+						</td>
+						<!--<td data-label="Type">
+							<div class="" title="Cloudhub">
+								<lightning-input type="text" title="Type" disabled="true" value={item.Type}>
+								</lightning-input>
+							</div>
+						</td>-->
+					</tr>
+				</template>
+
+			</tbody>
+		</table>
+
+	</div>
+
+	<div>
+		<lightning-button type="button" title="Add rows" label={label.CisAddRow} variant="brand" style="float: left;"
+			onclick={handleAddRow} disabled={saveButtonError}></lightning-button>
+	</div>
+
+	<div class="slds-grid" style="float:right;">
+		<div class="slds-col">
+			<lightning-button type="button" label={label.CisCancel} onclick={handleCancel} disabled={saveButtonError}>
+			</lightning-button>
+		</div>
+		<div class="slds-col">
+			&nbsp;&nbsp;
+		</div>
+		<div class="slds-col">
+			<lightning-button type="button" label={label.CisSave} onclick={handleSave} variant="brand"
+				disabled={saveButtonError}> </lightning-button>
+		</div>
+		<div class="slds-col">
+			&nbsp;&nbsp;
+		</div>
+		<div class="slds-col">
+			<lightning-button type="button" label="Save and Submit" value="submit" onclick={handleSave} variant="brand"
+				disabled={saveButtonError}> </lightning-button>
+		</div>
+	</div><br><br>
+
+	<div class="slds-grid slds-wrap">
+
+		<!--<div class="slds-col slds-size_1-of-12">
+			<p class="lastData">{label.Cisregular}:</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p> {regularData}</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p class="lastData">{label.CisPremium}:</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p>{premiumData}</p>
+		</div>-->
+		<div class="slds-col slds-size_1-of-12">
+			<p style={label.CisFooterData}>{label.CisTotal}:</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p> {totalData}</p>
+		</div>
+		<!--<div class="slds-col slds-size_1-of-12">
+			<p style={label.CisFooterData}>Phakic</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p>{phakicTotal}</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p style={label.CisFooterData}>Premium(%)</p>
+		</div>
+		<div class="slds-col slds-size_1-of-12">
+			<p>{premiumPercentage}%</p>
+		</div>-->
+
+	</div>
+
+	<template if:true={spinner}>
+		<c-spinner></c-spinner>
+	</template>
+
+
+
+</template>

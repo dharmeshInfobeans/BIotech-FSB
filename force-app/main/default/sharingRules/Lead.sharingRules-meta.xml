@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Colombia_User_Access</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Colombia User Access</label>
+        <sharedTo>
+            <group>Colombia_Group</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Country</field>
+            <operation>equals</operation>
+            <value>CO</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>Sr_Manager_Marketing_West</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Sr. Manager - Marketing West</label>
+        <sharedTo>
+            <role>Sr_Manager_Marketing</role>
+        </sharedTo>
+        <criteriaItems>
+            <field>State</field>
+            <operation>contains</operation>
+            <value>GUJARAT</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>State</field>
+            <operation>contains</operation>
+            <value>RAJASTHAN</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingGuestRules>
+        <fullName>Activity_Sharing</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Activity Sharing</label>
+        <sharedTo>
+            <guestUser>Branch</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>P91_Calendar__Name__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </criteriaItems>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+    </sharingGuestRules>
+    <sharingGuestRules>
+        <fullName>guest_user</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>guest user</label>
+        <sharedTo>
+            <guestUser>BioTech_Partner_LWR</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>P91_Calendar__Name__c</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </criteriaItems>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+    </sharingGuestRules>
+</SharingRules>

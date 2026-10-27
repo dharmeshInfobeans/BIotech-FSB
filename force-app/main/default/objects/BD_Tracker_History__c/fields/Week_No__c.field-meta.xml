@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Week_No__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(LEN(RIGHT(Activity_Weeks__c ,(LEN( Activity_Weeks__c )-FIND(&quot;k&quot;, Activity_Weeks__c )))) &gt; 1, RIGHT(Activity_Weeks__c ,(LEN( Activity_Weeks__c )-FIND(&quot;k&quot;, Activity_Weeks__c ))), &apos;0&apos; &amp;&apos;&apos;&amp;RIGHT(Activity_Weeks__c ,(LEN( Activity_Weeks__c )-FIND(&quot;k&quot;, Activity_Weeks__c )))) &amp; &apos;-&apos; &amp;   Activity_Year__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Week No</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Market_X_ray__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Market X-ray</label>
+    <referenceTo>Market_X_ray__c</referenceTo>
+    <relationshipLabel>Brand Market Shares</relationshipLabel>
+    <relationshipName>Brand_Market_Shares</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

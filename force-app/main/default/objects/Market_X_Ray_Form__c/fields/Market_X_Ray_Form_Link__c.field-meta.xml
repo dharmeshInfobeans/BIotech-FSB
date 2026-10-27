@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Market_X_Ray_Form_Link__c</fullName>
+    <externalId>false</externalId>
+    <formula>&quot;https://biotechcrm--full.sandbox.my.site.com/s/market-x-ray?recordId=&quot; 
+&amp; CASESAFEID(Id) 
+&amp; &quot;&amp;isDisable=true&quot;
+&amp; IF(
+    NOT(ISBLANK(StoreUserId__c)),
+    &quot;&amp;userId=&quot; &amp; StoreUserId__c,
+    &quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Market X Ray Form Link</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Account_Activation_Alert</fullName>
+        <description>Account Activation Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Account_Activation_Alert</template>
+    </alerts>
+    <alerts>
+        <fullName>Approver_1_Brazil</fullName>
+        <description>Approver 1 Brazil</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approver_1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approver_2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver1_Template_Brazil</template>
+    </alerts>
+    <alerts>
+        <fullName>Approver_1_Colombia</fullName>
+        <description>Approver 1 Colombia</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approver_1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approver_2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver1_Template_Colombia</template>
+    </alerts>
+    <alerts>
+        <fullName>CE_expired</fullName>
+        <description>CE expired</description>
+        <protected>false</protected>
+        <recipients>
+            <type>accountOwner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Customer_Evaluation_Expiration</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approval_Email_To_Approver_1</fullName>
+        <description>Send Approval Email To Approver 1</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approver_1__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <recipients>
+            <field>Approver_2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver1_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approval_Email_To_Approver_2</fullName>
+        <description>Send Approval Email To Approver 2</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approver_2__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver2_Template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approval_Email_To_Branch_Team</fullName>
+        <ccEmails>smeesamabbas@gmail.com</ccEmails>
+        <description>Send Approval Email To Branch Team</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Branch_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Branch_Team_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approval_To_Branch_Email_Address_Location_Wise</fullName>
+        <description>Send Approval To Branch Email Address Location Wise</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Branch_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Branch_Team_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_Alert_To_Approver2_Brazil</fullName>
+        <description>Send Email Alert To Approver2 Brazil</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>alexandre@biotechhealthcare.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver2_Template_Brazil</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_Alert_To_Approver2_Colombia</fullName>
+        <description>Send Email Alert To Approver2 Colombia</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>luzmaria@biotechhealthcare.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver2_Template_Colombia</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_Alert_To_Approver2_Turkey</fullName>
+        <description>Send Email Alert To Approver2 Turkey</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>veraik@biotechhealthcare.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Approver_2_Template_Turkey</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_Alert_to_Admin</fullName>
+        <ccEmails>smeesamabbas@gmail.com</ccEmails>
+        <description>Send Email Alert to Admin (Nehal)</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>nehal@biotechhealthcare.com</recipient>
+            <type>user</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Admin_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_Alert_to_Admin_after_ZSM_Approval</fullName>
+        <description>Send Email Alert to Admin after ZSM Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <recipient>Domestic_Admin</recipient>
+            <type>role</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Admin_Notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_when_new_shipping_address_created</fullName>
+        <ccEmails>shivam.kumar@biotechhealthcare.com</ccEmails>
+        <ccEmails>niket.Chaturvedi@biotechhealthcare.com</ccEmails>
+        <description>Send Email when new shipping address created</description>
+        <protected>false</protected>
+        <recipients>
+            <field>CRM_2_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>CRM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Adding_New_Shipping_Address_Email_notification</template>
+    </alerts>
+    <alerts>
+        <fullName>Update_ShipToCode_Email_Alert</fullName>
+        <ccEmails>shivam.kumar@biotechhealthcare.com</ccEmails>
+        <ccEmails>niket.Chaturvedi@biotechhealthcare.com</ccEmails>
+        <description>Update ShipToCode Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>CRM_2_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>CRM_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <recipients>
+            <field>Partner_User_Email__c</field>
+            <type>email</type>
+        </recipients>
+        <senderAddress>crmhelpdesk@biotechhealthcare.com</senderAddress>
+        <senderType>OrgWideEmailAddress</senderType>
+        <template>unfiled$public/Updating_ShipToCode_On_Shipping_Address_Email_notification</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approved_By_Admin</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Approved by Admin</literalValue>
+        <name>Approved By Admin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approved_By_Approver1</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Approved By Approver 1</literalValue>
+        <name>Approved By Approver1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Currency_Fill</fullName>
+        <field>Currency__c</field>
+        <literalValue>INR</literalValue>
+        <name>Currency Fill</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Customer_group_insert</fullName>
+        <field>Customer_Group__c</field>
+        <literalValue>01</literalValue>
+        <name>Customer group insert</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Distrib_Channel_Insert</fullName>
+        <field>Distributor_Channel__c</field>
+        <literalValue>20</literalValue>
+        <name>Distrib Channel Insert</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Fill_Country_Key</fullName>
+        <field>Country_Key__c</field>
+        <literalValue>IN</literalValue>
+        <name>Fill Country Key</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Industry_key</fullName>
+        <field>Industry_Key__c</field>
+        <literalValue>0003</literalValue>
+        <name>Industry key</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Pricing_procedure_assigned</fullName>
+        <field>Pricing_Procedure_Assigned__c</field>
+        <literalValue>B</literalValue>
+        <name>Pricing procedure assigned</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Reconciliation_Account</fullName>
+        <field>Reconciliation_Account_GL__c</field>
+        <literalValue>2050020</literalValue>
+        <name>Reconciliation Account</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejected_By_Admin</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Rejected By Admin</literalValue>
+        <name>Rejected By Admin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejected_By_Approver1</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Rejected By Approver 1</literalValue>
+        <name>Rejected By Approver1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Rejected_By_Approver2</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Rejected By Approver 2</literalValue>
+        <name>Rejected By Approver2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Account_Status_To_Activated</fullName>
+        <field>Status__c</field>
+        <literalValue>Activated</literalValue>
+        <name>Set Account Status To Activated</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Status_Field_To_Approver1</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Submitted To Approver 1</literalValue>
+        <name>Set Sub Status Field To Approver1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Status_Field_To_Apprved_By_Admin</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Approved by Admin</literalValue>
+        <name>Set Sub Status Field To Apprved By Admin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Status_Field_To_Branch</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Submitted To Branch Team</literalValue>
+        <name>Set Sub Status Field To Branch</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Status_Field_To_Pending_Admin</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Pending For Admin</literalValue>
+        <name>Set Sub Status Field To Pending Admin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Status_Field_To_Rejcted_By_Admin</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Rejected By Admin</literalValue>
+        <name>Set Sub Status Field To Rejcted By Admin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_Status_Field_To_Rejected_By_Ap1</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Rejected By Approver 1</literalValue>
+        <name>Set Sub Status Field To Rejected By Ap1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Set_Sub_status_to_Active</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Account Activated</literalValue>
+        <name>Set Sub status to Active</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Terms_of_payment_key</fullName>
+        <field>Terms_Of_Payment_Key__c</field>
+        <literalValue>Z090</literalValue>
+        <name>Terms of payment key</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Sub_Status_To_Approve_1</fullName>
+        <description>Set &quot;Sub Status&quot; Field value to &quot;Approved By Approver 1&quot; value.</description>
+        <field>Sub_Status__c</field>
+        <literalValue>Approved By Approver 1</literalValue>
+        <name>Update Account Sub Status To Approve 1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Account_Sub_Status_for_Approver2</fullName>
+        <description>Set &quot;Sub Status&quot; Field value to &quot;Submitted To Approver 2&quot; value.</description>
+        <field>Sub_Status__c</field>
+        <literalValue>Submitted To Approver 2</literalValue>
+        <name>Update Account Sub Status for Approver2</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>true</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Sub_Status_To_Pending_For_Admin</fullName>
+        <field>Sub_Status__c</field>
+        <literalValue>Pending For Admin</literalValue>
+        <name>Update Sub-Status To Pending For Admin</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>phone_update</fullName>
+        <field>Phone</field>
+        <formula>RIGHT( SUBSTITUTE( SUBSTITUTE( SUBSTITUTE( SUBSTITUTE( Phone ,&quot;-&quot;,&quot;&quot;) , &quot; &quot;, &quot;&quot;) , &quot;)&quot;,&quot;&quot;) ,&quot;(&quot;,&quot;&quot;),10)</formula>
+        <name>phone update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Fill Account details on creation</fullName>
+        <actions>
+            <name>Currency_Fill</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Customer_group_insert</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Distrib_Channel_Insert</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Fill_Country_Key</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Industry_key</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Pricing_procedure_assigned</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Reconciliation_Account</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Terms_of_payment_key</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND( OR( RecordType.DeveloperName == &apos;Distributor&apos;,           RecordType.DeveloperName == &apos;Doctor_D&apos; 								) )</formula>
+        <triggerType>onCreateOnly</triggerType>
+    </rules>
+    <rules>
+        <fullName>Set Account Status To Activated</fullName>
+        <actions>
+            <name>Set_Account_Status_To_Activated</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <actions>
+            <name>Set_Sub_status_to_Active</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>false</active>
+        <formula>ISCHANGED(SAP_Code__c) &amp;&amp; ( ( VALUE(SAP_Code__c) &lt;&gt; null)  ||  (  NOT(ISBLANK(VALUE(SAP_Code__c))) ) )</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+    <rules>
+        <fullName>update tasks related to approver1</fullName>
+        <active>false</active>
+        <criteriaItems>
+            <field>Account.Sub_Status__c</field>
+            <operation>equals</operation>
+            <value>Submitted To Branch Team</value>
+        </criteriaItems>
+        <triggerType>onCreateOrTriggeringUpdate</triggerType>
+    </rules>
+</Workflow>

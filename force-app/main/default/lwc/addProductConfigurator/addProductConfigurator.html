@@ -1,0 +1,155 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium">
+        <div class="slds-modal__container modal-container">
+
+            <!-- Close Button -->
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                onclick={handleClose}
+                title="Close"
+                aria-label="Close">
+                <lightning-icon icon-name="utility:close" alternative-text="Close" size="small"></lightning-icon>
+            </button>
+
+            <!-- Header -->
+            <div class="modal-header">
+                <div class="modal-header-inner">
+                    <div class="modal-icon-box">
+                        <lightning-icon icon-name="standard:product" size="small"></lightning-icon>
+                    </div>
+                    <div>
+                        <h1 id="modal-heading-01" class="modal-title">Select Product</h1>
+                        <p class="modal-subtitle">Choose a family, then filter by group</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" style={progressStyle}></div>
+            </div>
+
+            <!-- Spinner -->
+            <template if:true={loading}>
+                <div class="spinner-wrapper">
+                    <div class="slds-spinner_container">
+                        <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                            <span class="slds-assistive-text">Loading</span>
+                            <div class="slds-spinner__dot-a"></div>
+                            <div class="slds-spinner__dot-b"></div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Body -->
+            <div class="modal-body" id="modal-content-id-1">
+
+                <!-- Step 1: Product Family -->
+                <div class="field-section">
+                    <div class="step-row">
+                        <div class="step-dot step-dot-active">1</div>
+                        <span class="step-label step-label-active">Product Family</span>
+                        <div class="step-line"></div>
+                        <span class="required-badge">Required</span>
+                    </div>
+                    <p class="field-hint">Select one or more product families</p>
+
+                    <template if:true={showFamilyPicklist}>
+                        <c-custom-multi-pick-list
+                            label=""
+                            placeholder="Select Product Family"
+                            required="true"
+                            options={productFamilyOptions}
+                            onselectedlistchange={handleProductFamilyChange}
+                            showpills="true">
+                        </c-custom-multi-pick-list>
+                    </template>
+
+                    <template if:true={hasFamilySelected}>
+                        <div class="selection-count">
+                            <lightning-icon icon-name="utility:check" size="xx-small" class="check-icon"></lightning-icon>
+                            {selectedFamilyCount} Famil{familyCountSuffix} Selected
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Section Divider -->
+                <div class="section-divider"></div>
+
+                <!-- Step 2: Group Name -->
+                <div class="field-section">
+                    <div class="step-row">
+                        <div class={step2DotClass}>2</div>
+                        <span class={step2LabelClass}>Product Name</span>
+                        <div class="step-line"></div>
+                        <span class="required-badge">Required</span>
+                    </div>
+                    <p class="field-hint">Narrow results by selecting a group</p>
+
+                    <template if:true={showGroupPicklist}>
+                        <c-custom-multi-pick-list
+                            label=""
+                            placeholder="Select Product Name"
+                            title="Select Product Name"
+                            options={groupNameOptions}
+                            onselectedlistchange={handleGroupNameChange}
+                            showpills="true">
+                        </c-custom-multi-pick-list>
+                    </template>
+
+                    <template if:false={hasFamilySelected}>
+                        <div class="group-disabled-hint">
+                            Select a Product Family first to enable group selection
+                        </div>
+                    </template>
+
+                    <template if:true={hasGroupSelected}>
+                        <div class="selection-count">
+                            <lightning-icon icon-name="utility:check" size="xx-small" class="check-icon"></lightning-icon>
+                            {selectedGroupCount} Group{groupCountSuffix} Selected
+                        </div>
+                    </template>
+                </div>
+
+            </div>
+
+            <!-- Summary Bar -->
+            <div class="summary-bar">
+                <div class="summary-card">
+                    <div class="summary-label">Families</div>
+                    <div class={summaryFamClass}>{summaryFamilyText}</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-label">Groups</div>
+                    <div class={summaryGrpClass}>{summaryGroupText}</div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="modal-footer">
+                <lightning-button
+                    variant="base"
+                    label="Clear All"
+                    onclick={handleClearAll}>
+                </lightning-button>
+                <div class="footer-right">
+                    <lightning-button
+                        variant="neutral"
+                        label="Cancel"
+                        onclick={handleClose}
+                        class="slds-m-left_x-small">
+                    </lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label="Save Selection"
+                        onclick={handleSave}
+                        disabled={isSaveDisabled}
+                        class="slds-m-left_x-small">
+                    </lightning-button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</template>

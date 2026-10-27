@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Action__c</fullName>
+    <label>Action</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ledger Initiated</fullName>
+                <default>false</default>
+                <label>Ledger Initiated</label>
+            </value>
+            <value>
+                <fullName>SAP Fetch Started</fullName>
+                <default>false</default>
+                <label>SAP Fetch Started</label>
+            </value>
+            <value>
+                <fullName>SAP Fetch Success</fullName>
+                <default>false</default>
+                <label>SAP Fetch Success</label>
+            </value>
+            <value>
+                <fullName>SAP Fetch Failed</fullName>
+                <default>false</default>
+                <label>SAP Fetch Failed</label>
+            </value>
+            <value>
+                <fullName>PDF Saved</fullName>
+                <default>false</default>
+                <label>PDF Saved</label>
+            </value>
+            <value>
+                <fullName>Zoho Sign Send Started</fullName>
+                <default>false</default>
+                <label>Zoho Sign Send Started</label>
+            </value>
+            <value>
+                <fullName>Zoho Sign Send Success</fullName>
+                <default>false</default>
+                <label>Zoho Sign Send Success</label>
+            </value>
+            <value>
+                <fullName>Zoho Sign Send Failed</fullName>
+                <default>false</default>
+                <label>Zoho Sign Send Failed</label>
+            </value>
+            <value>
+                <fullName>Status Check Performed</fullName>
+                <default>false</default>
+                <label>Status Check Performed</label>
+            </value>
+            <value>
+                <fullName>Signed PDF Downloaded</fullName>
+                <default>false</default>
+                <label>Signed PDF Downloaded</label>
+            </value>
+            <value>
+                <fullName>Signature Completed</fullName>
+                <default>false</default>
+                <label>Signature Completed</label>
+            </value>
+            <value>
+                <fullName>Signature Declined</fullName>
+                <default>false</default>
+                <label>Signature Declined</label>
+            </value>
+            <value>
+                <fullName>Document Expired</fullName>
+                <default>false</default>
+                <label>Document Expired</label>
+            </value>
+            <value>
+                <fullName>Retry Attempted</fullName>
+                <default>false</default>
+                <label>Retry Attempted</label>
+            </value>
+            <value>
+                <fullName>Manually Cancelled</fullName>
+                <default>false</default>
+                <label>Manually Cancelled</label>
+            </value>
+            <value>
+                <fullName>Cleanup Executed</fullName>
+                <default>false</default>
+                <label>Cleanup Executed</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

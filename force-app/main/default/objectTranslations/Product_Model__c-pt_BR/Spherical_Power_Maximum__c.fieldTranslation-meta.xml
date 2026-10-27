@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Value in D --></help>
+    <label><!-- Spherical Power Max. --></label>
+    <name>Spherical_Power_Maximum__c</name>
+</CustomFieldTranslation>

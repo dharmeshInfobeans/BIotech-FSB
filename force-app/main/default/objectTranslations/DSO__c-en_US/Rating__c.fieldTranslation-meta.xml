@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Rating --></label>
+    <name>Rating__c</name>
+    <picklistValues>
+        <masterLabel>High DSO</masterLabel>
+        <translation><!-- High DSO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low DSO</masterLabel>
+        <translation><!-- Low DSO --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

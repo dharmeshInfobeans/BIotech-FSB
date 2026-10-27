@@ -1,0 +1,563 @@
+<template>
+
+	<template if:false={spinner}>
+
+		<template if:false={showContact}>
+			<template if:true={selectLead}>
+				<div style="width:100%; max-width: 400px; margin: auto;">
+					<!--To select the Lead Type-->
+					<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+						class="slds-modal slds-fade-in-open slds-modal_medium">
+						<div class="slds-modal__container">
+							<div class="slds-modal__header">
+								<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate"></h1>
+							</div>
+							<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+								<div class="recortype" style="text-align: center;">
+									<p style="font-weight:bold;font-size:18px; margin-bottom: 10px;">
+										{labels.Select_the_Lead_type__c}:-
+									</p>
+
+									<div style="display: inline-block; text-align: left;">
+										<input type="radio" id="New" name="fav_language" value="New" onchange={handleSelectLead}>
+										<label for="New" style="margin-left: 2px;">{labels.New__c}</label><br>
+
+										<input type="radio" id="Upgrade" value="Upgrade" name="fav_language" onchange={handleSelectLead}>
+										<label for="Upgrade" style="margin-left: 2px;">{labels.Upgrade__c}</label><br>
+									</div>
+								</div>
+
+							</div>
+							<div class="slds-modal__footer">
+								<button class="slds-button slds-button_neutral" aria-label="Cancel and close"
+									onclick={handleCancel}>{labels.Cancel__c}</button>
+								<button class="slds-button slds-button_brand"
+									onclick={handleNext}>{labels.Next__c}</button>
+							</div>
+						</div>
+					</section>
+				</div>
+				<!--End of Select the Lead Type-->
+
+				<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+			</template>
+			<template if:false={selectLead}>
+
+				<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+					class="slds-modal slds-fade-in-open slds-modal_small">
+
+					<div class="slds-modal__container">
+						<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+							<div class="slds-scrollable_y" style="height:70.5vh;Width:100%">
+								<center>
+									<template if:false={upgrade}>
+										<p style="font-weight:bold;">{labels.New_Lead__c}</p>
+									</template>
+									<template if:true={upgrade}>
+										<p style="font-weight:bold;">{labels.Upgrade_lead__c}</p>
+									</template>
+								</center>
+								<template if:true={upgrade}>
+									<div class="slds-section slds-is-open">
+										<h3 class="slds-section__title">
+											<button aria-controls="expando-unique-id" aria-expanded="true"
+												class="slds-button slds-section__title-action">
+
+												<span class="slds-truncate"
+													title="Section Title">{labels.Account_Information__c}</span>
+											</button>
+										</h3>
+
+									</div>
+									<!--Lead for upgrade-->
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<c-lookup icon-name="standard:account" s-object-api-name="account"
+											label={labels.Account__c} onlookupupdate={lookupRecord}
+											placeholder={labels.Search_Account__c} accountid={accountId}
+											is-required="true">
+										</c-lookup>
+									</div>
+									<div class="slds-size_12-of-12">
+
+										<c-customcontactlookup icon-name="standard:contact" s-object-api-name="contact"
+											label={labels.Contact__c} onlookupupdate={lookupRecord}
+											placeholder={labels.Search_contact__c} contactid={accountId}
+											required={isrequired} onback={handleContactBack}>
+										</c-customcontactlookup>
+
+									</div>
+									<!-- </div> -->
+									<br>
+									<template if:true={createContact}>
+										<!-- <div class="slds-grid slds-wrap"> -->
+
+
+										<div class="slds-size_12-of-12">
+											<!--<a onclick={handleShowContact}>New Contact</a>-->
+											<lightning-button label={labels.New_Contact__c} onclick={handleShowContact}
+												title="New Contact" class="slds-m-left_x-small" variant="brand-outline"
+												disabled={showDetails}>
+											</lightning-button>
+										</div>
+
+										<!-- </div> -->
+									</template>
+								</template>
+								<!--End Lead for Upgrade-->
+								<!--Lead section-->
+								<div class="slds-section slds-is-open slds-size_12-of-12">
+									<h3 class="slds-section__title">
+										<button aria-controls="expando-unique-id" aria-expanded="true"
+											class="slds-button slds-section__title-action">
+
+											<span class="slds-truncate"
+												title="Section Title">{labels.Lead_Information__c}</span>
+										</button>
+									</h3>
+
+								</div>
+								<!-- <div class="slds-grid slds-wrap"> -->
+								<div class="slds-size_12-of-12">
+									<lightning-input type="text" label={labels.First_Name__c} class="NewForm"
+										message-when-value-missing={labels.Please_fill_the_first_name__c} required
+										name="First_Name__c" onchange={handleInslead} value={leadMap.First_Name__c}
+										disabled={showDetails}>
+									</lightning-input>
+								</div>
+
+								<div class="slds-size_12-of-12">
+
+									<img src="https://biotechcrm--full.sandbox.my.salesforce.com/_slds/images/themes/lightning_blue/lightning_blue_profile_avatar_200.png"
+											style="width:74px;padding:23px;">&nbsp;{userMap.FirstName}
+										{userMap.LastName}
+								</div>
+
+								<!-- </div> -->
+								<!-- <div class="slds-grid slds-wrap"> -->
+								<div class="slds-size_12-of-12">
+									<lightning-input type="text" label={labels.Last_Name__c} class="NewForm"
+										message-when-value-missing={labels.Please_fill_the_last_name__c}
+										name="Last_Name__c" required onchange={handleInslead}
+										value={leadMap.Last_Name__c} disabled={showDetails}>
+									</lightning-input>
+								</div>
+								<template if:false={upgrade}>
+									<div class="slds-size_12-of-12">
+										<c-lookup icon-name="standard:account" s-object-api-name="account"
+											label="Parent Account" onlookupupdate={parentRecord}
+											placeholder={labels.Search_Account__c} accountid={accountId}
+											is-required="false">
+										</c-lookup>
+									</div>
+								</template>
+								<div class="slds-size_12-of-12">
+									<lightning-input type="text" label={labels.Hospital_Clinic_Name__c}
+										name="Company__c" onchange={handleInslead} value={leadMap.Company__c}
+										class="NewForm" disabled={showDetails} required>
+									</lightning-input>
+								</div>
+								<!-- </div> -->
+								<!-- <div class="slds-grid slds-wrap"> -->
+								<div class="slds-size_12-of-12">
+									<lightning-combobox label={labels.Lead_stage__c} value={leadMap.Lead_Stage__c}
+										placeholder="--None--" options={leadSoruceList} class="NewForm"
+										name="Lead_Stage__c" onchange={handleInslead} disabled={showDetails}
+										readonly="true">
+									</lightning-combobox>
+								</div>
+								<div class="slds-size_12-of-12">
+									<lightning-input type="Email" label={labels.Email__c} name="Email__c"
+										onchange={handleInslead} value={leadMap.Email__c} class="NewForm"
+										disabled={showDetails} required="true">
+									</lightning-input>
+
+								</div>
+								<!-- </div> -->
+								<!-- <div class="slds-grid slds-wrap"> -->
+								<div class="slds-size_12-of-12">
+									<lightning-input type="text" label={labels.Mobile__c}
+										message-when-value-missing={labels.Please_fill_the_mobile__c} name="Mobile__c"
+										required onchange={handleInslead} value={leadMap.Mobile__c} class="NewForm"
+										disabled={showDetails}>
+									</lightning-input>
+								</div>
+									<div class="slds-size_12-of-12">
+										<lightning-input type="checkbox" label="Is COH" name="Is_COH__c"
+											onchange={handleCheckbox} checked={leadMap.Is_COH__c}
+											disabled={showDetails}>
+										</lightning-input>
+									</div>
+								<template if:true={upgrade}>
+									<div class="slds-size_12-of-12">
+										<lightning-input type="text" label={labels.SAP_Code__c} name="SAP_Code__c"
+											onchange={handleInslead} value={leadMap.SAP_Code__c} class="NewForm"
+											disabled={sapCode}>
+										</lightning-input>
+									</div>
+
+								</template>
+
+								<!-- </div> -->
+								<template if:true={upgrade}>
+									<!--********************Added bY gyadeen Ahirwar**********************************************  -->
+									<div class="container">
+										<!-- Section Header -->
+										<!-- <button class="slds-button slds-section__title-action" aria-controls="expando-unique-id-577" aria-expanded="true" title="Section Title">
+								    Leads 
+								</button> -->
+										<!-- Section Content with Data Table Markup -->
+
+									</div>
+									<!--  -->
+
+								</template>
+								<!--********************Added bY gyadeen Ahirwar**********************************************  -->
+
+								<div class="slds-section slds-is-open">
+									<h3 class="slds-section__title">
+										<button aria-controls="expando-unique-id" aria-expanded="true"
+											class="slds-button slds-section__title-action">
+
+											<span class="slds-truncate"
+												title="Section Title">{labels.Address_Information__c}</span>
+										</button>
+									</h3>
+
+								</div>
+								<template if:false={addressspinner}>
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<!--	<lightning-combobox label={labels.Country__c} placeholder="--None--"
+											options={billingCountryList} onchange={handleInslead} class="NewForm"
+											message-when-value-missing={labels.Please_fill_the_country__c}
+											name="Country__c" required value={leadMap.Country__c} data-id="country" disabled={showDetails}>
+										</lightning-combobox>-->
+										<c-searchable-combobox required="true" label={labels.Country__c}
+											options={billingCountryList} value={leadMap.Country__c}
+											onchange={handleInslead} disabled={showDetails} data-id="country"
+											class="NewForm" messagewheninvalid={labels.Please_fill_the_country__c}
+											name="Country__c"></c-searchable-combobox>
+									</div>
+
+									<div class="slds-size_12-of-12">
+										<!--	<lightning-combobox label={labels.State_Province__c}
+										placeholder={leadMap.Billing_state__c} options={stateList}
+										onchange={handleInslead}
+										message-when-value-missing={labels.Please_fill_the_state__c}
+										name="Billing_state__c" required alue={leadMap.Billing_state__c} data-id="State"
+										class="NewForm" disabled={showDetails}></lightning-combobox>-->
+										<c-searchable-combobox required="true" label={labels.State_Province__c}
+											options={stateList} value={leadMap.Billing_state__c}
+											onchange={handleInslead} disabled={showDetails} data-id="State"
+											class="NewForm" messagewheninvalid={labels.Please_fill_the_country__c}
+											name="Billing_state__c" placeholder={leadMap.Billing_state__c}>
+										</c-searchable-combobox>
+
+
+										<!--	<lightning-input type="text" label="City" name="Billing_City__c"
+									onchange={handleInslead} value={leadMap.Billing_City__c}
+									message-when-value-missing="Please fill the City" required>
+								</lightning-input>-->
+
+									</div>
+
+
+									<!-- </div> -->
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<!--<lightning-combobox label={labels.City__c} placeholder={leadMap.Billing_City__c}
+										options={cityList} onchange={handleInslead}
+										message-when-value-missing={labels.Please_fill_the_city__c}
+										name="Billing_City__c" required value={leadMap.Billing_City__c} class="NewForm"
+										disabled={showDetails}>
+									</lightning-combobox>-->
+										<c-searchable-combobox required="true" label={labels.City__c} options={cityList}
+											value={leadMap.Billing_City__c} onchange={handleInslead}
+											disabled={showDetails} data-id="city" class="NewForm"
+											messagewheninvalid={labels.Please_fill_the_city__c} name="Billing_City__c"
+											placeholder={leadMap.Billing_City__c}>
+										</c-searchable-combobox>
+
+									</div>
+									<div class="slds-size_12-of-12">
+										<lightning-input type="text" label={labels.Street__c} class="NewForm"
+											name="Billing_Street__c" onchange={handleInslead}
+											value={leadMap.Billing_Street__c} disabled={showDetails} required="true"
+											maxlength="255">
+										</lightning-input>
+										<!--	<lightning-input type="text" label="State / Province" name="Billing_state__c"
+									onchange={handleInslead} value={leadMap.Billing_state__c}
+									message-when-value-missing="Please fill the City" required>
+								</lightning-input>-->
+
+									</div>
+									<!-- </div> -->
+									<!-- <div class="slds-grid slds-wrap"> -->
+
+									<div class="slds-size_12-of-12">
+										<lightning-input type="text" required="true" label={labels.Zip_PostalCode__c}
+											name="Billing_code__c" onchange={handleInslead}
+											value={leadMap.Billing_code__c} class="NewForm" disabled={showDetails}>
+										</lightning-input>
+									</div>
+									<!-- </div> -->
+								</template>
+								<template if:true={addressspinner}>
+									<c-spinner></c-spinner>
+								</template>
+								<div class="slds-section slds-is-open">
+									<h3 class="slds-section__title">
+										<button aria-controls="expando-unique-id" aria-expanded="true"
+											class="slds-button slds-section__title-action">
+
+											<span class="slds-truncate"
+												title="Section Title">{labels.Product_Information__c}</span>
+										</button>
+									</h3>
+								</div>
+								<!-- <div class="slds-grid slds-wrap"> -->
+								<div class="slds-size_12-of-12">
+									<lightning-combobox label={labels.Product__c} placeholder="--None--"
+										options={productList} message-when-value-missing="Please fill the Product"
+										name="Product__c" required onchange={handleInslead} value={leadMap.Product__c}
+										class="NewForm" disabled={showDetails}>
+									</lightning-combobox>
+								</div>
+								<!-- </div> -->
+
+								<template if:true={showRelatedLead}>
+									<div class="slds-section slds-is-open">
+										<h3 class="slds-section__title">
+											<button aria-controls="expando-unique-id" aria-expanded="true"
+											class="slds-button slds-section__title-action">
+
+											<span class="slds-truncate"
+												title="Section Title">Lead Information</span>
+										</button>
+										</h3>
+									</div>
+									<div class="section-content">
+										<table class="slds-table slds-table_cell-buffer slds-table_bordered">
+											<thead>
+												<tr class="slds-line-height_reset">
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Column 1">Lead Name</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Column 2">Lead Stage</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Column 2">Product Name</div>
+													</th>
+													<th class="" scope="col">
+														<div class="slds-truncate" title="Column 1">Create Planning
+														</div>
+													</th>
+													<!-- Add more columns as needed -->
+												</tr>
+											</thead>
+											<tbody>
+												<!-- Data Rows -->
+												<template for:each={leadRelatedData} for:item="item">
+													<tr class="slds-hint-parent" key={item.Id}>
+														<td data-label="Column 1">
+															<div class="slds-truncate" title="Lead name">{item.Name}
+															</div>
+														</td>
+														<td data-label="Column 2">
+															<div class="slds-truncate" title="Lead Stage">{item.Stage}
+															</div>
+														</td>
+														<!-- Add more cells as needed -->
+														<td data-label="Column 1">
+															<div class="slds-truncate" title="Lead Product">
+																{item.Product}</div>
+														</td>
+														<td data-label="Column 2">
+															<div class="slds-truncate" title="">
+																<lightning-input type="checkbox" data-id={item.Id}
+																	onchange={handleChangeLead}> </lightning-input>
+															</div>
+														</td>
+													</tr>
+												</template>
+												<!-- Add more rows as needed -->
+											</tbody>
+										</table>
+									</div>
+								</template>
+
+								<template if:true={showMeetingDetails}>
+									<div class="slds-section slds-is-open">
+										<h3 class="slds-section__title">
+											<button aria-controls="expando-unique-id" aria-expanded="true"
+												class="slds-button slds-section__title-action">
+
+												<span class="slds-truncate"
+													title="Section Title">{labels.Events_Date__c}</span>
+											</button>
+										</h3>
+
+									</div>
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<lightning-input type="date" label={labels.Appointment_Week__c}
+											name="Planned_Appointments_Week__c" onchange={handleInslead}
+											value={dateShowMap.appointmentWeek} class="NewForm"
+											disabled={appointmentDemo}>
+										</lightning-input>
+									</div>
+									<div class="slds-size_12-of-12">
+										<lightning-input type="date" label={labels.Product_demo_week__c}
+											name="Planned_Product_Demo_Week__c" onchange={handleInslead} class="NewForm"
+											value={dateShowMap.productWeek} disabled={productDemo}>
+										</lightning-input>
+									</div>
+
+									<!-- </div> -->
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<lightning-input type="date" label={labels.Presentation_week__c}
+											name="Planned_Presentation_Week__c" onchange={handleInslead}
+											value={dateShowMap.presentationWeek} disabled={presentationDemo}
+											class="NewForm">
+										</lightning-input>
+									</div>
+									<div class="slds-size_12-of-12">
+										<lightning-input type="date" label={labels.Evaluation_Week__c}
+											name="Planned_Evaluations_Week__c" onchange={handleInslead}
+											value={dateShowMap.EvaluationWeek} disabled={evalutaionWeek}
+											class="NewForm">
+										</lightning-input>
+									</div>
+									<!-- </div> -->
+
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<template if:false={upgrade}>
+											<lightning-input type="date" label={labels.Commercialization_week__c}
+												name="Planned_Commercialization_week__c" onchange={handleInslead}
+												value={dateShowMap.commerializationWeek} disabled={commerializationWeek}
+												class="NewForm">
+											</lightning-input>
+										</template>
+									</div>
+									<div class="slds-size_12-of-12">
+										<template if:true={upgrade}>
+											<lightning-input type="date" label={labels.Upgrade_week__c}
+												name="Planned_Upgrade_week__c" onchange={handleInslead}
+												value={dateShowMap.upgradeWeek} disabled={upgradeWeek} class="NewForm">
+											</lightning-input>
+										</template>
+									</div>
+									<br>
+									<!--Create Lead from Event-->
+									<div class="slds-section slds-is-open">
+										<h3 class="slds-section__title">
+											<button aria-controls="expando-unique-id" aria-expanded="true"
+												class="slds-button slds-section__title-action">
+
+												<span class="slds-truncate"
+													title="Section Title">{labels.Meeting_Information__c}</span>
+											</button>
+										</h3>
+
+									</div>
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<lightning-combobox label={labels.Call_type__c} value={value}
+											placeholder="--None--" options={callTypeList} onchange={handleInsEvent}
+											class="NewForm" name="CallType" disabled={eventFields}
+											required={eventFieldsRequired}>
+										</lightning-combobox>
+									</div>
+									<div class="slds-size_12-of-12">
+										<lightning-combobox label={labels.Subject__c} value={value}
+											placeholder="--None--" options={subjectList} onchange={handleInsEvent}
+											class="NewForm" name="Subject" disabled={eventFields}
+											required={eventFieldsRequired}>
+										</lightning-combobox>
+									</div>
+									<!-- </div> -->
+
+									<!-- <div class="slds-grid slds-wrap"> -->
+									<div class="slds-size_12-of-12">
+										<lightning-combobox label={labels.Meeting_type__c} value={value}
+											placeholder="--None--" options={meetingTypeList} onchange={handleInsEvent}
+											class="NewForm" name="MeetingType" disabled={eventFields}
+											required={eventFieldsRequired}>
+										</lightning-combobox>
+									</div>
+									<div class="slds-size_12-of-12">
+										<lightning-combobox label={labels.Event_Address__c} value={value}
+											placeholder="--None--" options={accountAddress} onchange={handleInsEvent}
+											disabled={eventAddress} class="NewForm" name="EventAddress">
+										</lightning-combobox>
+									</div>
+									<!-- </div> -->
+								</template>
+								<!--End of create lead from event-->
+								<br>
+							</div>
+
+							<div class="slds-modal__footer">
+								<template if:true={showFooter}>
+									<div class="slds-grid slds-grid_align-center">
+										<div class="slds-col ">
+											<button type="button" class="slds-button slds-button_neutral"
+												onclick={handleBack}>{labels.Back__c}</button>
+										</div>&nbsp;&nbsp;
+										<div class="slds-col ">
+											<button type="button" class="slds-button slds-button_neutral"
+												onclick={handleCancel}>{labels.Cancel__c}</button>
+										</div>&nbsp;&nbsp;
+										<div class="slds-col ">
+											<button type="button" class="slds-button slds-button_brand"
+												onclick={handleLeadSave}
+												disabled={leadSaveUpdate}>{labels.Save__c}</button>
+										</div>
+
+									</div>
+								</template>
+								<template if:false={showFooter}>
+									<div class="slds-grid slds-grid_align-center">
+										<div class="slds-col ">
+											<button type="button" class="slds-button slds-button_neutral"
+												onclick={handleCancel}>{labels.Cancel__c}</button>
+										</div>&nbsp;&nbsp;&nbsp;
+										<template if:true={showLead}>
+											<div class="slds-col">
+												<button type="button" class="slds-button slds-button_success"
+													onclick={handleLeadSave}
+													disabled={leadSaveUpdate}>{labels.Update__c}</button>
+											</div>
+										</template>
+										<template if:false={showLead}>
+											<div class="slds-col">
+												<button type="button" class="slds-button slds-button_brand"
+													onclick={handleLeadSave}
+													disabled={leadSaveUpdate}>{labels.Save__c}</button>
+											</div>
+										</template>
+									</div>
+								</template>
+							</div>
+						</div>
+
+					</div>
+				</section>
+			</template>
+			<!--test-->
+		</template>
+
+		<template if:true={showContact}>
+			<c-custom-Contact-Form accid={accountId} ongetcontid={handleGetContactId} labels={labels}>
+			</c-custom-Contact-Form>
+		</template>
+	</template>
+	<template if:true={spinner}>
+		<c-spinner></c-spinner>
+	</template>
+
+</template>

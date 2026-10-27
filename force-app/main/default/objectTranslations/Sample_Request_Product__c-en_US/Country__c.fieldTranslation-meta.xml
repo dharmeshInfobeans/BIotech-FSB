@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Country --></label>
+    <name>Country__c</name>
+    <picklistValues>
+        <masterLabel>BRAZIL</masterLabel>
+        <translation><!-- BRAZIL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GERMANY</masterLabel>
+        <translation><!-- GERMANY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>INDIA</masterLabel>
+        <translation><!-- INDIA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TURKEY</masterLabel>
+        <translation><!-- TURKEY --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

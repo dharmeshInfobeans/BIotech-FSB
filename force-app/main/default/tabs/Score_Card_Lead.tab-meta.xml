@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <flexiPage>Score_Card_Lead_Page</flexiPage>
+    <label>Score Card Lead</label>
+    <motif>Custom7: Square</motif>
+</CustomTab>

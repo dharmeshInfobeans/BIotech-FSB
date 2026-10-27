@@ -1,0 +1,564 @@
+<template>
+    <div class="modal-backdrop" onclick={handleBackdropClick}>
+      <div class="modal-container" onclick={stopPropagation}>
+    <div class="opm-modal">
+
+        <!-- ══ PRODUCT RECORD TYPE — Simplified Modal ══════════════════════════ -->
+        <template if:true={isProductRecordType}>
+            <!-- Header -->
+            <header class="opm-header">
+                <div class="header-content">
+                    <div class="header-icon">🏆</div>
+                    <div class="header-text">
+                        <h2 class="modal-title">{labels.Manage_Opportunity_Records__c}</h2>
+                    </div>
+                    <div class="header-right">
+                    <span class="header-badge">{labels.Product_Opportunity__c}</span>
+                    <button class="modal-close-btn" type="button" onclick={handleClose} title="Close" aria-label="Close">
+                        <lightning-icon icon-name="utility:close" size="x-small" variant="inverse"></lightning-icon>
+                    </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- View-only banner -->
+            <template if:true={isViewOnly}>
+                <div class="view-only-banner">
+                    <lightning-icon icon-name="utility:lock" size="small"></lightning-icon>
+                    <span>This opportunity is locked for editing.</span>
+                </div>
+            </template>
+
+            <!-- Stats Bar -->
+            <div class="prod-stats-bar">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <lightning-icon icon-name="utility:package" size="x-small"></lightning-icon>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">{labels.Total_Productss__c}</div>
+                        <div class="stat-val">{simpleTotalProducts}</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <lightning-icon icon-name="utility:package" size="x-small"></lightning-icon>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">{labels.Product_Family__c}</div>
+                        <div class="stat-val stat-val-blue">{simpleFirstFamily}</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <lightning-icon icon-name="utility:description" size="x-small"></lightning-icon>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-label">{labels.Product_Description__c}</div>
+                        <div class="stat-val stat-val-blue">{simpleFirstDesc}</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading overlay -->
+            <template if:true={isWorking}>
+                <div class="loading-overlay">
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Simple Products Section -->
+            <div class="simple-section">
+                <div class="simple-toolbar">
+                    <div class="simple-toolbar-left">
+                        <span class="simple-section-title">{labels.Products_Quantities__c}</span>
+                    </div>
+                    <!-- disabled when view-only -->
+                    <button class="btn-add-row" type="button" onclick={handleAddSimpleRow} disabled={isViewOnly}>
+                        {labels.Add_Row__c}   
+                    </button>
+                </div>
+
+                <!-- Table Header -->
+                <div class="simple-table-head">
+                    <div class="sh-num">#</div>
+                    <!-- <div class="sh-cell">PRODUCT FAMILY</div> -->
+                    <div class="sh-cell">{labels.PRODUCT_NAME__c}</div>
+                    <div class="sh-cell">{labels.ASP__c} ({userCurrencyCode})</div>
+                    <div class="sh-qty">{labels.QTY__c}</div>
+                    <div class="sh-del"></div>
+                </div>
+
+                <!-- Rows -->
+                <template if:true={hasSimpleRows}>
+                    <template for:each={simpleProductRows} for:item="row">
+                        <div key={row.rowKey} class="simple-table-row">
+                            <div class="sr-num">{row.rowNum}</div>
+                            <!-- <div class="sr-cell">
+                                <div class="sel-wrap" key={row.familySelectKey}>
+                                    <select class="cell-select" data-id={row.id} data-type="family" onchange={handleSimpleFamilyChange} disabled={isViewOnly}>
+                                        <option value="">Select Family</option>
+                                        <template for:each={row.familyOptions} for:item="opt">
+                                            <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                        </template>
+                                    </select>
+                                </div>
+                               
+                            </div> -->
+                            <!-- <div class="sr-cell">
+                                <template if:true={row.productFamily}>
+                                    <div key={row.productSelectKey}>
+                                        <select class="cell-select" data-id={row.id} onchange={handleSimpleProductChange} disabled={isViewOnly}>
+                                            <option value="">Select Product</option>
+                                            <template for:each={row.productOptions} for:item="opt">
+                                                <option key={opt.value} value={opt.value} data-asp={opt.asp} data-msp={opt.msp} selected={opt.selected}>{opt.label}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </template>
+                                <template if:false={row.productFamily}>
+                                    <input class="cell-input cell-disabled" value="Pick family first" disabled />
+                                </template>
+                            </div> -->
+                            <div class="sr-cell">
+                                <template if:true={row.isMismatched}>
+                                    <input class="cell-input cell-readonly" type="text" value={row.productLabel} readonly />
+                                </template>
+                                <template if:false={row.isMismatched}>
+                                    <template if:true={row.productFamily}>
+                                        <div key={row.productSelectKey}>
+                                            <select class="cell-select" data-id={row.id} onchange={handleSimpleProductChange} disabled={isViewOnly}>
+                                                <option value="">Select Product</option>
+                                                <template for:each={row.productOptions} for:item="opt">
+                                                    <option key={opt.value} value={opt.value} data-asp={opt.asp} data-msp={opt.msp} selected={opt.selected}>{opt.label}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </template>
+                                    <template if:false={row.productFamily}>
+                                        <input class="cell-input cell-disabled" value="Pick family first" disabled />
+                                    </template>
+                                </template>
+                            </div>
+                            <div class="sr-cell">
+                                <input class="cell-input cell-readonly" type="text" value={row.aspFormatted} data-id={row.id} readonly />
+                            </div>
+                            <div class="sr-qty">
+                                <input class="cell-input cell-qty cell-number" type="number" value={row.qty} min="0" data-id={row.id} onchange={handleSimpleQtyChange} oninput={handleSimpleQtyChange} disabled={isViewOnly} />
+                            </div>
+                            <div class="sr-del">
+                                <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteSimpleRow} title="Remove row" disabled={isViewOnly}>
+                                    <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small"></lightning-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+
+                <template if:false={hasSimpleRows}>
+                    <div class="empty-state">
+                        <p>No products yet. Click <strong>+ Add Row</strong> to begin.</p>
+                    </div>
+                </template>
+
+                <div class="simple-footer-row">
+                    <span class="simple-row-count">{simpleRowCountText}</span>
+                    <span class="simple-ready-badge">
+                        <lightning-icon icon-name="utility:check" size="xx-small" class="ready-check-icon"></lightning-icon>
+                        {simpleReadyText}
+                    </span>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="opm-footer">
+                <span class="footer-hint">{labels.Review_your_entries_before_savin__c}</span>
+                <div class="footer-actions">
+                    <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                    <!-- disabled when view-only -->
+                    <button class="btn-save" type="button" onclick={handleSimpleSave} disabled={isSimpleSaveDisabled}>{labels.Save__c}</button>
+                </div>
+            </footer>
+
+        </template>
+
+        <!-- ══ NON-PRODUCT RECORD TYPE — Full Modal ═════════════════════════════ -->
+        <template if:false={isProductRecordType}>
+
+            <!-- Header -->
+            <header class="opm-header">
+            <div class="header-content">
+                <div class="header-icon">🏆</div>
+                <div class="header-text">
+                    <h2 class="modal-title">{labels.Manage_Opportunity_Records__c}</h2>
+                    <p class="modal-subtitle">{opportunityName}</p>
+                </div>
+                <button class="modal-close-btn" type="button" onclick={handleClose} title="Close" aria-label="Close">
+                    <lightning-icon icon-name="utility:close" size="x-small" variant="inverse"></lightning-icon>
+                </button>
+            </div>
+            </header>
+
+            <!-- NEW: View-only banner -->
+            <template if:true={isViewOnly}>
+                <div class="view-only-banner">
+                    <lightning-icon icon-name="utility:lock" size="x-small"></lightning-icon>
+                    &nbsp;This opportunity is locked for editing.
+                </div>
+            </template>
+
+            <!-- Body -->
+            <main class="opm-body">
+
+                <!-- Loading overlay -->
+                <template if:true={isWorking}>
+                    <div class="loading-overlay">
+                        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                    </div>
+                </template>
+
+                <!-- ── PRODUCTS SECTION ──────────────────────────────────── -->
+                <template if:false={isSoloEquipmentSale}>
+                <div class="section-card">
+                    <div class="table-toolbar">
+                        <div class="toolbar-left">
+                            <span class="section-label">{labels.Products_Quantities__c}</span>
+                            <span class="record-count">{totalValidProductRows} product(s)</span>
+                        </div>
+                        <!-- disabled when view-only -->
+                        <button class="btn-add-row" type="button" onclick={handleAddProductRow} disabled={isViewOnly}>
+                            {labels.Add_Row__c}  
+                        </button>
+                    </div>
+
+                    <div class="col-headers prod-grid">
+                        <div>#</div>
+                        <div>{labels.PRODUCT_FAMILYs__c}</div> 
+                        <div>{labels.PRODUCT_NAME__c}</div> 
+                        <div>{labels.MSP__c}</div> 
+                        <div>{labels.MONTHLY_QTY__c}</div> 
+                        <!-- <div>TOTAL QTY ({dealPeriodDisplay})</div> -->
+                        <div>{labels.TOTAL_QTY__c}</div> 
+                        <div>{labels.MONTHLY_VALUE__c}</div> 
+                        <div>{labels.TOTAL_VALUE__c}</div> 
+                    </div>
+
+                    <template if:true={hasProductRows}>
+                        <template for:each={productRows} for:item="row">
+                            <div key={row.rowKey} class="table-row prod-grid">
+                                <div class="cell-row-num">{row.rowNum}</div>
+                                <div>
+                                    <div key={row.familySelectKey}>
+                                        <select class="cell-input" data-id={row.id} data-type="family" onchange={handleFamilySelect} disabled={isViewOnly}>
+                                            <option value="">Select Family</option>
+                                            <template for:each={row.familyOptions} for:item="opt">
+                                                <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div>
+                                    <template if:true={row.productFamily}>
+                                        <div key={row.productSelectKey}>
+                                            <select class="slds-select" data-id={row.id} onchange={handleProductSelect} disabled={isViewOnly}>
+                                                <option value="">Select Product</option>
+                                                <template for:each={row.productOptions} for:item="opt">
+                                                    <option key={opt.value} value={opt.value} data-msp={opt.msp} selected={opt.selected}>{opt.label}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </template>
+                                    <template if:false={row.productFamily}>
+                                        <input class="cell-input cell-disabled" value="Pick Family First" disabled />
+                                    </template>
+                                </div>
+                                <div><input class="cell-input cell-readonly" value={row.mspFormatted} readonly /></div>
+                                <div>
+                                    <input type="number" class="cell-input cell-number" value={row.monthlyQty} min="0" data-id={row.id} onchange={handleProductQtyChange} oninput={handleProductQtyChange} disabled={isViewOnly} />
+                                </div>
+                                <div><input class="cell-input cell-readonly" value={row.totalDealQtyDisplay} readonly /></div>
+                                <div><input class="cell-input cell-readonly cell-green" value={row.monthlyDealValueFormatted} readonly /></div>
+                                <div><input class="cell-input cell-readonly cell-blue" value={row.totalDealValueFormatted} readonly /></div>
+                                <div class="cell-center">
+                                    <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteProductRow} title="Remove row" disabled={isViewOnly}>
+                                        <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small" class="delete-icon"></lightning-icon>
+                                    </button>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+
+                    <template if:false={hasProductRows}>
+                        <div class="empty-state">
+                            <p>No products yet. Click <strong>+ Add Row</strong> to begin.</p>
+                        </div>
+                    </template>
+
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="sc-icon">📦</div>
+                            <div class="sc-label">{labels.Total_Productss__c}</div> 
+                            <div class="sc-value">{totalValidProductRows}</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="sc-icon">📅</div>
+                            <div class="sc-label">{labels.Deal_Period__c}</div> 
+                            <!-- disabled when view-only -->
+                            <select class="cell-selectdealperiod" onchange={handleDealPeriodChange} disabled={isViewOnly}>
+                                <option value="">-- Select --</option>
+                                <template for:each={dealPeriodOptions} for:item="opt">
+                                    <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                </template>
+                            </select>
+                        </div>
+                        <div class="summary-card sc-highlight">
+                            <div class="sc-icon">💰</div>
+                            <div class="sc-label">{labels.Grand_Total_Deal_Value__c}</div>
+                            <div class="sc-value">{productGrandTotalFormatted}</div>
+                        </div>
+                        <div class="summary-card sc-purple">
+                            <div class="sc-icon">📊</div>
+                            <div class="sc-label">{labels.Overall_Deal_Factor__c}</div>
+                            <div class="sc-value">{overallDealFactorFormatted}</div>
+                        </div>
+                    </div>
+
+                    <template if:true={showProductError}>
+                        <div class="alert-error" role="alert">{productErrorMessage}</div>
+                    </template>
+                </div>
+                </template>
+
+                <!-- ══════════════════════════════════════════════════════════
+                     EQUIPMENT SECTION
+                ══════════════════════════════════════════════════════════ -->
+                
+                <div class="section-card">
+                   <template if:false={isSoloEquipmentSale}>
+                    <div class="table-toolbar equip-card-toolbar">
+                        <div class="toolbar-left">
+                            <span class="section-label">{labels.Equipment_Product_Groups__c}</span>  
+                            <span class="record-count">{equipmentRows.length} group(s)</span>
+                        </div>
+                    </div>
+                    </template>
+                    <!-- ── SUB-SECTION A: Standard rows ────────────────────── -->
+                    <div class="equip-sub-section">
+
+                        <div class="equip-sub-toolbar">
+                            <div class="equip-sub-title-wrap">
+                                <span class="equip-sub-dot equip-dot-normal"></span>
+                                <span class="equip-sub-title">{labels.Standard_Equipment__c}</span>  
+                                <span class="record-count">{normalEquipmentCount} row(s)</span>
+                            </div>
+                            <!-- disabled when view-only -->
+                            <button class="btn-add-row" type="button" onclick={handleAddNormalEquipmentRow} disabled={isViewOnly}>
+                                {labels.Add_Row__c}  
+                            </button>
+                        </div>
+
+                        <!-- Standard column headers — NO Other columns here -->
+                        <div class="col-headers equip-grid-normal">
+                            <div>#</div>
+                            <div>{labels.EQUIPMENT_NAME__c}<span class="req-star">*</span></div>  
+                            <div>{labels.EQUIPMENT_COMPANY__c}</div>  
+                            <div>{labels.QUANTITY__c}</div>  
+                            <div>{labels.VALUE_incl_GST__c}</div>  
+                            <div>{labels.TOTAL_VALUE__c}</div>  
+                            <div></div>
+                        </div>
+
+                        <template if:true={hasNormalEquipmentRows}>
+                            <template for:each={normalEquipmentRows} for:item="row">
+                                <div key={row.rowKey} class="table-row equip-grid-normal">
+                                    <div class="cell-row-num">{row.rowNum}</div>
+                                    <div>
+                                        <div key={row.equipSelectKey}>
+                                            <!-- Standard dropdown: no "Others" option -->
+                                            <select class="cell-select" data-id={row.id} data-type="equipment" onchange={handleEquipmentProductSelect} disabled={isViewOnly}>
+                                                <option value="">Select Equipment</option>
+                                                <template for:each={row.equipmentProductOptionsWithSelection} for:item="opt">
+                                                    <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <template if:true={row.equipmentProductId}>
+                                            <div key={row.companySelectKey}>
+                                                <select class="cell-select" data-id={row.id} data-type="company" onchange={handleEquipmentCompanySelect} disabled={isViewOnly}>
+                                                    <option value="">Select Company</option>
+                                                    <template for:each={row.companyOptions} for:item="co">
+                                                        <option key={co.value} value={co.value} selected={co.selected}>{co.label}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                        </template>
+                                        <template if:false={row.equipmentProductId}>
+                                            <input class="cell-input cell-disabled" value="Pick Equipment First" disabled />
+                                        </template>
+                                    </div>
+                                    <div class="cell-center">
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-id={row.id} onclick={decrementEquipQty} disabled={isViewOnly}>&#8722;</button>
+                                            <span class="qty-value">{row.quantity}</span>
+                                            <button class="qty-btn" type="button" data-id={row.id} onclick={incrementEquipQty} disabled={isViewOnly}>+</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="number" data-id={row.id} class="cell-input" value={row.equipmentValueInclGST} onchange={handleEquipmentValueInclGSTChange} disabled={isViewOnly} />
+                                    </div>
+                                    <div>
+                                        <input type="number" data-id={row.id} class="cell-input" value={row.equipmentTotalValue} onchange={handleEquipmentTotalValueChange} disabled={isViewOnly} />
+                                    </div>
+                                    <div class="cell-center">
+                                        <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteEquipmentRow} title="Remove row" disabled={isViewOnly}>
+                                            <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small" class="delete-icon"></lightning-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+
+                        <template if:false={hasNormalEquipmentRows}>
+                            <div class="empty-state equip-empty">
+                                <p>No standard equipment yet. Click <strong>+ Add Row</strong> to begin.</p>
+                            </div>
+                        </template>
+
+                    </div>
+                    <!-- /SUB-SECTION A -->
+
+                    <div class="equip-sub-divider"></div>
+
+                    <!-- ── SUB-SECTION B: Other rows ───────────────────────── -->
+                    <div class="equip-sub-section equip-sub-section-other">
+
+                        <div class="equip-sub-toolbar equip-sub-toolbar-other">
+                            <div class="equip-sub-title-wrap">
+                                <span class="equip-sub-dot equip-dot-other"></span>
+                                <span class="equip-sub-title">{labels.Other_Equipment__c}</span>  
+                                <span class="record-count">{otherEquipmentCount} row(s)</span>
+                            </div>
+                            <!-- disabled when view-only -->
+                            <button class="btn-add-row btn-add-other" type="button" onclick={handleAddOtherEquipmentRow} disabled={isViewOnly}>
+                                {labels.Add_Row__c}  
+                            </button>
+                        </div>
+
+                        <!-- Other column headers — no Equipment Company dropdown, has Other text fields -->
+                        <div class="col-headers equip-grid-other equip-other-head">
+                            <div>#</div>
+                            <div>{labels.EQUIPMENT_NAME__c} <span class="req-star">*</span></div> 
+                            <div>{labels.EQUIPMENT_NAME_OTHER__c} <span class="req-star">*</span></div> 
+                            <div>{labels.EQUIPMENT_COMPANY_OTHER__c} <span class="req-star">*</span></div> 
+                            <div>{labels.QUANTITY__c}</div> 
+                            <div>{labels.VALUE_incl_GST__c}</div> 
+                            <div>{labels.TOTAL_VALUE__c}</div> 
+                            <div></div>
+                        </div>
+
+                        <template if:true={hasOtherEquipmentRows}>
+                            <template for:each={otherEquipmentRows} for:item="row">
+                                <div key={row.rowKey} class="table-row equip-grid-other">
+                                    <div class="cell-row-num">{row.rowNum}</div>
+                                    <div>
+                                        <div key={row.equipSelectKey}>
+                                            <!-- Other dropdown: only "Others" option -->
+                                            <select class="cell-select" data-id={row.id} data-type="equipment" onchange={handleEquipmentProductSelect} disabled={isViewOnly}>
+                                                <option value="">Select Equipment</option>
+                                                <template for:each={row.equipmentProductOptionsWithSelection} for:item="opt">
+                                                    <option key={opt.value} value={opt.value} selected={opt.selected}>{opt.label}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input class="cell-input cell-other" type="text" placeholder="Enter Equipment Name"
+                                            value={row.equipmentNameOther} data-id={row.id}
+                                            onchange={handleEquipmentNameOtherChange}
+                                            oninput={handleEquipmentNameOtherChange}
+                                            disabled={isViewOnly} />
+                                    </div>
+                                    <div>
+                                        <input class="cell-input cell-other" type="text" placeholder="Enter Company Name"
+                                            value={row.equipmentCompanyOther} data-id={row.id}
+                                            onchange={handleEquipmentCompanyOtherChange}
+                                            oninput={handleEquipmentCompanyOtherChange}
+                                            disabled={isViewOnly} />
+                                    </div>
+                                    <div class="cell-center">
+                                        <div class="qty-control">
+                                            <button class="qty-btn" type="button" data-id={row.id} onclick={decrementEquipQty} disabled={isViewOnly}>&#8722;</button>
+                                            <span class="qty-value">{row.quantity}</span>
+                                            <button class="qty-btn" type="button" data-id={row.id} onclick={incrementEquipQty} disabled={isViewOnly}>+</button>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <input type="number" data-id={row.id} class="cell-input" value={row.equipmentValueInclGST} onchange={handleEquipmentValueInclGSTChange} disabled={isViewOnly} />
+                                    </div>
+                                    <div>
+                                        <input type="number" data-id={row.id} class="cell-input" value={row.equipmentTotalValue} onchange={handleEquipmentTotalValueChange} disabled={isViewOnly} />
+                                    </div>
+                                    <div class="cell-center">
+                                        <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteEquipmentRow} title="Remove row" disabled={isViewOnly}>
+                                            <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small" class="delete-icon"></lightning-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                            </template>
+                        </template>
+
+                        <template if:false={hasOtherEquipmentRows}>
+                            <div class="empty-state equip-empty">
+                                <p>No other equipment yet. Click <strong>+ Add Row</strong> to begin.</p>
+                            </div>
+                        </template>
+
+                    </div>
+                    <!-- /SUB-SECTION B -->
+
+                    <!-- Equipment summary -->
+                    <div class="summary-cards">
+                        <div class="summary-card">
+                            <div class="sc-icon">⚙️</div>
+                            <div class="sc-label">{labels.Standard_Groups__c}</div> 
+                            <div class="sc-value">{normalEquipmentCount}</div>
+                        </div>
+                        <div class="summary-card">
+                            <div class="sc-icon">🔧</div>
+                            <div class="sc-label">{labels.Other_Groups__c}</div>
+                            <div class="sc-value">{otherEquipmentCount}</div>
+                        </div>
+                        <div class="summary-card sc-highlight">
+                            <div class="sc-icon">💰</div>
+                            <div class="sc-label">{labels.Total_Equipment_Value__c}</div>
+                            <div class="sc-value">{equipmentTotalFormatted}</div>
+                        </div>
+                    </div>
+
+                    <template if:true={showEquipmentError}>
+                        <div class="alert-error" role="alert">{equipmentErrorMessage}</div>
+                    </template>
+
+                </div>
+                <!-- /EQUIPMENT SECTION -->
+
+            </main>
+
+            <!-- Footer -->
+            <footer class="opm-footer">
+                <span class="footer-hint">{labels.Review_your_entries_before_savin__c}</span>
+                <div class="footer-actions">
+                    <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button> 
+                    <!-- disabled when view-only -->
+                    <button class="btn-save" type="button" onclick={handleSaveAll} disabled={isSaveDisabled}>{labels.Save__c}</button>
+                </div>
+            </footer>
+
+        </template>
+
+    </div>
+     </div>
+      </div>
+</template>

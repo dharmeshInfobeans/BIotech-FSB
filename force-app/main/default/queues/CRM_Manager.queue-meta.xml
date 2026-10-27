@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Queue xmlns="http://soap.sforce.com/2006/04/metadata">
+    <doesIncludeBosses>true</doesIncludeBosses>
+    <doesSendEmailToMembers>false</doesSendEmailToMembers>
+    <name>CRM Manager</name>
+    <queueMembers>
+        <users>
+            <user>ajay.tiwari@biotechhealthcare.com</user>
+            <user>nehal@biotechhealthcare.com</user>
+            <user>dharvi.vaishnav@biotechhealthcare.com</user>
+            <user>jina@biotechhealthcare.com</user>
+            <user>pmt@biotechhealthcare.com</user>
+            <user>kunal.dodeja@biotechhealthcare.com</user>
+            <user>manu.pandey@biotechhealthcare.com</user>
+            <user>nitu.singh@biotechhealthcare.com</user>
+            <user>ranjeeta.vashistha@biotechhealthcare.com</user>
+            <user>simmi.mondal@biotechhealthcare.com</user>
+        </users>
+    </queueMembers>
+    <queueSobject>
+        <sobjectType>Order__c</sobjectType>
+    </queueSobject>
+</Queue>

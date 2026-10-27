@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Commercialization_Validation_Street</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(   New_Customer__c ,
+ISPICKVAL(Lead_Stage__c, &quot;Commercialization&quot;),
+ISBLANK( Billing_Street__c )
+)</errorConditionFormula>
+    <errorMessage>Please fill the street</errorMessage>
+</ValidationRule>

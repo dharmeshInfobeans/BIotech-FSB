@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>processSelection</name>
+            <value>
+                <stringValue>BDT Repoen - BDT_Repoen</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>selectionType</name>
+            <value>
+                <stringValue>selectedProcess</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>submitterType</name>
+            <value>
+                <stringValue>currentUser</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>BDT</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>submit</actionName>
+        <actionType>submit</actionType>
+        <inputParameters>
+            <name>objectId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>comment</name>
+        </inputParameters>
+        <inputParameters>
+            <name>processDefinitionNameOrId</name>
+            <value>
+                <stringValue>BDT_Repoen</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>skipEntryCriteria</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>submit</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Bdt Submitted</label>
+        </rules>
+    </decisions>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>AND (
+([BDT_Submission_History__c].isSubmitted__c = true) , ([BDT_Submission_History__c].Request_for_Reopen__c  = true),
+
+OR(
+ISCHANGED([BDT_Submission_History__c].isSubmitted__c )  ||
+ISCHANGED([BDT_Submission_History__c].Request_for_Reopen__c ) 
+),
+
+NOT(CONTAINS([BDT_Submission_History__c].Owner:User.UserRole.Name  , &quot;RSM:ZSM:Domestic:CEO:Manager:ZDM&quot;)) 
+
+)
+
+
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>AND (
+({!myVariable_current.isSubmitted__c} = true) , ({!myVariable_current.Request_for_Reopen__c}  = true),
+
+OR(
+ISCHANGED({!myVariable_current.isSubmitted__c} )  ||
+ISCHANGED({!myVariable_current.Request_for_Reopen__c} ) 
+),
+
+NOT(CONTAINS({!myVariable_current.Owner:User.UserRole.Name}  , &quot;RSM:ZSM:Domestic:CEO:Manager:ZDM&quot;)) 
+
+)</expression>
+    </formulas>
+    <interviewLabel>BDT_Reopen-5_InterviewLabel</interviewLabel>
+    <label>BDT Reopen</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>BDT_Submission_History__c</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>BDT_Submission_History__c</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>BDT_Submission_History__c</objectType>
+    </variables>
+</Flow>

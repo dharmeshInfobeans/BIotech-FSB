@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Sign Status --></label>
+    <name>Sign_Status__c</name>
+    <picklistValues>
+        <masterLabel>DECLINED</masterLabel>
+        <translation><!-- DECLINED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EXPIRED</masterLabel>
+        <translation><!-- EXPIRED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PENDING</masterLabel>
+        <translation><!-- PENDING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SIGNED</masterLabel>
+        <translation><!-- SIGNED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VIEWED</masterLabel>
+        <translation><!-- VIEWED --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

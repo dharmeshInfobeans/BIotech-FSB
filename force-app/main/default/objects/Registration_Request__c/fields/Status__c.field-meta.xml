@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>Current status of the registration request. Drives stage progression and notification triggers.</description>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Draft</fullName>
+                <default>true</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Under Functional Head Review</fullName>
+                <default>false</default>
+                <label>Under Functional Head Review</label>
+            </value>
+            <value>
+                <fullName>Submitted</fullName>
+                <default>false</default>
+                <label>Submitted</label>
+            </value>
+            <value>
+                <fullName>Under Leadership Review</fullName>
+                <default>false</default>
+                <label>Under Leadership Review</label>
+            </value>
+            <value>
+                <fullName>Under Management Approval</fullName>
+                <default>false</default>
+                <label>Under Management Approval</label>
+            </value>
+            <value>
+                <fullName>Sent Back</fullName>
+                <default>false</default>
+                <label>Sent Back</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>Approved by Leadership</fullName>
+                <default>false</default>
+                <label>Approved by Leadership</label>
+            </value>
+            <value>
+                <fullName>Submitted to Regulatory</fullName>
+                <default>false</default>
+                <label>Submitted to Regulatory</label>
+            </value>
+            <value>
+                <fullName>Under Regulatory Review</fullName>
+                <default>false</default>
+                <label>Under Regulatory Review</label>
+            </value>
+            <value>
+                <fullName>Additional Documents Requested</fullName>
+                <default>false</default>
+                <label>Additional Documents Requested</label>
+            </value>
+            <value>
+                <fullName>Pending Customer Response</fullName>
+                <default>false</default>
+                <label>Pending Customer Response</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

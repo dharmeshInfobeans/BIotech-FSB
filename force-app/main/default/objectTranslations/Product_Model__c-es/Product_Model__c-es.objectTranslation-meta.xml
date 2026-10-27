@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Product Model --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Product Model --></value>
+    </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Product Model Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Range 1 --></label>
+            <section>Range 1</section>
+        </sections>
+        <sections>
+            <label><!-- Range 2 --></label>
+            <section>Range 2</section>
+        </sections>
+        <sections>
+            <label><!-- Range3 --></label>
+            <section>Range3</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Model Number --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- &quot;Spherical Power Maximum&quot; should be lesser than &quot;Spherical Power Maximum1&quot;. --></errorMessage>
+        <name>SPPowerMax_should_Less_than_SPPowerMax1</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Spherical Power Minimum&quot; should be lesser than &quot;Spherical Power Minimum1&quot;. --></errorMessage>
+        <name>SPPowerMin_should_Less_than_SPPowerMin1</name>
+    </validationRules>
+</CustomObjectTranslation>

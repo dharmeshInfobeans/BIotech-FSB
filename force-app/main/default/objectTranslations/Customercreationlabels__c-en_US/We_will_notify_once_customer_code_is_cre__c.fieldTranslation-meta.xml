@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- We will notify once customer code is cre --></label>
+    <name>We_will_notify_once_customer_code_is_cre__c</name>
+</CustomFieldTranslation>

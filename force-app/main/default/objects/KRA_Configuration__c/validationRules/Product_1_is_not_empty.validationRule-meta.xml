@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_1_is_not_empty</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Parameter__c ,&apos;Product-Single&apos;) &amp;&amp;  (ISBLANK(Product_1__c) || NOT(ISBLANK(Product_2__c)))</errorConditionFormula>
+    <errorDisplayField>Product_1__c</errorDisplayField>
+    <errorMessage>Please fill Product 1</errorMessage>
+</ValidationRule>

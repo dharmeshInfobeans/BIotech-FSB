@@ -1,0 +1,274 @@
+/* Main Header */
+.kyc-header {
+    background: linear-gradient(135deg, #f4f6f9, #eef1f6);
+    border-bottom: 1px solid #dddbda;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem 0.5rem 0 0;
+}
+
+/* Icon */
+.header-icon {
+    --slds-c-icon-color-foreground-default: #0176d3;
+}
+.saved-badge {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: #2e844a;
+    background-color: #e3f5e9;
+    border-radius: 1rem;
+    padding: 0.15rem 0.6rem;
+}
+/* Title */
+.header-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #032d60;
+    line-height: 1.2;
+}
+
+/* Subtitle */
+.header-subtitle {
+    font-size: 0.75rem;
+    color: #5c6b82;
+}
+
+/* Instruction banner */
+.instruction-banner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8f4ff;
+    color: #0b5cab;
+    padding: 12px 16px;
+    border-left: 5px solid #0176d3;
+    border-radius: 10px;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* KYC Card */
+.kyc-card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    0 10px 25px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    overflow: hidden;
+}
+
+/* Section title */
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0b5cab;
+    margin-bottom: 12px;
+}
+
+/* Table */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.innerTable {
+     width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Header */
+.innerTable thead th {
+    background: #f4f6f9;
+    padding: 12px;
+    font-weight: 700;
+    color: #444;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Rows */
+.innerTable tbody tr {
+    background: #ffffff;
+    box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Required highlight */
+.required-row {
+    background: #fff6f6;
+}
+
+.required-row:hover {
+    box-shadow: inset 4px 0 0 #e53935;
+}
+
+/* Document name */
+.doc-name {
+    font-weight: 600;
+    color: #16325c;
+    max-width: 135px;
+    width: 135px;
+    white-space: normal;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Badges */
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge.required {
+    background: #fdecea;
+    color: #e53935;
+}
+
+.badge.optional {
+    background: #e3f2fd;
+    color: #1e88e5;
+}
+
+/* Footer */
+.footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Rounded inputs */
+:host ::deep .slds-input {
+    border-radius: 10px;
+    border: 1px dashed #c9c9c9;
+    padding: 8px;
+    background: #fafcff;
+}
+
+/* ===== Document Upload column: keep the file selector on a single line ===== */
+
+/* Give the upload column enough room and stop it from wrapping */
+.innerTable th:last-child,
+.innerTable td:last-child {
+    min-width: 200px;
+    white-space: nowrap;
+}
+
+:host ::deep .slds-file-selector {
+    width: auto;
+    display: inline-block;
+}
+
+:host ::deep .slds-file-selector__dropzone {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: auto;
+    min-height: auto;
+    border-radius: 10px;
+    border: 1px dashed #c9c9c9;
+    padding: 6px 10px;
+    background: #fafcff;
+    white-space: nowrap;
+}
+
+:host ::deep .slds-file-selector__body {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    gap: 6px;
+}
+
+/* Hide the "Or drop files" helper text - drag/drop isn't practical inside a
+   narrow table cell, and removing it is what stops the wrap onto a 2nd line */
+:host ::deep .slds-file-selector__text {
+    display: none;
+}
+
+:host ::deep .slds-file-selector__button {
+    white-space: nowrap;
+}
+
+/* ================= Customer Details Card ================= */
+
+.customer-card {
+    background: #ffffff;
+    border-radius: 10px;
+    margin: 16px 12px;
+    overflow: hidden;
+    box-shadow: 
+    0 4px 10px rgba(0, 0, 0, 0.2),
+    0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Header with gradient */
+.customer-card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: linear-gradient(90deg, #e8f4ff, #f4f6f9);
+    border-bottom: 1px solid #dddbda;
+     border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+.customer-card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #16325c;
+}
+
+/* Body spacing */
+.customer-card-body {
+    padding: 16px 8px 8px;
+}
+
+/* Improve input spacing */
+.customer-card lightning-input-field,
+.customer-card lightning-combobox {
+    margin-bottom: 8px;
+}
+
+.success-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: popIn 0.35s ease-out forwards;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    80% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    --slds-c-icon-color-foreground-default: #2e844a; /* Salesforce green */
+    background: #e6f4ea;
+    border-radius: 50%;
+    padding: 4px;
+}
+
+.success-text {
+    color: #2e844a;
+    font-weight: 600;
+    font-size: 13px;
+}

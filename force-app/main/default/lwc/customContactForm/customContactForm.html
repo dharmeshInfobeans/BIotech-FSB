@@ -1,0 +1,69 @@
+<template>
+	<div class="MainContainer">
+		<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+			class="slds-modal slds-fade-in-open slds-modal_small">
+			<div class="slds-modal__container">
+
+				<div class="slds-modal__header">
+					<h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{labels.New_Contact__c}</h1>
+				</div>
+				<div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+					<div class="slds-section slds-is-open">
+						<h3 class="slds-section__title">
+							<button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+
+      <span class="slds-truncate" title="Section Title">{labels.Contact_Information__c}</span>
+    </button>
+						</h3>
+						<div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+							<div class="slds-grid slds-wrap">
+								<div class="slds-col slds-size_6-of-12 ">
+									<lightning-input type="text" label={labels.First_Name__c} class="NewForm"
+										message-when-value-missing={labels.Please_fill_the_first_name__c} required
+										name="FirstName" onchange={handleInsContact}>
+									</lightning-input>
+								</div>
+								<div class="slds-col slds-size_6-of-12  ">
+									<lightning-input type="text" label={labels.Last_Name__c}
+										message-when-value-missing={labels.Please_fill_the_last_name__c} name="LastName"
+										required onchange={handleInsContact} class="NewForm">
+									</lightning-input>
+								</div>
+							</div>
+							<div class="slds-grid slds-wrap">
+
+								<div class="slds-col slds-size_6-of-12  ">
+									<lightning-input type="text" label={labels.Email__c}
+										message-when-value-missing="Please fill the Last Name" name="Email" required
+										onchange={handleInsContact} class="NewForm">
+									</lightning-input>
+								</div>
+								<div class="slds-col slds-size_6-of-12 ">
+									<lightning-input type="text" label={labels.Mobile__c}
+										message-when-value-missing={labels.Please_fill_the_mobile__c} required
+										name="MobilePhone" onchange={handleInsContact} class="NewForm">
+									</lightning-input>
+								</div>
+							</div>
+							<template if:true={showSpecialist}>
+								<div class="slds-grid slds-wrap">
+									<div class="slds-col slds-size_6-of-12  ">
+										<lightning-combobox name="Specialities__c" label="Specialist"
+											placeholder="--None----" options={specialistData}
+											onchange={handleInsContact} class="NewForm">
+										</lightning-combobox>
+									</div>
+								</div>
+							</template>
+						</div>
+					</div>
+				</div>
+				<div class="slds-modal__footer">
+					<button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleCancel}>{labels.Cancel__c}</button>
+					<button class="slds-button slds-button_brand" onclick={handleSaveContact}>{labels.Save__c}</button>
+				</div>
+			</div>
+		</section>
+		<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+	</div>
+</template>

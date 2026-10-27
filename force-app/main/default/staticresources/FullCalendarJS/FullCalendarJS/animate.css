@@ -1,0 +1,63 @@
+.animate-flicker {
+    -webkit-animation: flickerAnimation 1s infinite !important;
+    -moz-animation: flickerAnimation 1s infinite !important;
+    -o-animation: flickerAnimation 1s infinite !important;
+    animation: flickerAnimation 1s infinite !important;
+  }
+  
+  @keyframes flickerAnimation {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-o-keyframes flickerAnimation {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-moz-keyframes flickerAnimation {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @-webkit-keyframes flickerAnimation {
+    0% {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+    }
+  
+    100% {
+      opacity: 1;
+    }
+  }
+  .animate__shakeX{-webkit-animation-name:shakeX;animation-name:shakeX}@-webkit-keyframes shakeY{0%,to{-webkit-transform:translateZ(0);transform:translateZ(0)}10%,30%,50%,70%,90%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}20%,40%,60%,80%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}}@keyframes shakeY{0%,to{-webkit-transform:translateZ(0);transform:translateZ(0)}10%,30%,50%,70%,90%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}20%,40%,60%,80%{-webkit-transform:translate3d(0,10px,0);transform:translate3d(0,10px,0)}}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>make_end_date_Mandatory_for_custom_error</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK(End_Date__c)</errorConditionFormula>
+    <errorDisplayField>End_Date__c</errorDisplayField>
+    <errorMessage>End Date is required</errorMessage>
+</ValidationRule>

@@ -1,0 +1,25 @@
+<!--
+  @File Name          : lookupSearchComponent.html
+  @Description        : 
+  @Author             : Jyoti Singh
+  @Group              : 
+  @Last Modified By   : Jyoti Singh
+  @Last Modified On   : 10/10/2019, 4:28:16 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/10/2019   Jyoti Singh     Initial Version
+-->
+<template>
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_4-of-4">
+            <div>
+                <!-- Create an Input Field where user can enter text to find the
+                Records-->
+                <lightning-input
+                    label={label} value={searchKey} type="search"
+                    onchange={handleChange} placeholder="type text here">
+                </lightning-input>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Per_Team_Member_is_not_Empty</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Parameter__c ,&apos;New/Customer Conversion&apos;) &amp;&amp; ISNULL(Target_per_Team_Member__c)</errorConditionFormula>
+    <errorDisplayField>Target_per_Team_Member__c</errorDisplayField>
+    <errorMessage>Please fill Target per Team Member</errorMessage>
+</ValidationRule>

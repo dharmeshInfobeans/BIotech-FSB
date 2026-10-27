@@ -1,0 +1,458 @@
+<template>
+    <!-- Loading Spinner -->
+    <template lwc:if={isLoading}>
+        <div class="slds-spinner_container slds-is-fixed">
+            <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                <span class="slds-assistive-text">Loading</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </template>
+
+    <template lwc:if={isDataLoaded}>
+        <div class="slds-page-header slds-page-header_record-home">
+            <div class="slds-page-header__row">
+                <div class="slds-page-header__col-title">
+                    <div class="slds-media">
+                        <div class="slds-media__figure">
+                            <lightning-button-icon icon-name="utility:back" alternative-text="Back" title="Back"
+                                onclick={handleBack} variant="border-filled" class="slds-var-m-right_small">
+                            </lightning-button-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <div class="slds-page-header__name">
+                                <div class="slds-page-header__name-title">
+                                    <h1>
+                                        <span class="slds-page-header__title slds-truncate" title={customerName}>{customerName}</span>
+                                    </h1>
+                                </div>
+                            </div>
+                            <p class="slds-page-header__name-meta">{eventData.Subject}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slds-var-p-around_medium">
+            <!-- SAP Warning Banner -->
+            <template lwc:if={showSapWarning}>
+                <div class="slds-notify slds-notify_alert slds-alert_warning slds-var-m-bottom_medium" role="alert">
+                    <span class="slds-assistive-text">warning</span>
+                    <lightning-icon icon-name="utility:warning" alternative-text="Warning" size="x-small"
+                        class="slds-var-m-right_x-small"></lightning-icon>
+                    <h2>{sapWarningMessage}</h2>
+                </div>
+            </template>
+
+            <!-- Customer Details Card -->
+            <article class="slds-card slds-var-m-bottom_medium">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:account" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>{labelCustomerDetails}</span>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">
+                            <p title={labelCustomerName}>{labelCustomerName}</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail">
+                            <p>{customerName}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p title="CE-CIS Rating">CE-CIS Rating</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail">
+                            <p>{ceCisRating}</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p title="Phakic Rating">Phakic Rating</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail">
+                            <p>{phakicRating}</p>
+                        </dd>
+                    </dl>
+                </div>
+            </article>
+
+            <!-- Last 5 Invoices Card -->
+            <article class="slds-card slds-var-m-bottom_medium">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:orders" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>{labelLastInvoices}</span>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body">
+                    <template lwc:if={hasInvoices}>
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-text-title_caps" scope="col">Product Code</th>
+                                    <th class="slds-text-title_caps" scope="col">Product Name</th>
+                                    <th class="slds-text-title_caps" scope="col">Quantity</th>
+                                    <th class="slds-text-title_caps" scope="col">Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={formattedInvoiceList} for:item="invoice">
+                                    <tr key={invoice.Id} class="slds-hint-parent">
+                                        <td data-label="Product Code">
+                                            <div class="slds-truncate">{invoice.Dummy_Product_Code__c}</div>
+                                        </td>
+                                        <td data-label="Product Name">
+                                            <div class="slds-truncate">{invoice.productName}</div>
+                                        </td>
+                                        <td data-label="Quantity">
+                                            <div class="slds-truncate">{invoice.Quantity__c}</div>
+                                        </td>
+                                        <td data-label="Amount">
+                                            <div class="slds-truncate">{invoice.Amount__c}</div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </template>
+                    <template lwc:else>
+                        <div class="slds-var-p-around_medium slds-text-align_center slds-text-color_weak">
+                            No invoices found
+                        </div>
+                    </template>
+                </div>
+            </article>
+
+            <!-- DCR Details Form Card -->
+            <article class="slds-card slds-var-m-bottom_medium">
+                <div class="slds-card__header slds-grid">
+                    <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                        <div class="slds-media__figure">
+                            <lightning-icon icon-name="standard:task" size="small"></lightning-icon>
+                        </div>
+                        <div class="slds-media__body">
+                            <h2 class="slds-card__header-title">
+                                <span>DCR Details</span>
+                            </h2>
+                        </div>
+                    </header>
+                </div>
+                <div class="slds-card__body slds-card__body_inner">
+                    <div class="slds-grid slds-wrap slds-gutters">
+                        <!-- Subject (Read-only) -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                            <lightning-input label={labelSubject} value={eventData.Subject} readonly variant="standard">
+                            </lightning-input>
+                        </div>
+
+                        <!-- Call Type (Read-only) -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                            <lightning-input label={labelCallType} value={eventData.Call_Type__c} readonly
+                                variant="standard">
+                            </lightning-input>
+                        </div>
+
+                        <!-- Sub Call Type (Read-only, shown only for In Clinic Branding) -->
+                        <template if:true={isInClinicBranding}>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                                <lightning-input label="Sub Call Type" value={eventData.Sub_Call_Type__c} readonly
+                                    variant="standard">
+                                </lightning-input>
+                            </div>
+                        </template>
+
+                        <!-- Follow-up Date -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                            <lightning-input type="date" label={labelFollowUpDate} value={followUpDate}
+                                onchange={handleDateChange} variant="standard">
+                            </lightning-input>
+                        </div>
+                        <template if:true={showTargetValue}>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                                <lightning-input label="Target" value={targetValue} readonly variant="standard">
+                                </lightning-input>
+                            </div>
+                        </template>
+
+
+                        <!-- Upload Branding File (In Clinic Branding only) -->
+                        <template if:true={isInClinicBranding}>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label">
+                                        Upload Branding File
+                                        <abbr class="slds-required" title="required">*</abbr>
+                                    </label>
+                                    <div class="slds-form-element__control slds-var-p-top_xx-small">
+                                        <lightning-button variant="neutral" label="Upload Branding File"
+                                            onclick={handleOpenBrandingFilePicker}>
+                                        </lightning-button>
+                                        <!-- Hidden native file input -->
+                                        <!-- eslint-disable-next-line @lwc/lwc/no-template-children -->
+                                        <input type="file"
+                                            data-id="brandingFileInput"
+                                            accept=".pdf,.jpg,.jpeg,.png,.mp4,.mov"
+                                            class="slds-hide"
+                                            onchange={handleBrandingFileChange} />
+                                        <template lwc:if={brandingFileName}>
+                                            <div class="slds-text-body_small slds-var-m-top_x-small"
+                                                style="color: green;">
+                                                &#10004; File selected: {brandingFileName}
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Products Multi-Select hidden; product auto-filled from lead -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small"></div>
+
+                        <!-- Product Family (Read-only) -->
+                        <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">Product Family</label>
+                                <div class="slds-form-element__control">
+                                    <span class="slds-form-element__static">{displayProductFamily}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <template if:true={isAccountNotEvent}>
+                            <!-- Product Group (Read-only) -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-var-p-bottom_small">
+                                <div class="slds-form-element">
+                                    <label class="slds-form-element__label">Product Group</label>
+                                    <div class="slds-form-element__control">
+                                        <span class="slds-form-element__static">{displayProductGroup}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </template>
+
+                        <!-- DCR Remark (Required) -->
+                        <div class="slds-col slds-size_1-of-1 slds-var-p-bottom_small">
+                            <lightning-textarea label={labelRemark} value={dcrRemark} onchange={handleRemarkChange}
+                                required message-when-value-missing="Please enter a remark" class={remarkClass}>
+                            </lightning-textarea>
+                            <template lwc:if={remarkError}>
+                                <div class="slds-text-color_error slds-text-body_small slds-var-m-top_xx-small">
+                                    Please enter the DCR remark
+                                </div>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Lead/Opportunity Stage Management Card (Conditional) -->
+            <template lwc:if={hasLeadsOrOpportunity}>
+                <article class="slds-card slds-var-m-bottom_medium">
+                    <div class="slds-card__header slds-grid">
+                        <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                            <div class="slds-media__figure">
+                                <lightning-icon icon-name={stageManagementIcon} size="small"></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 class="slds-card__header-title">
+                                    <span>{stageManagementTitle}</span>
+                                </h2>
+                            </div>
+                        </header>
+                    </div>
+                    <div class="slds-card__body slds-card__body_inner">
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="slds-text-title_caps" scope="col">{tableColumnName}</th>
+                                    <th class="slds-text-title_caps" scope="col">Product Family</th>
+                                    <th class="slds-text-title_caps" scope="col">Product Group</th>
+                                    <template lwc:if={hasOpportunityData}>
+                                        <th class="slds-text-title_caps" scope="col">Equipment Company</th>
+                                        <th class="slds-text-title_caps" scope="col">Equipment Product</th>
+                                    </template>
+                                    <th class="slds-text-title_caps" scope="col">{tableColumnCurrentStage}</th>
+                                    <th class="slds-text-title_caps" scope="col">{tableColumnSelectStage}</th>
+                                    <template lwc:if={hasLeads}>
+                                        <th class="slds-text-title_caps" scope="col">Unqualified Reason</th>
+                                        <th class="slds-text-title_caps" scope="col">Unqualified Remarks</th>
+                                    </template>
+                                    <template lwc:if={hasOpportunityData}>
+                                        <th class="slds-text-title_caps" scope="col">Lost Reason</th>
+                                        <th class="slds-text-title_caps" scope="col">Close Date</th>
+                                    </template>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Lead Rows -->
+                                <template lwc:if={hasLeads}>
+                                    <template for:each={processedLeadList} for:item="lead">
+                                        <tr key={lead.Id} class="slds-hint-parent">
+                                            <td data-label={tableColumnName}>
+                                                <div class="wrap-text" title={lead.Name}>{lead.Name}</div>
+                                            </td>
+                                            <td data-label="Product Family">
+                                                <div class="wrap-text">{lead.Lead_Product_Family__c}</div>
+                                            </td>
+                                            <td data-label="Product Group">
+                                                <div class="wrap-text">{lead.Lead_Products__c}</div>
+                                            </td>
+                                            <template lwc:if={hasOpportunityData}>
+                                                <td data-label="Equipment Company">
+                                                    <div class="wrap-text">—</div>
+                                                </td>
+                                                <td data-label="Equipment Product">
+                                                    <div class="wrap-text">—</div>
+                                                </td>
+                                            </template>
+                                            <td data-label={tableColumnCurrentStage}>
+                                                <div class="wrap-text">{lead.Lead_Stage__c}</div>
+                                            </td>
+                                            
+                                            <!-- {this is commmented by varish and added change logic below if anything breaks plese check logic and uncomment use this again}
+                                            <td data-label={tableColumnSelectStage}>
+                                                <lightning-combobox name={lead.Id} data-leadid={lead.Id}
+                                                    value={lead.selectedStage} options={lead.stageOptions}
+                                                    onchange={handleLeadStageChange} variant="label-hidden">
+                                                </lightning-combobox>
+                                            </td> -->
+
+                                        <td data-label={tableColumnSelectStage}>
+                                            <lightning-combobox name={lead.Id} data-leadid={lead.Id} value={lead.selectedStage} options={lead.stageOptions}
+                                                disabled={lead.isConverted} onchange={handleLeadStageChange} variant="label-hidden">
+                                            </lightning-combobox>
+                                        </td>
+
+                                            <td data-label="Unqualified Reason">
+                                                <lightning-combobox variant="label-hidden" placeholder="Select reason"
+                                                    data-leadid={lead.Id} value={lead.unqualifiedReasonValue}
+                                                    options={unqualifiedReasonOptions} disabled={lead.isReasonDisabled}
+                                                    required={lead.isUnqualified}
+                                                    onchange={handleUnqualifiedReasonChange}>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td data-label="Unqualified Remarks">
+                                                <lightning-input type="text" variant="label-hidden"
+                                                    placeholder="Enter remarks" maxlength="255" data-leadid={lead.Id}
+                                                    value={lead.unqualifiedRemarksValue}
+                                                    disabled={lead.isReasonDisabled}
+                                                    onchange={handleUnqualifiedRemarksChange}>
+                                                </lightning-input>
+                                            </td>
+                                            <!-- Placeholder to keep column alignment when Lost Reason/Close Date columns are present -->
+                                            <template lwc:if={hasOpportunityData}>
+                                                <td data-label="Lost Reason">
+                                                    <div class="wrap-text">—</div>
+                                                </td>
+                                                <td data-label="Close Date">
+                                                    <div class="wrap-text">—</div>
+                                                </td>
+                                            </template>
+                                        </tr>
+                                    </template>
+                                </template>
+
+                                <!-- Opportunity Row -->
+                                <template lwc:if={hasOpportunityData} for:each={processedOpportunityList}
+                                    for:item="opps">
+                                    <tr key={opps.Id} class="slds-hint-parent">
+                                        <td data-label={tableColumnName}>
+                                            <div class="wrap-text" title={opps.Name}>{opps.Name}</div>
+                                        </td>
+                                        <td data-label="Product Family">
+                                            <div class="wrap-text">{opps.Opps_Product_Family__c}</div>
+                                        </td>
+                                        <td data-label="Product Group">
+                                            <div class="wrap-text">{opps.Opps_Products__c}</div>
+                                        </td>
+                                        <td data-label="Equipment Company">
+                                            <div class="wrap-text">{opps.equipmentCompany}</div>
+                                        </td>
+                                        <td data-label="Equipment Product">
+                                            <div class="wrap-text">{opps.equipmentProduct}</div>
+                                        </td>
+                                        <td data-label={tableColumnCurrentStage}>
+                                            <div class="wrap-text">{opps.Status__c}</div>
+                                        </td>
+                                        <td data-label={tableColumnSelectStage}>
+                                            <lightning-combobox name={opps.Id} data-oppid={opps.Id}
+                                                value={opps.selectedStatus} options={opps.stageOptions}
+                                                onchange={handleOpportunityStatusChange} disabled={opps.isFrozen}
+                                                variant="label-hidden">
+                                            </lightning-combobox>
+                                        </td>
+                                        <!-- Placeholder to keep column alignment with the lead-only columns -->
+                                        <template lwc:if={hasLeads}>
+                                            <td data-label="Unqualified Reason">
+                                                <div class="wrap-text">—</div>
+                                            </td>
+                                            <td data-label="Unqualified Remarks">
+                                                <div class="wrap-text">—</div>
+                                            </td>
+                                        </template>
+                                        <!-- Lost Reason: editable only when newly moving to Closed Lost; frozen rows show saved value as text -->
+                                        <td data-label="Lost Reason">
+                                            <template lwc:if={opps.showLostReason}>
+                                                <lightning-input type="text" variant="label-hidden"
+                                                    placeholder="Enter lost reason" maxlength="255" required
+                                                    data-oppid={opps.Id} value={opps.lostReasonValue}
+                                                    onchange={handleOpportunityLostReasonChange}>
+                                                </lightning-input>
+                                            </template>
+                                            <template lwc:elseif={opps.isFrozen}>
+                                                <div class="wrap-text">{opps.lostReasonValue}</div>
+                                            </template>
+                                            <template lwc:else>
+                                                <div class="wrap-text">—</div>
+                                            </template>
+                                        </td>
+                                        <!-- Close Date: editable only when newly moving to Closed Won/Lost; frozen rows show saved value as text -->
+                                        <td data-label="Close Date">
+                                            <template lwc:if={opps.showCloseDate}>
+                                                <lightning-input type="date" variant="label-hidden"
+                                                    required={opps.isClosedWon} data-oppid={opps.Id}
+                                                    value={opps.closeDateValue}
+                                                    onchange={handleOpportunityCloseDateChange}>
+                                                </lightning-input>
+                                            </template>
+                                            <template lwc:elseif={opps.isFrozen}>
+                                                <div class="wrap-text">{opps.closeDateValue}</div>
+                                            </template>
+                                            <template lwc:else>
+                                                <div class="wrap-text">—</div>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+            </template>
+
+            <!-- Footer Action Buttons -->
+            <div class="form-footer-buttons slds-grid slds-grid_align-center">
+                <lightning-button variant="neutral" label={labelCancel} onclick={handleCancel}
+                    class="slds-var-m-right_small">
+                </lightning-button>
+                <lightning-button variant="brand" label={labelSubmit} onclick={handleSubmit}
+                    disabled={isSubmitDisabled}>
+                </lightning-button>
+            </div>
+        </div>
+    </template>
+</template>

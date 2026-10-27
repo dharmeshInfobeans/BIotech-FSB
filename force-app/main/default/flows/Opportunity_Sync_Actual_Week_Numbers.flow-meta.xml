@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Opportunity__c mirror of Lead_Sync_Actual_Week_Numbers. Keeps the three Actual_*_Week_Dashboard__c fields in sync with their corresponding Actual_*_Week_Number__c formula fields, and Opportunity_Created_Quarter_Dashboard__c in sync with Opp_Created_Quarter_No__c, going forward on every create/update of an Opportunity__c - so the Pro-Active Pipeline dashboard can filter/query on plain, groupable fields instead of the non-groupable formula fields directly. Does NOT backfill existing records (those need a separate one-time update, per the same decision made for the Lead__c version - avoid touching other automation on this object with a bulk update outside this flow). Runs after-save (not before-save) because formula fields aren&apos;t yet recalculated at the before-save stage of the save order - Salesforce rejects referencing a formula field from a before-save flow outright. Entry condition fires on every create (ISNEW()) - needed because Opp_Created_Quarter_No__c is fixed at creation and never changes, so relying on ISCHANGED alone would leave it blank forever on any Opportunity that never touches one of the three milestone formula fields - or when one of those three formula fields changes on update. This flow&apos;s own record update never touches those formula fields&apos; source data, so it never re-triggers itself.</description>
+    <environments>Default</environments>
+    <interviewLabel>Opportunity Sync Actual Week Numbers {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity Sync Actual Week Numbers</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Dashboard_Week_Numbers</name>
+        <label>Update Dashboard Week Numbers</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <inputAssignments>
+            <field>Actual_Commercialization_Week_Dashboard__c</field>
+            <value>
+                <elementReference>$Record.Actual_Commercialization_Week_Number__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Actual_Evaluation_Week_Dashboard__c</field>
+            <value>
+                <elementReference>$Record.Actual_Evaluations_Week_Number__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Actual_Upgrade_Week_Dashboard__c</field>
+            <value>
+                <elementReference>$Record.Actual_Upgrade_Week_Number__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Opportunity_Created_Quarter_Dashboard__c</field>
+            <value>
+                <elementReference>$Record.Opp_Created_Quarter_No__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Dashboard_Week_Numbers</targetReference>
+        </connector>
+        <filterFormula>OR(
+ISNEW(),
+ISCHANGED({!$Record.Actual_Commercialization_Week_Number__c}),
+ISCHANGED({!$Record.Actual_Upgrade_Week_Number__c}),
+ISCHANGED({!$Record.Actual_Evaluations_Week_Number__c})
+)</filterFormula>
+        <object>Opportunity__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,1048 @@
+<apex:page standardStylesheets="false" lightningStylesheets="true" controller="BeatPlanMapPageController" showHeader="false" readOnly="true">
+        <apex:slds />
+
+        <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <title>DCR</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Import the Design System style sheet -->
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+            
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+        
+        <style>
+        #sidebar-wrapper {
+        top: 52px;
+        left: -200px;
+        width: 200px;
+        background:rgb(255,255,255,0.4);
+        color: white;
+        position: fixed;
+        height: 100%;
+        z-index: 1;
+        }
+        .sidebar-nav {
+        position: absolute;
+        top: 0;
+        margin: 0;
+        padding: 0;
+        width: 250px;
+        list-style: none;
+        }
+        .sidebar-nav li {
+        text-indent: 20px;
+        line-height: 50px;
+        }
+        .sidebar-nav li a {
+        color: white;
+        display: block;
+        text-decoration: none;
+        }
+        .sidebar-nav li a:hover {
+        background: rgba(0,0,255,0.3);
+        color: white;
+        text-decoration: none;
+        }
+        .sidebar-nav li a:active, .sidebar-nav li a:focus {
+        text-decoration: none;
+        }
+        #sidebar-wrapper.sidebar-toggle {
+        transition: all 0.3s ease-out;
+        margin-left: -200px;
+        overflow:scroll;
+
+        }
+       .popup-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto; /* Full height of the popup */
+        font-weight: bold;
+        font-size: 12px;
+    }
+            
+        @media (min-width: 768px) {
+        #sidebar-wrapper.sidebar-toggle {
+        transition: 0s;
+        left: 200px;
+        }
+
+        }
+
+        .btn {
+        border: none;
+        color: white;
+        padding: 12px 16px;
+        font-size: 16px;
+        cursor: pointer;
+        }
+
+        /* Darker background on mouse-over */
+        .btn:hover {
+        background-color: #4169E1;
+            
+        }
+            
+            
+        </style>
+        <script> 
+        $(window).resize(function() {
+        var path = $(this);
+        var contW = path.width();
+        if(contW >= 751){
+        document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+        }else{
+        document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
+        }
+        });
+        $(document).ready(function() {
+        $('.dropdown').on('show.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
+        });
+        $('.dropdown').on('hide.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(300);
+        });
+        $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        var elem = document.getElementById("sidebar-wrapper");
+        left = window.getComputedStyle(elem,null).getPropertyValue("left");
+        if(left == "200px"){
+        document.getElementsByClassName("sidebar-toggle")[0].style.left="-200px";
+        }
+        else if(left == "-200px"){
+        document.getElementsByClassName("sidebar-toggle")[0].style.left="200px";
+        }
+        });
+        });
+        </script>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" />
+        <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"/>
+        <script src="{!URLFOR($Resource.aljs,'/jquery.aljs-all-with-moment.min.js')}" />
+        <script src="https://cdn.jsdelivr.net/npm/ngstorage@0.3.11/ngStorage.min.js"></script>
+        <link href = "https://code.jquery.com/ui/1.12.0/themes/ui-lightness/jquery-ui.css" rel = "stylesheet"/>
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+        .card{
+        margin-top:5px;
+        margin-left:20px;
+        }
+
+        .cards {
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        width: 95%;
+        background:rgba(0,0,0,0.4);
+        margin-top:10px;
+        }
+
+        .cards:hover {
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .container {
+        padding: 2px 16px;
+        }
+        .test:after {
+        content: '\2807';
+        font-size: 20px;
+        }
+        html, body, .container,  #map {
+        width: 100%;
+        height: 96.5%;
+        margin: 0;
+        padding: 0;
+        }
+
+        .se-pre-con {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url("{!$Resource.biotech_Logo}") center no-repeat #fff;
+        background-size: 300px 100px;
+        }
+        </style>
+        </head>
+
+        <body ng-app="myApp" ng-controller="myCtrl">
+        <input type="hidden" id="checkIn_flag" /> <!--Checkin flag for restriction -->
+        <div class="se-pre-con"></div>
+        <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header" style="background:#325CAB">
+                <a id="menu-toggle" href="#" class="navbar-toggle">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <span class="navbar-brand" href="home.xhtml" style="color:white">
+                    {!translationObject.Today_Activity__c}
+                </span>
+            <!--
+                <button id='end_my_day' disabled="true" ng-click="endMyDay();" class="slds-button slds-button_outline-brand" style="margin-top:14px;float:right;margin-right:4px">{!translationObject.End__c}</button>
+                <button ng-click="startMyDay();" id='start_my_day' class="slds-button slds-button_outline-brand" style="margin-top:14px;float:right;margin-right:3px">{!translationObject.Start__c}</button>
+            -->
+            </div>
+            <div id="sidebar-wrapper" class="sidebar-toggle" style="margin-bottom:100px;height:82%">
+                 <center>
+            <h1 style="background:#ECF0F1; color:#777; height:20px ; font-size:20px; font-family:times and roman">{!translationObject.Visits__c}</h1>
+            <div id="sortable" >
+                <dl class="dl-horizontal" ng-repeat="ev in eventList" >
+                    <div class="cards" id="{{ev.Id}}" start="{{ev.StartDateTime}}" end="{{ev.EndDateTime}}">
+            <div>
+                            <div >
+                                <div class="test ; handle" style="float:right;color:white"></div>
+            
+            <center><b><span id='' style="color:white" ng-show="{{ev.Leads__c != ''}}">{{ev.Leads__r.Name}}</span>
+            <span id='' style="color:white" ng-show="{{ev.Account != ''}}">{{ev.Account__r.Name}}</span>
+            </b></center>
+                                <label style="color:#ECF0F1">{!translationObject.Address__c} :</label> <div><span id="Address" style="color:#ECF0F1">{{ev.BillingStreet__c}},{{ev.BillingCity__c}}</span></div>
+                            </div >
+            </div>
+            
+                        <div class="float-right">
+                            <button id="{{'_i'+ev.Id}}" class="slds-button slds-button_success" disabled="false" ng-click="checkIn(ev.Id)" ng-show="{{ev.Meeting_Type__c != 'Online'}}">
+                                {!translationObject.Check_IN__c}
+                            </button>
+            				<button id="{{'_is'+ev.Id}}" class="slds-button slds-button_success" disabled="false" ng-click="checkIn(ev.Id)" ng-show="{{ev.Meeting_Type__c == 'Online'}}">
+                                {!translationObject.Start__c}
+                            </button>
+                            <button class="slds-button slds-button_destructive" ng-click="checkOut(ev.Id)" disabled='false' id="{{'_o'+ev.Id}}" ng-show="{{ev.Meeting_Type__c != 'Online'}}">
+                                {!translationObject.Check_Out__c}
+                            </button>
+            				<button class="slds-button slds-button_destructive" ng-click="checkOut(ev.Id)" disabled='false' id="{{'_oe'+ev.Id}}" ng-show="{{ev.Meeting_Type__c == 'Online'}}">
+                                {!translationObject.End__c}
+                            </button>
+                        </div>
+           
+                    </div>
+                </dl>
+            
+            
+            </div>
+        </center>
+            </div>
+            
+        </div>
+        </nav>
+        <div class="container" style="margin-top:-18px; margin-left:2px;margin-right:2px;margin-bottom:3px">
+        <div id="map"></div>
+        </div>
+        <!-- Prompt For Message -->
+        <div class="promt slds-hide" style="height: 24rem;">
+            <input type="hidden" id="proValue"/>
+            <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt" aria-modal="true">
+              <div class="slds-modal__container">
+                <header class="slds-modal__header slds-theme_success slds-theme_alert-texture">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                    </svg>
+                    <span class="slds-assistive-text">{!$Label.Close}</span>
+                  </button>
+                  <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Confirmation__c}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                  <p id="proMsg"></p>
+                </div>
+                <footer class="slds-modal__footer slds-theme_default">
+                  <button class="slds-button slds-button_neutral" ng-click="hidePopup('promt')">{!translationObject.Okay__c}</button>
+                </footer>
+              </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <!-- Prompt For Message ends -->
+        <!-- event update modal -->
+        <div class="eventUpdateModal slds-hide" style="height: 640px;">
+        <input type="hidden" id="eventId"/>
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+        <header class="slds-modal__header">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}" ng-click="hidePopup('eventUpdateModal')">
+            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+            </svg>
+            <span class="slds-assistive-text">{!$Label.Close}</span>
+          </button>
+          <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{!translationObject.Update_Event__c}</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                <div class="slds-size_1-of-2 slds-p-around_x-small">
+        <!--
+        <label class="slds-form-element__label">{!translationObject.Start_Time__c}</label><br></br>
+        -->
+            <input type="hidden" class="slds-input" id="startTime"/> 
+                  
+                    
+                    <div class="slds-form-element">
+                        <input type="text" style="display:none"/>
+                        <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Date__c}</label>
+                        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                            <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
+                            </svg>
+                            <input id="clickDate" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Pick_a_Date__c}" />
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="slds-size_1-of-2 slds-p-around_x-small">
+
+        <!--<label class="slds-form-element__label">{!translationObject.End_Time__c}</label><br></br>
+        -->                        
+        <input type="hidden" class="slds-input" id="endTime"/> 
+
+                    <div class="slds-form-element">
+                        <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.reason__c}</label>
+                        <div class="slds-form-element__control">
+                            <textarea id="reason" class="slds-textarea" placeholder="{!translationObject.reason__c}"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+            </div>       
+        </div>
+        <footer class="slds-modal__footer">
+          <button class="slds-button slds-button_neutral" id="revert" ng-click="hidePopup('eventUpdateModal')">{!translationObject.Cancel__c}</button>
+          <button class="slds-button slds-button_brand" ng-click="updateEvent('{!$Label.update}')">{!translationObject.Save__c}</button>
+          <button class="slds-button slds-button_destructive" ng-click="updateEvent('{!$Label.cancel}')">{!translationObject.Cancel_Event__c}</button>
+        </footer>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <!-- event modal end -->
+        <!-- warning prompt -->
+        <div class="warning demo-only popup-content slds-hide" style="height: 24rem;">
+        <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt popup-content" aria-modal="true">
+        <div class="slds-modal__container">
+        <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+          <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}" ng-click="hidePopup('warning')">
+            <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+            </svg>
+            <span class="slds-assistive-text">{!$Label.Close}</span>
+          </button>
+          <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.warning__c}</h2>
+        </header>
+        <div class="slds-modal__content slds-p-around_medium popup-content" id="prompt-message-wrapper">
+          <p id="warn"></p>
+        </div>
+        <footer class="slds-modal__footer slds-theme_default">
+          <button class="slds-button slds-button_neutral" ng-click="hidePopup('warning')">{!translationObject.Okay__c}</button>
+        </footer>
+        </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+        </div>
+        <!-- warning promt -->
+        <!--Spinner-->
+        <div class="spinner slds-hide" style="background-color: rgb(22, 50, 92); height: 6rem;">
+        <div class="slds-spinner_container slds-spinner_brand">
+        <div role="status" class="slds-spinner slds-spinner_large slds-spinner_brand">
+        <span class="slds-assistive-text">{!$Label.Loading}</span>
+        <div class="slds-spinner__dot-a"></div>
+        <div class="slds-spinner__dot-b"></div>
+        </div>
+        </div>
+        </div>
+        <!--spinner ends-->
+        </body> 
+        <script>
+        var directionsDisplay;
+        var myFunc;
+        var temp_1, temp_2;
+        function foo() {
+        myFunc();
+        console.log('in foo function');
+        }
+        var desLat = 0.00;
+        var desLong = 0.00;
+        function myMap() {
+        console.log('in start');
+        directionsDisplay = new google.maps.DirectionsRenderer();
+        var directionsService = new google.maps.DirectionsService();
+        var acc_names = [];
+        var acc_id = []; 
+        var eventList = [];
+        var latlist = [];
+        var longlist = [];
+        try{
+            const ev = '{!eventList}';
+            if(ev.length > 0){
+                eventList = JSON.parse(ev);
+            }   
+        }catch(error){
+            console.log('Error in Parsing event : ',error);
+        }
+        console.log('data ', eventList);
+        if(eventList.length > 0){
+            for(var i=0; i<eventList.length;i++){
+                latlist.push(eventList[i].Event_Latitude__c);
+                longlist.push(eventList[i].Event_Longitude__c);
+    			console.log('eventList[i].Event_Latitude__c : ',eventList[i].Event_Latitude__c);
+
+            
+            }
+        }
+
+
+        //alert('Event : '+longlist);
+        console.log('latlist : ',latlist);
+        var i = 0;
+        var marker;
+        navigator.geolocation.getCurrentPosition(function(Position) {
+        console.log('in locations');
+        lat = Position.coords.latitude;
+        long = Position.coords.longitude;
+            //latlist.push(lat);
+            //longlist.push(long);
+            var locations = [];
+            locations.push([lat, long]);
+            console.log('lat',lat);
+            console.log('long',long);
+            for (i = 0; i < latlist.length; i++) {
+                locations.push([latlist[i], longlist[i]]);
+            }
+
+            acc_names.push("{!translationObject.Your_Location__c}");
+            acc_id.push('');
+            for (i = 0; i < eventList.length; i++) {
+                acc_names.push(eventList[i].Account__r.Name);
+                acc_id.push(eventList[i].Id);
+
+            }
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 17,
+                center: new google.maps.LatLng(lat, long),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
+            var origin = {
+                lat: lat,
+                lng: long
+            };
+            var destination = {
+                lat: latlist[1],
+                lng: longlist[1]
+            };
+             
+            if(latlist.length > 0){
+                console.log('in latlist');
+                var service = new google.maps.DistanceMatrixService;
+                service.getDistanceMatrix({
+                    origins: [origin],
+                    destinations: [destination],
+                    travelMode: 'DRIVING',
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, function(response, status) {
+                    var checkinData = '{!checkinMapping}';
+                    var resData = [];
+                    var distance = 2000;
+                   console.log('in getdistance : ');
+                    if(checkinData.length > 0){
+                        resData = JSON.parse(checkinData);
+                        for(var i=0 ; i<resData.length;i++){
+                            if(resData[i].Name == eventList[0].Account__r.RecordType.DeveloperName){
+                                distance = resData[i].Distance__c;
+                                break;
+                            }
+                        }
+                    }
+                    console.log('record type : ',eventList[0].Account__r.RecordType.DeveloperName);
+                    console.log('checking data : ',resData);
+                    console.log('distance : ',distance);
+                    
+                    
+                if(response.rows[0].elements[0].status !="ZERO_RESULTS"){
+                    console.log('distance : ',response);
+                    //alert(response.rows[0].elements[0].distance.value);
+                    if (response.rows[0].elements[0].distance.value /2000 > Number(distance)) {
+                        if(eventList[0].Out_Of_Office__c == true){
+                            document.getElementById('checkIn_flag').value = false;
+                        }else{
+                            document.getElementById('checkIn_flag').value = false;
+                        }
+                        console.log('data in false',document.getElementById('checkIn_flag').value );
+                        
+                    } else {
+                        document.getElementById('checkIn_flag').value = false;
+                        console.log('data in true',document.getElementById('checkIn_flag').value );
+                        
+                    } 
+                }  
+                    if (status !== 'OK') {
+                        $scope.showPopup('warning');
+                        $('#warn').text('{!translationObject.Error_was__c}'+ status);
+                        //alert('{!translationObject.Error_was__c}: ' + status);
+                    } else {
+
+                    }
+                });
+            }
+
+            directionsDisplay.setMap(map);
+            directionsDisplay.setOptions({
+                suppressMarkers: true
+            });
+            var request = {
+                "origin": "",
+                "destination": "",
+                "waypoints": [],
+                "travelMode": google.maps.TravelMode.DRIVING
+            };
+            for (i = 0; i < locations.length; i++) {
+                if (i == 0) {
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                        map: map,
+                        center: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                        animation: google.maps.Animation.DROP,
+                        animation: google.maps.Animation.BOUNCE
+                    });
+                } else {
+
+                    marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(locations[i][0], locations[i][1]),
+                        map: map,
+                        center: new google.maps.LatLng(locations[i][0], locations[i][1]),
+
+                    });
+
+                }
+
+                var infowindow = new google.maps.InfoWindow();
+                content = acc_names[i];
+                var visit_id = acc_id[i];
+
+                infowindow.setContent(content);
+                if (i == 0) {
+                    infowindow.setContent(content);
+                    temp_1 = infowindow;
+                    temp_2 = marker;
+                    infowindow.open(map, marker);
+                } else {
+                    // infowindow.setContent(content);
+                    // infowindow.open(map, marker);
+                }
+                google.maps.event.addListener(marker, 'click', (function(marker, content, infowindow) {
+                    return function() {
+                        infowindow.setContent(marker.getPosition());
+                        infowindow.open(map, marker);
+                    };
+                })(marker, marker.getPosition(), infowindow));
+
+                if (i == 0) request.origin = marker.getPosition();
+                else if (i == 1) request.destination = marker.getPosition();
+
+            }
+            setTimeout(function() {
+                map.setCenter(temp_2.getPosition());
+                temp_1.open(map, temp_2);
+            }, 2000);
+
+            myFunc = function() {
+                console.log('value comming location');
+                directionsService.route(request, function(response, status) {
+                    if (status == google.maps.DirectionsStatus.OK) {
+                        console.log('value comming location');
+                        directionsDisplay.setDirections(response);
+                    } else {
+                          console.log('Loading limit exceed');
+                    }
+                });
+
+            }
+            if ({!beatObj.Started__c}) {
+                myFunc();
+            }
+        });
+        }
+        ///////////////////// Google Maps Ends ///////////// 
+
+        ////////////////////Angular starts /////////////////
+
+        var App = angular.module('myApp', ['ngStorage']);
+        App.controller('myCtrl', function($scope, $rootScope, $window, $timeout, $localStorage) {
+        $scope.eventList = [];
+        $scope.UserLocation = '';
+        $scope.DestinationLocation = '';
+        $scope.distanceInBetween = '';
+        try{
+            const ev = '{!eventList}';
+            if(ev.length > 0){
+                $scope.eventList = JSON.parse(ev);
+            }
+            
+        }catch(error){
+            console.log('errror in angualar : ',error);
+        } 
+        console.log('list in angular : ',$scope.eventList);
+        if($scope.eventList.length == 0){
+            $('#end_my_day').prop('disabled', true);
+            $('#start_my_day').prop('disabled', true);
+        }
+        navigator.geolocation.getCurrentPosition(function(Position) {
+            $scope.UserLocation = Position.coords;
+        });
+
+        //Start my day check for start and end day
+        if ({!beatObj.Started__c}) {
+            console.log('Start method ');
+            $('#end_my_day').prop('disabled', false);
+            $('#start_my_day').prop('disabled', true);
+            var id = $scope.eventList.length > 0 ? $scope.eventList[0].Id : '';
+            var customIdS = '#_is'+id; 
+            var customId = '#_i'+id;
+            var customIdCheoutE = '#_oe'+id;
+            var customIdCheout = '#_o'+id;
+            var endM = $scope.eventList.length > 0 ? $scope.eventList[0].Cheked_In__c : false;
+            if({!beatObj.Ended__c}){
+                $('#end_my_day').prop('disabled', true);
+            }
+            
+            setTimeout(function() {
+                $(customId).prop('disabled', false);
+                $(customIdS).prop('disabled', false);
+                for($scope.i = 0; $scope.i<$scope.eventList.length;$scope.i++)
+            {
+                $scope.customId2s = '#_is'+$scope.eventList[$scope.i].Id;
+                $scope.customId2 = '#_i'+$scope.eventList[$scope.i].Id;
+                 $($scope.customId2).prop('disabled', false);
+                 $($scope.customId2s).prop('disabled', false);
+            }
+                if(endM){
+                    console.log(endM);
+                    $(customIdCheout).prop('disabled',false);
+                    $(customIdCheoutE).prop('disabled',false);
+                }   
+                
+            }, 2000)
+        } else {
+            $('#end_my_day').prop('disabled', true);
+            
+            for($scope.i = 0;$scope.i<$scope.eventList.length;i++)
+            {	
+                var customId2s = '#_is'+$scope.eventList[$scope.i].Id;
+                var customId2 = '#_i'+$scope.eventList[$scope.i].Id;
+                $(customId2).prop('disabled', false);
+                $(customId2s).prop('disabled', false);
+            }
+        }
+
+        //Drag and Drop functionality 
+
+        $('#sortable').sortable({
+            handle: '.handle',
+            revert:true,
+            start:function(event, ui){
+                $('#eventId').val(ui.item[0].children[0].getAttribute('id'));
+                var  dtStart = new Date(ui.item[0].children[0].getAttribute('start'));
+                 var  dtEnd = new Date(ui.item[0].children[0].getAttribute('end'));
+                   
+                //
+                //alert(ui.item[0].children[0].getAttribute('id')  + '-->' +ui.item[1].children[0].getAttribute('id'));
+                $('#').val($scope.setDateTime(dtStart));
+                $('#endTime').val($scope.setDateTime(dtEnd));
+                $('#clickDate').val(ui.item[0].children[0].getAttribute('start').substr(0,10));
+                console.log('event Id : ',ui.item[0].children[0].getAttribute('id'));
+            },
+            stop:function(event, ui){
+                $scope.showPopup('eventUpdateModal');
+                $('#revert').on('click',function(){
+                     $('#sortable').sortable('cancel');
+                 });
+            }
+        });
+
+        //On drag set the date
+        $scope.setDateTime = function(temp){
+            console.log('DATES : ',temp);
+            var mind = Number(temp.getMinutes());
+            var hod = Number(temp.getHours());
+            var md;
+            var hd;
+            if(mind < 10){
+                md = '0'+mind.toString();
+            }else{
+                md = mind.toString();
+            }
+            if(hod< 10){
+                hd = '0'+hod.toString();
+            }else{
+                hd = hod.toString();
+            }
+            return hd+':'+md;
+            
+        }
+
+        //ShowPopup  Method
+        $scope.showPopup = function(id){
+            console.log('in showpopup method');
+            $('.'+id).removeClass('slds-hide');
+        }
+
+        //HidePopup Method 
+        $scope.hidePopup = function(id){
+            $('.'+id).addClass('slds-hide');
+            var temp = $('#proValue').val();
+            if(temp == 'End'){
+                $('#proValue').val('');
+                location.reload();
+            }
+            if(id == 'eventUpdateModal'){
+                console.log('revert function');
+                $('#sortable').sortable('option','revert',true);
+            }
+        }
+
+        //Start My Day Method
+        $scope.startMyDay = function(){
+            //alert('Start');
+            $('#proMsg').text('{!translationObject.You_have_started_your_day__c}');
+            $scope.showPopup('promt');
+            var id = $scope.eventList[0].Id;
+            var customId = '#_i'+id;
+            
+            $('#end_my_day').prop('disabled', false);
+            $('#start_my_day').prop('disabled', true);
+            $scope.json_data = {"UserLatitude":$scope.UserLocation.latitude,"UserLongitude":$scope.UserLocation.longitude};
+            BeatPlanMapPageController.startMyDay($scope.json_data,function(result, event){
+                if(result == 'SUCCESS'){
+                    foo();
+                }else if(result = 'NOCLOCKIN'){
+                    // $scope.showPopup('warning');
+                    // $('#warn').text('{!translationObject.Kindly_start_your_day_before_check_in__c}');
+                    $scope.showPopup('warning');
+                    $('#warn').text('{!translationObject.Kindly_start_your_day_before_check_in__c}');
+
+                }else{
+                    $scope.showPopup('warning');
+                    $('#warn').text('{!translationObject.There_is_no_beat_plan_for_today__c}');
+                    //alert('{!translationObject.There_is_no_beat_plan_for_today__c}');
+                }
+            });
+        }
+
+        //End My Day method
+        $scope.endMyDay = function(){
+            if($scope.eventList.length == 0){
+                localStorage.clear();
+                $('.spinner').removeClass('slds-hide');
+                $('#proValue').val('End');
+                $scope.jdata = {"UserLatitude":$scope.UserLocation.latitude,"UserLongitude":$scope.UserLocation.longitude};
+                BeatPlanMapPageController.endMyDay($scope.jdata,function(result,event){
+                    if(result == 'FAILED'){
+                        $('.spinner').addClass('slds-hide');
+                        $scope.showPopup('warning');
+                        $('#warn').text('{!translationObject.Failed_to_end_your_day__c}.');
+                        //alert('{!translationObject.Failed_to_end_your_day__c}.');
+                    }else{
+                        $('.spinner').addClass('slds-hide');
+                        $('#proMsg').text('{!translationObject.You_have_Ended_your_day__c}');
+                        $scope.showPopup('promt');
+                    }
+                });
+            }else{
+                $('#warn').text('{!translationObject.You_have_events_for_visit_today__c}');
+                $('.warning').removeClass('slds-hide');
+            }
+        }
+
+        //CheckIn Function
+        $scope.checkIn = function(id){
+            
+            //Start - Sid
+            
+            var desLat;
+            var desLng;
+            $scope.orLat;
+            $scope.orLng;
+            $scope.Inter;
+            console.log('user location : ',$scope.UserLocation);
+            $('.spinner').removeClass('slds-hide');
+            $scope.data = {"CheckInLat":$scope.UserLocation.latitude,"CheckInLong":$scope.UserLocation.longitude,"eventId":id};
+            BeatPlanMapPageController.checkInMethod($scope.data,function(result, event){
+                console.log('result : ',result);
+                $('.spinner').addClass('slds-hide');
+                if(result[0] == 'SUCCESS'){
+                    window.location.href = result[1]+'{!$site.Prefix}'+'/apex/BeatPlanSecondAppPage?id='+id;
+                    //*************************this code adding by Gyadeen****************************
+                }else if(result[0] =='approval pending'){
+                    $scope.showPopup('warning');
+                    $('#warn').text('{!translationObject.Approval_process_pending_error__c}');
+                  //*************************this code adding by Gyadeen****************************
+
+                }else if(result[0] == 'NOCLOCKIN'){
+                    $scope.showPopup('warning');
+                    $('#warn').text('{!translationObject.Kindly_start_your_day_before_check_in__c}');
+                    //**************************************
+                }else if(result[0] == 'FAILED'){
+                    $scope.showPopup('warning');
+                    
+                    $('#warn').text(result[1]);
+                }
+            });
+            /*    navigator.geolocation.getCurrentPosition(
+                function(Position) 
+                {
+                    console.log('in locations');
+                    $scope.orLat = Position.coords.latitude;
+                    $scope.orLng = Position.coords.longitude;
+                    
+                    $scope.UserLocation = Position.coords;
+                }
+            );
+            
+             
+            for($scope.i = 0; $scope.i<$scope.eventList.length;$scope.i++)
+            {
+                if($scope.eventList[$scope.i].Id == id)
+                   {
+                       console.log('$scope.eventList : ',$scope.eventList[$scope.i]);
+                       desLat = $scope.eventList[$scope.i].Event_Latitude__c;
+                       desLng = $scope.eventList[$scope.i].Event_Longitude__c;
+                       $scope.Inter = $scope.eventList[$scope.i].IsInternationalUser__c;
+                   }
+            }
+            
+            
+            //alert('Origin : ' +$scope.UserLocation.latitude +','+$scope.UserLocation.longitude + '===>Desc : ' +desLat + ',' + desLng);
+            var origin = {
+                lat: $scope.UserLocation.latitude ,
+                lng: $scope.UserLocation.longitude
+            };
+            var destination = {
+                lat: desLat,
+                lng: desLng
+            };
+            var userDestination = {
+                lat: $scope.orLat,
+                lng: $scope.orLng
+            };
+            //  alert('Origin : ' +$scope.UserLocation.latitude +','+$scope.UserLocation.longitude + '===>Desc : ' +desLat + ',' + desLng);
+            if($scope.UserLocation.latitude != null){
+                var service = new google.maps.DistanceMatrixService;
+                service.getDistanceMatrix({
+                    origins: [userDestination],
+                    destinations: [destination],
+                    travelMode: 'DRIVING',
+                    unitSystem: google.maps.UnitSystem.METRIC,
+                    avoidHighways: false,
+                    avoidTolls: false
+                }, function(response, status) {
+                    console.log(response.rows[0].elements[0]);
+                if(response.rows[0].elements[0].status !="ZERO_RESULTS"){
+                    console.log('$scope.Inter : ',$scope.Inter);
+                    $scope.distanceInBetween = response;
+                    //console.log($scope.distanceInBetween.rows[0].elements[0].distance.value+'Label'+"{!$Label.custLableMinimumDistance}")
+                    document.getElementById('checkIn_flag').value = true;
+                    
+            if(!($scope.Inter)){
+                    
+                    if($scope.distanceInBetween != null && $scope.distanceInBetween.rows != undefined && $scope.distanceInBetween.rows[0].elements[0].distance.value <= "{!$Label.custLableMinimumDistance}")
+                    {
+                        console.log( {!$Label.custLableMinimumDistance} +  ' + Total Distance from place :  ' + $scope.distanceInBetween.rows[0].elements[0].distance.value);
+                            document.getElementById('checkIn_flag').value = true;
+                    }     
+                    else 
+                        {
+                            console.log('Out of Check-Out zone');
+                            $('#warn').text('{!$Label.Cannout_check_out_Out_of_Check_Out_zone}');
+                            document.getElementById('checkIn_flag').value = false;
+                        }
+            }
+            if($scope.distanceInBetween == null)
+                {
+                    //alert('{!$Label.Loction_not_found_or_you_are_not_in_1km_range_of_destination_please_try_again}');
+                    document.getElementById('checkIn_flag').value = false;
+                    
+                    return;
+                } 
+                    
+            var d = 'true'; //$('#checkIn_flag').val();
+               
+            console.log('checkin flag : ',d);
+            if(d == 'true'){
+                
+                $('.spinner').removeClass('slds-hide');
+                $scope.data = {"CheckInLat":$scope.UserLocation.latitude,"CheckInLong":$scope.UserLocation.longitude,"eventId":id};
+                BeatPlanMapPageController.checkInMethod($scope.data,function(result, event){
+                  if(result[0] == 'SUCCESS'){
+                        
+                       //if(isCommunityUser =='Turkey Portal Business Partner Executive' || isCommunityUser =='Turkey Portal Business Partner Manager'){
+                          //  window.location.href = result[1]+'/turkeyemployee/apex/BeatPlanSecondAppPage?id='+id;
+                        //}else if(isCommunityUser =='Colambia and Brazil Portal User Partner User' || isCommunityUser == 'Colambia and Brazil Portal User Partner Executive'){
+                          //  window.location.href = result[1]+'/employee/apex/BeatPlanSecondAppPage?id='+id;
+                        //}else{
+                       //    window.location.href = result[1]+'/apex/BeatPlanSecondAppPage?id='+id;
+                       // }
+                        
+                      // window.location.href = result[1]+'/apex/BeatPlanSecondAppPage?id='+id;
+                      //  alert('{!$site.Prefix}')
+                       window.location.href = result[1]+'{!$site.Prefix}'+'/apex/BeatPlanSecondAppPage?id='+id;
+                    }else{
+                          
+                        $scope.showPopup('warning');
+                        $('#warn').text('{!translationObject.Checkin_Not_available_now__c}');
+                        //alert('{!translationObject.Checkin_Not_available_now__c}');
+                    }
+                });
+            }else{
+                $('#warn').text('{!translationObject.you_are_too_far_away_to_checkin__c}.');
+                $('.warning').removeClass('slds-hide');
+            }
+                }
+                    
+                    
+            
+                });
+            
+            } */
+        
+           //End - Sid
+            
+         
+            
+        } 
+        //CheckOut Method 
+        $scope.checkOut = function(id){
+            console.log('In Checkout function : ',id);
+            $('.spinner').removeClass('slds-hide');
+                $scope.data = {"CheckOutLat":$scope.UserLocation.latitude,"CheckOutLong":$scope.UserLocation.longitude,"eventId":id};
+            /*BeatPlanMapPageController.checkOutMethod($scope.data,function(result,event){
+                window.location.reload();
+            });*/
+            
+            BeatPlanMapPageController.checkOutMethodToGoIn($scope.data,function(result,event){
+                /*  if('{!isCommunityUser}'== 'true'){
+                            window.location.href = result[1]+'/turkeyemployee/apex/BeatPlanSecondAppPage?id='+id;
+                        }else{
+                             window.location.href = result[1]+'/apex/BeatPlanSecondAppPage?id='+id;
+                        }
+                        */
+                
+                /*  if(isCommunityUser =='Turkey Portal Business Partner Executive' || isCommunityUser =='Turkey Portal Business Partner Manager'){
+                            window.location.href = result[1]+'/turkeyemployee/apex/BeatPlanSecondAppPage?id='+id;
+                        }else if(isCommunityUser =='Colambia and Brazil Portal User Partner User'){
+                            window.location.href = result[1]+'/employee/apex/BeatPlanSecondAppPage?id='+id;
+                        }else{
+                           window.location.href = result[1]+'/apex/BeatPlanSecondAppPage?id='+id;
+                        }*/
+                //window.location.href = result[1]+'/apex/BeatPlanSecondAppPage?id='+id;
+                //window.location.href = result[1]+'/turkeyemployee/apex/BeatPlanSecondAppPage?id='+id;
+                console.log('result---',result[1]);
+                console.log('Data---',result[1]+'{!$site.Prefix}'+'/apex/BeatPlanSecondAppPage?id='+id);
+                window.location.href = result[1]+'{!$site.Prefix}'+'/apex/BeatPlanSecondAppPage?id='+id;
+            });
+            
+            
+        }
+
+        //Update event
+        $scope.updateEvent = function(type){
+            
+            $('.spinner').removeClass('slds-hide');
+            
+            $scope.data = {'startTime': new Date()/*$('#startTime').val()*/,'endTime':new Date()/*$('#endTime').val()*/,
+                            'reason':$('#reason').val(),'date':$('#clickDate').val(),'eventId':$('#eventId').val()}
+            
+            
+            BeatPlanMapPageController.updateCancelEvent(type,$scope.data,function(result,event){
+                location.reload();
+            });
+        }
+
+        });    
+
+
+
+        $(document).ready(function() {
+        console.log('Datepicker','{!curentLang}');
+        /*$('#clickDate').datepicker({
+            dateFormat: 'yy-mm-dd',
+            locale:'sp'
+        });*/
+        const lang = '{!curentLang}';
+        if(lang === 'tr'){
+           console.log('in false for turkey: ');
+           $('#clickDate').datepicker({
+               stepMinute: 5,
+               hourMin: 6,
+               hourMax: 21,
+               //timeFormat: '',
+               closeText: 'Close',
+               currentText: 'Today',
+               monthNames: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran', 'Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
+               monthNamesShort: ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+               dayNames: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'],
+               dayNamesShort: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+               dayNamesMin: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+               dateFormat: 'yy-mm-dd',
+               firstDay: 1,
+               isRTL: false
+           });
+        }else{
+        console.log('in false for turkey: ');
+        $('#clickDate').datepicker({
+           stepMinute: 5,
+           hourMin: 6,
+           hourMax: 21,
+           //timeFormat: '',
+           closeText: 'Close',
+           currentText: 'Today',
+           monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+           monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+           dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+           dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+           dayNamesMin: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
+           dateFormat: 'yy-mm-dd',
+           firstDay: 1,
+           isRTL: false
+        });}
+        });
+        function setIcon(){
+        setTimeout(function(){
+            $("#aljs-nextButton").find("use").attr("xlink:href","{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#right')}");
+            $("#aljs-prevButton").find("use").attr("xlink:href","{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#left')}");
+        }, 200);
+        }
+        $(window).load(function() {
+        // Animate loader off screen
+        $(".se-pre-con").fadeOut("slow");
+        });
+        </script>
+        <script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBRYqiA-p-B_zdWU5N4ac7DgEDWFWmZFlM&callback=myMap'></script>
+        </apex:page>

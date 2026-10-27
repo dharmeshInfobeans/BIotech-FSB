@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Parameter --></label>
+    <name>Parameter__c</name>
+    <picklistValues>
+        <masterLabel>CME - RTM</masterLabel>
+        <translation><!-- CME - RTM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer - New/Conversion</masterLabel>
+        <translation><!-- Customer - New/Conversion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Customer Category ST &amp; EA</masterLabel>
+        <translation><!-- Customer Category ST &amp; EA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Performance Team</masterLabel>
+        <translation><!-- High Performance Team --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Learn &amp; Growth Training</masterLabel>
+        <translation><!-- Learn &amp; Growth Training --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New/Customer Conversion</masterLabel>
+        <translation><!-- New/Customer Conversion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No of Active Customers</masterLabel>
+        <translation><!-- No of Active Customers --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Operation Discpline(OT)</masterLabel>
+        <translation><!-- Operation Discpline(OT) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Opex to Sales Ratio</masterLabel>
+        <translation><!-- Opex to Sales Ratio --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic Training Program(No of Dr.)</masterLabel>
+        <translation><!-- Phakic Training Program(No of Dr.) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product-Combination</masterLabel>
+        <translation><!-- Product-Combination --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product-Single</masterLabel>
+        <translation><!-- Product-Single --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Salesforce Reporting</masterLabel>
+        <translation><!-- Salesforce Reporting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Target vs Sales</masterLabel>
+        <translation><!-- Target vs Sales --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

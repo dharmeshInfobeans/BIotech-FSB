@@ -1,0 +1,103 @@
+.range-badge {
+    display: inline-flex;
+    align-items: center;
+    color: #3e3e3c;
+    background-color: #f3f3f3;
+    border: 1px solid #dddbda;
+    border-radius: 1rem;
+    padding: 0.15rem 0.75rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+}
+
+.filter-panel {
+    background-color: #fafaf9;
+    border: 1px solid #dddbda;
+    border-radius: 0.5rem;
+}
+
+.filter-panel-header {
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #dddbda;
+    border-radius: 0.5rem 0.5rem 0 0;
+    color: #3e3e3c;
+}
+
+.filter-panel-footer {
+    background-color: #f3f3f3;
+    border-top: 1px solid #dddbda;
+    border-radius: 0 0 0.5rem 0.5rem;
+}
+
+.filter-field lightning-button-icon {
+    margin-left: 0.25rem;
+    margin-bottom: 0.4rem;
+}
+
+.table-scroll-wrapper {
+    max-height: 60vh;
+    min-height: 43vh;
+    overflow-y: auto;
+    overflow-x: auto;
+    border-radius: 0.5rem;
+    border: 1px solid #dddbda;
+    opacity: 1;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.table-scroll-wrapper.is-loading {
+    opacity: 0.35;
+}
+
+table th,
+table td {
+    white-space: nowrap;
+}
+
+.role-col {
+    min-width: 11rem;
+    background-color: #f6f9fc;
+}
+
+.current-owner-col {
+    min-width: 10rem;
+}
+
+.owner-change-indicator {
+    display: inline-flex;
+    vertical-align: middle;
+    margin-left: 0.35rem;
+    cursor: default;
+    --sds-c-icon-color-foreground-default: #ffb75d;
+}
+
+.table-scroll-wrapper table {
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.table-scroll-wrapper thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #f2f2f4;
+    color: #3e3e3c;
+    font-weight: 700;
+    box-shadow: inset 0 -1px 0 #dddbda, 0 2px 2px -1px rgba(0, 0, 0, 0.12);
+}
+
+.table-scroll-wrapper thead th.role-col {
+    background-color: #eaf2fb;
+}
+
+.table-scroll-wrapper tbody tr:hover td {
+    background-color: #eef4fa;
+}
+
+.table-scroll-wrapper tbody td {
+    vertical-align: middle;
+}
+
+.empty-state lightning-icon {
+    --sds-c-icon-color-foreground-default: #c9c7c5;
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Check_for_the_Opportunity_Equipment_Opportunity_Type_Bundle_Equipment_Deal</name>
+        <label>Check for the Opportunity Equipment Opportunity Type = Bundle Equipment Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Update_Opportunity_Product</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Bundle_Equipment_Deal</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Opportunity__r.Equipment_Opportunity_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Bundle Equipment Deal</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Opportunity_Product_for_Bundle_Equipment_Deal</targetReference>
+            </connector>
+            <label>Bundle Equipment Deal</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Update Opportunity Product Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update Opportunity Product Record</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Opportunity_Product</name>
+        <label>Update Opportunity Product</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>PF_ASP__c</field>
+            <value>
+                <elementReference>$Record.Product_Group__r.PF_ASP__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product_ASP__c</field>
+            <value>
+                <elementReference>$Record.Product_Group__r.Product_ASP__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Product_MSP__c</field>
+            <value>
+                <elementReference>$Record.Product_Group__r.Product_MSP__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opportunity_Product_for_Bundle_Equipment_Deal</name>
+        <label>Update Opportunity Product for Bundle Equipment Deal</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Product_MSP__c</field>
+            <value>
+                <elementReference>$Record.Product_Group__r.Product_MSP__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_for_the_Opportunity_Equipment_Opportunity_Type_Bundle_Equipment_Deal</targetReference>
+        </connector>
+        <object>Opportunity_Product__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

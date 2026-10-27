@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>false</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Nominative</caseType>
+        <plural>true</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>false</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Accusative</caseType>
+        <plural>true</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>false</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Genitive</caseType>
+        <plural>true</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>false</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <caseValues>
+        <caseType>Dative</caseType>
+        <plural>true</plural>
+        <value><!-- Order --></value>
+    </caseValues>
+    <gender><!-- Neuter --></gender>
+    <layouts>
+        <layout>Order Layout</layout>
+        <sections>
+            <label><!-- Buyer Details --></label>
+            <section>Buyer Details</section>
+        </sections>
+        <sections>
+            <label><!-- Consignee Detail --></label>
+            <section>Consignee Detail</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Readonly PageLayout</layout>
+        <sections>
+            <label><!-- Buyer Details --></label>
+            <section>Buyer Details</section>
+        </sections>
+        <sections>
+            <label><!-- Consignee Details --></label>
+            <section>Consignee Details</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other details --></label>
+            <section>Other details</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Order Number --></nameFieldLabel>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>aktivieren Sie</label>
+        <name>Activate</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Reihenfolge aktivieren</label>
+        <name>Activate_Order</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Add Consignee --></label>
+        <name>Add_Consignee</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Produkte hinzufügen</label>
+        <name>Add_Products</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Add/Update Buyer --></label>
+        <name>Add_Update_Buyer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Buyer Selection Flow --></label>
+        <name>Buyer_Selection_Flow</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Stornieren</label>
+        <name>Cancel</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Auslehnung der Reihenfolge</label>
+        <name>Cancel_Order</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Frachtanfrage</label>
+        <name>Freight_Request</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Erzeugen Sie Proforma -Rechnung</label>
+        <name>Generate_Proforma_Invoice</name>
+    </quickActions>
+    <quickActions>
+        <aspect>Master</aspect>
+        <label>Verkaufsvertrag generieren</label>
+        <name>Generate_Sales_Contract</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Get Approximate Freight --></label>
+        <name>Get_Approximate_Freight</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Update Order Details --></label>
+        <name>Update_Order_Details</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- test --></label>
+        <name>test</name>
+    </quickActions>
+    <validationRules>
+        <errorMessage><!-- Approve the order to mark it as Advance Received --></errorMessage>
+        <name>Active_Order_before_marking_advance</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- On Active Order check box can not be changed. --></errorMessage>
+        <name>On_Active_Order_Check_Box_Cant_Changed</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This order already contains from a different plant. --></errorMessage>
+        <name>OrderPlant_Not_Change</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Order activation requires product selection. --></errorMessage>
+        <name>Order_Activation_Required_Products</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Order is already activated. --></errorMessage>
+        <name>Order_already_activated</name>
+    </validationRules>
+</CustomObjectTranslation>

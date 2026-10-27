@@ -1,0 +1,61 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" class="slds-modal slds-fade-in-open slds-modal_medium">
+
+        <div class="slds-modal__container">
+
+            <button class="slds-button slds-button_icon slds-modal__close" onclick={handleClose}>
+                <lightning-icon icon-name="utility:close" size="small"></lightning-icon>
+            </button>
+
+            <div class="slds-modal__header">
+                <h2 class="slds-text-heading_medium">
+                    {labels.Feedback_Approval__c}
+                </h2>
+            </div>
+
+            <div class="slds-modal__content slds-p-around_medium">
+
+                <template if:true={isLoading}>
+                    <div class="spinner-container">
+                        <lightning-spinner alternative-text={labels.Loading__c} size="medium"></lightning-spinner>
+                    </div>
+                </template>
+                <template if:false={isLoading}>
+                    <template if:true={hasData}>
+                        <div class="scrollable-table">
+                        <lightning-datatable class="hide_Column" key-field="workItemId" data={data} columns={columns}
+                            oncellchange={handleCellChange} draft-values={draftValues} onrowaction={handleRowAction}
+                            hide-checkbox-column="true" suppress-bottom-bar>
+                        </lightning-datatable>
+                        </div>
+                    </template>
+
+                    <template if:false={hasData}>
+                        <div class="slds-align_absolute-center slds-p-around_large">
+                            <div class="slds-text-align_center">
+                                <lightning-icon icon-name="utility:info" size="large"></lightning-icon>
+                                <p class="slds-m-top_medium slds-text-heading_medium">
+                                    {labels.No_Feedback_Approval_Found__c}
+                                </p>
+                            </div>
+                        </div>
+                    </template>
+                </template>
+            </div>
+
+            <div class="slds-modal__footer">
+
+                <lightning-button label={labels.Cancel__c} onclick={handleClose}></lightning-button>
+
+                <template if:true={showSubmitButton}>
+                    <lightning-button label={labels.Submit__c} variant="brand" onclick={handleSubmit} class="slds-m-left_small" disabled={isLoading}>
+                    </lightning-button>
+                </template>
+
+            </div>
+
+        </div>
+    </section>
+
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>

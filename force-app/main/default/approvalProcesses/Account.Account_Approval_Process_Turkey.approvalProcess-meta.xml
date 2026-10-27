@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Status__c</field>
+        <field>Sub_Status__c</field>
+        <field>Temprary_Id__c</field>
+        <field>region__c</field>
+        <field>Country_Key__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <type>userHierarchyField</type>
+            </approver>
+        </assignedApprover>
+        <label>Step 1</label>
+        <name>Step_1</name>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>evrena@biotechhealthcare.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>OwnerId = &apos;GIRAY BABATAS&apos;  ||  
+OwnerId = &apos;VOLKAN KILIC&apos;</formula>
+        </entryCriteria>
+        <label>Step 2</label>
+        <name>Step_2</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+    </approvalStep>
+    <emailTemplate>unfiled$public/Account_Approval_for_Turkey</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND( OR( RecordType.DeveloperName == &apos;Distributor_T&apos;, 
+          RecordType.DeveloperName == &apos;Doctor_T&apos; 
+       ), 
+      OR( ISPICKVAL(Sub_Status__c, &apos;Not Submitted&apos;), 
+          ISPICKVAL(Sub_Status__c, &apos;Rejected By Approver 1&apos;) 
+      ), 
+      NOT(ISNULL(Approver_1__c)), 
+      ISPICKVAL(Status__c, &apos;Draft&apos;)  
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Update_Account_Sub_Status_for_Approver2</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Set_Sub_Status_Field_To_Rejected_By_Ap1</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Set_Sub_Status_Field_To_Approver1</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Account Approval Process Turkey</label>
+    <nextAutomatedApprover>
+        <useApproverFieldOfRecordOwner>false</useApproverFieldOfRecordOwner>
+        <userHierarchyField>Manager</userHierarchyField>
+    </nextAutomatedApprover>
+    <processOrder>7</processOrder>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

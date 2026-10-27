@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Package Range --></label>
+    <name>Package_Range__c</name>
+    <picklistValues>
+        <masterLabel>0-2000</masterLabel>
+        <translation><!-- 0-2000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>0-2k</masterLabel>
+        <translation><!-- 0-2k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1000 - 1500</masterLabel>
+        <translation><!-- 1000 - 1500 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10001-12000</masterLabel>
+        <translation><!-- 10001-12000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10k-12k</masterLabel>
+        <translation><!-- 10k-12k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12001-14000</masterLabel>
+        <translation><!-- 12001-14000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12k-14k</masterLabel>
+        <translation><!-- 12k-14k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>13k-15k</masterLabel>
+        <translation><!-- 13k-15k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14001-16000</masterLabel>
+        <translation><!-- 14001-16000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14k-16k</masterLabel>
+        <translation><!-- 14k-16k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1500 - 2000</masterLabel>
+        <translation><!-- 1500 - 2000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15k -18k</masterLabel>
+        <translation><!-- 15k -18k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>15k-20k</masterLabel>
+        <translation><!-- 15k-20k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16001-20000</masterLabel>
+        <translation><!-- 16001-20000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16k-20k</masterLabel>
+        <translation><!-- 16k-20k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>18k - 20k</masterLabel>
+        <translation><!-- 18k - 20k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1k-2k</masterLabel>
+        <translation><!-- 1k-2k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2.501,00-3.500,00</masterLabel>
+        <translation><!-- 2.501,00-3.500,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2000 - 2500</masterLabel>
+        <translation><!-- 2000 - 2500 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2000 - 4000</masterLabel>
+        <translation><!-- 2000 - 4000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20001-25000</masterLabel>
+        <translation><!-- 20001-25000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2001-4000</masterLabel>
+        <translation><!-- 2001-4000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20k-25k</masterLabel>
+        <translation><!-- 20k-25k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>22k - 24k</masterLabel>
+        <translation><!-- 22k - 24k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2500 - 3000</masterLabel>
+        <translation><!-- 2500 - 3000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>25k - 30k</masterLabel>
+        <translation><!-- 25k - 30k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>28k - 30k</masterLabel>
+        <translation><!-- 28k - 30k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2k-4k</masterLabel>
+        <translation><!-- 2k-4k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3000 - 3500</masterLabel>
+        <translation><!-- 3000 - 3500 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>3500 - 4000</masterLabel>
+        <translation><!-- 3500 - 4000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>35k - 45k</masterLabel>
+        <translation><!-- 35k - 45k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4000 - 8000</masterLabel>
+        <translation><!-- 4000 - 8000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4001-6000</masterLabel>
+        <translation><!-- 4001-6000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4k-5k</masterLabel>
+        <translation><!-- 4k-5k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4k-6k</masterLabel>
+        <translation><!-- 4k-6k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>500 - 1000</masterLabel>
+        <translation><!-- 500 - 1000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50k - 60k</masterLabel>
+        <translation><!-- 50k - 60k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>5k - 7k</masterLabel>
+        <translation><!-- 5k - 7k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6001-8000</masterLabel>
+        <translation><!-- 6001-8000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>658,00-1.200,00</masterLabel>
+        <translation><!-- 658,00-1.200,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6k-7k</masterLabel>
+        <translation><!-- 6k-7k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6k-8k</masterLabel>
+        <translation><!-- 6k-8k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8001-10000</masterLabel>
+        <translation><!-- 8001-10000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>80k - 90k</masterLabel>
+        <translation><!-- 80k - 90k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8k - 10k</masterLabel>
+        <translation><!-- 8k - 10k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8k-9k</masterLabel>
+        <translation><!-- 8k-9k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>90k - 100k</masterLabel>
+        <translation><!-- 90k - 100k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Above 4000</masterLabel>
+        <translation><!-- Above 4000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 1201,00 - R$ 2.500,00</masterLabel>
+        <translation><!-- R$ 1201,00 - R$ 2.500,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 2.501,00 - R$ 3.500,00</masterLabel>
+        <translation><!-- R$ 2.501,00 - R$ 3.500,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 3.501,00 - R$ 4.000,00</masterLabel>
+        <translation><!-- R$ 3.501,00 - R$ 4.000,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 4.001,00 - R$ 4.500,00</masterLabel>
+        <translation><!-- R$ 4.001,00 - R$ 4.500,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 4.501,00 - R$ 5.200,00</masterLabel>
+        <translation><!-- R$ 4.501,00 - R$ 5.200,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 5.201,00 - R$ 6.000,00</masterLabel>
+        <translation><!-- R$ 5.201,00 - R$ 6.000,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 6.001,00 - R$ 6.800,00</masterLabel>
+        <translation><!-- R$ 6.001,00 - R$ 6.800,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 6.801,00 -R$ R$ 7.500,00</masterLabel>
+        <translation><!-- R$ 6.801,00 -R$ R$ 7.500,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 658,00 - R$ 1.200,00</masterLabel>
+        <translation><!-- R$ 658,00 - R$ 1.200,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 7501,00 - R$ 9.000,00</masterLabel>
+        <translation><!-- R$ 7501,00 - R$ 9.000,00 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R$ 9.001,00 - R$ 15.000,00</masterLabel>
+        <translation><!-- R$ 9.001,00 - R$ 15.000,00 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

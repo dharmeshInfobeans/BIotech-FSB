@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_PF_ASP__c</fullName>
+    <formula>PF_ASP__c  *  Quantity__c</formula>
+    <inlineHelpText>SalesPrice * Quantity</inlineHelpText>
+    <label>Total PF ASP</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

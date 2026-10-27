@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Meeting Type --></label>
+    <name>Meeting_Type__c</name>
+    <picklistValues>
+        <masterLabel>CME-RTM</masterLabel>
+        <translation><!-- CME-RTM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Performance Team</masterLabel>
+        <translation><!-- High Performance Team --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Learn &amp; Growth Training</masterLabel>
+        <translation><!-- Learn &amp; Growth Training --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Visit Report</masterLabel>
+        <translation><!-- Visit Report --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

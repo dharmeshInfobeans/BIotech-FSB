@@ -1,0 +1,130 @@
+<aura:component
+                controller="TargetAndPlanningController"
+                implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction"
+                access="global"
+                >
+    <aura:attribute name="targetMonth" type="String" required="true" default=""/> <!--REQUIRED Attribute -->
+    <aura:attribute name="targetYear" type="Integer" />
+    <aura:attribute name="endDayForPlanning" type="Decimal" description="Last Day for sales planning"/>
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="target" type="Object" />
+    <aura:attribute name="account" type="Object" />
+    <aura:attribute name="planned" type="Object[]"  />
+    <aura:attribute name="mp" type="Object" />
+    <aura:attribute name="mpps" type="Object[]" default="[]" />
+    <aura:attribute name="allRowCellIds" type="Object[]" default="[]"/>
+    <aura:attribute name="clonesMpps" type="Object[]" default="[]" />
+    <aura:attribute name="mppsApex" type="Object"  />
+    <aura:attribute name="showExistingMPPs" type="Boolean" default="false" />
+    <aura:attribute name="renderingDone" type="Boolean" default="true" />
+    <aura:attribute name="testMap" type="Map" default="{}" description="It holds existing Mpp value which is saved in database in the form -->(InputHtmlId vs MppValue)"/>
+    <aura:attribute name="testMap2" type="Map" default="{}" />
+    <aura:attribute name="allRowIdAgainstProd" type="Object" default="{}" />
+    <aura:attribute name="totalTarget" type="Object[]" default="[]"  />
+    <aura:attribute name="cellIdValueMap" type="Map" default="{}" />
+    <aura:attribute name="targetElemntHTMLIdMap" type="Map" default="{}" />
+    <aura:attribute name="cloneMap" type="Map" default="{}" />
+    <aura:attribute name="showError" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="toggleIcon" type="Boolean" default="true" />
+    <aura:attribute name="errorMessage" type="String" default="" />
+    <aura:handler name="init" value="{!this}" action="{! c.doInit }" />
+    <aura:handler name="render" value="{!this}" action="{!c.onRender}"/>
+    <aura:handler name="change" value="{! v.toggleIcon}" action="{!c.onToggleValueChangeHandler}"/>
+    <aura:attribute name="monthMap" type="Map" default="{ 0: 'Jan', 1: 'Feb',2: 'Mar',3: 'Apr',4: 'May',5: 'Jun',6: 'Jul',7: 'Aug',8: 'Sep',9: 'Oct',10: 'Nov',11: 'Dec' }" />
+    <aura:attribute name="nextMonth" type="String" description="This attribute will be used in tab selection for parent component" />
+    <aura:attribute name="prevMonth" type="String" description="This attribute will be used in tab selection for parent component" />
+    <aura:attribute name="lockOrUnlockThisTab" type="Boolean" description="This value will be passed from parent and is used to enable or disable this tab" />
+    <!--<aura:registerEvent name="switchTab" type="c:showTab"/>--><!-- THIS IS NOT USED NOW -->
+    <aura:registerEvent name="switchTabIntEvt" type="c:showTabIntEvt"/>
+
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <lightning:navigation aura:id="navService" />
+    
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner  alternativeText="Loading........"/> 
+    </aura:if>
+    <aura:if isTrue="{! v.showError }">
+        <ui:message title="Error" severity="error" closable="true">
+            {!v.errorMessage}
+        </ui:message>
+        <aura:set attribute="else">
+            
+            
+            <!--<div class="slds-align_absolute-center" onclick="{! c.onIconClick}">-->
+             <!--   <lightning:icon iconName="{! (v.toggleIcon) ? 'utility:lock' : 'action:password_unlock' }" size="small" alternativeText="Lock/Unlock Filled Data" title="Click to lock/unlock planned quantity which is saved" />-->
+            <!--</div><br/>-->
+            <div style="width: 95%; height:95%;" class="slds-scrollable_x slds-scrollable_y">
+                <table id="myTable"
+                       class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered " role="grid"
+                       >
+                    <thead>
+                        <tr class="slds-line-height_reset slds-text-heading--label">
+                            <th class="" scope="col">
+                                <div class="slds-truncate " title="Account Names">{!$Label.c.Accounts} </div>
+                            </th>
+                          
+                                  <th class="" scope="col">
+                                       <div class="slds-truncate " title="CE Rating"> {!$Label.c.CE_Rating} </div> 
+                                     
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate " title="CIS Rating"> {!$Label.c.CIS_Rating} </div>  
+                                   
+                                </th>   
+
+                            
+                            <aura:iteration items="{! v.target }" var="item" indexVar="rowCnt">
+                                <th class="" scope="col" >
+                                    <!--<div class="mypopover" onmouseout="{! c.onMouseOut }" onmouseover="{! c.onFocusHandler }" data-tprodid="{! item.Id }" data-tprodname="{! item.Name }" data-tprodtarget="{! item.Monthly_AOP__r[0].Target_Quantity__c }" >-->
+                                    <div  data-tprodid="{! item.Id }" data-tprodname="{! item.Name }" data-tprodtarget="{! item.Monthly_AOP__r[0].Target_Quantity__c }" >
+                                        <a href="" class="slds-text-align_center" data-prodid="{! item.Id }" onclick="{! c.onProductNameClick }"><h4 class="slds-text-align_center">{! item.Name } </h4> </a>
+                                        <a href="" data-aopid="{! item.Monthly_AOP__r[0].Id }" onclick="{! c.onAOPClick }"><h4>MOP : {!item.Monthly_AOP__r[0].Target_Quantity__c}</h4> </a>
+                                        <!--<output value="{item.Monthly_AOP__r.Target_Amount__c}"/>-->
+                                         <a href="" data-aopid="{! item.Monthly_AOP__r[0].Id }" onclick="{! c.onAOPClick }"><h5 id="{! item.Id + item.Monthly_AOP__r[0].Id }"  class="mypopover slds-text-color_error"  data-prodname="{! item.Name }" data-totalprodtarget="{! item.Monthly_AOP__r[0].Target_Quantity__c }" >Remaining: {! (item.Monthly_AOP__r[0].Target_Quantity__c) ? (item.Monthly_AOP__r[0].Target_Quantity__c) : '' } </h5></a>
+                                    </div>
+                                    
+                                </th>
+                            </aura:iteration>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <aura:iteration items="{! v.account }" var="mp" indexVar="accindex">
+                            <tr  class="slds-hint-parent" id="{! mp.Account__r.Id }">
+                                <td data-label="Account Name" role="gridcell">
+                                   <div class="slds-truncate" title="{! (mp.Account__r.Status__c == 'Draft') ? 'Draft Account: '+mp.Account__r.Name : 'Activated Account: '+mp.Account__r.Name }"><strong><a href="" class="{! (mp.Account__r.Status__c == 'Draft') ? 'draftaccountcolor' : 'slds-text-color_success' }" data-accid="{! mp.Account__r.Id }" onclick="{! c.onAccountNameClick }">{!mp.Account__r.Name}</a></strong></div>
+                                </td>
+                                <!-- ((mp.Account__r.RecordType.DeveloperName == 'Doctor_D') ? mp.Account__r.CE_Rating__c : '') -->
+                                <td data-label="CE Rating" role="gridcell">
+                                   <strong> <div class="slds-truncate slds-text-color_error" title="{! 'CE Rating: '+mp.Account__r.CE_Rating__c }">{! mp.Account__r.CE_Rating__c  }</div></strong>
+                                </td>
+                                <td data-label="CIS Rating" role="gridcell">
+                                   <strong> <div class="slds-truncate slds-text-color_error" title="{! 'CIS Rating: '+mp.Account__r.CIS_Rating__c }">{! mp.Account__r.CIS_Rating__c  }</div></strong>
+                                </td>
+                          
+                                <aura:iteration items="{! v.target }" var="prod" indexVar="index">
+                                    <td role="gridcell" >
+                                        <input title="{! 'Account Name-->'+ mp.Account__r.Name + ' &#13;CE Rating-->'+mp.Account__r.CE_Rating__c + ' &#13;CIS Rating-->'+mp.Account__r.CIS_Rating__c  }" type="number" min="0" id="{! prod.Id+' '+mp.Account__c+' '+mp.Id}" class="slds-input slds-truncate" data-prodtarget="{! prod.Monthly_AOP__r[0].Target_Quantity__c }" data-prodaopid="{! prod.Monthly_AOP__r[0].Id}" data-index="{!index}" data-prodid="{!prod.Id}" data-prodname="{!prod.Name}" data-accid="{! mp.Account__r.Id }" data-mpid="{! mp.Id }" data-mpname="{! mp.Name }" data-month="{! mp.Month__c }" data-year="{! mp.Year__c }" data-ownerid="{! mp.Account__r.OwnerId }" data-finyeardate="{! mp.Financial_Year_Date__c }" data-accsapcode="{! mp.Account__r.SAP_Code__c}" data-prodcode="{! prod.Dummy_Product_Code__c}" onchange ="{! c.onInputChange }" />
+                                    </td>
+                                </aura:iteration>
+                                
+                            </tr>
+                        </aura:iteration>
+                    </tbody>
+                </table><br/>
+                
+                <div class="slds-align_absolute-center">
+                    <lightning:button  variant="brand" label="{!$Label.c.Save}" onclick="{! c.onSave }"/>
+                    <lightning:button variant="brand" label="{!$Label.c.Refresh}" onclick="{! c.onResetHandler }"/>
+                    <!--<lightning:button variant="brand" label="Fill" onclick="{! c.onFill }"/>-->
+                </div>
+                
+            </div>
+            
+            
+        </aura:set>
+    </aura:if>
+    
+</aura:component>

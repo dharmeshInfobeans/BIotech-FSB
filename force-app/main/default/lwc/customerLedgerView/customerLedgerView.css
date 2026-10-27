@@ -1,0 +1,68 @@
+.buttoncls{
+    display: flex;
+    align-items: center;
+    height: 79px;
+}
+.container {
+    display: flex;
+}
+.searchTextBoxClass{
+    width: 70%;
+    padding-left: 7px;
+    margin-left: 11px;
+    display: flex;
+}
+.box {
+    /* flex: 1;
+    padding: 10px;
+    margin: 5px;
+    text-align: center; */
+
+    flex: 1; /* This will make the boxes take up equal space */
+    /* padding: 10px; */
+    margin: 0 5px; /* Adjust margin to remove space from top and bottom */
+}
+.tablecontainer {
+    height: 400px;
+    overflow-y: auto;
+}
+
+.loader {
+    text-align: center;
+    padding: 10px;
+}
+ .table-container {
+    overflow-x: auto;
+}
+/*
+.slds-table_cell-buffer {
+    width: 100%;
+}
+
+.slds-table th, .slds-table td {
+    white-space: nowrap;
+}
+
+.slds-table th:first-child, .slds-table td:first-child {
+    width: 30%;
+}
+
+.slds-table th:nth-child(2), .slds-table td:nth-child(2) {
+    width: 30%;
+}
+
+.slds-table th:nth-child(3), .slds-table td:nth-child(3) {
+    width: 40%;
+}
+
+.slds-table th, .slds-table td {
+    text-align: left;
+}
+
+.slds-table th .slds-truncate, .slds-table td .slds-truncate {
+    max-width: none;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+} */

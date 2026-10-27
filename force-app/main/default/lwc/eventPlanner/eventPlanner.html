@@ -1,0 +1,859 @@
+<template>
+    <!-- Spinner -->
+    <template if:true={spinner}>
+        <c-spinner></c-spinner>
+    </template>
+
+    <template if:false={spinner}>
+        <template if:true={labels}>
+            <!-- Header Section (only show when calendar is visible) -->
+            <template if:true={showCalendar}>
+                <div class="header-section">
+                    <div class="slds-grid slds-wrap slds-grid_align-center header-grid">
+                        <!-- Empty Space for Centering -->
+                        <div class="slds-col slds-size_2-of-12"></div>
+
+                        <!-- Title -->
+                        <div class="slds-col slds-size_8-of-12">
+                            <h1 class="slds-text-heading_medium header-title-centered">
+                                {labels.Header__c}
+                            </h1>
+                        </div>
+
+                        <!-- Refresh Button -->
+                        <div class="slds-col slds-size_2-of-12 slds-text-align_right">
+                            <div class="icon-button-wrapper" onclick={handleRefresh} role="button" tabindex="0" aria-label="Refresh Events">
+                                <lightning-icon
+                                    icon-name="utility:refresh"
+                                    alternative-text="Refresh"
+                                    title="Refresh Events"
+                                    size="small"
+                                    variant="inverse">
+                                </lightning-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- User Selector and Add Button (only show when calendar is visible) -->
+            <template if:true={showCalendar}>
+                <div class="slds-p-horizontal_small slds-p-vertical_x-small controls-section">
+                <div class="slds-grid slds-wrap slds-grid_vertical-align-center slds-grid_align-spread">
+                    <!-- User Selector -->
+                    <div class="user-selector-wrapper">
+                        <lightning-combobox
+                            name="user"
+                            label=""
+                            value={skey}
+                            options={usersOptions}
+                            onchange={handleUserChange}
+                            variant="label-hidden"
+                            placeholder="Select User">
+                        </lightning-combobox>
+                    </div>
+
+                    <!-- Action Buttons with Help Text -->
+                    <div class="slds-grid slds-grid_vertical-align-center action-buttons-wrapper">
+                        <!-- Help Text -->
+                        <div class="help-text-badge slds-m-right_small">
+                            <lightning-icon
+                                icon-name="utility:info"
+                                alternative-text="Info"
+                                size="xx-small"
+                                class="help-icon">
+                            </lightning-icon>
+                            <span class="help-text-label">{helpLable}</span>
+                        </div>
+
+                        <!-- Login Warning Badge - Only show when user is NOT logged in -->
+                        <template if:false={Activitydata}>
+                            <div class="warning-badge slds-m-right_small">
+                                <lightning-icon
+                                    icon-name="utility:warning"
+                                    alternative-text="Warning"
+                                    size="xx-small"
+                                    class="warning-icon">
+                                </lightning-icon>
+                                <span class="warning-text-label">{getloginlogoutlabel.Kindly_do_the_Login_before_performing_th__c}</span>
+                            </div>
+                        </template>
+
+                        <!-- Today Button - Only show when not viewing current month -->
+                        <template if:true={shouldShowTodayButton}>
+                            <lightning-button
+                                variant="neutral"
+                                label="Today"
+                                title="Go to Today"
+                                onclick={handleGoToToday}
+                                class="today-button-header slds-m-right_x-small">
+                            </lightning-button>
+                        </template>
+
+                        <!-- Add Event Button -->
+                        <div class={addButtonWrapperClass} onclick={handleAddEvent} role="button" tabindex="0" aria-label="Add New Event">
+                            <lightning-icon
+                                icon-name="utility:add"
+                                alternative-text="Add Event"
+                                title="Add New Event"
+                                size="small"
+                                variant="inverse">
+                            </lightning-icon>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </template>
+
+            <!-- Customer Lookup View -->
+            <template if:true={showCustomerLookup}>
+                <c-event-planner-customer-lookup
+                    user-region-select-list={userRegionSelectList}
+                    user-zone-select-list={userZoneSelectList}
+                    labels={labels}>
+                </c-event-planner-customer-lookup>
+            </template>
+
+            <!-- Event Creation View -->
+            <template if:true={showEventCreation}>
+                <c-event-planner-create-event
+                    date={formattedDateForEvent}
+                    account-id={selectedAccountId}
+                    event-type={selectedEventType}
+                    labels={labels}
+                    cisrating={selectedCisRating}
+                    cerating={selectedCeRating}
+                    contactoption={selectedContactOptions}
+                    ownerid={skey}
+                    bdplanlist={bdplanlist}
+                    accountname={selectedAccountName}
+                    productdata={selectedProductData}
+                    productfamily={selectedProductFamily}
+                    productgroup={selectedProductGroup}
+                    contactname={selectedContactName}
+                    show-data-attribute={selectedShowDataAttribute}
+                    oncancel={handleEventCancelled}
+                    oneventsaved={handleEventSaved}>
+                </c-event-planner-create-event>
+            </template>
+
+            <!-- Calendar Grid -->
+            <template if:true={showCalendar}>
+            <div class="slds-p-horizontal_small calendar-container">
+                <div class="slds-datepicker" role="dialog" aria-label="Calendar">
+                    <!-- Month/Year Navigation -->
+                    <div class="slds-datepicker__filter slds-grid">
+                        <div class="slds-datepicker__filter_month slds-grid slds-grid_align-spread slds-grow">
+                            <!-- Previous Month Button -->
+                            <div class="slds-align-middle">
+                                <lightning-button-icon
+                                    icon-name="utility:left"
+                                    alternative-text="Previous Month"
+                                    title="Previous Month"
+                                    onclick={handlePrevMonth}>
+                                </lightning-button-icon>
+                            </div>
+
+                            <!-- Month and Year -->
+                            <h2 class="slds-align-middle month-year-header">
+                                {currentMonthName} {currentYear}
+                            </h2>
+
+                            <!-- Next Month Button -->
+                            <div class="slds-align-middle">
+                                <lightning-button-icon
+                                    icon-name="utility:right"
+                                    alternative-text="Next Month"
+                                    title="Next Month"
+                                    onclick={handleNextMonth}>
+                                </lightning-button-icon>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Calendar Table -->
+                    <table class="slds-datepicker__month" role="grid">
+                        <thead>
+                            <tr>
+                                <th scope="col"><abbr title="Monday">Mon</abbr></th>
+                                <th scope="col"><abbr title="Tuesday">Tue</abbr></th>
+                                <th scope="col"><abbr title="Wednesday">Wed</abbr></th>
+                                <th scope="col"><abbr title="Thursday">Thu</abbr></th>
+                                <th scope="col"><abbr title="Friday">Fri</abbr></th>
+                                <th scope="col"><abbr title="Saturday">Sat</abbr></th>
+                                <th scope="col"><abbr title="Sunday">Sun</abbr></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={calendarWeeks} for:item="week">
+                                <tr key={week.key}>
+                                    <template for:each={week.days} for:item="day">
+                                        <td
+                                            key={day.key}
+                                            class={day.cssClass}
+                                            data-date={day.date}
+                                            onclick={handleDateSelect}
+                                            role="gridcell"
+                                            aria-selected={day.isToday}
+                                            title={day.holidayName}>
+                                            <div class="calendar-cell-content">
+                                                <span class="day-number">{day.dayNumber}</span>
+
+                                                <!-- Holiday Indicator -->
+                                                <template if:true={day.isHoliday}>
+                                                    <span class="holiday-indicator" title={day.holidayName}>H</span>
+                                                </template>
+
+                                                <!-- Weekly Off Indicator -->
+                                                <template if:true={day.isWeeklyOff}>
+                                                    <span class="weekly-off-indicator" title={day.holidayName}>WO</span>
+                                                </template>
+
+                                                <!-- Event Count Badge (always show if there are events) -->
+                                                <template if:true={day.totalEvents}>
+                                                    <span class="event-count-badge">{day.totalEvents}</span>
+                                                </template>
+                                            </div>
+                                        </td>
+                                    </template>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Selected Date Header -->
+            <template if:true={dateOnHeader}>
+                <div class="date-header slds-text-align_center slds-p-vertical_small">
+                    <h2 class="slds-text-heading_small">{dateOnHeader}</h2>
+                </div>
+            </template>
+
+            <!-- Legend Section-->
+            <div class="slds-p-horizontal_small slds-p-vertical_small">
+                <div class="slds-grid slds-grid_align-center">
+                    <div class="slds-box slds-box_xx-small legend-container" style="background: #f3f3f3; border-color: #dddbda;">
+
+                        <!-- Row 1: Planned and Checked-In/Out -->
+                        <div class="legend-row">
+                            <!-- Planned Category -->
+                            <div class="legend-category">
+                                <span class="legend-category-title">Planned:</span>
+                                <div class="legend-items-group">
+                                    <div class="legend-item">
+                                        <span class="legend-box onsite-planned"></span>
+                                        <span class="legend-text">Onsite</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-box offsite-planned"></span>
+                                        <span class="legend-text">Offsite</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-box online-planned"></span>
+                                        <span class="legend-text">Online</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Checked-In/Out Category -->
+                            <div class="legend-category">
+                                <span class="legend-category-title">Checked-In/Out:</span>
+                                <div class="legend-items-group">
+                                    <div class="legend-item">
+                                        <span class="legend-box onsite-checked"></span>
+                                        <span class="legend-text">Onsite</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-box offsite-checked"></span>
+                                        <span class="legend-text">Offsite</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-box online-checked"></span>
+                                        <span class="legend-text">Online</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Row 2: Leave/Holiday and Record Types -->
+                        <div class="legend-row">
+                            <!-- Leave/Holiday Category -->
+                            <div class="legend-category">
+                                <span class="legend-category-title">Leave/Holiday:</span>
+                                <div class="legend-items-group">
+                                    <div class="legend-item">
+                                        <span class="legend-box leave-box"></span>
+                                        <span class="legend-text">Leave</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-indicator holiday-indicator">H</span>
+                                        <span class="legend-text">Holiday</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <span class="legend-indicator weekly-off-indicator">WO</span>
+                                        <span class="legend-text">Weekly Off</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Record Types Category -->
+                            <div class="legend-category">
+                                <span class="legend-category-title">Record Types:</span>
+                                <div class="legend-items-group">
+                                    <div class="legend-item">
+                                        <lightning-icon icon-name="standard:lead" size="x-small" class="legend-icon"></lightning-icon>
+                                        <span class="legend-text">Prospect</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <lightning-icon icon-name="standard:opportunity" size="x-small" class="legend-icon"></lightning-icon>
+                                        <span class="legend-text">Opportunity</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <lightning-icon icon-name="standard:account" size="x-small" class="legend-icon"></lightning-icon>
+                                        <span class="legend-text">Account</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Section -->
+            <div class="slds-p-horizontal_small slds-p-bottom_medium events-section">
+                <!-- Today's Events -->
+                <template if:true={activeEvent}>
+                    <div class="slds-grid slds-wrap slds-gutters_small event-cards-grid">
+                        <template for:each={todaysEventWithCardClass} for:item="event">
+                            <!-- Compact card for Holiday/Leave/Out of Office events -->
+                            <template if:true={event.OtherType}>
+                                <div key={event.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 event-card-wrapper">
+                                    <article class={event.cardColorClass} style="cursor: pointer;" data-id={event.Id} onclick={handleEventClick}>
+                                        <div class="slds-card__body slds-card__body_inner compact-event-card">
+                                            <div class="compact-event-title">
+                                                <strong>{event.Subject}</strong>
+                                            </div>
+                                            <div id="div1"  class="compact-event-status">
+                                                {event.stage} 
+                                            </div>
+                                            <template if:true={event.ApprovalStatus}>
+                                                <div class="compact-event-approval">
+                                                    <template if:true={event.IsApproved}>
+                                                        <lightning-badge label="Approved" variant="success"></lightning-badge>
+                                                    </template>
+                                                    <template if:false={event.IsApproved}>
+                                                        <lightning-badge label={event.ApprovalStatus} variant="warning"></lightning-badge>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </article>
+                                </div>
+                            </template>
+
+                            <!-- Regular card for Customer Visit events -->
+                            <template if:false={event.OtherType}>
+                                <div key={event.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 event-card-wrapper">
+                                    <article class={event.cardColorClass} style="cursor: pointer;" data-id={event.Id} onclick={handleEventClick}>
+                                        <div class="slds-card__header">
+                                            <h3 class="slds-text-heading_small slds-truncate" title={event.AccountName}>
+                                                <strong>{event.AccountName}</strong>
+                                            </h3>
+                                            <!-- Record Type Icon Badge -->
+                                            <template if:true={event.objectname}>
+                                                <div class="record-type-badge">
+                                                    <lightning-icon icon-name="standard:lead" size="small" alternative-text="Prospect" title="Prospect"></lightning-icon>
+                                                </div>
+                                            </template>
+                                            <template if:false={event.objectname}>
+                                                <div class="record-type-badge">
+                                                    <template if:true={event.isOpportunity}>
+                                                        <lightning-icon icon-name="standard:opportunity" size="small" alternative-text="Opportunity" title="Opportunity"></lightning-icon>
+                                                    </template>
+                                                    <template if:false={event.isOpportunity}>
+                                                        <lightning-icon icon-name="standard:account" size="small" alternative-text="Account" title="Account"></lightning-icon>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        <div class="slds-card__body slds-card__body_inner">
+                                        <div class="slds-text-body_small">
+                                            <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <strong>Subject</strong>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    {event.Subject}
+                                                </div>
+                                            </div>
+                                            <template if:true={event.Product}>
+                                                <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <strong>Product Name</strong>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        {event.Product}
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <strong>Stage</strong>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    {event.Status}
+                                                </div>
+                                            </div>
+                                            <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <strong>Status</strong>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    {event.stage}
+                                                </div>
+                                            </div>
+                                            <!-- Added by Priyam Shah - Show Approval Status for Leave/Out of Office events -->
+                                            <template if:true={event.OtherType}>
+                                                <template if:true={event.ApprovalStatus}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Approval Status</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <template if:true={event.IsApproved}>
+                                                                <lightning-badge label="Approved" variant="success"></lightning-badge>
+                                                            </template>
+                                                            <template if:false={event.IsApproved}>
+                                                                <lightning-badge label={event.ApprovalStatus} variant="warning"></lightning-badge>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.meetimgType}>
+                                                <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <strong>Meeting Type</strong>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        {event.meetimgType}
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            <template if:false={event.objectname}>
+                                                <template if:false={event.isOpportunity}>
+                                                    <template if:true={event.CallType}>
+                                                        <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                            <div class="slds-col slds-size_1-of-2">
+                                                                <strong>Call Type</strong>
+                                                            </div>
+                                                            <div class="slds-col slds-size_1-of-2">
+                                                                {event.CallType}
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small" aria-hidden="true" style="visibility: hidden;">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                                <strong>Spacer</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                                Spacer
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.isOpportunity}>
+                                                <template if:true={event.OpportunityAccountName}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Account Name</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.OpportunityAccountName}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.objectname}>
+                                                <template if:true={event.LeadAccountName}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Account Name</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.LeadAccountName}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                <template if:true={event.Leadstage}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Prospect Stage</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.Leadstage}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.isOpportunity}>
+                                                <template if:true={event.Leadstage}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Opportunity Stage</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.Leadstage}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            </template>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- Selected Date Events -->
+                <template if:true={selectedDateEventsView}>
+                    <div class="slds-grid slds-wrap slds-gutters_small">
+                        <template for:each={selectedDateEventsWithCardClass} for:item="event">
+                            <!-- Compact card for Holiday/Leave/Out of Office events -->
+                            <template if:true={event.OtherType}>
+                                <div key={event.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4 event-card-wrapper">
+                                    <article class={event.cardColorClass} style="cursor: pointer;" data-id={event.Id} onclick={handleEventClick}>
+                                        <div class="slds-card__body slds-card__body_inner compact-event-card">
+                                            <div class="compact-event-title">
+                                                <strong>{event.Subject}</strong>
+                                            </div>
+                                            <div  class="compact-event-status">
+                                                {event.stage}
+                                            </div>
+                                            <template if:true={event.ApprovalStatus}>
+                                                <div class="compact-event-approval">
+                                                    <template if:true={event.IsApproved}>
+                                                        <lightning-badge label="Approved" variant="success"></lightning-badge>
+                                                    </template>
+                                                    <template if:false={event.IsApproved}>
+                                                        <lightning-badge label={event.ApprovalStatus} variant="warning"></lightning-badge>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                    </article>
+                                </div>
+                            </template>
+
+                            <!-- Regular card for Customer Visit events -->
+                            <template if:false={event.OtherType}>
+                                <div key={event.Id} class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3 event-card-wrapper">
+                                    <article class={event.cardColorClass} style="cursor: pointer;" data-id={event.Id} onclick={handleEventClick}>
+                                        <div class="slds-card__header">
+                                            <h3 class="slds-text-heading_small slds-truncate" title={event.AccountName}>
+                                                <strong>{event.AccountName}</strong>
+                                            </h3>
+                                            <!-- Record Type Icon Badge -->
+                                            <template if:true={event.objectname}>
+                                                <div class="record-type-badge">
+                                                    <lightning-icon icon-name="standard:lead" size="small" alternative-text="Prospect" title="Prospect"></lightning-icon>
+                                                </div>
+                                            </template>
+                                            <template if:false={event.objectname}>
+                                                <div class="record-type-badge">
+                                                    <template if:true={event.isOpportunity}>
+                                                        <lightning-icon icon-name="standard:opportunity" size="small" alternative-text="Opportunity" title="Opportunity"></lightning-icon>
+                                                    </template>
+                                                    <template if:false={event.isOpportunity}>
+                                                        <lightning-icon icon-name="standard:account" size="small" alternative-text="Account" title="Account"></lightning-icon>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                        </div>
+                                        <div class="slds-card__body slds-card__body_inner">
+                                        <div class="slds-text-body_small">
+                                            <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <strong>Subject</strong>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    {event.Subject}
+                                                </div>
+                                            </div>
+                                            <template if:true={event.Product}>
+                                                <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <strong>Product Name</strong>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        {event.Product}
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <strong>Stage</strong>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    {event.stage}
+                                                </div>
+                                            </div>
+
+                                            <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    <strong>Status</strong>
+                                                </div>
+                                                <div class="slds-col slds-size_1-of-2">
+                                                    {event.Status}
+                                                </div>
+                                            </div>
+
+                                            <!-- Added by Priyam Shah - Show Approval Status for Leave/Out of Office events -->
+                                            <template if:true={event.OtherType}>
+                                                <template if:true={event.ApprovalStatus}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Approval Status</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <template if:true={event.IsApproved}>
+                                                                <lightning-badge label="Approved" variant="success"></lightning-badge>
+                                                            </template>
+                                                            <template if:false={event.IsApproved}>
+                                                                <lightning-badge label={event.ApprovalStatus} variant="warning"></lightning-badge>
+                                                            </template>
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.meetimgType}>
+                                                <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        <strong>Meeting Type</strong>
+                                                    </div>
+                                                    <div class="slds-col slds-size_1-of-2">
+                                                        {event.meetimgType}
+                                                    </div>
+                                                </div>
+                                            </template>
+                                            <template if:false={event.objectname}>
+                                                <template if:false={event.isOpportunity}>
+                                                    <template if:true={event.CallType}>
+                                                        <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                            <div class="slds-col slds-size_1-of-2">
+                                                                <strong>Call Type</strong>
+                                                            </div>
+                                                            <div class="slds-col slds-size_1-of-2">
+                                                                {event.CallType}
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small" aria-hidden="true" style="visibility: hidden;">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                                <strong>Spacer</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                                Spacer
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.isOpportunity}>
+                                                <template if:true={event.OpportunityAccountName}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Account Name</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.OpportunityAccountName}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.objectname}>
+                                                <template if:true={event.LeadAccountName}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Account Name</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.LeadAccountName}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                                <template if:true={event.Leadstage}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Prospect Stage</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.Leadstage}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                            <template if:true={event.isOpportunity}>
+                                                <template if:true={event.Leadstage}>
+                                                    <div class="slds-grid slds-wrap slds-gutters_xx-small">
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            <strong>Opportunity Stage</strong>
+                                                        </div>
+                                                        <div class="slds-col slds-size_1-of-2">
+                                                            {event.Leadstage}
+                                                        </div>
+                                                    </div>
+                                                </template>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </article>
+                            </div>
+                            </template>
+                        </template>
+                    </div>
+                </template>
+
+                <!-- No Events Message -->
+                <template if:true={noActiveEvent}>
+                    <div class="no-events-container slds-text-align_center slds-p-vertical_large">
+                        <lightning-icon
+                            icon-name="utility:info"
+                            size="large"
+                            alternative-text="No events"
+                            class="slds-m-bottom_small">
+                        </lightning-icon>
+                        <p class="slds-text-body_regular slds-text-color_weak">
+                            {labels.User_error__c}
+                        </p>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Edit Event Modal -->
+            <template if:true={showEditEventModal}>
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseModal}>
+                                <lightning-icon icon-name="utility:close" size="small" alternative-text="Close"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate">{eventObj.AccountName}</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <template if:true={otherType}>
+                                <lightning-input type="text" name="Subject" label={labels.Subject__c} value={eventObj.Subject} disabled></lightning-input>
+                                <lightning-input type="text" name="stage" label={labels.Status__c} value={eventObj.stage} disabled></lightning-input>
+                                <lightning-input type="text" name="CISRating" label={labels.CIS_Rating__c} value={eventObj.CISRating} disabled></lightning-input>
+                                <lightning-input type="date" name="ActivityDate" label={labels.Date__c} value={eventObj.ActivityDate} onchange={handleFieldChange}></lightning-input>
+                                <lightning-textarea name="DCR_Description__c" label={labels.notes__c} value={eventObj.Description} onchange={handleFieldChange}></lightning-textarea>
+                            </template>
+                            <template if:false={otherType}>
+                                <template if:true={eventObj.objectname}>
+                                    <div class="slds-text-align_right slds-m-bottom_small">
+                                        <button type="button" class="slds-button slds-button_brand" onclick={handleUpdateLead}>View Prospect Details</button>
+                                    </div>
+                                </template>
+                                <lightning-input type="text" name="AccountName" label={labels.Related_to__c} value={eventObj.AccountName} disabled></lightning-input>
+                                <lightning-input type="text" name="Subject" label={labels.Subject__c} value={eventObj.Subject} disabled></lightning-input>
+                                <lightning-input type="text" name="CISRating" label={labels.CIS_Rating__c} value={eventObj.CISRating} disabled></lightning-input>
+                                <lightning-input type="date" name="ActivityDate" label={labels.Date__c} value={eventObj.ActivityDate} onchange={handleFieldChange} disabled={eventstage}></lightning-input>
+                                <lightning-input type="text" name="stage" label={labels.Status__c} value={eventObj.stage} disabled></lightning-input>
+                                <lightning-input type="text" name="CallType" label={labels.Call_Type__c} value={eventObj.CallType} disabled></lightning-input>
+                                <template if:true={isModalInClinicBranding}>
+                                    <lightning-input type="text" name="SubCallType" label="Sub Call Type" value={eventObj.SubCallType} disabled></lightning-input>
+                                </template>
+                                <template if:false={eventObj.isOpportunity}>
+                                    <lightning-input type="date" name="Follow_Up_Date__c" label={labels.follow_up_date__c} value={eventObj.FollowUpDate} onchange={handleFieldChange}></lightning-input>
+                                </template>
+                                <c-product-multi-select
+                                    label={labels.product__c}
+                                    options={modalProductOptions}
+                                    value={modalSelectedProducts}
+                                    onchange={handleSelectProduct}>
+                                </c-product-multi-select>
+                                <lightning-textarea name="DCR_Description__c" label={labels.notes__c} value={eventObj.Description} onchange={handleFieldChange}></lightning-textarea>
+                            </template>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_destructive" onclick={handleDeleteEvent}>{labels.delete__c}</button>
+                            <button class="slds-button slds-button_neutral" onclick={handleCloseModal}>{labels.Cancel_Button__c}</button>
+                            <button class="slds-button slds-button_brand" onclick={handleUpdateEvent}>{labels.update__c}</button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+            <!-- Update Lead Modal -->
+            <template if:true={showUpdateLeadModal}>
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-02" aria-modal="true" aria-describedby="modal-content-id-2" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={handleCloseLeadModal}>
+                                <lightning-icon icon-name="utility:close" size="small" alternative-text="Close"></lightning-icon>
+                                <span class="slds-assistive-text">Close</span>
+                            </button>
+                            <h2 id="modal-heading-02" class="slds-modal__title slds-hyphenate">Prospect Information</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2" style="height: -webkit-fill-available;">
+                            <div style="width:100%;height: -webkit-fill-available;overflow:auto;">
+                                <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="width:100%;">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Product Name">Product Name</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Planned Stage">Planned Stage</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Planned Date">Planned Date</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Completed Stage">Completed Stage</div>
+                                            </th>
+                                            <th scope="col">
+                                                <div class="slds-truncate" title="Actual Date">Actual Date</div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={leadData} for:item="item">
+                                            <tr key={item.key}>
+                                                <td class="slds-cell-wrap">
+                                                    <div class="slds-truncate" title={item.ProductName}>{item.ProductName}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate" title={item.Stage}>{item.Stage}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate" title={item.PlannedDate}>{item.PlannedDate}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate" title={item.Stage}>{item.Stage}</div>
+                                                </td>
+                                                <td>
+                                                    <div class="slds-truncate" title={item.ActualDate}>{item.ActualDate}</div>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <footer class="slds-modal__footer">
+                            <button class="slds-button slds-button_neutral" onclick={handleCloseLeadModal}>{labels.Cancel_Button__c}</button>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+            </template>
+        </template>
+    </template>
+</template>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AgreementLockvalidation</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    NOT(ISCHANGED(Is_Active__c)),
+    NOT(ISCHANGED(SAP_Sync_Fail_Reason__c)),
+    NOT(ISCHANGED(Syned_To_SAP__c)),
+    NOT(ISCHANGED(Sap_Sync_Error_TimeStemp__c)),
+    Is_Active__c,
+    NOT(ISCLONE())
+)</errorConditionFormula>
+    <errorMessage>For making  Amendments/Changes Clone the master Agreement.</errorMessage>
+</ValidationRule>

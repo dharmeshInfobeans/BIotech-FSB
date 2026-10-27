@@ -1,0 +1,61 @@
+.slds-scrollable_x {
+    overflow-x: auto;
+}
+
+
+.hide-section {
+    display: none !important;
+}
+
+.slds-box h3 {
+    font-weight: 600;
+}
+
+.slds-table td, .slds-table th {
+    text-align: center;
+    white-space: nowrap;
+}
+.slds-table th, .slds-table td {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.slds-table th {
+    font-weight: 600;
+}
+
+.slds-table td, .slds-table th {
+    padding: 0.75rem;
+}
+.custom-table th,
+.custom-table td {
+    border: none;
+    text-align: left;
+    padding: 0.75rem;
+    font-size: 0.95rem;
+}
+
+.custom-table thead th {
+    border-bottom: 2px solid #16325c;
+    color: #16325c;
+    font-weight: 700;
+}
+
+.custom-table tbody tr {
+    border-bottom: 1px dashed #c9c9c9;
+}
+
+lightning-input {
+    --slds-c-input-radius-border: 0.25rem;
+    --slds-c-input-color-border: #d8dde6;
+    --slds-c-input-spacing-horizontal: 0.5rem;
+    --slds-c-input-spacing-vertical: 0.25rem;
+    width: 100%;
+}
+
+.button-row {
+  display: flex;
+    margin-top: 1rem;
+    /* margin-left: 62rem; */
+    justify-content: end;
+}

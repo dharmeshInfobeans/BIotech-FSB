@@ -1,0 +1,399 @@
+:host {
+    --resync-ink: #1a1d21;
+    --resync-ink-soft: #5b6270;
+    --resync-line: #d8dce3;
+
+    --resync-accent: #2b6cb0;
+    --resync-accent-dark: #1e4e82;
+
+    --resync-success: #1f7a4d;
+    --resync-success-bg: #e7f5ee;
+
+    --resync-error: #b3261e;
+    --resync-error-bg: #fbeae9;
+
+    --resync-neutral-bg: #eef0f3;
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        Helvetica,
+        Arial,
+        sans-serif;
+}
+
+
+/* =========================================================
+   Modal
+   ========================================================= */
+
+.resync-modal {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 1rem;
+
+    z-index: 9001;
+}
+
+
+/* =========================================================
+   Transparent Salesforce Backdrop
+   ========================================================= */
+
+.resync-modal + .slds-backdrop {
+    background: transparent !important;
+    opacity: 0 !important;
+}
+
+
+/* =========================================================
+   Modal Container
+   ========================================================= */
+
+.resync-modal .slds-modal__container {
+    position: relative;
+
+    width: 100%;
+    max-width: 26rem;
+
+    max-height: none;
+
+    margin: 0;
+
+    border-radius: 8px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   Modal Header
+   ========================================================= */
+
+.resync-modal__header {
+    padding:
+        1.25rem
+        1.5rem
+        1rem;
+
+    border-bottom:
+        1px solid
+        var(--resync-line);
+
+    background: #ffffff;
+}
+
+
+.resync-modal__title {
+    margin: 0;
+
+    font-size: 1.0625rem;
+
+    font-weight: 600;
+
+    color:
+        var(--resync-ink);
+
+    letter-spacing: -0.01em;
+}
+
+
+/* =========================================================
+   Modal Body
+   ========================================================= */
+
+.resync-modal__body {
+    background: #ffffff;
+}
+
+
+.resync-modal__copy {
+    margin: 0;
+
+    font-size: 0.875rem;
+
+    line-height: 1.5;
+
+    color:
+        var(--resync-ink-soft);
+}
+
+
+/* =========================================================
+   Last SAP Response
+   ========================================================= */
+
+.resync-modal__last-message {
+    margin:
+        0.75rem
+        0
+        0;
+
+    padding:
+        0.625rem
+        0.75rem;
+
+    background:
+        var(--resync-neutral-bg);
+
+    border-left:
+        3px solid
+        var(--resync-line);
+
+    border-radius:
+        0
+        4px
+        4px
+        0;
+
+    font-family:
+        'SFMono-Regular',
+        Consolas,
+        'Liberation Mono',
+        Menlo,
+        monospace;
+
+    font-size: 0.75rem;
+
+    line-height: 1.5;
+
+    color:
+        var(--resync-ink-soft);
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   Modal Footer
+   ========================================================= */
+
+.resync-modal__footer {
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 0.625rem;
+
+    padding:
+        0.875rem
+        1.5rem;
+
+    background: #fafbfc;
+
+    border-top:
+        1px solid
+        var(--resync-line);
+}
+
+
+/* =========================================================
+   Status Pill
+   ========================================================= */
+
+.resync-status-pill {
+    display: inline-block;
+
+    padding:
+        0.0625rem
+        0.5rem;
+
+    border-radius: 3px;
+
+    font-family:
+        'SFMono-Regular',
+        Consolas,
+        'Liberation Mono',
+        Menlo,
+        monospace;
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   Ordered Status
+   ========================================================= */
+
+.resync-status-pill_success {
+    background:
+        var(--resync-success-bg);
+
+    color:
+        var(--resync-success);
+}
+
+
+/* =========================================================
+   Failed Status
+   ========================================================= */
+
+.resync-status-pill_error {
+    background:
+        var(--resync-error-bg);
+
+    color:
+        var(--resync-error);
+}
+
+
+/* =========================================================
+   Other Status
+   ========================================================= */
+
+.resync-status-pill_neutral {
+    background:
+        var(--resync-neutral-bg);
+
+    color:
+        var(--resync-ink-soft);
+}
+
+
+/* =========================================================
+   Modal Buttons
+   ========================================================= */
+
+.resync-btn {
+    appearance: none;
+
+    border:
+        1px solid
+        transparent;
+
+    border-radius: 6px;
+
+    padding:
+        0.5rem
+        1rem;
+
+    font-size: 0.8125rem;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 120ms ease,
+        border-color 120ms ease;
+}
+
+
+/* =========================================================
+   Button Focus
+   ========================================================= */
+
+.resync-btn:focus-visible {
+    outline:
+        2px solid
+        var(--resync-accent);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================================
+   Cancel Button
+   ========================================================= */
+
+.resync-btn_ghost {
+    background: transparent;
+
+    border-color:
+        var(--resync-line);
+
+    color:
+        var(--resync-ink-soft);
+}
+
+
+.resync-btn_ghost:hover {
+    background:
+        var(--resync-neutral-bg);
+}
+
+
+/* =========================================================
+   Resync Now Button
+   ========================================================= */
+
+.resync-btn_primary {
+    background:
+        var(--resync-accent);
+
+    color: #ffffff;
+}
+
+
+.resync-btn_primary:hover {
+    background:
+        var(--resync-accent-dark);
+}
+
+
+/* =========================================================
+   Disabled Buttons
+   ========================================================= */
+
+.resync-btn:disabled {
+    opacity: 0.55;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   Reduced Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .resync-btn {
+        transition: none;
+    }
+}
+
+
+/* =========================================================
+   Small Screens
+   ========================================================= */
+
+@media (max-width: 480px) {
+
+    .resync-modal {
+        padding: 0.75rem;
+    }
+
+    .resync-modal .slds-modal__container {
+        max-width: 100%;
+    }
+
+    .resync-modal__header {
+        padding:
+            1rem
+            1.125rem
+            0.875rem;
+    }
+
+    .resync-modal__body {
+        padding: 1rem !important;
+    }
+
+    .resync-modal__footer {
+        padding:
+            0.75rem
+            1.125rem;
+    }
+}

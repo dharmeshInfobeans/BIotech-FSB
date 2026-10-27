@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>SE</fullName>
+        <default>false</default>
+        <label>SE</label>
+    </customValue>
+    <customValue>
+        <fullName>SSE</fullName>
+        <default>false</default>
+        <label>SSE</label>
+    </customValue>
+    <customValue>
+        <fullName>BDM</fullName>
+        <default>false</default>
+        <label>BDM</label>
+    </customValue>
+    <customValue>
+        <fullName>SSE/BDM</fullName>
+        <default>false</default>
+        <label>SSE/BDM</label>
+    </customValue>
+    <customValue>
+        <fullName>DM</fullName>
+        <default>false</default>
+        <label>DM</label>
+    </customValue>
+    <customValue>
+        <fullName>ASM</fullName>
+        <default>false</default>
+        <label>ASM</label>
+    </customValue>
+    <customValue>
+        <fullName>RSM</fullName>
+        <default>false</default>
+        <label>RSM</label>
+    </customValue>
+    <customValue>
+        <fullName>ZDM</fullName>
+        <default>false</default>
+        <label>ZDM</label>
+    </customValue>
+    <customValue>
+        <fullName>ZSM</fullName>
+        <default>false</default>
+        <label>ZSM</label>
+    </customValue>
+    <customValue>
+        <fullName>Sales Specialist</fullName>
+        <default>false</default>
+        <label>Sales Specialist</label>
+    </customValue>
+    <customValue>
+        <fullName>Product Manager</fullName>
+        <default>false</default>
+        <label>Product Manager</label>
+    </customValue>
+    <customValue>
+        <fullName>Application Specialist</fullName>
+        <default>false</default>
+        <label>Application Specialist</label>
+    </customValue>
+    <customValue>
+        <fullName>RBM</fullName>
+        <default>false</default>
+        <label>RBM</label>
+    </customValue>
+    <masterLabel>Role</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- AGM – Marketing Execution &amp; PMT --></help>
+    <label><!-- AGMMEPMT --></label>
+    <name>AGMMEPMT__c</name>
+    <relationshipLabel><!-- Org Role Hierarchies (AGMMEPMT) --></relationshipLabel>
+</CustomFieldTranslation>

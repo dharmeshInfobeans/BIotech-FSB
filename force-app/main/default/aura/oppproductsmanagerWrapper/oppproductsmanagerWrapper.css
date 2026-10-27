@@ -1,0 +1,10 @@
+.THIS {
+    width: 100%;
+}
+.THIS .slds-size_1-of-1 {
+    width: 200%;
+}
+.THIS slds-modal__container{
+             max-width: 400rem;
+    width: 90%;
+}

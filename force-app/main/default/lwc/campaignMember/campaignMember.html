@@ -1,0 +1,237 @@
+<template>
+
+    <template if:true={isLoading}>
+        <div class="loader-backdrop">
+            <lightning-spinner alternative-text="Loading" size="medium" variant="brand">
+            </lightning-spinner>
+        </div>
+    </template>
+
+    <template if:false={isLoading}>
+        <div class="wizard-container">
+
+            <!-- ================= STEP 1 ================= -->
+            <template if:true={isStepOne}>
+                <div style="display:flex;justify-content:center;align-items: center;" class="content-box">
+
+                    <p class="sub-heading">Select Member type</p>
+
+                    <lightning-radio-group class="radio-group" options={recordTypeOptions} value={selectedRecordTypeId}
+                        type="radio" onchange={handleRecordTypeChange}>
+                    </lightning-radio-group>
+
+                    <div class="button-row">
+                        <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                        <lightning-button variant="brand" label="Next" disabled={disableNext} onclick={handleNext}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- ================= STEP 2 ================= -->
+            <template if:true={isStepTwo}>
+                <div class="content-box">
+
+                    <template if:true={alreadyrecord}>
+                        <p class="sub-heading">
+                            {dynamicFieldValues.RecordtypeName.Name}
+                        </p>
+                    </template>
+                    <template if:false={alreadyrecord}>
+                        <p class="sub-heading">
+                            {recordTypeName}
+                        </p>
+                    </template>
+
+                    <div class="slds-box slds-m-top_medium slds-p-around_medium">
+                        <div class="slds-grid slds-wrap slds-gutters">
+
+                            <!-- Campaign -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-record-picker label="Activity" placeholder="Search Campaign"
+                                    object-api-name="Campaign__c" value={dynamicFieldValues.Campaign1__c}
+                                    onchange={handleCampaignChange} disabled={isCampaignReadonly} required>
+                                </lightning-record-picker>
+                            </div>
+
+                            <!-- Account / Contact -->
+                            <template if:true={existingtype}>
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <lightning-record-picker name="Account__c" label="Account"
+                                        placeholder="Search Account" object-api-name="Account"
+                                        value={dynamicFieldValues.Account__c} onchange={handleAccountChange} required>
+                                    </lightning-record-picker>
+                                </div>
+
+                                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                    <lightning-record-picker name="Contact__c" label="Contact"
+                                        placeholder="Search Contact" object-api-name="Contact"
+                                        value={dynamicFieldValues.Contact__c} filter={contactFilter}
+                                        onchange={handleContactChange} disabled={isContactDisabled} required>
+                                    </lightning-record-picker>
+                                </div>
+                            </template>
+
+                            <!-- First / Last Name -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="First Name" placeholder="Enter First Name"
+                                    value={dynamicFieldValues.Lead_First_Name__c} data-field="Lead_First_Name__c"
+                                    onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Last Name" placeholder="Enter Last Name"
+                                    value={dynamicFieldValues.Lead_Last_Name__c} data-field="Lead_Last_Name__c"
+                                    onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <!-- Member Type -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-combobox label="Member Type" placeholder="Select Member Type"
+                                    options={memberTypeOptions} value={dynamicFieldValues.Member_Type__c}
+                                    data-field="Member_Type__c" onchange={handleFieldChange} required>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Hospital / Clinic Name"
+                                    placeholder="Enter Hospital or Clinic Name"
+                                    value={dynamicFieldValues.Lead_Hospital_Clinic_Name__c}
+                                    data-field="Lead_Hospital_Clinic_Name__c" onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <!-- Country / State / City -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-combobox label="Country" placeholder="Select Country"
+                                    options={countryOptions} value={selectedCountry} onchange={handleCountryChange}
+                                     required>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-combobox label="State" placeholder="Select State" options={stateOptions}
+                                    value={selectedState} onchange={handleStateChange} disabled={isStateDisabled}
+                                     required={isIndia}>
+                                </lightning-combobox>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-combobox label="City" placeholder="Select City" options={cityOptions}
+                                    value={selectedCity} onchange={handleCityChange} disabled={isCityDisabled}  required={isIndia}>
+                                </lightning-combobox>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Street" placeholder="Enter Street Address"
+                                    value={dynamicFieldValues.Lead_Street__c} data-field="Lead_Street__c"
+                                    onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Zip / Postal Code" placeholder="Enter Zip / Postal Code"
+                                    value={dynamicFieldValues.Lead_Zip_Postal_Code__c}
+                                    data-field="Lead_Zip_Postal_Code__c" onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <!-- Email / Mobile -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Email" placeholder="example@email.com"
+                                    value={dynamicFieldValues.Lead_Email__c} data-field="Lead_Email__c"
+                                    onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Mobile" placeholder="Enter Mobile Number"
+                                    value={dynamicFieldValues.Lead_Mobile_Number__c} data-field="Lead_Mobile_Number__c"
+                                    onchange={handleFieldChange} required>
+                                </lightning-input>
+                            </div>
+
+                            <!-- Attended -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input type="checkbox" label="Attended"
+                                    checked={dynamicFieldValues.Attended__c} data-field="Attended__c"
+                                    onchange={handleFieldChange} >
+                                </lightning-input>
+                            </div>
+
+                            <!-- Campaign Product -->
+                            <div class="slds-col slds-size_1-of-1">
+                                <lightning-dual-listbox label="Campaign Product" source-label="Available Products"
+                                    selected-label="Selected Products" options={campaignProductOptions}
+                                    value={dynamicFieldValues.Campaign_Product__c} data-field="Campaign_Product__c"
+                                    onchange={handleFieldChange} required>
+                                </lightning-dual-listbox>
+                            </div>
+
+                            <!-- Campaign Info -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Campaign Name" value={dynamicFieldValues.Campaign_Name__c}
+                                    disabled>
+                                </lightning-input>
+                            </div>
+
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input label="Campaign Phone" value={dynamicFieldValues.CampaignPhone__c}
+                                    disabled>
+                                </lightning-input>
+                            </div>
+
+                            <!-- Opportunities -->
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                                <lightning-input type="number" label="Product 1 Opportunity" placeholder="Enter count"
+                                    value={dynamicFieldValues.Product_1Opportunity__c}
+                                    data-field="Product_1Opportunity__c" onchange={handleFieldChange}>
+                                </lightning-input>
+
+                                <lightning-input type="number" label="Product 2 Opportunity" placeholder="Enter count"
+                                    value={dynamicFieldValues.Product_2_Opportunity__c}
+                                    data-field="Product_2_Opportunity__c" onchange={handleFieldChange}>
+                                </lightning-input>
+
+                                <lightning-input type="number" label="Product 3 Opportunity" placeholder="Enter count"
+                                    value={dynamicFieldValues.Product_3_Opportunity__c}
+                                    data-field="Product_3_Opportunity__c" onchange={handleFieldChange}>
+                                </lightning-input>
+
+                                <lightning-input type="number" label="Product 4 Opportunity" placeholder="Enter count"
+                                    value={dynamicFieldValues.Product_4_Opportunity__c}
+                                    data-field="Product_4_Opportunity__c" onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- Footer -->
+                    <div class="footer-container slds-m-top_large">
+                        <div class="slds-grid slds-grid_align-center slds-gutters">
+                            <div class="slds-col">
+                                <template if:false={isEditMode}>
+                                    <lightning-button label="Back" onclick={handleBack}></lightning-button>
+                                </template>
+                                <template if:true={isEditMode}>
+                                    <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                                </template>
+                            </div>
+                            <div class="slds-col">
+                                <lightning-button label="Save" variant="brand" onclick={handleSave}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </template>
+
+        </div>
+    </template>
+
+</template>

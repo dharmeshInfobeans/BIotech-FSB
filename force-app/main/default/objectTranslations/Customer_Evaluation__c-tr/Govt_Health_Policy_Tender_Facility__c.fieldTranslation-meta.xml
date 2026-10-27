@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Govt. Health Policy :Tender Facility --></label>
+    <name>Govt_Health_Policy_Tender_Facility__c</name>
+</CustomFieldTranslation>

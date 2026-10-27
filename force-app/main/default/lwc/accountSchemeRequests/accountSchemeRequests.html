@@ -1,0 +1,157 @@
+<template>
+    <lightning-card>
+        <div style="margin-top: -15px;" class="card-header">
+            Scheme Details
+        </div>
+
+        <!-- ✅ Loader -->
+        <template if:true={isLoading}>
+            <div class="slds-is-relative slds-p-around_medium">
+                <lightning-spinner
+                    alternative-text="Loading Schemes..."
+                    size="medium">
+                </lightning-spinner>
+            </div>
+        </template>
+
+        <!-- ✅ Parent Scheme Table -->
+        <template if:true={parentaccountscheme}>
+            <div class="slds-m-around_medium scroll-box">
+
+                <h6 class="slds-text-heading_medium slds-m-bottom_small">
+                    Parent Customer Scheme Details
+                </h6>
+
+                <div class="table-scroll">
+    <table class="slds-table custom-table">
+                    <thead>
+                        <tr>
+                            <th>Parent SAP Code</th>
+                            <th>Customer Name</th>
+                            <th>Scheme Number</th>
+                            <th>Scheme Name</th>
+                            <th>Scheme Description</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <template for:each={parentschemelist} for:item="prtschem">
+                            <tr key={prtschem.Id}>
+                                <td data-label="Parent SAP Code">
+                                    <a href="javascript:void(0)" data-id={prtschem.Account__c} onclick={handleAccountRedirect}>
+                                        {prtschem.Account__r.SAP_Code__c}
+                                    </a>
+                                </td>
+                                
+                                
+
+                                <td data-label="Customer Name">
+                                    {prtschem.Account__r.Name}
+                                </td>
+                                <td data-label="Scheme Number">
+                                    <a href="javascript:void(0)" data-id={prtschem.Id} onclick={handleSchemeRedirect}>
+                                        {prtschem.Scheme_Number__c}
+                                    </a>
+                                </td>
+                                <td data-label="Scheme Name">
+                                    <a href="javascript:void(0)" data-id={prtschem.Id} onclick={handleSchemeRedirect}>
+                                        {prtschem.Scheme_Name__c}
+                                    </a>
+                                </td>
+                                <td data-label="Scheme Description">
+                                    {prtschem.Scheme_Description__c}
+                                </td>
+                                <td data-label="Start Date">
+                                    {prtschem.Start_Date__c}
+                                </td>
+                                <td data-label="End Date">
+                                    {prtschem.End_Date__c}
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </template>
+
+        <!-- ✅ Child Scheme Table -->
+        <template if:true={childaccountscheme}>
+            <div class="slds-m-around_medium scroll-box">
+
+                <h6 class="slds-text-heading_medium slds-m-bottom_small">
+                    Child Customer Scheme Details
+                </h6>
+
+                <div class="table-scroll">
+                    <table class="slds-table custom-table">
+                    <thead>
+                        <tr>
+                            <th>Child SAP Code</th>
+                            <th>Customer Name</th>
+                            <th>Scheme Number</th>
+                            <th>Scheme Name</th>
+                            <th>Scheme Description</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <template for:each={childschemelist} for:item="childsche">
+                            <tr key={childsche.Id}>
+                                <td data-label="Child SAP Code">
+                                    <a href="javascript:void(0)" data-id={childsche.Account__c} onclick={handleAccountRedirect}>
+                                        {childsche.Account__r.SAP_Code__c}
+                                    </a>
+                                </td>
+                                <td data-label="Customer Name">
+                                    {childsche.Account__r.Name}
+                                </td>
+                                <td data-label="Scheme Number">
+                                    <a href="javascript:void(0)" data-id={childsche.Id} onclick={handleSchemeRedirect}>
+                                        {childsche.Scheme_Number__c}
+                                    </a>
+                                </td>
+                                 <td data-label="Scheme Number">
+                                    <a href="javascript:void(0)" data-id={childsche.Id} onclick={handleSchemeRedirect}>
+                                        {childsche.Scheme_Name__c}
+                                    </a>
+                                </td>
+                                 <td data-label="Scheme Description">
+                                    {childsche.Scheme_Description__c}
+                                </td>
+                                <td data-label="Start Date">
+                                    {childsche.Start_Date__c}
+                                </td>
+                                <td data-label="End Date">
+                                    {childsche.End_Date__c}
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </template>
+
+        <!-- ✅ No Record Found -->
+        <template if:true={noSchemeFound}>
+            <div class="slds-align_absolute-center slds-p-around_medium">
+                <p class="slds-text-color_weak">
+                    No Scheme Records Found for this Account.
+                </p>
+            </div>
+        </template>
+
+        <!-- ✅ Error Message -->
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-p-around_medium">
+                Error loading scheme details.
+            </div>
+        </template>
+
+    </lightning-card>
+</template>

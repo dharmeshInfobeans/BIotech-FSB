@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>Learning_Videos</label>
+    <motif>Custom99: CRT TV</motif>
+    <url>https://app.powerbi.com/view?r=eyJrIjoiNzBmMDBiZGMtYWFlOC00YjVhLTg5YWItZmEyZDNlZGUxNDVlIiwidCI6ImEyODIwYzg1LWUyMTctNDE2OS05YjFhLTBkNTg5YWQ3ZjE3MyJ9&amp;pageName=ReportSection</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

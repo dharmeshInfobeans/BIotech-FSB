@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>List_Of_Activities__c</fullName>
+    <label>List Of Activities</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Group__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>RTM</fullName>
+                <default>false</default>
+                <label>RTM</label>
+            </value>
+            <value>
+                <fullName>CME</fullName>
+                <default>false</default>
+                <label>CME</label>
+            </value>
+            <value>
+                <fullName>WEBINAR</fullName>
+                <default>false</default>
+                <label>WEBINAR</label>
+            </value>
+            <value>
+                <fullName>LIVE SURGERY</fullName>
+                <default>false</default>
+                <label>LIVE SURGERY</label>
+            </value>
+            <value>
+                <fullName>SYMPOSIUM</fullName>
+                <default>false</default>
+                <label>SYMPOSIUM</label>
+            </value>
+            <value>
+                <fullName>CONFERENCES</fullName>
+                <default>false</default>
+                <label>CONFERENCES</label>
+            </value>
+            <value>
+                <fullName>PHAKIC USER MEETING</fullName>
+                <default>false</default>
+                <label>PHAKIC USER MEETING</label>
+            </value>
+            <value>
+                <fullName>TRIO USER MEETING</fullName>
+                <default>false</default>
+                <label>TRIO USER MEETING</label>
+            </value>
+            <value>
+                <fullName>WETLAB</fullName>
+                <default>false</default>
+                <label>WETLAB</label>
+            </value>
+            <value>
+                <fullName>PHAKIC VIRTUAL LAB TRAINING</fullName>
+                <default>false</default>
+                <label>PHAKIC VIRTUAL LAB TRAINING</label>
+            </value>
+            <value>
+                <fullName>PRODUCT TRAINING</fullName>
+                <default>false</default>
+                <label>PRODUCT TRAINING</label>
+            </value>
+            <value>
+                <fullName>PHAKIC TRAINING-Level 1</fullName>
+                <default>false</default>
+                <label>PHAKIC TRAINING-Level 1</label>
+            </value>
+            <value>
+                <fullName>PHAKIC TRAINING-Level 2</fullName>
+                <default>false</default>
+                <label>PHAKIC TRAINING-Level 2</label>
+            </value>
+            <value>
+                <fullName>TRADE BOOTH</fullName>
+                <default>false</default>
+                <label>TRADE BOOTH</label>
+            </value>
+            <value>
+                <fullName>PAPER PRESENTATION</fullName>
+                <default>false</default>
+                <label>PAPER PRESENTATION</label>
+            </value>
+            <value>
+                <fullName>ACCESS TO INNOVATION SERIES</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ACCESS TO INNOVATION SERIES</label>
+            </value>
+            <value>
+                <fullName>APP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>APP</label>
+            </value>
+            <value>
+                <fullName>CTP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CTP</label>
+            </value>
+            <value>
+                <fullName>DECODE</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DECODE</label>
+            </value>
+            <value>
+                <fullName>FOCUS</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>FOCUS</label>
+            </value>
+            <value>
+                <fullName>IN CLINIC BRANDING</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>IN CLINIC BRANDING</label>
+            </value>
+            <value>
+                <fullName>KOLS / FOLS DEVELOPMENT</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>KOLS / FOLS DEVELOPMENT</label>
+            </value>
+            <value>
+                <fullName>NO. OF ENROLLMENTS IN SEP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>NO. OF ENROLLMENTS IN SEP</label>
+            </value>
+            <value>
+                <fullName>PMS COLLECTED</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PMS COLLECTED</label>
+            </value>
+            <value>
+                <fullName>SPEAKER ENGAGEMENT PROGRAM (SIGNED OFF)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SPEAKER ENGAGEMENT PROGRAM (SIGNED OFF)</label>
+            </value>
+            <value>
+                <fullName>TAKE A BREAK SESSION</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TAKE A BREAK SESSION</label>
+            </value>
+            <value>
+                <fullName>TESTIMONIAL</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TESTIMONIAL</label>
+            </value>
+            <value>
+                <fullName>TESTIMONIAL EDITING</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TESTIMONIAL EDITING</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>RTM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>CME</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>WEBINAR</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>LIVE SURGERY</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>SYMPOSIUM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>CONFERENCES</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>PHAKIC USER MEETING</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>TRIO USER MEETING</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>TRADE BOOTH</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ACCESS TO INNOVATION SERIES</controllingFieldValue>
+            <valueName>PAPER PRESENTATION</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BIOTECH KNOWLEDGE SERIES</controllingFieldValue>
+            <valueName>WETLAB</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BIOTECH KNOWLEDGE SERIES</controllingFieldValue>
+            <valueName>PHAKIC VIRTUAL LAB TRAINING</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BIOTECH KNOWLEDGE SERIES</controllingFieldValue>
+            <valueName>PRODUCT TRAINING</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BIOTECH KNOWLEDGE SERIES</controllingFieldValue>
+            <valueName>PHAKIC TRAINING-Level 1</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BIOTECH KNOWLEDGE SERIES</controllingFieldValue>
+            <valueName>PHAKIC TRAINING-Level 2</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

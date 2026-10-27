@@ -1,0 +1,172 @@
+<template>
+    <!-- Loading spinner -->
+    <template lwc:if={isLoading}>
+        <div class="spinner-wrap">
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </div>
+    </template>
+
+    <template lwc:else>
+        <lightning-card title="Approval Actions" icon-name="utility:approval">
+
+            <!-- Load error -->
+            <template lwc:if={loadError}>
+                <div class="slds-m-around_medium">
+                    <div class="slds-notify slds-notify_alert slds-theme_error" role="alert">
+                        <p>{loadError}</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Terminal states -->
+            <template lwc:if={isTerminal}>
+                <div class="slds-m-around_medium status-terminal">
+                    <lightning-icon icon-name={terminalIcon} size="small" class="slds-m-right_x-small"></lightning-icon>
+                    <span class={terminalClass}>{requestInfo.status}</span>
+                </div>
+            </template>
+
+            <!-- ── STAGE: Leadership Approval ────────────────────────────────── -->
+            <template lwc:if={isLeadershipStage}>
+                <div class="slds-m-around_medium">
+                    <p class="stage-label">Status: <strong>{requestInfo.status}</strong></p>
+
+                    <!-- Default buttons -->
+                    <template lwc:if={hideAnyOverlay}>
+                        <div class="action-buttons">
+                            <lightning-button
+                                variant="success"
+                                label="Approve"
+                                icon-name="utility:check"
+                                onclick={handleShowApproveConfirm}
+                                disabled={isSaving}
+                                class="slds-m-right_small">
+                            </lightning-button>
+                            <lightning-button
+                                variant="destructive-text"
+                                label="Reject"
+                                icon-name="utility:close"
+                                onclick={handleShowReject}
+                                disabled={isSaving}
+                                class="slds-m-right_small">
+                            </lightning-button>
+                            <lightning-button
+                                variant="neutral"
+                                label="Send Back"
+                                icon-name="utility:undo"
+                                onclick={handleShowSendBack}
+                                disabled={isSaving}>
+                            </lightning-button>
+                        </div>
+                    </template>
+
+                    <!-- Approve confirmation popup -->
+                    <template lwc:if={showApproveConfirm}>
+                        <div class="confirm-block confirm-approve">
+                            <p class="confirm-message">
+                                <lightning-icon icon-name="utility:question_mark" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                Approve this request? It will move to <strong>Approved by Leadership</strong>.
+                            </p>
+                            <div class="form-actions slds-m-top_small">
+                                <lightning-button
+                                    variant="success"
+                                    label="Yes, Approve"
+                                    icon-name="utility:check"
+                                    onclick={handleProcessApproval}
+                                    disabled={isSaving}
+                                    class="slds-m-right_small">
+                                </lightning-button>
+                                <lightning-button
+                                    variant="neutral"
+                                    label="Cancel"
+                                    onclick={handleCancelConfirm}
+                                    disabled={isSaving}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- Reject / Send Back inline form -->
+                    <template lwc:if={showActionForm}>
+                        <div class={actionFormClass}>
+                            <lightning-textarea
+                                label={actionFormLabel}
+                                placeholder={actionFormPlaceholder}
+                                value={actionComments}
+                                onchange={handleActionCommentsChange}
+                                max-length="500"
+                                required>
+                            </lightning-textarea>
+                            <div class="form-actions slds-m-top_small">
+                                <lightning-button
+                                    variant={actionFormConfirmVariant}
+                                    label={actionFormConfirmLabel}
+                                    icon-name="utility:check"
+                                    onclick={handleActionFormConfirm}
+                                    disabled={isSaving}
+                                    class="slds-m-right_small">
+                                </lightning-button>
+                                <lightning-button
+                                    variant="neutral"
+                                    label="Cancel"
+                                    onclick={handleActionFormCancel}
+                                    disabled={isSaving}>
+                                </lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- ── STAGE: Sent Back → Re-submit to Leadership ─────────────────── -->
+            <template lwc:if={isSentBackStage}>
+                <div class="slds-m-around_medium">
+                    <p class="stage-label">Status: <strong>{requestInfo.status}</strong></p>
+                    <p class="sent-back-notice">Request was sent back to the distributor. CRM can re-route once the issue is resolved.</p>
+                    <div class="action-buttons">
+                        <lightning-button
+                            variant="brand"
+                            label="Re-submit to Leadership"
+                            icon-name="utility:forward"
+                            onclick={handleResubmit}
+                            disabled={isSaving}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- ── STAGE: On Hold → Resume ────────────────────────────────────── -->
+            <template lwc:if={isOnHoldStage}>
+                <div class="slds-m-around_medium">
+                    <p class="stage-label">Status: <strong>{requestInfo.status}</strong></p>
+                    <div class="action-buttons">
+                        <lightning-button
+                            variant="brand"
+                            label="Resume"
+                            icon-name="utility:play"
+                            onclick={handleResumeFromHold}
+                            disabled={isSaving}>
+                        </lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Saving spinner -->
+            <template lwc:if={isSaving}>
+                <div class="saving-overlay">
+                    <lightning-spinner alternative-text="Saving" size="small"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Inline action error -->
+            <template lwc:if={actionError}>
+                <div class="slds-m-around_medium">
+                    <div class="slds-notify slds-notify_alert slds-theme_error" role="alert">
+                        <p>{actionError}</p>
+                    </div>
+                </div>
+            </template>
+
+        </lightning-card>
+    </template>
+</template>

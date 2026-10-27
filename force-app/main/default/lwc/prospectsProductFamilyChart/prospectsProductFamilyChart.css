@@ -1,0 +1,76 @@
+:host {
+    display: block;
+}
+
+.chart-card {
+    position: relative;
+    background: #ffffff;
+    border: 1px solid #d8dde6;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.chart-download-btn {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    padding: 0;
+    border: 1px solid #c9c7c5;
+    border-radius: 0.25rem;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.chart-download-btn:hover {
+    background: #f3f2f2;
+}
+
+.chart-download-btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+}
+
+.chart-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.9rem 0.75rem 0.65rem;
+}
+
+.title-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.15rem;
+    width: 22rem;
+    max-width: 100%;
+    padding: 0.4rem 1rem;
+    background: #eef3fc;
+    border: 1px solid #c9d4e3;
+    border-radius: 0.35rem;
+}
+
+.chart-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #16325c;
+    letter-spacing: 0.01em;
+}
+
+.chart-container {
+    position: relative;
+    /* Taller than the time-series charts: this one carries many stage series in its legend and
+       (often) long product family names along the x-axis, both of which need more vertical room
+       than a 3-series quarterly trend does. */
+    height: 560px;
+    width: 100%;
+}

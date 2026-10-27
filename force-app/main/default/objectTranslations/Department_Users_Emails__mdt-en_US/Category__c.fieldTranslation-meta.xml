@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Category --></label>
+    <name>Category__c</name>
+    <picklistValues>
+        <masterLabel>BD</masterLabel>
+        <translation><!-- BD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRM</masterLabel>
+        <translation><!-- CRM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General</masterLabel>
+        <translation><!-- General --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IT Support</masterLabel>
+        <translation><!-- IT Support --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Logistics</masterLabel>
+        <translation><!-- Logistics --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing</masterLabel>
+        <translation><!-- Marketing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Designing</masterLabel>
+        <translation><!-- Product Designing --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Training</masterLabel>
+        <translation><!-- Product Training --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>QA</masterLabel>
+        <translation><!-- QA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>R&amp;D</masterLabel>
+        <translation><!-- R&amp;D --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Regulatory</masterLabel>
+        <translation><!-- Regulatory --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Supply Chain</masterLabel>
+        <translation><!-- Supply Chain --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>testCategory</masterLabel>
+        <translation><!-- testCategory --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

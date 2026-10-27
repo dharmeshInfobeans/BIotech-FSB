@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Abandoned</masterLabel>
+        <translation><!-- Abandoned --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancelled</masterLabel>
+        <translation><!-- Cancelled --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed</masterLabel>
+        <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Declined</masterLabel>
+        <translation><!-- Declined --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Expired</masterLabel>
+        <translation><!-- Expired --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fetch Failed</masterLabel>
+        <translation><!-- Fetch Failed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fetched</masterLabel>
+        <translation><!-- Fetched --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fetching</masterLabel>
+        <translation><!-- Fetching --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Revoked</masterLabel>
+        <translation><!-- Revoked --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Send Failed</masterLabel>
+        <translation><!-- Send Failed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sending</masterLabel>
+        <translation><!-- Sending --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent</masterLabel>
+        <translation><!-- Sent --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Signed</masterLabel>
+        <translation><!-- Signed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Signed by all</masterLabel>
+        <translation><!-- Signed by all --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Viewed</masterLabel>
+        <translation><!-- Viewed --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Sales Target Line</label>
+    <protected>false</protected>
+    <values>
+        <field>Object_API_Name__c</field>
+        <value xsi:type="xsd:string">Sales_Target_Lines__c</value>
+    </values>
+    <values>
+        <field>Object_Columns_Visible__c</field>
+        <value xsi:type="xsd:string">[&quot;Sales_Target_Header__c&quot;,&quot;Month__c&quot;,&quot;Year__c&quot;,&quot;Quantity__c&quot;,&quot;Value__c&quot;,&quot;Product__c&quot;]</value>
+    </values>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">Sales Target Line</value>
+    </values>
+    <values>
+        <field>Template_Type__c</field>
+        <value xsi:type="xsd:string">DEFAULT</value>
+    </values>
+</CustomMetadata>

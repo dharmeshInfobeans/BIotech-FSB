@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Existing_member</fullName>
+    <active>true</active>
+    <label>Existing member</label>
+    <picklistValues>
+        <picklist>Campaign_Product__c</picklist>
+        <values>
+            <fullName>ASHFY 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ASHFY600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BI-HYALUR DUO-%281%2E0 %26 2%2E4 ML%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BI-HYALUR DUO-%281%2E4 %26 2%2E4 ML%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLADE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLADES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE 1ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE 1ML VIAL %28MONO PACK%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE 90 0%2E5 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE DUO 0%2E5ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO BLUE PLUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO CTR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN 5ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN 7ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO DECALIN VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 1%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 10 MG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 14 MG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR CS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR DUO 1%2E0 %25 %26 2%2E4 %25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR EV 1%2E6ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR EV 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR HV 1 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR HV 2%2E4%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR LVD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR PLUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR PLUS 1%2E4%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR PLUS 1%2E6ML</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR SV 1%2E6ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO HYALUR SV 3%2E0%25</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO OCTANE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO OCTANE PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO RING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIO SPEARS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOBLUE 90 PLUS 0%2E5 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOHYALUR 1%25 HA 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOHYALUR HV 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOHYALUR PLUS 1%2E4%25 HA 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 10 ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 1000 CST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 1300 CST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOSIL 5000 CST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BIOVISION PMMA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL 600 ROH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL ACTV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL ACTV TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PHAKIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PHAKIC TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PHAKIC-TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS 600</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS CLEAR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS NATURAL HD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL PLUS S600MZ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL SERT EDOF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL SERT EDOF TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYECRYL TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 2%25%282ML PFS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 2ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 3ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC 5ML VIAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EYEVISC HPMC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FLUROCEIN STRIPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GLODERM 30L 1ML PFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INJECTOR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRIS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRIS RETRACTOR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IRIS RETRACTORS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MF TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX COMFORT NY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX GENESIS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX GENESIS COMFORT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX GENESIS COMFORT NY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX INJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX TRIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX TRIO TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OPTIFLEX TRIO-TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTIFLEX TRIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PHAKIC-TORIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PMMA ESCLERAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RIBOFLAVIN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SCHIRMER STRIPS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SODIUM HYALURONATE EV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SODIUM HYALURONATE SV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Schirmer Strip</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TP6130</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TRIO-TORIC</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Main_Division__c</picklist>
+        <values>
+            <fullName>COH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ORTHO</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Member_Type__c</picklist>
+        <values>
+            <fullName>Attendee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Chair Person</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moderator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Speaker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Surgeon</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Zone__c</picklist>
+        <values>
+            <fullName>ADANA REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ANKARA REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BRAZIL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CENTRAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COLOMBIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EAST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EGYPT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GERMANY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IBERIA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISTANBUL ASIA REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ISTANBUL EUROPE REGI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IZMIR REGION</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NORTH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SOUTH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WEST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ZX%2EAbroad REGION</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

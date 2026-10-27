@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Number__c</fullName>
+    <description>even if user enter data in this field it will be either iverride or will show error based on trigger context.(it has been made editable to user as in case it made as read only its resukt in unexected behaviour as automation recive null as value due to this filed being read only when cloning of records.</description>
+    <externalId>true</externalId>
+    <inlineHelpText>Unique identifier for tracking the client agreement, maintained by the automation.</inlineHelpText>
+    <label>Agreement Number</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

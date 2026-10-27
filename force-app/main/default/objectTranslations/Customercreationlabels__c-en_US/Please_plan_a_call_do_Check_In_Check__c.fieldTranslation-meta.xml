@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Please plan a call &amp; do Check In &amp; Check --></label>
+    <name>Please_plan_a_call_do_Check_In_Check__c</name>
+</CustomFieldTranslation>

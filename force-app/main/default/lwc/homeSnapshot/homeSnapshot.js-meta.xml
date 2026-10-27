@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <isExposed>true</isExposed>
+    <masterLabel>Home Snapshot</masterLabel>
+    <description>My Prospect &amp; Opportunity Overview: top KPI tiles, month-wise generation and pipeline-by-stage charts, and profile-scoped links to the 5 detailed dashboards.</description>
+    <targets>
+        <target>lightning__HomePage</target>
+        <target>lightning__AppPage</target>
+    </targets>
+</LightningComponentBundle>

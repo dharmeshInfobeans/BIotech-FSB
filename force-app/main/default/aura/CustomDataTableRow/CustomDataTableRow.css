@@ -1,0 +1,53 @@
+.THIS .column-width{
+ width: 4.5rem;
+}
+.THIS .table-header-row6-modal {
+    position: sticky;
+    left: 0;
+    top: 0px;
+    Z-INDEX: 1;
+     background-color: white !important;
+}
+.THIS .table-header-row5-modal {
+    position: sticky;
+    top: 0px;
+    left: 90px;
+   /* top: 50px;*/
+
+    background-color: white !important;
+ 
+}
+
+.THIS .table-header-row7-data {
+    position: sticky;
+    left: 0;
+   Z-INDEX: 1;
+     background-color: white !important;
+}
+.THIS .table-header-row8-data {
+    position: sticky;
+  
+   /* left: 12rem;*/
+    left: 11.5rem;
+   /* top: 50px;*/
+    Z-INDEX: 1;
+    background-color: white !important;
+ 
+}
+
+
+.THIS .headingColors
+{
+    background-color: lightgray;
+    
+}
+
+.THIS .warningColor
+{
+    color:red;
+}
+
+.THIS .innerTd{
+    border:none;
+    border-right: solid 1px lightgray;
+}

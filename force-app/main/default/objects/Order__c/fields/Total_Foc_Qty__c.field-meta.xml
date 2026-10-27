@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Foc_Qty__c</fullName>
+    <label>Total Foc Qty</label>
+    <summarizedField>Order_Product__c.FOC_Quantity__c</summarizedField>
+    <summaryFilterItems>
+        <field>Order_Product__c.Model_Txt__c</field>
+        <operation>equals</operation>
+        <value>&apos;&apos;</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Order_Product__c.Order__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

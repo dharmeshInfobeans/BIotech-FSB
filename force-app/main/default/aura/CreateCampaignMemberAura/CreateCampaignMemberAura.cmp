@@ -1,0 +1,6 @@
+<aura:component implements="lightning:isUrlAddressable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="modalHeader" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <c:createCampaignMember  recordId="{!v.recordId}"  oncloseaura="{!c.handleCloseAura}"/>
+</aura:component>

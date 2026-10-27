@@ -1,0 +1,24 @@
+<apex:page showHeader="false"
+           sidebar="false"
+           lightningStylesheets="true">
+
+    <script>
+        (function () {
+            // Get recordId from URL
+            const params = new URLSearchParams(window.location.search);
+            const recordId = params.get('id');
+            //alert('recordId ::'+recordId);
+            if (recordId) {
+                // Redirect to Lightning App Page
+                const redirectUrl =
+                    '/lightning/n/Evaluation_Form?c__recordId=' +
+                    encodeURIComponent(recordId);
+
+                window.location.replace(redirectUrl);
+            } else {
+                // alert('Record Id not found.');
+            }
+        })();
+    </script>
+
+</apex:page>

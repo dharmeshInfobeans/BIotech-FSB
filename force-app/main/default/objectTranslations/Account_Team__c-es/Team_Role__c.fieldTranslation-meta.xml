@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Rol del Equipo</label>
+    <name>Team_Role__c</name>
+    <picklistValues>
+        <masterLabel>ASM</masterLabel>
+        <translation><!-- ASM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Account Manager</masterLabel>
+        <translation><!-- Account Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Application Engineer</masterLabel>
+        <translation><!-- Application Engineer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Asst. Manager - Mkt</masterLabel>
+        <translation><!-- Asst. Manager - Mkt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BDM</masterLabel>
+        <translation><!-- BDM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BDM -Ortho</masterLabel>
+        <translation><!-- BDM -Ortho --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Business Development Manager(Global)</masterLabel>
+        <translation><!-- Business Development Manager(Global) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CH MENA</masterLabel>
+        <translation><!-- CH MENA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CH-Dermatology Business</masterLabel>
+        <translation><!-- CH-Dermatology Business --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CH-Orthopedic Business</masterLabel>
+        <translation><!-- CH-Orthopedic Business --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Clinical Research Associate</masterLabel>
+        <translation><!-- Clinical Research Associate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DM 1</masterLabel>
+        <translation><!-- DM 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DM 2</masterLabel>
+        <translation><!-- DM 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DM 3</masterLabel>
+        <translation><!-- DM 3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DM 4</masterLabel>
+        <translation><!-- DM 4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DM 5</masterLabel>
+        <translation><!-- DM 5 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Div 1</masterLabel>
+        <translation><!-- Div 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Div 2</masterLabel>
+        <translation><!-- Div 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Div 3</masterLabel>
+        <translation><!-- Div 3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Div 4</masterLabel>
+        <translation><!-- Div 4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Div 5</masterLabel>
+        <translation><!-- Div 5 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Junior Sales Rep</masterLabel>
+        <translation><!-- Junior Sales Rep --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manager - Clinical Affairs</masterLabel>
+        <translation><!-- Manager - Clinical Affairs --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manager - PMT</masterLabel>
+        <translation><!-- Manager - PMT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Marketing Manager Gloderm</masterLabel>
+        <translation><!-- Marketing Manager Gloderm --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NSM Morocco</masterLabel>
+        <translation><!-- NSM Morocco --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NSM Ortho Egypt</masterLabel>
+        <translation><!-- NSM Ortho Egypt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>National Manager Mkt</masterLabel>
+        <translation><!-- National Manager Mkt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>National Sales Manager Egypt</masterLabel>
+        <translation><!-- National Sales Manager Egypt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Manager - Egypt</masterLabel>
+        <translation><!-- Product Manager - Egypt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Specialist</masterLabel>
+        <translation><!-- Product Specialist --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-Eastern Europe</masterLabel>
+        <translation><!-- RBM-Eastern Europe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-Latin America</masterLabel>
+        <translation><!-- RBM-Latin America --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-MENA</masterLabel>
+        <translation><!-- RBM-MENA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-Ortho Dermal</masterLabel>
+        <translation><!-- RBM-Ortho Dermal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-Rest Of Africa</masterLabel>
+        <translation><!-- RBM-Rest Of Africa --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-South East Asia</masterLabel>
+        <translation><!-- RBM-South East Asia --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RBM-Western Europe</masterLabel>
+        <translation><!-- RBM-Western Europe --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RH</masterLabel>
+        <translation><!-- RH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RPM</masterLabel>
+        <translation><!-- RPM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RPM - LATAM</masterLabel>
+        <translation><!-- RPM - LATAM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RSM</masterLabel>
+        <translation><!-- RSM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RSM APAC</masterLabel>
+        <translation><!-- RSM APAC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RSM ISTANBUL</masterLabel>
+        <translation><!-- RSM ISTANBUL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refractive Manager</masterLabel>
+        <translation><!-- Refractive Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Specialist ISTANBUL</masterLabel>
+        <translation><!-- Sales Specialist ISTANBUL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior Sales Rep</masterLabel>
+        <translation><!-- Senior Sales Rep --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sr. Manager - Mkt</masterLabel>
+        <translation><!-- Sr. Manager - Mkt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sr. Manager - PMT</masterLabel>
+        <translation><!-- Sr. Manager - PMT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZDM</masterLabel>
+        <translation><!-- ZDM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ZSM</masterLabel>
+        <translation><!-- ZSM --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

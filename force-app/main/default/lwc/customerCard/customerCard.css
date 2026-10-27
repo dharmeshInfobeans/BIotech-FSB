@@ -1,0 +1,261 @@
+.circle {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-top: 6px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* font-size: 20px;
+    color: #ecebea;
+    line-height: 25px;
+    text-align: center; */
+    background: #f05e23;
+}
+.imgTag{
+    border-radius: 50%;
+    /* margin-left: 15px; */
+}
+
+.slds-media{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 12px;
+    border-radius: 3%;
+    margin-top: 10px;
+    width: 300px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    
+    
+}
+lightning-card {
+    cursor: pointer;
+    border-radius: .25rem;
+    display: block;
+    border-width: 2px;
+    
+    
+    
+    
+  
+}
+.card {
+    background-color: black;
+    cursor: pointer;
+}
+.text {
+    padding: 10px 0px 10px 0px;
+    font-size: 12px;
+    color: #ecebea;
+}
+
+.showData {
+    float:left;
+    border-radius: 18px;
+    background:rgb(39, 174, 230);
+    width: 51px;
+    font-weight:bold;
+}
+
+.productData {
+    border-radius: 18px;
+    
+    width: 100px;
+    font-weight:bold; 
+}
+
+/* accountCard{
+    border: 1px solid #ecebea;
+    border-radius: .25rem;
+    /* box-shadow: 0 2px ;
+    display: block;
+    border-width: 2px;
+    cursor: pointer;
+}
+accountCard:hover {
+    box-shadow: 3px 3px 5px 6px rgb(94, 79, 79);
+  
+} */
+
+/*
+.accountCard{
+    width: 100%;
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 40px;
+    display: block;
+    width: 80%;
+    height: 80px;
+    border-radius: 3%;
+    box-shadow: 0px 2px 3px 7px rgba(0,0,0,.1);
+}
+.newIcon{
+    margin-top: 20px;
+}
+.newButton{
+    margin-left: 70%;
+}
+
+.nameSpan{
+    width: 100%;
+}
+.imgDiv {
+    max-width: 80%;
+    height: 40px;
+}
+.imgSpan{
+    text-align: left;
+    margin-right: 80%;
+}
+.newImg{
+    width: 100%;
+    height: 32px;
+    margin-top: 25px;
+}
+.cardBody{
+    background: rgb(215, 205, 205);
+}
+@media only screen   
+and (min-device-width : 320px)   
+and (max-device-width : 480px)  
+{ 
+    .accountCard{
+    font-size: small;
+    margin-left: 30px;
+    margin-right: 40px;
+    display: block;
+    width: 80%;
+    height: 80px;
+    border-radius: 3%;
+    box-shadow: 0px 2px 3px 7px rgba(0,0,0,.1);
+    }
+    .newIcon{
+        margin-top: 20px;
+    }
+    .newButton{
+        margin-left: 70%;
+    }
+    .nameSpan{
+        text-align: center;
+    }
+    .imgDiv {
+        max-width: 80%;
+        height: 40px;
+    }
+    .imgSpan{
+        text-align: left;
+        margin-right: 80%;
+    }
+    .newImg{
+        width: 100%;
+        height: 32px;
+        margin-top: 25px;
+    }
+    .cardBody{
+        background: rgb(215, 205, 205);
+    }
+}  
+
+@media only screen   
+and (min-device-width : 480px)   
+and (max-device-width : 640px)  
+{ .accountCard{
+    font-size: inherit;
+    margin-left: 30px;
+    margin-right: 40px;
+    display: block;
+    width: 80%;
+    height: 80px;
+    border-radius: 3%;
+    box-shadow: 0px 2px 3px 7px rgba(0,0,0,.1);
+    }
+    .newIcon{
+        margin-top: 20px;
+    }
+    .newButton{
+        margin-left: 70%;
+    }
+    .nameSpan{
+        text-align: center;
+    }
+
+    .imgDiv {
+        max-width: 80%;
+        height: 40px;
+    }
+    .imgSpan{
+        text-align: left;
+        margin-right: 80%;
+    }
+    .newImg{
+        width: 100%;
+        height: 32px;
+        margin-top: 25px;
+    }
+    .cardBody{
+        background: rgb(215, 205, 205);
+    }
+    
+} 
+
+@media only screen   
+and (min-device-width : 768px)   
+and (max-device-width : 1024px)  
+{  
+    .accountCard{
+        border: 2px solid #000;
+        margin-left: 30px;
+        margin-right: 40px;
+        display: block;
+        width: 80%;
+        height: 80px;
+        border-radius: 3%;
+        box-shadow: 0px 2px 3px 7px rgba(0,0,0,.1);
+        }
+        .newIcon{
+            margin-top: 20px;
+        }
+   
+        .newButton{
+            margin-left: 70%;
+        }
+        .imgDiv {
+            max-width: 80%;
+            height: 40px;
+        }
+        .imgSpan{
+            text-align: left;
+            margin-right: 80%;
+        }
+        .newImg{
+            width: 100%;
+            height: 32px;
+            margin-top: 25px;
+        }
+        .cardBody{
+            background: rgb(215, 205, 205);
+        }
+} 
+
+@media only screen   
+and (min-width: 1030px)   
+and (max-width: 1366px)  
+{} 
+
+
+@media only screen   
+and (orientation : landscape)   
+and (-webkit-min-device-pixel-ratio: 1)  
+and (min-device-width : 768px)   
+and (max-device-width : 1007px)   
+{ }  
+
+@media only screen   
+and (orientation : portrait)   
+and (-webkit-min-device-pixel-ratio: 1)   
+and (min-device-width : 768px)   
+and (max-device-width : 1007px)  
+{ }
+
+*/

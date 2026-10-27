@@ -1,0 +1,127 @@
+<template>
+    <div class="slds-p-around_medium slds-scrollable_x table-container">
+        <table class="custom-table">
+            <thead>
+                <tr>
+                    <th rowspan="2">{label.DIVISION}</th>
+                    <th rowspan="2">{label.CATEGORY}</th>
+                    <th rowspan="2">{label.BIOTECH_PRODUCT_RANGE}</th>
+
+                    <template for:each={brandList} for:item="brand">
+                        <th key={brand} colspan="4" class="slds-text-align_center">{brand}</th>
+                    </template>
+
+                    <!-- <th colspan="2" class="slds-text-align_center">Agreement Product</th> -->
+                    <th colspan="5" class="slds-text-align_center">BIOTECH</th>
+                </tr>
+                <tr>
+                    <template for:each={brandList} for:item="brand">
+                        <template for:each={brandDataList} for:item="data" key={brand}>
+                            <th key={data}>{data}</th>
+                        </template>
+                    </template>
+
+                    <th>{label.DISTRIBUTOR_AGREEMENT_PRICE_A}</th>
+                    <th>{label.FOC_IF_ANY_B}</th>
+
+                    <th>{label.IMPORTATION_OR_CUSTOM_CLEARANCE_CHARGES}</th>
+                    <th>{label.LANDING_COST_TO_DISTRIBUTOR}</th>
+                    <th>{label.END_USER_PRICE_BY_DISTRIBUTOR_TO_DOCTOR}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <template for:each={flatData} for:item="row">
+                    <tr key={row.key}>
+                        <template if:true={row.showDivision}>
+                            <th rowspan={row.rowspan}>{row.division}</th>
+                        </template>
+
+                        <td>{row.category}</td>
+                        <td>{row.productRange}</td>
+
+                        <template for:each={row.brandValues} for:item="brandValue">
+                            <td key={brandValue.Brand_Name}>{brandValue.Brand_Name}</td>
+                            <td key={brandValue.Price_KeyAccounts}>{brandValue.Price_KeyAccounts}</td>
+                            <td key={brandValue.Price_for_Retail}>{brandValue.Price_for_Retail}</td>
+                            <td key={brandValue.Total_Package}>{brandValue.Total_Package}</td>
+                        </template>
+
+                        <!-- AGREEMENT PRODUCT (Row-level) -->
+                        <td>{row.agreementPrice}</td>
+                        <td>{row.agreementFOC}</td>
+
+                        <!-- BIOTECH DATA -->
+                        <td>{row.biotechData.customsCharges}</td>
+                        <td>{row.biotechData.landingCost}</td>
+                        <td>{row.biotechData.endUserPrice}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>
+
+
+
+<!-- <template>
+        <div class="slds-p-around_medium slds-scrollable_x table-container">
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th rowspan="2">{label.DIVISION}</th>
+                        <th rowspan="2">{label.CATEGORY}</th>
+                        <th rowspan="2">{label.BIOTECH_PRODUCT_RANGE}</th>
+
+                        <template for:each={brandList} for:item="brand">
+                            <th key={brand} colspan="4" style="text-align:center;">{brand}</th>
+                        </template>
+
+                        <th colspan="5" style="text-align:center;">Biotech</th>
+                    </tr>
+                    <tr>
+                        <template for:each={brandList} for:item="brand">
+                            <template for:each={brandDataList} for:item="data" key={brand}>
+                                <th key={data}>{data}</th>
+                            </template>
+                        </template>
+
+                        <th>{label.DISTRIBUTOR_AGREEMENT_PRICE_A}</th>
+                        <th>{label.FOC_IF_ANY_B}</th>
+                        <th>{label.IMPORTATION_OR_CUSTOM_CLEARANCE_CHARGES}</th>
+                        <th>{label.LANDING_COST_TO_DISTRIBUTOR}</th>
+                        <th>{label.END_USER_PRICE_BY_DISTRIBUTOR_TO_DOCTOR}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <template for:each={flatData} for:item="row">
+                        <tr key={row.key}>
+                            <template if:true={row.showDivision}>
+                                <th rowspan={row.rowspan}>{row.division}</th>
+                            </template>
+
+                            <td>{row.category}</td>
+                            <td>{row.productRange}</td>
+
+                            <template for:each={row.brandValues} for:item="brandValue">
+                                <td key={brandValue.Brand_Name}>{brandValue.Brand_Name}</td>
+                                <td key={brandValue.Price_KeyAccounts}>{brandValue.Price_KeyAccounts}</td>
+                                <td key={brandValue.Price_for_Retail}>{brandValue.Price_for_Retail}</td>
+                                <td key={brandValue.Total_Package}>{brandValue.Total_Package}</td>
+                            </template>
+
+
+                            <td>{row.biotechData.agreementPrice}</td>  
+                            <td>{row.biotechData.foc}</td>
+                            <td>{row.biotechData.customsCharges}</td>
+                            <td>{row.biotechData.landingCost}</td>
+                            <td>{row.biotechData.endUserPrice}</td>
+                          
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+
+        </div>
+</template> -->

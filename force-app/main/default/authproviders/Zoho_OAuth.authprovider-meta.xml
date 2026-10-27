@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AuthProvider xmlns="http://soap.sforce.com/2006/04/metadata">
+    <authorizeUrl>https://accounts.zoho.in/oauth/v2/auth</authorizeUrl>
+    <consumerKey>1000.3Q3VGTSNAWLM1W4HAB9GC6R3MX210J</consumerKey>
+    <consumerSecret>Placeholder_Value</consumerSecret>
+    <defaultScopes>ZohoSign.documents.CREATE ZohoSign.documents.READ ZohoSign.documents.UPDATE</defaultScopes>
+    <friendlyName>Zoho_OAuth</friendlyName>
+    <includeOrgIdInIdentifier>false</includeOrgIdInIdentifier>
+    <isPkceEnabled>true</isPkceEnabled>
+    <providerType>OpenIdConnect</providerType>
+    <requireMfa>false</requireMfa>
+    <sendAccessTokenInHeader>true</sendAccessTokenInHeader>
+    <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
+    <sendSecretInApis>true</sendSecretInApis>
+    <tokenUrl>https://accounts.zoho.in/oauth/v2/token</tokenUrl>
+</AuthProvider>

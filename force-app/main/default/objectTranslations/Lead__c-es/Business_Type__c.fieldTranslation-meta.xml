@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Bifurcation of lead based on business type. --></help>
+    <label><!-- Business Type --></label>
+    <name>Business_Type__c</name>
+    <picklistValues>
+        <masterLabel>-</masterLabel>
+        <translation><!-- - --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dealer</masterLabel>
+        <translation><!-- Dealer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Distributor</masterLabel>
+        <translation><!-- Distributor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Doctor</masterLabel>
+        <translation><!-- Doctor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hospital</masterLabel>
+        <translation><!-- Hospital --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Other</masterLabel>
+        <translation><!-- Other --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Patient</masterLabel>
+        <translation><!-- Patient --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Partner</masterLabel>
+        <translation><!-- Sales Partner --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

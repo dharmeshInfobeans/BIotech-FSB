@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Potential__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Total__c &gt;= 2000000 , &apos;P&apos;,
+IF(Total__c &gt;= 1000000,&apos;Q&apos;,
+IF(Total__c &gt;= 500000,&apos;R&apos;,
+IF(Total__c &gt;= 250000,&apos;S&apos;,&apos;T&apos;))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Customer Potential</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

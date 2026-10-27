@@ -1,0 +1,34 @@
+<template>
+    <lightning-card title="Export / Download">
+        <div class="slds-p-around_medium">
+            <p class="slds-text-body_regular">
+                Click <b>Download</b> to generate and download file. {recordId}
+            </p>
+
+            <div class="slds-m-top_medium">
+                <lightning-button
+                    variant="brand"
+                    label="Download"
+                    title="Download"
+                    onclick={handleDownload}
+                    disabled={isDownloading}
+                ></lightning-button>
+
+                <lightning-button
+                    variant="neutral"
+                    class="slds-m-left_small"
+                    label="Cancel"
+                    title="Cancel"
+                    onclick={handleCancel}
+                ></lightning-button>
+            </div>
+
+            <template if:true={isDownloading}>
+                <div class="slds-m-top_medium">
+                    <lightning-spinner alternative-text="Generating file" size="small"></lightning-spinner>
+                    <span class="slds-m-left_small">Preparing file…</span>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

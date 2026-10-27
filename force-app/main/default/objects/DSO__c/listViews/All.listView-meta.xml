@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Customer_Code__c</columns>
+    <columns>Customer_Name__c</columns>
+    <columns>From_Date__c</columns>
+    <columns>To_Date__c</columns>
+    <columns>Quadrant__c</columns>
+    <columns>Days__c</columns>
+    <columns>Net_Sales__c</columns>
+    <columns>Outstanding_Amount__c</columns>
+    <columns>Margin__c</columns>
+    <columns>Quarter__c</columns>
+    <columns>State__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>OWNER.LAST_NAME</columns>
+    <columns>RSM__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Quarter__c</field>
+        <operation>equals</operation>
+        <value>Quarter 4</value>
+    </filters>
+    <label>All</label>
+</ListView>

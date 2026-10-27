@@ -1,0 +1,313 @@
+<template>
+
+    <div class="page-wrap">
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="center-wrapper">
+                <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <template if:false={isLoading}>
+
+            <!-- Error -->
+            <template if:true={errorMessage}>
+                <div class="mom-task-card">
+                    <div class="card-header error-header">
+                        <span>Unable to Load</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="error-text">{errorMessage}</p>
+                        <p class="hint-text">Please use the link from your email or contact the meeting organiser.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Rejected -->
+            <template if:true={isRejected}>
+                <div class="mom-task-card">
+                    <div class="card-header success-header">
+                        <span>Concern Submitted</span>
+                    </div>
+                    <div class="card-body center-content">
+                        <p class="success-text">Your concern has been submitted successfully.</p>
+                        <p class="hint-text">The meeting organiser has been notified and will reassign the action item.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Success -->
+            <template if:true={isSubmitted}>
+                <div class="mom-task-card">
+                    <div class="card-header success-header">
+                        <span>Update Submitted</span>
+                    </div>
+                    <div class="card-body center-content">
+                        <p class="success-text">Thank you! Your action item has been updated successfully.</p>
+                        <p class="hint-text">You may now close this window.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Read-only: already completed -->
+            <template if:true={showReadOnly}>
+                <div class="mom-task-card">
+                    <div class="card-header success-header">
+                        <span>Action Item Completed</span>
+                    </div>
+                    <div class="card-body">
+                        <p class="section-label">Meeting Details</p>
+                        <div class="detail-section">
+
+                            <!-- Row 1: Meeting Name | Meeting Date | Distributor -->
+                            <div class="field-row">
+                                <div class="field-cell">
+                                    <span class="field-label">Meeting Name</span>
+                                    <span class="field-value">{task.meetingName}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Meeting Date</span>
+                                    <span class="field-value">{formattedMeetingDate}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Distributor</span>
+                                    <span class="field-value">{task.distributor}</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Description | Attendees -->
+                            <div class="field-row alt">
+                                <div class="field-cell">
+                                    <span class="field-label">Description</span>
+                                    <span class="field-value">{task.subject}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Attendees</span>
+                                    <span class="field-value">{task.attendees}</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Priority | Biotech Department | Responsible Department -->
+                            <div class="field-row">
+                                <div class="field-cell">
+                                    <span class="field-label">Priority</span>
+                                    <span class="field-value">{task.priority}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Biotech Department</span>
+                                    <span class="field-value">{task.category}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Responsible Department</span>
+                                    <span class="field-value">{task.responsibleDept}</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Discussion Summary (label left | value right) -->
+                            <template if:true={task.discussionSummary}>
+                                <div class="field-row alt summary-row">
+                                    <span class="field-label">Discussion Summary</span>
+                                    <span class="field-value summary-value">{task.discussionSummary}</span>
+                                </div>
+                            </template>
+
+                        </div>
+
+                        <p class="section-label">Action Item Status</p>
+                        <div class="detail-section">
+                            <div class="field-row">
+                                <div class="field-cell">
+                                    <span class="field-label">Status</span>
+                                    <span class="field-value completed-badge">Completed</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Target Date/Completion Date</span>
+                                    <span class="field-value">{formattedDueDate}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Target Week</span>
+                                    <span class="field-value">{targetWeek}</span>
+                                </div>
+                            </div>
+                            <template if:true={task.description}>
+                                <div class="field-row alt summary-row">
+                                    <span class="field-label">Comment</span>
+                                    <span class="field-value">{task.description}</span>
+                                </div>
+                            </template>
+                        </div>
+
+                        <p class="hint-text">This action item has already been completed and cannot be edited.</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Form -->
+            <template if:true={showForm}>
+                <div class="mom-task-card">
+                    <div class="card-header blue-header">
+                        <span>Action Item Update</span>
+                    </div>
+                    <div class="card-body">
+
+                        <!-- Meeting details (read-only) -->
+                        <p class="section-label">Meeting Details</p>
+                        <div class="detail-section">
+
+                            <!-- Row 1: Meeting Name | Meeting Date | Distributor -->
+                            <div class="field-row">
+                                <div class="field-cell">
+                                    <span class="field-label">Meeting Name</span>
+                                    <span class="field-value">{task.meetingName}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Meeting Date</span>
+                                    <span class="field-value">{formattedMeetingDate}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Distributor</span>
+                                    <span class="field-value">{task.distributor}</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 2: Description | Attendees -->
+                            <div class="field-row alt">
+                                <div class="field-cell">
+                                    <span class="field-label">Description</span>
+                                    <span class="field-value">{task.subject}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Attendees</span>
+                                    <span class="field-value">{task.attendees}</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 3: Priority | Biotech Department | Responsible Department -->
+                            <div class="field-row">
+                                <div class="field-cell">
+                                    <span class="field-label">Priority</span>
+                                    <span class="field-value">{task.priority}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Biotech Department</span>
+                                    <span class="field-value">{task.category}</span>
+                                </div>
+                                <div class="field-cell">
+                                    <span class="field-label">Responsible Department</span>
+                                    <span class="field-value">{task.responsibleDept}</span>
+                                </div>
+                            </div>
+
+                            <!-- Row 4: Discussion Summary (label left | value right) -->
+                            <template if:true={task.discussionSummary}>
+                                <div class="field-row alt summary-row">
+                                    <span class="field-label">Discussion Summary</span>
+                                    <span class="field-value summary-value">{task.discussionSummary}</span>
+                                </div>
+                            </template>
+
+                        </div>
+
+                        <!-- Editable fields -->
+                        <div class="editable-section">
+                            <p class="editable-label">Update Action Item</p>
+
+                            <!-- Date + Target Week (first visit only) + Status in one row -->
+                            <div class="form-row">
+                                <div class="form-col">
+                                    <label class="form-label" for="taskDueDate">{dateFieldLabel} <span class="required">*</span></label>
+                                    <input
+                                        type="date"
+                                        id="taskDueDate"
+                                        class="date-field"
+                                        value={dueDate}
+                                        onchange={handleDateChange} />
+                                </div>
+                                <template if:true={showTargetWeek}>
+                                    <div class="form-col-week">
+                                        <label class="form-label">Target Week</label>
+                                        <span class="week-value">{targetWeek}</span>
+                                    </div>
+                                </template>
+                                <div class="form-col">
+                                    <label class="form-label">Status <span class="required">*</span></label>
+                                    <div class="radio-group">
+                                        <label class={wipClass}>
+                                            <input type="radio" name="taskStatus" value="Work in Progress"
+                                                   checked={isWIP} onchange={handleStatusChange} />
+                                            Work in Progress
+                                        </label>
+                                        <label class={completedClass}>
+                                            <input type="radio" name="taskStatus" value="Completed"
+                                                   checked={isCompleted}
+                                                   disabled={isCompletedDisabled}
+                                                   onchange={handleStatusChange} />
+                                            Completed
+                                        </label>
+                                    </div>
+                                    <template if:true={isCompletedDisabled}>
+                                        <p class="completed-hint">{completedHintText}</p>
+                                    </template>
+                                </div>
+                            </div>
+
+                            <!-- Action Against Assigned Task -->
+                            <div class="form-section">
+                                <label class="form-label" for="taskComment">Action Against Assigned Task <span class="required">*</span></label>
+                                <textarea
+                                    id="taskComment"
+                                    class="textarea-field"
+                                    placeholder="Describe the action taken against this task..."
+                                    rows="4"
+                                    onchange={handleCommentChange}>{comment}</textarea>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="form-section">
+                                <button class="submit-btn" onclick={handleSubmit}>
+                                    Submit Update
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Not your Action Item? -->
+                        <div class="reject-section">
+                            <template if:false={showRejectForm}>
+                                <p class="reject-prompt">
+                                    Not your Action Item?&nbsp;
+                                    <button class="reject-link" onclick={handleRejectToggle}>Click here</button>
+                                </p>
+                            </template>
+                            <template if:true={showRejectForm}>
+                                <div class="reject-form">
+                                    <p class="reject-form-title">Flag as Incorrectly Assigned</p>
+                                    <p class="reject-form-desc">Please explain why this action item is not yours. The meeting organiser will be notified and will reassign it.</p>
+                                    <template if:true={rejectErrorMessage}>
+                                        <p class="reject-error">{rejectErrorMessage}</p>
+                                    </template>
+                                    <div class="form-section">
+                                        <label class="form-label" for="rejectComment">Reason <span class="required">*</span></label>
+                                        <textarea
+                                            id="rejectComment"
+                                            class="textarea-field"
+                                            rows="3"
+                                            placeholder="e.g. This action item belongs to the Marketing department, not Sales."
+                                            onchange={handleRejectCommentChange}>{rejectComment}</textarea>
+                                    </div>
+                                    <div class="reject-actions">
+                                        <button class="reject-submit-btn" onclick={handleRejectSubmit}>Submit</button>
+                                        <button class="reject-cancel-btn" onclick={handleRejectToggle}>Cancel</button>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+
+                    </div>
+                </div>
+            </template>
+
+        </template>
+    </div>
+
+</template>

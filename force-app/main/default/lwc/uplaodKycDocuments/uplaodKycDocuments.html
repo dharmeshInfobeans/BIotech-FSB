@@ -1,0 +1,278 @@
+<template>
+	<lightning-quick-action-panel header={getcustomermodulelabel.KYC_Upload_Document__c}>
+      <template if:true={docList}>
+		<div class="body">
+			<div style="margin: 5px;">
+
+				<h3 class="slds-section__title">
+					<button class="slds-button slds-section__title-action" onclick={handleClick}>
+					<span class="slds-truncate" title={label}>{getcustomermodulelabel.Lead_Information__c}</span>
+				</button>
+				</h3>
+				<div class="slds-grid slds-wrap slds-gutters">
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Name_1__c' name='Name_1__c' onchange={handleChange}
+								required>
+							</lightning-input-field>
+						</lightning-record-edit-form>
+
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Name_2__c' name='Name_2__c' onchange={handleChange}>
+							</lightning-input-field>
+						</lightning-record-edit-form>
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Street_1__c' name='Street_1__c' onchange={handleChange}
+								required> </lightning-input-field>
+								<template if:true={errorMessages.Street_1__c}>
+								<div class="slds-text-color_error">{errorMessages.Street_1__c}</div>
+							</template>
+						</lightning-record-edit-form>
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Street_2__c' name='Street_2__c' onchange={handleChange}>
+							</lightning-input-field>
+							<template if:true={errorMessages.Street_2__c}>
+								<div class="slds-text-color_error">{errorMessages.Street_2__c}</div>
+							</template>
+						</lightning-record-edit-form>
+					</div>
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Street_3__c' name='Street_3__c' onchange={handleChange}>
+							</lightning-input-field>
+							<template if:true={errorMessages.Street_3__c}>
+								<div class="slds-text-color_error">{errorMessages.Street_3__c}</div>
+							</template>
+						</lightning-record-edit-form>
+
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Street_4__c' name='Street_4__c' onchange={handleChange}>
+					
+							</lightning-input-field>
+							<template if:true={errorMessages.Street_4__c}>
+								<div class="slds-text-color_error">{errorMessages.Street_4__c}</div>
+							</template>
+						</lightning-record-edit-form>
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='City_postal_code__c' name='City_postal_code__c'
+								onchange={handleChange} required> </lightning-input-field>
+						</lightning-record-edit-form>
+					</div>
+
+				<!--	<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='SAP_City__c' name='SAP_City__c' onchange={handleChange}
+								required> </lightning-input-field>
+						</lightning-record-edit-form>
+					</div>
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Country_Key__c' name='Country_Key__c'
+								onchange={handleChange} required> </lightning-input-field>
+						</lightning-record-edit-form>
+					</div>-->
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='Region_State_Province_County__c'
+								name='Region_State_Province_County__c' onchange={handleChange} required>
+							</lightning-input-field>
+						</lightning-record-edit-form>
+
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='First_telephone_no_dialling_code__c'
+								name='First_telephone_no_dialling_code__c' onchange={handleChange}>
+							</lightning-input-field>
+						</lightning-record-edit-form>
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='First_Mobile_Telephone_No_Dialing__c'
+								name='First_Mobile_Telephone_No_Dialing__c' onchange={handleChange} required>
+							</lightning-input-field>
+						</lightning-record-edit-form>
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='First_fax_no_dialling_code_number__c'
+								name='First_fax_no_dialling_code_number__c' onchange={handleChange}>
+							</lightning-input-field>
+						</lightning-record-edit-form>
+					</div>
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+
+						<lightning-record-edit-form object-api-name='Lead__c' record-id={recordId}>
+							<lightning-input-field field-name='E_Mail_Address__c' name='E_Mail_Address__c'
+								onchange={handleChange} required> </lightning-input-field>
+						</lightning-record-edit-form>
+
+					</div>
+
+				<!--	<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-combobox name="Sales_district__c" label={getcustomermodulelabel.Sales_District__c} placeholder={salesDistrict}
+							options={salesDistrictOptions} onchange={handleChange} value={salesOffice} required>
+						</lightning-combobox>
+					</div>
+
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-combobox name="Sales_Office__c" label={getcustomermodulelabel.Sales_Office__c} placeholder={salesOffice}
+							options={salesOfficeOptions} onchange={handleChange} value={salesDistrict} required>
+						</lightning-combobox>
+					</div>-->
+					<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+						<lightning-combobox name="Plant__c" label={getcustomermodulelabel.Plant__c} placeholder={plant}
+							options={plantList} onchange={handleChange} value={plant} required>
+						</lightning-combobox>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<template if:true={apprComment}>
+		<div style="margin: 5px;">
+			<h3 class="slds-section__title">
+				<button class="slds-button slds-section__title-action" onclick={handleClick}>
+					<span class="slds-truncate" title={label}>{getcustomermodulelabel.Approval_Information__c}</span>
+				</button>
+			</h3>
+			<div class="slds-grid slds-wrap slds-gutters">
+				<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+					<lightning-record-edit-form object-api-name='Lead__c'>
+						<lightning-input-field field-name='RSM_Comments__c' name='RSM_Comments__c' value={dataMap.RSM}
+							disabled>
+						</lightning-input-field>
+					</lightning-record-edit-form>
+
+				</div>
+				<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+					<lightning-record-edit-form object-api-name='Lead__c'>
+						<lightning-input-field field-name='ZSM_Comments__c' name='ZSM_Comments__c' value={dataMap.ZSM}
+							disabled>
+						</lightning-input-field>
+					</lightning-record-edit-form>
+
+				</div>
+				<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+					<lightning-record-edit-form object-api-name='Lead__c'>
+						<lightning-input-field field-name='GM_NSM_Comments__c' name='GM_NSM_Comments__c'
+							value={dataMap.GM} disabled>
+						</lightning-input-field>
+					</lightning-record-edit-form>
+
+				</div>
+				<div class="slds-col slds-size_1-of-2 slds-p-horizontal_small">
+					<lightning-record-edit-form object-api-name='Lead__c'>
+						<lightning-input-field field-name='Admin_Comments__c' name='Admin_Comments__c'
+							value={dataMap.Admin} disabled>
+						</lightning-input-field>
+					</lightning-record-edit-form>
+
+				</div>
+
+
+			</div>
+		</div>
+	</template>
+		<div>
+	<div class="instruction-banner">
+		Please enter the document number for each required document below before uploading files.
+	</div>
+
+			<table class="slds-table slds-table_cell-buffer slds-table_bordered innerTable">
+				<thead>
+					<tr class="slds-line-height_reset">
+						<td scope="col"><b>{getcustomermodulelabel.S_No__c}</b></td>
+						<td scope="col"><b>{getcustomermodulelabel.Document_Name__c}</b></td>
+						<td scope="col"><b>{getcustomermodulelabel.Required__c}</b></td>
+						<td scope="col"><b>{getcustomermodulelabel.Upload__c}</b></td>
+						<td scope="col"><b>{getcustomermodulelabel.Already_uploaded__c}</b></td>
+						<td scope="col"><b>Enter the No.</b></td>
+					</tr>
+				</thead>
+				<tbody>
+					<template for:each={records} for:item="kycData" for:index="index">
+						<tr key={kycData.Id} data-id={kycData.Id}>
+							<td scope="row">{kycData.index}</td>
+							<td scope="row">{kycData.MasterLabel}</td>
+							<td scope="row">
+								<lightning-input type="checkbox" checked={kycData.IsRequired} data-id={kycData.Id}
+									data-key="firstColumnCheckbox" name={kycData.Id} disabled></lightning-input>
+							</td>
+							<td scope="row">
+								<lightning-input type="file" accept=".jpg, .png, .pdf" label={getcustomermodulelabel.Attachment__c}
+									data-record-id={kycData.Id} data-filename={kycData.MasterLabel}
+									onchange={openfileUpload}></lightning-input>
+								<span class="filename" data-record-id={kycData.Id}></span>
+							</td>
+							<td scope="row">
+								<lightning-input type="checkbox" checked={kycData.AlreadyUpdated} data-id={kycData.Id}
+									data-key="firstColumnCheckbox" name={kycData.Id} disabled></lightning-input>
+							</td>
+						<td scope="row">
+							<lightning-input type="text" placeholder="Enter Document number" data-filename={kycData.MasterLabel}
+								onchange={handleDocumentNumberChange} data-id={kycData.Id} required={kycData.IsRequired}>
+							</lightning-input>
+						</td>
+						</tr>
+					</template>
+				</tbody>
+			</table>
+		</div>
+		<div slot="footer">
+			<lightning-button label={getcustomermodulelabel.cancel__c} class="slds-m-left_x-small" onclick={handleCancel}></lightning-button>
+			&nbsp;&nbsp;
+			<template if:true={isButtonVisible}>
+				<lightning-button variant="brand" label={getcustomermodulelabel.Upload__c} onclick={handleClick} disabled ={uploaddesable}></lightning-button>
+			</template>
+		</div>
+
+	  </template>
+	  <template if:false={docList}>
+	 <template if:true={DCRdetail}>
+        <center>
+            <div style="color: red; font-weight: bold;">
+                Please plan first and Check in or check check out on DCR details before clicking the Initiate customer
+            </div>
+        </center>
+    </template>
+    <template if:false={DCRdetail}>
+        <center>
+            <div style="color: red; font-weight: bold;">
+                {getcustomermodulelabel.There_is_no_document_data_to_upload_rela__c}
+            </div>
+        </center>
+    </template>
+	  </template>
+
+
+	</lightning-quick-action-panel>
+
+
+
+	<template if:true={spinner}>
+		<lightning-spinner alternative-text="Loading" size="large"></lightning-spinner>
+	</template>
+
+</template>

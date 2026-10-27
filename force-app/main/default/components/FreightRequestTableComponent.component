@@ -1,0 +1,27 @@
+<apex:component controller="FreightRequestTableController" access="global" >
+    <apex:attribute name="orderId" type="Id"  assignTo="{!parentObjId}" required="true" description="The related freight request" access="global" />
+
+    <table border="1">
+        <tr>
+            <th>Order No.</th>
+            <th>Plant</th>
+            <th>Product</th>
+            <th>Model</th>
+            <th>Commercial QTY</th>
+            <th>FOC QTY</th>
+            <th>Total QTY</th>
+        </tr>
+       <!-- {!freightProductList} -->
+        <apex:repeat value="{!freightProductList}" var="FreightRequest">
+            <tr>
+                <td>{!FreightRequest.Order__r.Name}</td>
+                <td>{!FreightRequest.Product__r.Plant__r.Name}</td>
+                <td>{!FreightRequest.Product__r.Name}</td>
+                <td>{!FreightRequest.Model_Txt__c}</td>
+                <td>{!FreightRequest.Quantity__c}</td>
+                <td>{!FreightRequest.FOC_Quantity__c}</td>
+                <td>{!FreightRequest.Total_Quantities__c}</td>
+            </tr>
+        </apex:repeat>
+    </table>
+</apex:component>

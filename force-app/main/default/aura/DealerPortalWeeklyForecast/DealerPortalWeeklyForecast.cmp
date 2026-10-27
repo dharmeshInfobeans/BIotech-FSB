@@ -1,0 +1,161 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+                access="global" controller="DealerPortalForecastController">
+    
+    
+	<aura:attribute name ="weeklyForecastObj" type='Object' />
+    <aura:attribute name ="isDisabled" type='Boolean' />
+    <aura:attribute name ="message" type='String' />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+   
+    <aura:attribute name="isShowMoreRecordSpinner" type="boolean" default='false'/>
+    
+    <aura:attribute name="fromselectedMonth" type="Integer"/>
+    <aura:attribute name="fromselectedYear" type="Integer"/>
+    <aura:attribute name="toselectedMonth" type="Integer"/>
+    <aura:attribute name="toselectedYear" type="Integer"/>
+    <aura:attribute name="selectedCustomerCode" type="String"/>
+    <aura:attribute name="selectedRegionCode" type="String"/>
+    <aura:attribute name="isShowSpinnerChild" type="boolean" default='false'/>
+    <aura:attribute name="isShowSpinner" type="boolean" default='false'/>
+    <aura:attribute name="mouseStart" type="string" />
+    <aura:attribute name="oldWidth" type="string" />
+    <aura:attribute name="hasMoreProductRecord" type="boolean" default="false"/>
+    <aura:attribute name="msgList" type="string" default="Loading...."/>
+    <aura:attribute name="pageNumber"
+                    type="Integer"
+                    default="1"
+                    description="For pagination, which page of records to display."/>
+    
+    <aura:attribute name="pageSize"
+                    type="Integer"
+                    default="20"
+                    description="For pagination, how many records per page to display."/>
+    
+    <aura:attribute name="scrollCheckIntervalId"
+                    type="String"
+                    description="In the renderer.js, the interval id for periodically checking scroll position. Used when unrendering component to cancel interval check."
+                    access="private"/>
+    
+    <aura:method name="getPageRecords" action="{!c.getNextPageRecords}" />
+
+    <aura:registerEvent name="refreshChildComponent" type="c:refreshChildComponent"/>
+    
+    <aura:if isTrue="{!v.weeklyForecastObj.weeklyProductObj.length > 0}">
+        <aura:if isTrue="{!v.isShowSpinnerChild == false}">
+            <!--<div aura:id="divScroll" style="{!(v.weeklyForecastObj.weeklyProductObj.length > 4)?'height:400px;width:100%;overflow:scroll;':'height:285px;width:100%;overflow:scroll;'}"  onscroll="{!c.scroll}">-->
+            <div aura:id="divScroll" style= "height:400px;width:100%;overflow:scroll;" onscroll="{!c.scroll}">
+            <div id ='mainDiv'   style="width:82rem;height:100%;">
+                    <table aura:id="forecastTable" id="data" 
+                           class="slds-scrollable slds-table slds-table--header-fixed"        
+                           data-cols-number="2"
+                           data-scroll-height="300" 
+                           style="border-left:1px solid black;float:left;height:1rem;width:125rem">
+                        <thead>
+                            <tr class="slds-line-height_reset">   
+                                <th class="table-header-row1-modal sticky-col first-col" style = "min-width: 12rem;position:sticky" scope="col" id="horizontal-fix1">
+                                    <b>{!$Label.c.Product_Name}</b>
+                                </th>
+                                <!--<th class="table-header-row2-modal sticky-col first-col" scope="col" style = "Width:30px;position:sticky"  id="horizontal-fix2">
+                                    <div>{!$Label.c.Target}<br/>{!$Label.c.Qty}</div>
+                                </th>-->
+                                <th class="slds-cell-wrap" title ="{!$Label.c.Target_Qty}" scope="col" id="horizontal-fix2">
+                                    <b>{!$Label.c.Target_Qty}</b>
+                                </th>
+                                <!--<th class="slds-cell-wrap" title ="{!$Label.c.Agreement_Value}" scope="col" id="horizontal-fix3">
+                                    <b>{!$Label.c.Agreement_Value}</b>
+                                </th>--><!--commented on 23/4-->
+                                <!--<th class="table-header-row4-modal sticky-col first-col" scope="col" style = "Width:30px;position:sticky;left:21rem;z-index: 3;">
+                                    <div>Total <br/> Actual <br/> Qty <br/> till Date</div>
+                                </th>-->
+                                <th class="slds-cell-wrap" title ="{!$Label.c.Total_Actual_Qty_Till_Date}" scope="col" id="horizontal-fix6">
+                                    <b>{!$Label.c.Total_Actual_Qty_Till_Date}</b>
+                                </th>
+								<th class="table-header-row5-modal sticky-col first-col" scope="col" style = "Width:30px;position:sticky;left:25rem;z-index: 3;min-width: 9rem;">
+                                    <!---<div>Gap</div>-->
+                                     <b>{!$Label.c.Gap}</b>
+                                </th>
+                                <aura:iteration items="{!v.weeklyForecastObj.weeklyProductObj[0].lstMonthWiseWeeks}" var="monthHeader" indexVar="index">
+                                    <th scope="col" 
+                                        class="{!monthHeader.thCls + ' slds-table--header-fixed'}"  id="horizontal-fix4">
+                                        <table>
+                                            <tr>
+                                                <aura:if isTrue="{!greaterthan(monthHeader.weeklyForecastObj.length,4)}">
+                                                    <th colspan='13' style="text-align: center;height:0rem; position:sticky;top:0;left:24rem !important; z-index: 3;padding-left:1rem;">{!monthHeader.monthName}-{!monthHeader.year}</th> 
+                                                    <aura:set attribute="else">
+                                                        <th colspan='11' style="text-align: center;height:0rem; position:sticky;top:0;left:24rem !important; z-index: 3;padding-left:1rem;">{!monthHeader.monthName}-{!monthHeader.year}</th> 
+                                                    </aura:set>
+                                                </aura:if>
+                                            </tr>
+                                            <tr>
+                                                <aura:iteration items="{!monthHeader.weeklyForecastObj}" var="weekHeader" indexVar="index">
+                                                    <th style="text-align: center;height:0rem;position:sticky;top:0;left:22rem;padding-left: 0.8rem; z-index: 3;"><b>{!$Label.c.Week}-{!weekHeader.yearWeekCnt}</b></th>
+                                                </aura:iteration>
+                                                <th class ="slds-cell-wrap" title ="{!$Label.c.Total + ' ' + monthHeader.monthShortName + '-' + monthHeader.year}" style="text-align: center;height:0rem; position:sticky;top:0;left:20rem;padding-left: 1rem; max-width:6rem; z-index: 3;">
+                                                    <b>{!$Label.c.Total}&nbsp;{!monthHeader.monthShortName}-{!monthHeader.year}</b>
+                                                </th>
+                                                <!--<th class ="slds-truncate" title ="{!monthHeader.monthShortName +' Actual Qty'}" style="text-align: center;height:0rem; position:sticky;top:0;left:19rem;padding-left: 1.5rem; max-width:7rem; z-index: 3;"><b>{!monthHeader.monthShortName} Actual Qty</b></th>-->
+                                                <!--<th class ="slds-truncate" title ="{!monthHeader.monthShortName + ' ' + $Label.c.Actual_Quantity}" style="text-align: center;height:0rem; position:sticky;top:0;left:19rem;padding-left: 1.5rem; max-width:7rem; z-index: 3;">
+                                                    <b>{!monthHeader.monthShortName}&nbsp;{!$Label.c.Actual_Quantity}</b>
+                                                </th>-->
+                                            </tr>
+                                            <!--<tr>
+                                                <aura:iteration items="{!monthHeader.weeklyForecastObj}" var="weekHeader" indexVar="index">
+                                                    <th style="text-align: center;height:0rem; margin-left:70px;"><b>{!$Label.c.F}-{!weekHeader.yearWeekCnt}</b></th>
+                                                </aura:iteration>
+                                                <th style="text-align: center;height:0rem;"><b>({!$Label.c.F})</b></th>
+                                            </tr>-->
+                                        </table>
+                                    </th>
+                                </aura:iteration> 
+                            </tr>
+                        </thead>
+                        <tbody Style="border-right-style: solid; border-right-width: 1px;">
+                                <aura:iteration items="{!v.weeklyForecastObj.weeklyProductObj}" var="productItem" indexVar="index">    
+                                    <tr class="slds-hint-parent" Style="height: 43px; white-space:nowrap;">  
+                                        <c:DealerPortalChildRollingForecast aura:id='childWeeklyForecastCmp'  weeklyProduct='{!productItem}'
+                                                                            monthWiseWeekobj = "{!productItem.lstMonthWiseWeeks}"></c:DealerPortalChildRollingForecast>
+                                    </tr>
+                                </aura:iteration>
+                                <tr>
+                                    <td colSpan = '13' style='height:50px; text-align:left;'> 
+                                        <!--<aura:if isTrue="{!v.hasMoreProductRecord == true}">-->
+                                            {!v.msgList}
+                                        <!--</aura:if>-->
+                                    </td>
+                                </tr>
+                            <!--<aura:set attribute="else">
+                                <div style="height:410px; background-color:white; margin-top:-10px">
+                                    <p style="text-align:center; padding-top:15%;">{!$Label.c.No_Records_Found}</p>
+                                </div>
+                            </aura:set>-->
+                        </tbody>
+                    </table>                
+            </div>
+            </div>
+            <div style="height: 50px; padding:8px; background-color: rgb(221, 219, 218);" id="saveDivId">      
+                <div style='width:45%;float:left;'>
+                    .
+                </div>
+                <div class="" style="">            
+                    <lightning:button label="{!$Label.c.Save}" iconName="utility:save" aura:id="saveButtonId" iconPosition="left" onclick="{!c.savePortalWeeklyForecastRecords}" variant="brand" disabled="false"/> 
+                </div>           
+            </div> 
+        </aura:if> 
+        <aura:set attribute="else">
+            <div style="height:410px; background-color:white; margin-top:-10px">
+                <p style="text-align:center; padding-top:15%;">{!$Label.c.No_Records_Found}</p>
+            </div>
+        </aura:set>
+    </aura:if>   
+    
+    <aura:if isTrue="{!v.isShowSpinnerChild == true}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">{!$Label.c.Loading}</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

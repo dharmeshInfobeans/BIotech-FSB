@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Assign RSM/ZSM/NSM/GSRO owners on Prospect Lead__c records, filtered by CityWise__c mapping</description>
+    <flexiPage>Prospect_Allocation</flexiPage>
+    <label>Prospect Allocation</label>
+    <motif>Custom39: Telescope</motif>
+</CustomTab>

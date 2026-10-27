@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Monthly AOP</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Monthly AOP</value>
+    </caseValues>
+    <layouts>
+        <layout>Monthly AOP International Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Monthly AOP Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Monthly AOP Turkey</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <description><!-- Contains Targets for Domestic Market --></description>
+        <label><!-- Domestic --></label>
+        <name>Domestic</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Contains Targets for International Market --></description>
+        <label><!-- International --></label>
+        <name>International</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- Contains Targets for Turkey Market --></description>
+        <label><!-- Turkey --></label>
+        <name>Turkey</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

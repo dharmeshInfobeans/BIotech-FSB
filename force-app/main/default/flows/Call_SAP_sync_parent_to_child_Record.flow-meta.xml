@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>call_Apex</name>
+        <label>call Apex</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>ParentToChildBatchInvoker</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>NewTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customerNumber</name>
+            <value>
+                <stringValue>1200001</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>ParentToChildBatchInvoker</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <interviewLabel>Call SAP sync parent to child Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Call SAP sync parent to child Record</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>call_Apex</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+</Flow>

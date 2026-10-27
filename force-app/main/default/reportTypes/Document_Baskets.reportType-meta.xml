@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Document_Basket__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Document Baskets with parent Registration Request details for regulatory audit</description>
+    <label>Document Baskets</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Status__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Cycle_Number__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Submission_Date__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Due_Date__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Approved_Date__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>RA_Remarks__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Distributor_Remarks__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Registration_Request__c</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Document_Basket__c</table>
+        </columns>
+        <masterLabel>Document Baskets</masterLabel>
+    </sections>
+</ReportType>

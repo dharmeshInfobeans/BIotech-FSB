@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Account</fullName>
+    <active>true</active>
+    <description>Account cannot be changed after account team record is created</description>
+    <errorConditionFormula>ISCHANGED(Account__c) &amp;&amp; ( Account__c != PRIORVALUE(Account__c))</errorConditionFormula>
+    <errorMessage>Account cannot be changed when updating account team record.</errorMessage>
+</ValidationRule>

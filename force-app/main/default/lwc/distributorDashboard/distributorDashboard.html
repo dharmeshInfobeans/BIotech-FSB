@@ -1,0 +1,214 @@
+<template>
+    <div class="dmr-shell">
+
+        <!-- Top Bar -->
+        <div class="dmr-topbar">
+            <div class="dmr-topbar-left">
+                <div class="dmr-eyebrow">Distributor portal</div>
+                <h1 class="dmr-title">My Product Registrations</h1>
+                <p class="dmr-sub">Track every submission, see what's needed from you, and follow certificates end to end</p>
+            </div>
+            <div class="dmr-topbar-right">
+                <lightning-button
+                    variant="brand"
+                    label="New Registration"
+                    icon-name="utility:add"
+                    onclick={handleNewRegistration}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="dmr-spinner">
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={error}>
+            <div class="dmr-error-box">
+                <lightning-icon icon-name="utility:error" size="small" variant="error"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+
+        <template lwc:if={isReady}>
+
+            <!-- KPI Row -->
+            <div class="dmr-kpi-row">
+                <template for:each={kpiCards} for:item="kpi">
+                    <div key={kpi.key} class={kpi.cls}>
+                        <span class="kpi-dot"></span>
+                        <span class="kpi-num">{kpi.count}</span>
+                        <span class="kpi-label">{kpi.label}</span>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Action Needed Card -->
+            <template lwc:if={hasActionItems}>
+                <div class="dmr-action-card">
+                    <div class="dmr-action-hdr">
+                        <lightning-icon icon-name="utility:warning" size="x-small" class="dmr-action-icon"></lightning-icon>
+                        <h3 class="dmr-action-title">Action needed from you</h3>
+                        <span class="dmr-action-count">{actionCount}</span>
+                    </div>
+                    <div class="dmr-action-list">
+                        <template for:each={actionItems} for:item="item">
+                            <div key={item.Id} class="dmr-action-row" data-id={item.Id} onclick={handleCardClick}>
+                                <span class="dmr-action-id">{item.Name}</span>
+                                <span class="dmr-action-product">{item.productName}</span>
+                                <span class="dmr-action-reason">{item.actionReason}</span>
+                                <lightning-icon icon-name="utility:chevronright" size="x-small"></lightning-icon>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Registration Passport -->
+            <template lwc:if={hasPassport}>
+                <div class="dmr-passport">
+                    <div class="dmr-passport-hdr">
+                        <h2 class="dmr-passport-title">Registration passport</h2>
+                        <p class="dmr-passport-sub">Each stamp shows a stage your request has cleared — the amber ring marks where it stands right now</p>
+                    </div>
+                    <div class="dmr-passport-list">
+                        <div class="dmr-passport-colhdr">
+                            <span>Request</span>
+                            <span>Product</span>
+                            <span>Progress</span>
+                            <span>Status</span>
+                        </div>
+                        <template for:each={passportRows} for:item="row">
+                            <div key={row.Id} class="pp-row">
+                                <span class="pp-id">{row.Name}</span>
+                                <div class="pp-product">
+                                    <span class="pp-pname">{row.productName}</span>
+                                    <span class="pp-pmeta">{row.Country__c} · {row.typeLabel}</span>
+                                </div>
+                                <div class="pp-stamps">
+                                    <template for:each={row.stamps} for:item="stamp">
+                                        <span key={stamp.key} class="pp-stamp-wrap">
+                                            <span class={stamp.cls}>{stamp.icon}</span>
+                                            <template lwc:if={stamp.showConn}>
+                                                <span class={stamp.connCls}></span>
+                                            </template>
+                                        </span>
+                                    </template>
+                                </div>
+                                <div class="pp-status">
+                                    <span class={row.statusClass}>{row.Status__c}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <template lwc:if={showPassportViewMore}>
+                        <div class="dmr-cert-footer">
+                            <button class="dmr-view-more-btn" onclick={handlePassportViewMore}>View More</button>
+                            <button class="dmr-view-all-btn" onclick={handlePassportViewAll}>View All</button>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Charts Grid -->
+            <div class="dmr-charts-grid">
+
+                <!-- Donut: Where my requests stand -->
+                <div class="dmr-chart-card">
+                    <h3 class="dmr-chart-title">Where my requests stand</h3>
+                    <p class="dmr-chart-sub">Completed, in progress, or rejected</p>
+                    <template lwc:if={donutData}>
+                        <div class="dmr-donut-wrap">
+                            <div class="dmr-donut-ring" style={donutData.style}>
+                                <div class="dmr-donut-hole"></div>
+                            </div>
+                            <div class="dmr-donut-legend">
+                                <template for:each={donutData.legend} for:item="seg">
+                                    <div key={seg.key} class="dmr-legend-row">
+                                        <span class="dmr-legend-dot" style={seg.dotStyle}></span>
+                                        <span class="dmr-legend-label">{seg.label}</span>
+                                        <span class="dmr-legend-count">{seg.count}</span>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="dmr-chart-empty">No data yet.</p>
+                    </template>
+                </div>
+
+                <!-- Area Chart: Submissions over time -->
+                <div class="dmr-chart-card">
+                    <h3 class="dmr-chart-title">My submissions over time</h3>
+                    <p class="dmr-chart-sub">Requests created per week</p>
+                    <template lwc:if={weeklyChartProps}>
+                        <div class="wc-wrap">
+                            <div class="wc-chart-row">
+                                <div class="wc-y-axis">
+                                    <span class="wc-y-lbl">{weeklyChartProps.yMax}</span>
+                                    <span class="wc-y-lbl">{weeklyChartProps.yMid}</span>
+                                    <span class="wc-y-lbl">0</span>
+                                </div>
+                                <div class="wc-chart-body">
+                                    <svg viewBox="0 0 300 110" class="wc-svg" preserveAspectRatio="none">
+                                        <defs>
+                                            <linearGradient id="wc-grad" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%"   stop-color="#C98A3E" stop-opacity="0.25"/>
+                                                <stop offset="100%" stop-color="#C98A3E" stop-opacity="0.02"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path d={weeklyChartProps.areaPath} fill="url(#wc-grad)"/>
+                                        <path d={weeklyChartProps.linePath} fill="none" stroke="#C98A3E" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                                    </svg>
+                                    <div class="wc-x-axis">
+                                        <template for:each={weeklyChartProps.labels} for:item="lbl">
+                                            <span key={lbl.key} class="wc-x-lbl">{lbl.text}</span>
+                                        </template>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <p class="dmr-chart-empty">Not enough data to show a trend yet.</p>
+                    </template>
+                </div>
+
+            </div>
+
+            <!-- Certificate Validity -->
+            <template lwc:if={hasCertRecords}>
+                <div class="dmr-cert-card">
+                    <h3 class="dmr-cert-title">Certificate validity</h3>
+                    <p class="dmr-cert-sub">Certificates on file with a known validity window — plan renewals before these lapse</p>
+                    <div class="dmr-cert-list">
+                        <template for:each={certRecordsVisible} for:item="cert">
+                            <div key={cert.Id} class="dmr-cert-row">
+                                <div class="dmr-cert-info">
+                                    <span class="dmr-cert-product">{cert.productName}</span>
+                                    <span class="dmr-cert-rr">{cert.Name} · {cert.Country__c}</span>
+                                </div>
+                                <div class="dmr-cert-dates">
+                                    <span class="dmr-cert-range">{cert.certFromLabel} → {cert.certToLabel}</span>
+                                    <span class={cert.certStatusCls}>{cert.certStatusLabel}</span>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                    <template lwc:if={showCertViewMore}>
+                        <div class="dmr-cert-footer">
+                            <button class="dmr-view-more-btn" onclick={handleCertViewMore}>View More</button>
+                            <button class="dmr-view-all-btn" onclick={handleCertViewAll}>View All</button>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+        </template>
+
+    </div>
+</template>

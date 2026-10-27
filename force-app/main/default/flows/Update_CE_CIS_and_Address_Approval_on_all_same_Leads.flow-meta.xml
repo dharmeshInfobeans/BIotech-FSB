@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>CE_CIS_or_Address</name>
+        <label>CE CIS or Address</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CE_CIS</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.CE_CIS_Approval__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CE_CIS_Approval__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_all_similar_Leads</targetReference>
+            </connector>
+            <label>CE CIS</label>
+        </rules>
+        <rules>
+            <name>Address</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Copy_2_of_Update_all_similar_Leads</targetReference>
+            </connector>
+            <label>Address</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Update CE-CIS and Address Approval on all same Leads {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Update CE-CIS and Address Approval on all same Leads</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Copy_2_of_Update_all_similar_Leads</name>
+        <label>Copy 2 of Update all similar Leads</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>First_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.First_Name__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Last_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Last_Name__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Email__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Email__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Lead__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_all_similar_Leads</name>
+        <label>Update all similar Leads</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>First_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.First_Name__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Last_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Last_Name__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Email__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Email__c</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>CE_CIS_Approval__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Lead__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>CE_CIS_or_Address</targetReference>
+        </connector>
+        <filterFormula>AND(
+{!$Record.New_Customer__c} = true,
+OR(
+AND(ISCHANGED({!$Record.CE_CIS_Approval__c}),{!$Record.CE_CIS_Approval__c} =  true),
+AND(ISCHANGED({!$Record.Status__c}),{!$Record.Status__c}=true)
+)
+
+)</filterFormula>
+        <object>Lead__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Funcionário de vendas</label>
+    <name>Sales_Employee__c</name>
+    <relationshipLabel>Histórias de ativação da conta</relationshipLabel>
+</CustomFieldTranslation>

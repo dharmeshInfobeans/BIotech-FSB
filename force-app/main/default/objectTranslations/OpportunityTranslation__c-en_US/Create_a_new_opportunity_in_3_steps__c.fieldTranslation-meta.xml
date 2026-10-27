@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Create a new opportunity in 3 steps --></label>
+    <name>Create_a_new_opportunity_in_3_steps__c</name>
+</CustomFieldTranslation>

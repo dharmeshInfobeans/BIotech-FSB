@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_plan_CL</fullName>
+    <fields>Name</fields>
+    <fields>Year__c</fields>
+    <fields>Financial_Year__c</fields>
+    <fields>Month__c</fields>
+    <fields>Sample_Amount_This_Month__c</fields>
+    <label>Monthly plan CL</label>
+</CompactLayout>

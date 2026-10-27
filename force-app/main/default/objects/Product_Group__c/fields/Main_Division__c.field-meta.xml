@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Main_Division__c</fullName>
+    <label>Main Division</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>COH</fullName>
+                <default>false</default>
+                <label>COH</label>
+            </value>
+            <value>
+                <fullName>GT</fullName>
+                <default>false</default>
+                <label>GT</label>
+            </value>
+            <value>
+                <fullName>ORTHO</fullName>
+                <default>false</default>
+                <label>ORTHO</label>
+            </value>
+            <value>
+                <fullName>PHAKIC</fullName>
+                <default>false</default>
+                <label>PHAKIC</label>
+            </value>
+            <value>
+                <fullName>TRIO</fullName>
+                <default>false</default>
+                <label>TRIO</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

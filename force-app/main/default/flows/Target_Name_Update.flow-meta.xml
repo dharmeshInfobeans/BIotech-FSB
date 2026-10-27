@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>To_Update_Name</name>
+        <label>To Update Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>To_Update</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Year__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Country__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Quater_No__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Month__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Zone__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Region__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>isNew</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Conference_Name__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.City__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CTP__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.FOCUS__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.DECODE__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Poster_and_Brandings__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Testimonials__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phakic_Welcome_Kit__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phakic_Counseling_Kit__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Cataract_Counseling_Kit__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Xtense_Tool__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Trio_Plus_Tool__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Target_Name</targetReference>
+            </connector>
+            <label>To Update</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>isNew</name>
+        <dataType>Boolean</dataType>
+        <expression>ISNEW()</expression>
+    </formulas>
+    <formulas>
+        <name>targetName</name>
+        <dataType>String</dataType>
+        <expression>IF(
+  TEXT({!$Record.Type__c}) = &quot;In-Clinic Activities&quot;,
+  TEXT({!$Record.Year__c}) + &quot;-&quot; + TEXT({!$Record.Country__c}) + &quot;-&quot; + TEXT({!$Record.Quater_No__c}) + &quot;-&quot; + TEXT({!$Record.Zone__c}) + &quot;-&quot; + TEXT({!$Record.Region__c}) + &quot;-In-Clinic-&quot; +
+  IF(AND(NOT(ISBLANK({!$Record.CTP__c})), {!$Record.CTP__c} &lt;&gt; &quot;0&quot;), &quot;CTP&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.FOCUS__c})), {!$Record.FOCUS__c} &lt;&gt; &quot;0&quot;), &quot;FOCUS&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.DECODE__c})), {!$Record.DECODE__c} &lt;&gt; &quot;0&quot;), &quot;DECODE&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Poster_and_Brandings__c})), {!$Record.Poster_and_Brandings__c} &lt;&gt; &quot;0&quot;), &quot;Poster and Brandings&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Testimonials__c})), {!$Record.Testimonials__c} &lt;&gt; &quot;0&quot;), &quot;Testimonials&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Phakic_Welcome_Kit__c})), {!$Record.Phakic_Welcome_Kit__c} &lt;&gt; &quot;0&quot;), &quot;Phakic Welcome Kit&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Phakic_Counseling_Kit__c})), {!$Record.Phakic_Counseling_Kit__c} &lt;&gt; &quot;0&quot;), &quot;Phakic Counseling Kit&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Cataract_Counseling_Kit__c})), {!$Record.Cataract_Counseling_Kit__c} &lt;&gt; &quot;0&quot;), &quot;Cataract Counseling Kit&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Xtense_Tool__c})), {!$Record.Xtense_Tool__c} &lt;&gt; &quot;0&quot;), &quot;Xtense Tool&quot;,
+  IF(AND(NOT(ISBLANK({!$Record.Trio_Plus_Tool__c})), {!$Record.Trio_Plus_Tool__c} &lt;&gt; &quot;0&quot;), &quot;Trio Plus Tool&quot;,
+  &quot;&quot;))))))))))
+  + &quot;-&quot; + {!$Record.City__c},
+  TEXT({!$Record.Year__c}) + &quot;-&quot;  + TEXT({!$Record.Month__c}) + &quot;-&quot; + TEXT({!$Record.Country__c}) + &quot;-&quot; + TEXT({!$Record.Quater_No__c}) + &quot;-&quot; + TEXT({!$Record.Zone__c}) + &quot;-&quot; + TEXT({!$Record.Region__c}) + &quot;-&quot; + {!$Record.Conference_Name__c}
+)</expression>
+    </formulas>
+    <interviewLabel>Target Name Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Target Name Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Target_Name</name>
+        <label>Update Target Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>targetName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>To_Update_Name</targetReference>
+        </connector>
+        <object>Target__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

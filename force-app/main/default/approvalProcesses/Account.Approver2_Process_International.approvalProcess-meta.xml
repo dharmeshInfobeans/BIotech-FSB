@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Country_Key__c</field>
+        <field>Status__c</field>
+        <field>Sub_Status__c</field>
+        <field>region__c</field>
+        <field>Temprary_Id__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <assignedApprover>
+            <approver>
+                <name>Approver_2__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <label>step1</label>
+        <name>step1</name>
+    </approvalStep>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND( OR( RecordType.DeveloperName == &apos;Ophthalmic_Vision&apos;, 
+         RecordType.DeveloperName == &apos;Ortho_Dermal&apos; 
+     ), 
+     OR( ISPICKVAL(Sub_Status__c, &apos;Submitted To Approver 2&apos;), 
+         ISPICKVAL(Sub_Status__c, &apos;Rejected By Admin&apos;) 
+     ), 
+     NOT(ISNULL(Approver_2__c)), 
+     ISPICKVAL(Status__c, &apos;Draft&apos;), 
+     No_of_Approved_CE_Records__c &gt;= 1   
+)</formula>
+    </entryCriteria>
+    <finalApprovalActions>
+        <action>
+            <name>Set_Sub_Status_Field_To_Apprved_By_Admin</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalApprovalActions>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionActions>
+        <action>
+            <name>Set_Sub_Status_Field_To_Rejcted_By_Admin</name>
+            <type>FieldUpdate</type>
+        </action>
+    </finalRejectionActions>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <label>Approver2 Process International</label>
+    <processOrder>3</processOrder>
+    <recordEditability>AdminOrCurrentApprover</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

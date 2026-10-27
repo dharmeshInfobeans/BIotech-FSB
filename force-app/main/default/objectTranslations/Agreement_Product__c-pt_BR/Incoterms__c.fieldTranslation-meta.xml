@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Incoterms --></label>
+    <name>Incoterms__c</name>
+    <picklistValues>
+        <masterLabel>C&amp;F</masterLabel>
+        <translation><!-- C&amp;F --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CIF</masterLabel>
+        <translation><!-- CIF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CIP</masterLabel>
+        <translation><!-- CIP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CPT</masterLabel>
+        <translation><!-- CPT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DDP</masterLabel>
+        <translation><!-- DDP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DDU</masterLabel>
+        <translation><!-- DDU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ex-Works</masterLabel>
+        <translation><!-- Ex-Works --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FCA</masterLabel>
+        <translation><!-- FCA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FOB</masterLabel>
+        <translation><!-- FOB --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

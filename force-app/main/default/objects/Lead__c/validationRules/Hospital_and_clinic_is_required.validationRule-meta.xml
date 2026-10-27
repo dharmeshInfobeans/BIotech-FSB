@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hospital_and_clinic_is_required</fullName>
+    <active>false</active>
+    <errorConditionFormula>DATEVALUE(CreatedDate) &gt;= DATE(2025, 3, 19) &amp;&amp; ISBLANK(Company__c)</errorConditionFormula>
+    <errorMessage>Kindly fill the Hospital / Clinic Name</errorMessage>
+</ValidationRule>

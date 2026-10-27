@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Team_Role__c</fullName>
+    <label>Team Role</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Div 1</fullName>
+                <default>false</default>
+                <label>Div 1</label>
+            </value>
+            <value>
+                <fullName>Div 2</fullName>
+                <default>false</default>
+                <label>Div 2</label>
+            </value>
+            <value>
+                <fullName>Div 3</fullName>
+                <default>false</default>
+                <label>Div 3</label>
+            </value>
+            <value>
+                <fullName>Div 4</fullName>
+                <default>false</default>
+                <label>Div 4</label>
+            </value>
+            <value>
+                <fullName>Div 5</fullName>
+                <default>false</default>
+                <label>Div 5</label>
+            </value>
+            <value>
+                <fullName>DM 1</fullName>
+                <default>false</default>
+                <label>DM 1</label>
+            </value>
+            <value>
+                <fullName>DM 2</fullName>
+                <default>false</default>
+                <label>DM 2</label>
+            </value>
+            <value>
+                <fullName>DM 3</fullName>
+                <default>false</default>
+                <label>DM 3</label>
+            </value>
+            <value>
+                <fullName>DM 4</fullName>
+                <default>false</default>
+                <label>DM 4</label>
+            </value>
+            <value>
+                <fullName>DM 5</fullName>
+                <default>false</default>
+                <label>DM 5</label>
+            </value>
+            <value>
+                <fullName>RSM</fullName>
+                <default>false</default>
+                <label>RSM</label>
+            </value>
+            <value>
+                <fullName>ZDM</fullName>
+                <default>false</default>
+                <label>ZDM</label>
+            </value>
+            <value>
+                <fullName>ZSM</fullName>
+                <default>false</default>
+                <label>ZSM</label>
+            </value>
+            <value>
+                <fullName>RH</fullName>
+                <default>false</default>
+                <label>RH</label>
+            </value>
+            <value>
+                <fullName>RBM-Ortho Dermal</fullName>
+                <default>false</default>
+                <label>RBM-Ortho Dermal</label>
+            </value>
+            <value>
+                <fullName>RBM-Eastern Europe</fullName>
+                <default>false</default>
+                <label>RBM-Eastern Europe</label>
+            </value>
+            <value>
+                <fullName>RBM-MENA</fullName>
+                <default>false</default>
+                <label>RBM-MENA</label>
+            </value>
+            <value>
+                <fullName>RBM-Western Europe</fullName>
+                <default>false</default>
+                <label>RBM-Western Europe</label>
+            </value>
+            <value>
+                <fullName>RBM-South East Asia</fullName>
+                <default>false</default>
+                <label>RBM-South East Asia</label>
+            </value>
+            <value>
+                <fullName>RBM-Rest Of Africa</fullName>
+                <default>false</default>
+                <label>RBM-Rest Of Africa</label>
+            </value>
+            <value>
+                <fullName>RBM-Latin America</fullName>
+                <default>false</default>
+                <label>RBM-Latin America</label>
+            </value>
+            <value>
+                <fullName>CH MENA</fullName>
+                <default>false</default>
+                <label>CH MENA</label>
+            </value>
+            <value>
+                <fullName>CH-Orthopedic Business</fullName>
+                <default>false</default>
+                <label>CH-Orthopedic Business</label>
+            </value>
+            <value>
+                <fullName>CH-Dermatology Business</fullName>
+                <default>false</default>
+                <label>CH-Dermatology Business</label>
+            </value>
+            <value>
+                <fullName>Sr. Manager - PMT</fullName>
+                <default>false</default>
+                <label>Sr. Manager - PMT</label>
+            </value>
+            <value>
+                <fullName>Manager - PMT</fullName>
+                <default>false</default>
+                <label>Manager - PMT</label>
+            </value>
+            <value>
+                <fullName>Sr. Manager - Mkt</fullName>
+                <default>false</default>
+                <label>Sr. Manager - Mkt</label>
+            </value>
+            <value>
+                <fullName>Asst. Manager - Mkt</fullName>
+                <default>false</default>
+                <label>Asst. Manager - Mkt</label>
+            </value>
+            <value>
+                <fullName>RSM ISTANBUL</fullName>
+                <default>false</default>
+                <label>RSM ISTANBUL</label>
+            </value>
+            <value>
+                <fullName>Sales Specialist ISTANBUL</fullName>
+                <default>false</default>
+                <label>Sales Specialist ISTANBUL</label>
+            </value>
+            <value>
+                <fullName>Manager - Clinical Affairs</fullName>
+                <default>false</default>
+                <label>Manager - Clinical Affairs</label>
+            </value>
+            <value>
+                <fullName>RPM - LATAM</fullName>
+                <default>false</default>
+                <label>RPM - LATAM</label>
+            </value>
+            <value>
+                <fullName>RSM APAC</fullName>
+                <default>false</default>
+                <label>RSM APAC</label>
+            </value>
+            <value>
+                <fullName>NSM Morocco</fullName>
+                <default>false</default>
+                <label>NSM Morocco</label>
+            </value>
+            <value>
+                <fullName>Product Specialist</fullName>
+                <default>false</default>
+                <label>Product Specialist</label>
+            </value>
+            <value>
+                <fullName>ASM</fullName>
+                <default>false</default>
+                <label>ASM</label>
+            </value>
+            <value>
+                <fullName>RPM</fullName>
+                <default>false</default>
+                <label>RPM</label>
+            </value>
+            <value>
+                <fullName>Account Manager</fullName>
+                <default>false</default>
+                <label>Account Manager</label>
+            </value>
+            <value>
+                <fullName>National Manager Mkt</fullName>
+                <default>false</default>
+                <label>National Manager Mkt</label>
+            </value>
+            <value>
+                <fullName>Clinical Research Associate</fullName>
+                <default>false</default>
+                <label>Clinical Research Associate</label>
+            </value>
+            <value>
+                <fullName>Product Manager - Egypt</fullName>
+                <default>false</default>
+                <label>Product Manager - Egypt</label>
+            </value>
+            <value>
+                <fullName>National Sales Manager Egypt</fullName>
+                <default>false</default>
+                <label>National Sales Manager Egypt</label>
+            </value>
+            <value>
+                <fullName>Senior Sales Rep</fullName>
+                <default>false</default>
+                <label>Senior Sales Rep</label>
+            </value>
+            <value>
+                <fullName>BDM -Ortho</fullName>
+                <default>false</default>
+                <label>BDM -Ortho</label>
+            </value>
+            <value>
+                <fullName>BDM</fullName>
+                <default>false</default>
+                <label>BDM</label>
+            </value>
+            <value>
+                <fullName>Application Engineer</fullName>
+                <default>false</default>
+                <label>Application Engineer</label>
+            </value>
+            <value>
+                <fullName>NSM Ortho Egypt</fullName>
+                <default>false</default>
+                <label>NSM Ortho Egypt</label>
+            </value>
+            <value>
+                <fullName>Junior Sales Rep</fullName>
+                <default>false</default>
+                <label>Junior Sales Rep</label>
+            </value>
+            <value>
+                <fullName>Marketing Manager Gloderm</fullName>
+                <default>false</default>
+                <label>Marketing Manager Gloderm</label>
+            </value>
+            <value>
+                <fullName>Refractive Manager</fullName>
+                <default>false</default>
+                <label>Refractive Manager</label>
+            </value>
+            <value>
+                <fullName>Business Development Manager(Global)</fullName>
+                <default>false</default>
+                <label>Business Development Manager(Global)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

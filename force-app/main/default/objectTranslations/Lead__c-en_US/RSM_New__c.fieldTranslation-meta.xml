@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- RSM New --></label>
+    <name>RSM_New__c</name>
+    <relationshipLabel><!-- Prospects (RSM New) --></relationshipLabel>
+</CustomFieldTranslation>

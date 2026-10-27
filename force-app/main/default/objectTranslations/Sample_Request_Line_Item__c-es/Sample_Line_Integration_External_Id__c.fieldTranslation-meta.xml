@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Application_Order_Number &apos;-&apos; sampleLineOrderNumber --></help>
+    <label>ID externo de integración de la línea de muestra</label>
+    <name>Sample_Line_Integration_External_Id__c</name>
+</CustomFieldTranslation>

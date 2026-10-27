@@ -1,0 +1,250 @@
+.THIS .inputWidth{
+    width:6rem;
+}
+
+.THIS .weeklyslds-table th {
+    padding-top: 0px!important;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0rem;
+    line-height:1rem;
+}
+
+
+.THIS table {
+  /*table-layout: fixed; */
+  width: 100%;
+  *margin-left: -100px;
+}
+
+
+.THIS table td {
+  vertical-align: top;
+  border-top: 1px solid #ccc;
+  padding:5px;
+  width:100px;
+}
+
+.THIS table th {
+  vertical-align: top;
+  border-top: 1px solid #ccc;
+  padding:10px;
+  width:100px;
+}
+
+.THIS th {
+  position:absolute;
+  *position: relative; /*ie7*/
+  left:0; 
+  width:100px;
+    height:5rem;
+}
+.THIS .outer {position:relative}
+.THIS .inner {
+  overflow-x:scroll;
+  overflow-y:visible;
+  width:400px; 
+  margin-left:100px;
+}
+
+/*.THIS #data td {width:900px;} */
+.THIS #secondDiv{
+    width:1000px;
+    overflow-x:scroll;
+    overflow-y:hidden;
+    float:left;
+   
+}
+
+.THIS #firstDiv{
+    width:300px;
+    /*overflow-x:scroll;*/
+    overflow-y:hidden;
+    float:left;
+}
+
+.THIS .monthTh4WeekCls{
+    text-align:center slds-truncate slds-grow slds-wrap; 
+    width: 60rem;
+    padding: 0;
+}
+
+.THIS .monthTh5WeekCls{
+    text-align:center slds-truncate slds-grow slds-wrap; 
+    width: 70rem;
+    padding: 0;
+}
+.THIS .slds-text-title_caps{
+    border-right:1px solid black;
+}
+
+.THIS .slds-table_cell-buffer tr>th:first-child   {
+    padding-left :10px !important;
+}
+
+.THIS .slds-table_cell-buffer tr>td:first-child{
+    padding-left :10px !important;
+}
+
+.THIS .slds-table--cell-buffer tr>th:first-child{
+    padding-left :10px !important;
+}
+
+.THIS .slds-table--cell-buffer tr>td:first-child{
+    padding-left :10px !important;
+}
+
+.THIS .slds-table_cell-buffer tr>th:last-child   {
+    padding-right :10px !important;
+}
+
+.THIS .slds-table_cell-buffer tr>td:last-child{
+    padding-right :10px !important;
+}
+
+.THIS .slds-table--cell-buffer tr>th:last-child{
+    padding-right :10px !important;
+}
+
+.THIS .slds-table--cell-buffer tr>td:last-child{
+    padding-right :10px !important;
+}
+.THIS .slds-table-border{
+    border-right:1px solid black;
+}
+.THIS .slds-table-border-custom{
+    border-right: 1px solid red;
+}
+
+/*classes addedc vby Rohit J*/
+.THIS .table-header-row1-modal {
+   position: sticky;
+   top: 0px;
+   left: 0px;
+   Z-INDEX: 3;
+    bottom:5rem;
+}
+.THIS .slds-scrollable
+{
+ width:85rem;
+ height:19rem;
+}
+
+.THIS .tblCls1
+{
+    overflow:scroll;
+    height: 15rem;
+    width:84rem;
+}
+
+.THIS .table-header-row2-modal {
+   position: sticky;
+    top: 0;
+    bottom: 5rem;
+    left: 7.925rem;
+    z-index: 3;
+
+}
+.THIS .table-header-row3-modal {
+   position: sticky;
+    top: 0;
+    bottom: 5rem;
+    left: 13.2rem;
+    z-index: 3;
+}
+.THIS .table-header-row4-modal {
+   position: sticky;
+    top: 0;
+    bottom: 5rem;
+    left: 18.2rem;
+    z-index: 3;
+}
+.THIS .table-header-row5-modal {
+   position: sticky;
+    top: 0;
+    bottom: 5rem;
+    left: 23.2rem;
+    z-index: 3;
+}
+.THIS #horizontal-fix1{
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    bottom:5rem;
+    right:3rem;
+}
+.THIS #horizontal-fix2{
+    position: sticky;
+    /*left:15rem;*/
+    left:12rem;
+    top:0px;
+    /*z-index: 1;*//*commented by pk on 19/3*/
+    z-index: 3;/*added by pk on 19/3*/ 
+    bottom:5rem;
+    padding-left: 0rem;
+    max-width:6rem;
+   
+}
+.THIS #horizontal-fix3{
+    position: sticky;
+    /*left: 20rem;*/
+    /*left: 15rem;*//*commented by pk on 19/3*/
+    /*left: 17.5rem;*//*commented by pk on 22/3*/
+    left: 17rem;
+    top:0px;
+    /*z-index: 1;*//*commented by pk on 19/3*/
+     z-index: 3;/*added by pk on 19/3*/ 
+    bottom:5rem;
+   padding-left: 8px;
+    max-width:6rem;
+}
+/*commented by pk*/
+/*.THIS #horizontal-fix4{
+    position: sticky;
+    left:28rem;
+    top:0px;
+    z-index: 1;
+     bottom:5rem;
+   
+}*/
+/*Added by pk on 18/3*/
+.THIS #horizontal-fix4{
+    position: sticky;
+    left:28.5rem;
+    top:0px;
+    /*z-index: 1;*//*commented by pk on 19/3*/
+    z-index: 3; 
+    bottom:5rem;
+   
+}
+/*Added by pk on 18/3*/
+.THIS #horizontal-fix5{
+    position: sticky;
+    left:25rem;
+    top:0px;
+    z-index: 1;
+     bottom:5rem;
+   
+}
+
+.THIS .prodHeightA{
+    height:400px !important; 
+    width:100% !important;
+    overflow:scroll !important;
+}
+.THIS .prodHeightB{
+        height:250px !important; 
+    width:100% !important;
+    overflow:scroll !important;
+}
+.THIS #horizontal-fix6{
+    position: sticky;
+    left:19rem;
+    top:0px;
+    z-index: 3;
+    bottom:5rem;
+    padding-left: 0rem;
+    max-width:6rem;
+   
+}

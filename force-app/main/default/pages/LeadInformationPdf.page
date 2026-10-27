@@ -1,0 +1,87 @@
+<apex:page renderAs="pdf" controller="LeadPdfController"  language="{!pageLanguage}">
+    
+   <head>
+        
+    </head>
+    <body>
+        
+    
+    <center>
+    <table style="border-collapse: collapse;font-weight: bold ;font-family: Calibri, sans-serif;">
+        <thead style="width: 100%;">
+            <tr>
+                <th colspan="2" style="font-size: 11px; border: 0.5px solid black; padding: 2px; background-color: #f2f2f2; font-weight: bold;">* Marked are mandatory </th>
+                
+            </tr>
+            <tr>
+                <th style="font-size: 11px; width: 45%;border: 0.5px solid black; padding: 2px; font-weight: bold; text-align: center;">Particulars</th>
+                <th style="font-size: 13px; width: 55%;border: 0.5px solid black; padding: 2px; font-weight: bold; text-align: center;">Details Required to be filled</th>
+            </tr>
+        </thead>
+        <tbody>
+            <apex:repeat value="{!pdfData}" var="d">
+                <tr style="height:23px;">
+                    <td style="border: 0.5px solid black; padding: 2px; font-size: 10px;">{!d.field}</td>
+                    <td style="border: 0.5px solid black; padding: 2px; font-size: 13px;">{!d.value}</td>
+                </tr>
+            </apex:repeat>
+        </tbody>
+    </table>
+    
+    <div style="width:94%;border:1px solid black;">
+        
+        
+        <table style="width:100%;border-collapse: collapse; border: 1px solid black;font-family: Calibri, sans-serif;font-weight: bold">
+            <thead>
+                <tr>
+                    <th colspan="2" style="text-align: left; padding: 4px; width: 45%; border: none;font-size: 11px;">Name</th>
+                    <th style="text-align: left; padding: 4px; width: 45%; border: none;font-size: 13px;">Initiated By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="6" style="font-size: 11px; padding: 4px; vertical-align: top; font-weight: bold; border: none;">India Admin<br/><br/>Signature</td>
+                    <!-- REG -->
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(regNo))}" layout="none">
+                        <td style="text-align: right; color: orangered; font-weight: bold; padding: 4px; border: none;font-size: 11px;">REG:</td>
+                        <td style="background-color: yellow; padding: 4px; border: none;font-size: 13px;">{!regNo}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(aadhaarNo))}" layout="none">
+                        <td style="text-align: right; color: orangered; font-weight: bold; padding: 4px; border: none;font-size: 11px;">Aadhaar No:</td>
+                        <td style="background-color: yellow; padding: 4px; border: none;font-size: 13px;">{!aadhaarNo}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(panNo))}" layout="none">
+                        <td style="text-align: right; color: orangered; font-weight: bold; padding: 4px; border: none;font-size: 11px;">PAN:</td>
+                        <td style="background-color: yellow; padding: 4px; border: none;font-size: 13px;">{!panNo}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(gstNo))}" layout="none">
+                        <td style="text-align: right; color: orangered; font-weight: bold; padding: 4px; border: none;font-size: 11px;">GST:</td>
+                        <td style="background-color: yellow; padding: 4px; border: none;font-size: 13px;">{!gstNo}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(dlNo))}" layout="none">
+                        <td style="text-align: right; color: orangered; font-weight: bold; padding: 4px; border: none;font-size: 11px;">DL:</td>
+                        <td style="background-color: yellow; padding: 4px; border: none;font-size: 13px;">{!dlNo}</td>
+                    </apex:outputPanel>
+                </tr>
+                <tr>
+                    <apex:outputPanel rendered="{!NOT(ISBLANK(voterNo))}" layout="none">
+                        <td style="text-align: right; color: orangered; font-weight: bold; padding: 4px; border: none;font-size: 11px;">Voter card:</td>
+                        <td style="background-color: yellow; padding: 4px; border: none;font-size: 13px;">{!voterNo}</td>
+                    </apex:outputPanel>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        </center>
+        </body>
+    
+    
+</apex:page>

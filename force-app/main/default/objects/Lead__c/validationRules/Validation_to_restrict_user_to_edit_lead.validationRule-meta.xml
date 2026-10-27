@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_to_restrict_user_to_edit_lead</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+    ISPICKVAL(PRIORVALUE(Lead_Stage__c), &quot;Won&quot;),
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;,
+    NOT(
+        OR(
+            ISCHANGED(Actual_Commercialization_Week_Dashboard__c),
+            ISCHANGED(Actual_Upgrade_Week_Dashboard__c),
+            ISCHANGED(Actual_Evaluation_Week_Dashboard__c),
+            ISCHANGED(Lead_Created_Quarter_Dashboard__c)
+        )
+    )
+)</errorConditionFormula>
+    <errorMessage>You can not edit the lead because it is already converted.</errorMessage>
+</ValidationRule>

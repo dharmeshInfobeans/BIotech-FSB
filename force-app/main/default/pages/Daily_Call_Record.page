@@ -1,0 +1,2748 @@
+<apex:page showHeader="false" sidebar="false" standardStylesheets="false" lightningStylesheets="true" docType="html-5.0" controller="DailyCallRecordController" >
+   <head>
+      <meta charset="utf-8" />
+      <meta http-equiv="x-ua-compatible" content="ie=edge" />
+      <title>DCR</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- Import the Design System style sheet -->   
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>  
+      <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script> 
+      <apex:slds />
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" />    
+         <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"/> 
+         <script src="{!URLFOR($Resource.aljs,'/jquery.aljs-all-with-moment.min.js')}" />   
+         <link href = "https://code.jquery.com/ui/1.12.0/themes/ui-lightness/jquery-ui.css" rel = "stylesheet"/> 
+         <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>  
+         <script src = "https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>  
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.js" integrity="sha256-rjYnB0Bull7k2XkbJ03UNGqMuMieR769uQVGSSlsi6A=" crossorigin="anonymous"></script>
+         <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js" />    
+         <script src="{!URLFOR($Resource.locale)}"/> 
+         <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />   
+         <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.print.css" rel="stylesheet" media="print"/>    
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>  
+      <style>   
+         #header{    
+         background:#3498DB; 
+         width:100%; 
+         height:60px;    
+         }   
+         .cardActive{    
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);    
+         transition: 0.3s;   
+         width: 95%; 
+         background : #85C1E9;   
+         margin:10px;    
+         border-radius:5px;  
+         }   
+         .cardActive:hover {    
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);   
+         cursor:pointer; 
+         color:white;    
+         }   
+         .cardDraft{ 
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);    
+         transition: 0.3s;   
+         width: 95%; 
+         background:#D6EAF8; 
+         margin:10px;    
+         border-radius:5px;  
+         }   
+         .cardDraft:hover { 
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);   
+         cursor:pointer; 
+         color:Black;    
+         }   
+         .cardLock{  
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);    
+         transition: 0.3s;   
+         width: 95%; 
+         background:#909497; 
+         margin:10px;    
+         border-radius:5px;  
+         }   
+         .cardLock:hover {  
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);   
+         cursor:pointer; 
+         color:white;    
+         }   
+         .LEAVE{ 
+         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);    
+         transition: 0.3s;   
+         width: 95%; 
+         background:#3FE0D0;                                                                                                                                                                                 
+         margin:10px;    
+         border-radius:5px;  
+         }   
+         .LEAVE:hover { 
+         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);   
+         cursor:pointer; 
+         color:white;    
+         }   
+         .fc-time{   
+         display : block; 
+         }   
+         td.fc-day.fc-past { 
+         background-color: #E5E2E2;  
+         }   
+         td.fc-day.fc-today {    
+         background-color: #F9CCCC;  
+         }   
+         .se-pre-con {   
+         position: fixed;    
+         left: 0px;  
+         top: 0px;   
+         width: 120%;    
+         height: 100%;   
+         z-index: 9999;  
+         z-index: 9999;  
+         background: url("{!$Resource.biotech_Logo}" )center no-repeat #fff; 
+         background-size: 300px 100px;   
+         }   
+      </style>
+      <!--  Start By Rajesh  -->    
+      <style type='text/css'>   
+         .footer { 
+         position: fixed;  
+         left: 0;  
+         bottom: 0;    
+         width: 100%;  
+         background-color: red;    
+         color: white; 
+         text-align: center;   
+         } 
+         .customPopup{ 
+         background-color: lightgrey;  
+         border-style: solid;  
+         border-radius: 10px;  
+         border-width: 1px;    
+         left: 30%;    
+         position: fixed;  
+         padding: 5px; 
+         box-shadow: 0px 3px 7px rgba(1, 1, 1, 5); 
+         background: #fff; 
+         width: 900px; 
+         height:400px; 
+         margin-left: -200px;  
+         top: 10px;    
+         z-index: 9999;   
+         } 
+         .customPopup .close{  
+         position: absolute;   
+         top: 10px;    
+         right: 10px;  
+         transition: all 200ms;    
+         font-size: 20px;  
+         text-decoration: none;    
+         color: #333;  
+         } 
+         .closeButton:hover{    
+         color: red;   
+         } 
+         .popupBackground{ 
+         background-color:black;   
+         opacity: 0.20;    
+         filter: alpha(opacity = 20);  
+         position: absolute;   
+         width: 100%;  
+         height: 100%; 
+         top: 0;   
+         left: 0;  
+         z-index: 9998;    
+       } 
+         div.fixed {
+         position: fixed;
+         bottom: 0;
+         background-color: peru;
+         right: 0;
+         
+         margin: 10px;
+         border-radius: 25px;
+         text-align: center;
+         padding: 10px; 
+         width: 255px;
+         color:White;
+         
+         }
+         #footer { 
+         position: fixed;      
+         width: 100%;  
+         bottom: 0;    
+         left: 0px;    
+         } 
+      </style>
+      <!--End by Rajesh  -->    
+   </head>
+   <body ng-app="myApp" ng-controller="myCtrl" style="background:#EBF2F4">
+   <div class="se-pre-con"></div>
+   <div class="slds-scope">
+      <input type="hidden" id="hideId"/>    
+      <input type="hidden" id="accountId"/> 
+      <input type="hidden" id="eventClassName"/>    
+      <input type="hidden" id="userId"/>    
+      <header id="header">
+         <div style="float:left;width:5%">   
+            <img src="https://mbtskoudsalg.com/images250_/home-transparent-white-3.png" style="margin:10px;height:30px;width:30px;cursor:pointer"  ng-click="home()"/>  
+         </div>
+         <div style="float:right;width:95%;margin-top">
+            <div class="slds-form-element slds-size_1-of-4" style="margin-top:10px">
+               <div class="slds-form-element__control">
+                  <div class="slds-select_container">
+                     <select class="slds-select" id="user" >
+                        <option id="{!userObj.Id}"  >{!userObj.Name}</option>
+                        <!-- Sid-->   
+                        <option ng-repeat="mg in managerList" id="{{mg.Id}}">{{mg.Name}}</option>
+                     </select>
+                  </div>
+               </div>
+            </div>
+            <h1 class="slds-align_absolute-center" style="font-size:20px;color:white;margin-top:-28px">{!translationObject.header__c}</h1>
+            <button class="slds-button slds-button_neutral slds-float_right slds-p-right_medium" style='margin-top:-30px;margin-right:125px' ng-click="next()">{!translationObject.save_calendar__c}</button>   
+            <button class="slds-button slds-button_neutral slds-float_right slds-p-right_medium" style='margin-top:-30px;margin-right:8px' ng-click="refreshPage()">{!translationObject.Cancel_Button__c}</button>    
+         </div>
+      </header>
+      <!--Header ends --> 
+      <!--calendar starts -->   
+      <div id="calendar" style="height:100%;width:75%;float:left;background:#F5F5F5;border-radius:5px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.8);margin:5px"></div>
+      <!--Calendar ends-->  
+      <!--Account List -->  
+      <apex:form id="accountListId">
+         <div style="float:right;width:20%;border-radius:5px;margin:10px;overflow:scroll;height:575px" id="cl" >
+            <div class="slds-form-element slds-m-around_xx-small">
+               <label class="slds-form-element__label" for="text-input-id-1">{!$Label.Select_Region}</label>   
+               <div class="slds-form-element__control">
+                  <div style="width:240px;">
+                     <!--class="slds-select_container" -->
+                     <apex:selectList size="1" value="{!selectedRegion}"  id="selRegion" onchange="changeRegion(this.value)" style="width:240px;">
+                        <apex:selectOptions value="{!userRegionSelectList}"/>
+                     </apex:selectList>
+                     <!--  
+                        <apex:selectList id="chooseColor" value="{!string}" size="1" Change='changeRegion(this.value)'>   
+                            <apex:selectOption itemValue="red" itemLabel="Red"/>  
+                            <apex:selectOption itemValue="white" itemLabel="White"/>  
+                            <apex:selectOption itemValue="blue" itemLabel="Blue"/>    
+                        </apex:selectList>    
+                          
+                        <select class="slds-select" id="selRegion" >  
+                              
+                            <option id="Domestic">Domestic</option>   
+                            <option id="International">International</option> 
+                            <option id="Turkey">Turkey</option>   
+                        </select> 
+                        --> 
+                  </div>
+               </div>
+            </div>
+            <apex:outputPanel rendered="{!if(selectedRegion=='Domestic',true,false)}" id="selZonePanel">
+               <div class="slds-form-element slds-m-around_xx-small">
+                  <label class="slds-form-element__label" for="text-input-id-1">{!$Label.Select_Zone}</label> 
+                  <div class="slds-form-element__control">
+                     <div  style="width:240px;">
+                        <apex:selectList size="1" value="{!selectedZone}"  id="selZone" onchange="changeZone(this.value)" style="width:240px;">
+                           <apex:selectOptions value="{!userZoneSelectList}"/>
+                        </apex:selectList>
+                     </div>
+                  </div>
+               </div>
+            </apex:outputPanel>
+            <div class="slds-form-element slds-m-around_xx-small">
+               <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Search_Account__c}</label>  
+               <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                  <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
+                  </svg>
+                  <input id="searchId" class="slds-input" type="text" value=""/>    
+               </div>
+            </div>
+            <div style="overflow:auto;"  id="sort" >
+               <dl ng-repeat="acc in accountList" id="myTable">
+                  <div class="{{(acc.Id).includes('001Leave') ? 'LEAVE' : acc.Account_Locked__c ? 'cardLock' : acc.Status__c == 'Draft' ? 'cardDraft': 'cardActive'}}" id="{{acc.Id}}" Name="{{acc.Name}}" isDrop="{{acc.Account_Locked__c}}" reason="{{acc.Account_Locked_Reason__c}}" recordType="{{acc.RecordType.DeveloperName}}" country="{{acc.BillingCountry}}" contacts="{{acc.Contacts.records}}" rating="{{acc.CIS_Rating__c}},{{acc.CE_Rating__c}}" lastCEDate="{{acc.last_CE_date__c}}" branch="{{acc.BillingCity}}">
+                     <center><span>{{acc.Name}}</span></center>
+                     <center><span>{{acc.Phone}}</span></center>
+                     <center><span>{{acc.BillingCity}}</span></center>
+                  </div>
+               </dl>
+            </div>
+            <div style="overflow:auto;display:none;"  id="loading" >  
+               {!$Label.Loading_Accounts}  
+            </div>
+         </div>
+         <div class="fixed">
+            {!$Label.DCR_HelpDesk} {!$Label.DCR_past_date} Days
+            </div>
+         <!--List Ends --> 
+      </apex:form>
+      <!-- prompt --> 
+      <div class="demo slds-hide" style="height: 24rem;">
+         <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt" aria-modal="true">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header slds-theme_success slds-theme_alert-texture">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}">
+                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                     </svg>
+                     <span class="slds-assistive-text">{!$Label.Close}</span>  
+                  </button>
+                  <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Confirmation__c}</h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                  <p id="proMsg"></p>
+               </div>
+               <footer class="slds-modal__footer slds-theme_default">  
+                  <button class="slds-button slds-button_neutral" ng-click="hidePopup('demo')">{!translationObject.okay__c}</button>  
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>
+      <!-- prompt ends -->    
+      <!-- Account Drag Modal --> 
+      <!--START : Pop Up for BD Tracker Not Added to Selected Account --> 
+      <div class="BDDemo slds-hide" style="height: 24rem;">
+         <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt" aria-modal="true">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header slds-theme_success slds-theme_alert-texture">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}">
+                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                     </svg>
+                     <span class="slds-assistive-text">{!$Label.Close}</span>  
+                  </button>
+                  <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Confirmation__c}</h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                  <p>{!$Label.You_have_not_linked_BD_Plans}</p>
+               </div>
+               <footer class="slds-modal__footer slds-theme_default">  
+                  <button class="slds-button slds-button_neutral" ng-click="hideBDPopup('BDDemo')">{!translationObject.okay__c}</button>  
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>
+      <!-- END : --> 
+      <div class="accountDragModal slds-hide slds-modal_large " style="height:640px">
+         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}"  ng-click="cancelEvent('rem')">
+                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                     </svg>
+                     <span class="slds-assistive-text">{!$Label.Close}</span>    
+                  </button>
+                  <h2 id="modalDragHeader" class="slds-text-heading_medium slds-hyphenate"></h2>
+                  <!-- BD Tracker START  -->
+                  <apex:form id="bg">
+                     <apex:inputHidden value="{!accId}" id="theHiddenInput"/>
+                     <apex:inputHidden value="{!dateVal}" id="theHiddenInputDate"/>
+                     <apex:inputHidden value="{!eventIds}" id="eventId"/>
+                     <apex:actionFunction action="{!setDeafultWrapper}" name="setDeafult" rerender="popup,pop,BDVal,form3"/>
+                     <apex:outputPanel id="PB1" >
+                        <apex:commandButton value="{!$Label.Link_BD_Plan}" action="{!showPopup}" rerender="popup,pop" status="status" 
+                           style="background-color:rgba(27, 82, 151, 1); color:white;float:right"/>
+                     </apex:outputPanel>
+                  </apex:form>
+                  <!-- BD Tracker END  -->  
+                  <label class="slds-form-element__label" for="text-input-id-1" style="padding-top:5px;float:left;padding-left:150px">{!$Label.CE_Rating}</label>   
+                  <h1 id="CERating" style="padding-top:5px;float:left;" title="{!translationObject.CE_Rating__c}"></h1>
+                  <h1 id="CISRating" style="padding-top:5px;float:right;padding-right:170px" title="{!translationObject.CIS_Rating__c}"></h1>
+                  <label class="slds-form-element__label" for="text-input-id-1" style="padding-top:5px;float:right;=">{!$Label.CIS_Rating}</label>  
+                  <apex:form id="form3">
+                     <apex:outputPanel id="df" rendered="{!displayPopUpToShow}" style="margin-top:5%;">    
+                        Week :{!weekN} 
+                     </apex:outputPanel>
+                  </apex:form>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="height:80vh;">
+                  <div class="slds-grid slds-gutters">
+                     <div class="slds-size_1-of-2 slds-p-around_x-small">
+                        <!--  <div class="slds-form-element">   
+                           <div class="slds-form-element__control">  
+                             <div class="slds-checkbox"> 
+                               <input type="checkbox" name="options" id="checkbox-1" value="checkbox-1" ng-model="outOfOffice"/> 
+                               <label class="slds-checkbox__label" for="checkbox-1"> 
+                                 <span class="slds-checkbox_faux"></span>    
+                                 <span class="slds-form-element__label">{!translationObject.Out_of_Office__c}</span> 
+                               </label>  
+                             </div>  
+                           </div>    
+                           </div>-->   
+                        <div class="sub slds-form-element slds-has-error">
+                           <label class="slds-form-element__label" for="text-input-id-1">  
+                           <abbr class="slds-required" title="{!$Label.required}">* </abbr>{!translationObject.Subject__c}</label>  
+                           <div class="slds-form-element__control"> 
+                              <input id="subject" class="slds-input" type="text" value="" placeholder="{!translationObject.Subject__c}"/>    
+                           </div>
+                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorSubMessage==true">{!translationObject.This_field_required__c}</div>
+                        </div>
+                        <!-- <div class="Stime slds-form-element slds-has-error">     
+                           <label class="slds-form-element__label" for="text-input-id-1">  
+                            <abbr class="slds-required" title="required">* </abbr>{!translationObject.Start_Time__c}</label><br></br>  
+                           <input type="time" class="slds-input" id="Stime"/><br></br>  
+                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorStimeMessage==true">{!translationObject.This_field_required__c}</div>    
+                           </div> -->  
+                        <!--     <div class="errorCallType slds-form-element slds-has-error">    
+                           <label class="slds-form-element__label" for="select-01">    
+                           <abbr class="slds-required" title="{!$Label.required}">* </abbr>{!translationObject.Call_Type__c}</label>  
+                             
+                           <div class="slds-form-element__control">    
+                             <div id="callTypeError">
+                                 <apex:form id="form2"> 
+                                      <apex:inputField id="reviewCol34" value="{!currentEvent.Meeting_Type__c}" style="width:50%"/>
+                                     <apex:inputField id="reviewCol2" value="{!currentEvent.Account_Visit_Call_Type__c}" style="margin-left: 15px;width:45%"> 
+                                     </apex:inputField>    
+                                 </apex:form>  
+                             </div>    
+                           </div>  
+                           <div class="slds-form-element__help" id="error-01" ng-show="errorCallType">{!translationObject.This_field_required__c}</div>    
+                           </div>    -->
+                        <!--*************************************************************************************************************************************************** -->
+                        <apex:form id="form2">
+                           <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                              <div class="slds-size_1-of-2">
+                                 <div class="errorMeetingType slds-form-element">
+                                    <label class="slds-form-element__label" for="text-input-id-1">
+                                    <abbr class="slds-required" title="required">* </abbr>{!translationObject.Meeting_Type__c}</label>
+                                    <div class="slds-form-element__control">
+                                       <apex:inputField id="reviewCol34" styleClass="slds-input" value="{!currentEvent.Meeting_Type__c}"  style="width: 90%;"/>
+                                    </div>
+                                    <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorMeetingType">{!translationObject.This_field_required__c}</div>
+                                 </div>
+                              </div>
+                              <div class="slds-size_1-of-2" >
+                                 <div class="errorCallType slds-form-element">
+                                    <label class="slds-form-element__label" for="text-input-id-1">
+                                    <abbr class="slds-required" title="required">* </abbr>{!translationObject.Call_Type__c}</label>
+                                    <div class="slds-form-element__control">
+                                       <apex:inputField id="reviewCol2" styleClass="slds-input" value="{!currentEvent.Account_Visit_Call_Type__c}"  style="width: 100%;" />
+                                    </div>
+                                    <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorCallType">{!translationObject.This_field_required__c}</div>
+                                 </div>
+                              </div>
+                           </div>
+                        </apex:form>
+                         
+                        <label class="slds-form-element__label">{!$Label.CE_Rating}</label><br></br>   
+                        <span id="CERating"></span> 
+                        <div class="interNational slds-form-element slds-hide">
+                           <input type="text" style="display:none"/>   
+                           <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.From__c} {!translationObject.Date__c}</label> 
+                           <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                              <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
+                              </svg>
+                              <input id="FromDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.From__c} {!translationObject.Date__c}" />    
+                           </div>
+                        </div>
+                        <div class="interNational slds-form-element">
+                           <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Country__c}</label> 
+                           <div class="slds-form-element__control">  
+                              <input id="country" placeholder="Country" class="slds-input" type="text" value="" />    
+                           </div>
+                        </div>
+                         
+                        <div class="slds-picklist--draggable">
+                            <div class="slds-form-element" style="width:100%">
+                                <abbr class="slds-required" title="{!$Label.required}">* </abbr>
+                              <span class="slds-form-element__label" aria-label="select-1">{!translationObject.Product__c}</span>  
+                              <select name="Products" class="ui fluid search dropdown" multiple="multiple" id="multi-select">
+                                <option ng-repeat="pro in productList">{{pro.Name}}</option>
+                            </select> 
+                           </div>
+                         </div>
+                      <div class="productError slds-form-element__help slds-hide" id="error-message-unique-id"><span style="color:red">{!translationObject.This_field_required__c}</span></div>
+                     </div>
+                     <div class="slds-size_1-of-2 slds-p-around_x-small">
+                        <label class="slds-form-element__label">{!translationObject.Date__c}</label><br></br>   
+                        <span id="ldate"></span>    
+                        <!--  <div class="Etime slds-form-element slds-has-error">    
+                           <label class="slds-form-element__label" for="text-input-id-1"> 
+                           <abbr class="slds-required" title="required">* </abbr>{!translationObject.End_Time__c}</label><br></br>  
+                           <input type="time" class="slds-input" id="Etime"/><br></br> 
+                           <div class="slds-form-element__help" id="error-message-unique-id" ng-show="errorEtimeMessage==true">{!translationObject.This_field_required__c}</div>   
+                           </div>-->    
+                        <div class="interNational slds-form-element slds-hide">
+                           <input type="text" style="display:none"/>   
+                           <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.To__c} {!translationObject.Date__c}</label>   
+                           <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                              <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
+                              </svg>
+                              <input id="ToDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.To__c} {!translationObject.Date__c}" />    
+                           </div>
+                        </div>
+                        <div class="slds-form-element" ng-show="contactList.length > 0">
+                           <label class="slds-form-element__label" for="select-01">{!translationObject.Contact__c}</label> 
+                           <div class="slds-form-element__control">
+                              <div class="slds-select_container">
+                                 <select class="slds-select" id="contactId">
+                                    <option value="">{!$Label.Please_select}</option>
+                                    <option ng-repeat="con in contactList" id="{{con.Id}}">{{con.Name}}</option>
+                                 </select>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="slds-form-element">
+                           <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Notes__c}</label>    
+                           <div class="slds-form-element__control">  
+                              <textarea id="description" class="slds-textarea" placeholder="{!translationObject.Notes__c}"></textarea>  
+                           </div>
+                           <div class="descriptionError slds-form-element__help slds-hide" id="error-message-unique-id"><span style="color:red">{!translationObject.This_field_required__c}</span></div>
+                        </div>
+                        <!--   <label class="slds-form-element__label">CIS Rating</label><br></br>  
+                           <span id="CISRating"></span> -->    
+                        <div class="joint slds-form-element slds-p-top_small">
+                           <div class="slds-form-element__control">
+                              <div class="slds-checkbox">   
+                                 <input type="checkbox" name="options" id="checkbox-2" value="checkbox-2" ng-click="jointAssignee()" ng-model="joint"/>  
+                                 <label class="slds-checkbox__label" for="checkbox-2">   
+                                 <span class="slds-checkbox_faux"></span>  
+                                 <span class="slds-form-element__label">{!translationObject.Joint_Assignee__c}</span>  
+                                 </label>    
+                              </div>
+                           </div>
+                        </div>
+                        <div ng-show="joint">
+                           <div class="slds-form-element slds-size_1-of-2">
+                              <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.user__c}</label>  
+                              <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                                 <svg class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#search')}" />
+                                 </svg>
+                                 <input id="text-input-id-1" class="slds-input" type="text" value="" ng-model="search"/>   
+                              </div>
+                           </div>
+                           <div class="slds-picklist--draggable">
+                              <div class="slds-form-element">
+                                 <span class="slds-form-element__label" aria-label="select-1">{!translationObject.user__c}</span>  
+                                 <div class="slds-picklist slds-picklist--multi">
+                                    <ul ui-sortable="sortableOptions" ng-model="selectedValues" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
+                                       <div ng-repeat="item in allUser | filter:search" class="app">
+                                          <li id="po-0-0" class="slds-picklist__item" aria-selected="false" tabindex="0" role="option" ng-click="add(item);select(item)" ng-dblclick="add(item);addToDisplayArray();select(null)" required="true"> 
+                                             <span class="slds-truncate">  
+                                             <span>{{item.Name}}</span>    
+                                             </span>   
+                                          </li>
+                                       </div>
+                                    </ul>
+                                 </div>
+                              </div>
+                              <div class="slds-grid slds-grid--vertical">
+                                 <button class="slds-button slds-button--icon-container" ng-click="deleteFromDisplayArray();select(null)">
+                                    <svg aria-hidden="true" class="slds-button__icon" >
+                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#left')}" ></use>
+                                    </svg>
+                                    <span class="slds-assistive-text" >{!$Label.Arrow_left}</span>  
+                                 </button>
+                                 <button class="slds-button slds-button--icon-container" ng-click="addToDisplayArray();select(null)">
+                                    <svg aria-hidden="true" class="slds-button__icon" >
+                                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#right')}" ></use>
+                                    </svg>
+                                    <span class="slds-assistive-text" >{!$Label.Arrow_right}</span> 
+                                 </button>
+                              </div>
+                              <div class="slds-form-element">
+                                 <span class="slds-form-element__label" aria-label="select-2">{!translationObject.Selected__c} {!translationObject.user__c}</span> 
+                                 <div  class="slds-picklist slds-picklist--multi" >
+                                    <ul ui-sortable="sortableOptions" ng-model="displayArray" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
+                                       <div ng-repeat="item in displayArray" class="app" ng-class="{active: isActive(item)}">
+                                          <li id="po-0-0" class="slds-picklist__item" aria-selected="false" tabindex="0" role="option" ng-click="delete($index);select(item)" ng-dblclick="delete($index);deleteFromDisplayArray();select(null)">   
+                                             <span class="slds-truncate">  
+                                             <span class="items" >{{item.Name}}</span> 
+                                             </span>   
+                                          </li>
+                                       </div>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!--START :BD Tracker -->   
+                  <apex:form id="BDVal">
+                     <!--   <apex:inputHidden value="{!accId}" id="theHiddenInput"/>    
+                        <apex:inputHidden value="{!dateVal}" id="theHiddenInputDate"/>-->   
+                     <apex:inputHidden value="{!eventIds}" id="eventId"/>
+                     <br/>   
+                     <apex:outputPanel id="pop" rendered="{!displayPopUpToShow}">
+                        <div>
+                           <p style = "font-size:14px">    
+                              <b>{!$Label.Selected_BD_Plans}</b>    
+                           </p>
+                        </div>
+                        <br/>   
+                        <div style="width:100%;max-height:280px;overflow:auto;">
+                           <table class="slds-table slds-table_cell-buffer slds-table_bordered " style="width:100%;max-height:60px;overflow:auto;">
+                              <tr>
+                                 <th>    
+                                    <b> &nbsp;</b>  
+                                 </th>
+                                 <th>    
+                                    <b> {!$Label.Type_of_Planning }</b>   
+                                 </th>
+                                 <th>    
+                                    <b>{!$Label.Plan_Week}</b>    
+                                 </th>
+                                 <th>    
+                                    <b> {!$Label.Product}</b> 
+                                 </th>
+                                 <th>    
+                                    <b> {!$Label.Contact}</b> 
+                                 </th>
+                                 <th>    
+                                    <b>{!$Label.MileStone_Stage}</b> 
+                                 </th>
+                                 <th>    
+                                    <b>{!$Label.Plan_Year}</b>    
+                                 </th>
+                              </tr>
+                              <tbody>
+                                 <apex:repeat value="{!lstWrapperToShow}" var="item">
+                                    <tr>
+                                       <td>
+                                          <apex:inputCheckbox value="{!item.isCheck}" disabled="true"/>
+                                       </td>
+                                       <td>    
+                                          {!item.objEvent.BD_Tracker_Phase__c}    
+                                       </td>
+                                       <td>    
+                                          {!item.objEvent.Milestone_Plan_Week__c}     
+                                       </td>
+                                       <td>    
+                                          {!item.objEvent.Product__c}     
+                                       </td>
+                                       <td>   
+                                          {!item.conName}     
+                                       </td>
+                                       <td>    
+                                          {!item.objEvent.Milestone_Stage__c}     
+                                       </td>
+                                       <td>    
+                                          {!item.PlanYear}    
+                                       </td>
+                                    </tr>
+                                 </apex:repeat>
+                              </tbody>
+                           </table>
+                        </div>
+                     </apex:outputPanel>
+                     <apex:outputPanel id="popup">
+                        <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+                        <apex:outputPanel id="popInnerOutputPnl" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                           <center>
+                              <div>
+                                 <p> 
+                                    <b>{!$Label.Select_BD_Plans}</b>  
+                                 </p>
+                              </div>
+                           </center>
+                           <br/>   
+                           <div style="width:100%;max-height:280px;overflow:auto;display:block;">
+                              <apex:pageMessages escape="false" rendered="true" ></apex:pageMessages>
+                              <table class="slds-table slds-table_cell-buffer slds-table_bordered " style="width:100%;max-height:60px;overflow:auto;">
+                                 <tr>
+                                    <th>    
+                                       <b>  {!$Label.Select}</b> 
+                                    </th>
+                                    <th>    
+                                       <b> {!$Label.Type_of_Planning}</b>   
+                                    </th>
+                                    <th>    
+                                       <b>{!$Label.Plan_Week}</b>    
+                                    </th>
+                                    <th>    
+                                       <b> {!$Label.Product}</b> 
+                                    </th>
+                                    <th>    
+                                       <b> {!$Label.Contact}</b> 
+                                    </th>
+                                    <th>    
+                                       <b>{!$Label.MileStone_Stage}</b>  
+                                    </th>
+                                    <th>    
+                                       <b>{!$Label.Plan_Year}</b>    
+                                    </th>
+                                 </tr>
+                                 <tbody>
+                                    <apex:repeat value="{!lstWrapper}" var="item">
+                                       <tr>
+                                          <td>
+                                             <apex:inputCheckbox value="{!item.isCheck}" />
+                                          </td>
+                                          <td>    
+                                             {!item.objEvent.BD_Tracker_Phase__c}    
+                                          </td>
+                                          <td>    
+                                             {!item.objEvent.Milestone_Plan_Week__c}     
+                                          </td>
+                                          <td>    
+                                             {!item.objEvent.Product__c}     
+                                          </td>
+                                          <td>    
+                                             {!item.conName}     
+                                          </td>
+                                          <td>    
+                                             {!item.objEvent.Milestone_Stage__c}     
+                                          </td>
+                                          <td>    
+                                             {!item.PlanYear}    
+                                          </td>
+                                       </tr>
+                                    </apex:repeat>
+                                 </tbody>
+                              </table>
+                           </div>
+                           <br/>   
+                           <footer class="slds-modal__footer">
+                              <center>
+                                 <apex:commandButton value="{!$Label.Cancel}" title="{!$Label.Close_the_popup}" action="{!closePopup}" styleClass="closeButton" rerender="popup" style="background-color:rgb(255, 255, 255);color:black">    
+                                 </apex:commandButton>
+                                 <apex:commandButton value="{!$Label.Save}" title="{!$Label.Save}" action="{!saveBdPlan}" styleClass="closeButton" rerender="popup,pop,BDVal,form3" style="background-color:rgba(27, 82, 151, 1);color:white">   
+                                 </apex:commandButton>
+                              </center>
+                           </footer>
+                        </apex:outputPanel>
+                     </apex:outputPanel>
+                  </apex:form>
+                  <!-- End BD Tracker --> 
+                  <div class="interNational slds-section slds-is-open slds-hide">
+                     <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                           <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+                           </svg>
+                           <span class="slds-truncate" title="{!$Label.Section_Title}">{!translationObject.Travel__c} {!translationObject.Details__c}</span>   
+                        </button>
+                     </h3>
+                     <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                        <div class="slds-grid slds-gutters">
+                           <div class="slds-size_1-of-2 slds-p-around_x-small">
+                              <div class="interNational slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_days_travelled__c}</label>    
+                                 <div class="slds-form-element__control">  
+                                    <input id="dayTravel" placeholder="{!translationObject.No_of_days_travelled__c}" class="slds-input" type="text" value="" /> 
+                                 </div>
+                              </div>
+                              <div class="interNational slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Week_no__c}</label> 
+                                 <div class="slds-form-element__control">  
+                                    <input id="week" placeholder="{!translationObject.Week_no__c}" class="slds-input" type="text" value="" />   
+                                 </div>
+                              </div>
+                              <label class="interNational slds-form-element__label">{!translationObject.Month__c}</label><br></br> 
+                              <span class="interNational" id="month"/><br></br>   
+                              <div class="interNational slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Employee_Name__c}</label>   
+                                 <div class="slds-form-element__control">  
+                                    <input id="employeeName" placeholder="{!translationObject.Employee_Name__c}" class="slds-input" type="text" value="" /> 
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-size_1-of-2 slds-p-around_x-small">
+                              <div class="interNational slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.From__c} {!translationObject.Place__c}</label>  
+                                 <div class="slds-form-element__control">  
+                                    <input id="fromPlace" placeholder="{!translationObject.From__c} {!translationObject.Place__c}" class="slds-input" type="text" value="" />   
+                                 </div>
+                              </div>
+                              <div class="interNational slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.To__c} {!translationObject.Place__c}</label>    
+                                 <div class="slds-form-element__control">  
+                                    <input id="toPlace" placeholder="{!translationObject.To__c} {!translationObject.Place__c}" class="slds-input" type="text" value="" />   
+                                 </div>
+                              </div>
+                              <div class="interNational slds-form-element">
+                                 <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Next_Visit_Planning_Remarks__c}</label>  
+                                 <div class="slds-form-element__control">  
+                                    <textarea id="nextVisitPlanning" class="slds-textarea" placeholder="{!translationObject.Next_Visit_Planning_Remarks__c}"></textarea>    
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="recordType slds-section slds-is-open" id="recordType">
+                     <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                           <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+                           </svg>
+                           <span class="slds-truncate" title="{!$Label.Section_Title}">{!translationObject.Doctors__c} {!translationObject.Details__c}</span>    
+                        </button>
+                     </h3>
+                     <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                        <div class="slds-grid slds-gutters">
+                           <div class="slds-size_1-of-2 slds-p-around_x-small">
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Name__c}</label>  
+                                 <div class="slds-form-element__control">    
+                                    <input id="name" placeholder="{!translationObject.Name__c}" class="slds-input" type="text" value="" />  
+                                 </div>
+                              </div>
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Address__c}</label>    
+                                 <div class="slds-form-element__control">    
+                                    <textarea id="address" class="slds-textarea" placeholder="{!translationObject.Address__c}"></textarea>    
+                                 </div>
+                              </div>
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_doctors_visited__c}</label> 
+                                 <div class="slds-form-element__control">    
+                                    <input id="doctorVisit" placeholder="{!translationObject.No_of_doctors_visited__c}" class="slds-input" type="text" value="" />    
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-size_1-of-2 slds-p-around_x-small">
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Contact__c}</label>   
+                                 <div class="slds-form-element__control">    
+                                    <input id="contact" placeholder="{!translationObject.Contact__c}" class="slds-input" type="text" value="" />    
+                                 </div>
+                              </div>
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_PMS_Collected__c}</label>   
+                                 <div class="slds-form-element__control">    
+                                    <input id="pmsCollected" placeholder="{!translationObject.No_of_PMS_Collected__c}" class="slds-input" type="text" value="" /> 
+                                 </div>
+                              </div>
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.No_of_Surgeries_Attended__c}</label>  
+                                 <div class="slds-form-element__control">    
+                                    <input id="surgery" placeholder="{!translationObject.No_of_Surgeries_Attended__c}" class="slds-input" type="text" value="" /> 
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="recordType slds-section slds-is-open" id="recordType">
+                     <h3 class="slds-section__title">
+                        <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                           <svg class="slds-section__title-action-icon slds-button__icon slds-button__icon_left" aria-hidden="true">
+                              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, '/assets/icons/utility-sprite/svg/symbols.svg#switch')}" />
+                           </svg>
+                           <span class="slds-truncate" title="{!$Label.Section_Title}">{!translationObject.Remark__c}</span>   
+                        </button>
+                     </h3>
+                     <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                        <div class="slds-grid slds-gutters">
+                           <div class="slds-size_1-of-2 slds-p-around_x-small">
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark_For_Tender__c}</label>    
+                                 <div class="slds-form-element__control">  
+                                    <textarea id="remarkTender" class="slds-textarea" placeholder="{!translationObject.Remark_For_Tender__c}"></textarea>   
+                                 </div>
+                              </div>
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark_for_market_information__c}</label>    
+                                 <div class="slds-form-element__control">  
+                                    <textarea id="marketInfo" class="slds-textarea" placeholder="{!translationObject.Remark_for_market_information__c}"></textarea>   
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="slds-size_1-of-2 slds-p-around_x-small">
+                              <div class="slds-form-element">
+                                 <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Remark_For_Doctor__c}</label>    
+                                 <div class="slds-form-element__control">  
+                                    <textarea id="remarkDoctor" class="slds-textarea" placeholder="{!translationObject.Remark_For_Doctor__c}"></textarea> 
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <footer class="slds-modal__footer"> 
+                  <button class="slds-button slds-button_neutral" ng-click="cancelEvent('rem')">{!translationObject.Cancel_Button__c}</button>    
+                  <button class="slds-button slds-button_brand" ng-click="saveData('nonLeave')">{!translationObject.Save__c}</button> 
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>
+      <!--Account modal ends -->  
+      <!--Leave modal --> 
+      <div class="leave slds-hide" style="height: 640px;">
+         <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}" ng-click="cancelEvent('rem')">
+                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                     </svg>
+                     <span class="slds-assistive-text">{!$Label.Close}</span>    
+                  </button>
+                  <h2 class="slds-text-heading_medium slds-hyphenate" id="leaveHeader"></h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                  <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                     <div class="slds-size_1-of-2 slds-p-around_x-small">
+                        <input type="hidden" id="leaveSubject"/>  
+                        <!--<label class="slds-form-element__label">{!translationObject.Start_Time__c}</label><br></br>   
+                           <input type="time" class="slds-input" id="leaveStartTime"/>   
+                               <label class="slds-form-element__label">{!translationObject.Date__c}</label><br></br>-->  
+                        <span id="leavedate"></span><br></br>    
+                        <div class="sub slds-form-element slds-has-error">
+                           <label class="slds-form-element__label" for="text-input-id-1">  
+                           <abbr class="slds-required" title="required">*</abbr>{!translationObject.Notes__c}</label>    
+                           <div class="slds-form-element__control">
+                              <!--  <input id="leavedescription" class="slds-input" type="text" maxlength="500" value="" placeholder="{!translationObject.Notes__c}"/> -->
+                              <textarea id="leavedescription" maxlength="500" rows="2" cols="50"/>
+   
+                           </div>
+                           <div class="slds-form-element__help showError" id="error-message-unique-id" ng-show="errorSubMessage==true" style="color:red">   
+                           {!translationObject.This_field_required__c}</div>    
+                        </div>
+                        <label class="leaveType slds-form-element__label">    
+                        <div class="slds-form-element">   
+                        <apex:form id="leaveForm">    
+                        <label class="slds-form-element__label" for="leaveId">    
+                        {!translationObject.Type_Of_Leave__c} </label>    
+                        <div class="slds-form-element__control">  
+                        <apex:inputField id="leaveId" value="{!currentEvent.Type_of_leave__c}" ></apex:inputField>    
+                        </div>    
+                        </apex:form>  
+                        </div>    
+                        </label>  
+                     </div>
+                     <div class="slds-size_1-of-2 slds-p-around_x-small"> 
+                     <!--   <label class="slds-form-element__label">{!translationObject.End_Time__c}</label><br></br>   
+                        <input type="time" class="slds-input" id="leaveEndTime" ng-keyup="checkTime()"/>  
+                            <label class="slds-form-element__label">{!translationObject.Duration__c}</label><br></br> 
+                            <span id="lduration"></span><br></br>  -->    
+                     <!--<label class="callType slds-form-element__label">{!translationObject.Call_Type__c}</label>--><br></br>   
+                     <!--  <label class="slds-form-element__label"></label>  -->
+                     <!--  
+                        <apex:form id="form1">  
+                        <apex:inputField id="reviewCol" value="{!currentEvent.Review_Call_Type__c}" ></apex:inputField> 
+                        </apex:form>    
+                        --> 
+                     <label class="callType slds-form-element__label"> 
+                     <apex:form id="form1">    
+                     <label class="slds-form-element__label" for="select-01">  
+                     <abbr class="slds-required" title="{!$Label.required}">*</abbr>{!translationObject.Call_Type__c}    
+                     <apex:inputField id="reviewCol" value="{!currentEvent.Review_Call_Type__c}" ></apex:inputField>   
+                     </label>  
+                     <div class="slds-form-element__help showError" id="error-message-unique-id" ng-show="errorSubMessage==true" style="color:red">    
+                     {!translationObject.This_field_required__c}</div> 
+                     <br></br><br></br> <br></br>  
+                     </apex:form>  
+                     </label>  
+                     </div>  
+                  </div>
+               </div>
+               <footer class="slds-modal__footer">   
+               <button class="slds-button slds-button_neutral" ng-click="cancelEvent('rem')">{!translationObject.Cancel_Button__c}</button>    
+               <button class="slds-button slds-button_brand" ng-click="saveData('leave')">{!translationObject.Save__c}</button>    
+               </footer> 
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>  
+      </div>
+      <!-- Leave end -->  
+      <!--eventClick Modal--> 
+      <div class="eventClickModal slds-hide slds-modal_large" style="height: 640px;"> 
+      <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+           <div class="slds-modal__container">
+              <header class="slds-modal__header">
+                 <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}" id="revert" ng-click="hidePopup('eventClickModal')">
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                    </svg>
+                    <span class="slds-assistive-text">{!$Label.Close}</span>    
+                 </button>
+                 <h2 id="modalClickHeader" class="slds-text-heading_medium slds-hyphenate"></h2>
+                 <h1 id="CERating" style="padding-top:5px;float:left;padding-left:170px" title="{!translationObject.CE_Rating__c}"></h1>
+                 <h1 id="CISRating" style="padding-top:5px;float:right;padding-right:170px" title="{!translationObject.CIS_Rating__c}"></h1>
+                 <!-- START BD Tracker --> 
+                 <apex:form id="UpdateBDValue">
+                    <apex:actionFunction name="reCheck"  reRender="UpdateBDValue"/>
+                    <apex:inputHidden value="{!accIdUpdate}" id="AccUpdate"/>
+                    <apex:inputHidden value="{!evtIds}" id="evtId"/>
+                    <apex:inputHidden value="{!updateEvent}" id="eventUpdateCall"/>
+                    <apex:inputHidden value="{!idBeforeUpdate}" id="idsBeforeUpdateVal"/>
+                    <apex:inputHidden value="{!dateValUpdate}" id="theHiddenInputDateValue"/>
+                    <apex:inputHidden value="{!checkUpdateBDButton}" id="checkUpdateBDButtonVal"/>
+                    <apex:outputPanel id="popup1">
+                       <apex:outputPanel styleClass="popupBackground" layout="block" rendered="{!displayPopUp}"/>
+                       <apex:outputPanel id="popInnerOutputPnl1" styleClass="customPopup" layout="block" rendered="{!displayPopUp}">
+                          <center>
+                             <div>
+                                <p> 
+                                   <b>{!$Label.Select_BD_Plans}</b>  
+                                </p>
+                             </div>
+                          </center>
+                          <br/>   
+                          <div style="width:100%;max-height:280px;overflow:auto;display:block;">
+                             <apex:pageMessages escape="false" rendered="true" ></apex:pageMessages>
+                             <table class="slds-table slds-table_cell-buffer slds-table_bordered " style="width:100%;max-height:60px;overflow:auto;">
+                                <tr>
+                                   <th>    
+                                      <b>  {!$Label.Select}</b> 
+                                   </th>
+                                   <th>    
+                                      <b> {!$Label.Type_of_Planning}</b>    
+                                   </th>
+                                   <th>    
+                                      <b>{!$Label.Plan_Week}</b>    
+                                   </th>
+                                   <th>    
+                                      <b> {!$Label.Product}</b> 
+                                   </th>
+                                   <th>    
+                                      <b> {!$Label.Contact}</b> 
+                                   </th>
+                                   <th>    
+                                      <b>{!$Label.MileStone_Stage}</b>  
+                                   </th>
+                                   <th>    
+                                      <b>{!$Label.Plan_Year}</b>    
+                                   </th>
+                                </tr>
+                                <tbody>
+                                   <apex:repeat value="{!lstWrapper}" var="item">
+                                      <tr>
+                                         <td>
+                                            <apex:inputCheckbox value="{!item.isCheck}" />
+                                         </td>
+                                         <td>    
+                                            {!item.objEvent.BD_Tracker_Phase__c}    
+                                         </td>
+                                         <td>    
+                                            {!item.objEvent.Milestone_Plan_Week__c}     
+                                         </td>
+                                         <td>    
+                                            {!item.objEvent.Product__c}     
+                                         </td>
+                                         <td>    
+                                            {!item.conName}     
+                                         </td>
+                                         <td>    
+                                            {!item.objEvent.Milestone_Stage__c}     
+                                         </td>
+                                         <td>    
+                                            {!item.PlanYear}    
+                                         </td>
+                                      </tr>
+                                   </apex:repeat>
+                                </tbody>
+                             </table>
+                          </div>
+                          <br/><br/>  
+                          <center>
+                             <apex:commandButton value="{!$Label.Cancel}" title="{!$Label.Close_the_popup}" action="{!closePopup}" styleClass="closeButton" rerender="UpdateBDValue,popup1,popInnerOutputPnl1" style="background-color:rgb(255, 255, 255);color:black">  
+                             </apex:commandButton>
+                             <apex:commandButton value="{!$Label.Save}" title="{!$Label.Save}" action="{!saveBdPlan}" styleClass="closeButton" rerender="UpdateBDValue,popup1,popInnerOutputPnl1" style="background-color:rgba(27, 82, 151, 1);color:white"> 
+                             </apex:commandButton>
+                          </center>
+                       </apex:outputPanel>
+                    </apex:outputPanel>
+                    <apex:commandButton value="{!$Label.Update_BD_Plan}" action="{!showPopup}" rerender="UpdateBDValue,popup1,popInnerOutputPnl1"    
+                       style="background-color:rgba(27, 82, 151, 1);color:white;float:right" rendered="{!checkUpdateBDButton}"/>
+                 </apex:form>
+                 <!-- END :BD Tracker v  -->   
+              </header>
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                 <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+                    <div class="slds-size_1-of-2 slds-p-around_x-small">
+                           <label class="slds-form-element__label">{!translationObject.Subject__c}</label><br></br>    
+                       <span id="clickSub"></span><br></br>    
+                       <!-- <label class="slds-form-element__label">{!translationObject.Start_Time__c}</label><br></br>    
+                          <input type="time" class="slds-input" id="clickStartTime"/>-->  
+                       <div class="slds-form-element">
+                          <input type="text" style="display:none"/>   
+                          <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.Date__c}</label>  
+                          <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                             <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
+                             </svg>
+                             <input id="clickDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Date__c}" />    
+                          </div>
+                       </div>
+                       <label class="slds-form-element__label">{!$Label.CIS_Rating}</label><br></br> 
+                       <span id="clickCIS"></span><br></br>    
+                       <div class="Other slds-form-element">
+                          <input type="text" style="display:none"/>   
+                          <label class="slds-form-element__label" for="text-input-id-1">{!translationObject.follow_up_date__c}</label>    
+                          <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                             <svg onclick="setIcon();" class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default" aria-hidden="true">
+                                <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#event')}" />
+                             </svg>
+                             <input id="followUpDate" onclick="setIcon();" class="slds-input selectedDate" type="text" placeholder="{!translationObject.Date__c}" /> 
+                          </div>
+                       </div>
+                       <div class="slds-form-element" ng-show="contactList.length > 0">
+                          <label class="slds-form-element__label" for="select-01">{!translationObject.Contact__c}</label>   
+                          <div class="slds-form-element__control">
+                             <div class="slds-select_container">
+                                <select class="slds-select" id="clickContactId">
+                                   <option value="">{!translationObject.product__c}</option>
+                                   <option ng-repeat="con in contactList" ng-selected="con.Id == selectedContact" id="{{con.Id}}">{{con.Name}}</option>
+                                </select>
+                             </div>
+                          </div>
+                       </div>
+                       <div class="slds-form-element">
+                          <label class="slds-form-element__label" for="textarea-id-01">{!translationObject.Notes__c}</label>    
+                          <div class="slds-form-element__control">  
+                             <textarea id="clickDescription" class="slds-textarea" placeholder="{!translationObject.Notes__c}"></textarea> 
+                          </div>
+                       </div>
+                    </div>
+                    <div class="slds-size_1-of-2 slds-p-around_x-small">
+                       <label class="Other slds-form-element__label">{!translationObject.Related_To__c}</label><br></br>  
+                       <span id="clickRelatedTo"></span><br></br>  
+                       <!--  <label class="slds-form-element__label">{!translationObject.End_Time__c}</label><br></br>  
+                          <input type="time" class="slds-input" id="clickEndTime"/>  -->  
+                       <label class="slds-form-element__label">{!translationObject.Status__c}</label><br></br> 
+                       <span id="status"/><br></br><br></br>   
+                       <!--  <label class="slds-form-element__label">CE Rating</label><br></br>  
+                          <span id="clickCE"></span><br></br> --> 
+                       <div class='Other' ng-show="readOnly==false">   
+                          <label class="slds-form-element__label">{!translationObject.Product__c}</label><br></br>    
+                          <span id="product"/><br></br>   
+                       </div>
+                       <div class='Other'>
+                          <div class="slds-picklist--draggable" ng-show="readOnly==true">
+                             <div class="slds-form-element">
+                                <span class="slds-form-element__label" aria-label="select-1">{!translationObject.Product__c}</span>   
+                                <div class="slds-picklist slds-picklist--multi">
+                                   <ul ui-sortable="sortableOptions" ng-model="selectedValuespro" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
+                                      <div ng-repeat="item in productList" class="app" ng-class="{active: isActivepro(item)}">
+                                         <li id="po-0-0" class="slds-picklist__item" aria-selected="false" tabindex="0" role="option" ng-click="addpro(item);selectpro(item)" ng-dblclick="addpro(item);addToDisplayArraypro();selectpro(null)">  
+                                            <span class="slds-truncate">  
+                                            <span>{{item.Name}}</span>    
+                                            </span>   
+                                         </li>
+                                      </div>
+                                   </ul>
+                                </div>
+                             </div>
+                             <div class="slds-grid slds-grid--vertical">
+                                <button class="slds-button slds-button--icon-container" ng-click="deleteFromDisplayArraypro();selectpro(null)">
+                                   <svg aria-hidden="true" class="slds-button__icon" >
+                                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#left')}" ></use>
+                                   </svg>
+                                   <span class="slds-assistive-text" >{!$Label.Arrow_left}</span>  
+                                </button>
+                                <button class="slds-button slds-button--icon-container" ng-click="addToDisplayArraypro();selectpro(null)">
+                                   <svg aria-hidden="true" class="slds-button__icon" >
+                                      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS, 'assets/icons/utility-sprite/svg/symbols.svg#right')}" ></use>
+                                   </svg>
+                                   <span class="slds-assistive-text" >{!$Label.Arrow_right}</span> 
+                                </button>
+                             </div>
+                             <div class="slds-form-element">
+                                <span class="slds-form-element__label" aria-label="select-2">{!translationObject.selected__c} {!translationObject.Product__c}</span>  
+                                <div  class="slds-picklist slds-picklist--multi" >
+                                   <ul ui-sortable="sortableOptions" ng-model="displayArraypro" class="picklist slds-picklist__options slds-picklist__options--multi shown" style="height:200px;overflow:auto">
+                                      <div ng-repeat="item in displayArraypro" class="app" ng-class="{active: isActivepro(item)}">
+                                         <li id="po-0-0" class="slds-picklist__item" aria-selected="false" tabindex="0" role="option" ng-click="deletepro($index);selectpro(item)" ng-dblclick="deletepro($index);deleteFromDisplayArraypro();selectpro(null)">    
+                                            <span class="slds-truncate">  
+                                            <span class="items" >{{item.Name}}</span> 
+                                            </span>   
+                                         </li>
+                                      </div>
+                                   </ul>
+                                </div>
+                             </div>
+                          </div>
+                       </div>
+                    </div>
+                 </div>
+              </div>
+              <footer class="slds-modal__footer">   
+                 <button class="slds-button slds-button_neutral" ng-click="hidePopup('eventClickModal')">{!translationObject.Cancel_Button__c}</button>  
+                 <button class="slds-button slds-button_brand" ng-click="clickUpdate('null')">{!translationObject.Update__c}</button>    
+                 <button class="slds-button slds-button_brand" id="subnup" ng-click="clickUpdate('submitAndSave')">{!translationObject.save_and_submit__c}</button>  
+                 <button class="slds-button slds-button_destructive" ng-click="cancelEvent('del')" id="delete">{!translationObject.Delete__c}</button>   
+              </footer>
+           </div>
+        </section>    
+      <div class="slds-backdrop slds-backdrop_open"></div>  
+      </div>  
+      <!--event click modal ends -->  
+      <!-- Spinner -->    
+      <div class="loader demo-only slds-hide" style="background-color: rgb(22, 50, 92); height: 6rem;">
+         <div class="slds-spinner_container slds-spinner_brand">
+            <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+               <span class="slds-assistive-text">{!$Label.Loading}</span>  
+               <div class="slds-spinner__dot-a"></div>
+               <div class="slds-spinner__dot-b"></div>
+            </div>
+         </div>
+      </div>
+      <!-- spinner--> 
+      <!-- warning prompt --> 
+      <div class="warning demo-only slds-hide" style="height: 24rem;">
+         <section role="alertdialog" tabindex="-1" aria-labelledby="prompt-heading-id" aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt" aria-modal="true">
+            <div class="slds-modal__container">
+               <header class="slds-modal__header slds-theme_error slds-theme_alert-texture">
+                  <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="{!$Label.Close}" ng-click="hidePopup('warning')">
+                     <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#close')}" />
+                     </svg>
+                     <span class="slds-assistive-text">{!$Label.Close}</span>  
+                  </button>
+                  <h2 class="slds-text-heading_medium" id="prompt-heading-id">{!translationObject.Warning__c}</h2>
+               </header>
+               <div class="slds-modal__content slds-p-around_medium" id="prompt-message-wrapper">
+                  <p id="warn"></p>
+               </div>
+               <footer class="slds-modal__footer slds-theme_default">  
+                  <button class="slds-button slds-button_neutral" ng-click="hidePopup('warning')">{!translationObject.Okay__c}</button> 
+               </footer>
+            </div>
+         </section>
+         <div class="slds-backdrop slds-backdrop_open"></div>
+      </div>
+      <!-- warning promt -->  
+<input type="hidden" id="selectedAccountType"></input>
+   </div>
+</body> 
+   <script>  
+      /*function BdUpdate(){  
+         UpdateBDV(); 
+      }*/ 
+      function changeRegion(value){   
+          var msg = "{!$Label.Please_save_calendar_before_changing_the_Region_Zone_On_change_of_Region_Zone}";
+          if(confirm (msg)){
+              //getAccountList(value);            
+              window.location.href="/apex/Daily_Call_Record?region="+value;
+          }
+      }
+      function changeZone(value){ 
+          //var msg = "Please save calendar before changing the Region/Zone. On change of Region/Zone, it will refresh the page and remove the all unsaved calendar event. Do you want to continue with the Region change?";
+         
+              //getAccountList(value);    
+          var region = document.getElementById('{!$Component.accountListId.selRegion}').value;
+          var msg = "Please save calendar before changing the Region/Zone. On change of Region/Zone, it will refresh the page and remove the all unsaved calendar event. Do you want to continue with the Region/Zone change?";
+          if(confirm (msg)){
+              window.location.href="/apex/Daily_Call_Record?region="+region+"&zone="+value; 
+          }
+      }
+      function displayAccount(){  
+          //console.log('{!accountData}');    
+          //angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setAccountList(data); 
+      }   
+      function callActionFunction(){  
+           setDeafult();  
+          
+          document.getElementById('{!$Component.bg.theHiddenInput}').value = $('#accountId').val();   
+          document.getElementById('{!$Component.bg.theHiddenInputDate}').value = $('#ldate').text();  
+          //callAction($('#accountId').val(),$('#ldate').text()); 
+            } 
+        var BDTRack=[];       
+        var event=[]; 
+        var finalData = [];   
+        var eventList = [];   
+        var callTypeValue;
+        var previousDay = {!$Label.DCR_past_date};    
+        console.log('Past date : ',previousDay);  
+          $(document).ready(function(){   
+                 $('#multi-select').dropdown({maxSelections: 3});//For product dropdown
+              console.log('Please select value ::','{!translationObject.Please_select__c}');  
+              //Search filter for Account List    
+              $("#searchId").on("keyup", function()   { 
+                  var value = $(this).val().toLowerCase();    
+                  $("#myTable div").filter(function() {   
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)    
+                  }); 
+              }); 
+           //Code for error message   
+                 $('.Etime').removeClass('slds-has-error');   
+              $('.Stime').removeClass('slds-has-error');  
+           $('.sub').removeClass('slds-has-error');   
+              $('.notes').removeClass('slds-has-error');  
+           $('.errorCallType').removeClass('slds-has-error'); 
+              $('.errorMeetingType').removeClass('slds-has-error');
+          //error code ends   
+              
+            $(function() {    
+                  $("#sort div").draggable({  
+                  revert:true,    
+                  helper:'clone', 
+                  append: 'div#calender', 
+                  scroll:false,   
+                  zIndex:999, 
+                   start: function(event, ui) {   
+                      $(ui.helper).css('width', "20%");   
+                    },    
+                    stop: function(event, ui) {   
+                      $(ui.helper).css('width', "100%");  
+                    },    
+                     receive: function () 
+                      {   
+                         return false;    
+                      }   
+                  }); 
+                              
+               });    
+               try{   
+                  var ev = '{!eventData}';    
+                  if(ev.length > 0){  
+                    eventList = JSON.parse('{!eventData}');   
+                  }   
+               }catch(error){ 
+                   console.log('error in event list ',error); 
+               }  
+             //Allready existing Events   
+             for(var i=0; i<eventList.length; i++){   
+                var relatedto = '';   
+                var recordType = '';  
+                var country = '';
+                if(eventList[i].Account__c){  
+                    relatedto = eventList[i].Account__r.Name; 
+                    country = eventList[i].Account__r.BillingCountry; 
+                    if(eventList[i].Account__r.RecordType){   
+                      recordType = eventList[i].Account__r.RecordType.DeveloperName;  
+                    } 
+                } 
+                var arr = ['old',eventList[i].StartDateTime,eventList[i].EndDateTime,relatedto,eventList[i].Id,eventList[i].Event_Locked__c,eventList[i].Stage__c,recordType,eventList[i].Product__c,eventList[i].DCR_Description__c,eventList[i].Follow_Up_Date__c,eventList[i].Other_Type__c,eventList[i].CIS_Rating__c,eventList[i].CE_Rating__c,eventList[i].Account__c,eventList[i].WhoId,country]; 
+                var color = '';   
+                 //var evda = new Date(eventList[i].StartDateTime);
+                 switch(eventList[i].Meeting_Type__c){
+                    case '{!translationObject.Online__c}':
+                         if(eventList[i].Stage__c == '{!translationObject.Planned__c}'){
+                            color = '#C8AA03';    
+                         }else{
+                            color = '#2C9815';
+                         }
+                         break;
+                    case '{!translationObject.Offsite__c}':
+                         if(eventList[i].Stage__c == '{!translationObject.Planned__c}'){
+                             color = '#D004B1';
+                         }else{
+                            color = '#CE5FF7 ';
+                         }
+                         break;
+                    case '{!translationObject.Onsite__c}':
+                         if(eventList[i].Stage__c == '{!translationObject.Planned__c}'){
+                             color='#FB6239 ';
+                         }else{
+                            color='#39AAFB ';
+                         }
+                         break;
+                    case undefined:
+                         color = '#2449F9'
+                         break;
+                    default:
+                         color = '#F1B55A'
+                         break;
+                 }
+                 event.push({ 
+                      title:eventList[i].Meeting_Type__c == undefined ? eventList[i].Subject : eventList[i].Meeting_Type__c+'\n'+eventList[i].Subject, 
+                      start:eventList[i].StartDateTime,
+                      backgroundColor:color,
+                      textColor:'white',  
+                      className:arr,  
+                      editable:eventList[i].Event_Locked__c ? false : true,   
+                      description : relatedto !='' ? relatedto : 'No Account' 
+                  }); 
+              }   
+                  
+                  
+              console.log('events : ',event); 
+            //To Be New Events    
+            $("#sort div").each(function(){   
+                  
+                if($(this).attr('Id').startsWith('001')){ 
+                  var conName = [];   
+                  var contacts;   
+                  conName.push($(this).attr('id'));   
+                  conName.push($(this).attr('isDrop'));   
+                  conName.push($(this).attr('reason'));   
+                  conName.push($(this).attr('recordType'));   
+                  conName.push($(this).attr('contacts')); 
+                  conName.push($(this).attr('Name')); 
+                  conName.push($(this).attr('rating'));
+                  conName.push($(this).attr('country'));
+                  conName.push($(this).attr('lastCEDate'));
+                  $(this).data('event',{  
+                      title:$(this).attr('Name'), 
+                      backgroundColor:'#8C8A8A',  
+                      textColor:'white',  
+                      borderColor:'#8C8A8A',  
+                      className:conName,  
+                  }); 
+                 }    
+               });    
+              
+            $('#calendar').fullCalendar({ 
+                  header: {   
+                      left: 'prev,next today',    
+                      center: 'title',    
+                      right: 'month,agendaWeek,agendaDay' 
+                  },  
+                  locale: '{!curentLang}',    
+                  selectable: true,   
+                  selectHelper:true,  
+                  editable: true, 
+                  droppable: true,    
+                  height: 560,    
+                  displayEventTime : false,
+                  eventDrop:function (event,date, revertFunc){    
+                          
+                      $('#clickSub').text(event.title);   
+                      $('.eventClickModal').removeClass('slds-hide'); 
+                      $('#hideId').val(event._id);    
+                      $('#eventClassName').val(event.className);  
+                      $('#clickDate').val(event.start.format('YYYY-MM-DD'));  
+                      //  alert('dagte: ' + $('#clickDate').val(event.start.format('YYYY-MM-DD')));   
+                      
+                      document.getElementById('{!$Component.bg.theHiddenInputDate}').value = $('#clickDate').val();
+                      document.getElementById('{!$Component.bg.theHiddenInput}').value = event.className[14];
+                      
+                      if(event.className.includes('old')){    
+                              
+                        console.log(event.className);     
+                          
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setContactOnCLickDCR(event.className[14]);    
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setSelectedContact(event.className[15]);  
+                             var d = new Date(event.className[1]);    
+                            var d2 = new Date(event.className[2]);    
+                            var stime = angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().convertTime(d);   
+                          var etime = angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().convertTime(d2);    
+                          console.log('stime : ',stime);  
+                           $('#clickStartTime').val(stime);   
+                           $('#clickEndTime').val(etime); 
+                          $('#status').text(event.className[6]);  
+                          $('#product').text(event.className[8]); 
+                          if(event.className[9] != undefined){    
+                            $('#clickDescription').val(event.className[9]);   
+                          }   
+                          if(event.className[12] != undefined){   
+                            console.log(event.className[12]); 
+                            $('#clickCIS').text(event.className[12]); 
+                          }   
+                          if(event.className[13] != undefined){   
+                            $('#clickCE').text(event.className[13]);  
+                          }   
+                          if(event.className[10] !=undefined){    
+                            var dd = new Date(event.className[10]).getDate(); 
+                            var mm = new Date(event.className[10]).getMonth()+1;  
+                            var yy = new Date(event.className[10]).getFullYear(); 
+                            var mmn = mm < 10 ? 0+''+mm : mm; 
+                            $('#followUpDate').val(yy+'-'+mmn+'-'+dd);    
+                          }   
+                          if(event.className[6] == '{!translationObject.Draft__c}' || event.className[7] == 'Ophthalmic_Vision' || event.className[7] == 'Ortho_Dermal'){ 
+                            $('#subnup').show();  
+                          }else{  
+                            $('#subnup').hide();  
+                          }   
+                          if(event.className[6] == '{!translationObject.Sent_for_Approval__c}' || event.className[6] == '{!translationObject.Approved__c}'){  
+                            $('#delete').prop('disabled',true);   
+                          }else{  
+                            $('#delete').prop('disabled',false);  
+                          }   
+                          //calling angular to set product    
+                          if(event.className[8] != undefined){    
+                            angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setProduct(event.className[8].split(';'));    
+                          }else{  
+                            $('.eventClickModal').removeClass('slds-hide');   
+                          }   
+                          if(event.className[11]){    
+                            console.log('hide fields');   
+                            $('.Other').hide();   
+                          }else{  
+                            $('.Other').show();   
+                          }   
+                          if(event.className[5] || event.className[6] == '{!translationObject.Sent_for_Approval__c}'){    
+                              $('#clickDate').attr('disabled', true); 
+                                $('#clickStartTime').attr('disabled', true);  
+                              $('#clickEndTime').attr('disabled', true);  
+                              $('#followUpDate').attr('disabled',true);   
+                              $('#clickDescription').attr('disabled',true);   
+                              $('#clickContactId').attr('disabled',true); 
+                              angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().checkProduct(false);    
+                          }else{  
+                              $('#clickDate').attr('disabled', false);    
+                               $('#clickStartTime').attr('disabled', false);  
+                              $('#clickEndTime').attr('disabled', false); 
+                              $('#followUpDate').attr('disabled',false);  
+                              $('#clickDescription').attr('disabled',false);  
+                              $('#clickContactId').attr('disabled',false);    
+                              angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().checkProduct(true); 
+                          }   
+                      }else{  
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().checkProduct(true);   
+                        $('.old').hide(); 
+                         $('#subnup').hide(); 
+                          $('.eventClickModal').removeClass('slds-hide'); 
+                          for(var i=0;i<finalData.length;i++){    
+                              if(event.className[0]==finalData[i].relatedTo){ 
+                                    $('#clickStartTime').val(finalData[i].startTime); 
+                                   $('#clickEndTime').val(finalData[i].endTime);  
+                                  $('#clickDescription').val(finalData[i].description);   
+                                  angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setContactOnCLickDCR(finalData[i].relatedTo);   
+                                  angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setSelectedContact(finalData[i].contactId); 
+                                  angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setProduct(finalData[i].product.split(';'));    
+                                  break;  
+                              }   
+                          }   
+                      }   
+                      $('#clickRelatedTo').text(event.className[3]);  
+                      $('#modalClickHeader').text(event.className[3]);    
+                      $('#revert').click(function(){  
+                          console.log('in revert');   
+                          revertFunc();   
+                          $('.eventClickModal').addClass('slds-hide');    
+                      }); 
+                  },  
+                  drop: function(date, jsEvent, view,event,revertFunc){   
+                     $('#ldate').text(date.format()); 
+                  },  
+                  
+                //Update function 
+                  eventClick: function (event, date, info) {  
+                      // alert('{!eventData}')    
+                      console.log(event)  
+                      var dt = event.className[2];    
+                      dt = new Date(dt);
+                      console.log('**dt***',dt);
+                      var splDt = dt.toISOString().split('T');    
+                          
+                       document.getElementById('{!$Component.UpdateBDValue.theHiddenInputDateValue}').value = splDt[0];   
+                          
+                       if(event.className[3]==undefined || event.className[3]==''){   
+                          document.getElementById('{!$Component.UpdateBDValue.checkUpdateBDButtonVal}').value =false; 
+                      }else{  
+                          document.getElementById('{!$Component.UpdateBDValue.checkUpdateBDButtonVal}').value =true;      
+                      }   
+                          
+                      //It is used to hide the Update Bd Plan Button.
+                       
+                       document.getElementById('{!$Component.UpdateBDValue.AccUpdate}').value = event.className[14];
+                       document.getElementById('{!$Component.UpdateBDValue.eventUpdateCall}').value = 'Update';
+                       reCheck();
+                      
+                  console.log('event clicked : ',event.className);    
+                    console.log('Product List : ',event.className[8]);    
+                      $('#clickSub').text(event.title);   
+                      $('#hideId').val(event._id);    
+                      $('#eventClassName').val(event.className);  
+                      $('#clickDate').val(event.start.format('YYYY-MM-DD'));  
+                      if(event.className.includes('old')){    
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setContactOnCLickDCR(event.className[14]);    
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setSelectedContact(event.className[15]);  
+                        $('.old').show(); 
+                          var d = new Date(event.className[1]);   
+                          var d2 = new Date(event.className[2]);  
+                          var stime = angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().convertTime(d); 
+                          var etime = angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().convertTime(d2);    
+                           $('#clickStartTime').val(stime);   
+                           $('#clickEndTime').val(etime); 
+                          $('#status').text(event.className[6]);  
+                          $('#product').text(event.className[8]); 
+                          if(event.className[9] != undefined){    
+                            $('#clickDescription').val(event.className[9]);   
+                          }   
+                          if(event.className[12] != undefined){   
+                            $('#clickCIS').text(event.className[12]); 
+                          }   
+                          if(event.className[13] != undefined){   
+                            $('#clickCE').text(event.className[13]);  
+                          }   
+                          if(event.className[10] !=undefined){    
+                            var dd = new Date(event.className[10]).getDate(); 
+                            var mm = new Date(event.className[10]).getMonth()+1;  
+                            var yy = new Date(event.className[10]).getFullYear(); 
+                            var mmn = mm < 10 ? 0+''+mm : mm; 
+                            $('#followUpDate').val(yy+'-'+mmn+'-'+dd);    
+                          }   
+                          //To hide the button "Update and Submit"    
+                          if(event.className[6] == 'Draft' || event.className[7] == 'Ophthalmic_Vision' || event.className[7] == 'Ortho_Dermal'){ 
+                            $('#subnup').show();  
+                          }else{  
+                            $('#subnup').hide();  
+                          }   
+                          if(event.className[6] == '{!translationObject.Sent_for_Approval__c}' || event.className[6] == '{!translationObject.Approved__c}'){  
+                              $('#delete').prop('disabled',false);   //Change by prashant
+                          }else{  
+                            $('#delete').prop('disabled',false);  
+                          }   
+                          //calling angular to set product    
+                          if(event.className[8] != undefined){    
+                            angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setProduct(event.className[8].split(';'));    
+                          }else{  
+                            $('.eventClickModal').removeClass('slds-hide');   
+                          }   
+                          if(event.className[11] || event.className[0].includes('001Leave')){ 
+                            $('.Other').hide();   
+                          }else{  
+                            $('.Other').show();   
+                          }   
+                          //Disabling the fields if event is locked or submited   
+                          if(event.className[5] || event.className[6] == '{!translationObject.Sent_for_Approval__c}'){    
+                              //  $('#clickDate').attr('disabled', true); 
+                                 $('#clickStartTime').attr('disabled', true);    
+                               $('#clickEndTime').attr('disabled', true); 
+                              $('#followUpDate').attr('disabled',true);   
+                              //  $('#clickDescription').attr('disabled',true);   
+                              $('#clickContactId').attr('disabled',true); 
+                              angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().checkProduct(false);    
+                          }else{  
+                              $('#clickDate').attr('disabled', false);    
+                               $('#clickStartTime').attr('disabled', false);  
+                               $('#clickEndTime').attr('disabled', false);    
+                              $('#followUpDate').attr('disabled',false);  
+                              $('#clickDescription').attr('disabled',false);  
+                              $('#clickContactId').attr('disabled',false);    
+                              angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().checkProduct(true); 
+                          }   
+                      }else{  
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().checkProduct(true);   
+                        if(event.className[0].includes('001Leave')){  
+                            console.log('hide fields');   
+                            $('.Other').hide();   
+                        }else{    
+                            $('.Other').show();   
+                        } 
+                         $('.old').hide();    
+                         $('#subnup').hide(); 
+                          for(var i=0;i<finalData.length;i++){    
+                              if(event.className[0]==finalData[i].relatedTo){ 
+                                  $('#clickStartTime').val(finalData[i].startTime);   
+                                   $('#clickEndTime').val(finalData[i].endTime);  
+                                   $('#clickDescription').val(finalData[i].description);  
+                                  angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setContactOnCLickDCR(finalData[i].relatedTo);   
+                                  angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setSelectedContact(finalData[i].contactId); 
+                                  angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setProduct(finalData[i].product.split(';'));    
+                                  break;  
+                              }   
+                          }   
+                      }   
+                      $('#clickRelatedTo').text(event.className[3]);  
+                      $('#modalClickHeader').text(event.className[3]);    
+                  },  
+                  eventReceive: function (event,revertFunc) { 
+                          
+                      //alert('event.className'+);
+                      callTypeValue = event.className[5];
+                      $('#country').val(event.className[7]);
+                      
+                      // alert('{!translationObject.subject__c}'+event.className[0]);     
+                    console.log('event in recieve method : ',event.className);    
+                      var chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";    
+                      var string_length = 8;  
+                      var randomstring = '';  
+                      for (var i=0; i<string_length; i++) {   
+                          var rnum = Math.floor(Math.random() * chars.length);    
+                          randomstring += chars.substring(rnum,rnum+1);   
+                      }   
+                      event.id = randomstring;    
+                      $('#calendar').fullCalendar('updateEvent', event);
+                      
+                      
+                      if(event.className[0].includes('001Leave')){    
+                        $('#leavedate').text(event.start.format());   
+                        $('#leaveHeader').text(event.className[5]+' Details');    
+                        $('.leave').removeClass('slds-hide'); 
+                        $('#leaveSubject').val(event.className[5]);   
+                        if(event.className[0] == '001LeaveCorp'){ 
+                            
+                            $('.leaveType').addClass('slds-hide');    
+                            $('.callType').show();    
+                            $('#leavecallTpe').text('Add Call Type'); 
+                            //$('#leavecallTpe').text('Review meeting');  
+                        }else if(event.className[0].includes('001LeaveHoli')){
+                            
+                            $('.leaveType').addClass('slds-hide');
+                            $('.callType').hide();
+                      }else{  
+                          $('.leaveType').removeClass('slds-hide');   
+                          $('.callType').hide();  
+                          $('#leavecallTpe').text('');    
+                      }   
+                          $('#hideId').val(event._id);    
+                          $('#accountId').val(event.className[0]);    
+                          // CallDefault();   
+                          callActionFunction();   
+                          
+                      }else{ 
+                          var tempRating = event.className[6] != undefined ? event.className[6].split(',') : [];
+                          var domestic = '{!$Label.Domestic}';
+                          var date1 = new Date(event.className[8]);
+                          var date2 = new Date();
+                          // To calculate the time difference of two dates
+                          var Difference_In_Time = date2.getTime() - date1.getTime();
+                          // To calculate the no. of days between two dates
+                          var Difference_In_Days = Difference_In_Time / (1000 * 3600 * 24);
+                          console.log('Difference_In_Days : ',Difference_In_Days);
+                          if(domestic == '{!selectedRegion}' && tempRating.length > 0 && (tempRating[1] == '' || Difference_In_Days > 364)&& '{!translationObject.Distributor__c}' != event.className[3]){
+                                //alert('{!translationObject.Account_Lock_Error__c}'+event.className[2]); 
+                            $('.warning').removeClass('slds-hide');   
+                              console.log('CE rating is empty');
+                            $('#warn').text('{!translationObject.CE_Rating__c}'+ event.className[2]);    
+                            $('#calendar').fullCalendar('removeEvents', event._id);                            
+                          }
+                     else if(event.className[1]=='true'){   
+                            //alert('{!translationObject.Account_Lock_Error__c}'+event.className[2]); 
+                            $('.warning').removeClass('slds-hide');   
+                            $('#warn').text('{!translationObject.Account_Lock_Error__c}'+ event.className[2]);    
+                            $('#calendar').fullCalendar('removeEvents', event._id);   
+                        }else{    
+                            $('.accountDragModal').removeClass('slds-hide');  
+                            $('#hideId').val(event._id);  
+                            $('#modalDragHeader').text(event.className[5]);   
+                             $('#accountId').val(event.className[0]); 
+                              
+                            callActionFunction();     
+                            //CallDefault();  
+                            const ratings = event.className[6].split(',');    
+                            $('#CISRating').text(ratings[0]); 
+                            $('#CERating').text(ratings[1]); 
+                            console.log('CE Rating==>>'+$('#CERating').text(ratings[1]));
+                        } 
+                        angular.element(document.querySelector('[ng-controller="myCtrl"]')).scope().setContactOnCLickDCR(event.className[0]); 
+                        $('#selectedAccountType').val(event.className[3]);
+                        if(event.className[3] == 'Ophthalmic_Vision' || event.className[3] == 'Ortho_Dermal'){    
+                            $('.recordType').hide();  
+                            $('.interNational').show();   
+                            var date = new Date(event.start.format());    
+                            $('#month').text(date.getMonth()+1);  
+                            $('#callType').on('change',function(e){   
+                              var da = this.options[e.target.selectedIndex].text; 
+                              if(da == 'Distributor Visit'){  
+                                $('.recordType').show();  
+                              }else{  
+                                $('.recordType').hide();      
+                              }   
+                            });   
+                        }else{    
+                            $('.recordType').hide();  
+                            $('.interNational').hide();   
+                        } 
+                      }   
+                  },  
+                  eventConstraint: {  
+                      start: moment().add(previousDay,'days').format('YYYY-MM-DD'),   
+                      end: '2900-01-01' // hard coded goodness unfortunately  
+                  },  
+                  events:event,   
+                  eventMouseover: function(calEvent, jsEvent) {   
+                    var tooltip = '<div class="tooltipevent" style="background:#ccc;position:absolute;z-index:10001;">' + calEvent.description + '</div>';    
+                    var $tooltip = $(tooltip).appendTo('body');   
+                    $(this).mouseover(function(e) {   
+                        $(this).css('z-index', 10000);    
+                        $tooltip.fadeIn('500');   
+                        $tooltip.fadeTo('10', 1.9);   
+                    }).mousemove(function(e) {    
+                        $tooltip.css('top', e.pageY + 10);    
+                        $tooltip.css('left', e.pageX + 20);   
+                    });   
+                },    
+                eventMouseout: function(calEvent, jsEvent) {  
+                    $(this).css('z-index', 8);    
+                    $('.tooltipevent').remove();  
+                },    
+                  eventLimit: true, // for all non-agenda views   
+                    views: {  
+                      months: {   
+                        eventLimit: 9 // adjust to 6 only for agendaWeek/agendaDay    
+                      },  
+                      customWeek: {   
+                          type: 'timeline',   
+                          duration: { weeks: 1 }, 
+                          slotDuration: {days: 1},    
+                          buttonText: 'Custom Week'   
+                      }   
+                    } 
+              }); 
+              
+           });    
+          var app = angular.module('myApp', []);  
+          app.controller('myCtrl', function($scope) { 
+             $scope.contactId =''; //This will have the contact id on change of picklist  
+             $scope.contactList = []; 
+             $scope.accountList = []; 
+             $scope.managerList = []; 
+             $scope.errorStimeMessage = false;    
+             $scope.accountDrag = false;  
+             $('#userId').val('{!userObj.Id}');//Set the current user id  
+             var callType;    
+             callType = '{!pickListValuesList}';  
+             var temp = callType.slice(1,callType.length-1);//to remove [ from start and end  
+             $scope.callType = temp.split(',');   
+             console.log('calltype before removal : ',$scope.callType);   
+              
+             //manager list   
+             try{ 
+               var mg = '{!managerList}'; 
+               if(mg.length > 0){ 
+                $scope.managerList = JSON.parse('{!managerList}');    
+               }  
+                  
+             }catch(error){   
+                 console.log('error in manger list',error);   
+             }    
+              
+             try{ 
+                 let data = '{!accountData}'; 
+                 console.log('raw account : ',data);
+                 if(data.length > 0){ 
+                    $scope.accountList = JSON.parse('{!accountData}');    
+                 }    
+                      
+              }catch(error){  
+                  console.log(error); 
+              }   
+              $scope.accountList.unshift({"Name":"{!translationObject.Leave__c}","Id":"001Leave"},{"Name":"{!translationObject.Holiday__c}","Id":"001LeaveHoli"},{"Name":"{!translationObject.Review_Meeting__c}","Id":"001LeaveCorp"});  
+              console.log('account : ',$scope.accountList);   
+                  
+             //Multi Select logic     
+              $scope.displayArray = [];   
+              var deleted = null; 
+              var selected = '';  
+              var s = ''; 
+              var d = null;   
+              var countForAdd = null; 
+              var countForDelete = null;  
+              $scope.joint = false;   
+              $scope.allUser = [];    
+              try{    
+                  var tempUser = '{!allUser}';
+                  if(tempUser.length > 0){
+                       $scope.allUser = JSON.parse('{!allUser}'); 
+                  } 
+                  
+              }catch(error){  
+                  console.log('error is user parsing : ',error);  
+              }   
+              console.log('user in angular : ',$scope.allUser);   
+              $scope.add = function(val) {    
+                  countForAdd = 1;    
+                  var index = $scope.allUser.indexOf(val);    
+                  selected = $scope.allUser[index];   
+                  d = index;              
+              }   
+               console.log('user in angular final: ',$scope.allUser);     
+              $scope.setAccountList = function(data) {    
+                  try{    
+                      //let data = '{!accountData}';  
+                      console.log('**data***',data)   
+                      if(data.length > 0){    
+                          $scope.accountList = data;  
+                      }   
+                          
+                      // $('#calendar').fullCalendar( 'rerenderEvents' ); 
+                          
+                  }catch(error){  
+                      console.log(error); 
+                  }   
+                      
+                  $scope.accountList.unshift({"Name":"{!translationObject.Leave__c}","Id":"001Leave"},{"Name":"{!translationObject.Holiday__c}","Id":"001LeaveHoli"},{"Name":"{!translationObject.Review_Meeting__c}","Id":"001LeaveCorp"});  
+                  console.log('account : ',$scope.accountList);   
+                  $('#calendar').fullCalendar('refresh');     
+                  $scope.$apply();    
+              }   
+                  
+              $scope.addToDisplayArray = function() {     
+                  if(countForAdd == 1) {  
+                      $scope.displayArray.push($scope.selectedVal);   
+                      $scope.allUser.splice(d, 1);                    
+                      selected = '';  
+                      d=null; 
+                      countForAdd--;  
+                  }   
+              }   
+               console.log('Splited user 1', $scope.allUser);
+              $scope.delete = function(val) { 
+                  countForDelete = 1; 
+                  s = $scope.displayArray[val];           
+                  deleted = val;  
+              }   
+                  
+              $scope.deleteFromDisplayArray = function() {    
+                  if(countForDelete == 1) {   
+                      $scope.displayArray.splice(deleted, 1);     
+                      $scope.allUser.push(s); 
+                      s = ''; 
+                      deleted=null;   
+                    //  countForUp--; 
+                    //  countForDown--;   
+                    // countForDelete--;  
+                  }   
+              }   
+              console.log('Splited user 2',$scope.allUser);
+                  
+              $scope.select= function(item) { 
+                  $scope.selectedVal = item;  
+              }   
+                  
+              $scope.isActive = function(item) {  
+                  return $scope.selectedVal === item; 
+              }   
+                  
+              
+              //End of multiselect    
+              //Multi Select Product logic    
+              $scope.displayArraypro = [];    
+              var deletedpro = null;  
+              var selectedpro = '';   
+              var spro = '';  
+              var dpro = null;    
+              var countForAddpro = null;  
+              var countForDeletepro = null;   
+              $scope.productList = [];    
+              try{    
+                  var pro = '{!productList}'; 
+                  if(pro.length > 0){ 
+                    $scope.productList = JSON.parse(pro); 
+                  }   
+                      
+              }catch(error){  
+                  console.log('error is user parsing : ',error);  
+              }   
+                  
+              $scope.addpro = function(val) { 
+                if($scope.displayArraypro.length < 3){    
+                  countForAddpro = 1; 
+                  var index = $scope.productList.indexOf(val);    
+                  selectedpro = $scope.productList[index];    
+                  dpro = index;   
+                }else{    
+                  console.log('in addpro');   
+                } 
+                                  
+              }   
+                  
+              $scope.addToDisplayArraypro = function() {  
+                if($scope.displayArraypro.length < 3){    
+                  if(countForAddpro == 1) {   
+                      $scope.displayArraypro.push($scope.selectedValpro); 
+                      $scope.productList.splice(dpro, 1);                     
+                      selected = '';  
+                      dpro=null;  
+                      countForAddpro--;   
+                  }  
+                    // console.log('$scope.displayArraypro ',$scope.displayArraypro);
+                    //if($scope.displayArraypro.length==0){
+                    // alert('please fill the field');
+                    // }
+                }else{    
+                  $('.warning').removeClass('slds-hide'); 
+                  $('#warn').text('{!translationObject.Product_error__c}');   
+                    //alert('{!translationObject.Product_error__c}'); 
+                  console.log('in addtodisplay'); 
+                } 
+                      
+              }   
+                  
+              $scope.deletepro = function(val) {  
+                  countForDeletepro = 1;  
+                  spro = $scope.displayArraypro[val];             
+                  deletedpro = val;   
+              }   
+                  
+              $scope.deleteFromDisplayArraypro = function() {     
+                  if(countForDeletepro == 1) {    
+                      $scope.displayArraypro.splice(deletedpro, 1);   
+                      $scope.productList.push(spro);  
+                      spro = '';  
+                      deletedpro=null;    
+                    //  countForUppro--;  
+                    //  countForDownpro--;    
+                    //  countForDeletepro--;  
+                  }   
+              }   
+              
+                  
+              $scope.selectpro= function(item) {  
+                if($scope.displayArraypro.length < 3){    
+                  $scope.selectedValpro = item;   
+                }else{    
+                  console.log('in selected'); 
+                } 
+                      
+              }   
+                  
+              $scope.isActivepro = function(item) {   
+                  return $scope.selectedValpro === item;  
+              }   
+                  
+              
+              //End of Product multiselect    
+                  
+              //This helper will get The Contact based on account ID  
+              $scope.setContactOnCLickDCR = function(temp){   
+                $scope.contactList = [];  
+                for(let i=0; i< $scope.accountList.length; i++){  
+                  if(temp == $scope.accountList[i].Id){   
+                    if('Contacts' in $scope.accountList[i]){  
+                      $scope.contactList = $scope.accountList[i].Contacts.records;    
+                    } 
+                    break;    
+                  }   
+                } 
+                $scope.$apply();  
+              }   
+              //To set the select contact in picklist 
+              $scope.setSelectedContact = function(temp){ 
+                console.log('in selected value : ',temp); 
+                $scope.selectedContact = '';  
+                for(let i=0; i< $scope.contactList.length; i++){  
+                  if(temp == $scope.contactList[i].Id){   
+                      $scope.selectedContact = temp;  
+                      break;  
+                  }   
+                } 
+              }   
+              //This method will give time to set in input time   
+              $scope.convertTime = function(temp){    
+                var mind = Number(temp.getMinutes()); 
+                var hod = Number(temp.getHours());    
+                var md;   
+                var hd;   
+                if(mind < 10){    
+                   md = '0'+mind.toString();  
+                }else{    
+                     md = mind.toString();    
+                } 
+                if(hod< 10){  
+                    hd = '0'+hod.toString();  
+                }else{    
+                    hd = hod.toString();  
+                } 
+                return hd+':'+md; 
+              }   
+              //THis method will refresh the page 
+              $scope.refreshPage = function(){    
+                location.reload();    
+              }   
+                  
+              //This method will calculate the difference of times    
+              $scope.checkTime = function(){  
+                var time = $('#leaveStartTime').val();    
+                var hrs = Number(time.match(/^(\d+)/)[1]);    
+                var mnts = Number(time.match(/:(\d+)/)[1]);   
+                var hours =hrs.toString();    
+                var minutes = mnts.toString();    
+                if (hrs < 10) hours = "0" + hours;    
+                if (mnts < 10) minutes = "0" + minutes;   
+                var date1 = new Date();   
+                date1.setHours(hours );   
+                date1.setMinutes(minutes);    
+                console.log(date1.getTime()); 
+                var time2 = $('#leaveEndTime').val(); 
+                console.log(time2);   
+                  
+                if(time2.length == 5){    
+                  var hrs2 = Number(time2.match(/^(\d+)/)[1]);    
+                  var mnts2 = Number(time2.match(/:(\d+)/)[1]);   
+                  var hours2 =hrs2.toString();    
+                  var minutes2 = mnts2.toString();    
+                  if (hrs2 < 10) hours2 = "0" + hours2;   
+                  if (mnts2< 10) minutes2 = "0" + minutes2;   
+                  var date2= new Date();  
+                  date2.setHours(hours2 );    
+                  date2.setMinutes(minutes2); 
+                      
+                  var md1 = moment.utc(date1);    
+                  var md2 = moment.utc(date2);    
+                  var md = moment.duration(md2.diff(md1));    
+                  console.log('moment diff : ',md.hours()+':'+md.minutes());  
+                      
+                  $('#lduration').text(md.hours()+' hours : '+md.minutes()+' minutes');   
+                } 
+              }   
+                //Return Home PAGE URl    
+                $scope.home = function(){ 
+                  DailyCallRecordController.returnHomePage(function(result,event){    
+                      window.location = result;   
+                  }); 
+                      
+                } 
+                //This method will be called from jquery and set the product in click modal   
+                $scope.setProduct = function(params){ 
+                  console.log('in set product',params);   
+                  for(var i=0;i<$scope.productList.length;i++){   
+                     for(var k=0; k<params.length; k++){  
+                          if(params[k] === $scope.productList[i].Name){   
+                              console.log('product name ', $scope.productList[i].Name);   
+                              $scope.displayArraypro.push($scope.productList[i]); 
+                              console.log('in if : ',$scope.displayArraypro); 
+                              $scope.productList.splice(i,1); 
+                          }   
+                      }   
+                      /*if(params.includes($scope.productList[i].Name)){  
+                      console.log('in if : ',params); 
+                      $scope.displayArraypro.push($scope.productList[i]); 
+                      $scope.productList.splice(i,1); 
+                    }*/   
+                  }   
+                  console.log('display array : ',$scope.displayArraypro); 
+                  console.log('product array : ',$scope.productList); 
+                  $scope.$apply();    
+                  $('.eventClickModal').removeClass('slds-hide'); 
+                } 
+                //This will check for the product as editable or read only    
+                $scope.checkProduct = function(flag){ 
+                  $scope.readOnly = flag; 
+                  $scope.$apply();    
+                } 
+                //This function is for clear the data 
+                $scope.refreshData = function(){  
+                    $('#clickDescription').val('');
+                    $('#remarkDoctor').val('');   
+                    $('#leaveEndTime').val('');   
+                    $('#leaveStartTime').val('')  
+                    $('#lduration').text(''); 
+                    $('#leavedescription').val('');   
+                    $('#marketInfo').val(''); 
+                    $('#remarkTender').val('');   
+                    $('#surgery').val('');    
+                    $('#pmsCollected').val('');   
+                    $('#contact').val('');    
+                    $('#doctorVisit').val('');    
+                    $('#address').val('');    
+                    $('#name').val('');   
+                    $('#nextVisitPlanning').val('');  
+                    $('#employeeName').val('');   
+                    $('#toPlace').val('');    
+                    $('#fromPlace').val('');  
+                    $('').text('');   
+                    $('#week').val('');   
+                    $('#dayTravel').val('');  
+                    $('#ToDate').val(''); 
+                    $('#country').val('');    
+                    $('#FromDate').val('');   
+                    $('#description').val('');    
+                      $('#Stime').val('');    
+                     $('#Etime').val(''); 
+                    $('#subject').val('');
+                    $('#selectedAccountType').val('');
+                    $scope.contactId = '';    
+                    $scope.joint = false; 
+                    $scope.outOfOffice = false;  
+                    document.getElementById('{!$Component.form2.reviewCol34}').value = '';
+                    document.getElementById('{!$Component.form2.reviewCol2}').value = '';
+                    $('#callType').val('{!translationObject.please_select__c}');  
+                    $('#multi-select').val('');
+                    if($scope.displayArraypro.length > 0){    
+                      for(var i=0; i<$scope.displayArraypro.length;i++){  
+                        $scope.productList.push($scope.displayArraypro[i]);   
+                      }   
+                      $scope.displayArraypro = [];    
+                    } 
+                    if($scope.displayArray.length > 0){   
+                      for(var i=0; i< $scope.displayArray.length; i++){   
+                        $scope.allUser.push($scope.displayArray[i]);  
+                      }   
+                      $scope.displayArray = [];   
+                    } 
+                } 
+                console.log('Splited user 3',$scope.allUser);
+                $scope.hidePopup = function(id){  
+                     $('.'+id).addClass('slds-hide'); 
+                     if(id =='demo'){ 
+                         location.reload();   
+                     }    
+                     $('#calendar').fullCalendar('rerenderEvents');   
+                     $scope.refreshData();    
+                      
+                      
+                 }
+                
+                $scope.hideBDPopup = function(id){    
+                   $('.'+id).addClass('slds-hide');   
+                   $scope.hidePopup('accountDragModal');  
+                   $scope.refreshData();                  
+                 }
+                
+                 $scope.showBDPopup = function(id){   
+                  $('.'+id).removeClass('slds-hide');  
+                     
+                 }
+                 
+                 
+                $scope.showPopup = function(btn){ 
+                  if(btn == 'newCustomer'){   
+                      $scope.CustomerModalHeader = 'Search Customer'; 
+                      $('.errorName').removeClass('slds-has-error');  
+                      $errorNameMessage = false;  
+                  }   
+                    $('.'+btn).removeClass('slds-hide');  
+                 }    
+                 //This method will create all events
+                 $scope.next = function(){
+                     //  alert('{!eventIds}');
+                     //  alert(document.getElementById('{!$Component.bg.eventId}').value);
+                     if(finalData.length > 0){
+                       $scope.showPopup('loader');
+                        var json_data = JSON.stringify(finalData);
+                         // alert(json_data)
+                        Visualforce.remoting.Manager.invokeAction(
+                          '{!$RemoteAction.DailyCallRecordController.createNewEvents}',
+                          json_data,
+                          function(records, event) {
+                              if (event.statusCode == 200) {
+                                $('.loader').addClass('slds-hide');
+                                $('#proMsg').text('{!translationObject.success_message__c}');
+                                $scope.showPopup('demo');
+                                  clickUpdate('submitAndSave');//Sid
+                              }else{
+                                $('.loader').addClass('slds-hide');
+                                $('.warning').removeClass('slds-hide');
+                                            $('#warn').text('{!translationObject.Error_Message__c}');
+                                //alert('{!translationObject.Error_Message__c}');
+                              }
+                          }, {
+                          escape: false
+                       });
+                     }else{
+                         $('.warning').removeClass('slds-hide');
+                                 $('#warn').text('{!translationObject.Account_Error__c}');
+                         //alert('{!translationObject.Account_Error__c}');
+                     }
+                      
+                 }
+                  
+                 //For User to change the owner of visit and account  
+                 $('#user').on('change',function(){   
+                      console.log('selected id',$(this).children(":selected").attr("id"));    
+                      var userId = $(this).children(":selected").attr("id");  
+                      if(typeof userId !='undefined'){    
+                          $('#userId').val(userId);   
+                          Visualforce.remoting.Manager.invokeAction(  
+                              '{!$RemoteAction.DailyCallRecordController.getUserData}',   
+                              userId, 
+                              function(records, event) {  
+                                  if (event.statusCode == 200 && records.length > 0) {    
+                                      eventList = []; 
+                                      eventList = records;   
+                                      event = []; 
+                                      for(var i=0; i<eventList.length; i++){  
+                                          var relatedto = ''; 
+                                          var country = '';
+                                          if(eventList[i].Account__c){    
+                                              relatedto = eventList[i].Account__r.Name;   
+                                              country = eventList[i].Account__r.BillingCountry; 
+                                          }   
+                                          var arr1 = ['old',eventList[i].StartDateTime,eventList[i].EndDateTime,relatedto,eventList[i].Id,eventList[i].Event_Locked__c,eventList[i].Stage__c,recordType,eventList[i].Product__c,eventList[i].DCR_Description__c,eventList[i].Follow_Up_Date__c,eventList[i].Other_Type__c,eventList[i].CIS_Rating__c,eventList[i].CE_Rating__c,eventList[i].Account__c,eventList[i].WhoId,country]; 
+                                          var evda = new Date(eventList[i].StartDateTime);
+                                          var color = '';  
+                                          switch(eventList[i].Meeting_Type__c){
+                                            case '{!translationObject.Online__c}':
+                                                 if(eventList[i].Stage__c == '{!translationObject.Planned__c}'){
+                                                    color = '#C8AA03';    
+                                                 }else{
+                                                    color = '#2C9815';
+                                                 }
+                                                 break;
+                                            case '{!translationObject.Offsite__c}':
+                                                 if(eventList[i].Stage__c == '{!translationObject.Planned__c}'){
+                                                     color = '#D004B1';
+                                                 }else{
+                                                    color = '#CE5FF7 ';
+                                                 }
+                                                 break;
+                                            case '{!translationObject.Onsite__c}':
+                                                 if(eventList[i].Stage__c == '{!translationObject.Planned__c}'){
+                                                     color='#FB6239 ';
+                                                 }else{
+                                                    color='#39AAFB ';
+                                                 }
+                                                 break;
+                                            case undefined:
+                                                 color = '#2449F9'
+                                                 break;
+                                            default:
+                                                 color = '#F1B55A'
+                                                 break;
+                                         }
+                                          event.push({    
+                                          title:eventList[i].Meeting_Type__c == undefined ? eventList[i].Subject : eventList[i].Meeting_Type__c+'\n'+eventList[i].Subject, 
+                                              //start:evda,   
+                                          start:eventList[i].StartDateTime,   
+                                          timezone : 'UTC',
+                                          backgroundColor:color,
+                                          textColor:'white',  
+                                          className:arr1, 
+                                          editable:eventList[i].Event_Locked__c ? false : true,   
+                                          description : relatedto !='' ? relatedto : 'No Account' 
+                                          }); 
+                                      }   
+                                      $('#calendar').fullCalendar( 'removeEvents');   
+                                      $('#calendar').fullCalendar( 'addEventSource', event);  
+                                  }   
+                                  else{   
+                                      $('.warning').removeClass('slds-hide'); 
+                                                      $('#warn').text('{!translationObject.User_Error__c}');  
+                                          
+                                      $('#calendar').fullCalendar( 'removeEvents');   
+                                      $('#calendar').fullCalendar( 'addEventSource', null);   
+                                      //alert('{!translationObject.User_Error__c}');  
+                                  }   
+                                  
+                              }, {    
+                              escape: false   
+                           });    
+                              
+                      }else{  
+                          location.reload();  
+                      }   
+                 });  
+                  
+                 //This is a method to get the contact id     
+                 $('#contactId').on('change',function(){  
+                   $scope.contactId = $(this).children(":selected").attr("id");   
+                   console.log('contact id : ',$(this).children(":selected").attr("id")); 
+                 });  
+                 //Record getting in one array to create in bulk  
+                 $scope.saveData = function(temp){    
+                    console.log('callTypeValue : ',callTypeValue);
+                     var callType;   
+                     var subj;
+                      var x;
+                     if(callTypeValue == '{!translationObject.Review_Meeting__c}'){
+                          callType = document.getElementById('{!$Component.form1.reviewCol}').value; 
+                         subj
+                     }else if(callTypeValue=='Leave'){
+                       callType = 'Leave';
+                       subj = 'Leave';  
+                     }else if(callTypeValue =='Holiday'){
+                       callType = 'Leave';
+                       subj = 'Holiday '; 
+                     }else if(callTypeValue =='Add Call Type'){ 
+                       callType = document.getElementById('{!$Component.form1.reviewCol}').value; 
+                         subj = 'Add Call Type '+callType;
+                     }else if(callTypeValue == 'İzinli'){
+                         
+                       callType = 'Leave'; 
+                       subj = 'İzinli';
+                     }else if(callTypeValue == 'Resmi Tatil'){
+                      callType = 'Leave';
+                       subj = 'Resmi Tatil '; 
+                     }else if(callTypeValue == 'Toplantı Değerlendirmesi'){
+                      callType = document.getElementById('{!$Component.form1.reviewCol}').value;  
+                         subj = 'Toplantı Değerlendirmesi '+callType;
+                     }
+                     
+                      if(temp == 'leave'){    
+                          
+                         
+                        //END:    
+                        if($('#leavedescription').val()==''){ 
+                              
+                            // $('.showError').addClass('slds-show'); 
+                           $scope.errorSubMessage = true; 
+                            throw new Error();    
+                        }else{    
+                             $scope.errorSubMessage = false;  
+                            //$('.showError').removeClass('slds-show');   
+                        } 
+                          
+                     // var subj = 'Add Call Type - '+callType;   
+                          //alert(subj)
+                         finalData.push({ 
+                              
+                             "subject": $('#leaveSubject').val() +'-'+callType,  
+                                    "date": $('#leavedate').text(),   
+                          // "startTime": $('#leaveStartTime').val(), 
+                          //"endTime": $('#leaveEndTime').val(),  
+                                    "ownerId": '',    
+                             // "newCallType" : callType, 
+                             "callType1": callType,  
+                             "meetingType":"", 
+                                    "relatedTo": $('#accountId').val(),   
+                                    "isJoint": false, 
+                                    "remarkDoctor":'',    
+                                    "marketInfo":'',  
+                                    "remarkTender":'',    
+                                    "surgery":'', 
+                                    "pmsCollected":'',    
+                                    "contact":'', 
+                                    "doctorVisit":'', 
+                                    "address":'', 
+                                    "name":'',    
+                                    "nextVisitPlanning":'',   
+                                    "employeeName":'',    
+                                    "toPlace":'', 
+                                    "fromPlace":'',   
+                                    "month":'',   
+                                    "week":'',    
+                                    "dayTravel":'',   
+                                    "ToDate":'',  
+                                    "country":'', 
+                                    "FromDate":'',    
+                                    "description":$('#leavedescription').val(),   
+                                    "product":'', 
+                                    "contactId":'',   
+                                    "outOfOffice":false,  
+                                    "TypeOfcall":document.getElementById('{!$Component.leaveForm.leaveId}').value 
+                                  });     
+                        //alert(finalData)    
+                                  $('.leave').addClass('slds-hide');  
+                                  $scope.refreshData();   
+                                  console.log('final data : ',finalData); 
+                    } else{   
+                      var date = $('#ldate').text();  
+                        var startTime = $('#Stime').val();    
+                        //var endTime = $('#Etime').val();    
+                      var ownerId = $('#userId').val();   
+                      var relatedTo =$('#accountId').val();   
+                      var subject = $('#subject').val();  
+                      var callType = $('#callType').val();    
+                      var meetingType = '';
+                        if( subject == undefined || subject.length == 0 ){    
+                            // alert('Error Subject');    
+                            $('#subject').focus();
+                          $scope.errorSubMessage = true;  
+                          $('.sub').addClass('slds-has-error');   
+                            return;   
+                      }else{  
+                          $('.sub').removeClass('slds-has-error');    
+                          $scope.errorSubMessage=false;   
+                      }   
+                          
+                          
+                        if(callType == undefined || callType == '')   
+                            callType = document.getElementById('{!$Component.form2.reviewCol2}').value    
+                        if(callType == undefined || callType == ''){
+                            jQuery("[id$=reviewCol2]").focus();
+                            //alert('Error Type');        
+                            $scope.errorCallType = true;  
+                            $('.errorCallType').addClass('slds-has-error');   
+                            return;   
+                        }else{    
+                            $scope.errorCallType=false;   
+                            $('.errorCallType').removeClass('slds-has-error');    
+                        } 
+                        //meeting type logic
+                        if(meetingType == undefined || meetingType == '')   
+                        meetingType = document.getElementById('{!$Component.form2.reviewCol34}').value    
+                        if(meetingType == undefined || meetingType == ''){
+                            jQuery("[id$=reviewCol34]").focus();
+                            //alert('Error Type');        
+                            $scope.errorMeetingType = true;  
+                            $('.errorMeetingType').addClass('slds-has-error');   
+                            return;   
+                        }else{    
+                            $scope.errorMeetingType=false;   
+                            $('.errorMeetingType').removeClass('slds-has-error');    
+                        } 
+                        const accountType = $('#selectedAccountType').val();
+                        console.log('AccountType : ',accountType);
+                        if(accountType == 'Ophthalmic_Vision' ||  accountType == 'Ortho_Dermal' || accountType == 'Dealer_Portal'){
+                            if($('#description').val() == ''){
+                                $('.descriptionError').removeClass('slds-hide');
+                                $('#description').focus();
+                                return;
+                            }else{
+                                $('.descriptionError').addClass('slds-hide');
+                            }
+                        }
+                          
+                        if(/*startTime.length > 0 && endTime.length > 0 && subject.length > 0 && */callType != 'Please select'){  
+                            var productArrayListTemp = $('#multi-select').val();
+                            console.log('temp : ',productArrayListTemp);
+                            var productString = '';
+                              
+                            if(productArrayListTemp == null){
+                                $('.productError').removeClass('slds-hide');
+                                return;    
+                            }else{
+                                productString = productArrayListTemp.join(';');   
+                                $('.productError').addClass('slds-hide');
+                            }  
+                            
+                                  
+                            //alert('document.getElementById' + document.getElementById('{!$Component.form2.reviewCol2}').value); 
+                                  
+                            if($scope.displayArray.length > 0){   
+                                $scope.currentuser = JSON.parse('{!userObject}'); 
+                                $scope.displayArray.push($scope.currentuser); 
+                                for(var i=0;i<$scope.displayArray.length;i++){    
+                                    //  alert('date:  ' + date);  
+                                    finalData.push({  
+                                    "subject": subject,   
+                                    "date": date, 
+                                        //                 "startTime": startTime,    
+                                        // "endTime": endTime,    
+                                    "ownerId": $scope.displayArray[i].Id, 
+                                    "callType": callType, 
+                                    "meetingType":meetingType,
+                                    "relatedTo": relatedTo,   
+                                    "isJoint": true,  
+                                    "remarkDoctor":$('#remarkDoctor').val(),  
+                                    "marketInfo":$('#marketInfo').val(),  
+                                    "remarkTender":$('#remarkTender').val(),  
+                                    "surgery":$('#surgery').val(),    
+                                    "pmsCollected":$('#pmsCollected').val(),  
+                                    "contact":$('#contact').val(),    
+                                    "doctorVisit":$('#doctorVisit').val(),    
+                                    "address":$('#address').val(),    
+                                    "name":$('#name').val(),  
+                                    "nextVisitPlanning":$('#nextVisitPlanning').val(),    
+                                    "employeeName":$('#employeeName').val(),  
+                                    "toPlace":$('#toPlace').val(),    
+                                    "fromPlace":$('#fromPlace').val(),    
+                                    "month":$().text(),   
+                                    "week":$('#week').val(),  
+                                    "dayTravel":$('#dayTravel').val(),    
+                                    "ToDate":$('#ToDate').val(),  
+                                    "country":$('#country').val(),    
+                                    "FromDate":$('#FromDate').val(),  
+                                    "description":$('#description').val(),    
+                                    "product":productString,  
+                                    "contactId":$scope.contactId, 
+                                    "outOfOffice":$scope.outOfOffice,
+                                        "evt":document.getElementById('{!$Component.BDVal.eventId}').value    
+                                  }); 
+                                } 
+                            } 
+                            else{ 
+                                //alert('Push');  
+                                finalData.push({  
+                                    "subject": subject,   
+                                    "date": date, 
+                                    //   "startTime": startTime,  
+                                    // "endTime": endTime,  
+                                    "meetingType":meetingType,
+                                    "ownerId": ownerId,   
+                                    "callType": callType, 
+                                    "relatedTo": relatedTo,   
+                                    "isJoint": false, 
+                                    "remarkDoctor":$('#remarkDoctor').val(),  
+                                    "marketInfo":$('#marketInfo').val(),  
+                                    "remarkTender":$('#remarkTender').val(),  
+                                    "surgery":$('#surgery').val(),    
+                                    "pmsCollected":$('#pmsCollected').val(),  
+                                    "contact":$('#contact').val(),    
+                                    "doctorVisit":$('#doctorVisit').val(),    
+                                    "address":$('#address').val(),    
+                                    "name":$('#name').val(),  
+                                    "nextVisitPlanning":$('#nextVisitPlanning').val(),    
+                                    "employeeName":$('#employeeName').val(),  
+                                    "toPlace":$('#toPlace').val(),    
+                                    "fromPlace":$('#fromPlace').val(),    
+                                    "month":$().text(),   
+                                    "week":$('#week').val(),  
+                                    "dayTravel":$('#dayTravel').val(),    
+                                    "ToDate":$('#ToDate').val(),  
+                                    "country":$('#country').val(),    
+                                    "FromDate":$('#FromDate').val(),  
+                                    "description":$('#description').val(),    
+                                    "product":productString,  
+                                    "contactId":$scope.contactId, 
+                                    "outOfOffice":$scope.outOfOffice,
+                                        "evt":document.getElementById('{!$Component.BDVal.eventId}').value    
+                                  }); 
+                            } 
+                              
+                            console.log('final data list : ',finalData);  
+                            var ownerId = ''; 
+                            //alert(document.getElementById('{!$Component.BDVal.eventId}').value)
+                             if(document.getElementById('{!$Component.BDVal.eventId}').value !==undefined && document.getElementById('{!$Component.BDVal.eventId}').value!==''){
+                               $scope.hidePopup('accountDragModal');  
+                               $scope.refreshData();  
+                             }else{
+                                 $scope.hidePopup('accountDragModal');    
+                                 $scope.refreshData(); 
+                               $scope.showBDPopup('BDDemo');
+                                 
+                             }
+                            }else{    
+                                $('.warning').removeClass('slds-hide');   
+                                          $('#warn').text('{!translationObject.event_time_error__c}');    
+                                //alert('{!translationObject.event_time_error__c}');  
+                            } 
+                      }   
+                    } 
+                  
+                 //get Contact id for updating in DB  
+                 $('#clickContactId').on('change',function(){ 
+                         $scope.contactId = $(this).children(":selected").attr("id"); 
+                         console.log('contact id in Update function : ',$(this).children(":selected").attr("id"));    
+                  }); 
+                 //Click update method    
+                 $scope.clickUpdate = function(status){   
+      
+                     // alert('Here'+$('#clickDate').val())
+                     //console.log('==>'+className)
+                      
+                     var date = $('#clickDate').val();    
+                     var event_id = $('#hideId').val();   
+                       var stime =  $('#clickStartTime').val();   
+                       var etime = $('#clickEndTime').val();  
+                     var className = $('#eventClassName').val();  
+                     var productString = '';  
+                     
+                     // alert('All product :' + JSON.stringify( $scope.displayArraypro)); 
+                      for(var i=0; i<$scope.displayArraypro.length; i++){ 
+                        if(productString === ""){ 
+                          productString = $scope.displayArraypro[i].Name; 
+                        }else{    
+                          productString = productString+';'+$scope.displayArraypro[i].Name;   
+                        } 
+                      }   
+                     //  alert('All product :' + productString);  
+                     var event = $('#calendar').fullCalendar('clientEvents'); 
+                        event = $.grep(event, function(e){return e._id === event_id});    
+                        event = event[0];
+                        event.className[9] = $('#clickDescription').val();
+                        console.log('event update : ',event);
+                        event.start = date;   
+                        event._id = event_id; 
+                        $('#calendar').fullCalendar('updateEvent', event);    
+                        var contactId  = '';  
+                        if($scope.contactId.length > 0){  
+                          contactId = $scope.contactId;   
+                        }else{    
+                          contactId = $scope.selectedContact; 
+                        } 
+                        console.log('contact  id : ',contactId);  
+                     //alert(document.getElementById('{!$Component.UpdateBDValue.idsBeforeUpdateVal}').value) 
+                        if(className.includes('old')){    
+                            $scope.showPopup('loader');   
+                            var eventId = className.split(',');   
+                            var jsondata = {  
+                              "eventId":eventId[4],   
+                                 "startTime":stime,   
+                                  "endTime":etime,
+                                "timezone": 'UTC',
+                              "date":date,    
+                              "status":status,    
+                              "product":productString,    
+                              "description":$('#clickDescription').val(), 
+                              "folloUpDate":$('#followUpDate').val(), 
+                              "contactId":contactId,  
+                                "evtIdValue" : document.getElementById('{!$Component.UpdateBDValue.evtId}').value 
+                            } 
+                            Visualforce.remoting.Manager.invokeAction(    
+                              '{!$RemoteAction.DailyCallRecordController.updateEvent}',   
+                              jsondata,   
+                              function(records, event) {  
+                                  if (event.statusCode == 200) {  
+                                      $scope.hidePopup('loader'); 
+                                      $scope.refreshData();   
+                                      //window.location.reload(); 
+                                  }else{  
+                                    $scope.hidePopup('loader');   
+                                    $('.warning').removeClass('slds-hide');   
+                                                  $('#warn').text('{!translationObject.Error_Message__c}');   
+                                      //alert('{!translationObject.Error_Message__c}');   
+                                  }   
+                                  
+                              }, {    
+                              escape: false   
+                            });   
+                        }else{    
+                            var NewId = className.split(','); 
+                            for(var i=0;i<finalData.length;i++){  
+                                 if(finalData[i].relatedTo == NewId[0]){  
+                                     var dataToDelete = finalData[i]; 
+                                     finalData.splice(i,1);   
+                                     finalData.push({"subject":dataToDelete.subject,"date":date,"startTime":stime,"endTime":etime,"ownerId":dataToDelete.ownerId,
+                                                     "timezone" :'UTC',
+                                     "callType":dataToDelete.callType,"relatedTo":dataToDelete.relatedTo,"isJoint":false, 
+                                     "remarkDoctor":dataToDelete.remarkDoctor,    
+                                    "marketInfo":dataToDelete.marketInfo, 
+                                    "remarkTender":dataToDelete.remarkTender, 
+                                    "surgery":dataToDelete.surgery,   
+                                    "pmsCollected":dataToDelete.pmsCollected, 
+                                    "contact":contactId,  
+                                    "doctorVisit":dataToDelete.doctorVisit,   
+                                    "address":dataToDelete.address,   
+                                    "name":dataToDelete.name, 
+                                    "nextVisitPlanning":dataToDelete.nextVisitPlanning,   
+                                    "employeeName":dataToDelete.employeeName, 
+                                    "toPlace":dataToDelete.toPlace,   
+                                    "fromPlace":dataToDelete.fromPlace,   
+                                    "month":dataToDelete.month,   
+                                    "week":dataToDelete.week, 
+                                    "dayTravel":dataToDelete.dayTravel,   
+                                    "ToDate":dataToDelete.ToDate, 
+                                    "country":dataToDelete.country,   
+                                    "FromDate":dataToDelete.FromDate, 
+                                    "description":$('#clickDescription').val(),   
+                                    "product":productString,  
+                                    "contactId":dataToDelete.contactId,   
+                                    "outOfOffice":dataToDelete.outOfOffice    
+                                    });   
+                                     break;   
+                                 }    
+                             }    
+                             console.log('data with new value : ',finalData); 
+                        } 
+                        $scope.hidePopup('eventClickModal');  
+                 }    
+                  
+                  //To cancel or delete events    
+                  $scope.cancelEvent = function(temp){    
+                     $scope.hidePopup('accountDragModal');    
+                     $scope.hidePopup('leave');   
+                     if(temp == 'rem'){                   
+                        var hid = document.getElementById('hideId').value;    
+                        console.log('hide id : ',hid);    
+                        $('#calendar').fullCalendar('removeEvents', hid); 
+                        $scope.refreshData(); 
+                     }else if(temp == 'del'){ 
+                        if(confirm('{!translationObject.delete_message__c}')){    
+                          var hid = $('#hideId').val();   
+                          var upId = $('#eventClassName').val();  
+                          $('#calendar').fullCalendar('removeEvents', hid);   
+                          $scope.hidePopup('eventClickModal');    
+                          if(upId.includes('old')){   
+                              var eventId = upId.split(',');  
+                              Visualforce.remoting.Manager.invokeAction(  
+                                  '{!$RemoteAction.DailyCallRecordController.deleteEvent}',   
+                                  eventId[4], 
+                                  function(records, event) {  
+                                      if (event.statusCode == 200) {  
+                                              
+                                      }   
+                                      
+                                  }, {    
+                                  escape: false   
+                              }); 
+                          }else{  
+                              var newId = upId.split(',');    
+                              for(var i=0;i<finalData.length;i++){    
+                                  if(finalData[i].relatedTo == newId[0]){ 
+                                      finalData.splice(i,1);  
+                                      break;  
+                                  }   
+                              }   
+                          }   
+                        } 
+                     }    
+                 }    
+          }); 
+              
+           $(document).ready(function() { 
+              $.datepicker.setDefaults( $.datepicker.regional[ "{!curentLang}" ] );   
+              $('#clickDate').datepicker({    
+                  dateFormat: 'yy-mm-dd', 
+                  minDate : previousDay,  
+              }); 
+              $('#FromDate').datepicker({ 
+                  dateFormat: 'yy-mm-dd'  
+              }); 
+              $('#ToDate').datepicker({   
+                dateFormat: 'yy-mm-dd'    
+              }); 
+              $('#followUpDate').datepicker({ 
+                dateFormat:'yy-mm-dd' 
+                  
+              }); 
+          }); 
+          function setIcon(){ 
+              setTimeout(function(){  
+                  $("#aljs-nextButton").find("use").attr("xlink:href","{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#right')}"); 
+                  $("#aljs-prevButton").find("use").attr("xlink:href","{!URLFOR($Asset.SLDS,'/assets/icons/utility-sprite/svg/symbols.svg#left')}");  
+              }, 200);    
+                  
+          }   
+          $(window).load(function() { 
+              // Animate loader off screen    
+                $(".se-pre-con").fadeOut("slow");;    
+          }); 
+        
+   </script> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+</apex:page>

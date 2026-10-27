@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Parameter__c</fullName>
+    <label>Parameter</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Quadrant__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Target vs Sales</fullName>
+                <default>false</default>
+                <label>Target vs Sales</label>
+            </value>
+            <value>
+                <fullName>Product-Single</fullName>
+                <default>false</default>
+                <label>Product-Single</label>
+            </value>
+            <value>
+                <fullName>Product-Combination</fullName>
+                <default>false</default>
+                <label>Product-Combination</label>
+            </value>
+            <value>
+                <fullName>New/Customer Conversion</fullName>
+                <default>false</default>
+                <label>New/Customer Conversion</label>
+            </value>
+            <value>
+                <fullName>Opex to Sales Ratio</fullName>
+                <default>false</default>
+                <label>Opex to Sales Ratio</label>
+            </value>
+            <value>
+                <fullName>Customer Category ST &amp; EA</fullName>
+                <default>false</default>
+                <label>Customer Category ST &amp; EA</label>
+            </value>
+            <value>
+                <fullName>CME - RTM</fullName>
+                <default>false</default>
+                <label>CME - RTM</label>
+            </value>
+            <value>
+                <fullName>Operation Discpline(OT)</fullName>
+                <default>false</default>
+                <label>Operation Discpline(OT)</label>
+            </value>
+            <value>
+                <fullName>Salesforce Reporting</fullName>
+                <default>false</default>
+                <label>Salesforce Reporting</label>
+            </value>
+            <value>
+                <fullName>High Performance Team</fullName>
+                <default>false</default>
+                <label>High Performance Team</label>
+            </value>
+            <value>
+                <fullName>Learn &amp; Growth Training</fullName>
+                <default>false</default>
+                <label>Learn &amp; Growth Training</label>
+            </value>
+            <value>
+                <fullName>Phakic Training Program(No of Dr.)</fullName>
+                <default>false</default>
+                <label>Phakic Training Program(No of Dr.)</label>
+            </value>
+            <value>
+                <fullName>Customer - New/Conversion</fullName>
+                <default>false</default>
+                <label>Customer - New/Conversion</label>
+            </value>
+            <value>
+                <fullName>No of Active Customers</fullName>
+                <default>false</default>
+                <label>No of Active Customers</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <valueName>Target vs Sales</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <valueName>Product-Single</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <valueName>Product-Combination</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <valueName>New/Customer Conversion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Finance</controllingFieldValue>
+            <valueName>Opex to Sales Ratio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Customer Category ST &amp; EA</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>CME - RTM</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Phakic Training Program(No of Dr.)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>Customer - New/Conversion</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Customer</controllingFieldValue>
+            <valueName>No of Active Customers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Process</controllingFieldValue>
+            <valueName>Operation Discpline(OT)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Process</controllingFieldValue>
+            <valueName>Salesforce Reporting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>People</controllingFieldValue>
+            <valueName>High Performance Team</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>People</controllingFieldValue>
+            <valueName>Learn &amp; Growth Training</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,599 @@
+<template>
+<!--New Form-->
+<template if:false={isClosed}>
+<template if:true={isDesktop}>
+<template if:false={spinner}>
+
+<!-- ===================================================== -->
+<!-- STEP 2 : SELECT PRODUCT FAMILY + PRODUCT NAME         -->
+<!-- ===================================================== -->
+<template if:true={showProductStep}>
+<div class={sp2ContainerClass} onclick={handleContainerClick}>
+
+<button class="slds-button slds-button_icon sp2-close"
+        onclick={handleCancel}
+        title="Close"
+        aria-label="Close">
+<lightning-icon icon-name="utility:close" alternative-text="Close" size="small">
+</lightning-icon>
+</button>
+
+<div class="sp2-header">
+<div class="sp2-icon-box">
+	<lightning-icon icon-name="standard:product" size="small"></lightning-icon>
+</div>
+<div>
+	<h1 class="sp2-title">{labels.Select_Product__c}</h1>
+	<p class="sp2-subtitle">{labels.Choose_a_family_then_filter_by_group__c}</p>
+	<!-- <h1 class="sp2-title">Select Product</h1>
+	<p class="sp2-subtitle">Choose a family, then filter by group</p> -->
+</div>
+</div>
+
+<div class="sp2-progress-track">
+<div class="sp2-progress-fill" style={progressStyle}></div>
+</div>
+
+<div class="sp2-body">
+
+<div class="sp2-section-row">
+	<div class="sp2-step-dot sp2-dot-active">1</div>
+	<span class="sp2-step-label sp2-label-active">{labels.PRODUCT_FAMILY__c}</span>
+	<span class="sp2-required-badge">{labels.Required__c}</span>
+</div>
+<p class="sp2-hint">{labels.Select_one_or_more_product_families__c}</p>
+
+<div class="sp2-dropdown-wrap" onclick={toggleFamilyDropdown}>
+	<span class="sp2-dropdown-placeholder">{labels.Select_Product_Family__c}</span>
+	<lightning-icon icon-name="utility:chevrondown" size="xx-small"
+		class="sp2-chevron"></lightning-icon>
+</div>
+
+<template if:true={showFamilyDropdown}>
+	<div class="sp2-dropdown-list">
+		<template for:each={productFamilyOptions} for:item="fam">
+			<div key={fam.value} class={fam.dropItemClass}
+				data-value={fam.value} onclick={handleFamilyToggle}>
+				<div class={fam.checkClass}>
+					<template if:true={fam.selected}>
+						<lightning-icon icon-name="utility:check" size="xx-small"
+							class="sp2-check-ic"></lightning-icon>
+					</template>
+				</div>
+				<span>{fam.label}</span>
+			</div>
+		</template>
+	</div>
+</template>
+
+<template if:true={hasSelectedFamilies}>
+	<div class="sp2-pill-row">
+		<template for:each={selectedFamilyPills} for:item="pill">
+			<span key={pill.value} class="sp2-pill">
+				{pill.label}
+				<lightning-icon icon-name="utility:close" size="xx-small"
+					class="sp2-pill-x" data-value={pill.value}
+					onclick={handleRemoveFamily}>
+				</lightning-icon>
+			</span>
+		</template>
+	</div>
+	<div class="sp2-count">
+		<lightning-icon icon-name="utility:check" size="xx-small"
+			class="sp2-count-ic"></lightning-icon>
+		{selectedFamilyCount} Families Selected
+	</div>
+</template>
+
+<div class="sp2-section-row sp2-section-row-mt">
+	<div class={step2DotClass}>2</div>
+	<span class={step2LabelClass}>{labels.PRODUCT_GROUP__c}</span>
+	<span class="sp2-required-badge">{labels.Required__c}</span>
+</div>
+<p class="sp2-hint">{labels.Narrow_results_by_selecting_a_group__c}</p>
+
+<div class="sp2-dropdown-wrap" onclick={toggleProductDropdown}>
+	<span class="sp2-dropdown-placeholder">{labels.Select_Product_Name__c}</span>
+	<lightning-icon icon-name="utility:chevrondown" size="xx-small"
+		class="sp2-chevron"></lightning-icon>
+</div>
+
+<template if:true={showProductDropdown}>
+	<div class="sp2-dropdown-list">
+		<template if:false={hasSelectedFamilies}>
+			<div class="sp2-dropdown-empty">Select a Product Family first</div>
+		</template>
+		<template if:true={hasSelectedFamilies}>
+			<template if:true={anyFamilyLoading}>
+				<div class="sp2-dropdown-empty">Loading...</div>
+			</template>
+			<template if:false={anyFamilyLoading}>
+				<template if:true={hasAllProductOptions}>
+					<template for:each={allProductOptions} for:item="opt">
+						<div key={opt.key} class={opt.dropItemClass}
+							data-family={opt.family} data-value={opt.value}
+							onclick={handleProductNameToggle}>
+							<div class={opt.checkClass}>
+								<template if:true={opt.selected}>
+									<lightning-icon icon-name="utility:check"
+										size="xx-small"
+										class="sp2-check-ic"></lightning-icon>
+								</template>
+							</div>
+							<span class="sp2-opt-label">{opt.label}</span>
+							<span class="sp2-opt-family">{opt.family}</span>
+						</div>
+					</template>
+				</template>
+				<template if:false={hasAllProductOptions}>
+					<div class="sp2-dropdown-empty">No product names found</div>
+				</template>
+			</template>
+		</template>
+	</div>
+</template>
+
+<template if:true={hasSelectedProducts}>
+	<div class="sp2-pill-row sp2-pill-row-mt">
+		<template for:each={selectedProductPills} for:item="pill">
+			<span key={pill.key} class="sp2-pill">
+				{pill.label}
+		<lightning-icon icon-name="utility:close" size="xx-small"
+		class="sp2-pill-x" data-family={pill.family}
+		data-value={pill.value}
+		onclick={handleRemoveProductName}>
+		</lightning-icon>
+			</span>
+		</template>
+	</div>
+</template>
+
+</div>
+
+<div class="sp2-summary">
+<div class="sp2-summary-card">
+	<div class="sp2-summary-label">{labels.FAMILIES__c}</div>
+	<div class={summaryFamClass}>{summaryFamilyText}</div>
+</div>
+<div class="sp2-summary-card">
+	<div class="sp2-summary-label">{labels.GROUPS__c}</div>
+	<div class={summaryGrpClass}>{summaryTotalProducts}</div>
+</div>
+</div>
+
+<div class="sp2-footer">
+
+    <div class="sp2-footer-left">
+		<lightning-button
+			label={labels.Back__c}
+			onclick={handleProductBack}>
+		</lightning-button>
+
+        <lightning-button
+            label={labels.Clear_All__c}
+            onclick={handleClearAll}>
+        </lightning-button>
+    </div>
+
+    <div class="sp2-footer-right">
+        <lightning-button
+            label={labels.Cancel__c}
+            onclick={handleCancel}>
+        </lightning-button>
+
+	<lightning-button
+		variant="brand"
+		label={labels.Save_Selection__c}
+		onclick={handleSaveSelection}
+		disabled={saveSelectionDisabled}>
+	</lightning-button>
+    </div>
+
+</div>
+
+</div>
+</template>
+
+<!-- ===================================================== -->
+<!-- STEP 1 : LEAD FORM                                    -->
+<!-- ===================================================== -->
+<template if:false={showProductStep}>
+<template if:false={showContact}>
+<div class={lfContainerClass}>
+<div class="slds-modal__header">
+    <template if:true={showFooter}>
+        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                onclick={handleCancel}
+                title="Close"
+                aria-label="Close">
+            <lightning-icon icon-name="utility:close" alternative-text="Close" size="small" variant="inverse">
+            </lightning-icon>
+        </button>
+    </template>
+    <!-- <h2 class="slds-modal__title">New Prospect</h2> -->
+	<h2 class="slds-modal__title">New Prospect</h2>
+</div>
+
+<div class="slds-modal__content" id="modal-content-id-2">
+	<div class="lf-scroll-body">
+
+		<!-- Lead Information -->
+		<div class="lf-section-title">Prospect Information</div>
+
+		<div class="lf-grid">
+
+			<!-- Row 1: First Name | Avatar -->
+			<div class="lf-field">
+				<lightning-input
+					type="text"
+					label={labels.First_Name__c}
+					class="NewForm"
+					required
+					message-when-value-missing={labels.Please_fill_the_first_name__c}
+					name="First_Name__c"
+					onchange={handleInslead}
+					value={leadMap.First_Name__c}
+					disabled={showDetails}>
+				</lightning-input>
+			</div>
+			<div class="lf-field lf-user-col">
+				<img src="https://biotechcrm--full.sandbox.my.salesforce.com/_slds/images/themes/lightning_blue/lightning_blue_profile_avatar_200.png"
+					class="lf-avatar">
+				<span class="lf-username">{userMap.FirstName} {userMap.LastName}</span>
+			</div>
+
+			<!-- Row 2: Last Name | Parent Account -->
+			<div class="lf-field">
+				<lightning-input
+					type="text"
+					label={labels.Last_Name__c}
+					class="NewForm"
+					required
+					message-when-value-missing={labels.Please_fill_the_last_name__c}
+					name="Last_Name__c"
+					onchange={handleInslead}
+					value={leadMap.Last_Name__c}
+					disabled={showDetails}>
+				</lightning-input>
+			</div>
+			<div class="lf-field">
+				<c-lookup
+					icon-name="standard:account"
+					s-object-api-name="account"
+					label={labels.Parent_Account__c}
+					onlookupupdate={parentRecord}
+					placeholder={labels.Search_Account__c}
+					accountid={accountId}
+					is-required="false">
+				</c-lookup>
+			</div>
+
+			<!-- Row 3: Hospital/Clinic Name | Email -->
+			<div class="lf-field">
+				<lightning-input
+					type="text"
+					label={labels.Hospital_Clinic_Name__c}
+					name="Company__c"
+					onchange={handleInslead}
+					value={leadMap.Company__c}
+					class="NewForm"
+					disabled={showDetails}
+					required>
+				</lightning-input>
+			</div>
+			<div class="lf-field">
+				<lightning-input
+					type="Email"
+					label={labels.Email__c}
+					name="Email__c"
+					onchange={handleInslead}
+					value={leadMap.Email__c}
+					class="NewForm"
+					disabled={showDetails}
+					required="true">
+				</lightning-input>
+			</div>
+
+			<!-- Row 4: Lead Stage | Mobile 
+			<div class="lf-field">
+				<lightning-combobox
+					label={labels.Lead_stage__c}
+					value={leadMap.Lead_Stage__c}
+					placeholder="--None--"
+					options={leadSoruceList}
+					class="NewForm"
+					name="Lead_Stage__c"
+					onchange={handleInslead}
+					disabled={showDetails}>
+				</lightning-combobox>
+			</div> -->
+			<div class="lf-field">
+				<lightning-input
+					type="text"
+					label={labels.Mobile__c}
+					message-when-value-missing={labels.Please_fill_the_mobile__c}
+					name="Mobile__c"
+					required
+					onchange={handleInslead}
+					value={leadMap.Mobile__c}
+					class="NewForm"
+					disabled={showDetails}>
+				</lightning-input>
+			</div>
+				<div class="lf-field lf-field-checkbox">
+					<label class="slds-form-element__label">Is COH</label>
+					<lightning-input
+						type="checkbox"
+						variant="label-hidden"
+						label="Is COH"
+						name="Is_COH__c"
+						onchange={handleCheckbox}
+						checked={leadMap.Is_COH__c}
+						disabled={showDetails}>
+					</lightning-input>
+				</div>
+
+		</div><!-- end Lead Info grid -->
+
+		<!-- Address Information -->
+		<div class="lf-section-title">{labels.Address_Information__c}</div>
+
+		<template if:false={addressspinner}>
+			<div class="lf-grid">
+
+				<!-- Row 1: Country | State/Province -->
+				<!-- Country — NO reportValidity, manual error text only -->
+			<div class="lf-field">
+
+			<label class="slds-form-element__label">
+			{labels.Country__c}
+			<abbr class="slds-required" title="required">*</abbr>
+			</label>
+
+			<c-searchable-combobox
+			options={billingCountryList}
+			value={leadMap.Country__c}
+			onchange={handleInslead}
+			disabled={showDetails}
+			data-id="country"
+			name="Country__c">
+			</c-searchable-combobox>
+
+			<template if:true={countryError}>
+			<p class="lf-field-error">{countryError}</p>
+			</template>
+
+			</div>
+
+				<!-- State — NO reportValidity, manual error text only -->
+<div class="lf-field">
+
+<label class="slds-form-element__label">
+{labels.State_Province__c}
+<abbr class="slds-required" title="required">*</abbr>
+</label>
+
+<c-searchable-combobox
+options={stateList}
+value={leadMap.Billing_state__c}
+onchange={handleInslead}
+disabled={showDetails}
+data-id="State"
+name="Billing_state__c"
+placeholder={leadMap.Billing_state__c}>
+</c-searchable-combobox>
+
+<template if:true={stateError}>
+<p class="lf-field-error">{stateError}</p>
+</template>
+
+</div>
+
+				<!-- Row 2: City | Street -->
+				<!-- City — NO reportValidity, manual error text only -->
+				<div class="lf-field">
+
+<label class="slds-form-element__label">
+{labels.City__c}
+<abbr class="slds-required" title="required">*</abbr>
+</label>
+
+<c-searchable-combobox
+options={cityList}
+value={leadMap.Billing_City__c}
+onchange={handleInslead}
+disabled={showDetails}
+data-id="city"
+name="Billing_City__c"
+placeholder={leadMap.Billing_City__c}>
+</c-searchable-combobox>
+
+<template if:true={cityError}>
+<p class="lf-field-error">{cityError}</p>
+</template>
+
+</div>
+
+				<div class="lf-field">
+					<lightning-input
+						type="text"
+						label={labels.Street__c}
+						class="NewForm"
+						name="Billing_Street__c"
+						onchange={handleInslead}
+						value={leadMap.Billing_Street__c}
+						disabled={showDetails}
+						required="true"
+						maxlength="255">
+					</lightning-input>
+				</div>
+
+				<!-- Row 3: Zip/PostalCode | Region -->
+				<div class="lf-field">
+					<lightning-input
+						type="text"
+						required="true"
+						label={labels.Zip_PostalCode__c}
+						name="Billing_code__c"
+						onchange={handleInslead}
+						value={leadMap.Billing_code__c}
+						class="NewForm"
+						disabled={showDetails}>
+					</lightning-input>
+				</div>
+				<div class="lf-field">
+					<lightning-input
+						type="text"
+						required="true"
+						label={labels.Region__c}
+						name="Region__c"
+						onchange={handleInslead}
+						value={leadMap.Region__c}
+						class="NewForm"
+						disabled={showDetails}>
+					</lightning-input>
+				</div>
+
+				<!-- Row 4: Zone | empty -->
+				<!-- <div class="lf-field">
+					<lightning-input
+						type="text"
+						required="true"
+						label={labels.Zone__c}
+						name="Zone__c"
+						onchange={handleInslead}
+						value={leadMap.Zone__c}
+						class="NewForm"
+						disabled={showDetails}>
+					</lightning-input>
+				</div> -->
+				<div class="lf-field"></div>
+
+			</div><!-- end Address grid -->
+		</template>
+
+		<template if:true={addressspinner}>
+			<c-spinner></c-spinner>
+		</template>
+
+		<!-- Events / Meeting -->
+		<template if:true={showMeetingDetails}>
+			<div class="lf-section-title">{labels.Events_Date__c}</div>
+			<div class="lf-grid">
+				<div class="lf-field">
+					<lightning-input
+						type="date"
+						label={labels.Appointment_Week__c}
+						name="Planned_Appointments_Week__c"
+						onchange={handleInslead}
+						value={dateShowMap.appointmentWeek}
+						class="NewForm"
+						disabled={appointmentDemo}>
+					</lightning-input>
+				</div>
+				<div class="lf-field"></div>
+			</div>
+
+			<div class="lf-section-title">{labels.Meeting_Information__c}</div>
+			<div class="lf-grid">
+				<div class="lf-field">
+					<lightning-combobox
+						label={labels.Call_type__c}
+						value={value}
+						placeholder="--None--"
+						options={callTypeList}
+						onchange={handleInsEvent}
+						class="NewForm"
+						name="CallType"
+						disabled={eventFields}
+						required={eventFieldsRequired}>
+					</lightning-combobox>
+				</div>
+				<div class="lf-field">
+					<lightning-combobox
+						label={labels.Subject__c}
+						value={value}
+						placeholder="--None--"
+						options={subjectList}
+						onchange={handleInsEvent}
+						class="NewForm"
+						name="Subject"
+						disabled={eventFields}
+						required={eventFieldsRequired}>
+					</lightning-combobox>
+				</div>
+				<div class="lf-field">
+					<lightning-combobox
+						label={labels.Meeting_type__c}
+						value={value}
+						placeholder="--None--"
+						options={meetingTypeList}
+						onchange={handleInsEvent}
+						class="NewForm"
+						name="MeetingType"
+						disabled={eventFields}
+						required={eventFieldsRequired}>
+					</lightning-combobox>
+				</div>
+				<div class="lf-field">
+					<lightning-combobox
+						label={labels.Event_Address__c}
+						value={value}
+						placeholder="--None--"
+						options={accountAddress}
+						onchange={handleInsEvent}
+						disabled={eventAddress}
+						class="NewForm"
+						name="EventAddress">
+					</lightning-combobox>
+				</div>
+			</div>
+		</template>
+
+	</div><!-- end lf-scroll-body -->
+</div>
+
+<div class="slds-modal__footer">
+	<template if:true={showFooter}>
+		<button type="button" class="slds-button slds-button_neutral"
+			onclick={handleCancel}>{labels.Cancel__c}</button>
+		<button type="button" class="slds-button slds-button_brand"
+			onclick={handleNext} disabled={leadSaveUpdate}>{labels.Next__c}</button>
+	</template>
+	<template if:false={showFooter}>
+		<button type="button" class="slds-button slds-button_neutral"
+			onclick={handleCancel}>{labels.Cancel__c}</button>
+		<template if:true={showLead}>
+			<button type="button" class="slds-button slds-button_success"
+				onclick={handleLeadSave}
+				disabled={leadSaveUpdate}>{labels.Update__c}</button>
+		</template>
+		<template if:false={showLead}>
+			<button type="button" class="slds-button slds-button_brand"
+				onclick={handleNext} disabled={leadSaveUpdate}>{labels.Next__c}</button>
+		</template>
+	</template>
+</div>
+</div>
+</template>
+
+<template if:true={showContact}>
+<c-custom-contact-form
+    accid={accountId}
+    ongetcontid={handleGetContactId}
+    labels={labels}>
+</c-custom-contact-form>
+</template>
+</template>
+</template>
+</template>
+
+<template if:true={isPhone}>
+<c-custom-lead-form-mobile record-id={recordId}></c-custom-lead-form-mobile>
+</template>
+
+<template if:true={spinner}>
+<c-spinner></c-spinner>
+</template>
+</template><!-- /if:false={isClosed} -->
+</template>

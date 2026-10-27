@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Value2__c</fullName>
+    <formula>IF( Opportunity__r.RecordType.Name = &quot;Product&quot;, PF_ASP__c * Product_Master__r.PF_ASP__c , IF(  ISPICKVAL(Opportunity__r.Equipment_Opportunity_Type__c, &quot;Solo Equipment Sale&quot;), Product_Master__r.Equipment_Value__c ,  Product_Master__r.Product_MSP__c * Quantity__c ) )</formula>
+    <label>Total Value</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>4</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

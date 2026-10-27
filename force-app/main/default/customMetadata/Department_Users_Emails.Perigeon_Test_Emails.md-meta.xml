@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Perigeon_Test_Emails</label>
+    <protected>false</protected>
+    <values>
+        <field>CC_Mail_ID__c</field>
+        <value xsi:type="xsd:string">sbhagat@perigeon.com</value>
+    </values>
+    <values>
+        <field>Category__c</field>
+        <value xsi:type="xsd:string">testCategory</value>
+    </values>
+    <values>
+        <field>HOD_Mail__c</field>
+        <value xsi:type="xsd:string">sprasad@perigeon.com</value>
+    </values>
+    <values>
+        <field>Region__c</field>
+        <value xsi:type="xsd:string">APAC</value>
+    </values>
+    <values>
+        <field>To_Mail_ID__c</field>
+        <value xsi:type="xsd:string">pshrimali@perigeon.com</value>
+    </values>
+</CustomMetadata>

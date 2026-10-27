@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Reason For Cancel --></label>
+    <name>Reason_For_Cancel__c</name>
+    <picklistValues>
+        <masterLabel>No Action Performed.</masterLabel>
+        <translation><!-- No Action Performed. --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ConnectedApp xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contactEmail>pankaj@plus91labs.com</contactEmail>
+    <label>Biotech Connected App</label>
+    <oauthConfig>
+        <callbackUrl>https://oauth.pstmn.io/v1/callback</callbackUrl>
+        <consumerKey>3MVG9CP2Kv.52YFtPkL5ei1XyOGyAvnXXwSbqY2dKPiqxXsm3l3HCY_.SJgHaAwlY0dgkQXmd_irb53xjlcFT</consumerKey>
+        <isAdminApproved>false</isAdminApproved>
+        <isClientCredentialEnabled>false</isClientCredentialEnabled>
+        <isCodeCredentialEnabled>false</isCodeCredentialEnabled>
+        <isCodeCredentialPostOnly>false</isCodeCredentialPostOnly>
+        <isConsumerSecretOptional>false</isConsumerSecretOptional>
+        <isDPopEnabled>false</isDPopEnabled>
+        <isDeviceFlowEnabled>false</isDeviceFlowEnabled>
+        <isEnforceRefreshTokenTTL>false</isEnforceRefreshTokenTTL>
+        <isIntrospectAllTokens>false</isIntrospectAllTokens>
+        <isIpBindingEnabled>false</isIpBindingEnabled>
+        <isNamedUserJwtEnabled>false</isNamedUserJwtEnabled>
+        <isPKImTLSEnabled>false</isPKImTLSEnabled>
+        <isPkceRequired>true</isPkceRequired>
+        <isRefreshTokenRotationEnabled>false</isRefreshTokenRotationEnabled>
+        <isSecretRequiredForRefreshToken>true</isSecretRequiredForRefreshToken>
+        <isSecretRequiredForTokenExchange>false</isSecretRequiredForTokenExchange>
+        <isTokenExchangeEnabled>false</isTokenExchangeEnabled>
+        <scopes>Api</scopes>
+        <scopes>Full</scopes>
+        <scopes>Chatter</scopes>
+        <scopes>RefreshToken</scopes>
+        <scopes>UserRegistration</scopes>
+        <scopes>SFAP</scopes>
+        <scopes>PwdlessLogin</scopes>
+    </oauthConfig>
+    <oauthPolicy>
+        <ipRelaxation>ENFORCE</ipRelaxation>
+        <isTokenExchangeFlowEnabled>false</isTokenExchangeFlowEnabled>
+        <refreshTokenPolicy>infinite</refreshTokenPolicy>
+    </oauthPolicy>
+</ConnectedApp>

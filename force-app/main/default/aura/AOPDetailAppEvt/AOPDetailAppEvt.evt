@@ -1,0 +1,9 @@
+<aura:event type="APPLICATION" description="Event template" >
+	<aura:attribute name="accountId" type="String"/>
+    <aura:attribute name="aopId" type="String"/>
+    <aura:attribute name="prodId" type="String"/>
+    <aura:attribute name="mpId" type="String"/>
+    <aura:attribute name="fiscalYear" type="String"/>
+    <aura:attribute name="month" type="String"/>
+    <aura:attribute name="showDetails" type="boolean"/>
+</aura:event>

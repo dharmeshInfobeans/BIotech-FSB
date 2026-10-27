@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Decision_1</name>
+        <label>Decision 1</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Material_code_is_not_maintained</name>
+            <conditionLogic>Material Code is not maintained</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Message__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>$Record.Message__c</elementReference>
+                </rightValue>
+            </conditions>
+            <label>Material code is not maintained</label>
+        </rules>
+    </decisions>
+    <description>runs when a material code is not maintained.</description>
+    <environments>Default</environments>
+    <interviewLabel>Material is not maintained {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Material is not maintained</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Decision_1</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria>true</doesRequireRecordChangedToMeetCriteria>
+        <filterFormula>CONTAINS(TEXT($Record.Message__c), &quot;does not exist in plant&quot;)</filterFormula>
+        <object>Sample_Request_Header__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>InvalidDraft</status>
+</Flow>

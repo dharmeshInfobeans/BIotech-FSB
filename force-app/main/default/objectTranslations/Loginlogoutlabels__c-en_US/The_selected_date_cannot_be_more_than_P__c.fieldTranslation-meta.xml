@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- The selected date cannot be more than {P --></label>
+    <name>The_selected_date_cannot_be_more_than_P__c</name>
+</CustomFieldTranslation>

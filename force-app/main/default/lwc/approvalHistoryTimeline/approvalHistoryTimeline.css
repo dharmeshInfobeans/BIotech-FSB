@@ -1,0 +1,239 @@
+/* ── Loading / empty ──────────────────────────────────────────────────────── */
+.loading-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem 0;
+}
+.empty-state {
+    display: flex;
+    align-items: center;
+    color: #888;
+    font-size: 0.875rem;
+    padding: 1rem 0.5rem;
+}
+
+/* ── Stats bar ────────────────────────────────────────────────────────────── */
+.stats-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 0.75rem 0 1rem;
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 0.75rem;
+}
+.stat-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 0.4rem 1rem;
+    min-width: 80px;
+}
+.stat-chip-pending {
+    background: #fffbeb;
+    border-color: #fcd34d;
+}
+.stat-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+.stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+}
+
+/* ── Tab bar ──────────────────────────────────────────────────────────────── */
+.tab-bar {
+    display: flex;
+    gap: 0.25rem;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+.tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.8rem;
+    color: #374151;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.tab-btn:hover         { background: #f3f4f6; }
+.tab-btn-active        { background: #1e3a5f; color: #fff; border-color: #1e3a5f; }
+.tab-btn-active:hover  { background: #2d5082; }
+.tab-refresh {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #fff;
+    cursor: pointer;
+    color: #6b7280;
+}
+.tab-refresh:hover { background: #f3f4f6; }
+
+/* ── Timeline ─────────────────────────────────────────────────────────────── */
+.timeline-wrap { padding: 0.25rem 0; }
+
+.timeline-entry {
+    display: flex;
+    gap: 0.75rem;
+    position: relative;
+    margin-bottom: 0;
+}
+
+.timeline-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+    width: 20px;
+    padding-top: 0.2rem;
+}
+.timeline-line {
+    flex: 1;
+    width: 2px;
+    background: #e5e7eb;
+    min-height: 1.5rem;
+    margin-top: 4px;
+}
+.timeline-entry:last-child .timeline-line { display: none; }
+
+/* ── Timeline dots ────────────────────────────────────────────────────────── */
+.dot-approved    { width: 14px; height: 14px; border-radius: 50%; background: #22c55e; flex-shrink: 0; }
+.dot-rejected    { width: 14px; height: 14px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+.dot-sent-back   { width: 14px; height: 14px; border-radius: 50%; background: #f59e0b; flex-shrink: 0; }
+.dot-hold        { width: 14px; height: 14px; border-radius: 50%; background: #9ca3af; flex-shrink: 0; }
+.dot-regulatory  { width: 14px; height: 14px; border-radius: 50%; background: #8b5cf6; flex-shrink: 0; }
+.dot-forwarded   { width: 14px; height: 14px; border-radius: 50%; background: #3b82f6; flex-shrink: 0; }
+.dot-resumed     { width: 14px; height: 14px; border-radius: 50%; background: #10b981; flex-shrink: 0; }
+.dot-neutral     { width: 14px; height: 14px; border-radius: 50%; background: #d1d5db; flex-shrink: 0; }
+
+/* ── Timeline content ─────────────────────────────────────────────────────── */
+.timeline-content {
+    flex: 1;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px dashed #f0f0f0;
+    margin-bottom: 0;
+}
+.timeline-entry:last-child .timeline-content { border-bottom: none; }
+
+.duration-chip {
+    display: inline-block;
+    font-size: 0.7rem;
+    color: #6b7280;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1px 8px;
+    margin-bottom: 4px;
+}
+
+.entry-header {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 3px;
+}
+.entry-action {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #111827;
+}
+.entry-stage {
+    font-size: 0.7rem;
+    color: #6366f1;
+    background: #eef2ff;
+    border-radius: 4px;
+    padding: 1px 6px;
+}
+
+.entry-meta {
+    display: flex;
+    align-items: center;
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin-bottom: 4px;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+.meta-sep { margin: 0 3px; }
+
+.status-change {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+}
+.status-pill {
+    font-size: 0.7rem;
+    border-radius: 10px;
+    padding: 2px 8px;
+    font-weight: 500;
+}
+.pill-from { background: #fee2e2; color: #7f1d1d; }
+.pill-to   { background: #dcfce7; color: #14532d; }
+.arrow-icon { color: #9ca3af; }
+
+.entry-comments {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0.78rem;
+    color: #4b5563;
+    background: #fffbeb;
+    border: 1px solid #fef08a;
+    border-radius: 4px;
+    padding: 0.3rem 0.5rem;
+    margin-top: 4px;
+}
+
+/* ── Table view ───────────────────────────────────────────────────────────── */
+.table-wrap {
+    overflow-x: auto;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+.history-table thead tr {
+    background: #f8fafc;
+}
+.history-table th {
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+    font-weight: 600;
+    color: #374151;
+    border-bottom: 2px solid #e5e7eb;
+    white-space: nowrap;
+}
+.history-table td {
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #f3f4f6;
+    color: #111827;
+    vertical-align: top;
+}
+.history-table tbody tr:hover { background: #f9fafb; }
+.col-index    { color: #9ca3af; font-weight: 600; width: 32px; text-align: center; }
+.col-action   { white-space: nowrap; }
+.col-date     { white-space: nowrap; color: #6b7280; }
+.col-duration { white-space: nowrap; }
+.col-comments { max-width: 180px; color: #6b7280; font-style: italic; }
+.col-na       { color: #d1d5db; }

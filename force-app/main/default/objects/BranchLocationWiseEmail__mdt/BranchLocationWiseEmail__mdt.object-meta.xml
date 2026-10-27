@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>This CMDT stores each branch&apos;s email address as per the location</description>
+    <label>BranchLocationWiseEmail</label>
+    <pluralLabel>BranchLocationWiseEmail</pluralLabel>
+    <visibility>Public</visibility>
+</CustomObject>

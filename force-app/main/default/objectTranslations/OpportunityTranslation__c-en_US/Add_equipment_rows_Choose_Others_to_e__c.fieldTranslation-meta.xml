@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Add equipment rows. Choose &quot;Others&quot; to e --></label>
+    <name>Add_equipment_rows_Choose_Others_to_e__c</name>
+</CustomFieldTranslation>

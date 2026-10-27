@@ -1,0 +1,79 @@
+<aura:component
+                implements="force:hasRecordId,flexipage:availableForAllPageTypes"
+                >
+    <aura:handler
+                  name="switchTabIntEvt"
+                  event="c:showTabIntEvt"
+                  action="{!c.handleComponentEvent}"
+                  />
+    <aura:attribute name="startDayOfMonth" type="Decimal" description="Start Day for Sales planning"/>
+    <aura:attribute name="cutOffDateForSalesPlanning" type="String" description="Last Day for sales planning"/>
+    <aura:attribute name="showTab" type="String"  />
+    <aura:attribute name="currentTab" type="String"  description="Only Used in Event Handler"/>
+    <aura:attribute name="fiscalYear" type="Integer" />
+    <aura:attribute name="year" type="Integer" description="Current Year"/>
+    <aura:attribute name="month" type="String" description="Month will be in short like--> 'Jan','Feb',etc"/>
+    <aura:attribute name="monthMap" type="Map" default="{ 0: 'Jan', 1: 'Feb',2: 'Mar',3: 'Apr',4: 'May',5: 'Jun',6: 'Jul',7: 'Aug',8: 'Sep',9: 'Oct',10: 'Nov',11: 'Dec' }" />
+    <aura:attribute name="textMonthVsNumMonthMap" type="Map"  default="{ 'Apr':0 , 'May':1 , 'Jun':2 , 'Jul':3, 'Aug':4 , 'Sep': 5, 'Oct':6 , 'Nov':7, 'Dec':8 , 'Jan':9 , 'Feb':10 , 'Mar': 11 }" />
+    <aura:attribute name="numMonthVsTextMonthMap" type="Map"  default="{ 0: 'Apr', 1: 'May',2: 'Jun',3: 'Jul',4: 'Aug',5: 'Sep',6: 'Oct',7: 'Nov',8: 'Dec',9: 'Jan',10: 'Feb',11: 'Mar' }" />
+    <aura:attribute name="passValueMap" type="Map" default="{}" description="This map is used to pass values from controller to helper (It sends 'TabId' vs 'true/false' to lock/unlock tab)"/>
+    <aura:handler
+                  name="change"
+                  value="{! v.showTab }"
+                  action="{! c.handleChange }"
+                  />
+    
+    <aura:handler
+                  name="init"
+                  value="{!this}"
+                  action="{! c.doInit }" />        
+    
+    <!-- <div onblur="{! c.onTabBlur }" > Used this div because onfocus and onblur event does not fire/works
+     in Lightning Base Component(even if it is defined in doc) and hence to capture onblur event wrap the base comp with any 
+     HTML element and define an handler for that --> 
+    
+    <lightning:tabset aura:id="salesTab"
+                      variant="scoped"
+                      selectedTabId="{!v.showTab}">
+        
+        <lightning:tab onactive="{! c.onActiveTabHandler }"  label="April" id="Apr"   >
+            <!--<c:TargetAndPlanningInt aura:id="Apr" targetMonth="Apr"  />-->
+            
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="May" id="May">
+            <!-- <c:TargetAndPlanningInt aura:id="May" targetMonth="May" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="June" id="Jun">
+            <!-- <c:TargetAndPlanningInt aura:id="Jun" targetMonth="Jun" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="July" id="Jul">
+            <!-- <c:TargetAndPlanningInt aura:id="Jul" targetMonth="Jul" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="August" id="Aug">
+            <!-- <c:TargetAndPlanningInt aura:id="Aug" targetMonth="Aug" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="September" id="Sep">
+            <!--<c:TargetAndPlanningInt aura:id="Sep" targetMonth="Sep" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="October" id="Oct">
+            <!--<c:TargetAndPlanningInt aura:id="Oct" targetMonth="Oct" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="November" id="Nov">
+            <!--<c:TargetAndPlanningInt aura:id="Nov" targetMonth="Nov" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="December" id="Dec">
+            <!-- <c:TargetAndPlanningInt aura:id="Dec" targetMonth="Dec" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="January" id="Jan">
+            <!-- <c:TargetAndPlanningInt aura:id="Jan" targetMonth="Jan" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="February" id="Feb">
+            <!-- <c:TargetAndPlanningInt aura:id="Feb" targetMonth="Feb" />-->
+        </lightning:tab>
+        <lightning:tab onactive="{! c.onActiveTabHandler }" label="March" id="Mar" >
+            <!-- <c:TargetAndPlanningInt aura:id="Mar" targetMonth="Mar" />-->
+        </lightning:tab>
+        
+        
+    </lightning:tabset>
+</aura:component>

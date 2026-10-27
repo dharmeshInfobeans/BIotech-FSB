@@ -1,0 +1,15 @@
+<template>
+    <lightning-card>
+        <!-- Calling Section A -->
+        <h1>MARKET XRAY DASHBOARD</h1>
+        <div class="slds-p-around_medium section-a"
+            style="border: white;padding: 1rem;margin: 1rem;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+            <c-market-xray-section-a></c-market-xray-section-a>
+        </div>
+        <!-- Calling Section B -->
+        <div class="slds-p-around_medium section-b"
+            style="border: white;padding: 1rem;margin: 1rem;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+            <c-market-xray-section-b oncallparent={handleSumbit}></c-market-xray-section-b>
+        </div> 
+    </lightning-card>
+</template>

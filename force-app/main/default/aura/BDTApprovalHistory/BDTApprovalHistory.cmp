@@ -1,0 +1,53 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" access="global" controller = "BDTrackerController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="approveList" type = "list"/>
+    <aura:attribute name="isRsm" type = "boolean" default="false"/>
+    
+    <div style = "heigth:50rem;width : 100%;margin-bottom:2rem;" class = "slds-box">
+        <center><p style="font-size:15px;"><b>{!$Label.c.BD_Tracker_Pending_Approval} </b></p></center> 
+        <aura:if isTrue="{!not(empty(v.approveList))}">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered ">
+                <thead>
+                    <tr>
+                        <th>
+                            {!$Label.c.BD_Plan_Submitter_Name}
+                        </th>
+                        <th>
+                            {!$Label.c.Week_Range}
+                        </th>
+                        <th>
+                            {!$Label.c.Year}
+                        </th>
+                        <th>
+                            {!$Label.c.Got_To_Plan}
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.approveList}" var="item">
+                        <tr>
+                            <td>
+                                <!--<a href="{!'/turkeyemployee/'+item.Id}">   {!item.Name} </a>c -->
+                                {!item.Owner.Name}
+                            </td>
+                            <td>
+                                {!item.WeekRange__c}
+                            </td>
+                            <td>
+                                {!item.Year__c}
+                            </td>
+                            <td>
+                                <a href="{!'/turkeyemployee/s/bd-tracker-?c__UID='+item.OwnerId+'&amp;c__gotoPlan='+item.WeekRange__c}" target="_blank">{!$Label.c.Go_To_Plan}</a>
+                            </td>
+                        </tr>
+                    </aura:iteration>   
+                </tbody>
+            </table>
+            <aura:set attribute ="else">
+              <center>  <p style="padding-top:2rem;"><b>{!$Label.c.Pending_Approval}</b></p></center>
+            </aura:set>
+        </aura:if>
+        
+    </div>
+    
+</aura:component>

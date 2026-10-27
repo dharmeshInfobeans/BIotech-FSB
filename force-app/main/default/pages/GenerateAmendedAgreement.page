@@ -1,0 +1,372 @@
+<apex:page applyHtmlTag="false"
+           showHeader="false"
+           renderAs="pdf"
+           standardController="Master_Agreement__c"
+           extensions="AgreementAmendedVFExtention"
+           >
+    <html>
+        <head>
+            <style>
+                @page {
+                size: A4;
+                margin-top: 3cm;
+                margin-bottom: 2cm;
+                margin-left: 1.5cm;
+                margin-right: 1.5cm;
+                
+                @top-center {
+                content: element(header);
+                }
+                @bottom-left {
+                content: element(footer);
+                }
+                }
+                
+                div.header {
+                position: running(header);
+                text-align: center;
+                font-weight: bold;
+                font-size: 14px;
+                height: 100px;
+                }
+                
+                div.footer {
+                display: block;
+                position: running(footer);
+                font-size: 10px;
+                }
+                
+                .pagenumber:before {
+                content: counter(page);
+                }
+                
+                .pagecount:before {
+                content: counter(pages);
+                }
+                
+                .header-table {
+                width: 100%;
+                border-bottom: 2px solid black;
+                }
+                
+                .header-table td {
+                padding: 5px;
+                font-size: 12px;
+                font-weight: bold;
+                }
+                
+                .logo-container {
+                width: 150px;
+                height: 60px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                }
+                
+                .logo {
+                max-width: 100%;
+                max-height: 100%;
+                }
+                
+                .content {
+                font-family: "Times New Roman", Times, serif;
+                font-size: 14px;
+                text-align: justify;
+                line-height: 1.5;
+                }
+                
+                .section-title {
+                font-weight: bold;
+                font-size: 14px;
+                margin-top: 10px;
+                }
+                
+                .section-content {
+                margin-left: 15px;
+                }
+                
+                .bold {
+                font-weight: bold;
+                }
+                
+                .lowercase {
+                text-transform: lowercase;
+                }
+                
+                .rich-text-content {
+                font-family: "Times New Roman", Times, serif !important;
+                font-size: 14px !important;
+                line-height: 1.5;
+                text-align: justify;
+                }
+                
+                /* Scoped styling within .nested-list-container */
+                .nested-list-container {
+                counter-reset: main-counter;
+                }
+                
+                .nested-list-container ol {
+                counter-reset: sub-counter;
+                margin-left: 20px; /* Consistent indentation for all levels */
+                padding-left: 0;
+                }
+                
+                .nested-list-container ol > li {
+                counter-increment: main-counter;
+                list-style-type: none;
+                margin-top: 12px; /* Adjusted to match spacing between divs */
+                line-height: 1.5;
+                }
+                
+                .nested-list-container ol > li::before {
+                content: counter(main-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 2 */
+                .nested-list-container ol ol {
+                counter-reset: sub-counter;
+                }
+                
+                .nested-list-container ol ol > li {
+                counter-increment: sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 3 */
+                .nested-list-container ol ol ol {
+                counter-reset: sub-sub-counter;
+                }
+                
+                .nested-list-container ol ol ol > li {
+                counter-increment: sub-sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 4 */
+                .nested-list-container ol ol ol ol {
+                counter-reset: sub-sub-sub-counter;
+                }
+                
+                .nested-list-container ol ol ol ol > li {
+                counter-increment: sub-sub-sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) "." counter(sub-sub-sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                /* Level 5 */
+                .nested-list-container ol ol ol ol ol {
+                counter-reset: sub-sub-sub-sub-counter;
+                }
+                
+                .nested-list-container ol ol ol ol ol > li {
+                counter-increment: sub-sub-sub-sub-counter;
+                list-style-type: none;
+                }
+                
+                .nested-list-container ol ol ol ol ol > li::before {
+                content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) "." counter(sub-sub-sub-counter) "." counter(sub-sub-sub-sub-counter) ". ";
+                font-weight: bold;
+                }
+                
+                .no-break {
+                page-break-inside: avoid;
+                display: inline-block;
+                width: 100%;
+                } 
+                ql-indent-1 { margin-left: 20px; }
+                .ql-indent-2 { margin-left: 40px; }
+                .ql-indent-3 { margin-left: 60px; }
+                .ql-indent-4 { margin-left: 80px; }
+                
+                .content p{
+                    margin-top:0;
+                    }
+            </style>
+        </head>
+        <body>
+            <!-- Message Panel -->
+            <apex:outputPanel rendered="{!IsmessagePresent}" layout="none">
+                <apex:pageMessages />
+                <h2 style="color: red; text-align: center;">{!message}</h2>
+            </apex:outputPanel>
+            
+            <apex:outputPanel rendered="{!NOT(IsmessagePresent)}" layout="none">
+                <!-- HEADER -->
+                <div class="header">
+                    <table class="header-table">
+                        <!-- First Row: Title -->
+                        <tr>
+                            <td colspan="2" style="text-align: center; font-size: 16px;">Amendment in Agreement</td>
+                        </tr>
+                        <!-- Second Row: Logo -->
+                        <tr>
+                            <td rowspan="2" style="width: 20%;" class="logo-container">
+                                <apex:image url="{!URLFOR($Resource.biotech_Logo)}" styleClass="logo" width="150px" height="60px" alt="Biotech Logo"/>
+                            </td>
+                            <td style="text-align: right;">
+                                <strong>Agreement No.:</strong> {!Master_Agreement__c.Agreement_Number__c}
+                            </td>
+                        </tr>
+                        <!-- Third Row: Version Number -->
+                        <tr>
+                            <td style="text-align: right;">
+                                <strong>Version No.:</strong> {!Master_Agreement__c.Version__c}
+                            </td>
+                        </tr>
+                        <!-- Fourth Row: Document No. 
+<tr>
+<td style="text-align: right;">
+<strong>Document No.:</strong> {!Master_Agreement__c.Document_No__c}
+</td>
+</tr>
+-->
+                    </table>
+                </div>
+                
+                <!-- FOOTER -->
+                <div class="footer">
+                    
+                    <div style="color: white; font-size: 8px; text-align: left;">\i2\</div>
+                    <hr />
+                    <div>Page <span class="pagenumber"/> of <span class="pagecount"/></div>
+                </div>
+                <!-- MAIN CONTENT -->
+                
+                <div class="content" style="margin-top:0px;">
+                    <p>This is an amendment to the agreement <b>{!Master_Agreement__c.Agreement_Number__c}</b>
+                        signed between<b> {!Master_Agreement__c.Agreement_Signed_With__c}</b>,
+                        with an address of <b>{!SignedWithBranchAddress}</b> &amp;  
+                        <b>{!Master_Agreement__c.Account__r.Name}</b>
+                        with an address of  
+                        <b>{!Master_Agreement__c.Account__r.BillingStreet}, 
+                            {!Master_Agreement__c.Account__r.BillingCity}, 
+                            {!Master_Agreement__c.Account__r.BillingState}, 
+                            {!Master_Agreement__c.Account__r.BillingCountry}.</b> 
+                        for the sake of brevity sh  all become effective from <b>{!Master_Agreement__c.Date_Of_Amendement__c}</b>.</p>
+                    
+                    <p>This has been discussed and agreed between both parties:</p>
+                    <p>We have agreed to supply the below product at the following terms and conditions:</p>
+                    <!-- Master Agreement Amended Products Details -->
+                    <apex:pageBlock >
+                        <table style="width: 100%; border-collapse: collapse; font-family: 'Times New Roman', Times, serif !important; font-size: 14px;">
+                            <thead>
+                                <tr style="page-break-inside: avoid; background-color: #0073e6; color: white;">
+                                    <th style="width: 25%; border: 1px solid #000; padding: 8px; text-align: left;">Product</th>
+                                    <th style="width: 10%; border: 1px solid #000; padding: 8px; text-align: center;">Price</th>
+                                    <th style="width: 10%; border: 1px solid #000; padding: 8px; text-align: center;">FOC(%)</th>
+                                    <th style="width: 10%; border: 1px solid #000; padding: 8px; text-align: left;">Incoterm</th>
+                                    <th style="width: 25%; border: 1px solid #000; padding: 8px; text-align: left;">Payment Term</th>
+                                    <th style="width: 20%; border: 1px solid #000; padding: 8px; text-align: left;">Port Of Loading</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <apex:variable var="rowIndex" value="{!0}"/>
+                                <apex:repeat value="{!agreementProducts}" var="ap">
+                                    <apex:variable var="rowIndex" value="{!rowIndex + 1}"/>
+                                    <tr style="page-break-inside: avoid;">
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: left; font-weight: bold;">{!ap.Product__r.Name}</td>
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: center;">{!ap.Price__c}</td>
+                                        <td style="border: 1px solid #000; paddinchangedFieldApiNameVsLabelg: 8px; text-align: center;">{!ap.FOC_Text__c}</td>
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Incoterms__c}</td>
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!paymentTermApiNameVsLabel[ap.Payment_Terms_options__c]}</td>
+                                        <td style="border: 1px solid #000; padding: 8px; text-align: left;">{!ap.Product__r.plant__r.Port_of_Loading__c}</td>
+                                    </tr>
+                                </apex:repeat>
+                            </tbody>
+                        </table>
+                    </apex:pageBlock>
+                    <br />
+                    <!-- Master Agreement Amended Details -->
+                    <apex:pageBlock >
+                        <apex:outputPanel rendered="{!hasChanges}">
+                            <p style="color: red; font-weight: bold;">The following changes were made to the agreement:</p>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <thead>
+                                    <tr style="background-color: #f8d7da;">
+                                        <th style="border: 1px solid #000; padding: 8px;">Changed Entity</th>
+                                        <th style="border: 1px solid #000; padding: 8px;">Previous Value</th>
+                                        <th style="border: 1px solid #000; padding: 8px;">New Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <apex:repeat value="{!changedFields}" var="fieldName">
+                                        <tr>
+                                            <td style="border: 1px solid #000; padding: 8px; white-space: nowrap; word-break: break-word; overflow-wrap: break-word;">
+                                                {!changedFieldApiNameVsLabel[fieldName]}
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 8px; word-break: break-word; overflow-wrap: break-word;">
+                                                {!changedFieldOldValues[fieldName]}
+                                            </td>
+                                            <td style="border: 1px solid #000; padding: 8px; word-break: break-word; overflow-wrap: break-word;">
+                                                {!changedFieldNewValues[fieldName]}
+                                            </td>
+                                        </tr>
+                                        
+                                    </apex:repeat>
+                                </tbody>
+                            </table>
+                        </apex:outputPanel>
+                    </apex:pageBlock>
+                    
+                    <div class="rich-text-content nested-list-container" style="counter-reset: main-counter 0;">
+                        
+                        <apex:outputText escape="false" value="{!Master_Agreement__c.Remark_1__c}"/>
+                        
+                    </div>
+                    <p>All other terms and conditions as stated in agreement <b>{!Master_Agreement__c.Agreement_Number__c}</b> remain unchanged.</p>
+                    <p>This amendment is valid till <b>{!Master_Agreement__c.Agreement_EndDate_mmmm_format__c}</b>.</p>
+                    
+                    <!-- Signature Section -->
+                    <div style="margin-top: 20px;" class="no-break">
+                        <apex:pageBlock >
+                            {!todayDateStr}
+                            <table style="width: 100%; border-collapse: collapse; border: 1px solid black;">
+                                <tr>
+                                    <th style="border: 1px solid black; padding: 5px; width: 50%;">For Biotech Healthcare Holding GmbH</th>
+                                    <th style="border: 1px solid black; padding: 5px; width: 50%;">For {!Master_Agreement__c.Account__r.Name}</th>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black; padding: 5px; padding-top: 20px; height: 100px; width: 50%; color: #fff;">\s3\</td>
+                                    <td style="border: 1px solid black; padding: 5px; padding-top: 20px; height: 100px; width: 50%; color: #fff;">\s1\</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black; padding: 5px; width: 50%; text-align: left; white-space: nowrap;">
+                                        <b>Mr. Mehul Asnani</b>
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px; width: 50%; text-align: left; white-space: nowrap;">
+                                        <b>{!Master_Agreement__c.Distributer_Contact_Name__c}</b>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid black; padding: 5px; width: 50%; text-align: left;">
+                                        Founder &amp; President
+                                    </td>
+                                    <td style="border: 1px solid black; padding: 5px; width: 50%; text-align: left;">
+                                        {!Master_Agreement__c.Distributer_Contact_Designation__c}
+                                    </td>
+                                </tr>
+                            </table>
+                        </apex:pageBlock>
+                    </div>
+                    
+                </div>
+            </apex:outputPanel>
+        </body>
+        
+    </html>
+</apex:page>

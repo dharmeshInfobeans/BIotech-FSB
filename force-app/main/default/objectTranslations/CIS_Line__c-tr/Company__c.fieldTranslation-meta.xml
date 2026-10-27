@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>şirket</label>
+    <name>Company__c</name>
+    <picklistValues>
+        <masterLabel>ALBOMED</masterLabel>
+        <translation><!-- ALBOMED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ALSANZA</masterLabel>
+        <translation><!-- ALSANZA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Acriva</masterLabel>
+        <translation><!-- Acriva --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Action</masterLabel>
+        <translation><!-- Action --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Adapt</masterLabel>
+        <translation><!-- Adapt --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Adium</masterLabel>
+        <translation><!-- Adium --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aikon</masterLabel>
+        <translation><!-- Aikon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alcon</masterLabel>
+        <translation><!-- Alcon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alfakjn Italy</masterLabel>
+        <translation><!-- Alfakjn Italy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Alkem</masterLabel>
+        <translation><!-- Alkem --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Allergan</masterLabel>
+        <translation><!-- Allergan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Altasmed</masterLabel>
+        <translation><!-- Altasmed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Amo</masterLabel>
+        <translation><!-- Amo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Anika</masterLabel>
+        <translation><!-- Anika --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Apherm Italy</masterLabel>
+        <translation><!-- Apherm Italy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Appasamy</masterLabel>
+        <translation><!-- Appasamy --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aptissen</masterLabel>
+        <translation><!-- Aptissen --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Atlasmed</masterLabel>
+        <translation><!-- Atlasmed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aurloab</masterLabel>
+        <translation><!-- Aurloab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Aurolab</masterLabel>
+        <translation><!-- Aurolab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B &amp; L</masterLabel>
+        <translation><!-- B &amp; L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO-PLUS</masterLabel>
+        <translation><!-- BIO-PLUS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOMET</masterLabel>
+        <translation><!-- BIOMET --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BURGEON</masterLabel>
+        <translation><!-- BURGEON --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BVI</masterLabel>
+        <translation><!-- BVI --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bennet HELLAS</masterLabel>
+        <translation><!-- Bennet HELLAS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BioPolymer</masterLabel>
+        <translation><!-- BioPolymer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biofarma</masterLabel>
+        <translation><!-- Biofarma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biolab</masterLabel>
+        <translation><!-- Biolab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biomedcial Group</masterLabel>
+        <translation><!-- Biomedcial Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biotech</masterLabel>
+        <translation><!-- Biotech --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bioventus</masterLabel>
+        <translation><!-- Bioventus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CROMA</masterLabel>
+        <translation><!-- CROMA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CROMA-PHARMA</masterLabel>
+        <translation><!-- CROMA-PHARMA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cadila</masterLabel>
+        <translation><!-- Cadila --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Care Group</masterLabel>
+        <translation><!-- Care Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Caregen</masterLabel>
+        <translation><!-- Caregen --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cima</masterLabel>
+        <translation><!-- Cima --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cima Technology</masterLabel>
+        <translation><!-- Cima Technology --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dermali</masterLabel>
+        <translation><!-- Dermali --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dermalis</masterLabel>
+        <translation><!-- Dermalis --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dr. Reddy&apos;s</masterLabel>
+        <translation><!-- Dr. Reddy&apos;s --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ecupharma</masterLabel>
+        <translation><!-- Ecupharma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Envision</masterLabel>
+        <translation><!-- Envision --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Eyeiol</masterLabel>
+        <translation><!-- Eyeiol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FERRING PHARMACEUTICALS</masterLabel>
+        <translation><!-- FERRING PHARMACEUTICALS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FILLMED</masterLabel>
+        <translation><!-- FILLMED --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fidia</masterLabel>
+        <translation><!-- Fidia --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Field1</masterLabel>
+        <translation><!-- Field1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Field2</masterLabel>
+        <translation><!-- Field2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Field3</masterLabel>
+        <translation><!-- Field3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Freedom</masterLabel>
+        <translation><!-- Freedom --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GENZYME UK</masterLabel>
+        <translation><!-- GENZYME UK --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Galderma</masterLabel>
+        <translation><!-- Galderma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gardor</masterLabel>
+        <translation><!-- Gardor --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hanita</masterLabel>
+        <translation><!-- Hanita --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hi Care</masterLabel>
+        <translation><!-- Hi Care --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hoya</masterLabel>
+        <translation><!-- Hoya --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IBSA</masterLabel>
+        <translation><!-- IBSA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IO care</masterLabel>
+        <translation><!-- IO care --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IOC</masterLabel>
+        <translation><!-- IOC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Innate Pharma USA</masterLabel>
+        <translation><!-- Innate Pharma USA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Innate/Pronto</masterLabel>
+        <translation><!-- Innate/Pronto --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intas</masterLabel>
+        <translation><!-- Intas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Iris Medical</masterLabel>
+        <translation><!-- Iris Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>J&amp;J</masterLabel>
+        <translation><!-- J&amp;J --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LCA Pharma -France</masterLabel>
+        <translation><!-- LCA Pharma -France --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LCA Pharmaceutical</masterLabel>
+        <translation><!-- LCA Pharmaceutical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LIBYTEC ROMANIA</masterLabel>
+        <translation><!-- LIBYTEC ROMANIA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Laboratoires Genevrier</masterLabel>
+        <translation><!-- Laboratoires Genevrier --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Laboratorios Bagó</masterLabel>
+        <translation><!-- Laboratorios Bagó --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Leedsay</masterLabel>
+        <translation><!-- Leedsay --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lefeline</masterLabel>
+        <translation><!-- Lefeline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lupin</masterLabel>
+        <translation><!-- Lupin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MDT int.</masterLabel>
+        <translation><!-- MDT int. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MYLAL Pharma Group IRELAND</masterLabel>
+        <translation><!-- MYLAL Pharma Group IRELAND --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Md Skin Solutions</masterLabel>
+        <translation><!-- Md Skin Solutions --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mediphacos</masterLabel>
+        <translation><!-- Mediphacos --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mertz</masterLabel>
+        <translation><!-- Mertz --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Modi Mundi</masterLabel>
+        <translation><!-- Modi Mundi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mylan</masterLabel>
+        <translation><!-- Mylan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NEUVIA</masterLabel>
+        <translation><!-- NEUVIA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Omni Lens</masterLabel>
+        <translation><!-- Omni Lens --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ophtec</masterLabel>
+        <translation><!-- Ophtec --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optaline ( Local Manufacturing Company )</masterLabel>
+        <translation><!-- Optaline ( Local Manufacturing Company ) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Others</masterLabel>
+        <translation><!-- Others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Physiol</masterLabel>
+        <translation><!-- Physiol --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pierre Fabre</masterLabel>
+        <translation><!-- Pierre Fabre --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pronto Pharma</masterLabel>
+        <translation><!-- Pronto Pharma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Q-Med</masterLabel>
+        <translation><!-- Q-Med --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REGENYAL ITALY</masterLabel>
+        <translation><!-- REGENYAL ITALY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rayner</masterLabel>
+        <translation><!-- Rayner --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SOFAR</masterLabel>
+        <translation><!-- SOFAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sanofi</masterLabel>
+        <translation><!-- Sanofi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sanofi - Genziem</masterLabel>
+        <translation><!-- Sanofi - Genziem --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Seelens Hanita</masterLabel>
+        <translation><!-- Seelens Hanita --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Selens Hanita</masterLabel>
+        <translation><!-- Selens Hanita --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sifi</masterLabel>
+        <translation><!-- Sifi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Staar</masterLabel>
+        <translation><!-- Staar --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Surgitech</masterLabel>
+        <translation><!-- Surgitech --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRB</masterLabel>
+        <translation><!-- TRB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRB Pharma</masterLabel>
+        <translation><!-- TRB Pharma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Teoksan</masterLabel>
+        <translation><!-- Teoksan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tiger Group</masterLabel>
+        <translation><!-- Tiger Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VIVACY</masterLabel>
+        <translation><!-- VIVACY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VSY</masterLabel>
+        <translation><!-- VSY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vertek</masterLabel>
+        <translation><!-- Vertek --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Virchow</masterLabel>
+        <translation><!-- Virchow --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Visionline</masterLabel>
+        <translation><!-- Visionline --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Vivacy Laboratories</masterLabel>
+        <translation><!-- Vivacy Laboratories --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>YURIA-PHARM Oycrane</masterLabel>
+        <translation><!-- YURIA-PHARM Oycrane --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yaral Pharma / IBSA</masterLabel>
+        <translation><!-- Yaral Pharma / IBSA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zambon</masterLabel>
+        <translation><!-- Zambon --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zeiss</masterLabel>
+        <translation><!-- Zeiss --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zydus</masterLabel>
+        <translation><!-- Zydus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>pti Ocuflex</masterLabel>
+        <translation><!-- pti Ocuflex --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Care Group</masterLabel>
+        <translation><!--  Care Group --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FERRING PHARMACEUTICALS</masterLabel>
+        <translation><!--  FERRING PHARMACEUTICALS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pierre Fabre</masterLabel>
+        <translation><!--  Pierre Fabre --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Βennet  HELLAS</masterLabel>
+        <translation><!-- Βennet  HELLAS --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

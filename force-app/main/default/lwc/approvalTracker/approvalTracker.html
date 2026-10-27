@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title={labels.Initiate_Customer_Approval_History__c} icon-name="standard:approval">
+
+        <template if:true={isLoading}>
+            <div class="slds-spinner_container">
+                <div role="status" class="slds-spinner slds-spinner_small">
+                    <span class="slds-assistive-text">Loading</span>
+                    <div class="slds-spinner__dot-a"></div>
+                    <div class="slds-spinner__dot-b"></div>
+                </div>
+            </div>
+        </template>
+        
+
+        
+        <div class="approval-container">
+            <div class="timeline">
+                <template for:each={approvals} for:item="step">
+                    <div key={step.label} class="timeline-item">
+                        <div class="icon-wrapper {step.cssClass}">
+                            <lightning-icon
+                                icon-name={step.icon}
+                                size="x-small"
+                                alternative-text={step.status} class={step.icon_class} >
+                            </lightning-icon>
+                        </div>
+
+                        <div class="content">
+                            <div class="title">{step.label}</div>
+                            <div class="status">{step.status}</div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <div class="legend-vertical">
+                <div class="legend-item">
+                    <span class="dot no-action"></span>
+                    <span>{labels.No_Action__c}</span> 
+                </div>
+                <div class="legend-item">
+                    <span class="dot approved"></span> 
+                    <span>{labels.Approved__c}</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot rejected"></span> 
+                    <span>{labels.Rejected__c}</span>
+                </div>
+                <div class="legend-item">
+                    <span class="dot pending"></span> 
+                    <span>{labels.Pending__c}</span>
+                </div>
+            </div>
+        </div>
+
+    </lightning-card>
+</template>

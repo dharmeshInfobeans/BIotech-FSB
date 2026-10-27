@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SAP_Header__c</fullName>
+    <label>SAP Header</label>
+    <referenceTo>SAP_Header__c</referenceTo>
+    <relationshipLabel>SAP Line Item</relationshipLabel>
+    <relationshipName>SAP_Line_Item</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

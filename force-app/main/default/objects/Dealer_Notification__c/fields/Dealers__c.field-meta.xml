@@ -1,0 +1,601 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dealers__c</fullName>
+    <label>Dealers</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Notification_To__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>true</sorted>
+            <value>
+                <fullName>7773883041</fullName>
+                <default>false</default>
+                <label>ABC Medical</label>
+            </value>
+            <value>
+                <fullName>1000696</fullName>
+                <default>false</default>
+                <label>Acendis Aesthetics GmbH</label>
+            </value>
+            <value>
+                <fullName>1000369</fullName>
+                <default>false</default>
+                <label>Adrialine D.O.O.</label>
+            </value>
+            <value>
+                <fullName>1000201</fullName>
+                <default>false</default>
+                <label>Atradis</label>
+            </value>
+            <value>
+                <fullName>1000544</fullName>
+                <default>false</default>
+                <label>AV Medical</label>
+            </value>
+            <value>
+                <fullName>1000810</fullName>
+                <default>false</default>
+                <label>AV Medical. (H)</label>
+            </value>
+            <value>
+                <fullName>1000712</fullName>
+                <default>false</default>
+                <label>Bionspharma Lab SL</label>
+            </value>
+            <value>
+                <fullName>1000812</fullName>
+                <default>false</default>
+                <label>Biotech Germany Healthcare GMBH</label>
+            </value>
+            <value>
+                <fullName>1000644</fullName>
+                <default>false</default>
+                <label>BIOTECH HEALTHCARE COLOMBIA SAS</label>
+            </value>
+            <value>
+                <fullName>1000845</fullName>
+                <default>false</default>
+                <label>Biotech UK Healthcare Limited</label>
+            </value>
+            <value>
+                <fullName>1000628</fullName>
+                <default>false</default>
+                <label>BIOTECH VISION CARE OFTALMOLOGIA BRAZIL</label>
+            </value>
+            <value>
+                <fullName>4000</fullName>
+                <default>false</default>
+                <label>Biotech Visioncare San.ve Tic A.S.</label>
+            </value>
+            <value>
+                <fullName>1000724</fullName>
+                <default>false</default>
+                <label>Bio Trading</label>
+            </value>
+            <value>
+                <fullName>1000646</fullName>
+                <default>false</default>
+                <label>Blisscare</label>
+            </value>
+            <value>
+                <fullName>1000018</fullName>
+                <default>false</default>
+                <label>CASTOR Slovakia, s.r.o.</label>
+            </value>
+            <value>
+                <fullName>1000009</fullName>
+                <default>false</default>
+                <label>CLARTE S.A &quot;LAMAISON MEDICAL&quot;</label>
+            </value>
+            <value>
+                <fullName>1000100</fullName>
+                <default>false</default>
+                <label>Compagnia italiana Oftalmologica S.C.A.R.L.</label>
+            </value>
+            <value>
+                <fullName>1000053</fullName>
+                <default>false</default>
+                <label>Curamed</label>
+            </value>
+            <value>
+                <fullName>1000674</fullName>
+                <default>false</default>
+                <label>Cyprus Pharmaceuticals Organization Ltd</label>
+            </value>
+            <value>
+                <fullName>1000824</fullName>
+                <default>false</default>
+                <label>DROGUERÍA ROSSINI E.I.R.L</label>
+            </value>
+            <value>
+                <fullName>1000677</fullName>
+                <default>false</default>
+                <label>Dr Rosefid Medizinprodukte</label>
+            </value>
+            <value>
+                <fullName>1000700</fullName>
+                <default>false</default>
+                <label>ETERNALIZE MEDICAL LTD</label>
+            </value>
+            <value>
+                <fullName>1000720</fullName>
+                <default>false</default>
+                <label>Experts Medical Supplies Est.</label>
+            </value>
+            <value>
+                <fullName>1000071</fullName>
+                <default>false</default>
+                <label>FE-Group SRL</label>
+            </value>
+            <value>
+                <fullName>1000183</fullName>
+                <default>false</default>
+                <label>G E N C O,S.A.</label>
+            </value>
+            <value>
+                <fullName>1000082</fullName>
+                <default>false</default>
+                <label>Head Medical</label>
+            </value>
+            <value>
+                <fullName>1000811</fullName>
+                <default>false</default>
+                <label>International Pioneers Co. (H)</label>
+            </value>
+            <value>
+                <fullName>1000032</fullName>
+                <default>false</default>
+                <label>International Pioneers Co. (IPC)</label>
+            </value>
+            <value>
+                <fullName>1000637</fullName>
+                <default>false</default>
+                <label>IOL Expert GmbH + Co. KG</label>
+            </value>
+            <value>
+                <fullName>1000725</fullName>
+                <default>false</default>
+                <label>Jack Pharma Inc.</label>
+            </value>
+            <value>
+                <fullName>1000701</fullName>
+                <default>false</default>
+                <label>L&amp;D Corporation</label>
+            </value>
+            <value>
+                <fullName>1000234</fullName>
+                <default>false</default>
+                <label>LASERMED - Zentrum fur ophthalmologische Laser-Technoloie Gmbh</label>
+            </value>
+            <value>
+                <fullName>1000016</fullName>
+                <default>false</default>
+                <label>Lenses Grup</label>
+            </value>
+            <value>
+                <fullName>1000730</fullName>
+                <default>false</default>
+                <label>Maesang Global Co., Ltd.</label>
+            </value>
+            <value>
+                <fullName>1000614</fullName>
+                <default>false</default>
+                <label>Mediapharm Ltd.</label>
+            </value>
+            <value>
+                <fullName>1000502</fullName>
+                <default>false</default>
+                <label>Medigrup Jorjia LLC</label>
+            </value>
+            <value>
+                <fullName>1000243</fullName>
+                <default>false</default>
+                <label>Midi Medical</label>
+            </value>
+            <value>
+                <fullName>1000182</fullName>
+                <default>false</default>
+                <label>Mid-Optic Limited</label>
+            </value>
+            <value>
+                <fullName>1000476</fullName>
+                <default>false</default>
+                <label>Novalis</label>
+            </value>
+            <value>
+                <fullName>1000021</fullName>
+                <default>false</default>
+                <label>Oftal-C D.o.o.</label>
+            </value>
+            <value>
+                <fullName>1000125</fullName>
+                <default>false</default>
+                <label>Oftamedica</label>
+            </value>
+            <value>
+                <fullName>1000357</fullName>
+                <default>false</default>
+                <label>Ophthalcom C.A.</label>
+            </value>
+            <value>
+                <fullName>1000440</fullName>
+                <default>false</default>
+                <label>OPHTHALMO Pro Gmbh</label>
+            </value>
+            <value>
+                <fullName>1000370</fullName>
+                <default>false</default>
+                <label>Optica Vietnam</label>
+            </value>
+            <value>
+                <fullName>1000360</fullName>
+                <default>false</default>
+                <label>Optiones s.r.l.</label>
+            </value>
+            <value>
+                <fullName>1000315</fullName>
+                <default>false</default>
+                <label>OPTIQUE DISTRIBUTION</label>
+            </value>
+            <value>
+                <fullName>1000660</fullName>
+                <default>false</default>
+                <label>Optotech Medical Sp. z o.o. Sp. k.</label>
+            </value>
+            <value>
+                <fullName>1000815</fullName>
+                <default>false</default>
+                <label>Peroxidos Farmaceuticos S.A.</label>
+            </value>
+            <value>
+                <fullName>1000756</fullName>
+                <default>false</default>
+                <label>Pharma Care Drug Store</label>
+            </value>
+            <value>
+                <fullName>1000241</fullName>
+                <default>false</default>
+                <label>Pharmagen CZ</label>
+            </value>
+            <value>
+                <fullName>1000022</fullName>
+                <default>false</default>
+                <label>Pharmatech Chile Sa</label>
+            </value>
+            <value>
+                <fullName>1000006</fullName>
+                <default>false</default>
+                <label>Premier Internacional S.R.L</label>
+            </value>
+            <value>
+                <fullName>1000185</fullName>
+                <default>false</default>
+                <label>PROTRIEM SPOL. S.R.O.</label>
+            </value>
+            <value>
+                <fullName>1000383</fullName>
+                <default>false</default>
+                <label>Proveedora De Servicios S.A. (Servicesa)</label>
+            </value>
+            <value>
+                <fullName>1000533</fullName>
+                <default>false</default>
+                <label>Pt. Mandara Medika Perkasa</label>
+            </value>
+            <value>
+                <fullName>1000458</fullName>
+                <default>false</default>
+                <label>Quantum Medical Ltd</label>
+            </value>
+            <value>
+                <fullName>1000717</fullName>
+                <default>false</default>
+                <label>RELIANCE MEDICAL SDN. BHD</label>
+            </value>
+            <value>
+                <fullName>1000000</fullName>
+                <default>false</default>
+                <label>Rephachem Medical</label>
+            </value>
+            <value>
+                <fullName>1000033</fullName>
+                <default>false</default>
+                <label>SARL OPTIQUE DISTRIBUTION ALGERIE</label>
+            </value>
+            <value>
+                <fullName>1000399</fullName>
+                <default>false</default>
+                <label>Shariket Alkhayar Alawal</label>
+            </value>
+            <value>
+                <fullName>1000167</fullName>
+                <default>false</default>
+                <label>SIFI S.p.A.</label>
+            </value>
+            <value>
+                <fullName>1000604</fullName>
+                <default>false</default>
+                <label>Synergolab</label>
+            </value>
+            <value>
+                <fullName>1000762</fullName>
+                <default>false</default>
+                <label>Technopia Co., Ltd.</label>
+            </value>
+            <value>
+                <fullName>1000733</fullName>
+                <default>false</default>
+                <label>Tecnoimagen</label>
+            </value>
+            <value>
+                <fullName>1000404</fullName>
+                <default>false</default>
+                <label>TESS (Total Eyecare Systems And Services Inc.)</label>
+            </value>
+            <value>
+                <fullName>1000605</fullName>
+                <default>false</default>
+                <label>Veil Cosmetics And Medicine</label>
+            </value>
+            <value>
+                <fullName>1000489</fullName>
+                <default>false</default>
+                <label>VisionMedPal</label>
+            </value>
+            <value>
+                <fullName>1000676</fullName>
+                <default>false</default>
+                <label>WEYE HEALTH PLT</label>
+            </value>
+            <value>
+                <fullName>1000747</fullName>
+                <default>false</default>
+                <label>WEYEZER</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>7773883041</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000696</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000369</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000201</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000544</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000712</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000644</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000724</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000646</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000018</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000009</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000100</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000053</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000674</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000824</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000677</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000700</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000071</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000183</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000082</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000032</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000637</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000725</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000701</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000234</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000016</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000730</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000614</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000502</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000243</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000182</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000476</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000021</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000125</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000357</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000440</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000370</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000360</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000660</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000756</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000241</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000022</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000006</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000185</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000383</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000533</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000458</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000717</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000000</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000033</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000399</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000167</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000604</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000762</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000733</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000404</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000605</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000489</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000676</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Specific Dealer</controllingFieldValue>
+            <valueName>1000747</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

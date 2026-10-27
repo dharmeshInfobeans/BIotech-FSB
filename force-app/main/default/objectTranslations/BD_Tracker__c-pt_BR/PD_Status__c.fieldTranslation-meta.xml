@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- PD Status --></label>
+    <name>PD_Status__c</name>
+    <picklistValues>
+        <masterLabel>Actual</masterLabel>
+        <translation>Real</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancel</masterLabel>
+        <translation>Cancelar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delay</masterLabel>
+        <translation>Demora</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Plan</masterLabel>
+        <translation>Plano</translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Marketing Fase</label>
+    <name>Marketing_Stage__c</name>
+    <picklistValues>
+        <masterLabel>CME</masterLabel>
+        <translation><!-- CME --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CTP</masterLabel>
+        <translation><!-- CTP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Decode</masterLabel>
+        <translation><!-- Decode --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Focus</masterLabel>
+        <translation><!-- Focus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Impact CME</masterLabel>
+        <translation><!-- High Impact CME --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inclinic Branding</masterLabel>
+        <translation><!-- Inclinic Branding --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>KOL/FOL Development</masterLabel>
+        <translation><!-- KOL/FOL Development --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RTM</masterLabel>
+        <translation><!-- RTM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SDE Assigned</masterLabel>
+        <translation><!-- SDE Assigned --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Testimonial</masterLabel>
+        <translation><!-- Testimonial --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Meeting</masterLabel>
+        <translation><!-- User Meeting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Virtual exp. Lab</masterLabel>
+        <translation><!-- Virtual exp. Lab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wet Labs</masterLabel>
+        <translation><!-- Wet Labs --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

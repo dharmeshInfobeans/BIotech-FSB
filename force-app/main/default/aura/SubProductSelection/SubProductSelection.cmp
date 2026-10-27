@@ -1,0 +1,130 @@
+<aura:component Controller="OrderProductSelectionController">
+    <aura:attribute name="models" type="List"/> 
+    <aura:attribute name="codes" type="List"/> 
+    <aura:attribute name="orderProduct" type="object"/> 
+    <aura:attribute name="actualOrderQuantity" type="Integer" default="0"/> 
+    <aura:attribute name="MinOrderQuant" type="Integer" default="0"/> 
+    <aura:attribute name="alert" type="boolean" default="false"/>    
+
+    <aura:attribute name="modelsWithCodes" type="List"/> 
+    <aura:attribute name="modelsWithPowerRange" type="List"/> 
+    
+    <aura:attribute name="totalQuantity" type="Integer" default="0"/>
+    <aura:attribute name="totalPrice" type="Integer" default="0"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    <aura:registerEvent name="orderProductRecordProviderEvent" type="c:OrderProductRecordProvider"/>
+    <aura:registerEvent name="addSubProductEvt" type="c:OrderProductRecordProvider"/>
+    <aura:handler name="subProdChangeEvnt" event="c:OrderProductRecordProvider" action="{!c.handleQPChange}"/>
+    <aura:handler name="subProdDeleteEvnt" event="c:OrderProductRecordProvider" action="{!c.handleDeleteSubProd}"/>
+    
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_large slds-modal slds-fade-in-open" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">        <div class="slds-modal__container">
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                    <span class="slds-assistive-text">{!$Label.c.Close}</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate"><b>{!$Label.c.Select_Sub_Products}</b> 
+                    <lightning:button class="slds-float_right" label="{!$Label.c.Add}"  variant='brand' title="Add Row" onclick="{! c.addNewRow}"/></h2>
+                <!-- header will display base product name-->
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <table class="slds-table slds-table_bordered slds-tree slds-table_tree" role="treegrid" aria-readonly="true">
+                        <thead>
+                            <tr>
+                                <td>
+                                </td>
+                                <td Style="width:47%;left:4.5rem;"><b>{!v.orderProduct.ProductName}</b></td>
+                               <td Style="width:11%;left:-4.5rem;">
+                                    <b>{!$Label.c.Unit_Price}</b><br/><b>{!v.orderProduct.currencyCode}&nbsp; {!v.orderProduct.SalesPrice}<!--<lightning:formattedNumber value="{!v.orderProduct.SalesPrice}"  currencyCode="{!v.orderProduct.CurrencyCode}"/>--></b>
+                                </td>                   
+                                <td Style="width:11%;left:-4.5rem;">
+
+                                    <b>{!$Label.c.Minimum_Order_Quantity}</b><br/><b><lightning:formattedNumber value="{!v.MinOrderQuant}"  currencyCode="{!v.orderProduct.CurrencyCode}"/></b>
+                                </td>                                  <td align="right">                                                                 
+                                    <b><lightning:input style="width:8.25rem;left:-4.5rem;" type="number" name="quantity" label="{!$Label.c.Actual_Order_Quantity}" value="{!v.actualOrderQuantity}" onchange="{!c.calculateParentTotal}"/> </b>
+                                </td>                                
+                                <td>
+                                    <b><b>{!$Label.c.Total_Price}</b><br/>{!v.orderProduct.currencyCode}&nbsp; {!v.orderProduct.TotalPrice}<!--<lightning:formattedNumber value="{!v.orderProduct.TotalPrice}" currencyCode="{!v.orderProduct.CurrencyCode}"/>--></b>
+                                </td>
+                            </tr> 
+                            
+                        </thead>
+                    </table>
+                    <table class="slds-table slds-table_bordered slds-tree slds-table_tree" role="treegrid" aria-readonly="true">
+                        <thead>
+                            
+                            <tr class="slds-line-height_reset slds-text-title_caps">
+                                
+                                <!--      <th scope="col" style="width:3.75rem;">&nbsp;</th>     -->
+                                <th class="slds-cell-buffer_left" scope="col">
+                                    &nbsp;
+                                </th>
+                                <th class="slds-cell-buffer_left" scope="col">
+                                    
+                                    <div class="slds-truncate" title="Product Name">{!$Label.c.Product_Name}</div>
+                                </th>
+                                
+                                <th class="slds-cell-buffer_left" scope="col">
+                                    
+                                    <div class="slds-truncate" title="Product Model">{!$Label.c.Product_Model}</div>
+                                </th>
+                                
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Product Code">{!$Label.c.Spherical_Power}</div>
+                                </th>
+                               
+                               <th scope="col">
+                                    <div class="slds-truncate" title="Cylindrical Power">Cylindrical Power</div>
+                                </th>
+                              <th scope="col">
+                                    <div class="slds-truncate" title="Axis Angle">Axis Angle</div>
+                                </th>                                
+                                
+                                
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Product Quantity">{!$Label.c.Quantity}</div>
+                                </th>
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Product Quantity">{!$Label.c.FOC_Quantity}</div>
+                                </th>   
+                                <th scope="col">
+                                    <div class="slds-truncate" title="Sub Total" >{!$Label.c.Total}</div>
+                                </th>
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            
+                            <aura:iteration items="{!v.orderProduct.subOrderProducts}" var="item">
+                                <c:SubProductItem aura:id='subItemCmp' subProductItem="{!item}" 
+                                                  modelsWithCodes="{!v.modelsWithCodes}" 
+                                                  modelsWithPowerRange = "{!v.modelsWithPowerRange}"
+                                                  orderProduct="{!v.orderProduct}"/>  
+                            </aura:iteration> 
+                            
+                            <tr>
+                                <td colspan='4'>&nbsp;</td>
+                                
+
+                                <td style="left: -9rem;"><b><div> {!$Label.c.Total_Sub_Product_Quantity}: {!v.totalQuantity}</div></b></td>
+                                <td><b>
+                                 <!-- {!v.totalPrice} -->
+            					<!--{!v.orderProduct.TotalPrice}&nbsp;-->  {!v.orderProduct.currencyCode} &nbsp;{!v.totalPrice}   <!--<lightning:formattedNumber value="{!v.totalPrice}" currencyCode="{!v.orderProduct.CurrencyCode}"/>-->
+                                </b></td>
+                            </tr>
+                            
+                            
+                            
+                        </tbody>
+                    </table>
+                    
+            </div>
+            <footer class="slds-modal__footer">
+                <lightning:button label="{!$Label.c.Cancel}" title="Neutral action" onclick="{! c.modelCancleHandle }"/>
+                <lightning:button variant="brand" label="{!$Label.c.Save}" title="Brand action" onclick="{!c.saveSubProducts }"/>
+            </footer>
+        </div>
+        
+    </section>
+    
+</aura:component>

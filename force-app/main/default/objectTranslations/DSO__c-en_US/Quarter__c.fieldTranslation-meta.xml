@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Quarter --></label>
+    <name>Quarter__c</name>
+    <picklistValues>
+        <masterLabel>Quarter 1</masterLabel>
+        <translation><!-- Quarter 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quarter 2</masterLabel>
+        <translation><!-- Quarter 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quarter 3</masterLabel>
+        <translation><!-- Quarter 3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quarter 4</masterLabel>
+        <translation><!-- Quarter 4 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

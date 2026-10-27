@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Parameter__c</fullName>
+    <label>Target Parameter</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sales Revenue Target</fullName>
+                <default>false</default>
+                <label>Sales Revenue Target</label>
+            </value>
+            <value>
+                <fullName>Marketing Lead Generation</fullName>
+                <default>false</default>
+                <label>Marketing Lead Generation</label>
+            </value>
+            <value>
+                <fullName>CTP &amp; In-clinic Branding</fullName>
+                <default>false</default>
+                <label>CTP &amp; In-clinic Branding</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

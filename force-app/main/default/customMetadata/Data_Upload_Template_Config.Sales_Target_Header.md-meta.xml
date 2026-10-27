@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Sales Target Header</label>
+    <protected>false</protected>
+    <values>
+        <field>Object_API_Name__c</field>
+        <value xsi:type="xsd:string">Sales_Target_Header__c</value>
+    </values>
+    <values>
+        <field>Object_Columns_Visible__c</field>
+        <value xsi:type="xsd:string">[&quot;Financial_year__c&quot;,&quot;SAP_Employee_ID__c&quot;,&quot;Employee_Name_from_SAP__c&quot;,&quot;Sales_Division__c&quot;,&quot;Zone_name__c&quot;,&quot;Team_or_Group_name__c&quot;]</value>
+    </values>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">Sales Target Header</value>
+    </values>
+    <values>
+        <field>Template_Type__c</field>
+        <value xsi:type="xsd:string">DEFAULT</value>
+    </values>
+</CustomMetadata>

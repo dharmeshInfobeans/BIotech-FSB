@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>International_Monthly_Incentives</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>User__c</columns>
+    <columns>Consumable_Incentive_Allocation__c</columns>
+    <columns>Financial_Year__c</columns>
+    <columns>Invoiced_Qty__c</columns>
+    <columns>Closed_Qty__c</columns>
+    <columns>Monthly_AOP__c</columns>
+    <columns>Product__c</columns>
+    <columns>Last_Payment_Due_Date__c</columns>
+    <columns>Payment_Completion_Date__c</columns>
+    <columns>Product_Incentive_Rate__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>User_Wise_Incentive_Distribution__c.International_Monthly_Incentive_Distribution</value>
+    </filters>
+    <label>International Monthly Incentives</label>
+</ListView>

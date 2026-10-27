@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>KRA Configuration</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>KRA Configurations</value>
+    </caseValues>
+    <layouts>
+        <layout>KRA Configuration Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Please fill Product 1 and Product 2 --></errorMessage>
+        <name>Product_1_and_Product_2_is_not_empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill Product 1 --></errorMessage>
+        <name>Product_1_is_not_empty</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill Target per Team Member --></errorMessage>
+        <name>Target_Per_Team_Member_is_not_Empty</name>
+    </validationRules>
+</CustomObjectTranslation>

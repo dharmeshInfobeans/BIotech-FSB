@@ -1,0 +1,82 @@
+<template>
+    <div class="scroll-container">
+        <lightning-card>
+            <div slot="title" class="slds-grid slds-wrap slds-grid_align-spread">
+                <span style="color: red; font-size: 0.9rem;">*</span><p>{title}</p>
+            </div>
+            <div style="border: 1px solid grey; overflow: auto;border-radius: 0.4rem;">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped custom-table">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col">{label.SR_NO_LABEL}</th>
+                        <th scope="col">{label.BRAND_NAME_LABEL}</th>
+                        <th scope="col">{label.ANNUAL_SALES_QTY_LABEL}</th>
+                        <th scope="col">{label.SHARE_LABEL}</th>
+                        <th scope="col">{label.DISTRIBUTOR_LABEL}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={brandMarketShareObj} for:item="row">
+                        <tr key={row.serialNo}>
+                            <td><strong>{row.serialNo}</strong></td>
+                            <td> 
+                                <lightning-input variant="label-hidden" disabled={disabled} data-id={row.serialNo} type="text" placeholder="Brand" name="brandName" value={row.brandName} onchange={handleOnchange}></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input variant="label-hidden" disabled={disabled} data-id={row.serialNo} type="number" step="0.01" placeholder="Qty" name="annualSales" value={row.annualSales} onchange={handleOnchange}></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input variant="label-hidden" disabled={disabled} data-id={row.serialNo} type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" placeholder="9.1" name="percentageShare" value={row.percentageShare} onchange={handleOnchange}></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input variant="label-hidden" disabled={disabled} data-id={row.serialNo} type="text" placeholder="Distributor" name="distributor" value={row.distributor} onchange={handleOnchange}></lightning-input>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            </div>
+
+        </lightning-card>
+    </div>
+</template>
+
+<!-- <template>
+    <div class="scroll-container">
+        <lightning-card title={title}>
+            <div style="border: 1px solid grey; overflow: auto;border-radius: 0.4rem;">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped custom-table">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col">Sr. No.</th>
+                        <th scope="col">Brand Name</th>
+                        <th scope="col">Annual Sales (Qty)</th>
+                        <th scope="col">% Share</th>
+                        <th scope="col">Distributor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={brandMarketShareObj} for:item="row" for:index="index">
+                        <tr key={row.id}>
+                            <td>{index}</td>
+                            <td> 
+                                <lightning-input variant="label-hidden" data-id={row.id} placeholder="Brand" name="brandName" value={row.brandName} onchange={handleOnchange} ></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input variant="label-hidden" data-id={row.id} placeholder="Qty" name="annualSales" value={row.annualSales} onchange={handleOnchange}></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input variant="label-hidden" data-id={row.id} placeholder="%" name="percentageShare" value={row.percentageShare} onchange={handleOnchange}></lightning-input>
+                            </td>
+                            <td>
+                                <lightning-input variant="label-hidden" data-id={row.id} placeholder="Distributor" name="distributor" value={row.distributor} onchange={handleOnchange}></lightning-input>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+            </div>
+
+        </lightning-card>
+    </div>
+</template> -->

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>User_Wise_Incentive_Distribution__c</fullName>
+    <label>User Wise Incentive Distribution</label>
+    <referenceTo>User_Wise_Incentive_Distribution__c</referenceTo>
+    <relationshipLabel>Consumable Incentive Distributions</relationshipLabel>
+    <relationshipName>Incentive_Distributions</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

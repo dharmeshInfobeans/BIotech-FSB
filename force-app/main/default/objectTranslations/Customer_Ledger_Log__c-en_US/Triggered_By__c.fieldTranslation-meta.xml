@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Triggered By --></label>
+    <name>Triggered_By__c</name>
+    <picklistValues>
+        <masterLabel>Batch</masterLabel>
+        <translation><!-- Batch --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manual</masterLabel>
+        <translation><!-- Manual --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Portal</masterLabel>
+        <translation><!-- Portal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SAP</masterLabel>
+        <translation><!-- SAP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Scheduler</masterLabel>
+        <translation><!-- Scheduler --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>System</masterLabel>
+        <translation><!-- System --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zoho</masterLabel>
+        <translation><!-- Zoho --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

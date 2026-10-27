@@ -1,0 +1,74 @@
+<aura:component
+    implements="flexipage:availableForRecordHome,force:lightningQuickActionWithoutHeader,force:hasRecordId,lightning:actionOverride"
+    access="global">
+
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="isOpen" type="Boolean" default="true"/>
+
+    <!-- Modal width override -->
+  <aura:html tag="style">
+    /* Desktop */
+    @media (min-width: 1024px) {
+        .slds-modal__container {
+            max-width: 70rem !important;
+            width: 70% !important;
+        }
+    }
+
+    /* Tablet */
+    @media (max-width: 1023px) {
+        .slds-modal__container {
+            max-width: 95% !important;
+            width: 95% !important;
+            margin: 0 auto;
+        }
+    }
+
+    /* Mobile */
+    @media (max-width: 600px) {
+        .slds-modal__container {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0;
+            border-radius: 0;
+        }
+    }
+</aura:html>
+
+
+    <!-- MODAL -->
+    <aura:if isTrue="{!v.isOpen}">
+        <section role="dialog"
+                 tabindex="-1"
+                 class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <!-- HEADER -->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon
+                        iconName="utility:close"
+                        class="slds-modal__close"
+                        onclick="{!c.closeModal}"
+                        alternativeText="Close"/>
+                    <h2 class="slds-text-heading_medium">
+                        Campaign Member
+                    </h2>
+                </header>
+
+                <!-- BODY -->
+                <div class="slds-modal__content slds-p-around_medium">
+                    <c:campaignMember
+                        recordId="{!v.recordId}"
+                        is-override="true"
+                        onclose="{!c.closeModal}"/>
+                </div>
+
+                <!-- FOOTER (optional) -->
+</div>
+        </section>
+
+        <!-- BACKDROP -->
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </aura:if>
+
+</aura:component>

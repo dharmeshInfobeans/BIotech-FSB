@@ -1,0 +1,48 @@
+/* ===== Base (Desktop default) ===== */
+.THIS .custom-container {
+    max-width: 72%;
+    width: 72%;
+}
+
+/* ===== Desktop (Large screens) ===== */
+@media (min-width: 1024px) {
+    .THIS .custom-container {
+        max-width: 60rem; /* ~960px */
+        width: 100%;
+    }
+}
+
+/* ===== Tablet ===== */
+@media (max-width: 1023px) {
+    .THIS .custom-container {
+        max-width: 90%;
+        width: 90%;
+    }
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
+
+    .THIS .custom-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
+    .THIS .custom-header {
+        padding: 0.75rem 1rem;
+    }
+
+    .THIS .custom-body {
+        padding: 0.75rem;
+        max-height: 85vh;
+        overflow-y: auto;
+    }
+}
+
+/* ===== Always scroll body ===== */
+.THIS .custom-body {
+    max-height: 75vh;
+    overflow-y: auto;
+}

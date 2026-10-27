@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Ce-Cis Approval is Pending Do You Want T --></label>
+    <name>Ce_Cis_Approval_is_Pending_Do_You_Want_T__c</name>
+</CustomFieldTranslation>

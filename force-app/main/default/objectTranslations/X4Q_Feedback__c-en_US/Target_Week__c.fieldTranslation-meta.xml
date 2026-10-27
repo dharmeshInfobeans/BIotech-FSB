@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Target Week --></label>
+    <name>Target_Week__c</name>
+    <picklistValues>
+        <masterLabel>Week - 1</masterLabel>
+        <translation><!-- Week - 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 10</masterLabel>
+        <translation><!-- Week - 10 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 11</masterLabel>
+        <translation><!-- Week - 11 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 12</masterLabel>
+        <translation><!-- Week - 12 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 13</masterLabel>
+        <translation><!-- Week - 13 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 14</masterLabel>
+        <translation><!-- Week - 14 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 15</masterLabel>
+        <translation><!-- Week - 15 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 16</masterLabel>
+        <translation><!-- Week - 16 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 17</masterLabel>
+        <translation><!-- Week - 17 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 18</masterLabel>
+        <translation><!-- Week - 18 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 19</masterLabel>
+        <translation><!-- Week - 19 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 2</masterLabel>
+        <translation><!-- Week - 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 20</masterLabel>
+        <translation><!-- Week - 20 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 21</masterLabel>
+        <translation><!-- Week - 21 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 22</masterLabel>
+        <translation><!-- Week - 22 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 23</masterLabel>
+        <translation><!-- Week - 23 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 24</masterLabel>
+        <translation><!-- Week - 24 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 25</masterLabel>
+        <translation><!-- Week - 25 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 26</masterLabel>
+        <translation><!-- Week - 26 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 27</masterLabel>
+        <translation><!-- Week - 27 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 28</masterLabel>
+        <translation><!-- Week - 28 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 29</masterLabel>
+        <translation><!-- Week - 29 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 3</masterLabel>
+        <translation><!-- Week - 3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 30</masterLabel>
+        <translation><!-- Week - 30 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 31</masterLabel>
+        <translation><!-- Week - 31 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 32</masterLabel>
+        <translation><!-- Week - 32 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 33</masterLabel>
+        <translation><!-- Week - 33 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 34</masterLabel>
+        <translation><!-- Week - 34 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 35</masterLabel>
+        <translation><!-- Week - 35 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 36</masterLabel>
+        <translation><!-- Week - 36 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 37</masterLabel>
+        <translation><!-- Week - 37 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 38</masterLabel>
+        <translation><!-- Week - 38 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 39</masterLabel>
+        <translation><!-- Week - 39 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 4</masterLabel>
+        <translation><!-- Week - 4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 40</masterLabel>
+        <translation><!-- Week - 40 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 41</masterLabel>
+        <translation><!-- Week - 41 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 42</masterLabel>
+        <translation><!-- Week - 42 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 43</masterLabel>
+        <translation><!-- Week - 43 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 44</masterLabel>
+        <translation><!-- Week - 44 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 45</masterLabel>
+        <translation><!-- Week - 45 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 46</masterLabel>
+        <translation><!-- Week - 46 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 47</masterLabel>
+        <translation><!-- Week - 47 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 48</masterLabel>
+        <translation><!-- Week - 48 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 49</masterLabel>
+        <translation><!-- Week - 49 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 5</masterLabel>
+        <translation><!-- Week - 5 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 50</masterLabel>
+        <translation><!-- Week - 50 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 51</masterLabel>
+        <translation><!-- Week - 51 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 52</masterLabel>
+        <translation><!-- Week - 52 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 6</masterLabel>
+        <translation><!-- Week - 6 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 7</masterLabel>
+        <translation><!-- Week - 7 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 8</masterLabel>
+        <translation><!-- Week - 8 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Week - 9</masterLabel>
+        <translation><!-- Week - 9 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

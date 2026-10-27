@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>BD_tracker_Record_Submission</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Stage Submittedq</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <actionName>BD_Tracker__c.BD_tracker_Record_Submission</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>myDecision2</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>BD_Tracker__c.BD_tracker_Record_Submission</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>BD_Tracker_Record_Deletion</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_3_A1</name>
+        <label>Stage Cancelled</label>
+        <locationX>300</locationX>
+        <locationY>200</locationY>
+        <actionName>BD_Tracker__c.BD_Tracker_Record_Deletion</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>myDecision4</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>BD_Tracker__c.BD_Tracker_Record_Deletion</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>BD_Tracker_Stage_Commercialization</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_5_A1</name>
+        <label>Stage Commercialization</label>
+        <locationX>500</locationX>
+        <locationY>200</locationY>
+        <actionName>BD_Tracker__c.BD_Tracker_Stage_Commercialization</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>myDecision6</targetReference>
+        </connector>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>BD_Tracker__c.BD_Tracker_Stage_Commercialization</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <processMetadataValues>
+            <name>emailAlertSelection</name>
+            <value>
+                <stringValue>BD_Tracker_Stage_Delay</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>myRule_7_A1</name>
+        <label>Stage Delay</label>
+        <locationX>700</locationX>
+        <locationY>200</locationY>
+        <actionName>BD_Tracker__c.BD_Tracker_Stage_Delay</actionName>
+        <actionType>emailAlert</actionType>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>BD_Tracker__c.BD_Tracker_Stage_Delay</nameSegment>
+    </actionCalls>
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision2</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Submitted</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision2</name>
+        <label>myDecision2</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision4</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_3</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_3_A1</targetReference>
+            </connector>
+            <label>Cancelled</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>2.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision4</name>
+        <label>myDecision4</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision6</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_5</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_5</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_5_A1</targetReference>
+            </connector>
+            <label>Commercialization</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>3.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision6</name>
+        <label>myDecision6</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_7</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_7</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_7_A1</targetReference>
+            </connector>
+            <label>Delay</label>
+        </rules>
+    </decisions>
+    <description>for stage submitted, cancelled,delay and commercialization</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>NOT(CONTAINS
+($UserRole.Name , &quot;RSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZDM&quot;)||
+CONTAINS
+($UserRole.Name , &quot;Domestic&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;CEO&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;RSM&quot;) ||
+CONTAINS
+($Profile.Name ,&quot;System Administrator&quot;)
+
+
+
+
+)  &amp;&amp;
+
+[BD_Tracker__c].isSubmitted__c  = True    &amp;&amp;
+[BD_Tracker__c].Month__c  = Text(Month(Today())) &amp;&amp;
+ISCHANGED([BD_Tracker__c].isSubmitted__c) 
+|| $UserRole.Name  = NULL</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZDM&quot;)||
+CONTAINS
+({!$UserRole.Name} , &quot;Domestic&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;CEO&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) ||
+CONTAINS
+({!$Profile.Name} ,&quot;System Administrator&quot;)
+
+
+
+
+)  &amp;&amp;
+
+{!myVariable_current.isSubmitted__c}  = True    &amp;&amp;
+{!myVariable_current.Month__c}  = Text(Month(Today())) &amp;&amp;
+ISCHANGED({!myVariable_current.isSubmitted__c}) 
+|| {!$UserRole.Name}  = NULL</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>NOT(CONTAINS
+($UserRole.Name , &quot;RSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZDM&quot;)||
+CONTAINS
+($UserRole.Name , &quot;Domestic&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;CEO&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;RSM&quot;) ||
+CONTAINS
+($Profile.Name ,&quot;System Administrator&quot;)
+
+
+
+
+)  &amp;&amp;
+
+ISPICKVAL([BD_Tracker__c].Stage__c,&apos;Cancelled&apos;) || $UserRole.Name  = NULL
+</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_3</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZDM&quot;)||
+CONTAINS
+({!$UserRole.Name} , &quot;Domestic&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;CEO&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) ||
+CONTAINS
+({!$Profile.Name} ,&quot;System Administrator&quot;)
+
+
+
+
+)  &amp;&amp;
+
+ISPICKVAL({!myVariable_current.Stage__c},&apos;Cancelled&apos;) || {!$UserRole.Name}  = NULL</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>NOT(CONTAINS
+($UserRole.Name , &quot;RSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZDM&quot;)||
+CONTAINS
+($UserRole.Name , &quot;Domestic&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;CEO&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;RSM&quot;) ||
+CONTAINS
+($Profile.Name ,&quot;System Administrator&quot;)
+
+
+
+
+)  &amp;&amp;
+
+ISPICKVAL([BD_Tracker__c].Stage__c,&apos;Commercialization&apos;) 
+|| $UserRole.Name  = NULL</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_5</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZDM&quot;)||
+CONTAINS
+({!$UserRole.Name} , &quot;Domestic&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;CEO&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) ||
+CONTAINS
+({!$Profile.Name} ,&quot;System Administrator&quot;)
+
+
+
+
+)  &amp;&amp;
+
+ISPICKVAL({!myVariable_current.Stage__c},&apos;Commercialization&apos;) 
+|| {!$UserRole.Name}  = NULL</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>NOT(CONTAINS
+($UserRole.Name , &quot;RSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZSM&quot;) || CONTAINS
+($UserRole.Name , &quot;ZDM&quot;)||
+CONTAINS
+($UserRole.Name , &quot;Domestic&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;CEO&quot;) ||
+CONTAINS
+($UserRole.Name , &quot;RSM&quot;) ||
+CONTAINS
+($Profile.Name ,&quot;System Administrator&quot;)
+)  ||
+
+(ISPICKVAL([BD_Tracker__c].PD_Status__c, &apos;Delay&apos; ) &amp;&amp;
+ ISCHANGED([BD_Tracker__c].PD_Status__c )  )||
+
+(ISPICKVAL([BD_Tracker__c].EV_Status__c , &apos;Delay&apos; ) &amp;&amp;
+ISCHANGED([BD_Tracker__c].EV_Status__c )) ||
+
+(ISPICKVAL([BD_Tracker__c].CM_Status__c , &apos;Delay&apos; ) &amp;&amp;
+ISCHANGED([BD_Tracker__c].CM_Status__c ) )|| 
+$UserRole.Name  = NULL</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_7</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZSM&quot;) || CONTAINS
+({!$UserRole.Name} , &quot;ZDM&quot;)||
+CONTAINS
+({!$UserRole.Name} , &quot;Domestic&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;CEO&quot;) ||
+CONTAINS
+({!$UserRole.Name} , &quot;RSM&quot;) ||
+CONTAINS
+({!$Profile.Name} ,&quot;System Administrator&quot;)
+)  ||
+
+(ISPICKVAL({!myVariable_current.PD_Status__c}, &apos;Delay&apos; ) &amp;&amp;
+ ISCHANGED({!myVariable_current.PD_Status__c} )  )||
+
+(ISPICKVAL({!myVariable_current.EV_Status__c} , &apos;Delay&apos; ) &amp;&amp;
+ISCHANGED({!myVariable_current.EV_Status__c} )) ||
+
+(ISPICKVAL({!myVariable_current.CM_Status__c} , &apos;Delay&apos; ) &amp;&amp;
+ISCHANGED({!myVariable_current.CM_Status__c} ) )|| 
+{!$UserRole.Name}  = NULL</expression>
+    </formulas>
+    <interviewLabel>BD_Tracker_Notification_Alert-6_InterviewLabel</interviewLabel>
+    <label>BD Tracker Notification Alert</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>BD_Tracker__c</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <startElementReference>myDecision</startElementReference>
+    <status>Active</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>BD_Tracker__c</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>BD_Tracker__c</objectType>
+    </variables>
+</Flow>

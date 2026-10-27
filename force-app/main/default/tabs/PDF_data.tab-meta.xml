@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
+    <frameHeight>600</frameHeight>
+    <hasSidebar>false</hasSidebar>
+    <label>PDF data</label>
+    <motif>Custom32: Factory</motif>
+    <url>file:///C:/Users/Hp/Downloads/Biotech%20Custom%20Lead%20form%20(1).pdf</url>
+    <urlEncodingKey>UTF-8</urlEncodingKey>
+</CustomTab>

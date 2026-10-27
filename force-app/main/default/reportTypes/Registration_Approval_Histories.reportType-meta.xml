@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ReportType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <baseObject>Registration_Approval_History__c</baseObject>
+    <category>other</category>
+    <deployed>true</deployed>
+    <description>Approval history records for Registration Requests</description>
+    <label>Registration Approval Histories</label>
+    <sections>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Name</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Action__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Stage__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>From_Status__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>To_Status__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Performed_By_Name__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Performed_Date__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>true</checkedByDefault>
+            <field>Comments__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Registration_Request__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Performed_By__c</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>CreatedDate</field>
+            <table>Registration_Approval_History__c</table>
+        </columns>
+        <masterLabel>Registration Approval Histories</masterLabel>
+    </sections>
+</ReportType>

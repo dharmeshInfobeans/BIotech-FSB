@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BD_History</fullName>
+    <fields>Activity_Stage__c</fields>
+    <fields>Activity_Weeks__c</fields>
+    <label>BD History</label>
+</CompactLayout>

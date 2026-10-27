@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Number of an SD business partner (D1) Di --></label>
+    <name>Number_of_an_SD_business_partner_D1_Di__c</name>
+</CustomFieldTranslation>

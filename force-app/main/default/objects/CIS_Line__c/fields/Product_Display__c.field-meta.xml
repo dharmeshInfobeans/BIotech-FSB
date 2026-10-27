@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Display__c</fullName>
+    <label>Product Display</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hydrophillic Spherical</fullName>
+                <default>false</default>
+                <label>Hydrophillic Spherical</label>
+            </value>
+            <value>
+                <fullName>Hydrophillic Aspheric</fullName>
+                <default>false</default>
+                <label>Hydrophillic Aspheric</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic multipiece</fullName>
+                <default>false</default>
+                <label>Hydrophobic multipiece</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic single piece Spherical</fullName>
+                <default>false</default>
+                <label>Hydrophobic single piece Spherical</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic single piece Aspheric</fullName>
+                <default>false</default>
+                <label>Hydrophobic single piece Aspheric</label>
+            </value>
+            <value>
+                <fullName>Hydrophhobic preloaded</fullName>
+                <default>false</default>
+                <label>Hydrophhobic preloaded</label>
+            </value>
+            <value>
+                <fullName>Toric</fullName>
+                <default>false</default>
+                <label>Toric</label>
+            </value>
+            <value>
+                <fullName>Multifocal</fullName>
+                <default>false</default>
+                <label>Multifocal</label>
+            </value>
+            <value>
+                <fullName>Multifocal Toric</fullName>
+                <default>false</default>
+                <label>Multifocal Toric</label>
+            </value>
+            <value>
+                <fullName>Phakic</fullName>
+                <default>false</default>
+                <label>Phakic</label>
+            </value>
+            <value>
+                <fullName>Phakic Toric</fullName>
+                <default>false</default>
+                <label>Phakic Toric</label>
+            </value>
+            <value>
+                <fullName>EDOF</fullName>
+                <default>false</default>
+                <label>EDOF</label>
+            </value>
+            <value>
+                <fullName>EDOF TORIC</fullName>
+                <default>false</default>
+                <label>EDOF TORIC</label>
+            </value>
+            <value>
+                <fullName>TRIFOCAL</fullName>
+                <default>false</default>
+                <label>TRIFOCAL</label>
+            </value>
+            <value>
+                <fullName>TRIFOCAL TORIC</fullName>
+                <default>false</default>
+                <label>TRIFOCAL TORIC</label>
+            </value>
+            <value>
+                <fullName>SECONDARY IOL</fullName>
+                <default>false</default>
+                <label>SECONDARY IOL</label>
+            </value>
+            <value>
+                <fullName>SKIN BOOSTERS</fullName>
+                <default>false</default>
+                <label>SKIN BOOSTERS</label>
+            </value>
+            <value>
+                <fullName>SKIN FILLERS</fullName>
+                <default>false</default>
+                <label>SKIN FILLERS</label>
+            </value>
+            <value>
+                <fullName>SKIN FILLERS (W/O LIDOCAINE)</fullName>
+                <default>false</default>
+                <label>SKIN FILLERS (W/O LIDOCAINE)</label>
+            </value>
+            <value>
+                <fullName>SKIN FILLERS (with LIDOCAINE)</fullName>
+                <default>false</default>
+                <label>SKIN FILLERS (with LIDOCAINE)</label>
+            </value>
+            <value>
+                <fullName>Single / Multiple Injection</fullName>
+                <default>false</default>
+                <label>Single / Multiple Injection</label>
+            </value>
+            <value>
+                <fullName>Single Injection</fullName>
+                <default>false</default>
+                <label>Single Injection</label>
+            </value>
+            <value>
+                <fullName>Multiple Injection</fullName>
+                <default>false</default>
+                <label>Multiple Injection</label>
+            </value>
+            <value>
+                <fullName>Xtense</fullName>
+                <default>false</default>
+                <label>Xtense</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

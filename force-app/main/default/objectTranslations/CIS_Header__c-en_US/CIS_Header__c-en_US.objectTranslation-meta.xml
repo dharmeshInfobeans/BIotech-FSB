@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>CIS Header</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>CIS Headers</value>
+    </caseValues>
+    <layouts>
+        <layout>CIS Header Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Product Category --></label>
+            <section>Product Category</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- BR --></label>
+        <name>BRAZIL</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- CO --></label>
+        <name>COLOMBIA</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Dermal --></label>
+        <name>Dermal</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- EG --></label>
+        <name>EGYPT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- FRANCE --></label>
+        <name>FRANCE</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- DE --></label>
+        <name>GERMANY</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IBERIA --></label>
+        <name>IBERIA</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- IN --></label>
+        <name>INDIA</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- MA --></label>
+        <name>MOROCCO</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- MOROCCO-EGYPT --></label>
+        <name>MOROCCO_EGYPT</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Ortho --></label>
+        <name>Ortho</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- POLAND --></label>
+        <name>POLAND</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- ES --></label>
+        <name>SPAIN</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- SWITZERLAND --></label>
+        <name>SWITZERLAND</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- TR --></label>
+        <name>TURKEY</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

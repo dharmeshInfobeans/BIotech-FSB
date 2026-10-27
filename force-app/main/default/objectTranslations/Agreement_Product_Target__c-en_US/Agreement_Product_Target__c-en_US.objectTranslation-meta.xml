@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Agreement Product Target</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Agreement Product Targets</value>
+    </caseValues>
+    <layouts>
+        <layout>Agreement Product Target Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Agreement Target Product record creation is not allowed for backup Agreement Product. --></errorMessage>
+        <name>TargetNotAllowedForBackAP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Target Start Date and End Date must be within the Agreement Start Date and End Date. Also, Start Date must not be after End Date. --></errorMessage>
+        <name>Validate_Target_Dates</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please select appropreate year based on StartDate of target record. --></errorMessage>
+        <name>Year_Should_be_the_same_as_EndDate</name>
+    </validationRules>
+</CustomObjectTranslation>

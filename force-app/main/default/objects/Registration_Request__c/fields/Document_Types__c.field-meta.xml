@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Types__c</fullName>
+    <description>Document types selected by the distributor during registration request submission.</description>
+    <label>Document Types</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ISO Certificate</fullName>
+                <default>false</default>
+                <label>ISO Certificate</label>
+            </value>
+            <value>
+                <fullName>GMP</fullName>
+                <default>false</default>
+                <label>GMP</label>
+            </value>
+            <value>
+                <fullName>FSC</fullName>
+                <default>false</default>
+                <label>FSC</label>
+            </value>
+            <value>
+                <fullName>IFU</fullName>
+                <default>false</default>
+                <label>IFU</label>
+            </value>
+            <value>
+                <fullName>Bio Compatibility Study</fullName>
+                <default>false</default>
+                <label>Bio Compatibility Study</label>
+            </value>
+            <value>
+                <fullName>Clinical Study</fullName>
+                <default>false</default>
+                <label>Clinical Study</label>
+            </value>
+            <value>
+                <fullName>QSD Registration</fullName>
+                <default>false</default>
+                <label>QSD Registration</label>
+            </value>
+            <value>
+                <fullName>LOA</fullName>
+                <default>false</default>
+                <label>LOA</label>
+            </value>
+            <value>
+                <fullName>CE Certificate</fullName>
+                <default>false</default>
+                <label>CE Certificate</label>
+            </value>
+            <value>
+                <fullName>Manufacturing License</fullName>
+                <default>false</default>
+                <label>Manufacturing License</label>
+            </value>
+            <value>
+                <fullName>Artwork</fullName>
+                <default>false</default>
+                <label>Artwork</label>
+            </value>
+            <value>
+                <fullName>DOC</fullName>
+                <default>false</default>
+                <label>DOC</label>
+            </value>
+            <value>
+                <fullName>Clinical Evaluation Report</fullName>
+                <default>false</default>
+                <label>Clinical Evaluation Report</label>
+            </value>
+            <value>
+                <fullName>Toxicity Report</fullName>
+                <default>false</default>
+                <label>Toxicity Report</label>
+            </value>
+            <value>
+                <fullName>Product Image</fullName>
+                <default>false</default>
+                <label>Product Image</label>
+            </value>
+            <value>
+                <fullName>POA</fullName>
+                <default>false</default>
+                <label>POA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

@@ -1,0 +1,43 @@
+<aura:component >
+    <aura:attribute name="readOnly" type="Boolean" default="false" />
+    <aura:attribute name="item" type="Object" />
+    <aura:attribute name="companyPicklistValues" type="List" />
+    <aura:attribute name="productPicklistValues" type="List" />
+     <aura:attribute name="currency" type="String" default="" />
+   
+    
+    <aura:attribute name="productOptions" type="List" />
+    <aura:attribute name="value" type="Integer" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:registerEvent name="CalculateTotal" type="c:CISEvent"/>
+    
+	<tr class="slds-hint-parent">
+        <td>
+            <lightning:buttonIcon class="removeBtn" iconName="utility:delete" variant="bare" onclick="{! c.clearValues }" alternativeText="Clear" />
+        </td>
+        <td scope="row">
+            <lightning:select disabled="{!v.readOnly}" label="Select Company" variant="label-hidden" value="{!v.item.company}">
+                <aura:iteration items="{!v.companyPicklistValues}" var="company">
+                    <option value="{!company.value}" text="{!company.label}"></option>
+                </aura:iteration>
+            </lightning:select>
+        </td>
+        <td scope="row">
+            <lightning:select disabled="{!v.readOnly}" label="Select Company" variant="label-hidden" value="{!v.item.product}">
+                <aura:iteration items="{!v.productPicklistValues}" var="product">
+                    <option value="{!product.value}" text="{!product.label}"></option>
+                </aura:iteration>
+            </lightning:select>
+        </td>
+        <td scope="row">
+            <lightning:input disabled="{!v.readOnly}" type="number" variant="label-hidden" value="{!v.item.surguries}" min="1" onchange="{!c.calculateValue}" />
+        </td>
+        <td scope="row">
+            <lightning:input disabled="{!v.readOnly}" type="number" variant="label-hidden" value="{!v.item.price}" min="1" onchange="{!c.calculateValue}" />
+        </td>
+        <td scope="row">
+            <lightning:formattedNumber value="{!v.item.value}" style="currency" currencyCode="{!v.currency}" minimumFractionDigits="0"/>
+        </td>
+    </tr>
+</aura:component>

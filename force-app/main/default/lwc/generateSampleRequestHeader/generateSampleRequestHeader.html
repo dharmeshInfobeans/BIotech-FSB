@@ -1,0 +1,396 @@
+<template>
+    <div if:false={isFileUploadOpen}>
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+            class={mainModalClass}>
+            <div class="slds-modal__container main_modal">
+                <button class="slds-button slds-button_icon slds-modal__close" onclick={handleClose}>
+                <lightning-icon icon-name='utility:close' alternative-text='close' size='small' title='close'></lightning-icon>
+<span class="slds-assistive-text">Cancel and close</span>
+</button>
+
+                <div class="slds-modal__header custom-modal-header">
+                    <div class="header-spacer"></div>
+                    <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">{labels.New_Sample_Request__c}
+                    </h1>
+                    <div class="header-action-slot">
+                        <template lwc:if={fileUploadMandatory}>
+                            <div class="upload-file-header-action">
+                                <button class={uploadFileButtonClass} onclick={handleOpenFileUpload}>
+                                    <lightning-icon icon-name="utility:upload" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                    {uploadButtonLabel}
+                                </button>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                    <!-- <div if:true={isSaving} class="spinner-class">
+                        <lightning-spinner alternative-text="Loading" size="medium" variant="brand">
+                        </lightning-spinner>
+                    </div> -->
+                    <div class="record-form-information">
+                        <div class="header-container">
+                            <div class="header-content-main">
+                                <h2 class="heading">{labels.Sample_Request_Information__c}
+
+                                    <span class="slds-badge slds-theme_inverse info-inline">
+                                 <!-- <lightning-icon icon-name="utility:info" size="x-small" class="slds-m-right_xx-small"></lightning-icon> -->
+                                        {system_var_1.opportunityName}
+                            </span>
+                                </h2>
+                            </div>
+                        </div>
+                        <lightning-record-edit-form object-api-name="Sample_Request_Header__c" onload={handleOnLoadForm}
+                            class="sampleRequestHeaderForm">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <template lwc:if={system_var_boolean.showSpinner}>
+                                    <div class="spinner-class">
+                                        <lightning-spinner alternative-text="Loading" size="medium" variant="brand">
+                                        </lightning-spinner>
+                                    </div>
+                                </template>
+                                <template lwc:else>
+                                    <div class="slds-col slds-large-size_6-of-12 ">
+                                        <!-- <lightning-combobox name="progress" label="Ship To Code" value={selectedSAPCode} options={shipToCodeOptions} placeholder="Select Ship To Code"  onchange={handleChange}>
+                                    </lightning-combobox> -->
+                                        <lightning-input label={labels.Bill_To__c} onchange={handleHeaderFields}
+                                            variant="label-stacked" value={system_var_1.billToCode} disabled="true">
+                                        </lightning-input>
+                                    </div>
+                                    <div class="slds-col slds-large-size_6-of-12 ">
+                                        <!-- <lightning-combobox name="progress" label="Ship To Code" value={selectedSAPCode} options={shipToCodeOptions} placeholder="Select Ship To Code"  onchange={handleChange}>
+                                    </lightning-combobox> -->
+                                        <!-- <lightning-input-field field-name="Ship_To_Code__c" onchange={handleHeaderFields}
+                                        variant="label-stacked" value={system_var_1.header.Ship_To_Code__c}>
+                                    </lightning-input-field> -->
+                                        <lightning-combobox label={labels.Ship_To__c} variant="label-stacked"
+                                            value={selectShipToAddress} placeholder="Select Account"
+                                            options={shipToAddress} onchange={handleShipChange}>
+                                        </lightning-combobox>
+                                    </div>
+                                    <div class="slds-col slds-large-size_12-of-12 remarks-container">
+                                        <lightning-input-field field-name="Remarks__c" onchange={handleHeaderFields}
+                                            rows="4" required="true" variant="label-stacked"
+                                            value={system_var_1.header.Remarks__c}>
+                                        </lightning-input-field>
+                                    </div>
+                                </template>
+
+                            </div>
+
+                        </lightning-record-edit-form>
+
+                    </div>
+
+                    <div class="record-form-line-items">
+                        <div class="header-container">
+                            <div class="header-content slds-modal__content">
+                                <h2 class="heading">{labels.Sample_Request_Line_Item__c}</h2>
+                                <lightning-button variant="brand" label={labels.Add_Line_Item__c} onclick={handleAddRow}>
+                                </lightning-button>
+
+                            </div>
+                        </div>
+                        <div class="slds-modal__content slds-table_edit_container slds-is-relative full-width-table">
+
+                            <table aria-multiselectable="true"
+                                class="slds-table slds-table_bordered slds-table_edit slds-table_cell-buffer  slds-table_resizable-cols"
+                                role="grid" aria-label="Example inline edit table">
+                                <thead>
+                                    <tr class="slds-line-height_reset">
+                                        <th class="slds-cell-fixed slds-text-align_center" scope="col"
+                                            style="width:3.75rem ">
+                                            {labels.Sr_No__c}
+                                            <div class="slds-truncate slds-assistive-text" title="Errors">Errors</div>
+                                        </th>
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:8.75rem">
+                                            <span class="slds-truncate" title="Brand">{labels.Product_Name__c}</span>
+                                        </th>
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:8.75rem">
+                                            <span class="slds-truncate" title="Product Model">{labels.Model__c}</span>
+                                        </th>
+                                        <!-- <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                        style="width:8.75rem">
+                                        <span class="slds-truncate" title="Spherical Power">Spherical Power</span>
+                                    </th> -->
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:8.75rem">
+                                            <span class="slds-truncate" title="Cylinder Power">{labels.Cylinder_Power__c}</span>
+                                        </th>
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:8.75rem">
+                                            <span class="slds-truncate" title="Axis">{labels.Axis__c}</span>
+                                        </th>
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:8.75rem">
+                                            <span class="slds-truncate" title="Brand">{labels.Diaptor__c}</span>
+                                        </th>
+
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:8.75rem">
+                                            <span class="slds-truncate" title="Brand">{labels.Quantity__c}</span>
+                                        </th>
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:3.75rem">
+                                            <span class="slds-truncate" title="Backup Lens">{labels.Backup__c}</span>
+                                        </th>
+                                        <th scope="col" class="slds-cell-fixed slds-text-align_center"
+                                            style="width:3.75rem">
+                                            <span class="slds-truncate" title="Backup Lens">{labels.Bilateral__c}</span>
+                                        </th>
+                                        <th class="slds-cell_action-mode" scope="col" style="width:3.25rem">
+                                            <div class="slds-truncate slds-assistive-text" title="Actions">Actions</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={showSampleList} for:item="row" dropdown-alignment="auto">
+
+                                        <tr key={row.key} aria-selected="false" class="slds-hint-parent">
+                                            <!-- <tr aria-selected="false" class="slds-hint-parent"> -->
+                                            <td class="slds-cell-edit slds-cell-error slds-cell_action-mode slds-text-align_center"
+                                                role="gridcell">
+
+                                                <span class="slds-row-number slds-text-body_small slds-text-color_weak slds-text-align_center"></span>
+                                            </td>
+
+
+                                            <td class="slds-cell-edit slds-cell_action-mode" role="gridcell"
+                                                data-label="Brand">
+                                                <c-combobox placeholder={labels.Select_Brand__c} variant="label-hidden"
+                                                    autocomplete="true" data-field="brand" dropdown-alignment="auto"
+                                                    data-id={row.key} data-label="productModel" options={brandOptions}
+                                                    value={row.brand} onchange={handleChange}
+                                                    disabled={row.disableBrand}>
+                                                </c-combobox>
+                                            </td>
+                                            <td class="slds-cell-edit slds-cell_action-mode" role="gridcell"
+                                                data-label="Product Model">
+                                                <c-combobox placeholder={labels.Select_Product_Model__c} variant="label-hidden"
+                                                    disabled={row.disableproductModelShow} dropdown-alignment="auto"
+                                                    autocomplete="true" data-id={row.key} data-field="productModel"
+                                                    data-label="cylinderPower" options={row.productModellist}
+                                                    value={row.productModel} onchange={handleChange}></c-combobox>
+                                            </td>
+                                            <!-- <td class="slds-cell-edit slds-cell_action-mode" role="gridcell">
+                                            <c-combobox placeholder="Select Spherical Power" variant="label-hidden"
+                                                disabled={row.disablesphericalPowerShow} data-id={row.key}
+                                                data-field="sphericalPower" data-label="cylinderPower"
+                                                autocomplete="true" options={row.sphericalPowerlist}
+                                                value={row.sphericalPower} onchange={handleChange}>
+                                            </c-combobox>
+                                        </td> -->
+                                            <td class="slds-cell-edit slds-cell_action-mode" role="gridcell"
+                                                data-label="Cylinder Power">
+                                                <c-combobox placeholder={labels.Select_Cylinder_Power__} variant="label-hidden"
+                                                    disabled={row.disablecylindricalPowerShow} data-id={row.key}
+                                                    data-field="cylinderPower" data-label="axis" autocomplete="true"
+                                                    options={row.cylindricalPowerlist} value={row.cylinderPower}
+                                                    onchange={handleChange}></c-combobox>
+                                            </td>
+                                            <td class="slds-cell-edit slds-cell_action-mode" role="gridcell"
+                                                data-label="Axis">
+                                                <c-combobox placeholder={labels.Select_Axis__c} variant="label-hidden"
+                                                    disabled={row.disableaxisAngleShow} data-id={row.key}
+                                                    data-field="axis" data-label="diaptor" autocomplete="true"
+                                                    options={row.axisAngleList} value={row.axis}
+                                                    onchange={handleChange}>
+                                                </c-combobox>
+                                            </td>
+                                            <td class="slds-cell-edit slds-cell_action-mode" role="gridcell"
+                                                data-label="Diaptor">
+                                                <c-combobox placeholder={labels.Select_Diaptor__c} variant="label-hidden"
+                                                    disabled={row.disablediaptorShow} data-id={row.key}
+                                                    data-field="diaptor" autocomplete="true" options={row.diaptorList}
+                                                    value={row.diaptor} onchange={handleChange}>
+                                                </c-combobox>
+                                            </td>
+
+                                            <td class="slds-cell-edit slds-cell_action-mode" role="gridcell"
+                                                data-label="Quantity">
+                                                <lightning-combobox style="width:100%" name="quantity"
+                                                    variant="label-hidden" value={row.commercialQuantity}
+                                                    placeholder={labels.Select_Quantity__c} options={quantityOptions}
+                                                    data-field="commercialQuantity" data-id={row.key}
+                                                    onchange={handleChange}
+                                                    disabled={row.disablecommercialQuantityshow}>
+                                                </lightning-combobox>
+                                            </td>
+                                            <td class="slds-cell_action-mode slds-text-align_center slds-p-around_none"
+                                                role="gridcell" data-label="Backup">
+                                                <div
+                                                    class="slds-grid slds-grid_align-center slds-grid_vertical-align-center">
+                                                    <template lwc:if={row.isBackupRow}>
+                                                        <span class="backup-label">{labels.Backup_Of_Row__c}{row.parentRowDisplay}</span>
+                                                    </template>
+                                                    <template lwc:else>
+                                                        <button class={row.backupBtnClass} data-id={row.key}
+                                                             disabled={row.disableBackupCheckBox} onclick={handleBackUp}>
+                                                        {row.backupBtnLabel}
+                                                            </button>
+                                                    </template>
+                                                </div>
+                                            </td>
+
+                                            <td class="action-col slds-text-align_center slds-align_absolute-center">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <div class="slds-checkbox">
+                                                            <input type="checkbox" name="options" id={row.key} data-id={row.key} checked={row.isBilateralChecked} disabled={row.disableBilateral} onchange={handleBilateralChange}/>
+                                                            <label class="slds-checkbox__label" for={row.key}>
+                        <span class="slds-checkbox_faux"></span>
+</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="action-col slds-text-align_center">
+                                                <button class="delete-btn" data-id={row.key} onclick={handleDeleteRow} title="Delete row">
+                                                 <lightning-icon icon-name="utility:delete" size="x-small" alternative-text="Delete"></lightning-icon>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="slds-modal__footer slds-grid slds-grid_align-center">
+                    <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={handleClose}>{labels.Cancel__c}</button>
+                    <template
+                        if:false={fileUploadMandatory}><button class="slds-button slds-button_brand" data-label="save" onclick={handleSave} disabled={isSaving}>{labels.Submit__c}</button></template>
+                    <template
+                        if:true={fileUploadMandatory}><button class="slds-button slds-button_brand" data-label="saveAndUploadFile"  onclick={handleSave} disabled={isSaving}>{labels.Submit__c}</button></template>
+                </div>
+            </div>
+        </section>
+        <!-- Limit Warning Confirmation Modal -->
+        <template if:true={showLimitWarningModal}>
+            <section role="dialog" tabindex="-1" aria-modal="true"
+                class="slds-modal slds-fade-in-open slds-modal_small">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header slds-theme_warning">
+                        <h1 class="slds-modal__title slds-hyphenate">
+                            {labels.Product_Limit_Reached__c}
+                        </h1>
+                    </div>
+                    <div class="slds-modal__content slds-p-around_medium slds-text-align_center">
+                        <lightning-icon icon-name="utility:warning" variant="warning" size="large"
+                            class="slds-m-bottom_small">
+                        </lightning-icon>
+                        <p class="slds-text-body_regular slds-m-top_small">
+                            {labels.Orthopaedics_Limit_Hit_Desc__c}
+                        </p>
+                        <p class="slds-text-body_regular slds-m-top_x-small">
+                            {labels.Proceed_Country_Admin_Approval_Desc__c}
+                        </p>
+                        <p class="slds-text-body_regular slds-m-top_small slds-text-color_weak">
+                            {labels.Do_You_Want_To_Continue__c}
+                        </p>
+                    </div>
+                    <div class="slds-modal__footer slds-grid slds-grid_align-center">
+                        <button class="slds-button slds-button_neutral"
+                    onclick={handleLimitWarningNo}>
+                   {labels.No_Cancel__c}
+                </button>
+                        <button class="slds-button slds-button_brand"
+                    onclick={handleLimitWarningYes}>
+                    {labels.Yes_Proceed__c}
+                </button>
+                    </div>
+                </div>
+            </section>
+        </template>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        <!-- <div if:true={isProductPromptOpen} class="demo-only" style="height:24rem">
+            <section role="dialog" tabindex="0" aria-modal="true" aria-labelledby="prompt-heading-id"
+                aria-describedby="prompt-message-wrapper" class="slds-modal slds-fade-in-open slds-modal_prompt">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header slds-text-align_center slds-border_bottom custom-header">
+                        <h1 class="slds-text-heading_medium slds-text-align_center" id="prompt-heading-id">
+                            Select Product
+                        </h1>
+                    </div>
+
+                    <div class="slds-modal__content slds-p-around_medium" style="padding-left:12px; padding-right:12px"
+                        id="prompt-message-wrapper">
+                        <div style="height: 300px;">
+                            <lightning-datatable key-field="Id" data={selectedProductData} columns={columns}
+                                max-row-selection="1" selected-rows={selectedRows}
+                                onrowselection={handleProductSelection}>
+                            </lightning-datatable>
+                        </div>
+                    </div>
+                    <div class="slds-modal__footer slds-grid slds-grid_align-center">
+                        <button class="slds-button slds-button_neutral"  onclick={closeProductPrompt}>Close</button>
+                    </div>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+        </div> -->
+    </div>
+    <div if:true={isFileUploadOpen} class="demo-only">
+        <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading"
+            class="slds-modal slds-fade-in-open">
+
+            <div class={fileUploadModalClass}>
+                <button class="slds-button slds-button_icon slds-modal__close" onclick={handleCloseFileUpload}>
+                <lightning-icon icon-name='utility:close' alternative-text='close' size='small' title='close'></lightning-icon>
+<span class="slds-assistive-text">Cancel and close</span>
+</button>
+                <!-- Modal Header -->
+                <div class="slds-modal__header slds-text-align_center slds-border_bottom custom-header">
+                    <h1 class="slds-text-heading_medium slds-text-align_center" id="prompt-heading-id1">
+                        Upload File
+                    </h1>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="slds-modal__content slds-p-around_large">
+
+                    <p class="slds-text-body_regular slds-m-bottom_medium">
+                        Upload documents related to this Sample Request.
+                        Supported formats: PDF, PNG, XLSX, CSV, JPG, JPEG.
+                    </p>
+
+                    <div class="slds-box slds-theme_default slds-p-around_medium">
+
+                        <lightning-input type="file" label="Select Files" name="fileUploader"
+                            accept={acceptedFormats} onchange={handleFileSelection} multiple>
+                        </lightning-input>
+
+                    </div>
+
+                    <template lwc:if={stagedFiles.length}>
+                        <ul class="staged-file-list slds-m-top_medium">
+                            <template for:each={stagedFiles} for:item="file" for:index="index">
+                                <li key={file.fileName} class="staged-file-item">
+                                    <lightning-icon icon-name="doctype:attachment" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                    <span class="staged-file-name">{file.fileName}</span>
+                                    <button class="staged-file-remove" data-index={index} onclick={handleRemoveStagedFile} title="Remove">
+                                        <lightning-icon icon-name="utility:close" size="xx-small" alternative-text="Remove"></lightning-icon>
+                                    </button>
+                                </li>
+                            </template>
+                        </ul>
+                    </template>
+
+                </div>
+
+                <!-- Modal Footer -->
+                <footer class="slds-modal__footer slds-grid slds-grid_align-center">
+                    <lightning-button variant="brand" label="Done" class="slds-m-left_small"
+                        onclick={handleCloseFileUpload}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+    </div>
+</template>

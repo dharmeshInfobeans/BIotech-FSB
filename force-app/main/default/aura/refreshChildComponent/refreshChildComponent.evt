@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="Event used to tell the parent to refresh" >
+  
+    <aura:attribute name="goButtonClick" type="boolean" default='true' />
+    
+</aura:event>

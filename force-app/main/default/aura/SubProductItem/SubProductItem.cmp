@@ -1,0 +1,74 @@
+<aura:component >
+    <aura:attribute name="subProductItem" type="object"/> 
+    <aura:attribute name="models" type="List"/> 
+    <aura:attribute name="minSpericalPowers" type="List"/> 
+    <aura:attribute name="maxSpericalPowers" type="List"/> 
+    
+    <aura:attribute name="codes" type="List"/> 
+    <aura:attribute name="modelsWithCodes" type="List"/>
+    <aura:attribute name="modelsWithPowerRange" type="List"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+   <aura:handler name="change" value="{!v.modelsWithPowerRange}" action="{!c.doInit}"/> 
+    <aura:method name="setModels"  action="{!c.doInit}" />  
+    <aura:attribute name="selectedModel" type="string"/> 
+    <aura:registerEvent name="subProdChangeEvnt" type="c:OrderProductRecordProvider"/>
+    <aura:registerEvent name="subProdDeleteEvnt" type="c:OrderProductRecordProvider"/>
+    <aura:attribute name="orderProduct" type="object"/>
+    <tr class="slds-hint-parent" >
+        <td>          
+            <div>
+                <span onclick="{!c.deleteSubProduct}">
+                    <lightning:icon class="slds-icon slds-icon_x-large slds-icon-text-default" size='small' iconName="utility:delete" />
+                </span>
+            </div>
+        </td> 
+        <th scope="row">
+            <div class="slds-truncate" title="{!v.subProductItem.ProductName}"> {!v.subProductItem.ProductName} </div>
+        </th>
+        <td role="gridcell">
+            <div class="slds-truncate" style="width:8.25rem" title="{!v.models}">
+            
+                <ui:inputSelect class="single slds-select"  aura:id='modelSelect' change="{!c.getCodes}">
+                    <aura:iteration items="{!v.models}" var="model">
+                        <ui:inputSelectOption text="{!model}"/>
+                    </aura:iteration>
+                </ui:inputSelect>                
+            </div>
+        </td>
+       
+        <td role="gridcell">
+            <!--          Introduce two new fields  -->
+            <div style="width:5rem">
+                <ui:inputSelect class="single slds-select"  aura:id='SphericalPower' change="{!c.powerChange}">
+                </ui:inputSelect>
+            </div>
+        </td>
+        <td role="gridcell">
+            <div style="width:5rem">
+                <ui:inputSelect class="single slds-select"  aura:id='CylindricalPower' change="{!c.cylendriclPowChange}">
+                </ui:inputSelect>
+            </div>        </td>
+        <td role="gridcell">
+            <div style="width:5rem">
+                <ui:inputSelect class="single slds-select"  aura:id='AxisAngle' change="{!c.axisAngleChange}">
+                </ui:inputSelect>
+            </div>        </td>
+        <td role="gridcell">
+            <div class="slds-truncate" style="width:8.25rem;top: -0.5rem;" title="{!v.subProductItem.Quantity}"></div>
+            <lightning:input type="number" style="width:8.25rem;top: -0.5rem;"  name="quantity" label=" " value="{!v.subProductItem.Quantity}" 
+                             min="1" onchange='{!c.onQuantityChange}'/>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate" style="width:8.25rem;top: -0.5rem;" title="{!v.subProductItem.FocQuantity}"></div>
+            <lightning:input type="number" style="width:8.25rem;top: -0.5rem;"  name="quantity" label=" " value="{!v.subProductItem.FocQuantity}" 
+                             min="1" onchange='{!c.onFocQuantityChange}'/>
+        </td>
+        
+        
+        <td role="gridcell">
+          <!--  {!v.subProductItem.TotalPrice}  -->
+        {!v.subProductItem.currencyCode}&nbsp; {!v.subProductItem.TotalPrice} <!-- <ui:outputCurrency value="{!v.subProductItem.TotalPrice}"/>  -->
+        </td>
+        
+    </tr> 
+</aura:component>

@@ -1,0 +1,21 @@
+.THIS .label-hidden > label {
+    display: none;
+}
+.THIS .btnClass{
+    cursor: pointer;
+    float:left;
+    margin-left:5px; 
+    padding-top:5px;
+    
+}
+.THIS.slds-spinner_container {  
+  z-index: 10000;
+  position: fixed;   
+}
+.THIS .rmBorder{
+    border:none;
+}
+.THIS .no-text-overflow {
+    white-space: normal;
+    word-wrap: break-word;
+}

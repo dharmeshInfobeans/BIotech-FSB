@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" access='global'>
+    <aura:attribute name="selectedPbe" type="object"/>
+    <aura:attribute name="selectedPbeList" type="list"/>
+</aura:event>

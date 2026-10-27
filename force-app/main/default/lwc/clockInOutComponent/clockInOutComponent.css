@@ -1,0 +1,30 @@
+.container {
+    
+    padding: 1rem;
+}
+.container-btn {
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 1rem;
+}
+
+.clock-in-button, .clock-out-button {
+    margin: 1rem;
+}
+
+.time-container {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .clock-in-button, .clock-out-button {
+        margin-bottom: 0;
+        margin-right: 1rem;
+        width: auto;
+    }
+}

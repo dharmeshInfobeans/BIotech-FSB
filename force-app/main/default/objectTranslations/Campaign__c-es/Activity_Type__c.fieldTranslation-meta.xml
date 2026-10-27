@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Activity Tipo</label>
+    <name>Activity_Type__c</name>
+    <picklistValues>
+        <masterLabel>CME</masterLabel>
+        <translation><!-- CME --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CONFERENCES</masterLabel>
+        <translation><!-- CONFERENCES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LIVE SURGERY</masterLabel>
+        <translation><!-- LIVE SURGERY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PAPER PRESENTATION</masterLabel>
+        <translation><!-- PAPER PRESENTATION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PHAKIC TRAINING-Level 1</masterLabel>
+        <translation><!-- PHAKIC TRAINING-Level 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PHAKIC TRAINING-Level 2</masterLabel>
+        <translation><!-- PHAKIC TRAINING-Level 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PHAKIC USER MEETING</masterLabel>
+        <translation><!-- PHAKIC USER MEETING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PHAKIC VIRTUAL LAB TRAINING</masterLabel>
+        <translation><!-- PHAKIC VIRTUAL LAB TRAINING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PRODUCT TRAINING</masterLabel>
+        <translation><!-- PRODUCT TRAINING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RTM</masterLabel>
+        <translation><!-- RTM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SYMPOSIUM</masterLabel>
+        <translation><!-- SYMPOSIUM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRADE BOOTH</masterLabel>
+        <translation><!-- TRADE BOOTH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRIO USER MEETING</masterLabel>
+        <translation><!-- TRIO USER MEETING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WEBINAR</masterLabel>
+        <translation><!-- WEBINAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WETLAB</masterLabel>
+        <translation><!-- WETLAB --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

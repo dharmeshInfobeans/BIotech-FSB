@@ -1,0 +1,7 @@
+<aura:event type="COMPONENT" description="by this event we are pass the selected sObject(lookup list record) in the parent component">
+    <aura:attribute name="recordByEvent" type="sObject"/>
+    <aura:attribute name="accountId" type="string"/>
+    <aura:attribute name="contactId" type="string"/>
+    <aura:attribute name = "iName" type = "string"/>
+    <aura:attribute name = "indexValue" type = "integer"/>
+</aura:event>

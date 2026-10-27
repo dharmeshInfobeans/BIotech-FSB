@@ -1,0 +1,254 @@
+<template>
+    <!------------------------------------------- ADMIN FORM ----------------------------------------->
+
+    <lightning-card class="main-card">
+
+        <div class="table-section">
+            <div class="section-header">Account Details</div>
+
+            <div class="table-row">
+                <div class="label">Account Name</div>
+                <div class="colon">:</div>
+                <div class="value">{account.accountName}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Ce-Cis / Phakic Rating</div>
+                <div class="colon">:</div>
+                <div class="value">{account.ceceisrating}/{account.phakic}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Mobile Number</div>
+                <div class="colon">:</div>
+                <div class="value">{account.mobile}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Email</div>
+                <div class="colon">:</div>
+                <div class="value">{account.email}</div>
+            </div>
+        </div>
+
+
+        <div class="table-section">
+            <div class="section-header">Address Details</div>
+
+            <div class="table-row">
+                <div class="label">Hospital Name</div>
+                <div class="colon">:</div>
+                <div class="value">{account.hospital}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Address</div>
+                <div class="colon">:</div>
+                <div class="value">{account.address}</div>
+            </div>
+        </div>
+
+
+        <!-- <div class="table-section">
+            <div class="section-header">Documents Uploaded</div>
+
+            <template if:true={files.length}>
+                <template for:each={files} for:item="file">
+                    <div key={file.documentId} class="table-row">
+                        <div class="label">{file.title}</div>
+                        <div class="colon">:</div>
+                        <div class="value link">
+
+                            <a data-id={file.documentId} onclick={handlePreview}>View</a>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={files.length}>
+                <div class="table-row">
+                    <div class="label">No files found for the given record ID.</div>
+                    <div class="colon">:</div>
+                    <div class="value link">View</div>
+                </div>
+            </template>
+        </div> -->
+
+        <div class="table-section">
+            <div class="section-header">Documents Uploaded</div>
+
+            <!-- Table Header -->
+            <div class="table-row header" style="display: flex; font-weight: bold; padding: 0.5rem 0;">
+                <div style="flex: 3;">Document</div>
+                <div style="flex: 2;">Document Number</div>
+                <div style="flex: 1;">Document View</div>
+            </div>
+
+            <!-- Table Body -->
+            <template if:true={files.length}>
+                <template for:each={files} for:item="file">
+                    <div key={file.documentId} class="table-row"
+                        style="display: flex; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid #eee;">
+
+                        <!-- Document Title -->
+                        <div style="flex: 3;">{file.title}</div>
+
+                        <!-- Document Number -->
+                        <div style="flex: 2;">{file.documentNumber}</div>
+
+                        <!-- View Action -->
+                        <div style="flex: 1;">
+                            <lightning-icon style="margin-right: 0.5rem;" icon-name='utility:preview'
+                                alternative-text='preview' size='x-small' title='preview'></lightning-icon>
+                            <a data-id={file.documentId} onclick={handlePreview}>View</a>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <!-- No files found -->
+            <template if:false={files.length}>
+                <div class="table-row" style="display: flex; padding: 0.5rem 0; color: #888;">
+                    <div style="flex: 3;">-</div>
+                    <div style="flex: 2;">-</div>
+                    <div style="flex: 1;">-</div>
+                </div>
+            </template>
+        </div>
+
+        <div class="table-section">
+            <div class="section-header">Requestor / Approver Comment</div>
+
+            <div class="table-row">
+                <div class="label">Approver 1 Comments</div>
+                <div class="colon">:</div>
+                <div class="value">{account.rsmComment}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Approver 2 Comments</div>
+                <div class="colon">:</div>
+                <div class="value">{account.zsmComment}</div>
+            </div>
+            <template if:true={adminapprove}>
+             <div class="table-row">
+                <div class="label">Admin Comments</div>
+                <div class="colon">:</div>
+                <div class="value">{adminReadOnlyComment}</div>
+            </div>
+            </template>
+
+            <!-- <div class="table-row">
+                <div class="label">GM NSM Comments</div>
+                <div class="colon">:</div>
+                <div class="value">{account.gmnsmComment}</div>
+            </div> -->
+
+        </div>
+        <template lwc:if={adminapprove}>
+
+            <div class="slds-p-around_small slds-m-top_medium">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th class="slds-text-align_left" scope="col" style="width: 35%;">
+                                <div class="slds-truncate" title="Document Title">Document Title</div>
+                            </th>
+                            <th class="slds-text-align_left" scope="col" style="width: 30%;">
+                                <div class="slds-truncate" title="Document Number">Document Number</div>
+                            </th>
+                            <th class="slds-text-align_center" scope="col" style="width: 35%;">
+                                <div class="slds-truncate" title="Upload File">Upload File</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={documentRows} for:item="doc">
+                            <tr key={doc.id}>
+                                <!-- Document Title -->
+                                <td data-label="Document Title" class="slds-text-align_left slds-cell-wrap">
+                                    <div title={doc.title}>
+                                        <strong>{doc.title}</strong>
+                                        <template if:true={doc.isRequired}>
+                                            <abbr class="slds-required" title="required">*</abbr>
+                                        </template>
+                                    </div>
+                                </td>
+
+                                <!-- Document Number -->
+                                <td data-label="Document Number" class="slds-text-align_left">
+                                    <lightning-input type="text" variant="label-hidden" label="Document Number"
+                                        placeholder="Enter document number" value={doc.documentNumber}
+                                        data-id={doc.id} required={doc.isRequired}
+                                        onchange={handleDocumentNumberChange}>
+                                    </lightning-input>
+                                </td>
+
+                                <!-- File Upload -->
+                                <td data-label="Upload File" class="slds-text-align_center">
+                                    <div class="slds-grid slds-grid_vertical-align-center slds-grid_align-center">
+                <lightning-input type="file" name={doc.id} accept={acceptedFormats}
+                    onchange={handleFileChange} multiple="false" class="slds-m-around_none">
+                </lightning-input>
+
+                <!-- Display original file name if freshly picked this session -->
+                <template if:true={doc.fileName}>
+                    <span class="slds-text-body_small slds-m-left_small slds-text-color_weak" title={doc.fileName}>
+                         {doc.fileName}
+                    </span>
+                </template>
+
+                <!-- Already has a file on the Account - no re-upload needed -->
+                <template if:true={doc.hasExistingFile}>
+                    <span class="slds-text-body_small slds-m-left_small slds-text-color_success" title="Already on file">
+                        <lightning-icon icon-name="utility:check" size="xx-small"></lightning-icon>
+                        Already on file
+                    </span>
+                </template>
+            </div>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+                <div style="margin-top: 1rem;text-align: end;">
+                    <!-- <p>Account ID: {getAccountId}</p> -->
+                    <lightning-button variant="brand" label="Re-Submit" title="Re-Submit" onclick={handleResubmit}
+                        disabled={resubmitDisabled} class="slds-m-left_x-small"></lightning-button>
+                </div>
+            </div>
+        </template>
+        <template lwc:else>
+               <div class="slds-grid slds-grid_vertical-align-center slds-p-around_small">
+            <!-- Left Panel: Label (40% width) -->
+            <div class="slds-size_6-of-12 slds-p-right_small">
+                <label class="slds-form-element__label slds-text-title_bold slds-text-heading_small" style="font-weight: 600;">
+                <abbr class="slds-required" title="required">*</abbr>
+                Selected Sales Team Mapping
+            </label>
+            </div>
+
+            <!-- Right Panel: Dropdown (60% width) -->
+            <div class="slds-size_6-of-12">
+                <lightning-combobox id="team-dropdown" name="teamMembers" label="User" variant="label-hidden"
+                    value={selectedUserId} placeholder="-- Select User --" options={userOptions}
+                    disabled=true>
+                </lightning-combobox>
+            </div>
+        </div>
+            <div class="approval-box">
+                <h2 class="approval-title">Comments</h2>
+
+                <lightning-textarea placeholder="Please enter comment." value={admincomments}
+                    onchange={handleCommentChange}>
+                </lightning-textarea>
+
+                <div class="button-group">
+                    <lightning-button variant="success" label="Approve" onclick={handleApprove}></lightning-button>
+                    <lightning-button variant="destructive" label="Reject" onclick={handleReject}></lightning-button>
+                </div>
+            </div>
+        </template>
+
+    </lightning-card>
+</template>

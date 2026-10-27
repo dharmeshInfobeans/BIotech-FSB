@@ -1,0 +1,8 @@
+<aura:event type="COMPONENT" description="Event template" >
+    <aura:attribute name="currentTab" type="String" />
+    <aura:attribute name="nextTab" type="String" />
+   <!-- <aura:attribute name="remTargetVal" type="Integer" />-->
+   <!-- <aura:attribute name="prodColId" type="String" />-->
+   <!-- <aura:attribute name="remQtyFromTarget" type="List" description="This List will hold remaining qty from target"/>-->
+
+</aura:event>

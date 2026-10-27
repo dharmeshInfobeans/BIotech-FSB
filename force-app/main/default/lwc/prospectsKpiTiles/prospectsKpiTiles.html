@@ -1,0 +1,13 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters_x-small slds-p-horizontal_small kpi-row">
+        <template for:each={tiles} for:item="tile">
+            <div key={tile.key} class="slds-col slds-size_1-of-2 slds-medium-size_1-of-6 slds-large-size_1-of-6 slds-p-vertical_x-small">
+                <div class={tile.cssClass}>
+                    <p class="tile-pct">{tile.pctText}</p>
+                    <p class="tile-label">{tile.label}</p>
+                    <p class="tile-value">{tile.value}</p>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

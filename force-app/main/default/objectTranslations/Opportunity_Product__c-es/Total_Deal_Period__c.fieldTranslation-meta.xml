@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Specify the total deal period in months. --></help>
+    <label>Período total del acuerdo</label>
+    <name>Total_Deal_Period__c</name>
+</CustomFieldTranslation>

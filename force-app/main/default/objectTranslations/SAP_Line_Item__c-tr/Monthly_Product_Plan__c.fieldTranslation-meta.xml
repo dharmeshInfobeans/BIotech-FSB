@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Aylık ürün planlaması</label>
+    <name>Monthly_Product_Plan__c</name>
+    <relationshipLabel>SAP Satır Öğesi</relationshipLabel>
+</CustomFieldTranslation>

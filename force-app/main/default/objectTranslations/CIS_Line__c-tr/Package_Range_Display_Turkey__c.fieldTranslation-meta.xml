@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Package Range Display Turkey --></label>
+    <name>Package_Range_Display_Turkey__c</name>
+    <picklistValues>
+        <masterLabel>0-2k</masterLabel>
+        <translation><!-- 0-2k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1000 - 1500</masterLabel>
+        <translation><!-- 1000 - 1500 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10k-12k</masterLabel>
+        <translation><!-- 10k-12k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>12k-14k</masterLabel>
+        <translation><!-- 12k-14k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>14k-16k</masterLabel>
+        <translation><!-- 14k-16k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1500 - 2000</masterLabel>
+        <translation><!-- 1500 - 2000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>16k-20k</masterLabel>
+        <translation><!-- 16k-20k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2000 - 4000</masterLabel>
+        <translation><!-- 2000 - 4000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>20k-25k</masterLabel>
+        <translation><!-- 20k-25k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>2k-4k</masterLabel>
+        <translation><!-- 2k-4k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4000 - 8000</masterLabel>
+        <translation><!-- 4000 - 8000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>4k-6k</masterLabel>
+        <translation><!-- 4k-6k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>500 - 1000</masterLabel>
+        <translation><!-- 500 - 1000 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>6k-8k</masterLabel>
+        <translation><!-- 6k-8k --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>8k-10k</masterLabel>
+        <translation><!-- 8k-10k --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

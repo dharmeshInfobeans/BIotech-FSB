@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Sales_Person__c</columns>
+    <columns>Employee_Name_from_SAP__c</columns>
+    <columns>SAP_Employee_ID__c</columns>
+    <columns>CURRENCY_ISO_CODE</columns>
+    <columns>Financial_year__c</columns>
+    <columns>Sales_Division__c</columns>
+    <columns>Zone_name__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

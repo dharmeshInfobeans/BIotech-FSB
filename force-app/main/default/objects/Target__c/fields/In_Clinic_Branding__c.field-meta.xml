@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>In_Clinic_Branding__c</fullName>
+    <label>In-Clinic Branding</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Activity_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PEL</fullName>
+                <default>false</default>
+                <label>PEL</label>
+            </value>
+            <value>
+                <fullName>Poster</fullName>
+                <default>false</default>
+                <label>Poster</label>
+            </value>
+            <value>
+                <fullName>Brochures</fullName>
+                <default>false</default>
+                <label>Brochures</label>
+            </value>
+            <value>
+                <fullName>Cataract Counselling Kit</fullName>
+                <default>false</default>
+                <label>Cataract Counselling Kit</label>
+            </value>
+            <value>
+                <fullName>Phakic Counselling Kit</fullName>
+                <default>false</default>
+                <label>Phakic Counselling Kit</label>
+            </value>
+            <value>
+                <fullName>Phakic Welcome Kit</fullName>
+                <default>false</default>
+                <label>Phakic Welcome Kit</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

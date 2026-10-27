@@ -1,0 +1,96 @@
+.THIS .slds-text-title_caps{
+    border-right:1px solid gainsboro;
+}
+.THIS .slds-text-title_caps1{
+    border-left:1px solid gainsboro;
+}
+.THIS .slds-text-week_caps{
+    background-color:#005693;
+    color:White;
+    border-top:1px solid white;
+}
+.THIS .slds-text-data_caps{
+    border-right:1px solid White;
+}
+.THIS .inputWidth{
+ margin-top:-40px;
+}
+.THIS .inputHeight{
+    height:41px;
+}
+.THIS .slds-text-border_caps{
+    border-right:1px solid cornflowerblue;
+}
+.THIS .slds-form-element__label{ display: none; visibility: hidden }
+.THIS .bgColor{
+    border-right:1px solid white;
+}
+
+
+.THIS .tblCls table {
+  position: relative;
+  /*width: 700px;*/
+
+  overflow: hidden;
+  border-collapse: collapse;
+}
+
+
+/*thead*/
+.THIS .tblCls thead {
+  position: relative;
+  display: block; /*seperates the header from the body allowing it to be positioned*/
+  /*width: 700px;*/
+  overflow: visible;
+}
+
+.THIS .tblCls thead th {
+
+  min-width: 120px;
+  height: 32px;
+
+}
+
+.THIS .tblCls thead th:nth-child(1) {/*first cell in the header*/
+  position: relative;
+  display: stickey; /*seperates the first cell in the header from the header*/
+  
+}
+.THIS .tblCls thead th:nth-child(2) {/*first cell in the header*/
+  position: relative;
+  display: stickey; /*seperates the first cell in the header from the header*/
+ 
+}
+
+
+
+
+
+/*tbody*/
+.THIS .tblCls tbody {
+  position: relative;
+  display: block; /*seperates the tbody from the header*/
+  /*width: 700px;*/
+  height: 239px;
+  overflow: scroll;
+}
+
+.THIS .tblCls tbody td {
+
+  min-width: 120px;
+  
+}
+
+.THIS .tblCls tbody tr td:nth-child(1) {  /*the first cell in each tr*/
+  position: relative;
+  display: stickey; /*seperates the first column from the tbody*/
+  /* height: 40px; */
+ 
+}
+
+.THIS .tblCls tbody tr td:nth-child(2) {  /*the first cell in each tr*/
+  position: relative;
+  display: stickey; /*seperates the first column from the tbody*/
+  height: 40px;
+ 
+}

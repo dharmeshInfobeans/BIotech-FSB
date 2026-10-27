@@ -1,0 +1,182 @@
+<!--
+@File Name          : searchCustomer.html
+@Description        : 
+@Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+@Group              : 
+@Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+@Last Modified On   : 11-19-2020
+@Modification Log   : 
+Ver       Date            Author      		    Modification
+1.0    2/2/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <div class="mainSearchCustomer" style="width:fit-content!important;">
+
+        <template if:true={showAccount}>
+            <template if:false={newCustomer}>
+                <div class="slds-m-around_medium">
+           <form>
+            <div class="slds-grid slds-wrap radioClass" >
+                 <div class="slds-col slds-size_4-of-12" >
+                    <input type="radio" name="editList" value="All" class="radioButtonClass" onclick={handleGetdata} checked>&nbsp;&nbsp;All
+                </div>
+                <div class="slds-col slds-size_4-of-12" >
+                    <input type="radio" name="editList" value="Lead" class="radioButtonClass" onclick={handleGetdata} >&nbsp;&nbsp;Lead
+                </div>
+                <div class="slds-col slds-size_4-of-12" >
+                    <input type="radio" name="editList" value="Account" class="radioButtonClass" onclick={handleGetdata}>&nbsp;&nbsp;Account
+                </div>
+            </div>
+           </form>
+
+
+                    <div class="slds-grid slds-gutters">
+                        <div class="slds-col slds-size_12-of-12">
+                            <span class="">
+                                <!-- <input type="search" placeholder="Search" onchange={handleKeyChange} class="searchBar"  value={searchKey}></input> -->
+                                <!-- <input type="submit" value="New" class="newIcon" onclick={handleNewClick} style="background:#f05e23"/> -->
+                                <template if:true={showAccountData}>
+                                <lightning-combobox name="Region" label={customlabels.Region} value={regionValue}
+                                    placeholder="Select Region" options={userRegionSelectList}
+                                    onchange={handleChangeRegionAndZone}>
+                                
+                                </lightning-combobox>
+                            </template>
+                            <template if:true={showAccountData}>
+                                <template if:true={showZone}>
+                                    <lightning-combobox name="Zone" label="Zone" value={zoneValue}
+                                        placeholder="Select Zone" options={userZoneSelectList}
+                                        onchange={handleChangeRegionAndZone}>
+                                    </lightning-combobox>
+                                </template>
+                            </template>
+                                <form>
+                                <!--   <div class="slds-grid slds-wrap radioClass" >
+                                        <div class="slds-col slds-size_6-of-12" >
+                                            <input type="radio" name="editList" value="Lead" class="radioButtonClass" onclick={handleGetdata}>&nbsp;&nbsp;Lead
+                                        </div>
+                                        <div class="slds-col slds-size_6-of-12" >
+                                            <input type="radio" name="editList" value="Account" class="radioButtonClass" onclick={handleGetdata}>&nbsp;&nbsp;Account
+                                        </div>
+                                    </div>--> 
+                                    <lightning-input type="search" label={labels.search_account__c}
+                                        onchange={handleKeyChange}></lightning-input>
+                                    <!--                                     <input type="text" name="focus" data-item="searchBar" required class="search-box"
+                                        placeholder="Search" onkeyup={handleKeyChange} />
+                                    <button class="close-icon" onclick={handleKeyChange} type="reset"></button> -->
+                                </form>
+                                <!-- <div class="search-wrapper">
+                        <form>
+                        <input type="text" name="focus" required class="search-box" placeholder="Enter search term" />
+                            <button class="close-icon" type="reset"></button>
+                        </form>
+                    </div> -->
+                            </span>
+                        </div>
+
+                        <span class="">
+                            <!-- <lightning-icon class="newIcon" icon-name="action:new" alternative-text="Approved"
+                                onclick={handleNewClick} size="x-small" style="background:rgb(39, 174, 230);">
+                            </lightning-icon> -->
+                            <!-- <input type="submit" value="New" class="newIcon" onclick={handleNewClick} style="background:#f05e23"/> -->
+                            <!--  <img class="newImg" src="https://cdn0.iconfinder.com/data/icons/social-messaging-ui-color-shapes/128/add-circle-blue-512.png" onclick={handleNewClick}/>  -->
+                        </span>
+                    </div>
+                </div>
+                <!-- <div class="slds-align_absolute-center slds-m-around_small">
+                    <template for:each={options} for:item="item">
+                        <fieldset key={item.value} style="display: block; float: left;">
+                            <div class="slds-form-element__control">
+                                <span class="slds-radio">
+                                    <input name="radiogroup" id={item.value} type="radio" value={item.value} checked ={item.checked} if:true={item.checked}  onchange={handleChange} />
+                                    <input name="radiogroup" id={item.value} type="radio" value={item.value} if:false={item.checked}  onchange={handleChange} />
+                                    <label class="slds-radio__label" for={item.value}>
+                                        <span class="slds-radio_faux"></span>
+                                        <span class="slds-form-element__label">{item.label}</span>
+                                    </label>
+                                </span>
+                            </div>
+                        </fieldset>
+                    </template>
+                </div>
+                 -->
+
+
+
+
+                <div class="customerCards">
+                    <div
+                        class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                        <lightning-layout multiple-rows="true" style="place-content:space-evenly!important;">
+                            <lightning-layout-item size="12" small-device-size="6" medium-device-size="4"
+                                large-device-size="3" padding="around-small" style="width:405px;">
+                                <div class="slds-p-horizontal_small cards" data-card="Leave" onclick={cardClick}>
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p style="font-size:larger;font-weight: 900;">{labels.Leave__c}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </lightning-layout-item>
+                            <lightning-layout-item size="12" small-device-size="6" medium-device-size="4"
+                                large-device-size="3" padding="around-small" style="width:405px;">
+                                <div class="slds-p-horizontal_small cards" data-card="Holiday" onclick={cardClick}>
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p style="font-size:larger;font-weight: 900;">{labels.Holiday__c}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </lightning-layout-item>
+                            <!-- <lightning-layout-item size="12" small-device-size="6" medium-device-size="4"
+                                large-device-size="3" padding="around-small" style="width:405px;">
+                                <div class="slds-p-horizontal_small cards" data-card="Out of office"
+                                    onclick={cardClick}>
+                                    <div class="slds-media">
+                                        <div class="slds-media__figure">
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p style="font-size:larger;font-weight: 900;">{labels.Out_Of_Office__c}</p>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </lightning-layout-item> -->
+                        </lightning-layout>
+                    </div>
+
+                    <div
+                        class="slds-box slds-p-around_none slds-m-top_x-small slds-m-bottom_medium slds-m-horizontal_none">
+                        <lightning-layout multiple-rows style="place-content:space-evenly!important;">
+                            <template for:each={accounts} for:item="account">
+                                <!-- <lightning-layout-item key={account.Id} size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small" class="layoutItem"> -->
+                                <c-customer-card key={account.Id} account={account} selectedval={selectedAcc}
+                                    labels={labels} region={regionValue}>
+                                </c-customer-card>
+
+                                <!-- </lightning-layout-item> -->
+                            </template>
+                            <!-- </lightning-layout> -->
+                        </lightning-layout>
+                    </div>
+
+
+                </div>
+
+
+                <template if:true={noResult}>
+                    <p style="color:white; text-align: center; font-size: large;">No Record Found for {searchKey}</p>
+                </template>
+            </template>
+
+        </template>
+
+
+    </div>
+</template>

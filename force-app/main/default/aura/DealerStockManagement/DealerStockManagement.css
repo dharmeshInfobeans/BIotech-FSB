@@ -1,0 +1,94 @@
+.THIS .headingWidth
+{
+    min-width:5rem;
+    max-width:5rem;
+}
+.THIS .productnameHeadingWidth
+{
+    min-width:18.4rem;
+}
+.THIS .ProductNameWidth
+{
+    width:5rem;
+}
+.THIS #horizontal-fix1{
+    position: sticky;
+    left: 0px;
+    top: 0px;
+    z-index: 3;
+    bottom:5rem;
+}
+.THIS #horizontal-fix2{
+    position: sticky;
+    left: 7rem;
+    top:0px;
+    z-index: 3;
+     bottom:5rem;
+   
+}
+.THIS .table-header-row1-modal {
+    position: sticky;
+    top: 0px; 
+    left: 0px;
+    Z-INDEX: 3; 
+     bottom:5rem;
+     text-align: center;
+    
+    
+  /*  background: #63AC1C;*/
+    /* border-left: 1px solid black;
+    border-right: 1px solid black; */
+}
+.THIS .table-header-row2-modal {
+    position: sticky;
+    top: 0px; 
+    bottom:5rem;
+    left: 7rem;
+    Z-INDEX: 3; 
+ 
+}
+.THIS .table-header-row3-modal{
+      position: sticky;
+    top: 0px; 
+     bottom:5rem;
+    font-size: 11px;
+     /*Z-INDEX: 1; */
+}
+
+.THIS .tableProps
+{
+    border: "1";
+}
+
+.THIS .headingColors
+{
+    background-color: lightgray;
+    height:1.5rem;
+}
+
+.THIS .PlaceOrder_Top{
+    top: 1.5rem;
+    left:-34.5rem;   /* -2rem;*/
+    width:10.6rem;
+}
+
+.THIS .layoutItem{
+    padding-top: 0rem;
+        top: 1.0rem;
+
+}
+
+.THIS .accSelection{
+    width: 23rem;
+}
+
+.THIS .rowHeight{
+    height: 3rem;
+}
+
+.THIS .modalAlignment{
+    top:9rem;
+    width:3rem;
+    left:29rem;    
+    
+}

@@ -1,0 +1,20 @@
+<template>
+    <div class="map-container">
+        <template if:true={hasMarkers}>
+            <lightning-map
+                map-markers={mapMarkers}
+                markers-title="Visit Locations"
+                zoom-level={zoomLevel}
+                center={mapCenter}
+                options={mapOptions}
+                selected-marker-value={_selectedMarkerValue}
+                list-view="hidden">
+            </lightning-map>
+        </template>
+        <template if:false={hasMarkers}>
+            <div class="loading-container">
+                <lightning-spinner alternative-text="Loading map" size="medium"></lightning-spinner>
+            </div>
+        </template>
+    </div>
+</template>

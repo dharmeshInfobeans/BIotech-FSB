@@ -1,0 +1,210 @@
+<!-- sldsValidatorIgnore -->
+<template>
+    <div class="slds-card" style="margin-bottom: 0px; !important">
+        <!-- <div class="container"> -->
+        <div class="slds-media__body">
+            <h2 class="slds-card__header-title">
+                <span class="slds-p-top_medium slds-p-left_medium">Customer Ledger</span>
+            </h2>
+        </div>
+        <lightning-layout size="12" multiple-rows="true">
+            <!-- <div class="box"> -->
+            <lightning-layout-item size="4" style="align-self: center;">
+                <div class="slds-form-element searchTextBoxClass">
+                    <!-- <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right"> -->
+                    <!-- <lightning-icon size="x-small"
+                            class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"
+                            icon-name="utility:search"></lightning-icon> -->
+                    <lightning-input variant="label-hidden" type="text" id="text-input-id-1"
+                        placeholder="Search this list" onchange={searchText}
+                        onkeypress={handleKeyPress}></lightning-input>
+                    <!-- </div> -->
+                    <lightning-button-icon class="slds-m-left_x-small" variant="brand" onclick={handleSearch}
+                        icon-name="utility:search" alternative-text="Settings" title="Settings"></lightning-button-icon>
+                </div>
+            </lightning-layout-item>
+
+            <!-- </div> -->
+            <!-- <div class="box"> -->
+            <lightning-layout-item size="4">
+                <lightning-layout size="12">
+                    <lightning-layout-item size="4">
+                        <lightning-input type="date" name="fromDate" data-name="fromDate" label="From Date"
+                            onchange={serachFromDateFunc}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" style="padding-left: 7px;">
+                        <lightning-input type="date" name="toDate" data-name="toDate" label="To Date"
+                            onchange={serachToDateFunc}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="4" class="buttoncls">
+                        <!-- <lightning-button variant="brand" label="Search" title="Primary action" onclick={handleClick} class="slds-m-left_x-small"></lightning-button> -->
+                        <lightning-button style="margin-left: 7px;" class="buttoncls" label="Fetch Ledger"
+                            onclick={showCustomer} variant="brand"></lightning-button>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-layout-item>
+            <!-- </div> -->
+            <!-- <div class="box"> -->
+            <lightning-layout-item size="4">
+                <!-- <lightning-button style="float: left;" class="buttoncls" label="Fetch Ledger" onclick={showCustomer} variant="brand"></lightning-button> -->
+                <!-- </div> -->
+            </lightning-layout-item>
+        </lightning-layout>
+        <!-- </div> -->
+        <!-- <div>
+            <lightning-layout size="12">
+                <lightning-layout size="12">
+
+                </lightning-layout>
+
+                <lightning-layout size="12">
+
+                </lightning-layout>
+            </lightning-layout>
+
+        </div> -->
+        <div class="slds-grid slds-gutters">
+            <div class="slds-col">
+                <span></span>
+            </div>
+            <!-- <div class="slds-col">
+                <span>
+                </span>
+            </div> -->
+        </div>
+        <!-- <br /> -->
+        <div class="tablecontainer " onscroll={handleScroll}>
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered ">
+                <thead style="position: sticky; top: 0; z-index: 4; background-attachment: fixed;">
+                    <tr class="slds-line-height_reset">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Row Number">#</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate">
+                                <lightning-input onchange={allSelected} type="checkbox"></lightning-input>
+                            </div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Name">Name</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Category">Category</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="SAP Code">SAP Code</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="CE-CIS Rating">CE-CIS Rating</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Phakic Rating">Phakic Rating</div>
+                        </th>
+                        <th class="" scope="col">
+                            <div class="slds-truncate" title="Phone">Phone</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={data} for:item="cust" for:index="index">
+                        <tr key={cust.Id}>
+                            <th scope="col">
+                                <div>{cust.index}</div>
+                            </th>
+                            <th scope="col">
+                                <div>
+                                    <lightning-input type="checkbox" value={cust.Name} data-id={cust.Id}
+                                        data-pickval={cust.categoryOptionVal} data-sapcode={cust.SAP_Code__c}
+                                        data-companycode={cust.Company_Code__c}></lightning-input>
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div>{cust.Name}</div>
+                            </th>
+                            <th scope="col">
+                                <div>
+                                    <lightning-combobox data-key={cust.Id} name="category" variant="label-hidden"
+                                        value={cust.categoryOptionVal} placeholder="Select Category"
+                                        options={categoryOption} onchange={handleChange}>
+                                    </lightning-combobox>
+                                </div>
+                            </th>
+                            <th scope="col">
+                                <div>{cust.SAP_Code__c}</div>
+                            </th>
+                            <th scope="col">
+                                <div>{cust.CE_CIS_Rating__c}</div>
+                            </th>
+                            <th scope="col">
+                                <div>{cust.Phakic_Rating__c}</div>
+                            </th>
+                            <th scope="col">
+                                <div>
+                                    <lightning-formatted-phone value={cust.Phone}></lightning-formatted-phone>
+                                </div>
+                            </th>
+                            <!-- <th scope="col">
+                                <div>
+                                    <lightning-formatted-email value={con.Email}></lightning-formatted-email>
+                                </div>
+                            </th> -->
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+        <template if:true={showLoader}>
+            <div class="loader">Loading...</div>
+        </template>
+        <!--
+            This modal box used to show the selected Customer
+        -->
+
+        <!-- <div if:true={selectedCons}> -->
+        <template if:true={bShowModal}>
+            <section aria-describedby="modal-content-id-1" aria-labelledby="modal-heading-01" aria-modal="true"
+                class="slds-modal slds-fade-in-open" role="dialog" tabindex="-1">
+                <div class="slds-modal__container">
+                    <!-- modal header start -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                            onclick={closeModal} title="Close">
+                            <lightning-icon alternative-text="close" icon-name="utility:close" size="small"
+                                variant="inverse"></lightning-icon>
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 class="slds-text-heading_medium slds-hyphenate" id="modal-heading-01">Selected Customer
+                            Records</h2>
+                    </header>
+                    <!-- modal body start -->
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <template for:each={selectedCons} for:item="con">
+                            <dl class="slds-list_horizontal slds-wrap" if:true={con.Id} key={con.Id}>
+                                <dt class="slds-item_label slds-truncate" title="Name">Customer Name:</dt>
+                                <dd class="slds-item_detail slds-truncate">{con.Name}</dd>
+                                <dt class="slds-item_label slds-truncate" title="Id">Customer Id:</dt>
+                                <dd class="slds-item_detail slds-truncate">{con.Id}</dd>
+                                <dt class="slds-item_label slds-truncate" title="Id">Customer Category:</dt>
+                                <dd class="slds-item_detail slds-truncate">{con.Category}</dd>
+                                <dt class="slds-item_label slds-truncate" title="Id">SAP Code:</dt>
+                                <dd class="slds-item_detail slds-truncate">{con.sapcode}</dd>
+                                <dt class="slds-item_label slds-truncate" title="Id">From Date: </dt>
+                                <dd class="slds-item_detail slds-truncate">{con.fromDate}</dd>
+                                <dt class="slds-item_label slds-truncate" title="Id">To Date: </dt>
+                                <dd class="slds-item_detail slds-truncate">{con.toDate}</dd>
+                                <hr>
+                            </dl>
+                        </template>
+
+                    </div>
+                    <!-- modal footer start-->
+                    <footer class="slds-modal__footer">
+                        <button class="slds-button slds-button_neutral" onclick={closeModal}>Cancel</button>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </template>
+        <!-- </div> -->
+    </div>
+</template>

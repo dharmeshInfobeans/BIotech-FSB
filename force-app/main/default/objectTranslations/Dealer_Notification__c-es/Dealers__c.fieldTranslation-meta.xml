@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Dealers --></label>
+    <name>Dealers__c</name>
+    <picklistValues>
+        <masterLabel>ABC Medical</masterLabel>
+        <translation><!-- ABC Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AV Medical</masterLabel>
+        <translation><!-- AV Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AV Medical. (H)</masterLabel>
+        <translation><!-- AV Medical. (H) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Acendis Aesthetics GmbH</masterLabel>
+        <translation><!-- Acendis Aesthetics GmbH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Adrialine D.O.O.</masterLabel>
+        <translation><!-- Adrialine D.O.O. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Atradis</masterLabel>
+        <translation><!-- Atradis --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOTECH HEALTHCARE COLOMBIA SAS</masterLabel>
+        <translation><!-- BIOTECH HEALTHCARE COLOMBIA SAS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOTECH VISION CARE OFTALMOLOGIA BRAZIL</masterLabel>
+        <translation><!-- BIOTECH VISION CARE OFTALMOLOGIA BRAZIL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Trading</masterLabel>
+        <translation><!-- Bio Trading --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bionspharma Lab SL</masterLabel>
+        <translation><!-- Bionspharma Lab SL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biotech Germany Healthcare GMBH</masterLabel>
+        <translation><!-- Biotech Germany Healthcare GMBH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biotech UK Healthcare Limited</masterLabel>
+        <translation><!-- Biotech UK Healthcare Limited --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Biotech Visioncare San.ve Tic A.S.</masterLabel>
+        <translation><!-- Biotech Visioncare San.ve Tic A.S. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Blisscare</masterLabel>
+        <translation><!-- Blisscare --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CASTOR Slovakia, s.r.o.</masterLabel>
+        <translation><!-- CASTOR Slovakia, s.r.o. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CLARTE S.A &quot;LAMAISON MEDICAL&quot;</masterLabel>
+        <translation><!-- CLARTE S.A &quot;LAMAISON MEDICAL&quot; --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Compagnia italiana Oftalmologica S.C.A.R.L.</masterLabel>
+        <translation><!-- Compagnia italiana Oftalmologica S.C.A.R.L. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Curamed</masterLabel>
+        <translation><!-- Curamed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cyprus Pharmaceuticals Organization Ltd</masterLabel>
+        <translation><!-- Cyprus Pharmaceuticals Organization Ltd --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DROGUERÍA ROSSINI E.I.R.L</masterLabel>
+        <translation><!-- DROGUERÍA ROSSINI E.I.R.L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Dr Rosefid Medizinprodukte</masterLabel>
+        <translation><!-- Dr Rosefid Medizinprodukte --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ETERNALIZE MEDICAL LTD</masterLabel>
+        <translation><!-- ETERNALIZE MEDICAL LTD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Experts Medical Supplies Est.</masterLabel>
+        <translation><!-- Experts Medical Supplies Est. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FE-Group SRL</masterLabel>
+        <translation><!-- FE-Group SRL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>G E N C O,S.A.</masterLabel>
+        <translation><!-- G E N C O,S.A. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Head Medical</masterLabel>
+        <translation><!-- Head Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IOL Expert GmbH + Co. KG</masterLabel>
+        <translation><!-- IOL Expert GmbH + Co. KG --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>International Pioneers Co. (H)</masterLabel>
+        <translation><!-- International Pioneers Co. (H) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>International Pioneers Co. (IPC)</masterLabel>
+        <translation><!-- International Pioneers Co. (IPC) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jack Pharma Inc.</masterLabel>
+        <translation><!-- Jack Pharma Inc. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>L&amp;D Corporation</masterLabel>
+        <translation><!-- L&amp;D Corporation --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LASERMED - Zentrum fur ophthalmologische Laser-Technoloie Gmbh</masterLabel>
+        <translation><!-- LASERMED - Zentrum fur ophthalmologische Laser-Technoloie Gmbh --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lenses Grup</masterLabel>
+        <translation><!-- Lenses Grup --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Maesang Global Co., Ltd.</masterLabel>
+        <translation><!-- Maesang Global Co., Ltd. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mediapharm Ltd.</masterLabel>
+        <translation><!-- Mediapharm Ltd. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Medigrup Jorjia LLC</masterLabel>
+        <translation><!-- Medigrup Jorjia LLC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mid-Optic Limited</masterLabel>
+        <translation><!-- Mid-Optic Limited --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Midi Medical</masterLabel>
+        <translation><!-- Midi Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Novalis</masterLabel>
+        <translation><!-- Novalis --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPHTHALMO Pro Gmbh</masterLabel>
+        <translation><!-- OPHTHALMO Pro Gmbh --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIQUE DISTRIBUTION</masterLabel>
+        <translation><!-- OPTIQUE DISTRIBUTION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oftal-C D.o.o.</masterLabel>
+        <translation><!-- Oftal-C D.o.o. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Oftamedica</masterLabel>
+        <translation><!-- Oftamedica --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ophthalcom C.A.</masterLabel>
+        <translation><!-- Ophthalcom C.A. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optica Vietnam</masterLabel>
+        <translation><!-- Optica Vietnam --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optiones s.r.l.</masterLabel>
+        <translation><!-- Optiones s.r.l. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optotech Medical Sp. z o.o. Sp. k.</masterLabel>
+        <translation><!-- Optotech Medical Sp. z o.o. Sp. k. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PROTRIEM SPOL. S.R.O.</masterLabel>
+        <translation><!-- PROTRIEM SPOL. S.R.O. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Peroxidos Farmaceuticos S.A.</masterLabel>
+        <translation><!-- Peroxidos Farmaceuticos S.A. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pharma Care Drug Store</masterLabel>
+        <translation><!-- Pharma Care Drug Store --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pharmagen CZ</masterLabel>
+        <translation><!-- Pharmagen CZ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pharmatech Chile Sa</masterLabel>
+        <translation><!-- Pharmatech Chile Sa --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premier Internacional S.R.L</masterLabel>
+        <translation><!-- Premier Internacional S.R.L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Proveedora De Servicios S.A. (Servicesa)</masterLabel>
+        <translation><!-- Proveedora De Servicios S.A. (Servicesa) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pt. Mandara Medika Perkasa</masterLabel>
+        <translation><!-- Pt. Mandara Medika Perkasa --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Quantum Medical Ltd</masterLabel>
+        <translation><!-- Quantum Medical Ltd --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RELIANCE MEDICAL SDN. BHD</masterLabel>
+        <translation><!-- RELIANCE MEDICAL SDN. BHD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rephachem Medical</masterLabel>
+        <translation><!-- Rephachem Medical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SARL OPTIQUE DISTRIBUTION ALGERIE</masterLabel>
+        <translation><!-- SARL OPTIQUE DISTRIBUTION ALGERIE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SIFI S.p.A.</masterLabel>
+        <translation><!-- SIFI S.p.A. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Shariket Alkhayar Alawal</masterLabel>
+        <translation><!-- Shariket Alkhayar Alawal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synergolab</masterLabel>
+        <translation><!-- Synergolab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TESS (Total Eyecare Systems And Services Inc.)</masterLabel>
+        <translation><!-- TESS (Total Eyecare Systems And Services Inc.) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Technopia Co., Ltd.</masterLabel>
+        <translation><!-- Technopia Co., Ltd. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tecnoimagen</masterLabel>
+        <translation><!-- Tecnoimagen --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Veil Cosmetics And Medicine</masterLabel>
+        <translation><!-- Veil Cosmetics And Medicine --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VisionMedPal</masterLabel>
+        <translation><!-- VisionMedPal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WEYE HEALTH PLT</masterLabel>
+        <translation><!-- WEYE HEALTH PLT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WEYEZER</masterLabel>
+        <translation><!-- WEYEZER --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

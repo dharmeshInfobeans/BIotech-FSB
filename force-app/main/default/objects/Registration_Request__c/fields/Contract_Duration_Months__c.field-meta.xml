@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Duration_Months__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(Certificate_Valid_From__c) || ISBLANK(Certificate_Valid_To__c),
+  &quot;Not Set&quot;,
+  IF(
+    (YEAR(Certificate_Valid_To__c) - YEAR(Certificate_Valid_From__c)) * 12 + (MONTH(Certificate_Valid_To__c) - MONTH(Certificate_Valid_From__c)) &lt; 10,
+    &quot;0&quot; &amp; TEXT((YEAR(Certificate_Valid_To__c) - YEAR(Certificate_Valid_From__c)) * 12 + (MONTH(Certificate_Valid_To__c) - MONTH(Certificate_Valid_From__c))) &amp; &quot; Month(s)&quot;,
+    TEXT((YEAR(Certificate_Valid_To__c) - YEAR(Certificate_Valid_From__c)) * 12 + (MONTH(Certificate_Valid_To__c) - MONTH(Certificate_Valid_From__c))) &amp; &quot; Month(s)&quot;
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Contract Duration (Months)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

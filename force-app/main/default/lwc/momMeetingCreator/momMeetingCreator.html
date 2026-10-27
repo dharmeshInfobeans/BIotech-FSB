@@ -1,0 +1,265 @@
+<template>
+    <lightning-card icon-name="standard:task">
+
+        <!-- Dynamic title with row count badge -->
+        <span slot="title">
+            Action Items
+            <template lwc:if={hasRows}>
+                <lightning-badge label={rowCountLabel} class="count-badge"></lightning-badge>
+            </template>
+        </span>
+
+        <!-- Card body -->
+        <div class="slds-p-horizontal_medium slds-p-bottom_small card-body">
+
+            <!-- ── Loading ───────────────────────────────────────────────── -->
+            <template lwc:if={isLoading}>
+                <div class="slds-align_absolute-center slds-p-around_x-large">
+                    <lightning-spinner
+                        alternative-text="Loading action items..."
+                        size="medium">
+                    </lightning-spinner>
+                </div>
+            </template>
+
+            <!-- ── Grid ─────────────────────────────────────────────────── -->
+            <template lwc:if={showGrid}>
+                <div class={tableClass}>
+
+                    <!-- Header row -->
+                    <div class="grid-header">
+                        <div class="col-desc">
+                            Description
+                            <template lwc:if={isEditing}><span class="required-star">*</span></template>
+                        </div>
+                        <div class="col-attendees">Attendees</div>
+                        <div class="col-date">Target Date</div>
+                        <div class="col-week">Target Week</div>
+                        <div class="col-status">Status</div>
+                        <div class="col-priority">Priority</div>
+                        <div class="col-category">Biotech Department</div>
+                        <div class="col-func">Responsible Designation</div>
+                        <div class="col-week">Completion Week</div>
+                        <template lwc:if={isEditing}>
+                            <div class="col-del"></div>
+                        </template>
+                    </div>
+
+                    <!-- Data rows -->
+                    <template for:each={rows} for:item="row">
+                        <div key={row.key} class={row.rowClass}>
+
+                            <!-- Description -->
+                            <div>
+                                <template lwc:if={isEditing}>
+                                    <lightning-input
+                                        variant="label-hidden"
+                                        label="Description"
+                                        placeholder="Enter description"
+                                        value={row.subject}
+                                        data-key={row.key}
+                                        data-field="subject"
+                                        onchange={handleFieldChange}
+                                        class={row.subjectClass}>
+                                    </lightning-input>
+                                </template>
+                                <template lwc:else>
+                                    <span class="read-value">{row.subject}</span>
+                                </template>
+                            </div>
+
+                            <!-- Attendees -->
+                            <div class="attendees-cell">
+                                <template for:each={row.attendees} for:item="email">
+                                    <span key={email} class="attendee-chip">
+                                        <span class="chip-email">{email}</span>
+                                        <template lwc:if={isEditing}>
+                                            <button class="chip-remove"
+                                                    data-key={row.key}
+                                                    data-email={email}
+                                                    onclick={handleAttendeeRemove}
+                                                    title="Remove">&#x00D7;</button>
+                                        </template>
+                                    </span>
+                                </template>
+                                <template lwc:if={isEditing}>
+                                    <div class="attendee-input-row">
+                                        <input
+                                            type="email"
+                                            class="attendee-email-input"
+                                            placeholder="Add email..."
+                                            data-key={row.key}
+                                            oninput={handleAttendeeEmailInput}
+                                            onkeydown={handleAttendeeKeyDown} />
+                                        <button class="attendee-add-btn"
+                                                data-key={row.key}
+                                                onclick={handleAttendeeAdd}
+                                                title="Add email">+</button>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <!-- Target Date (read-only — edited by task owner) -->
+                            <div>
+                                <!--<span class="read-value">{row.activityDate}</span>-->
+                                <span class="read-value">{row.formattedActivityDate}</span>
+                            </div>
+
+                            <!-- Target Week (read-only) -->
+                            <div>
+                                <span class="read-value">{row.targetWeek}</span>
+                            </div>
+
+                            <!-- Status (read-only — edited by task owner) -->
+                            <div>
+                                <span class={row.statusBadgeClass}>{row.statusLabel}</span>
+                            </div>
+
+                            <!-- Priority (read-only) -->
+                            <div>
+                                <span class="read-value">{row.priority}</span>
+                            </div>
+
+                            <!-- Category (Biotech Department) -->
+                            <div>
+                                <template lwc:if={isEditing}>
+                                    <lightning-combobox
+                                        variant="label-hidden"
+                                        label="Biotech Department"
+                                        placeholder="Select category"
+                                        value={row.category}
+                                        options={categoryOptions}
+                                        data-key={row.key}
+                                        data-field="category"
+                                        onchange={handleFieldChange}>
+                                    </lightning-combobox>
+                                </template>
+                                <template lwc:else>
+                                    <span class="read-value">{row.category}</span>
+                                </template>
+                            </div>
+
+                            <!-- Responsible Department -->
+                            <div>
+                                <template lwc:if={isEditing}>
+                                    <lightning-combobox
+                                        variant="label-hidden"
+                                        label="Responsible Designation"
+                                        placeholder="Select department"
+                                        value={row.responsibleDepartment}
+                                        options={row.departmentOptions}
+                                        disabled={row.isCategoryEmpty}
+                                        data-key={row.key}
+                                        data-field="responsibleDepartment"
+                                        onchange={handleFieldChange}>
+                                    </lightning-combobox>
+                                </template>
+                                <template lwc:else>
+                                    <span class="read-value">{row.responsibleDepartment}</span>
+                                </template>
+                            </div>
+
+                            <!-- Completion Week (read-only) -->
+                            <div>
+                                <span class="read-value">{row.completionWeek}</span>
+                            </div>
+
+                            <!-- Delete (edit mode only) -->
+                            <template lwc:if={isEditing}>
+                                <div class="col-del-cell">
+                                    <lightning-button-icon
+                                        icon-name="utility:delete"
+                                        variant="bare"
+                                        size="small"
+                                        alternative-text="Remove row"
+                                        title="Remove this action item"
+                                        data-key={row.key}
+                                        onclick={handleDeleteRow}
+                                        class="delete-btn">
+                                    </lightning-button-icon>
+                                </div>
+                            </template>
+
+                        </div>
+                    </template>
+
+                </div>
+                <template lwc:if={isEditing}>
+                    <p class="required-note">
+                        <span class="required-star">*</span> Indicates a required field
+                    </p>
+                </template>
+            </template>
+
+            <!-- ── Empty state ───────────────────────────────────────────── -->
+            <template lwc:if={showEmptyState}>
+                <div class="empty-state">
+                    <lightning-icon
+                        icon-name="utility:checklist"
+                        size="large"
+                        class="empty-icon">
+                    </lightning-icon>
+                    <h3 class="empty-title">No Action Items Yet</h3>
+                    <p class="empty-body">
+                        Click <strong>Edit</strong> then <strong>Add Row</strong> to start adding action items.
+                    </p>
+                </div>
+            </template>
+
+            <!-- ── Saving overlay ────────────────────────────────────────── -->
+            <template lwc:if={isSaving}>
+                <div class="saving-overlay">
+                    <lightning-spinner alternative-text="Saving..." size="medium"></lightning-spinner>
+                    <p class="saving-label">Saving action items&hellip;</p>
+                </div>
+            </template>
+
+        </div>
+
+        <!-- ── Footer action bar ─────────────────────────────────────────── -->
+        <div slot="footer">
+            <div class="action-bar">
+                <template lwc:if={isEditing}>
+                    <div class="action-bar-left">
+                        <lightning-button
+                            label="Add Row"
+                            icon-name="utility:add"
+                            title="Add a new action item row"
+                            onclick={handleAddRow}
+                            disabled={isSaving}>
+                        </lightning-button>
+                    </div>
+                    <div class="action-bar-right">
+                        <lightning-button
+                            label="Discard Changes"
+                            title="Revert all unsaved changes"
+                            onclick={handleCancel}
+                            disabled={isSaving}>
+                        </lightning-button>
+                        <lightning-button
+                            class="slds-m-left_x-small"
+                            label="Save All"
+                            variant="brand"
+                            icon-name="utility:save"
+                            title="Save all action items"
+                            onclick={handleSaveAll}
+                            disabled={isSaveDisabled}>
+                        </lightning-button>
+                    </div>
+                </template>
+                <template lwc:else>
+                    <div class="action-bar-right">
+                        <lightning-button
+                            label="Edit"
+                            icon-name="utility:edit"
+                            title="Edit action items"
+                            onclick={handleEdit}
+                            disabled={isLoading}>
+                        </lightning-button>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+    </lightning-card>
+</template>

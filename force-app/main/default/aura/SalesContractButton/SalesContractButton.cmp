@@ -1,0 +1,15 @@
+<aura:component implements="force:appHostable,force:lightningQuickAction,force:hasRecordId" controller="Salescontracts">
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="URL" type="string" />
+    <aura:handler name="init" value="{!this}" action="{!c.myAction}" />
+    <div class="slds-align_absolute-center">
+       <div class="demo-only demo-only--sizing slds-grid slds-wrap">
+          <div class="slds-size_2-of-2">
+            <p>Are you sure you want to generate the Sales Contract?</p>
+          </div>
+          <div class="slds-size_2-of-2 slds-p-top_xx-large slds-align_absolute-center">
+            <button class="slds-button slds-button_neutral" onclick="{!c.ongenerate}">Generate</button>
+          </div>
+        </div>
+    </div>
+</aura:component>

@@ -1,0 +1,149 @@
+<template>
+    <!------------------------------------------- RSM FORM ----------------------------------------->
+
+    <lightning-card class="main-card">
+
+        <div class="table-section">
+            <div class="section-header">Account Details</div>
+
+            <div class="table-row">
+                <div class="label">Account Name</div>
+                <div class="colon">:</div>
+                <div class="value">{account.accountName}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Ce-Cis / Phakic Rating</div>
+                <div class="colon">:</div>
+                <div class="value">{account.ceceisrating}/{account.phakic}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Mobile Number</div>
+                <div class="colon">:</div>
+                <div class="value">{account.mobile}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Email</div>
+                <div class="colon">:</div>
+                <div class="value">{account.email}</div>
+            </div>
+        </div>
+
+
+        <div class="table-section">
+            <div class="section-header">Address Details</div>
+
+            <div class="table-row">
+                <div class="label">Hospital Name</div>
+                <div class="colon">:</div>
+                <div class="value">{account.hospital}</div>
+            </div>
+
+            <div class="table-row">
+                <div class="label">Address</div>
+                <div class="colon">:</div>
+                <div class="value">{account.address}</div>
+            </div>
+        </div>
+
+
+        <!-- <div class="table-section">
+            <div class="section-header">Documents Uploaded</div>
+
+            <template if:true={files.length}>
+                <template for:each={files} for:item="file">
+                    <div key={file.documentId} class="table-row">
+                        <div class="label">{file.title}</div>
+                        <div class="colon">:</div>
+                        <div class="value link">
+                            
+                            <lightning-icon style="margin-right: 0.5rem;" icon-name='utility:preview' alternative-text='preview' size='x-small' title='preview'></lightning-icon>
+                            <a data-id={file.documentId} onclick={handlePreview}>View</a>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <template if:false={files.length}>
+                <div class="table-row">
+                    <div class="label">No files found for the given record ID.</div>
+                    <div class="colon">:</div>
+                    <lightning-icon style="margin-right: 0.5rem;" icon-name='utility:preview' alternative-text='preview'
+                        size='x-small' title='preview'></lightning-icon>
+                    <div class="value link">View</div>
+                </div>
+            </template>
+        </div> -->
+
+        <div class="table-section">
+            <div class="section-header">Documents Uploaded</div>
+
+            <!-- Table Header -->
+            <div class="table-row header" style="display: flex; font-weight: bold; padding: 0.5rem 0;">
+                <div style="flex: 3;">Document</div>
+                <div style="flex: 2;">Document Number</div>
+                <div style="flex: 1;">Document View</div>
+            </div>
+
+            <!-- Table Body -->
+            <template if:true={files.length}>
+                <template for:each={files} for:item="file">
+                    <div key={file.documentId} class="table-row"
+                        style="display: flex; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid #eee;">
+
+                        <!-- Document Title -->
+                        <div style="flex: 3;">{file.title}</div>
+
+                        <!-- Document Number -->
+                        <div style="flex: 2;">{file.documentNumber}</div>
+
+                        <!-- View Action -->
+                        <div style="flex: 1;">
+                            <lightning-icon style="margin-right: 0.5rem;" icon-name='utility:preview'
+                                alternative-text='preview' size='x-small' title='preview'></lightning-icon>
+                            <a data-id={file.documentId} onclick={handlePreview}>View</a>
+                        </div>
+                    </div>
+                </template>
+            </template>
+
+            <!-- No files found -->
+            <template if:false={files.length}>
+                <div class="table-row" style="display: flex; padding: 0.5rem 0; color: #888;">
+                    <div style="flex: 3;">-</div>
+                    <div style="flex: 2;">-</div>
+                    <div style="flex: 1;">-</div>
+                </div>
+            </template>
+        </div>
+
+        <div class="slds-grid slds-grid_vertical-align-center slds-p-around_small">
+            <!-- Left Panel: Label (40% width) -->
+            <div class="slds-size_6-of-12 slds-p-right_small">
+                <label class="slds-form-element__label slds-text-title_bold slds-text-heading_small" style="font-weight: 600;">
+        <abbr class="slds-required" title="required">*</abbr>
+        Select Sales Team Mapping
+    </label>
+            </div>
+
+            <!-- Right Panel: Dropdown (60% width) -->
+           <div class="slds-size_6-of-12">
+    <lightning-combobox id="team-dropdown" name="teamMembers" label="User" variant="label-hidden" value={selectedUserId} placeholder="-- Select User --" options={userOptions} disabled={isDropdownDisabled} onchange={handleUserChange}>
+    </lightning-combobox>
+</div>
+        </div>
+        <div class="approval-box">
+            <h2 class="approval-title">Comments</h2>
+
+            <lightning-textarea placeholder="Please enter comment." value={comments} onchange={handleCommentChange}>
+            </lightning-textarea>
+
+            <div class="button-group">
+                <lightning-button variant="success" label="Approve" onclick={handleApprove}></lightning-button>
+                <lightning-button variant="destructive" label="Reject" onclick={handleReject}></lightning-button>
+            </div>
+        </div>
+    </lightning-card>
+</template>

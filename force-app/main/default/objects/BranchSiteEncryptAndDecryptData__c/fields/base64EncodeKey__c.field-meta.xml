@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>base64EncodeKey__c</fullName>
+    <description>This is &quot;base64Encoded Key&quot; used for encryting and decrypting url. It is the blob converted to uncoded string using &quot;Encoding.base64Encode&quot; method</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Blob Converted to String</inlineHelpText>
+    <label>base64EncodeKey</label>
+    <length>255</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

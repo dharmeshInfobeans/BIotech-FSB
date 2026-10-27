@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingGuestRules>
+        <fullName>Share_Opportunity</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share Opportunity</label>
+        <sharedTo>
+            <guestUser>BioTech_Partner_LWR</guestUser>
+        </sharedTo>
+        <criteriaItems>
+            <field>LastModifiedById</field>
+            <operation>notEqual</operation>
+            <value></value>
+        </criteriaItems>
+        <includeHVUOwnedRecords>false</includeHVUOwnedRecords>
+    </sharingGuestRules>
+</SharingRules>

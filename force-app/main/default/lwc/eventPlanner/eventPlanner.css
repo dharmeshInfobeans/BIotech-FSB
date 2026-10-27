@@ -1,0 +1,1316 @@
+/* ======================================
+   Event Planner - Modern SLDS 2 Styles
+   ====================================== */
+
+/* Color Variables */
+:host {
+    --event-planned: #ff6b00;
+    --event-completed: #0070d2;
+    --event-holiday: var(--slds-g-color-palette-red-50);
+    --holiday-bg: #ffeaea;
+    --weekly-off-bg: #e8f4ff;
+    --event-leave: var(--slds-g-color-palette-purple-60);
+    --today-border: #0070d2;
+    --selected-bg: #f3f3f3;
+    --weekend-bg: #fafaf9;
+    --restricted-text: #c9c9c9;
+    --badge-bg: #ff6b00;
+    --badge-text: #ffffff;
+    --holiday-indicator-bg: var(--slds-g-color-palette-red-50);
+    --holiday-indicator-text: #ffffff;
+    --weekly-off-indicator-bg: var(--slds-g-color-palette-electric-blue-60);
+    --weekly-off-indicator-text: #ffffff;
+}
+
+/* ======================================
+   Header Section
+   ====================================== */
+
+.header-section {
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    color: #ffffff;
+    padding: 1rem;
+    border-bottom: 2px solid #27aee6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.header-section h1 {
+    color: #ffffff;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.5;
+    padding: 0;
+}
+
+.header-title-centered {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* ======================================
+   Legend Section Styles
+   ====================================== */
+
+.legend-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0.75rem 1rem;
+}
+
+.legend-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.legend-row:last-child {
+    margin-bottom: 0;
+}
+
+.legend-category {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-category-title {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #080707;
+    white-space: nowrap;
+}
+
+.legend-items-group {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.legend-text {
+    font-size: 0.9375rem;
+    /* 15px - increased by 2 points from typical 13px */
+    color: #3e3e3c;
+    white-space: nowrap;
+}
+
+.legend-box {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    flex-shrink: 0;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Planned Colors */
+.onsite-planned {
+    background-color: var(--slds-g-color-palette-green-50);
+}
+
+.offsite-planned {
+    background-color: var(--slds-g-color-palette-yellow-65);
+}
+
+.online-planned {
+    background-color: var(--slds-g-color-palette-cloud-blue-70);
+}
+
+/* Checked-In/Out Colors */
+.onsite-checked {
+    background-color: var(--slds-g-color-palette-teal-70);
+}
+
+.offsite-checked {
+    background-color: var(--slds-g-color-palette-hot-orange-65);
+}
+
+.online-checked {
+    background-color: var(--slds-g-color-palette-indigo-60);
+}
+
+/* Leave/Holiday Colors */
+.leave-box {
+    background-color: var(--slds-g-color-palette-purple-60);
+}
+
+.holiday-box {
+    background-color: var(--slds-g-color-palette-red-50);
+}
+
+.weekly-off-box {
+    background-color: var(--slds-g-color-palette-electric-blue-60);
+}
+
+/* Legend Icon Styling */
+.legend-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.legend-item lightning-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Legend Indicator Styling (for H and WO badges) */
+.legend-indicator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 2px 4px;
+    border-radius: 3px;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-width: 15px;
+    height: 16px;
+}
+
+/* ======================================
+   Controls Section
+   ====================================== */
+
+.controls-section {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddbda;
+    padding: 0.75rem 0.5rem;
+    min-height: 56px;
+    box-sizing: border-box;
+    display: flex;
+}
+
+.controls-section>div {
+    flex: 1;
+    align-items: center;
+}
+
+/* User Selector Width Constraint */
+.user-selector-wrapper {
+    width: 500px;
+    max-width: 500px;
+    flex: 0 0 auto;
+}
+
+/* Polished Button Wrappers - matching back button style */
+.icon-button-wrapper {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #27aee6 0%, #1a8ec4 100%);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(39, 174, 230, 0.3);
+}
+
+.icon-button-wrapper:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(39, 174, 230, 0.5);
+    background: linear-gradient(135deg, #2ebdf0 0%, #27aee6 100%);
+}
+
+.icon-button-wrapper:active {
+    transform: scale(0.95);
+}
+
+/* Brand variant - darker blue gradient */
+.icon-button-wrapper--brand {
+    background: linear-gradient(135deg, #0176d3 0%, #014f8f 100%);
+    box-shadow: 0 2px 6px rgba(1, 118, 211, 0.3);
+}
+
+.icon-button-wrapper--brand:hover {
+    background: linear-gradient(135deg, #0284e6 0%, #0176d3 100%);
+    box-shadow: 0 4px 12px rgba(1, 118, 211, 0.5);
+}
+
+/* Disabled state */
+.icon-button-wrapper--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: linear-gradient(135deg, #c9c9c9 0%, #a0a0a0 100%);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.icon-button-wrapper--disabled:hover {
+    transform: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #c9c9c9 0%, #a0a0a0 100%);
+}
+
+/* ======================================
+   Calendar Container
+   ====================================== */
+
+.calendar-container {
+    background-color: #ffffff;
+    padding: 1rem 1.5rem;
+}
+
+.month-year-header {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #080707;
+}
+
+/* Action Buttons Wrapper */
+.action-buttons-wrapper {
+    gap: 0.5rem;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+/* Help Text Badge */
+.help-text-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: linear-gradient(135deg, #e8f4ff 0%, #d4ebff 100%);
+    border: 1px solid #b3d9ff;
+    border-radius: 16px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #014486;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    max-width: 100%;
+}
+
+.help-icon {
+    flex-shrink: 0;
+    color: #0176d3;
+}
+
+.help-text-label {
+    line-height: 1.2;
+}
+
+/* Warning Badge - Shown when user is not logged in */
+.warning-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    background: linear-gradient(135deg, #fff4e5 0%, #ffe8cc 100%);
+    border: 1px solid #ffcc80;
+    border-radius: 16px;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-style: italic;
+    color: #b54708;
+    white-space: nowrap;
+    box-shadow: 0 1px 3px rgba(255, 153, 0, 0.15);
+    animation: fadeIn 0.3s ease-in-out;
+    max-width: 100%;
+}
+
+.warning-icon {
+    flex-shrink: 0;
+    color: #ff9900;
+}
+
+.warning-text-label {
+    line-height: 1.2;
+}
+
+/* Fade in animation for warning badge */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Today Button in Header */
+.today-button-header {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.75rem;
+    min-height: auto;
+}
+
+.slds-datepicker__filter {
+    margin-bottom: 1rem;
+    padding: 0.75rem 0;
+}
+
+/* ======================================
+   Calendar Table & Cells
+   ====================================== */
+
+.slds-datepicker__month {
+    width: 100%;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.slds-datepicker__month th {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #706e6b;
+    padding: 1rem 0.5rem;
+    width: 14.285%;
+    /* Equal width for 7 columns */
+    background-color: #fafaf9;
+    border: 1px solid #dddbda;
+    border-bottom: 2px solid #706e6b;
+}
+
+.slds-datepicker__month td {
+    text-align: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 14.285%;
+    /* Equal width for 7 columns */
+    vertical-align: middle;
+}
+
+/* Calendar Cell Base */
+.calendar-cell {
+    padding: 1rem 0.5rem;
+    min-height: 80px;
+    border: 1px solid #dddbda;
+    background-color: #ffffff;
+    position: relative;
+}
+
+.calendar-cell-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 50px;
+    padding: 0.25rem;
+}
+
+.day-number {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #080707;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+/* ======================================
+   Calendar Cell States
+   ====================================== */
+
+/* Current Month */
+.calendar-cell--current-month {
+    background-color: #ffffff;
+}
+
+.calendar-cell--current-month:hover {
+    background-color: #f3f3f3;
+    border-color: #0070d2;
+}
+
+/* Other Month (Previous/Next) */
+.calendar-cell--other-month {
+    background-color: #fafaf9;
+    cursor: not-allowed;
+}
+
+.calendar-cell--other-month .day-number {
+    color: var(--restricted-text);
+    font-weight: 400;
+}
+
+.calendar-cell--other-month:hover {
+    background-color: #fafaf9;
+    border-color: #dddbda;
+}
+
+/* Today */
+.calendar-cell--today {
+    border: 2px solid var(--today-border) !important;
+    box-shadow: 0 0 4px rgba(0, 112, 210, 0.3);
+}
+
+.calendar-cell--today .day-number {
+    color: var(--today-border);
+    font-weight: 700;
+}
+
+/* Selected Date */
+.calendar-cell--selected {
+    background-color: #e8f4ff !important;
+    border: 2px solid #27aee6 !important;
+    box-shadow: 0 0 8px rgba(39, 174, 230, 0.4);
+}
+
+.calendar-cell--selected .day-number {
+    color: #27aee6;
+    font-weight: 700;
+}
+
+/* Weekend */
+.calendar-cell--weekend {
+    background-color: var(--weekend-bg);
+}
+
+/* Past Restricted (Beyond -6 days) */
+.calendar-cell--past-restricted {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.calendar-cell--past-restricted:hover {
+    background-color: #ffffff;
+    border-color: #dddbda;
+}
+
+/* ======================================
+   Event Type Indicators (Left Border)
+   ====================================== */
+
+.calendar-cell--has-planned {
+    border-left: 4px solid var(--event-planned);
+}
+
+.calendar-cell--has-completed {
+    border-left: 4px solid var(--event-completed);
+}
+
+.calendar-cell--has-leave {
+    border-left: 4px solid var(--event-leave);
+}
+
+.calendar-cell--has-holiday {
+    border-left: 4px solid var(--event-holiday);
+}
+
+/* ======================================
+   Event Count Badge
+   ====================================== */
+
+.event-count-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: var(--badge-bg);
+    color: var(--badge-text);
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 4px;
+    line-height: 1;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ======================================
+   Holiday & Weekly Off Indicators
+   ====================================== */
+
+.holiday-indicator,
+.weekly-off-indicator {
+    display: inline-block;
+    font-size: 0.625rem;
+    font-weight: 700;
+    padding: 2px 4px;
+    border-radius: 3px;
+    line-height: 1;
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.holiday-indicator {
+    background-color: var(--holiday-indicator-bg);
+    color: var(--holiday-indicator-text);
+}
+
+.weekly-off-indicator {
+    background-color: var(--weekly-off-indicator-bg);
+    color: var(--weekly-off-indicator-text);
+}
+
+/* ======================================
+   Calendar Cell - Holiday States
+   ====================================== */
+
+.calendar-cell--holiday {
+    background-color: var(--holiday-bg);
+    border-left: 4px solid var(--event-holiday);
+}
+
+.calendar-cell--holiday .day-number {
+    color: var(--event-holiday);
+    font-weight: 600;
+}
+
+.calendar-cell--weekly-off {
+    background-color: var(--weekly-off-bg);
+    border-left: 4px solid var(--weekly-off-indicator-bg);
+}
+
+.calendar-cell--weekly-off .day-number {
+    color: var(--weekly-off-indicator-bg);
+    font-weight: 600;
+}
+
+/* ======================================
+   Date Header
+   ====================================== */
+
+.date-header {
+    background: linear-gradient(135deg, #2883e6 0%, #1e5ba8 100%);
+    color: #ffffff;
+    margin: 1.5rem 0 1rem 0;
+    padding: 0.875rem 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.date-header h2 {
+    color: #ffffff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* ======================================
+   Event Cards
+   ====================================== */
+
+.events-section {
+    min-height: 200px;
+    padding: 1rem 1.5rem 1.5rem 1.5rem;
+}
+
+/* Compact Event Card for Holiday/Leave/Out of Office */
+.compact-event-card {
+    padding: 1rem;
+    text-align: center;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.compact-event-title {
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.compact-event-status {
+    font-size: 0.875rem;
+    opacity: 0.9;
+}
+
+.compact-event-approval {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+/* Added by Priyam Shah - Ensure consistent event card heights with flexbox */
+.event-card-wrapper {
+    display: flex;
+}
+
+.event-card {
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Record Type Icon Badge */
+.slds-card__header {
+    position: relative;
+}
+
+.record-type-badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    padding: 0.375rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.event-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Event card color coding via left border */
+.event-card {
+    border-left: 4px solid var(--event-planned);
+}
+
+.event-card[data-type="completed"] {
+    border-left-color: var(--event-completed);
+}
+
+.event-card[data-type="holiday"] {
+    border-left-color: var(--event-holiday);
+}
+
+.event-card[data-type="leave"] {
+    border-left-color: var(--event-leave);
+}
+
+.event-card .slds-card__header {
+    padding: 1rem 1.25rem;
+    border-bottom: none;
+    background-color: transparent;
+}
+
+.event-card .slds-card__body {
+    padding: 0.75rem 1.25rem 1rem 1.25rem;
+    flex-grow: 1;
+}
+
+.event-card .slds-card__body_inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.event-card .slds-card__footer {
+    padding: 0.75rem 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: transparent;
+}
+
+/* Compact card layout for 3-column grid */
+.event-card .slds-text-heading_small {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #080707;
+}
+
+.event-card .slds-text-body_small {
+    font-size: 0.9375rem;
+    color: #3e3e3c;
+}
+
+.event-card .slds-text-body_small p {
+    display: flex;
+    align-items: center;
+}
+
+.event-card .slds-text-body_small .slds-grid {
+    margin-bottom: 0.5rem;
+}
+
+.event-card .slds-text-body_small .slds-grid:last-child {
+    margin-bottom: 0;
+}
+
+.event-card lightning-icon {
+    flex-shrink: 0;
+}
+
+/* ======================================
+   No Events Container
+   ====================================== */
+
+.no-events-container {
+    background-color: #fafaf9;
+    border-radius: 4px;
+    padding: 2rem 1rem;
+}
+
+.no-events-container lightning-icon {
+    opacity: 0.5;
+}
+
+/* ======================================
+   Responsive Design
+   ====================================== */
+
+/* Very Small Mobile (< 480px) - Extra adjustments for smallest screens */
+@media (max-width: 479px) {
+
+    /* Reduce badge padding further */
+    .help-text-badge,
+    .warning-badge {
+        font-size: 0.6875rem;
+        padding: 0.25rem 0.5rem;
+        gap: 0.25rem;
+    }
+
+    /* Stack action buttons more tightly */
+    .action-buttons-wrapper {
+        gap: 0.25rem;
+    }
+
+    /* Smaller button on very small screens */
+    .icon-button-wrapper {
+        width: 24px;
+        height: 24px;
+    }
+
+    /* User selector full width on very small screens */
+    .user-selector-wrapper {
+        flex: 1 1 100% !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    /* Smaller Today button on very small screens */
+    .today-button-header {
+        font-size: 0.6875rem !important;
+        padding: 0.25rem 0.5rem !important;
+        min-height: 24px !important;
+    }
+
+    /* Reduce gap on very small screens */
+    .controls-section .slds-grid {
+        gap: 0.375rem !important;
+    }
+
+    .action-buttons-wrapper {
+        gap: 0.25rem !important;
+    }
+}
+
+/* Mobile (< 768px) */
+@media (max-width: 767px) {
+
+    /* Legend - Stack categories vertically on mobile */
+    .legend-container {
+        padding: 0.5rem;
+    }
+
+    .legend-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .legend-category {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.375rem;
+    }
+
+    .legend-category-title {
+        font-size: 0.8125rem;
+    }
+
+    .legend-items-group {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .legend-item {
+        gap: 0.25rem;
+    }
+
+    .legend-box {
+        width: 12px;
+        height: 12px;
+    }
+
+    .legend-icon {
+        width: 16px;
+        height: 16px;
+    }
+
+    .legend-indicator {
+        min-width: 12px;
+        height: 14px;
+        font-size: 0.5rem;
+        padding: 1px 3px;
+    }
+
+    .legend-text {
+        font-size: 0.75rem;
+    }
+
+    /* Controls Section - Horizontal layout with wrapping */
+    .controls-section .slds-grid {
+        flex-direction: row;
+        align-items: center !important;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    /* User Selector - Take full width, wraps to its own row */
+    .user-selector-wrapper {
+        flex: 1 1 100%;
+        width: 100%;
+        max-width: 100%;
+        order: 1;
+        min-height: auto;
+    }
+
+    /* Action Buttons - Take full width below user selector */
+    .action-buttons-wrapper {
+        flex: 1 1 100%;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: flex-start;
+        align-items: center;
+        order: 2;
+        display: flex;
+    }
+
+    /* Today Button - On same line as plus button */
+    .today-button-header {
+        font-size: 0.875rem;
+        padding: 0.375rem 0.75rem;
+        min-height: 32px;
+        order: 1;
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+
+    /* Add Event Button - Beside Today button */
+    .icon-button-wrapper {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 auto;
+        order: 2;
+    }
+
+    /* Help Text Badge - Below buttons, full width */
+    .help-text-badge {
+        white-space: normal;
+        flex: 1 1 100%;
+        width: 100%;
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+        text-align: left;
+        line-height: 1.3;
+        order: 10;
+    }
+
+    .help-text-label {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+    }
+
+    /* Warning Badge - Below help badge, full width */
+    .warning-badge {
+        white-space: normal;
+        flex: 1 1 100%;
+        width: 100%;
+        font-size: 0.75rem;
+        padding: 0.375rem 0.75rem;
+        text-align: left;
+        line-height: 1.3;
+        order: 11;
+    }
+
+    .warning-text-label {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.3;
+    }
+
+    .calendar-container {
+        padding: 0.5rem;
+    }
+
+    .calendar-cell {
+        padding: 0.5rem 0.25rem 0.375rem 0.25rem;
+        min-height: 75px;
+    }
+
+    .calendar-cell-content {
+        min-height: 50px;
+        align-items: flex-start;
+        padding: 0;
+    }
+
+    .day-number {
+        font-size: 0.8125rem;
+        align-self: flex-start;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Make indicators smaller and stack them vertically if needed */
+    .holiday-indicator,
+    .weekly-off-indicator {
+        font-size: 0.5rem;
+        padding: 1px 3px;
+        margin-top: 2px;
+        display: block;
+    }
+
+    /* Move badge to bottom-right to avoid overlapping with date and indicators */
+    .event-count-badge {
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        top: auto;
+        min-width: 18px;
+        height: 18px;
+        font-size: 0.625rem;
+        padding: 2px;
+        z-index: 5;
+    }
+
+    /* Scale down event card min-height for mobile */
+    .event-card {
+        min-height: 240px;
+    }
+
+    .event-card .slds-card__header,
+    .event-card .slds-card__body,
+    .event-card .slds-card__footer {
+        padding: 0.5rem 0.75rem;
+    }
+
+    /* Scale down record type badge for mobile */
+    .record-type-badge {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.25rem;
+        transform: scale(0.85);
+    }
+
+    /* Scale down font sizes for mobile */
+    .event-card .slds-text-heading_small {
+        font-size: 1rem;
+    }
+
+    .event-card .slds-text-body_small {
+        font-size: 0.875rem;
+    }
+
+    .event-card .slds-text-body_small .slds-grid {
+        margin-bottom: 0.375rem;
+    }
+
+    .month-year-header {
+        font-size: 1rem;
+    }
+}
+
+/* Tablet (768px - 1023px) */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .calendar-container {
+        padding: 0.75rem 1rem;
+    }
+
+    .calendar-cell {
+        padding: 0.875rem 0.375rem;
+        min-height: 75px;
+    }
+
+    .calendar-cell-content {
+        min-height: 48px;
+    }
+
+    .day-number {
+        font-size: 0.9375rem;
+    }
+}
+
+/* Desktop (>= 1024px) */
+@media (min-width: 1024px) {
+    .calendar-cell {
+        min-height: 85px;
+    }
+
+    .calendar-cell-content {
+        min-height: 55px;
+    }
+
+    .event-card .slds-card__body {
+        min-height: 120px;
+    }
+}
+
+/* ======================================
+   Loading States
+   ====================================== */
+
+.slds-spinner_container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+}
+
+/* ======================================
+   Accessibility
+   ====================================== */
+
+.calendar-cell:focus {
+    outline: 2px solid #0070d2;
+    outline-offset: -2px;
+    z-index: 1;
+}
+
+.calendar-cell[aria-selected="true"] {
+    background-color: var(--selected-bg);
+}
+
+/* ======================================
+   Utilities
+   ====================================== */
+
+.slds-truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.slds-grid_align-spread {
+    justify-content: space-between;
+}
+
+.slds-gutters_small {
+    margin: -0.75rem;
+}
+
+.slds-gutters_small>.slds-col {
+    padding: 0.75rem;
+}
+
+/* Ensure proper sizing for buttons in cards */
+.event-card .slds-button {
+    font-size: 0.8125rem;
+    padding: 0.25rem 0.75rem;
+}
+
+/* ======================================
+   Event Card Color Coding (Meeting Type & Status)
+   ====================================== */
+
+/* Onsite Events */
+.event-card.onsitePlanned {
+    background-color: var(--slds-g-color-palette-green-50);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.onsitePlanned .slds-card__header,
+.event-card.onsitePlanned .slds-card__body,
+.event-card.onsitePlanned .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.onsitePlanned .slds-text-heading_small,
+.event-card.onsitePlanned .slds-text-body_small,
+.event-card.onsitePlanned strong {
+    color: white;
+}
+
+.event-card.onsiteNotPlanned {
+    background-color: var(--slds-g-color-palette-teal-70);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.onsiteNotPlanned .slds-card__header,
+.event-card.onsiteNotPlanned .slds-card__body,
+.event-card.onsiteNotPlanned .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.onsiteNotPlanned .slds-text-heading_small,
+.event-card.onsiteNotPlanned .slds-text-body_small,
+.event-card.onsiteNotPlanned strong {
+    color: white;
+}
+
+/* Online Events */
+.event-card.onlinePlanned {
+    background-color: var(--slds-g-color-palette-cloud-blue-70);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.onlinePlanned .slds-card__header,
+.event-card.onlinePlanned .slds-card__body,
+.event-card.onlinePlanned .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.onlinePlanned .slds-text-heading_small,
+.event-card.onlinePlanned .slds-text-body_small,
+.event-card.onlinePlanned strong {
+    color: white;
+}
+
+.event-card.onlineNotPlanned {
+    background-color: var(--slds-g-color-palette-indigo-60);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.onlineNotPlanned .slds-card__header,
+.event-card.onlineNotPlanned .slds-card__body,
+.event-card.onlineNotPlanned .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.onlineNotPlanned .slds-text-heading_small,
+.event-card.onlineNotPlanned .slds-text-body_small,
+.event-card.onlineNotPlanned strong {
+    color: white;
+}
+
+/* Offsite Events */
+.event-card.offsitePlanned {
+    background-color: var(--slds-g-color-palette-yellow-65);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.offsitePlanned .slds-card__header,
+.event-card.offsitePlanned .slds-card__body,
+.event-card.offsitePlanned .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.offsitePlanned .slds-text-heading_small,
+.event-card.offsitePlanned .slds-text-body_small,
+.event-card.offsitePlanned strong {
+    color: white;
+}
+
+.event-card.offsiteNotPlanned {
+    background-color: var(--slds-g-color-palette-hot-orange-65);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.offsiteNotPlanned .slds-card__header,
+.event-card.offsiteNotPlanned .slds-card__body,
+.event-card.offsiteNotPlanned .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.offsiteNotPlanned .slds-text-heading_small,
+.event-card.offsiteNotPlanned .slds-text-body_small,
+.event-card.offsiteNotPlanned strong {
+    color: white;
+}
+
+/* Leave Events */
+.event-card.leave {
+    background-color: var(--slds-g-color-palette-purple-60);
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.event-card.leave .slds-card__header,
+.event-card.leave .slds-card__body,
+.event-card.leave .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.leave .slds-text-heading_small,
+.event-card.leave .slds-text-body_small,
+.event-card.leave strong {
+    color: white;
+}
+
+/* Not Defined / Default */
+.event-card.notDefined {
+    background-color: #2449f9d6;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(36, 73, 249, 0.25);
+}
+
+.event-card.notDefined .slds-card__header,
+.event-card.notDefined .slds-card__body,
+.event-card.notDefined .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.notDefined .slds-text-heading_small,
+.event-card.notDefined .slds-text-body_small,
+.event-card.notDefined strong {
+    color: white;
+}
+
+.event-card.default {
+    background-color: #F1B55A;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    box-shadow: 0 2px 6px rgba(241, 181, 90, 0.25);
+}
+
+.event-card.default .slds-card__header,
+.event-card.default .slds-card__body,
+.event-card.default .slds-card__footer {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.event-card.default .slds-text-heading_small,
+.event-card.default .slds-text-body_small,
+.event-card.default strong {
+    color: white;
+}

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Sales_Order_Line__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Secondary Sales Order Line</label>
+    <referenceTo>Secondary_Sales_Order_Line__c</referenceTo>
+    <relationshipLabel>Secondary Sales Deliverys</relationshipLabel>
+    <relationshipName>Secondary_Sales_Deliverys</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

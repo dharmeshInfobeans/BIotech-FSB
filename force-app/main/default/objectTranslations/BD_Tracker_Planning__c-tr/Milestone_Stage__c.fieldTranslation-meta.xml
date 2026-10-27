@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Kilometre taşı Aşaması</label>
+    <name>Milestone_Stage__c</name>
+    <picklistValues>
+        <masterLabel>Actual</masterLabel>
+        <translation>Gerçek</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancel</masterLabel>
+        <translation>İptal etmek</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delay</masterLabel>
+        <translation>Erteleme</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Plan</masterLabel>
+        <translation><!-- Plan --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

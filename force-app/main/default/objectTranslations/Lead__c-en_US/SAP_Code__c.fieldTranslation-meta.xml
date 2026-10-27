@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please fill the text in 9 or less than 9 Characters and it should be unique.For example (123WRF$WE) --></help>
+    <label><!-- SAP Code --></label>
+    <name>SAP_Code__c</name>
+</CustomFieldTranslation>

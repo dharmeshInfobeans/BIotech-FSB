@@ -1,0 +1,7 @@
+<aura:component access='global' >
+    <aura:attribute name="selectedPbeRec" type="Product__c" />
+	<aura:registerEvent name="removeProductEvent" type="c:ProductSelectionEvent"/>
+	
+    <lightning:pill label="{!v.selectedPbeRec.Name}" href="#" onremove="{!c.removeSelectedItem }"/>
+
+</aura:component>

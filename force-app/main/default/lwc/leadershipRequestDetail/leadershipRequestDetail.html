@@ -1,0 +1,297 @@
+<template>
+    <div class="detail-container">
+
+        <!-- Back + Header -->
+        <div class="detail-header">
+            <lightning-button-icon
+                icon-name="utility:back"
+                alternative-text="Back to Queue"
+                title="Back to Queue"
+                onclick={handleBack}
+                class="back-btn"
+            ></lightning-button-icon>
+
+            <template lwc:if={hasDetail}>
+                <div class="header-main">
+                    <div class="header-left">
+                        <h1 class="request-title">{detail.name}</h1>
+                        <div class="header-meta">
+                            <span class={statusClass}>{detail.status}</span>
+                            <template lwc:if={detail.requestType}>
+                                <span class="meta-tag">{detail.requestType}</span>
+                            </template>
+                            <template lwc:if={detail.currentStage}>
+                                <span class="meta-stage">Stage: {detail.currentStage}</span>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <span class="submitted-label">Submitted</span>
+                        <span class="submitted-date">{formattedSubmittedDate}</span>
+                        <lightning-button-icon
+                            icon-name="utility:refresh"
+                            alternative-text="Refresh"
+                            title="Refresh"
+                            onclick={handleRefresh}
+                        ></lightning-button-icon>
+                    </div>
+                </div>
+            </template>
+        </div>
+
+        <!-- Error -->
+        <template lwc:if={error}>
+            <div class="error-box">{error}</div>
+        </template>
+
+        <template lwc:if={hasDetail}>
+
+            <!-- Rejection Banner -->
+            <template lwc:if={hasRejection}>
+                <div class="rejection-banner">
+                    <div class="rejection-title">&#9888; Rejected</div>
+                    <div class="rejection-reason">{detail.rejectionComments}</div>
+                </div>
+            </template>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+
+                <!-- Distributor Card -->
+                <div class="info-card">
+                    <div class="card-heading">Distributor Details</div>
+                    <div class="field-row">
+                        <span class="field-label">Account</span>
+                        <span class="field-value">{detail.distributorName}</span>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">CRM Email</span>
+                        <span class="field-value">{detail.crmEmail}</span>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">RSM Email</span>
+                        <span class="field-value">{detail.rsmEmail}</span>
+                    </div>
+                </div>
+
+                <!-- Product Card -->
+                <div class="info-card">
+                    <div class="card-heading">Product Details</div>
+                    <div class="field-row">
+                        <span class="field-label">Product(s)</span>
+                        <span class="field-value">{detail.allProductNames}</span>
+                    </div>
+                </div>
+
+                <!-- Location Card -->
+                <div class="info-card">
+                    <div class="card-heading">Country &amp; Region</div>
+                    <div class="field-row">
+                        <span class="field-label">Country</span>
+                        <span class="field-value">{detail.country}</span>
+                    </div>
+                    <div class="field-row">
+                        <span class="field-label">Region</span>
+                        <span class="field-value">{detail.region}</span>
+                    </div>
+                </div>
+
+                <!-- Forecasting Card -->
+                <div class="info-card">
+                    <div class="card-heading">Forecasting</div>
+                    <div class="field-row">
+                        <span class="field-label">Forecast Week</span>
+                        <span class="field-value">{forecastWeekLabel}</span>
+                    </div>
+                    <template lwc:if={isCompleted}>
+                        <div class="field-row">
+                            <span class="field-label">Actual Completion</span>
+                            <span class="field-value">{actualCompletionLabel}</span>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Document Types Card -->
+                <template lwc:if={hasDocumentsByProduct}>
+                    <div class="info-card doc-card">
+                        <div class="card-heading">Documents by Product</div>
+                        <template for:each={detail.documentsByProduct} for:item="group">
+                            <div key={group.productName} class="doc-product-group">
+                                <div class="doc-product-name">{group.productName}</div>
+                                <div class="doc-tags">
+                                    <template for:each={group.docTypes} for:item="docType">
+                                        <span key={docType} class="doc-tag">{docType}</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+                <template lwc:elseif={hasDocTypes}>
+                    <div class="info-card doc-card">
+                        <div class="card-heading">Document Types Requested</div>
+                        <div class="doc-tags">
+                            <template for:each={documentTypeList} for:item="doc">
+                                <span key={doc.key} class="doc-tag">{doc.label}</span>
+                            </template>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Remarks Card -->
+                <template lwc:if={hasRemarks}>
+                    <div class="info-card remarks-card">
+                        <div class="card-heading">Distributor Remarks</div>
+                        <p class="remarks-text">{detail.remarks}</p>
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- FG Code Assignment -->
+            <template lwc:if={hasFGProducts}>
+                <div class="section-block">
+                    <div class="section-title">FG Code Assignment</div>
+                    <div class="table-wrapper">
+                        <table class="detail-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Dummy Product Code</th>
+                                    <th>Dummy Product Description</th>
+                                    <th>FG Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={productRows} for:item="row">
+                                    <tr key={row.id}>
+                                        <td class="td-name">{row.productName}</td>
+                                        <td>{row.dummyCode}</td>
+                                        <td>{row.dummyDescription}</td>
+                                        <td>
+                                            <template lwc:if={isEditableFGStage}>
+                                                <div class="fg-cell">
+                                                    <lightning-input
+                                                        type="text"
+                                                        value={row.fgCode}
+                                                        placeholder="Enter FG Code"
+                                                        data-id={row.id}
+                                                        onchange={handleFGCodeChange}
+                                                        variant="label-hidden"
+                                                        max-length="50"
+                                                        class="fg-input">
+                                                    </lightning-input>
+                                                    <template lwc:if={row._saving}>
+                                                        <lightning-spinner size="x-small" alternative-text="Saving"></lightning-spinner>
+                                                    </template>
+                                                    <template lwc:if={row._saved}>
+                                                        <span class="fg-saved-icon" title="Saved">&#10003;</span>
+                                                    </template>
+                                                    <template lwc:if={row._error}>
+                                                        <span class="fg-row-error">{row._error}</span>
+                                                    </template>
+                                                </div>
+                                            </template>
+                                            <template lwc:else>
+                                                <span class="fg-readonly">{row.fgCode}</span>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Approval Actions -->
+            <div class="section-block actions-block">
+                <div class="section-title">Actions</div>
+                <c-registration-approval-actions
+                    record-id={recordId}
+                    onactioncomplete={handleActionComplete}
+                ></c-registration-approval-actions>
+            </div>
+
+            <!-- Parent Request -->
+            <template lwc:if={hasParent}>
+                <div class="section-block">
+                    <div class="section-title">Parent Request</div>
+                    <div class="parent-card">
+                        <div class="parent-info">
+                            <span class="parent-label">This is a child of</span>
+                            <span class="parent-name">{detail.parentRequestName}</span>
+                        </div>
+                        <lightning-button
+                            label="View Parent"
+                            icon-name="utility:forward"
+                            onclick={handleViewParent}
+                        ></lightning-button>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Child Requests -->
+            <template lwc:if={hasChildren}>
+                <div class="section-block">
+                    <div class="section-title">
+                        Subsequent Requests
+                        <span class="count-badge">{childRequestCount}</span>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="detail-table">
+                            <thead>
+                                <tr>
+                                    <th>Request #</th>
+                                    <th>Product</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Submitted</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={childRequests} for:item="child">
+                                    <tr key={child.id}>
+                                        <td class="td-name">{child.name}</td>
+                                        <td>{child.productName}</td>
+                                        <td>{child.requestType}</td>
+                                        <td>
+                                            <span class={child.statusClass}>{child.status}</span>
+                                        </td>
+                                        <td>{child.formattedDate}</td>
+                                        <td>
+                                            <lightning-button-icon
+                                                icon-name="utility:open"
+                                                alternative-text="View"
+                                                title="View Request"
+                                                data-recid={child.id}
+                                                onclick={handleViewChild}
+                                                size="small"
+                                            ></lightning-button-icon>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Approval History & Audit Timeline -->
+            <div class="section-block">
+                <div class="section-title">Approval History &amp; Audit</div>
+                <c-approval-history-timeline record-id={recordId}></c-approval-history-timeline>
+            </div>
+
+        </template>
+
+        <!-- Empty state when no recordId yet -->
+        <template lwc:else>
+            <template lwc:if={isLoading}>
+                <div class="empty-state">Loading request details...</div>
+            </template>
+        </template>
+
+    </div>
+</template>

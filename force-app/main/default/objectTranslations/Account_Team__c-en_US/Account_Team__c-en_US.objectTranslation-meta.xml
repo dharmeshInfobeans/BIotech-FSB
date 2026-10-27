@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Account Team</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Account Teams</value>
+    </caseValues>
+    <layouts>
+        <layout>Account Team Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <startsWith>Vowel</startsWith>
+    <validationRules>
+        <errorMessage><!-- Oops!!, You cannot create account team record --></errorMessage>
+        <name>Account_Team_Creation_For_Selected_Users</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Account cannot be changed when updating account team record. --></errorMessage>
+        <name>Cannot_Change_Account</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Sales Representatives cannot update Account Team. --></errorMessage>
+        <name>SS_cannot_fill_in_the_Account_team</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Account and Team Member field should not be blank --></errorMessage>
+        <name>Team_Member_And_Account_Mandatory</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,214 @@
+.custom-container{
+	color : black;
+}
+.tableHeader {
+    font-size:13px;
+}
+.tableBody {
+    width:20px;
+}
+.lastData {
+    font-weight: bold;
+    
+}
+
+.slds-dropdown {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+.slds-listbox__option {
+    cursor: pointer;
+    padding: 0.5rem;
+}
+.slds-listbox__option:hover {
+    background-color: #f3f3f3;
+}
+
+.cisHeader {
+    border-bottom: 1px solid black;
+}
+
+.footer {
+    margin-top: 5%;
+    /*padding: 10px;*/
+    background: #f3f3f3;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/*--------------------------------------------------------------------------*/
+.MainScreen {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    position: absolute;
+    padding: 0px;
+}
+
+.Head {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    font-size: 15px;
+}
+
+.Body {
+    width: 100%;
+    height: 100%;
+    height: -webkit-fill-available;
+    overflow: scroll;
+    padding: 10px;
+    background: white;
+}
+
+.Body::-webkit-scrollbar {
+    display: none;
+}
+
+.Foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px;
+    border-top: 1px solid rgb(24, 24, 24);
+    background-color: rgb(243, 243, 243);
+    width: 100%;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between buttons */
+	margin-right: 10px;
+}
+
+.pagination-btn {
+    margin-left: 5px; /* Ensures proper spacing */
+}
+
+.page-info {
+    font-weight: bold;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.SearchBox {
+    flex: 1 1 48%; /* Distribute 50% of the width to each input */
+}
+
+/* new CSSS
+
+*/
+.custom-table {
+	font-size: 11px;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.slds-box {
+	overflow-x: auto;
+}
+
+.slds-table th, .slds-table td {
+	padding: 0.5rem;
+	white-space: normal; /* Allows text to wrap */
+	word-wrap: break-word; /* Ensures long words break and wrap to the next line */
+}
+
+.slds-table th {
+	background-color: #f3f2f2;
+	text-align: center; /* Center-align table headers */
+}
+
+.slds-table {
+	border-collapse: collapse;
+}
+
+.slds-table tr:nth-child(even) {
+	background-color: #f9f9f9;
+}
+
+.slds-table tr:hover {
+	background-color: #f1f1f1;
+}
+
+/* .slds-table th{
+	border: 1px solid #ddd;
+} */
+
+.slds-theme_default {
+	border-radius: 0.25rem;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+	.custom-table th, .custom-table td {
+		font-size: 8px;
+		padding: 0.4rem;
+	}
+}
+
+@media (max-width: 992px) {
+	.custom-table th, .custom-table td {
+		font-size: 7px;
+		padding: 0.3rem;
+	}
+}
+
+@media (max-width: 768px) {
+	.custom-table th, .custom-table td {
+		font-size: 6px;
+		padding: 0.2rem;
+	}
+	.custom-table th, .custom-table td {
+		display: block;
+		width: 100%;
+	}
+	.custom-table tr {
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+}
+
+.inputStyling{
+    width: 5rem;
+    text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+@media (max-width: 576px) {
+	.custom-table th, .custom-table td {
+		font-size: 5px;
+		padding: 0.1rem;
+	}
+	.custom-table th, .custom-table td {
+		display: block;
+		width: 100%;
+	}
+	.custom-table tr {
+		display: block;
+		margin-bottom: 0.5rem;
+	}
+
+	
+}

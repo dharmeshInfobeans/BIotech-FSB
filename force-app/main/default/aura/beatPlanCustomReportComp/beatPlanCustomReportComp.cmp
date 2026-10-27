@@ -1,0 +1,259 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" controller = "beatPlanCustomReport" access="global" >
+    <!-- Handle the event sent from LWC -->
+    
+    
+    <!-- Define an attribute to store received data -->
+    <aura:attribute name="receivedData" type="object" />
+    <!-- attributes -->
+    <aura:attribute name="dateInMonth" type="Date[]"/>
+    <aura:attribute name="IsMonthTab" type="Boolean"/>
+    <aura:attribute name="monthNameList" type="Map"/>
+    <aura:attribute name="userInfo" type="user"/> 
+    <aura:attribute name="wrapperList" type="Beat_Plan__c"/>
+    <aura:attribute name="yrNameList" type="Map"/>
+    
+    <aura:attribute name="countryList" type="Map"/>
+    <aura:attribute name="stateList" type="Map"/>
+    <aura:attribute name="IsAddressTab" type="Boolean"/>
+    <aura:attribute name="IsCountry" type="Boolean"/>
+    
+    <aura:attribute name="wrapList" type="list"/>
+    <aura:attribute name="wrapList2" type="list"/>
+    <aura:attribute name="regionNameList" type="Map"/>
+    <aura:attribute name="test" type="Map"/> 
+    <aura:attribute name="test1" type="Map"/> 
+    <aura:attribute name="monthVar" type="String"/>
+    <aura:attribute name="yrVar" type="String"/>
+    <aura:attribute name="RegionVar" type="String"/>
+    <aura:attribute name="selectedValue1" type="String" access="PRIVATE"/>
+    <aura:attribute name="selectedValue2" type="String" access="PRIVATE"/>
+    <aura:attribute name="selectedValue3" type="String" access="PRIVATE"/>
+    <aura:attribute name="attchid" type="String"/>
+    <aura:attribute name="currentmonth" type="String"/>
+    <aura:attribute name="currentmonthNew" type="String"/>
+    <aura:attribute name="currentyear" type="String"/>
+    
+    <aura:attribute name="selectedValue5" type="String" access="PRIVATE"/>
+    <aura:attribute name="selectedValue6" type="String" access="PRIVATE"/>
+    <aura:attribute name="selectedCountry" type="String"/>
+    <aura:attribute name="selectedState" type="String"/>
+    
+    <aura:attribute name="currentregion" type="String"/>    
+    <!--aura handler with waiting and donewaiting events-->
+  <!--  <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>-->
+    
+    <!--component attributs -->
+    <aura:attribute name="spinner" type="boolean" default="true"/>
+    <aura:attribute name="ShowMonthYear" type="boolean" default="FALSE"/>
+    <aura:attribute name="sDate" type="Date" default=""/>
+    <aura:attribute name="eDate" type="Date" default=""/>
+    <aura:attribute name="userCurrentValue" type="String"/>
+    <aura:attribute name="Country" type="string" default=""/>
+     <aura:attribute name="State" type="string" default=""/>
+    
+    
+    <!-- handlers-->
+    <aura:handler name="init" value="{!this}" action="{!c.fetchBeatPlan}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.fetchPicklistDataPlan}"/> 
+    
+    <p class="slds-text-align_center" style="color:White"> <H2>REPORT ON BEATPLAN</H2></p>
+    
+    <!--loading spinner start-->
+       <aura:if isTrue="{!v.spinner}">
+        <div aura:id="spinnerId" class="slds-spinner_container">
+            <div class="slds-spinner--brand  slds-spinner slds-spinner--large slds-is-relative" role="alert">
+                <span class="slds-assistive-text">Loading...</span>
+                <div class="slds-spinner__dot-a"></div>
+                <div class="slds-spinner__dot-b"></div>
+            </div>
+        </div>
+    </aura:if>
+    <!--<div class="slds-scrollable" >-->
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+        <tbody>
+            <tr class="slds-hint-parent">
+                <td data-label="Select Month" style=" height: 151px; width: 20%; ">
+                    <img src="{!'/servlet/servlet.FileDownload?file='+v.attchid}"/>
+                </td>
+                <lightning:tabset selectedTabId="one">
+    
+    <!-- Month Filter Tab -->
+    <lightning:tab label="Month Filter" onactive="{! c.handleActiveMonth }" id="one">
+        <td data-label="Select Month">
+            <div class="slds-truncate" title="Select Year">
+                <lightning:select aura:id="select2" name="select2" label="Select Year" required="false" onchange="{!c.myselectedYr}" value="{!v.selectedValue2}">
+                    <aura:iteration items="{!v.yrNameList}" var="yrObj"> 
+                        <option value="{!yrObj.value}" selected="{!yrObj.value==v.currentyear}">{!yrObj.label}</option> 
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td>
+        <td data-label="Select Month">
+            <div class="slds-truncate" title="Select Month">
+                <lightning:select aura:id="select1" name="select1" label="Select Month" required="false" value="{!v.selectedValue1}" onchange="{!c.myselectedmonth}">
+                    <aura:iteration items="{!v.monthNameList}" var="monthObj"> 
+                        <option value="{!monthObj.value}" selected="{!monthObj.value==v.currentmonth}">{!monthObj.label}</option> 
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td>
+        
+        <!-- Region Select added here -->
+        <td data-label="Select Region">
+            <div class="slds-truncate" title="Select Region">
+                <lightning:select aura:id="select23" name="select23" label="Select Region" required="false" value="{!v.selectedValue3}" onchange="{!c.myselectedRegion}">
+                    <aura:iteration items="{!v.regionNameList}" var="regionObj"> 
+                        <option value="{!regionObj.value}" selected="{!regionObj.label==v.currentregion}">{!regionObj.label}</option> 
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td>
+
+    </lightning:tab>
+
+    <!-- Date Filter Tab -->
+    <lightning:tab label="Date Filter" onactive="{! c.handleActiveDate }" id="two">
+        <div class="slds-grid slds-wrap">
+  <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_8-of-12">
+    <span><td  data-label="Start Date" style="width: 20%;">
+            <div class="slds-truncate" title="Start Date">
+                <ui:inputDate aura:id="StartDateField" label="Start Date" displayDatePicker="true" format="DD/MM/YYYY" required="true" change="{!c.handleStart}"/>
+            </div>
+        </td></span>
+      <span><td data-label="End Date" style="width: 20%;">
+            <div class="slds-truncate" title="End Date">
+                <ui:inputDate aura:id="EndDateField" label="End Date" displayDatePicker="true" format="DD/MM/YYYY" required="true" change="{!c.handleEnd}"/>
+            </div>
+        </td></span>
+  </div>
+  <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-large-size_4-of-12">
+    <span><td data-label="Select Region">
+            <div class="slds-truncate" title="Select Region">
+                <lightning:select aura:id="select23" name="select23" label="Select Region" required="false" value="{!v.selectedValue3}" onchange="{!c.myselectedRegion}">
+                    <aura:iteration items="{!v.regionNameList}" var="regionObj"> 
+                        <option value="{!regionObj.value}" selected="{!regionObj.label==v.currentregion}">{!regionObj.label}</option> 
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td></span>
+  </div>
+</div>
+        
+
+        
+        
+        
+    </lightning:tab>
+
+    <!-- Select Address Tab -->
+    <lightning:tab label="Select Address" id="addressTab" onactive="{!c.handleLwcData}">
+        <td>
+            <c:countrystateseletion onsenddatatoaura="{!c.handleLwcData}"></c:countrystateseletion>
+        </td>
+
+        <!-- Region Select added here also -->
+        <td data-label="Select Region">
+            <div class="slds-truncate" title="Select Region">
+                <lightning:select aura:id="select23" name="select23" label="Select Region" required="false" value="{!v.selectedValue3}" onchange="{!c.myselectedRegion}">
+                    <aura:iteration items="{!v.regionNameList}" var="regionObj"> 
+                        <option value="{!regionObj.value}" selected="{!regionObj.label==v.currentregion}">{!regionObj.label}</option> 
+                    </aura:iteration>
+                </lightning:select>
+            </div>
+        </td>
+    </lightning:tab>
+
+</lightning:tabset>
+
+                <!-- <td>
+                    
+                   <c:countrystateseletion onsenddatatoaura="{!c.handleLwcData}">
+
+                   </c:countrystateseletion>
+                 </td> -->
+                
+                <td style=" width: 20%; ">
+                    <lightning:button variant="brand" label="Search" title="Search" onclick="{!c.handleClick }" />
+                    <span style=" Width: 142px;">
+                        <lightning:button variant="brand" label="Download As CSV" title="Download As CSV" onclick="{! c.downloadCsv }" />
+                    </span>
+                </td>
+                    <td>
+                        <label Name="Search User"> Search User</label>
+                        <lightning:input type="search" aura:id="userName" value="{!v.userCurrentValue}" onchange="{!c.fetchBeatPlan}"/>
+                        
+                        <label >Current Month - </label> <ui:outputText  aura:id="text-input-id-1" class="field" value="{!v.currentmonthNew}" />
+                        <br/>
+                        <label >Current Year - </label><ui:outputText  aura:id="text-input-id-1" class="field" value="{!v.currentyear}"/>
+                    </td>
+                   <td>
+                       
+                        
+                        <label >Start Date - </label> <ui:outputText  aura:id="text-input-id-3" class="field" value="{!v.sDate}" />
+                        <br/>
+                        <label >End Date - </label><ui:outputText  aura:id="text-input-id-4" class="field"  value="{!v.eDate}"/>
+                       <br/>
+                         <label >Country- </label> <ui:outputText  aura:id="text-input-id-3" class="field" value="{!v.Country}" />
+                        <br/>
+                        <label >State - </label><ui:outputText  aura:id="text-input-id-4" class="field" value="{!v.State}"/>
+                       <br/>
+                        
+                    </td>
+               
+                
+            </tr>
+            
+        </tbody>
+    </table>
+    <div class="slds-scrollable" style="height:24rem;width:auto;">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered slds-fixed-height-table">
+            <thead>
+                <tr class="slds-line-height_reset" style="position: sticky; z-index: 1; top: 0;">
+                    
+                    <th class="tier-three" scope="col">
+                        <div class="slds-truncate" title="Employee Code">Employee Code</div>
+                    </th> 
+                    <th class="tier-three" scope="col">
+                        <div class="slds-truncate" title="User Name">User data</div>
+                    </th> 
+                    <th class="tier-three" scope="col">
+                        <div class="slds-truncate" title="User Role">User Role</div>
+                    </th>
+                    
+                     <th class="tier-three" scope="col">
+                        <div class="slds-truncate" title="Country">Country</div>
+                    </th> 
+                    
+                    
+                    <aura:iteration items="{!v.dateInMonth}" var="dateObj">  
+                        <th class="tier-three" scope="col">
+                            <div class="slds-truncate">{!dateObj}</div>
+                        </th>   
+                    </aura:iteration>  
+                </tr>
+            </thead> 
+            <tbody class="slds-is-sortable">
+                
+                <aura:iteration items="{!v.test}" var="ele" indexVar="key">
+                    <tr class="slds-hint-parent">
+                        <td class="tier-two">{!ele.employeecode}</td>
+                        <td class="tier-two">{!ele.Id}</td>
+                        <td class="tier-two">{!ele.userrolename}</td>
+                        <td class="tier-two">{!ele.countryname}</td>
+                        
+                        <aura:iteration items="{!ele.Value}" var="wrapObj1" indexVar="key2">                  
+                            <td class="{! wrapObj1.Value == 'P' ? ' tier-four   ' :
+                                       wrapObj1.Value == 'AB'  ? 'tier-one' : wrapObj1.Value == 'H'  ? 'tier-five' : wrapObj1.Value == 'WO'  ? 'tier-Six' : wrapObj1.Value == 'H'  ? 'tier-seven' : wrapObj1.Value == 'PL'  ? 'tier-eight' : wrapObj1.Value == 'CO'  ? 'tier-nine' : wrapObj1.Value == '1/2AB+1/2PL'  ? 'tier-Ten' : wrapObj1.Value == '1/2PL+1/2AB'  ? 'tier-Eleven' :  wrapObj1.Value == '1/2P+1/2PL'  ? 'tier-Twelve' :  wrapObj1.Value == '1/2PL+1/2P'  ? 'tier-Thirteen' : ''}">  
+                                <div class="slds-truncate" title="">{!wrapObj1.Value}</div>
+                            </td>
+                            
+                        </aura:iteration>
+                    </tr>
+                </aura:iteration>
+                
+            </tbody>
+        </table>
+    </div>
+    <!--</div>-->
+</aura:component>

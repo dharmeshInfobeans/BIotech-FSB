@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Vertical__c</fullName>
+    <label>Vertical</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>OPHTHALMOLOGY</fullName>
+                <default>false</default>
+                <label>OPHTHALMOLOGY</label>
+            </value>
+            <value>
+                <fullName>ORTHOPAEDICS</fullName>
+                <default>false</default>
+                <label>ORTHOPAEDICS</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

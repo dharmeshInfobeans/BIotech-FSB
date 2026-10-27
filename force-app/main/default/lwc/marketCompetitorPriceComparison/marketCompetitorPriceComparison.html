@@ -1,0 +1,92 @@
+<template>
+    <div class="brand-buttons slds-m-bottom_medium">
+        <template for:each={distributorButtons} for:item="brand">
+            <lightning-button key={brand.Id} label={brand.Name} data-id={brand.Id} onclick={handleBrandClick}
+                variant={brand.variant} class='slds-m-right_small'>
+            </lightning-button>
+        </template>
+    </div>
+
+    <div class="table-section scrollable-table-container">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+            <thead>
+                <tr>
+                    <th>{label.DIVISION}</th>
+                    <th>{label.CATEGORY}</th>
+                    <th>{label.BIOTECH_PRODUCT_RANGE}</th>
+                    <th><span style="color: red; font-size: 0.9rem;">*</span>{label.BRAND_NAME}</th>
+                    <th><span style="color: red; font-size: 0.9rem;">*</span>{label.PRICE_KEY_ACCOUNT}</th>
+                    <th><span style="color: red; font-size: 0.9rem;">*</span>{label.PRICE_FOR_RETAIL}</th>
+                    <th>{label.TOTAL_PACKAGE}</th>
+                    <template if:true={showEndUserColumn}>
+                        <th>End User Price by Distributor to Doctor</th>
+                    </template>
+                </tr>
+            </thead>
+            <tbody>
+                <template if:true={combinedProducts}>
+                    <template for:each={combinedProducts} for:item="prod" for:index="idx">
+                        <!-- Normal Product Row -->
+                        <template if:false={prod.isSeparator}>
+                            <tr key={prod.productId}>
+                                <td>{prod.division}</td>
+                                <td>{prod.category}</td>
+                                <td><strong>{prod.productName}</strong></td>
+                                <td>
+                                    <lightning-input type="text" value={prod.brandName} data-id={prod.productId}
+                                        data-index={idx} disabled={showEndUserColumn} data-field="brandName" onchange={handleChange}>
+                                    </lightning-input>
+                                </td>
+                                <td>
+                                    <lightning-input type="number" value={prod.priceKeyAccounts}
+                                        data-id={prod.productId} disabled={showEndUserColumn} data-index={idx} data-field="priceKeyAccounts"
+                                        onchange={handleChange}>
+                                    </lightning-input>
+                                </td>
+                                <td>
+                                    <lightning-input type="number" value={prod.priceRetail} data-id={prod.productId}
+                                        data-index={idx} disabled={showEndUserColumn} data-field="priceRetail" onchange={handleChange}>
+                                    </lightning-input>
+                                </td>
+                                <td>
+                                    <lightning-input type="number" value={prod.totalPackage} data-id={prod.productId}
+                                        data-index={idx} disabled={showEndUserColumn} data-field="totalPackage" onchange={handleChange}>
+                                    </lightning-input>
+                                </td>
+                                <template if:true={showEndUserColumn}>
+                                    <td>
+                                        <lightning-input
+                                            type="number"
+                                            value={prod.endUser}
+                                            data-id={prod.productId}
+                                            data-index={idx}
+                                            data-field="endUser"
+                                            onchange={handleChange}>
+                                        </lightning-input>
+                                    </td>
+                                </template>
+                            </tr>
+                        </template>
+
+                        <template if:true={prod.isSeparator}>
+                            <tr key={prod.separatorKey} style="background-color: #f3f3f3;">
+                                <td colspan="8" style="text-align: center; font-weight: bold; padding: 0.5rem;">
+                                    <hr
+                                        style="border: none;margin: 0rem;color: 1px solid black;background-color: darkgrey;">
+                                </td>
+                            </tr>
+                        </template>
+                    </template>
+                </template>
+
+                <template if:false={combinedProducts}>
+                    <tr>
+                        <td colspan="7" class="slds-text-align_center">
+                            <p class="slds-text-color_weak">No products available</p>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </div>
+</template>

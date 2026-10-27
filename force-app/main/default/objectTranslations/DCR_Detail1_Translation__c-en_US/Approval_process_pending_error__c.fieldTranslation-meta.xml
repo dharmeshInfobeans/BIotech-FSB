@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Approval process pending error --></label>
+    <name>Approval_process_pending_error__c</name>
+</CustomFieldTranslation>

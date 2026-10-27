@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Resolve by Plus91labs --></label>
+    <name>Resolve_by_Plus91labs__c</name>
+</CustomFieldTranslation>

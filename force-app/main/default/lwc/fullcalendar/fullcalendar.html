@@ -1,0 +1,28 @@
+<!--
+  @File Name          : fullcalendar.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 6/10/2020, 10:02:27 AM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    6/10/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+<div class="slds-grid slds-wrap" style="height: 50px;padding-right: 12px;padding-top: 6px;background-color: black;">
+    <div class="slds-col slds-size_2-of-12" style="text-align: center;">
+        <lightning-icon icon-name="action:back" alternative-text="Approved" title="Approved" size="xx-small"
+            onclick={clickBack} style="background:rgb(39, 174, 230);"></lightning-icon>
+    </div>
+    <div class="slds-col slds-size_8-of-12" style="text-align: center;">
+        <span>
+
+        </span>
+    </div>
+    <div class="slds-col slds-size_2-of-12" style="text-align: end;">
+    </div>
+</div>
+    <div id="calendar" class="fullcalendarjs">
+    </div>
+</template>

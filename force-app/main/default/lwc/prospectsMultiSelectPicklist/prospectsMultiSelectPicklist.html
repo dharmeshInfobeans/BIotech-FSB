@@ -1,0 +1,49 @@
+<template>
+    <div class="slds-form-element">
+        <label class="slds-form-element__label">{label}</label>
+        <div class="slds-form-element__control">
+            <div class="ms-container">
+                <button
+                    type="button"
+                    class="slds-button slds-button_neutral ms-trigger"
+                    aria-haspopup="listbox"
+                    aria-expanded={isOpen}
+                    disabled={disabled}
+                    onclick={toggleDropdown}
+                >
+                    <span class="slds-truncate" title={summaryLabel}>{summaryLabel}</span>
+                    <lightning-icon icon-name="utility:down" size="x-small" class="ms-caret"></lightning-icon>
+                </button>
+                <template if:true={isOpen}>
+                    <div class="ms-backdrop" onclick={closeDropdown}></div>
+                    <div class="ms-dropdown" role="listbox">
+                        <div class="ms-search">
+                            <lightning-icon icon-name="utility:search" size="x-small" class="ms-search-icon"></lightning-icon>
+                            <input
+                                type="text"
+                                class="ms-search-input"
+                                placeholder="Search..."
+                                value={searchTerm}
+                                oninput={handleSearchInput}
+                                onclick={stopPropagation}
+                            />
+                        </div>
+                        <ul class="slds-listbox slds-listbox_vertical ms-list" role="presentation">
+                            <template for:each={displayOptions} for:item="opt">
+                                <li key={opt.value} class="slds-listbox__item ms-option" role="presentation">
+                                    <label class="ms-option-label">
+                                        <input type="checkbox" data-value={opt.value} checked={opt.checked} onchange={handleOptionChange} />
+                                        <span class="slds-truncate">{opt.label}</span>
+                                    </label>
+                                </li>
+                            </template>
+                            <template if:true={hasNoOptions}>
+                                <li class="slds-listbox__item ms-empty">{emptyMessage}</li>
+                            </template>
+                        </ul>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

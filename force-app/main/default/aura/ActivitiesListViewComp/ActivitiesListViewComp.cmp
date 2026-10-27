@@ -1,0 +1,38 @@
+<aura:component controller="ActivitiesListViewController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="String"/>
+    <aura:attribute name="eveId" type="String"/>
+    <aura:attribute name="beatId" type="list"/>
+    <!-- This attribute will hold the update records from data table-->
+    <aura:attribute name="updatedRecord" type="Object[]" />
+    <aura:attribute name="approvedStatusVal" type="String" default="Approved" />
+    <aura:attribute name="rejectedStatusVal" type="String" default="Rejected" />
+    <aura:attribute name="selectObj" type="Object" default="{'Id': '',
+                                                            'Status__c' : ''}"/>
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    
+    <aura:if isTrue="{! v.showSpinner}" >
+         <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    <lightning:card>
+        <div class="slds-grid slds-align_absolute-center">
+            <lightning:button variant="success" label="Approve" title="Approve" onclick="{! c.onApprove }"/>
+            <lightning:button variant="destructive" label="Reject" title="Reject" onclick="{! c.onReject }"/>
+            <lightning:button variant="brand" label="Refresh" title="Refresh" onclick="{! c.onRefresh }"/>
+        </div>
+        <!-- You must define keyField as 'Id' to save the record back in Salesforce
+'onsave' attribute will executed when user clicks on save button -->
+        <lightning:card title="Events Datatable" iconName="standard:event">
+            <lightning:datatable
+                                 aura:id="eventDataTable"
+                                 columns="{! v.columns }"
+                                 data="{! v.data }"
+                                 keyField="Id"
+                                 onsave ="{!c.onSave}"
+                                 onrowaction="{! c.handleRowAction }"
+                                 onrowselection="{! c.rowSelectionHandler }"/>
+        </lightning:card>
+    </lightning:card>
+</aura:component>

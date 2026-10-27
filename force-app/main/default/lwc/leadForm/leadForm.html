@@ -1,0 +1,458 @@
+<template>
+    <div class="full-wrapper">
+        <div class="scorecard-container">
+            <!-- Main Content Layout -->
+            <div class="main-content-layout">
+                <!-- Customer Selection Sidebar -->
+                <div class="account-info-sidebar">
+                    <div class="account-info-card">
+                        <div class="account-info-header">
+                            <lightning-icon icon-name="utility:search" size="small" class="account-icon"></lightning-icon>
+                            <h3 class="account-info-title">Customer Selection</h3>
+                        </div>
+                        <div class="account-info-body">
+                            <!-- Search Input -->
+                            <div class="search-section">
+                                <lightning-input
+                                    type="search"
+                                    label="Search Existing Customer"
+                                    placeholder="Search by Account or Contact Name"
+                                    value={searchTerm}
+                                    onchange={handleSearchChange}
+                                    class="search-input">
+                                </lightning-input>
+                                
+                                <!-- Loading Indicator -->
+                                <template if:true={isSearching}>
+                                    <div class="search-loading">
+                                        <lightning-spinner alternative-text="Searching..." size="small"></lightning-spinner>
+                                    </div>
+                                </template>
+                                
+                                <!-- Search Results -->
+                                <template if:true={searchResults.length}>
+                                    <div class="search-results">
+                                        <div class="search-results-header">Search Results</div>
+                                        <template for:each={searchResults} for:item="result">
+                                            <div 
+                                                key={result.Id}
+                                                class="search-result-item"
+                                                data-id={result.Id}
+                                                data-type={result.Type}
+                                                onclick={handleSelectCustomer}>
+                                                <div class="result-type-badge" data-type={result.Type}>
+                                                    {result.Type}
+                                                </div>
+                                                <div class="result-name">{result.Name}</div>
+                                                <template if:true={result.Details}>
+                                                    <div class="result-details">{result.Details}</div>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                            
+                            <!-- Selected Customer Info -->
+                            <template if:true={selectedAccount}>
+                                <div class="selected-customer-section">
+                                    <div class="selected-customer-header">
+                                        <lightning-icon icon-name="utility:account" size="xx-small" class="field-icon"></lightning-icon>
+                                        <span>Selected Account</span>
+                                        <button class="clear-button" onclick={handleClearCustomer}>Clear</button>
+                                    </div>
+                                    <div class="selected-customer-info">
+                                        <div class="info-item-value">{selectedAccount.Name}</div>
+                                        <template if:true={selectedAccount.Phone}>
+                                            <div class="info-item-value-small">Phone: {selectedAccount.Phone}</div>
+                                        </template>
+                                    </div>
+                                    
+                                    <!-- Related Contacts -->
+                                    <template if:true={relatedContacts.length}>
+                                        <div class="related-contacts-section">
+                                            <div class="related-contacts-header">
+                                                <lightning-icon icon-name="utility:user" size="xx-small" class="field-icon"></lightning-icon>
+                                                <span>Related Contacts</span>
+                                            </div>
+                                            <div class="related-contacts-list">
+                                                <template for:each={relatedContacts} for:item="contact">
+                                                    <div 
+                                                        key={contact.Id}
+                                                        class={contact.itemClass}
+                                                        data-id={contact.Id}
+                                                        onclick={handleSelectRelatedContact}>
+                                                        <div class="contact-name">
+                                                            {contact.FirstName} {contact.LastName}
+                                                        </div>
+                                                        <template if:true={contact.Email}>
+                                                            <div class="contact-email">{contact.Email}</div>
+                                                        </template>
+                                                        <template if:true={contact.Title}>
+                                                            <div class="contact-title">{contact.Title}</div>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </div>
+                            </template>
+                            
+                            <template if:true={selectedContact}>
+                                <template if:false={selectedAccount}>
+                                    <div class="selected-customer-section">
+                                        <div class="selected-customer-header">
+                                            <lightning-icon icon-name="utility:user" size="xx-small" class="field-icon"></lightning-icon>
+                                            <span>Selected Contact</span>
+                                            <button class="clear-button" onclick={handleClearCustomer}>Clear</button>
+                                        </div>
+                                        <div class="selected-customer-info">
+                                            <div class="info-item-value">{selectedContactName}</div>
+                                            <template if:true={selectedContact.Email}>
+                                                <div class="info-item-value-small">Email: {selectedContact.Email}</div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                                
+                                <!-- Show selected contact when Account is also selected -->
+                                <template if:true={selectedAccount}>
+                                    <div class="selected-customer-section">
+                                        <div class="selected-customer-header">
+                                            <lightning-icon icon-name="utility:user" size="xx-small" class="field-icon"></lightning-icon>
+                                            <span>Selected Contact</span>
+                                        </div>
+                                        <div class="selected-customer-info">
+                                            <div class="info-item-value">{selectedContactName}</div>
+                                            <template if:true={selectedContact.Email}>
+                                                <div class="info-item-value-small">Email: {selectedContact.Email}</div>
+                                            </template>
+                                        </div>
+                                    </div>
+                                </template>
+                            </template>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lead Form Content Area -->
+                <div class="form-content-area">
+                    <div class="section-content">
+                        <h2 class="section-heading">Scorecard Lead Information</h2>
+
+                        <!-- Validation Errors -->
+                        <template if:true={validationErrors.length}>
+                            <div class="validation-error-container">
+                                <lightning-icon icon-name="utility:error" size="small" class="error-icon"></lightning-icon>
+                                <span class="validation-error-message">Please fix the following errors:</span>
+                                <ul class="validation-error-list">
+                                    <template for:each={validationErrors} for:item="error">
+                                        <li key={error.field} class="validation-error-item">
+                                            {error.message}
+                                        </li>
+                                    </template>
+                                </ul>
+                            </div>
+                        </template>
+
+                        <!-- Lead Form Fields -->
+                        <div class="form-fields-grid">
+                            <!-- Name Fields -->
+                            <div class={firstNameRowClass}>
+                                <lightning-input
+                                    label="First Name"
+                                    value={leadData.FirstName}
+                                    required
+                                    data-field="FirstName"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <div class={lastNameRowClass}>
+                                <lightning-input
+                                    label="Last Name"
+                                    value={leadData.LastName}
+                                    required
+                                    data-field="LastName"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <!-- Contact Information -->
+                            <div class={emailRowClass}>
+                                <lightning-input
+                                    type="email"
+                                    label="Email"
+                                    required
+                                    value={leadData.Email}
+                                    data-field="Email"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <!-- <div class="form-field-row">
+                                <lightning-input
+                                    type="tel"
+                                    label="Phone"
+                                    value={leadData.Phone}
+                                    data-field="Phone"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div> -->
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    type="tel"
+                                    label="Mobile Phone"
+                                    required
+                                    value={leadData.MobilePhone}
+                                    data-field="MobilePhone"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <!-- Company Information -->
+                            <div class={companyRowClass}>
+                                <lightning-input
+                                    label="Company"
+                                    value={leadData.Company}
+                                    required
+                                    data-field="Company"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    label="Designation/Title"
+                                    value={leadData.Title}
+                                    data-field="Title"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    type="url"
+                                    label="Website"
+                                    value={leadData.Website}                                   
+                                    data-field="Website"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <!-- Industry and Revenue -->
+                            <!-- <div class="form-field-row">
+                                <lightning-combobox
+                                    label="Industry"
+                                    value={leadData.Industry}
+                                    options={industryOptions}
+                                    data-field="Industry"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div> -->
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    type="number"
+                                    label="Annual Revenue"
+                                    value={leadData.AnnualRevenue}
+                                    data-field="AnnualRevenue"
+                                    onchange={handleFieldChange}
+                                    formatter="currency">
+                                </lightning-input>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    type="number"
+                                    label="Number of Employees"
+                                    value={leadData.NumberOfEmployees}                                   
+                                    data-field="NumberOfEmployees"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <!-- Address Fields -->
+                            <div class="form-field-row full-width">
+                                <lightning-textarea
+                                    label="Address"
+                                    value={leadData.Street}
+                                    required
+                                    data-field="Street"
+                                    onchange={handleFieldChange}
+                                    rows="2">
+                                </lightning-textarea>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    label="City"
+                                    value={leadData.City}
+                                    required
+                                    data-field="City"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    label="State/Province"
+                                    value={leadData.State}
+                                    required
+                                    data-field="State"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-input
+                                    label="Postal Code    (if not applicable, enter 0000)"
+                                    value={leadData.PostalCode}
+                                    required
+                                    data-field="PostalCode"
+                                    onchange={handleFieldChange}>
+                                </lightning-input>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <!-- <lightning-input
+                                    label="Country"
+                                    value={leadData.Country}
+                                    data-field="Country"
+                                    onchange={handleFieldChange}>
+                                </lightning-input> -->
+                                  <lightning-combobox
+                                    label="Country"
+                                    value={leadData.Country}
+                                    required
+                                    options={leadCountryOptions}
+                                    data-field="Country"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            
+                            <div class={regionRowClass}>
+                                <lightning-combobox
+                                    label="Region"
+                                    value={leadData.Region}
+                                    required
+                                    options={regionOptions}
+                                    data-field="Region"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            
+                            <!-- Lead Source and Status -->
+                            <div class="form-field-row">
+                                <lightning-combobox
+                                    label="Lead Source"
+                                    value={leadData.LeadSource}
+                                    options={leadSourceOptions}
+                                    data-field="LeadSource"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            
+                            <div class="form-field-row">
+                                <lightning-combobox
+                                    label="Status"
+                                    value={leadData.Status}
+                                    required
+                                    options={statusOptions}
+                                    data-field="Status"
+                                    onchange={handleFieldChange}>
+                                </lightning-combobox>
+                            </div>
+                            
+                            <!-- Description -->
+                            <div class="form-field-row full-width">
+                                <lightning-textarea
+                                    label="Description"
+                                    value={leadData.Description}
+                                    data-field="Description"
+                                    onchange={handleFieldChange}
+                                    rows="4">
+                                </lightning-textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="button-container">
+                            <button class="submit-button" onclick={handleSubmit} disabled={isLoading}>
+                                <template if:true={isLoading}>
+                                    <lightning-spinner alternative-text="Creating..." size="small"></lightning-spinner>
+                                    <span class="loading-text">Creating Scorecard Lead...</span>
+                                </template>
+                                <template if:false={isLoading}>
+                                    Create Scorecard Lead
+                                </template>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <template if:true={isLoading}>
+                <div class="loading-overlay">
+                    <lightning-spinner alternative-text="Processing..." size="large"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Confirmation Modal -->
+            <template if:true={showConfirmModal}>
+                <div class="modal-overlay" onclick={handleCancelSubmit}>
+                    <div class="modal-container" onclick={handleModalClick}>
+                        <div class="modal-header">
+                            <h3 class="modal-title">Confirm Scorecard Lead Creation</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p class="modal-message">Are you sure you want to create this Scorecard Lead? This action will create a new Scorecard Lead record in Salesforce.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-cancel-button" onclick={handleCancelSubmit}>
+                                Cancel
+                            </button>
+                            <button class="modal-submit-button" onclick={handleConfirmSubmit}>
+                                Create Scorecard Lead
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Error Modal -->
+            <template if:true={showErrorModal}>
+                <div class="modal-overlay" onclick={handleCloseErrorModal}>
+                    <div class="modal-container error-modal-container" onclick={handleModalClick}>
+                        <div class="modal-header error-modal-header">
+                            <h3 class="modal-title error-modal-title">Scorecard Not Configured</h3>
+                            <button class="error-modal-close-x" onclick={handleCloseErrorModal} title="Close">
+                                <lightning-icon icon-name="utility:close" size="x-small" class="close-icon"></lightning-icon>
+                            </button>
+                        </div>
+                        <div class="modal-body error-modal-body">
+                            <div class="error-warning-message">
+                                <lightning-icon icon-name="utility:warning" size="small" class="warning-icon"></lightning-icon>
+                                <div class="warning-text">
+                                    The scorecard evaluation form is <span class="highlight-red">not configured</span> for the selected region: <span class="highlight-red region-name">{errorRegion}</span>.
+                                </div>
+                            </div>
+                            <div class="error-info-box">
+                                <lightning-icon icon-name="utility:info" size="x-small" class="info-icon"></lightning-icon>
+                                <span class="info-text">Please contact your Salesforce Administrator to configure the scorecard for this region before proceeding.</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer error-modal-footer">
+                            <button class="modal-ok-button" onclick={handleCloseErrorModal}>
+                                OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

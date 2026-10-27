@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agreement_Signed_With__c</fullName>
+    <label>Agreement Signed With</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Biotech Healthcare Holding GmbH</fullName>
+                <default>false</default>
+                <label>Biotech Healthcare Holding GmbH</label>
+            </value>
+            <value>
+                <fullName>Biotech Vision Care Pvt. Ltd.</fullName>
+                <default>false</default>
+                <label>Biotech Vision Care Pvt. Ltd.</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

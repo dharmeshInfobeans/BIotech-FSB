@@ -1,0 +1,23 @@
+.customModal {
+    min-width: 600px;
+}
+
+.message-container {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* Optional: if message is VERY long, allow scroll */
+.message-container {
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* Improve readability */
+.success-text,
+.error-text {
+    font-size: 16px;
+    line-height: 1.6;
+}

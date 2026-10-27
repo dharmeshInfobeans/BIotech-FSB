@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Org Role Hierarchy</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Org Role Hierarchies</value>
+    </caseValues>
+    <layouts>
+        <layout>Marketing</layout>
+        <sections>
+            <label><!-- BDM Info --></label>
+            <section>BDM Info</section>
+        </sections>
+        <sections>
+            <label><!-- CM Info --></label>
+            <section>CM Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DM Info --></label>
+            <section>DM Info</section>
+        </sections>
+        <sections>
+            <label><!-- GM Info --></label>
+            <section>GM Info</section>
+        </sections>
+        <sections>
+            <label><!-- GSRO Info --></label>
+            <section>GSRO Info</section>
+        </sections>
+        <sections>
+            <label><!-- KAM Info --></label>
+            <section>KAM Info</section>
+        </sections>
+        <sections>
+            <label><!-- NSM Info --></label>
+            <section>NSM Info</section>
+        </sections>
+        <sections>
+            <label><!-- RM Info --></label>
+            <section>RM Info</section>
+        </sections>
+        <sections>
+            <label><!-- RSM Info --></label>
+            <section>RSM Info</section>
+        </sections>
+        <sections>
+            <label><!-- SAE Info --></label>
+            <section>SAE Info</section>
+        </sections>
+        <sections>
+            <label><!-- SDE Info --></label>
+            <section>SDE Info</section>
+        </sections>
+        <sections>
+            <label><!-- SSE Info --></label>
+            <section>SSE Info</section>
+        </sections>
+        <sections>
+            <label><!-- TM Info --></label>
+            <section>TM Info</section>
+        </sections>
+        <sections>
+            <label><!-- ZSM Info --></label>
+            <section>ZSM Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Org Role Hierarchy Layout</layout>
+        <sections>
+            <label><!-- BDM Info --></label>
+            <section>BDM Info</section>
+        </sections>
+        <sections>
+            <label><!-- CM Info --></label>
+            <section>CM Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DM Info --></label>
+            <section>DM Info</section>
+        </sections>
+        <sections>
+            <label><!-- GM Info --></label>
+            <section>GM Info</section>
+        </sections>
+        <sections>
+            <label><!-- GSRO Info --></label>
+            <section>GSRO Info</section>
+        </sections>
+        <sections>
+            <label><!-- KAM Info --></label>
+            <section>KAM Info</section>
+        </sections>
+        <sections>
+            <label><!-- NSM Info --></label>
+            <section>NSM Info</section>
+        </sections>
+        <sections>
+            <label><!-- RM Info --></label>
+            <section>RM Info</section>
+        </sections>
+        <sections>
+            <label><!-- RSM Info --></label>
+            <section>RSM Info</section>
+        </sections>
+        <sections>
+            <label><!-- SAE Info --></label>
+            <section>SAE Info</section>
+        </sections>
+        <sections>
+            <label><!-- SDE Info --></label>
+            <section>SDE Info</section>
+        </sections>
+        <sections>
+            <label><!-- SSE Info --></label>
+            <section>SSE Info</section>
+        </sections>
+        <sections>
+            <label><!-- TM Info --></label>
+            <section>TM Info</section>
+        </sections>
+        <sections>
+            <label><!-- ZSM Info --></label>
+            <section>ZSM Info</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Sales Page Layout</layout>
+        <sections>
+            <label><!-- BDM Info --></label>
+            <section>BDM Info</section>
+        </sections>
+        <sections>
+            <label><!-- CM Info --></label>
+            <section>CM Info</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- DM Info --></label>
+            <section>DM Info</section>
+        </sections>
+        <sections>
+            <label><!-- GM Info --></label>
+            <section>GM Info</section>
+        </sections>
+        <sections>
+            <label><!-- GSRO Info --></label>
+            <section>GSRO Info</section>
+        </sections>
+        <sections>
+            <label><!-- KAM Info --></label>
+            <section>KAM Info</section>
+        </sections>
+        <sections>
+            <label><!-- NSM Info --></label>
+            <section>NSM Info</section>
+        </sections>
+        <sections>
+            <label><!-- RM Info --></label>
+            <section>RM Info</section>
+        </sections>
+        <sections>
+            <label><!-- RSM Info --></label>
+            <section>RSM Info</section>
+        </sections>
+        <sections>
+            <label><!-- SAE Info --></label>
+            <section>SAE Info</section>
+        </sections>
+        <sections>
+            <label><!-- SDE Info --></label>
+            <section>SDE Info</section>
+        </sections>
+        <sections>
+            <label><!-- SSE Info --></label>
+            <section>SSE Info</section>
+        </sections>
+        <sections>
+            <label><!-- TM Info --></label>
+            <section>TM Info</section>
+        </sections>
+        <sections>
+            <label><!-- ZSM Info --></label>
+            <section>ZSM Info</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Marketing --></label>
+        <name>Marketing</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Practice Development --></label>
+        <name>Practice_Development</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Sales --></label>
+        <name>Sales</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

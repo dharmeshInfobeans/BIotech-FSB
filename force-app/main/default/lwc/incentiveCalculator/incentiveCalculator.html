@@ -1,0 +1,62 @@
+<template>
+    <lightning-card title="Incentive Calculator">
+        <div class="slds-p-around_medium slds-grid slds-gutters slds-align_absolute-center">
+<!-- Year -->
+    <div class="inline-field slds-m-right_medium">
+        <span class="inline-label">Year :</span>
+        <lightning-combobox
+            variant="label-hidden"
+            value={selectedYear}
+            options={yearOptions}
+            onchange={handleYearChange}
+            class="inline-combobox">
+        </lightning-combobox>
+    </div>
+
+    <!-- Month -->
+    <div class="inline-field slds-m-right_medium">
+        <span class="inline-label">Month :</span>
+        <lightning-combobox
+            variant="label-hidden"
+            value={selectedMonth}
+            options={monthOptions}
+            onchange={handleMonthChange}
+            disabled={isMonthDisabled}
+            class="inline-combobox">
+        </lightning-combobox>
+    </div>
+
+    <!-- Buttons -->
+    <lightning-button
+        label="Refresh"
+        icon-name="utility:refresh"
+        onclick={handleRefresh}
+        class="slds-m-right_small">
+    </lightning-button>
+
+    <lightning-button
+        label="Export to Excel"
+        variant="brand"
+        onclick={exportToExcel}
+        disabled={isExportDisabled}>
+    </lightning-button>
+
+</div>
+        </div>
+
+        <template if:true={isFilterValid}>
+            <lightning-datatable
+                key-field="userId"
+                data={tableData}
+                columns={columns}
+                hide-checkbox-column>
+            </lightning-datatable>
+        </template>
+
+        <template if:true={error}>
+            <div class="slds-text-color_error slds-p-around_medium">
+                Error loading incentive data.
+            </div>
+        </template>
+    </lightning-card>
+</template>

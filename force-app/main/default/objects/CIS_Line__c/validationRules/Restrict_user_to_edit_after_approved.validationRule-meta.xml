@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Restrict_user_to_edit_after_approved</fullName>
+    <active>false</active>
+    <errorConditionFormula>IF( AND(ISPICKVAL( CIS_Header__r.Status__c ,&quot;Approved&quot; ), $Profile.Name !=&apos;System Administrator&apos;),true,false )</errorConditionFormula>
+    <errorMessage>Cannot Edit as CE-CIS is already approved</errorMessage>
+</ValidationRule>

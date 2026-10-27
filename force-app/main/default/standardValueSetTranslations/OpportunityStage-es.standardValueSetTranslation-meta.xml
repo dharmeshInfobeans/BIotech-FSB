@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StandardValueSetTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <valueTranslation>
+        <masterLabel>Closed Lost</masterLabel>
+        <translation>Cerrado perdido</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Closed Won</masterLabel>
+        <translation>Cerrado ganó</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Needs Analysis</masterLabel>
+        <translation>Análisis de necesidad</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Negotiation</masterLabel>
+        <translation>Negociación</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Proposal</masterLabel>
+        <translation>Propuesta</translation>
+    </valueTranslation>
+    <valueTranslation>
+        <masterLabel>Qualification</masterLabel>
+        <translation>Calificación</translation>
+    </valueTranslation>
+</StandardValueSetTranslation>

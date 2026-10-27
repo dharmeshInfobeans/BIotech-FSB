@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- No custom equipment added yet. Click &quot;+ --></label>
+    <name>No_custom_equipment_added_yet_Click__c</name>
+</CustomFieldTranslation>

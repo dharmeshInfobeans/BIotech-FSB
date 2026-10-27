@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Choose a family, then filter by group --></label>
+    <name>Choose_a_family_then_filter_by_group__c</name>
+</CustomFieldTranslation>

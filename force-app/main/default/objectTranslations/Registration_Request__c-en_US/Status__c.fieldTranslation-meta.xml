@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Status --></label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Additional Documents Requested</masterLabel>
+        <translation><!-- Additional Documents Requested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approved by Leadership</masterLabel>
+        <translation><!-- Approved by Leadership --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Completed</masterLabel>
+        <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation><!-- Draft --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>On Hold</masterLabel>
+        <translation><!-- On Hold --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pending Customer Response</masterLabel>
+        <translation><!-- Pending Customer Response --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation><!-- Rejected --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent Back</masterLabel>
+        <translation><!-- Sent Back --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Submitted</masterLabel>
+        <translation><!-- Submitted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Submitted to Regulatory</masterLabel>
+        <translation><!-- Submitted to Regulatory --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Under Functional Head Review</masterLabel>
+        <translation><!-- Under Functional Head Review --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Under Leadership Review</masterLabel>
+        <translation><!-- Under Leadership Review --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Under Management Approval</masterLabel>
+        <translation><!-- Under Management Approval --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Under Regulatory Review</masterLabel>
+        <translation><!-- Under Regulatory Review --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

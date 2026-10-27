@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Region__c</fullName>
+    <fieldManageability>DeveloperControlled</fieldManageability>
+    <label>Region</label>
+    <required>false</required>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Eastern Europe</fullName>
+                <default>true</default>
+                <label>Eastern Europe</label>
+            </value>
+            <value>
+                <fullName>Western Europe</fullName>
+                <default>false</default>
+                <label>Western Europe</label>
+            </value>
+            <value>
+                <fullName>APAC</fullName>
+                <default>false</default>
+                <label>APAC</label>
+            </value>
+            <value>
+                <fullName>Latin America</fullName>
+                <default>false</default>
+                <label>Latin America</label>
+            </value>
+            <value>
+                <fullName>MENA</fullName>
+                <default>false</default>
+                <label>MENA</label>
+            </value>
+            <value>
+                <fullName>OEM</fullName>
+                <default>false</default>
+                <label>OEM</label>
+            </value>
+            <value>
+                <fullName>Ortho</fullName>
+                <default>false</default>
+                <label>Ortho</label>
+            </value>
+            <value>
+                <fullName>Rest of Africa</fullName>
+                <default>false</default>
+                <label>Rest of Africa</label>
+            </value>
+            <value>
+                <fullName>SAARC</fullName>
+                <default>false</default>
+                <label>SAARC</label>
+            </value>
+            <value>
+                <fullName>Unknown</fullName>
+                <default>false</default>
+                <label>Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,294 @@
+/* Box styling */
+.slds-box {
+    border: 1px solid #d8dde6;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(43, 87, 99, 0.1);
+}
+
+/* Responsive Design for Menu */
+@media (max-width: 768px) {
+    .admin-config-layout {
+        flex-direction: column;
+    }
+    
+    .menu-sidebar {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .menu-list {
+        display: flex;
+        overflow-x: auto;
+    }
+    
+    .menu-item {
+        flex-shrink: 0;
+    }
+    
+    .menu-link {
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+        padding: 0.875rem 1rem;
+    }
+    
+    .menu-link.slds-is-active,
+    .menu-link.active {
+        border-left: none;
+        border-bottom-color: #2B5763;
+    }
+}
+
+/* Section weightage box styling */
+.slds-theme_shade {
+    background-color: #f3f2f2;
+    border-left: 4px solid #2B5763;
+}
+
+/* Table styling */
+.slds-table {
+    margin-top: 1rem;
+}
+
+.slds-table th {
+    background-color: #2B5763;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.slds-table th .slds-truncate {
+    color: #ffffff;
+}
+
+.slds-table td {
+    vertical-align: middle;
+}
+
+/* Heading colors */
+.slds-text-heading_medium {
+    color: #2B5763;
+    font-weight: 600;
+}
+
+.slds-text-heading_small {
+    color: #2B5763;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+}
+
+/* Spacing utilities */
+.slds-m-top_large {
+    margin-top: 1.5rem;
+}
+
+.slds-m-bottom_large {
+    margin-bottom: 1.5rem;
+}
+
+.slds-m-bottom_medium {
+    margin-bottom: 1rem;
+}
+
+.slds-m-bottom_small {
+    margin-bottom: 0.5rem;
+}
+
+.slds-align-middle {
+    display: flex;
+    align-items: center;
+}
+
+.slds-text-align_right {
+    text-align: right;
+}
+
+.slds-text-align_center {
+    text-align: center;
+}
+
+.slds-p-around_large {
+    padding: 1.5rem;
+}
+
+.slds-p-around_medium {
+    padding: 1rem;
+}
+
+/* Tab section wrapper with background */
+.tab-section-wrapper {
+    background-color: rgba(43, 87, 99, 0.08);
+    border-radius: 0.5rem;
+    padding: 1rem;
+    border: 1px solid rgba(43, 87, 99, 0.15);
+    margin-bottom: 1.5rem;
+}
+
+/* Custom tab styling with brand color #2B5763 */
+.custom-tabset {
+    --slds-c-tabs-item-text-color: #706e6b;
+    --slds-c-tabs-item-text-color-active: #2B5763;
+    --slds-c-tabs-item-text-color-hover: #2B5763;
+    --slds-c-tabs-item-color-border-active: #2B5763;
+    --slds-c-tabs-item-color-border-hover: #2B5763;
+    --slds-c-tabs-item-line-height: 2.5rem;
+    --slds-c-tabs-list-color-border: transparent;
+}
+
+/* Additional styling for tabs */
+.custom-tabset lightning-tab {
+    font-weight: 400;
+}
+
+.custom-tabset lightning-tab[aria-selected="true"] {
+    font-weight: 600;
+}
+
+/* Button styling */
+lightning-button {
+    --slds-c-button-brand-color-background: #2B5763;
+    --slds-c-button-brand-color-background-hover: #1e3d45;
+    --slds-c-button-brand-color-border: #2B5763;
+}
+
+/* Question box styling with accent border */
+.slds-box.slds-m-bottom_medium {
+    border-left: 3px solid #2B5763;
+}
+
+/* Input field sizing - reduce to 25% of container width (75% reduction) */
+lightning-input {
+    max-width: 25%;
+    width: 25%;
+    display: inline-block;
+}
+
+/* For input fields in table cells - keep them smaller but contained */
+.slds-table td lightning-input {
+    max-width: 25%;
+    width: 25%;
+    display: inline-block;
+}
+
+.slds-table td lightning-input .slds-form-element {
+    max-width: 100%;
+}
+
+/* For weightage input field container - already in smaller column */
+.slds-grid .slds-col lightning-input {
+    max-width: 100%;
+    width: 100%;
+}
+
+/* Admin Config Layout - Sidebar Menu + Content */
+.admin-config-layout {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* Vertical Menu Sidebar - Matching Content Area Design */
+.menu-sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: rgba(43, 87, 99, 0.08);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(43, 87, 99, 0.1);
+    border: 1px solid rgba(43, 87, 99, 0.15);
+    padding: 0;
+    overflow: hidden;
+}
+
+.menu-nav {
+    width: 100%;
+}
+
+.menu-list {
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+.menu-item {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid #f3f2f2;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    color: #706e6b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease-in-out;
+    border-left: 4px solid transparent;
+    cursor: pointer;
+    position: relative;
+    background-color: transparent;
+}
+
+.menu-link:hover {
+    background-color: #f3f2f2;
+    color: #2B5763;
+    text-decoration: none;
+    border-left-color: rgba(43, 87, 99, 0.3);
+}
+
+.menu-link.slds-is-active,
+.menu-link.active {
+    background-color: rgba(43, 87, 99, 0.08);
+    color: #2B5763;
+    border-left-color: #2B5763;
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgba(43, 87, 99, 0.15);
+}
+
+.menu-link.slds-is-active::before,
+.menu-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #2B5763;
+}
+
+.menu-icon {
+    margin-right: 0.75rem;
+    --slds-c-icon-color-foreground-default: #706e6b;
+    transition: all 0.2s ease-in-out;
+}
+
+.menu-link:hover .menu-icon {
+    --slds-c-icon-color-foreground-default: #2B5763;
+}
+
+.menu-link.slds-is-active .menu-icon,
+.menu-link.active .menu-icon {
+    --slds-c-icon-color-foreground-default: #2B5763;
+}
+
+.menu-text {
+    flex: 1;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Content Area */
+.content-area {
+    flex: 1;
+    min-width: 0; /* Allows flex item to shrink below its content size */
+}
+
+/* Region Approvers section styling */
+.slds-theme_shade {
+    background-color: #f3f2f2;
+    border-left: 4px solid #2B5763;
+}

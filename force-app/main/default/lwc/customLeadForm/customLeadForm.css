@@ -1,0 +1,787 @@
+/* ── Base ─────────────────────────────────────────────────────── */
+.dummy { color: black; }
+.NewForm { margin-right: 0; }
+
+/* ── Field error message ─────────────────────────────────────── */
+.slds-form-error {
+    font-size: 12px;
+    color: #c23934;
+    margin-top: 4px;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+/* ================================================================
+   EMBEDDED LAYOUT — component now renders inside the native
+   platform action panel (object-level "New" override), so it no
+   longer builds its own backdrop / fixed-position modal shell.
+   These rules just control the internal flex layout so header,
+   scrollable content, and footer behave correctly inside whatever
+   container the platform panel provides.
+   ================================================================ */
+
+.lf-container,
+.sp2-container {
+    position: fixed !important;
+    inset: 0 !important;
+    transform: none !important;
+    z-index: 9001 !important;
+}
+
+.lf-container {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 0;
+    box-shadow: none;
+    background: #ffffff;
+}
+
+.lf-container::before,
+.sp2-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.5);
+    z-index: -1;
+    transform: translate(50%, 50%);
+}
+
+.slds-modal__header {
+    flex-shrink: 0 !important;
+    position: relative !important;
+}
+
+.slds-modal__content {
+    flex: 1 1 auto !important;
+    overflow-y: auto !important;
+}
+
+.slds-modal__footer {
+    flex-shrink: 0 !important;
+    position: static !important;
+    bottom: auto !important;
+    background: #ffffff;
+    padding: 16px 28px;
+    border-top: 1px solid #dddbda;
+    z-index: 10;
+}
+
+@media only screen and (max-width: 480px) {
+    .lf-container {
+        max-height: 95vh;
+    }
+}
+
+/* ================================================================
+   STEP 1 — Lead Form  (Premium Redesign)
+   ================================================================ */
+.lf-scroll-body {
+    padding: 24px 28px;
+    flex: 1;
+    overflow-y: auto;
+    background: #f7f9fc;
+}
+
+/* Subtle scrollbar */
+.lf-scroll-body::-webkit-scrollbar { width: 5px; }
+.lf-scroll-body::-webkit-scrollbar-track { background: transparent; }
+.lf-scroll-body::-webkit-scrollbar-thumb { background: #c8d4e8; border-radius: 10px; }
+
+/* Section title — premium pill style */
+.lf-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0176d3;
+    background: #f3f3f3;
+    border: none;
+    border-left: 3px solid #0176d3;
+    border-radius: 0;
+    padding: 6px 12px;
+    margin: 16px 0 10px;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: none;
+}
+.lf-section-title::before {
+    display: none;
+}
+
+/* Grid */
+.lf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 22px;
+    row-gap: 6px;
+    align-items: start;
+}
+
+.lf-field {
+    min-width: 0;
+    padding-bottom: 4px;
+}
+
+/* Is COH checkbox: label above, like the other fields */
+.lf-field-checkbox lightning-input {
+    display: block;
+    padding-top: 4px;
+}
+
+/* User avatar column */
+.lf-user-col {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 26px;
+    background: linear-gradient(135deg, #f0f7ff, #fafcff);
+    border: 1px solid #dce9f8;
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 4px;
+    box-shadow: 0 1px 4px rgba(1,118,211,.06);
+}
+.lf-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2.5px solid #0176d3;
+    box-shadow: 0 0 0 3px rgba(1,118,211,.12);
+    object-fit: cover;
+}
+.lf-username {
+    font-size: 13px;
+    font-weight: 700;
+    color: #0a2540;
+    line-height: 1.3;
+}
+.lf-username::before {
+    content: 'Assigned to';
+    display: block;
+    font-size: 10px;
+    font-weight: 500;
+    color: #7a9bbf;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 2px;
+}
+
+/* ================================================================
+   STEP 2 — Select Product  (Outstanding Redesign)
+   ================================================================ */
+
+.sp2-container {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    background: #fff !important;
+    display: flex;
+    flex-direction: column;
+    border: none !important;
+}
+
+.sp2-close {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    z-index: 20 !important;
+    width: 30px !important;
+    height: 30px !important;
+    border-radius: 8px !important;
+    background: #f4f6f9 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: background .15s !important;
+}
+.sp2-close:hover {
+    background: #ffe0e0 !important;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.sp2-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px 16px;
+    background: linear-gradient(135deg, #f8fbff 0%, #ffffff 100%);
+    border-bottom: 1px solid #eaf0f8;
+    flex-shrink: 0;
+    position: relative;
+    width: 100%;
+}
+.sp2-header::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 28px;
+    width: 48px;
+    height: 2px;
+    background: #0176d3;
+    border-radius: 2px;
+}
+
+.sp2-icon-box {
+    width: 42px;
+    height: 42px;
+    border-radius: 8px;
+    background: #0176d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: none;
+}
+.sp2-icon-box lightning-icon {
+    --sds-c-icon-color-foreground-default: #fff;
+}
+
+.sp2-title {
+    font-size: 16px;
+    font-weight: 800;
+    color: #0a2540;
+    margin: 0;
+    letter-spacing: -.01em;
+}
+.sp2-subtitle {
+    font-size: 12px;
+    color: #7a9bbf;
+    margin: 3px 0 0;
+    font-weight: 400;
+}
+
+/* ── Progress ────────────────────────────────────────────────── */
+.sp2-progress-track {
+    height: 4px;
+    background: #edf2f9;
+    flex-shrink: 0;
+    width: 100%;
+}
+.sp2-progress-fill {
+    height: 4px;
+    background: #0176d3;
+    transition: width .4s cubic-bezier(.4,0,.2,1);
+    border-radius: 0 4px 4px 0;
+}
+
+/* ── Body ────────────────────────────────────────────────────── */
+.sp2-body {
+    padding: 24px 28px;
+    overflow-y: auto;
+    flex: 1;
+    position: relative;
+    background: #fafcff;
+    width: 100%;
+    box-sizing: border-box;
+}
+.sp2-body::-webkit-scrollbar { width: 5px; }
+.sp2-body::-webkit-scrollbar-track { background: transparent; }
+.sp2-body::-webkit-scrollbar-thumb { background: #c8d4e8; border-radius: 10px; }
+
+/* ── Section rows ────────────────────────────────────────────── */
+.sp2-section-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.sp2-section-row-mt {
+    margin-top: 28px;
+}
+
+/* Step dots */
+.sp2-step-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    letter-spacing: 0;
+}
+.sp2-dot-active {
+    background: #0176d3;
+    color: #fff;
+    box-shadow: none;
+}
+.sp2-dot-inactive {
+    background: #edf2f9;
+    color: #9cb0c8;
+    border: 1.5px solid #d4e0ee;
+}
+
+.sp2-step-label {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    flex: 1;
+}
+.sp2-label-active   { color: #0176d3; }
+.sp2-label-inactive { color: #b0c4d8; }
+
+.sp2-required-badge {
+    font-size: 10px;
+    background: #ffffff;
+    color: #3e3e3c;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 2px 10px;
+    font-weight: 600;
+    letter-spacing: .03em;
+}
+
+.sp2-hint {
+    font-size: 12px;
+    color: #8fa8c0;
+    margin: 0 0 12px;
+    font-style: italic;
+}
+
+/* ── Dropdown trigger ────────────────────────────────────────── */
+.sp2-dropdown-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1.5px solid #d4e0ee;
+    border-radius: 10px;
+    padding: 11px 16px;
+    cursor: pointer;
+    background: #fff;
+    transition: border-color .15s, box-shadow .15s;
+    user-select: none;
+    box-shadow: 0 1px 3px rgba(0,0,0,.04);
+}
+.sp2-dropdown-wrap:hover {
+    border-color: #0176d3;
+    box-shadow: 0 0 0 3px rgba(1,118,211,.10), 0 2px 6px rgba(0,0,0,.06);
+}
+.sp2-dropdown-placeholder {
+    font-size: 13px;
+    color: #6b8299;
+    font-weight: 400;
+}
+.sp2-chevron {
+    --sds-c-icon-color-foreground-default: #9cb0c8;
+    transition: transform .2s;
+}
+
+/* ── Dropdown list ───────────────────────────────────────────── */
+.sp2-dropdown-list {
+    border: 1.5px solid #c8d8ec;
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    background: #fff;
+    box-shadow: 0 8px 24px rgba(1,118,211,.10), 0 2px 6px rgba(0,0,0,.06);
+    max-height: 220px;
+    overflow-y: auto;
+    position: relative;
+    z-index: 100;
+}
+.sp2-dropdown-list::-webkit-scrollbar { width: 4px; }
+.sp2-dropdown-list::-webkit-scrollbar-thumb { background: #c8d4e8; border-radius: 4px; }
+
+.sp2-drop-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 13px;
+    color: #1a3252;
+    transition: background .12s;
+    border-bottom: 1px solid #f2f6fb;
+}
+.sp2-drop-item:last-child { border-bottom: none; }
+.sp2-drop-item:hover { background: #f3f2f2; }
+
+.sp2-drop-item-selected {
+    background: linear-gradient(135deg, #e8f4ff, #f0f7ff);
+    color: #0176d3;
+    font-weight: 600;
+}
+
+/* Checkbox */
+.sp2-item-check {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1.5px solid #c4d4e8;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background .15s, border-color .15s, box-shadow .15s;
+}
+.sp2-item-check-active {
+    border-color: #0176d3;
+    background: #0176d3;
+    box-shadow: none;
+}
+.sp2-check-ic {
+    --sds-c-icon-color-foreground-default: #fff;
+}
+
+.sp2-dropdown-empty {
+    padding: 20px;
+    font-size: 13px;
+    color: #9cb0c8;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Product label + family badge */
+.sp2-opt-label {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+}
+.sp2-opt-family {
+    font-size: 10px;
+    color: #7a9bbf;
+    background: #edf4fc;
+    border: 1px solid #d4e5f7;
+    border-radius: 20px;
+    padding: 2px 8px;
+    margin-left: 4px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    font-weight: 600;
+    letter-spacing: .02em;
+}
+.sp2-drop-item-selected .sp2-opt-family {
+    background: rgba(1,118,211,.12);
+    border-color: rgba(1,118,211,.25);
+    color: #0176d3;
+}
+
+/* ── Pills ───────────────────────────────────────────────────── */
+.sp2-pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 12px;
+}
+.sp2-pill-row-mt { margin-top: 12px; }
+
+.sp2-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #032d60;
+    background: #e8f4ff;
+    border: 1px solid #a8c8f0;
+    border-radius: 4px;
+    padding: 4px 10px 4px 13px;
+    box-shadow: none;
+    transition: none;
+}
+.sp2-pill:hover {
+    box-shadow: none;
+}
+
+.sp2-pill-x {
+    cursor: pointer;
+    --sds-c-icon-color-foreground-default: #4a80c4;
+    opacity: .75;
+    transition: opacity .12s;
+}
+.sp2-pill-x:hover { opacity: 1; }
+
+/* Count */
+.sp2-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: #2e844a;
+    font-weight: 600;
+    margin-top: 10px;
+    background: #eaf5ea;
+    border: 1px solid #a9d9a4;
+    border-radius: 4px;
+    padding: 4px 12px;
+}
+.sp2-count-ic {
+    --sds-c-icon-color-foreground-default: #2e844a;
+}
+
+/* ── Summary ─────────────────────────────────────────────────── */
+.sp2-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 14px 28px;
+    background: linear-gradient(135deg, #f4f8fd, #f8fbff);
+    border-top: 1px solid #e8f0f8;
+    flex-shrink: 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sp2-summary-card {
+    background: #fff;
+    border: 1px solid #dce9f8;
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.04);
+    transition: box-shadow .15s;
+    position: relative;
+    overflow: hidden;
+}
+.sp2-summary-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #dce9f8;
+    border-radius: 3px 0 0 3px;
+    transition: background .2s;
+}
+.sp2-summary-card:has(.sp2-summary-value-active)::before {
+    background: #0176d3;
+}
+.sp2-summary-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: #edf4fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.sp2-summary-text { flex: 1; }
+
+.sp2-summary-label {
+    font-size: 9.5px;
+    color: #9cb0c8;
+    text-transform: uppercase;
+    letter-spacing: .07em;
+    margin-bottom: 3px;
+    font-weight: 700;
+}
+.sp2-summary-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #c8d8ec;
+}
+.sp2-summary-value-active {
+    font-size: 18px;
+    font-weight: 700;
+    color: #032d60;
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.sp2-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 28px;
+    background: #fff;
+    border-top: 1px solid #dddbda;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.sp2-footer-left,
+.sp2-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sp2-clear {
+    color: #0176d3 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    padding: 0 8px !important;
+    border-radius: 8px !important;
+    transition: background .12s !important;
+}
+.sp2-clear:hover {
+    background: #f0f7ff !important;
+}
+.lf-required-label {
+    display: block;
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    color: #181818;
+}
+
+.required-star {
+    color: rgb(194,57,52);
+    margin-left: 2px;
+}
+
+.lf-field-error {
+    color: rgb(194,57,52);
+    font-size: 0.75rem;
+    margin-top: 4px;
+}
+
+.sp2-footer lightning-button {
+    display: inline-block;
+}
+
+.sp2-footer .slds-button {
+    min-width: 100px;
+}
+
+.slds-modal__close {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    z-index: 20 !important;
+}
+
+/* ================================================================
+   EMBEDDED-IN-AURA OVERRIDE — when this component is opened via
+   the Aura quick action (lightning:actionOverride), Aura already
+   supplies its own .slds-modal__container, backdrop, and close X.
+   Disable our own fixed/full-screen/backdrop/close behavior so we
+   don't fight Aura's own modal shell.
+   ================================================================ */
+.lf-embedded {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    max-height: 80vh !important;
+    border-radius: 8px !important;
+    box-shadow: none !important;
+    z-index: auto !important;
+}
+
+.lf-embedded::before {
+    content: none !important;
+}
+
+.lf-embedded .slds-modal__close,
+.lf-embedded .sp2-close {
+    display: none !important;
+}
+
+.lf-embedded .lf-scroll-body {
+    max-height: 60vh;
+}
+
+.lf-embedded .sp2-body {
+    max-height: 45vh;
+}
+
+/* ================================================================
+   MOBILE / PHONE RESPONSIVE — this component now handles phone
+   form factor directly (no more separate mobile component).
+   ================================================================ */
+@media only screen and (max-width: 767px) {
+    .lf-grid {
+        grid-template-columns: 1fr;
+        row-gap: 2px;
+    }
+
+    .lf-scroll-body,
+    .sp2-body {
+        padding: 16px;
+    }
+
+    .lf-user-col {
+        padding-top: 10px;
+        margin-bottom: 8px;
+    }
+
+    .sp2-header {
+        padding: 16px 16px 12px;
+        gap: 10px;
+    }
+
+    .sp2-icon-box {
+        width: 36px;
+        height: 36px;
+    }
+
+    .sp2-title {
+        font-size: 15px;
+    }
+
+    .sp2-subtitle {
+        font-size: 11px;
+    }
+
+    .sp2-summary {
+        grid-template-columns: 1fr 1fr;
+        padding: 12px 16px;
+        gap: 8px;
+    }
+
+    .sp2-summary-card {
+        padding: 10px 12px;
+    }
+
+    .sp2-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        padding: 12px 16px;
+    }
+
+    .sp2-footer-left,
+    .sp2-footer-right {
+        justify-content: stretch;
+        width: 100%;
+    }
+
+    .sp2-footer-left lightning-button,
+    .sp2-footer-right lightning-button {
+        flex: 1;
+    }
+
+    .sp2-footer .slds-button {
+        width: 100%;
+    }
+
+    .slds-modal__footer {
+        padding: 12px 16px;
+    }
+
+    .lf-section-title {
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .sp2-summary {
+        grid-template-columns: 1fr;
+    }
+}

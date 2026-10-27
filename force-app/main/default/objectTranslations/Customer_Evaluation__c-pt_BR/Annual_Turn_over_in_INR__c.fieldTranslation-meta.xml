@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Volume de negócios anual (em INR)</label>
+    <name>Annual_Turn_over_in_INR__c</name>
+</CustomFieldTranslation>

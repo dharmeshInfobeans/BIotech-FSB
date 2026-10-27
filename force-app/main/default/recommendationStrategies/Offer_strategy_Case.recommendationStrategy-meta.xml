@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecommendationStrategy xmlns="http://soap.sforce.com/2006/04/metadata">
+    <contextRecordType>Case</contextRecordType>
+    <description>Good faith offer to customers impacted by shipping problem</description>
+    <label>Offer strategy (Case)</label>
+    <recommendationLoad>
+        <label>Load all</label>
+        <name>Load_all</name>
+        <condition>
+            <field>Recommendation.Name</field>
+            <operator>NOT_EQUALS</operator>
+            <value>
+                <type>TEXT</type>
+                <value>junk</value>
+            </value>
+        </condition>
+        <conditionLogic>or</conditionLogic>
+        <object>Recommendation</object>
+    </recommendationLoad>
+    <union>
+        <childNode>Load_all</childNode>
+        <label>Output</label>
+        <name>Output_f25f7bca8fa94634bfd080c36eda5503</name>
+    </union>
+</RecommendationStrategy>

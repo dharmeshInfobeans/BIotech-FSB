@@ -1,0 +1,257 @@
+<template>
+    <div class="dp-shell">
+
+        <!-- ══════════════ HEADER ══════════════ -->
+        <header class="dp-header">
+            <div class="dp-header-inner">
+                <div class="dp-brand">
+                    <div class=".portal-icon">
+                        <img src={logoUrl} alt="Portal" class="portal-logo-img" />
+                    </div>
+                    <div class="dp-brand-text">
+                        <span class="dp-brand-name">{labelPageTitle}</span>
+                        <span class="dp-brand-sub">{labelBrandSub}</span>
+                    </div>
+                </div>
+
+                <div class="dp-header-actions">
+                    <!-- Language Picker -->
+                    <div class="lang-picker">
+                        <button class="lang-toggle" type="button" onclick={toggleLangDropdown}
+                                aria-haspopup="listbox" aria-expanded={langDropdownOpen}
+                                title={labelSelectLanguage}>
+                            <span class="lang-globe-wrap">
+                                <lightning-icon icon-name="utility:world" size="x-small"
+                                                class="lang-globe-icon"></lightning-icon>
+                            </span>
+                            <span class="lang-toggle-text">
+                                <span class="lang-toggle-title">{labelSelectLanguage}</span>
+                                <span class="lang-toggle-current">
+                                    <span class="lang-badge">{currentLanguageBadge}</span>
+                                    <span class="lang-toggle-label">{currentLanguageLabel}</span>
+                                </span>
+                            </span>
+                            <lightning-icon icon-name="utility:chevrondown" size="xx-small"
+                                            class="lang-chevron"></lightning-icon>
+                        </button>
+                        <template if:true={langDropdownOpen}>
+                            <div class="lang-overlay" onclick={closeLangDropdown}></div>
+                            <ul class="lang-dropdown" role="listbox">
+                                <template for:each={languageDropdownItems} for:item="lang">
+                                    <li key={lang.code} class={lang.itemClass} role="option"
+                                        data-code={lang.code} onclick={handleLangSelect}
+                                        aria-selected={lang.isSelected}>
+                                        <span class="lang-badge-item">{lang.badge}</span>
+                                        <span class="lang-name">{lang.label}</span>
+                                        <template if:true={lang.isSelected}>
+                                            <lightning-icon icon-name="utility:check" size="xx-small"
+                                                            class="lang-check"></lightning-icon>
+                                        </template>
+                                    </li>
+                                </template>
+                            </ul>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- ══════════════ BODY ══════════════ -->
+        <div class="dp-body">
+
+            <!-- ── SIDEBAR ── -->
+            <aside class="dp-sidebar">
+                <div class="dp-sidebar-section-label">{labelNavigation}</div>
+                <nav class="dp-nav">
+                    <template for:each={navItems} for:item="item">
+                        <button
+                            key={item.id}
+                            class={item.cls}
+                            data-id={item.id}
+                            onclick={handleNavClick}>
+                            <span class="dp-nav-icon">
+                                <lightning-icon
+                                    icon-name={item.icon}
+                                    size="xx-small"
+                                    class="nav-icon-el">
+                                </lightning-icon>
+                            </span>
+                            <span class="dp-nav-label">{item.label}</span>
+                            <template if:true={item.badge}>
+                                <span class="dp-nav-badge">{item.badge}</span>
+                            </template>
+                        </button>
+                    </template>
+                </nav>
+
+                <div class="dp-sidebar-divider"></div>
+                <div class="dp-sidebar-section-label">{labelQuickStats}</div>
+                <div class="dp-stat-pills">
+                    <div class="dp-stat-pill">
+                        <span class="dp-stat-dot dot-amber"></span>
+                        <span class="dp-stat-text">{labelStatSignRequest}</span>
+                        <span class="dp-stat-count">{sentCount}</span>
+                    </div>
+                    <div class="dp-stat-pill">
+                        <span class="dp-stat-dot dot-green"></span>
+                        <span class="dp-stat-text">{labelStatSigned}</span>
+                        <span class="dp-stat-count">{completedCount}</span>
+                    </div>
+                    <div class="dp-stat-pill">
+                        <span class="dp-stat-dot dot-red"></span>
+                        <span class="dp-stat-text">{labelStatDeclined}</span>
+                        <span class="dp-stat-count">{declinedCount}</span>
+                    </div>
+                    <div class="dp-stat-pill">
+                        <span class="dp-stat-dot dot-grey"></span>
+                        <span class="dp-stat-text">{labelStatExpired}</span>
+                        <span class="dp-stat-count">{expiredCount}</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- ── MAIN CONTENT ── -->
+            <main class="dp-main">
+
+                <template if:true={isLedgers}>
+                    <div class="dp-section fade-in">
+
+                        <!-- Page heading -->
+                        <div class="dp-page-header">
+                            <div class="dp-page-title-group">
+                                <h1 class="dp-page-title">{labelPageTitle}</h1>
+                                <p class="dp-page-desc">{labelPageDesc}</p>
+                            </div>
+                            <div class="dp-page-controls">
+                                <button class="dp-btn dp-btn-ghost" onclick={handleRefresh}>
+                                    <lightning-icon icon-name="utility:refresh" size="xx-small"></lightning-icon>
+                                    {labelRefresh}
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Status filter pills -->
+                        <div class="dp-filter-bar">
+                            <span class="dp-filter-label">{labelFilterByStatus}</span>
+                            <div class="dp-filter-pills">
+                                <template for:each={statusPills} for:item="pill">
+                                    <button
+                                        key={pill.value}
+                                        class={pill.cls}
+                                        data-value={pill.value}
+                                        onclick={handleStatusPillClick}>
+                                        <span class={pill.dotCls}></span>
+                                        {pill.label}
+                                        <span class="pill-count">{pill.count}</span>
+                                    </button>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Loading skeleton -->
+                        <template if:true={isLoading}>
+                            <div class="dp-skeleton-list">
+                                <div class="dp-skeleton-row"></div>
+                                <div class="dp-skeleton-row"></div>
+                                <div class="dp-skeleton-row"></div>
+                                <div class="dp-skeleton-row"></div>
+                            </div>
+                        </template>
+
+                        <!-- Empty state -->
+                        <template if:true={isEmpty}>
+                            <div class="dp-empty-state">
+                                <div class="dp-empty-icon-wrap">
+                                    <lightning-icon icon-name="utility:file" size="large" class="dp-empty-icon"></lightning-icon>
+                                </div>
+                                <h2 class="dp-empty-title">{labelNoLedgersFound}</h2>
+                                <p class="dp-empty-text">{labelNoLedgersText}</p>
+                            </div>
+                        </template>
+
+                        <!-- Ledger cards grid -->
+                        <template if:true={hasLedgers}>
+                            <div class="dp-ledger-grid">
+                                <template for:each={ledgers} for:item="row">
+                                    <div key={row.Id} class="dp-ledger-card">
+                                        <div class="dp-card-top">
+                                            <div class="dp-card-avatar">
+                                                <lightning-icon icon-name="utility:account" size="small" class="dp-card-avatar-icon"></lightning-icon>
+                                            </div>
+                                            <div class="dp-card-meta">
+                                                <span class="dp-card-name">{row.Contact_Name__c}</span>
+                                                <span class="dp-card-sub">
+                                                    <a href={row.accountUrl} target="_blank" class="dp-account-link">{row.accountId}</a>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <div class="dp-card-divider"></div>
+
+                                        <div class="dp-card-details">
+                                            <div class="dp-card-detail-item">
+                                                <span class="dp-detail-label">{labelStatementDate}</span>
+                                                <span class="dp-detail-value">{row.Statement_Date__c}</span>
+                                            </div>
+                                            <div class="dp-card-detail-item">
+                                                <span class="dp-detail-label">{labelQuarter}</span>
+                                                <span class="dp-detail-value">{row.quarterYear}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="dp-card-actions">
+                                            <button class="dp-btn dp-btn-view" data-id={row.Id} onclick={handleView}>
+                                                <lightning-icon icon-name="utility:preview" size="xx-small"></lightning-icon>
+                                                {labelView}
+                                            </button>
+                                            <button class="dp-btn dp-btn-download" data-id={row.Id} onclick={handleDownload}>
+                                                <lightning-icon icon-name="utility:download" size="xx-small"></lightning-icon>
+                                                {labelDownload}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </template>
+            </main>
+        </div>
+
+        <!-- ══════════════ PREVIEW MODAL (same pattern as admin) ══════════════ -->
+        <template if:true={showPreviewModal}>
+            <div class="modal-backdrop">
+                <div class="modal-box preview-modal">
+                    <div class="modal-header">
+                        <div class="preview-title-group">
+                            <lightning-icon icon-name="utility:file" size="x-small" class="preview-file-icon"></lightning-icon>
+                            <h3>{previewLedgerName}</h3>
+                        </div>
+                        <button class="close-btn" onclick={handleClosePreview}>✕</button>
+                    </div>
+                    <div class="modal-body preview-body">
+                        <template if:true={isModalLoading}>
+                            <div class="dp-modal-loading">
+                                <lightning-spinner alternative-text="Loading document..." size="medium"></lightning-spinner>
+                                <p class="dp-modal-loading-text">{labelLoadingDocument}</p>
+                            </div>
+                        </template>
+                        <template if:true={previewUrl}>
+                            <div class="pdf-container">
+                            <iframe src={previewUrl} class="pdf-frame" title="Ledger Preview"></iframe>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="dp-btn dp-btn-ghost" onclick={handleClosePreview}>{labelClose}</button>
+                        <!-- <button class="dp-btn dp-btn-download" onclick={handleDownloadFromPreview}>
+                            <lightning-icon icon-name="utility:download" size="xx-small"></lightning-icon>
+                            Download
+                        </button> -->
+                    </div>
+                </div>
+            </div>
+        </template>
+
+    </div>
+</template>

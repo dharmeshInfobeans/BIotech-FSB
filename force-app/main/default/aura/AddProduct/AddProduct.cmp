@@ -1,0 +1,196 @@
+<aura:component controller="AddProductController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="data" type="Object"/>
+    <aura:attribute name="columns" type="List"/>
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="searchString" type="String"/>
+    <aura:attribute name="oppProducts" type="Object[]" />
+    <aura:attribute name="tempProductList" type="Object[]" />
+    <aura:attribute name="prodIdVsProdDataMap" type="Map" default="{}"/>
+    <aura:attribute name="prodIdToBeRemoved" type="Object[]" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="openModal" type="boolean" default="false"/>
+    <aura:attribute name="oppProductId" type="String" />
+    <aura:attribute name="productId" type="String" />
+    
+    <ltng:require styles="{!$Resource.modalCSS}" /><!--"USED TO INCREASE THE WIDTH OF THE MODAL WHENEVER THIS COMP IS USED AS MODAL"-->
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:handler name="deleteLineItemConfirmEvt" event="c:DeleteConfirmationEvent" action="{! c.onDeleteConfirmation }" />
+    <lightning:overlayLibrary aura:id="overlayLib"/>
+    <!-- If asked to show error on top spot of component
+  <ui:message title="Error" severity="error" closable="true">
+            {!v.errorMessage}
+        </ui:message>-->
+    
+    <aura:if isTrue="{! v.showSpinner}" >
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+    
+    <lightning:card title="Add Opportunity Product" iconName="standard:event">
+        <div class="slds-float_right slds-p-horizontal_xx-large">
+            <lightning:button variant="success" label="Save" onclick="{! c.onSave }"/>
+        </div> <br/><br/>
+        <div style="width: 95%; height:95%;" class="slds-scrollable_x slds-scrollable_y">
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr class="slds-text-title_caps">
+                        <th scope="col">
+                            <div class="slds-truncate" title="S.no">S.no</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product Name">Product Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product MSP">MSP (Per Unit)</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product Quantity">Quantity</div>
+                        </th>
+                    
+                        
+                        <th scope="col">
+                            <div class="slds-truncate" title=" List Price:  MSP * Quantity ">List Price</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Product UnitPrice">Proposed MSP (Per Unit)</div>
+                        </th>
+                       <th scope="col">
+                            <div class="slds-truncate" title="Total SP:  Selling Price * Quantity ">Opportunity Value</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Remark">Remark</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title=""> </div>
+                        </th>
+                        
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:if isTrue="{! empty(v.oppProducts) }">
+                        <tr class="slds-text-align_center slds-align_absolute-center">
+                            <td>
+                                <div class="slds-text-heading_small slds-text-align_center slds-text-color_error slds-align_absolute-center">
+                                    <strong><h1>No Products Added...</h1>  </strong>
+                                </div>
+                            </td>
+                            
+                            
+                        </tr>
+                        <aura:set attribute="else">
+                            <aura:iteration items="{!v.oppProducts}" var="oppProd" indexVar="count">
+                                <tr> 
+                                    <td>
+                                        <div class="slds-truncate">{!count + 1}</div>
+                                    </td>   
+                                    <td>
+                                        <div class="slds-truncate"><strong><h5>{!oppProd.ProductName}</h5></strong></div>
+                                    </td>
+                                     <td>
+                                        <div class="slds-truncate"><strong><h5 class="slds-text-color_error">{!oppProd.ProductMSP}</h5></strong></div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate"><ui:inputNumber value="{!oppProd.Quantity__c}"/></div>
+                                    </td>
+                                    
+                                   
+                                     <td>
+                                        <!--<div class="slds-truncate"><ui:inputNumber value="{!oppProd.List_Price__c}"/></div>-->
+                                        <div class="slds-truncate"><ui:inputNumber disabled="true" value="{! oppProd.Quantity__c * oppProd.ProductMSP }"/></div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate"><ui:inputNumber value="{!oppProd.Sales_Price__c}"/></div>
+                                    </td>
+                                    
+                                   <td>
+                                        <div class="slds-truncate"><ui:inputNumber disabled="true" value="{! oppProd.Quantity__c * oppProd.Sales_Price__c}"/></div>
+                                    </td>
+                                    <td>
+                                        <div class="slds-truncate"><ui:inputText  class="field" value="{! oppProd.Description__c }" /></div>
+                                    </td>
+                                    <td> 
+                                        <a id="{! oppProd.Product__c }" data-oppid="{! oppProd.Opportunity__c }" data-opprodid="{! !empty(oppProd.Id) ? oppProd.Id : '' }" onclick="{! c.removeAddedProduct }">
+                                            <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                                            <span class="slds-assistive-text">Delete Icon</span>
+                                        </a>
+                                        <!--<button type="button" onclick="{! c.removeAddedProduct }" id="{! oppProd.Id }" class="slds-button slds-button_brand">REMOVE</button>-->
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                        </aura:set>
+                    </aura:if>           
+                    
+                    
+                </tbody>
+            </table>
+            
+            <!-- <div style="align:right;float:right;padding-right:105px;padding-top:5px;">                    
+            <h4> Total ListPrice: <ui:outputNumber value="{!v.TotalProductVolume}"/>  </h4> 
+            <h4 style="padding-right:205px;"> Total SellingPrice: <ui:outputNumber value="{!v.TotalProductVolume}"/>  </h4>                  
+        </div>-->	
+            
+            
+            
+        
+        </div>
+            
+            <div style="text-align:right;padding:3px;">       
+                <lightning:input     icon="utility:search"
+                                 value="{! v.searchString }"
+                                 required="false"
+                                 type="search"
+                                 placeholder="Search Product.."
+                                 aura:id="searchField"                                
+                                 onkeyup="{!c.handleSearch}"/> 
+            </div>
+        <!--<div style="height: 600px"> this set maximum height of datatable and make it scrollable-->
+        <div>
+            <lightning:datatable
+                                 aura:id="prodDataTable"
+                                 columns="{! v.columns }"
+                                 data="{! v.data }"
+                                 keyField="Id"
+                                 hideCheckboxColumn="true"
+                                 showRowNumberColumn="true"
+                                 onsave ="{!c.onSave}"
+                                 onrowaction="{! c.handleRowAction }"
+                                 onrowselection="{! c.rowSelectionHandler }"/>
+        </div>
+    </lightning:card>
+    
+    
+    <div class="slds-m-around--xx-large">
+         
+        <aura:if isTrue="{!v.openModal}">
+            <!--Modal Box Start-->
+            <div role="dialog" class="slds-modal slds-fade-in-open ">
+                <div class="slds-modal__container">
+                    <div class="slds-modal__header">
+                        <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.handleCloseModal}">
+                            X
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h1 class="slds-text-heading--medium">Confirmation</h1>
+                    </div>
+                    
+                    <!--Modal Box Header-->
+                    <div class="slds-modal__content slds-p-around--medium">
+                        <div class="slds-text-heading_medium slds-text-align_center slds-align_absolute-center slds-text-color_error">
+                            <strong><h1>Are you sure want to delete this?</h1></strong>
+                        </div>
+                        <div class="slds-grid slds-align_absolute-center">
+                            <lightning:button variant="brand" label="Yes" title="Click Yes To Delete" onclick="{! c.modalHandlerOnYes }"/>
+                            <lightning:button variant="brand" label="No" title="Click No To Go Back" onclick="{! c.handleCloseModal }"/>
+                        </div>
+                    </div>
+                    <!--Modal Box Button-->
+                    <div class="slds-modal__footer">
+                        <button class="slds-button slds-button--brand" onclick="{!c.handleCloseModal}">Cancel</button>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-backdrop slds-backdrop--open"></div>            
+        </aura:if>
+    </div>
+    
+</aura:component>

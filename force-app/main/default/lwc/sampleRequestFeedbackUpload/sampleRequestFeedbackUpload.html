@@ -1,0 +1,89 @@
+<template>
+    <!-- <template if:true={isLoading}>
+            <div class="spinner-backdrop">
+                <lightning-spinner
+                    alternative-text="Loading"
+                    variant="brand"
+                    size="medium">
+                </lightning-spinner>
+            </div>
+        </template> -->
+    <lightning-quick-action-panel >
+        <template if:true={isLoading}>
+            <div class="container">
+                <div class="exampleHolder">
+                    <lightning-spinner alternative-text={labels.Uploading__c} variant="brand" size="medium"></lightning-spinner>
+                </div>
+
+            </div>
+        </template>
+        <template if:false={isLoading}>
+            <div>
+
+                <div class="slds-theme_default slds-m-top_none slds-p-top_none uploadTopMargin">
+                    <lightning-file-upload name="fileUploader" label={labels.Attach_File__c}
+                        onuploadfinished={handleUploadFinished} multiple disabled={approvalPending}>
+                    </lightning-file-upload>
+                    <!-- accept={acceptedFormats} -->
+                </div>
+                <template if:true={hasStagedFiles}>
+                    <div class="slds-text-heading_small slds-m-top_x-small slds-m-bottom_small">
+                        <span style="font-weight:620">{labels.Ready_To_Submit__c} ({stagedFiles.length})</span>
+                    </div>
+                    <ul class="staged-file-list">
+                        <template for:each={stagedFiles} for:item="file">
+                            <li key={file.documentId} class="staged-file-item">
+                                <lightning-icon icon-name="doctype:attachment" size="x-small" class="slds-m-right_x-small">
+                                </lightning-icon>
+                                <span class="staged-file-name" title={file.documentName}>{file.documentName}</span>
+                                <lightning-button-icon icon-name="utility:preview" variant="bare" size="small"
+                                    alternative-text={labels.Preview__c} title={labels.Preview__c} data-id={file.documentId}
+                                    onclick={handlePreviewFile}>
+                                </lightning-button-icon>
+                                <lightning-button-icon icon-name="utility:close" variant="bare" size="small"
+                                    alternative-text={labels.Remove__c} title={labels.Remove__c} data-id={file.documentId}
+                                    onclick={handleRemoveStagedFile}>
+                                </lightning-button-icon>
+                            </li>
+                        </template>
+                    </ul>
+                </template>
+                <template if:true={fileCount}>
+                    <hr style="margin:5px">
+                    <template if:true={columns}>
+
+                        <div class="slds-text-heading_small slds-m-top_x-small slds-m-bottom_small ">
+                            <lightning-icon class="custom-icon-file" icon-name='utility:file' alternative-text='file'
+                                size='small' title='file'></lightning-icon>
+                            <span style="font-weight:620">  {labels.Existing_Feedbacks__c} ({fileCount})</span>
+
+                        </div>
+                        <div style="max-height: 150px;">
+                            <lightning-datatable key-field="Id" data={tabledata} columns={columns}
+                                onrowaction={handleRowAction} hide-checkbox-column>
+                            </lightning-datatable>
+                        </div>
+                    </template>
+                </template>
+                <template if:false={fileCount}>
+    <div class="empty-state">
+        <lightning-icon icon-name="utility:file" size="large" class="empty-icon"></lightning-icon>
+        <p class="empty-title">{labels.No_Feedback_Uploaded__c}</p>
+        <p class="empty-subtitle">{labels.Upload_File_Attach_Feedback_Desc__c}</p>
+    </div>
+</template>
+
+
+            </div>
+
+        </template>
+
+
+    </lightning-quick-action-panel>
+    <div class="slds-grid slds-grid_align-center slds-grid_vertical-align-center footer-bar">
+        <lightning-button variant="bare" label={labels.Close__c} onclick={handleClose} class="slds-m-right_small">
+        </lightning-button>
+        <lightning-button variant="brand" label={labels.Submit__c} onclick={handleSubmit} disabled={submitDisabled}>
+        </lightning-button>
+    </div>
+</template>

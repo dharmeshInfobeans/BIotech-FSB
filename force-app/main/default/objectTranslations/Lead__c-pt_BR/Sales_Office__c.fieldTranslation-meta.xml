@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Sales Office --></label>
+    <name>Sales_Office__c</name>
+    <picklistValues>
+        <masterLabel>SLO5566</masterLabel>
+        <translation><!-- SLO5566 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SLO7656</masterLabel>
+        <translation><!-- SLO7656 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SLO7777</masterLabel>
+        <translation><!-- SLO7777 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SLO8878</masterLabel>
+        <translation><!-- SLO8878 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

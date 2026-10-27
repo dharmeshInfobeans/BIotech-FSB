@@ -1,0 +1,202 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes" controller="StockManagementController">
+    <!--Old Controller Name "CustomDataTableController"  -->
+    
+    <!-- Attributes -->
+    <aura:attribute name="allWrapperRecords" type="List" access="global"/>
+    <aura:attribute name="allOriginalWrapperRecords" type="List" access="global"/>
+    <aura:attribute name="currentYear" type="integer" access="global"/>
+    <aura:attribute name="selectedYear" type="integer" access="global"/>
+    <aura:attribute name="yearOptionLst" type="List" access="global"/>
+    <aura:attribute name="currentAccountDefaulted" type="boolean" default="false" access="global"/>
+    <aura:attribute name="currentYearDefaulted" type="boolean" default="false" access="global"/>
+    <aura:attribute name="showSpinner" type="boolean" default="false" access="global"/>
+    <aura:attribute name="accList" type="List" access="global"/>
+    <aura:attribute name="selectedAccId" type="boolean" access="global"/>
+    <aura:attribute name="orderCreationModal" type="boolean" access="global" default="false"/>
+    <aura:attribute name="continueWithExistingOrder" type="boolean" access="global" default="false"/>
+    <aura:attribute name="selectedAccount" type="object" access="global"/>
+    
+    <!-- Handlers -->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit }" />
+    
+    <!-- Spinner -->    
+    <lightning:card>
+
+    <!-- Markup -->
+        
+   <div style="height: 5.3rem;">
+    <lightning:layout class="slds-grid_align-spread" >
+        <lightning:layoutItem size="5"  padding="around-large" class="layoutItem"> 
+           <!--
+            <lightning:select class=" slds-size_2-of-8 slds-float_left accSelection" disabled="true" name="Account" label="{!$Label.c.Customer}" 
+                              value="{!v.selectedAccId}" onchange="{!c.doInit}">
+                <aura:iteration items="{!v.accList}" var="acc">
+                    <option label="{!acc.Name}" value="{!acc.Id}"/>
+                </aura:iteration>
+            </lightning:select>
+          -->           
+            
+            <div  class=" slds-size_2-of-8 slds-float_left accSelection"><b>{!$Label.c.Customer}</b><br/><br/> <ui:outputText value="{!v.accList[0].Name}"/></div>
+
+            <!-- {!$Label.c.Select_Account}<br/><ui:outputText value="{!v.accList[0]}"/>-->
+        </lightning:layoutItem>       
+        
+        
+        <lightning:layoutItem size="5"  padding="around-large" class="layoutItem">  
+            <div class="slds-list_horizontal;">
+                <b>{!$Label.c.Select_Year}</b><br/>
+                   <lightning:select label="" class=" slds-size_2-of-8 slds-float_left"  name="select1"
+                                      value="{!v.selectedYear}" onchange="{!c.yearChange}" aura:id="yearSelection" >
+                        <aura:iteration items="{!v.yearOptionLst}" var="yearOption">
+                            <option label="{!yearOption}" selected="{!yearOption==v.selectedYear}" value="{!yearOption}" />
+                        </aura:iteration>
+                    </lightning:select>
+            </div>
+            <p style="color:red"> &nbsp; &nbsp; &nbsp;&nbsp;⋆</p> &nbsp; &nbsp;&nbsp; &nbsp;{!$Label.c.JAN_to_DEC_are_the_monthwise_actual_sales}
+        </lightning:layoutItem>
+        <lightning:layoutItem size="5"  padding="around-large" class="layoutItem">  
+
+        </lightning:layoutItem>
+        
+        <lightning:layoutItem padding="around-small" class="layoutItem;">
+            <aura:if isTrue='{!v.allWrapperRecords.length > 0}'>
+                <div class="slds-list_horizontal;">
+                <lightning:button variant="brand" label="{!$Label.c.Place_Order}" title="{!$Label.c.DSM_Place_Order}" 
+                                  onclick="{!c.placeDealerOrder}" class="PlaceOrder_Top"></lightning:button>
+                </div>
+               <aura:set attribute="else">
+                   <div  style="width:7rem"/>
+              </aura:set>
+            </aura:if>
+        </lightning:layoutItem> 
+    </lightning:layout>  
+  </div>
+
+    <!--div class="slds-size_2-of-4" -->
+    <!--div class="slds-scrollable" style="height:15rem;width:85rem" -->
+    <div class="slds-card slds-scrollable " style="height:19rem;width:80rem; display: grid;" aura:id="toggle-scrollable">
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+            <thead >
+                <tr class="slds-line-height_reset header rowHeight">
+                    <th  scope="col"   class ="table-header-row1-modal headingColors"  style="Z-INDEX: 3;" id="horizontal-fix1">
+                        <div class="slds-truncate productnameHeadingWidth headingColors"  title="{!$Label.c.DSM_Product}">{!$Label.c.DSM_Product}</div>
+                    </th>
+                    
+                    <aura:if isTrue="{!v.allWrapperRecords.length > 0}">
+                         <th class="table-header-row2-modal headingColors" style="Z-INDEX: 3; left: 20.45rem; " scope="col" id="horizontal-fix2" >
+                        <div class="slds-cell-wrap headingWidth headingColors"  title="{!$Label.c.DSM_Opening_Stock}">{!$Label.c.DSM_Opening_Stock}</div>
+                    	</th>
+                     <aura:set attribute="else">
+                        <th class="table-header-row2-modal headingColors" style="Z-INDEX: 3; left: 7rem; " scope="col" id="horizontal-fix2" >
+                        <div class="slds-cell-wrap headingWidth headingColors"  title="{!$Label.c.DSM_Opening_Stock}">{!$Label.c.DSM_Opening_Stock}</div>
+                    	</th>
+                     </aura:set>
+                    </aura:if> 
+                    
+
+                    <th class=" slds-text-title_caps  table-header-row3-modal headingColors" scope="col" style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_January}</div>
+                    </th>
+                    <th class="table-header-row3-modal table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_February}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_March}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_April}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_May}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; " >
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_June}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_July}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; " >
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_August}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="{!$Label.c.DSM_September}">{!$Label.c.DSM_September}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_October}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; " >
+                        <div class="slds-truncate headingWidth headingColors"   title="Actual Sales in Units">{!$Label.c.DSM_November}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; "  >
+                        <div class="slds-truncate headingWidth headingColors"  title="Actual Sales in Units">{!$Label.c.DSM_December}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; " >
+                        <div class="slds-cell-wrap headingWidth headingColors"  title="{!$Label.c.DSM_Total_In_country_sales_till_date}">{!$Label.c.DSM_Total_In_country_sales_till_date}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-cell-wrap headingWidth headingColors"  title="{!$Label.c.DSM_Avg_Quantity_till_Date}">{!$Label.c.DSM_Avg_Quantity_till_Date}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-cell-wrap headingWidth headingColors "  title="{!$Label.c.DSM_Ideal_stock_required}">{!$Label.c.DSM_Ideal_stock_required}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"   style="Z-INDEX: 1;">
+                        <div class="slds-cell-wrap headingWidth headingColors" stye="width:7rem;" title="{!$Label.c.DSM_Open_orders_with_Biotech_tittle}">{!$Label.c.DSM_Open_orders_with_Biotech}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1; ">
+                        <div class="slds-cell-wrap headingWidth headingColors"  title="{!$Label.c.DSM_Stock_in_transit}">{!$Label.c.DSM_Stock_in_transit}</div>
+                    </th>
+                    <th class="slds-text-title_caps table-header-row3-modal headingColors" scope="col"  style="Z-INDEX: 1;"  >
+                        <div class="headingWidth headingColors"  title="{!$Label.c.DSM_Difference}">{!$Label.c.DSM_Difference}</div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- We are not trying to display the records related information
+     here, rather, we are trying to pass every snigle record to 
+     another child component <c:customDataTableRow /> and this child component will take 
+     care of getting the fields of a record displayed. -->
+               
+                 <aura:iteration items="{! v.allWrapperRecords }" var="wrapperRecord">
+                    <c:CustomDataTableRow wrapper="{!wrapperRecord}" selectedYear="{!v.selectedYear}"/>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+    <aura:if isTrue="{!v.allWrapperRecords.length==0}">
+        <b><div class="slds-p-around_small" align="center">{!$Label.c.No_Records_To_Display}</div></b>
+    </aura:if>
+    <div align="center" class="slds-p-top_small">
+        <lightning:button variant="brand" label="{!$Label.c.Save}" title="Save" onclick="{!c.saveRecords}" class="slds-m-left_x-small"></lightning:button>
+        <!--lightning:button label="Cancel" title="Cancel" onclick="{!c.handleCancel}" class="slds-m-left_x-small"></lightning:button-->
+    </div>
+    <!--/lightning:card -->
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner aura-id="spinner" alternativeText="Saving..."/>
+        </aura:if>
+        
+        <aura:if isTrue="{!v.orderCreationModal}">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open slds-modal_small modalAlignment" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                            <span class="slds-assistive-text">Close</span>
+                        </button>
+                        <h2 id="modal-heading-01" class="slds-modal__title slds-hyphenate"></h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                          <p>{!$Label.c.Already_there_is_one_order_with_draft_status_Do_you_want_to_continue_with_same}</p><br/>
+                        {!$Label.c.Note}: <p style="color:red">{!$Label.c.Up_on_new_order_creation_old_order_will_be_cancelled}</p>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="brand" label="Cancle" title="Cancle" onclick="{!c.handleCancle}" class="slds-float_left"/>
+
+    					<lightning:button label="{!$Label.c.Create_New_Order}" title="No Create New Order" onclick="{! c.handleDontContinuewithSameOrder }"/>
+                        <lightning:button variant="brand" label="{!$Label.c.Yes_Continue}" title="Yes Continue" onclick="{! c.handleContinueWithSameOrder }" />
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        
+    </lightning:card>
+</aura:component>

@@ -1,0 +1,38 @@
+<aura:component  implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:attribute name="fields" type="String[]" default="['Name','BillingLatitude','BillingLongitude']" />
+    <aura:attribute name="latitude" type="Double" />
+    <aura:attribute name="longitude" type="Double" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false"/>
+    <aura:attribute name="showError" type="Boolean" default="false"/>
+    <aura:attribute name="firstLoad" type="Boolean" default="true"/>
+    <aura:attribute name="errorMessage" type="String" default="This account already has location coordinates."/>
+    <aura:if isTrue="{!v.showSpinner}">
+        <lightning:spinner  alternativeText="Loading........"/> 
+    </aura:if>
+    <aura:if isTrue="{! v.showError }">
+        <ui:message title="Error" severity="error" >
+            {!v.errorMessage}
+        </ui:message>
+        <aura:set attribute="else">
+            <lightning:card >
+                <lightning:recordEditForm aura:id="accLocForm"
+                                          onload="{! c.handleLoad }"
+                                          onsubmit="{! c.handleSubmit }"
+                                          onsuccess="{! c.handleSuccess }"
+                                          onerror="{! c.handleError }"
+                                          recordId="{! v.recordId }"
+                                          objectApiName="Account">
+                    <!-- the messages component is for error messages -->
+                    <lightning:messages />
+                    
+                    <lightning:inputField class="slds-hide" aura:id="billLat" fieldName="BillingLatitude" value="{! v.latitude }" />
+                    <lightning:inputField class="slds-hide" aura:id="billLong" fieldName="BillingLongitude" value="{! v.longitude }" />
+                    
+                    <div class="slds-align_absolute-center">
+                        <lightning:button variant="brand" type="submit" name="addLocation" label="Add Location" />
+                    </div>
+                </lightning:recordEditForm>
+            </lightning:card>
+        </aura:set>
+    </aura:if>
+</aura:component>

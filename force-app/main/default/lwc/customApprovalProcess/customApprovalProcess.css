@@ -1,0 +1,169 @@
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    /* overflow: hidden;   ← DELETE this line */
+    display: flex;                 /* ADD */
+    flex-direction: column;        /* ADD */
+    max-height: 80vh;              /* ADD */
+}
+.scrollable-content {
+    overflow-y: auto;
+    flex: 1 1 auto;
+    min-height: 0;
+    padding-right: 4px;
+}
+
+.title {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 600;
+    color: #2f5d8a;
+    margin-bottom: 1rem;
+    flex: 0 0 auto;
+}
+
+.button {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 1rem;
+    position: sticky;      /* ADD */
+    bottom: 0;              /* ADD */
+    background: #ffffff;    /* ADD */
+    padding-top: 12px;      /* ADD */
+    z-index: 2;              /* ADD */
+}
+
+.custom-modal {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.slds-modal__container {
+    margin: 0 auto !important;
+}
+
+.meta {
+    margin-bottom: 0;
+}
+
+.record-form {
+    border: 1px dotted;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.Header_class {
+    text-align: end;
+}
+
+.count_Feedback {
+    margin-top: 0;
+    margin-left: 0.2rem;
+}
+
+.count-label {
+    margin-left: 0.2rem;
+    font-weight: 600;
+    color: #2e2e2e;
+}
+
+.count-value {
+    margin-left: 0.2rem;
+    color: red;
+}
+
+.modal-datatable-scope .slds-button_icon-bare {
+    display: none;
+}
+
+.top-btn-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 8px;
+    flex: 0 0 auto;
+}
+
+.custom-upload-btn {
+    background-color: rgb(6 106 254);
+    color: #ffffff;
+    border: none;
+    border-radius: 16px;
+    padding: 0 16px;
+    height: 32px;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    cursor: pointer;
+}
+
+.show-in-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    .Header_class {
+        text-align: start;
+    }
+
+    .show-in-mobile {
+        display: block;
+    }
+
+    .slds-modal__container {
+        width: 95vw !important;
+        max-width: 95vw !important;
+        margin: 0 auto;
+    }
+
+    .preview-btn-container {
+        margin-bottom: 1rem;
+    }
+
+    .button {
+        justify-content: center;
+    }
+
+    .top-btn-container {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.preview-btn-container {
+    position: relative;
+}
+
+body {
+    overflow-x: hidden;
+}
+.file-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+}
+
+.file-name {
+    font-size: 0.875rem;
+    color: #333;
+    max-width: 160px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.custom-margin{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

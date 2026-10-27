@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Operation --></label>
+    <name>Operation__c</name>
+    <picklistValues>
+        <masterLabel>DISTRIBUTOR3X3</masterLabel>
+        <translation><!-- DISTRIBUTOR3X3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Direct</masterLabel>
+        <translation><!-- Direct --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hybrid</masterLabel>
+        <translation><!-- Hybrid --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OTHER DISTRIBUTOR</masterLabel>
+        <translation><!-- OTHER DISTRIBUTOR --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

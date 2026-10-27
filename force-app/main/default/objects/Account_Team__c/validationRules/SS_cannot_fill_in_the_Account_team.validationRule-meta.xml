@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SS_cannot_fill_in_the_Account_team</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+ISNEW(),
+($UserRole.Name =&apos;SS_D&apos;) 
+)</errorConditionFormula>
+    <errorMessage>Sales Representatives cannot update Account Team.</errorMessage>
+</ValidationRule>

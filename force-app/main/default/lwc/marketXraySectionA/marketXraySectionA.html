@@ -1,0 +1,117 @@
+<template>
+    <lightning-card style="font-weight: 600;">
+
+        <div slot="title" class="slds-grid slds-wrap slds-grid_align-spread">
+            <span>{label.SECTION_A_MARKET_INSIGHT}</span>
+            <span style="color: red; font-size: 0.9rem; margin-left: 57rem;">*</span><p style="font-size: 0.8rem;">All fields are required</p>
+        </div>
+
+        <div class="slds-grid slds-wrap slds-p-around_medium"
+            style="border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+            <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                <lightning-input type="number" step="any" label={label.TOTAL_POPULATION_IN_MILLIONS_LABEL} placeholder="e.g., 5.2" name="totalPopulation"
+                    value={marketXray.totalPopulation} onchange={handleOnchange} disabled={isSaveDisabled}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                <lightning-input type="number" step="any" label={label.AVERAGE_AGE_OF_POPULATION_LABEL} placeholder="e.g., 37" name="averageAgePopulation"
+                    value={marketXray.averageAgePopulation} onchange={handleOnchange} disabled={isSaveDisabled}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                <lightning-input type="number" step="any" label={label.CATARACT_IOLS_IMPLANTED_YEAR_LABEL} placeholder="e.g., 12000"
+                    name="cataractIOLsImplantedYear" value={marketXray.cataractIOLsImplantedYear}
+                    onchange={handleOnchange} disabled={isSaveDisabled}></lightning-input>
+            </div>
+
+            <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                <lightning-input type="number" step="any" label={label.NUMBER_OF_CATARACT_SURGEONS_LABEL} placeholder="e.g., 240"
+                    name="numberOfCataractSurgeons" value={marketXray.numberOfCataractSurgeons}
+                    onchange={handleOnchange} disabled={isSaveDisabled}></lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                <lightning-input type="number" step="any" label={label.PHAKIC_IOLS_IMPLANTED_YEAR_LABEL} placeholder="e.g., 350"
+                    name="phakicIOLsImplantedYear" value={marketXray.phakicIOLsImplantedYear} onchange={handleOnchange} disabled={isSaveDisabled}>
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-3 slds-p-around_x-small">
+                <lightning-input type="text" label={label.REIMBURSEMENT_SITUATION_VALUE_LABEL} placeholder="e.g., Co-pay 20% / Flat EUR 150"
+                    name="reimbursementSitutionAndValue" value={marketXray.reimbursementSitutionAndValue}
+                    onchange={handleOnchange} disabled={isSaveDisabled}></lightning-input>
+            </div>
+        </div>
+
+
+        <div class="slds-grid slds-wrap"
+            style="    border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);margin-top: 0.7rem;">
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <c-market-xray-brand-table class="datatable-1"
+                    title={label.FIRST_3_BRANDS_WITH_HIGHEST_MARKET_SHARE_MONOFOCALS_LABEL} disabled={isSaveDisabled}></c-market-xray-brand-table>
+            </div>
+            <div class="slds-col slds-size_1-of-2 slds-p-around_small">
+                <c-market-xray-brand-table class="datatable-2"
+                    title={label.FIRST_3_BRANDS_WITH_HIGHEST_MARKET_SHARE_PRESBYOPIA_CORRECTING_IOLS_LABEL} disabled={isSaveDisabled}>
+                </c-market-xray-brand-table>
+            </div>
+        </div>
+        <div
+            style="border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);margin-top: 0.7rem; padding-top: 0.5rem;">
+            <lightning-card class="slds-m-top_medium">
+                 <div slot="title" class="slds-grid slds-wrap slds-grid_align-spread">
+                    <span style="color: red; font-size: 0.9rem;">*</span><p>Top 5 key accounts in the country</p>
+                </div>
+                <div style="border: 1px solid grey;margin: 1rem;border-radius: 5px;">
+                    <table
+                        class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped custom-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">{label.SR_NO_LABEL}</th>
+                                <th scope="col">{label.FOR_MONOFOCAL}</th>
+                                <th scope="col">{label.FOR_PRESBYOPIA}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={monofocalsKeyAccounts} for:item="acc">
+                                <tr key={acc.id}>
+                                    <td><strong>{acc.id}</strong></td>
+                                    <td>
+                                        <lightning-input variant="label-hidden" data-id={acc.id}
+                                            placeholder="Hospital / Center name" name="MonofocalHospitalCenterName"
+                                            value={acc.MonofocalHospitalCenterName}
+                                            onchange={handleOnchangeKeyAccounts} disabled={isSaveDisabled}>
+                                        </lightning-input>
+                                    </td>
+                                    <td>
+                                        <lightning-input variant="label-hidden" data-id={acc.id}
+                                            placeholder="Hospital / Center name" name="PresbyopiaHospitalCenterName"
+                                            value={acc.PresbyopiaHospitalCenterName}
+                                            onchange={handleOnchangeKeyAccounts} disabled={isSaveDisabled}>
+                                        </lightning-input>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </lightning-card>
+
+
+        </div>
+
+    </lightning-card>
+    <!-- <div style=" font-weight:600; text-align: end;padding: 1rem;margin-top: 0.7rem; border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+        <lightning-button label="Save Section A" name="saveSectionAButton" disabled={isFormDisabled} variant="success"
+            class="slds-m-right_small" onclick={handleSaveButton}></lightning-button>
+    </div> -->
+    <template if:false={isSaveDisabled}>
+    <div style=" font-weight:600; text-align: end;padding: 1rem;margin-top: 0.7rem; border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+        <lightning-button label="Save Section A" name="saveSectionAButton" disabled={isFormDisabled} variant="success"
+            class="slds-m-right_small" onclick={handleSaveButton}></lightning-button>
+    </div>
+    </template>
+    <template if:true={isSaveDisabled}>
+    <div style=" font-weight:600; text-align: end;padding: 1rem;margin-top: 0.7rem; border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+        <div class="slds-text-color_weak">
+                Read Only Access
+        </div>
+    </div>
+    </template>
+</template>

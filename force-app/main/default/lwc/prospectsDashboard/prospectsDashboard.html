@@ -1,0 +1,36 @@
+<template>
+    <lightning-card title="Pro-Active Pipeline" icon-name="standard:dashboard">
+        <span slot="actions" class="slds-badge slds-badge_lightest">
+            <lightning-icon icon-name="utility:user" size="xx-small" class="slds-m-right_xx-small"></lightning-icon>
+            Logged in as: <strong>&nbsp;{currentUserName}</strong>
+        </span>
+        <c-prospects-filter-bar onfilterschange={handleFiltersChange}></c-prospects-filter-bar>
+        <c-prospects-kpi-tiles filters={filters}></c-prospects-kpi-tiles>
+
+        <lightning-tabset class="slds-p-top_small" variant="scoped">
+            <lightning-tab label="Dashboard">
+                <div class="slds-grid slds-wrap slds-gutters_small">
+                    <template for:each={charts} for:item="c">
+                        <div key={c.key} class="slds-col slds-size_1-of-1 slds-large-size_1-of-2 slds-p-vertical_x-small">
+                            <c-prospects-chart chart-key={c.key} title={c.title} filters={filters}></c-prospects-chart>
+                        </div>
+                    </template>
+                    <!-- Full width, not the 1-of-2 grid the time-series charts share: this one
+                         carries many stage-color legend entries and often-long product family
+                         names, both of which need the extra horizontal room. -->
+                    <div class="slds-col slds-size_1-of-1 slds-p-vertical_x-small">
+                        <c-prospects-product-family-chart filters={filters}></c-prospects-product-family-chart>
+                    </div>
+                </div>
+            </lightning-tab>
+            <template for:each={charts} for:item="c">
+                <lightning-tab key={c.key} label={c.title}>
+                    <c-prospects-chart chart-key={c.key} title={c.title} filters={filters}></c-prospects-chart>
+                </lightning-tab>
+            </template>
+            <lightning-tab label="Product Family">
+                <c-prospects-product-family-chart filters={filters}></c-prospects-product-family-chart>
+            </lightning-tab>
+        </lightning-tabset>
+    </lightning-card>
+</template>

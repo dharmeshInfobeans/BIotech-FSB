@@ -1,0 +1,34 @@
+<template>
+    <div class="slds-grid slds-wrap slds-gutters_small slds-p-around_small filter-bar">
+        <!-- Period filter removed from the UI per request - replaced by Year below. The options,
+             state, and handler that drove it are kept in prospectsFilterBar.js, commented out, so
+             Period can be restored without rebuilding it from scratch. -->
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Year" options={yearOptions} value={years} onchange={handleYearChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Sales / Marketing" options={teamOptions} value={teams} onchange={handleTeamChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Country" options={countryOptions} value={countries} onchange={handleCountryChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Zone" options={zoneOptions} value={zones} onchange={handleZoneChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Owner" options={ownerOptions} value={ownerIds} onchange={handleOwnerChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Quarter" options={quarterOptions} value={quarters} onchange={handleQuarterChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Month" options={monthOptions} value={months} onchange={handleMonthChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small">
+            <c-prospects-multi-select-picklist label="Week" options={weekOptions} value={weeks} onchange={handleWeekChange}></c-prospects-multi-select-picklist>
+        </div>
+        <div class="slds-col slds-size_1-of-2 slds-small-size_1-of-3 slds-medium-size_1-of-4 slds-large-size_1-of-8 slds-p-bottom_small slds-align-bottom">
+            <lightning-button variant="neutral" label="Clear All" icon-name="utility:clear" onclick={handleClearAll} class="slds-p-top_small"></lightning-button>
+        </div>
+    </div>
+</template>

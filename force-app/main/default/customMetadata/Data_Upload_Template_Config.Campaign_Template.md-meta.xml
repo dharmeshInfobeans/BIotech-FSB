@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Campaign Template</label>
+    <protected>false</protected>
+    <values>
+        <field>Object_API_Name__c</field>
+        <value xsi:type="xsd:string">Campaign__c</value>
+    </values>
+    <values>
+        <field>Object_Columns_Visible__c</field>
+        <value xsi:type="xsd:string">[&quot;Name&quot;,&quot;Start_Date__c&quot;,&quot;End_Date__c&quot;,&quot;Focus_Product__c&quot;,&quot;Target__c&quot;,&quot;Planned_Attendees__c&quot;,&quot;Categorize__c&quot;]</value>
+    </values>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">Campaign</value>
+    </values>
+    <values>
+        <field>Template_Type__c</field>
+        <value xsi:type="xsd:string">DEFAULT</value>
+    </values>
+</CustomMetadata>

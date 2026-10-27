@@ -1,0 +1,321 @@
+<template>
+
+    <template if:true={rsmzsmnotavailable}>
+        <div class="slds-col slds-size_12-of-12">
+            <div class="Head">
+                <h1 class="slds-text-heading_medium slds-text-title_bold"
+                    style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                   {getsplrqstlabel.Sample_Request__c}
+                </h1>
+
+            </div>
+        </div>
+        <div class="warning-message" style="margin-top: 5%;text-align: center;fon;font-size: 33px;">
+            {getsplrqstlabel.RSM_and_ZSM_not_Available__c}
+           
+        </div>
+        <!-- Footer Section -->
+        <div class="footer" style="margin-top: 10%;">
+            <div class="slds-grid slds-grid_align-spread"
+                style="display: flex;padding: 10px;align-items: center;justify-content: space-around;">
+                <div class="slds-button-group">
+
+                    <lightning-button style="font-size: 20px;" type="button" variant="brand" label={getsplrqstlabel.Close__c}
+                        onclick={handleClose}>
+
+                    </lightning-button>
+
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={showwarningmessage}>
+        <div class="slds-col slds-size_12-of-12">
+            <div class="Head">
+                <h1 class="slds-text-heading_medium slds-text-title_bold"
+                    style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                   {getsplrqstlabel.Sample_Request__c}
+                </h1>
+
+            </div>
+        </div>
+        <div class="warning-message" style="margin-top: 5%;text-align: center;fon;font-size: 33px;">
+            {getsplrqstlabel.SAP_code_not_found_for_this_customer_Pl__c}
+           
+        </div>
+        <!-- Footer Section -->
+        <div class="footer" style="margin-top: 10%;">
+            <div class="slds-grid slds-grid_align-spread"
+                style="display: flex;padding: 10px;align-items: center;justify-content: space-around;">
+                <div class="slds-button-group">
+
+                    <lightning-button style="font-size: 20px;" type="button" variant="brand" label={getsplrqstlabel.Close__c}
+                        onclick={handleClose}>
+
+                    </lightning-button>
+
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template if:true={showdefaultrow}>
+        <!-- Header Section -->
+        <div class="slds-col slds-size_12-of-12">
+            <div class="Head">
+                <h1 class="slds-text-heading_medium slds-text-title_bold"
+                    style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                    {getsplrqstlabel.Sample_Request__c}
+                </h1>
+
+            </div>
+        </div>
+        
+
+        <!-- Table for Single Row -->
+        <div class="TableData slds-scrollable desktop-view" style="height:250px;">
+            <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                aria-label="Sample Request Product Table">
+                <thead>
+                    <tr class="slds-line-height_reset">
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Delete"></div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Product Name">{getsplrqstlabel.Product_Name__c}</div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Product Model">{getsplrqstlabel.Product_Model__c}</div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Spherical Power">{getsplrqstlabel.Spherical_Power__c}</div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Cylindrical Power">{getsplrqstlabel.Cylindrical_Power__c}</div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Axis Angle">{getsplrqstlabel.Axis_Angle__c}</div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Diaptor">{getsplrqstlabel.Diaptor__c}</div>
+                        </th>
+                        <th scope="col" style="text-align:center;">
+                            <div class="slds-truncate tableHeader" title="Commercial Quantity">{getsplrqstlabel.Quantity__c}</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={showSampleList} for:item="row">
+                        <tr key={row.key}>
+                            <td class="slds-text-align_center">
+                                <div class="delete-button-container">
+                                    <lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+                                        class="slds-m-left_xx-small delete-button" data-id={row.key}
+                                        onclick={handleDeleteRow}>
+                                    </lightning-button-icon>
+                                </div>
+
+                            </td>
+
+
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <c-searchable-combobox name="productName" data-id={row.key} value={row.productName}
+                                    options={row.sampleRequestProductList} onchange={handleDataChange}
+                                    placeholder="Select Product Name">
+                                </c-searchable-combobox>
+                            </td>
+
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <c-searchable-combobox name="productModel" title={productModelTitle} data-id={row.key}
+                                    value={row.productModel} options={row.productModellist} onchange={handleDataChange}
+                                    placeholder="Select Product Model" disabled={row.productModelShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <c-searchable-combobox name="sphericalPower" title={sphericalPowerTitle}
+                                    data-id={row.key} value={row.sphericalPower} options={row.sphericalPowerlist}
+                                    onchange={handleDataChange} placeholder="Select Spherical Power"
+                                    disabled={row.sphericalPowerShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <c-searchable-combobox name="cylindricalPower" title={cylindricalPowerTitle}
+                                    data-id={row.key} value={row.cylindricalPower} options={row.cylindricalPowerlist}
+                                    onchange={handleDataChange} placeholder="Select Cylindrical Power"
+                                    disabled={row.cylindricalPowerShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <c-searchable-combobox name="axisAngle" title={axisAngleTitle} data-id={row.key}
+                                    value={row.axisAngle} options={row.axisAngleList} onchange={handleDataChange}
+                                    placeholder="Select Axis Angle" disabled={row.axisAngleShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <c-searchable-combobox name="diaptor" title={diaptorTitle} data-id={row.key}
+                                    value={row.diaptor} options={row.diaptorList} onchange={handleDataChange}
+                                    placeholder="Select Diaptor" disabled={row.diaptorShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Quantity Section -->
+                            <td style="vertical-align: middle;display: revert;align-content: center;">
+                                <lightning-card variant="Narrow" hide-header="true">
+                                    <div class="slds-card__body slds-card__body_inner"
+                                        style="background-color: rgb(243, 243, 243); margin-top: 30px;">
+                                        <div class="slds-grid slds-grid_align-end">
+                                            <!-- Decrease Button -->
+                                            <div class="slds-col slds-m-right_small">
+                                                <lightning-button-icon data-id={row.key} data-action="decrease"
+                                                    icon-name="utility:dash" alternative-text="Remove" title="Remove"
+                                                    onclick={changeQuantity} disabled={row.commercialQuantityshow}>
+                                                </lightning-button-icon>
+                                            </div>
+                                            <!-- Quantity Input -->
+                                            <div class="slds-col slds-m-right_small">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <input class="slds-input inputStyling" type="number" data-id={row.key}
+                                                    data-action="update" value={row.commercialQuantity} onkeyup={changeQuantity}
+                                                    disabled={row.commercialQuantityshow} style="width: 52px;"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Increase Button -->
+                                            <div class="slds-col">
+                                                <lightning-button-icon data-id={row.key} data-action="increase"
+                                                    icon-name="utility:add" alternative-text="Add" title="Add"
+                                                    onclick={changeQuantity} disabled={row.commercialQuantityshow}>
+                                                </lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </lightning-card>
+                            </td>
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+         <!-- <div class="mobile-view">
+        <template for:each={showSampleList} for:item="row">
+            <lightning-card key={row.key} class="slds-m-around_small">
+                <div class="slds-p-around_small">
+                    
+                    <lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+                        class="slds-float_right" data-id={row.key} onclick={handleDeleteRow}>
+                    </lightning-button-icon>
+
+                    <c-searchable-combobox name="productName" label={getsplrqstlabel.Product_Name__c} data-id={row.key} value={row.productName}
+                        options={row.sampleRequestProductList} onchange={handleDataChange}
+                        placeholder="Select Product Name">
+                    </c-searchable-combobox>
+
+                    <c-searchable-combobox name="productModel" label={getsplrqstlabel.Product_Model__c} data-id={row.key} value={row.productModel}
+                        options={row.productModellist} onchange={handleDataChange}
+                        placeholder="Select Product Model" disabled={row.productModelShow}>
+                    </c-searchable-combobox>
+
+                    <c-searchable-combobox name="sphericalPower" label={getsplrqstlabel.Spherical_Power__c} data-id={row.key} value={row.sphericalPower}
+                        options={row.sphericalPowerlist} onchange={handleDataChange}
+                        placeholder="Select Spherical Power" disabled={row.sphericalPowerShow}>
+                    </c-searchable-combobox>
+
+                  
+                    <c-searchable-combobox name="cylindricalPower" label={getsplrqstlabel.Cylindrical_Power__c} data-id={row.key} value={row.cylindricalPower}
+                        options={row.cylindricalPowerlist} onchange={handleDataChange}
+                        placeholder="Select Cylindrical Power" disabled={row.cylindricalPowerShow}>
+                    </c-searchable-combobox>
+
+                    <c-searchable-combobox name="axisAngle" label={getsplrqstlabel.Axis_Angle__c} data-id={row.key} value={row.axisAngle}
+                        options={row.axisAngleList} onchange={handleDataChange}
+                        placeholder="Select Axis Angle" disabled={row.axisAngleShow}>
+                    </c-searchable-combobox>
+
+                    <c-searchable-combobox name="diaptor" label={getsplrqstlabel.Diaptor__c} data-id={row.key} value={row.diaptor}
+                        options={row.diaptorList} onchange={handleDataChange}
+                        placeholder="Select Diaptor" disabled={row.diaptorShow}>
+                    </c-searchable-combobox>
+
+                    <p>{getsplrqstlabel.Quantity__c}</p>
+                    <div style="justify-content: flex-start;" class="slds-grid">
+                        <lightning-button-icon data-id={row.key}  data-action="decrease"
+                            icon-name="utility:dash" alternative-text="Remove" onclick={changeQuantity}
+                            disabled={row.commercialQuantityshow}>
+                        </lightning-button-icon>
+                        <input class="slds-input inputStyling" type="number" label={getsplrqstlabel.Quantity__c} data-id={row.key} data-action="update"
+                            value={row.commercialQuantity} onkeyup={changeQuantity}
+                            disabled={row.commercialQuantityshow} style="width: 60px; text-align:center;" />
+                        <lightning-button-icon data-id={row.key} data-action="increase"
+                            icon-name="utility:add" alternative-text="Add" onclick={changeQuantity}
+                            disabled={row.commercialQuantityshow}>
+                        </lightning-button-icon>
+                    </div>
+                </div>
+            </lightning-card>
+        </template>
+    </div> -->
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <div class="slds-grid slds-grid_align-spread"
+                style="display: flex;padding: 10px;align-items: center;justify-content: space-around;">
+                <div class="slds-button-group">
+                    <lightning-button label={getsplrqstlabel.Add_Row__c} onclick={handleAddRow} variant="brand"></lightning-button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <lightning-button type="button" label={getsplrqstlabel.Cancel__c} onclick={handleClose}></lightning-button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <!-- <lightning-button type="button" label="Save" onclick={handleSave} variant="brand"
+                    disabled={saveButtonError}> -->
+                    <lightning-button type="button" label={getsplrqstlabel.Next__c} onclick={handlenext} variant="brand"
+                        disabled={handlenextenable}>
+                    </lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+    <template if:true={showsapcoderemark}>
+        <div class="slds-col slds-size_12-of-12">
+            <div class="Head">
+                <h1 class="slds-text-heading_medium slds-text-title_bold"
+                    style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                   {getsplrqstlabel.Sample_Request__c}
+                </h1>
+
+            </div>
+        </div>
+        <br>
+        <div class="slds-p-around_medium">
+            <!-- SAP Code Dropdown -->
+            <lightning-combobox label= {getsplrqstlabel.Ship_to_code__c} value={selectedSAPCode} options={sapCodeOptions}
+                onchange={handleSAPCodeChange}>
+            </lightning-combobox>
+
+            <!-- Remark Textarea -->
+            <lightning-textarea label={getsplrqstlabel.Enter_Remark__c} value={remark} onchange={handleRemarkChange} required>
+            </lightning-textarea>
+        </div>
+        <div class="footer">
+            <div class="slds-grid slds-grid_align-spread"
+                style="display: flex;padding: 10px;align-items: center;justify-content: space-around;">
+                <div class="slds-button-group">
+                    <lightning-button type="button" label={getsplrqstlabel.Previous__c} onclick={handleprevious}></lightning-button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <lightning-button type="button" label={getsplrqstlabel.Submit__c} onclick={handleSave} variant="brand"
+                        disabled={enablesave}></lightning-button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+
+    <!-- Spinner -->
+    <template if:true={spinner}>
+        <c-spinner></c-spinner>
+    </template>
+</template>

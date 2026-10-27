@@ -1,0 +1,679 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>Product</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Hydrophillic Spherical</fullName>
+                <default>false</default>
+                <label>Hydrophillic Spherical</label>
+            </value>
+            <value>
+                <fullName>Hydrophillic Aspheric</fullName>
+                <default>false</default>
+                <label>Hydrophillic Aspheric</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic multipiece</fullName>
+                <default>false</default>
+                <label>Hydrophobic multipiece</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic single piece Spherical</fullName>
+                <default>false</default>
+                <label>Hydrophobic single piece Spherical</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic single piece Aspheric</fullName>
+                <default>false</default>
+                <label>Hydrophobic single piece Aspheric</label>
+            </value>
+            <value>
+                <fullName>Hydrophhobic preloaded</fullName>
+                <default>false</default>
+                <label>Hydrophhobic preloaded</label>
+            </value>
+            <value>
+                <fullName>Toric</fullName>
+                <default>false</default>
+                <label>Toric</label>
+            </value>
+            <value>
+                <fullName>Multifocal</fullName>
+                <default>false</default>
+                <label>Multifocal</label>
+            </value>
+            <value>
+                <fullName>Multifocal Toric</fullName>
+                <default>false</default>
+                <label>Multifocal Toric</label>
+            </value>
+            <value>
+                <fullName>Phakic</fullName>
+                <default>false</default>
+                <label>Phakic</label>
+            </value>
+            <value>
+                <fullName>Phakic Toric</fullName>
+                <default>false</default>
+                <label>Phakic Toric</label>
+            </value>
+            <value>
+                <fullName>EDOF</fullName>
+                <default>false</default>
+                <label>EDOF</label>
+            </value>
+            <value>
+                <fullName>EDOF TORIC</fullName>
+                <default>false</default>
+                <label>EDOF TORIC</label>
+            </value>
+            <value>
+                <fullName>TRIFOCAL</fullName>
+                <default>false</default>
+                <label>TRIFOCAL</label>
+            </value>
+            <value>
+                <fullName>TRIFOCAL TORIC</fullName>
+                <default>false</default>
+                <label>TRIFOCAL TORIC</label>
+            </value>
+            <value>
+                <fullName>SECONDARY IOL</fullName>
+                <default>false</default>
+                <label>SECONDARY IOL</label>
+            </value>
+            <value>
+                <fullName>SKIN BOOSTERS</fullName>
+                <default>false</default>
+                <label>SKIN BOOSTERS</label>
+            </value>
+            <value>
+                <fullName>SKIN FILLERS</fullName>
+                <default>false</default>
+                <label>SKIN FILLERS</label>
+            </value>
+            <value>
+                <fullName>SKIN FILLERS (W/O LIDOCAINE)</fullName>
+                <default>false</default>
+                <label>SKIN FILLERS (W/O LIDOCAINE)</label>
+            </value>
+            <value>
+                <fullName>SKIN FILLERS (with LIDOCAINE)</fullName>
+                <default>false</default>
+                <label>SKIN FILLERS (with LIDOCAINE)</label>
+            </value>
+            <value>
+                <fullName>Single / Multiple Injection</fullName>
+                <default>false</default>
+                <label>Single / Multiple Injection</label>
+            </value>
+            <value>
+                <fullName>Single Injection</fullName>
+                <default>false</default>
+                <label>Single Injection</label>
+            </value>
+            <value>
+                <fullName>Multiple Injection</fullName>
+                <default>false</default>
+                <label>Multiple Injection</label>
+            </value>
+            <value>
+                <fullName>Hydrophilics</fullName>
+                <default>false</default>
+                <label>Hydrophilics</label>
+            </value>
+            <value>
+                <fullName>Hydrophobic Monofocal</fullName>
+                <default>false</default>
+                <label>Hydrophobic Monofocal</label>
+            </value>
+            <value>
+                <fullName>Popular Hydrophobic Monofocal</fullName>
+                <default>false</default>
+                <label>Popular Hydrophobic Monofocal</label>
+            </value>
+            <value>
+                <fullName>Trifocal Family</fullName>
+                <default>false</default>
+                <label>Trifocal Family</label>
+            </value>
+            <value>
+                <fullName>MF Family</fullName>
+                <default>false</default>
+                <label>MF Family</label>
+            </value>
+            <value>
+                <fullName>EDOF Family</fullName>
+                <default>false</default>
+                <label>EDOF Family</label>
+            </value>
+            <value>
+                <fullName>Field1</fullName>
+                <default>false</default>
+                <label>Field1</label>
+            </value>
+            <value>
+                <fullName>Field2</fullName>
+                <default>false</default>
+                <label>Field2</label>
+            </value>
+            <value>
+                <fullName>Field3</fullName>
+                <default>false</default>
+                <label>Field3</label>
+            </value>
+            <value>
+                <fullName>Ultra2</fullName>
+                <default>false</default>
+                <label>Ultra2</label>
+            </value>
+            <value>
+                <fullName>Ultra3</fullName>
+                <default>false</default>
+                <label>Ultra3</label>
+            </value>
+            <value>
+                <fullName>Ultra4</fullName>
+                <default>false</default>
+                <label>Ultra4</label>
+            </value>
+            <value>
+                <fullName>Volift</fullName>
+                <default>false</default>
+                <label>Volift</label>
+            </value>
+            <value>
+                <fullName>Volbella</fullName>
+                <default>false</default>
+                <label>Volbella</label>
+            </value>
+            <value>
+                <fullName>Voluma</fullName>
+                <default>false</default>
+                <label>Voluma</label>
+            </value>
+            <value>
+                <fullName>Volux</fullName>
+                <default>false</default>
+                <label>Volux</label>
+            </value>
+            <value>
+                <fullName>Harmonica</fullName>
+                <default>false</default>
+                <label>Harmonica</label>
+            </value>
+            <value>
+                <fullName>Restylane Hydro</fullName>
+                <default>false</default>
+                <label>Restylane Hydro</label>
+            </value>
+            <value>
+                <fullName>Belotero</fullName>
+                <default>false</default>
+                <label>Belotero</label>
+            </value>
+            <value>
+                <fullName>RHA1</fullName>
+                <default>false</default>
+                <label>RHA1</label>
+            </value>
+            <value>
+                <fullName>RHA2</fullName>
+                <default>false</default>
+                <label>RHA2</label>
+            </value>
+            <value>
+                <fullName>REDENSITY 1</fullName>
+                <default>false</default>
+                <label>REDENSITY 1</label>
+            </value>
+            <value>
+                <fullName>REDENSITY 2</fullName>
+                <default>false</default>
+                <label>REDENSITY 2</label>
+            </value>
+            <value>
+                <fullName>Staylage- X</fullName>
+                <default>false</default>
+                <label>Staylage- X</label>
+            </value>
+            <value>
+                <fullName>STAYLAGE- M</fullName>
+                <default>false</default>
+                <label>STAYLAGE- M</label>
+            </value>
+            <value>
+                <fullName>STAYLAGE- L</fullName>
+                <default>false</default>
+                <label>STAYLAGE- L</label>
+            </value>
+            <value>
+                <fullName>Croma Filler</fullName>
+                <default>false</default>
+                <label>Croma Filler</label>
+            </value>
+            <value>
+                <fullName>Novuma</fullName>
+                <default>false</default>
+                <label>Novuma</label>
+            </value>
+            <value>
+                <fullName>Youth Support</fullName>
+                <default>false</default>
+                <label>Youth Support</label>
+            </value>
+            <value>
+                <fullName>Pluryal Filler</fullName>
+                <default>false</default>
+                <label>Pluryal Filler</label>
+            </value>
+            <value>
+                <fullName>Gloderm 20L</fullName>
+                <default>false</default>
+                <label>Gloderm 20L</label>
+            </value>
+            <value>
+                <fullName>Gloderm 30L</fullName>
+                <default>false</default>
+                <label>Gloderm 30L</label>
+            </value>
+            <value>
+                <fullName>Neuvia</fullName>
+                <default>false</default>
+                <label>Neuvia</label>
+            </value>
+            <value>
+                <fullName>Art Filler Fine Lines</fullName>
+                <default>false</default>
+                <label>Art Filler Fine Lines</label>
+            </value>
+            <value>
+                <fullName>Art Filler LipsUniversal</fullName>
+                <default>false</default>
+                <label>Art Filler LipsUniversal</label>
+            </value>
+            <value>
+                <fullName>Volume</fullName>
+                <default>false</default>
+                <label>Volume</label>
+            </value>
+            <value>
+                <fullName>Hyaldew</fullName>
+                <default>false</default>
+                <label>Hyaldew</label>
+            </value>
+            <value>
+                <fullName>Avillion</fullName>
+                <default>false</default>
+                <label>Avillion</label>
+            </value>
+            <value>
+                <fullName>Elasty</fullName>
+                <default>false</default>
+                <label>Elasty</label>
+            </value>
+            <value>
+                <fullName>Perfecta</fullName>
+                <default>false</default>
+                <label>Perfecta</label>
+            </value>
+            <value>
+                <fullName>Hymax</fullName>
+                <default>false</default>
+                <label>Hymax</label>
+            </value>
+            <value>
+                <fullName>Idea</fullName>
+                <default>false</default>
+                <label>Idea</label>
+            </value>
+            <value>
+                <fullName>Tiramer</fullName>
+                <default>false</default>
+                <label>Tiramer</label>
+            </value>
+            <value>
+                <fullName>Rene</fullName>
+                <default>false</default>
+                <label>Rene</label>
+            </value>
+            <value>
+                <fullName>Synvisc</fullName>
+                <default>false</default>
+                <label>Synvisc</label>
+            </value>
+            <value>
+                <fullName>Hyalgan GF</fullName>
+                <default>false</default>
+                <label>Hyalgan GF</label>
+            </value>
+            <value>
+                <fullName>Monovisc</fullName>
+                <default>false</default>
+                <label>Monovisc</label>
+            </value>
+            <value>
+                <fullName>Durolane</fullName>
+                <default>false</default>
+                <label>Durolane</label>
+            </value>
+            <value>
+                <fullName>Hitas</fullName>
+                <default>false</default>
+                <label>Hitas</label>
+            </value>
+            <value>
+                <fullName>Hakem</fullName>
+                <default>false</default>
+                <label>Hakem</label>
+            </value>
+            <value>
+                <fullName>Hyaorth</fullName>
+                <default>false</default>
+                <label>Hyaorth</label>
+            </value>
+            <value>
+                <fullName>Hylan</fullName>
+                <default>false</default>
+                <label>Hylan</label>
+            </value>
+            <value>
+                <fullName>Hyalone</fullName>
+                <default>false</default>
+                <label>Hyalone</label>
+            </value>
+            <value>
+                <fullName>Arthrum®</fullName>
+                <default>false</default>
+                <label>Arthrum®</label>
+            </value>
+            <value>
+                <fullName>Arthrum 2,5%®</fullName>
+                <default>false</default>
+                <label>Arthrum 2,5%®</label>
+            </value>
+            <value>
+                <fullName>Durolane®</fullName>
+                <default>false</default>
+                <label>Durolane®</label>
+            </value>
+            <value>
+                <fullName>Durolane SJ®</fullName>
+                <default>false</default>
+                <label>Durolane SJ®</label>
+            </value>
+            <value>
+                <fullName>Euflexxa®</fullName>
+                <default>false</default>
+                <label>Euflexxa®</label>
+            </value>
+            <value>
+                <fullName>Fermathron S®</fullName>
+                <default>false</default>
+                <label>Fermathron S®</label>
+            </value>
+            <value>
+                <fullName>Fermathron plus®</fullName>
+                <default>false</default>
+                <label>Fermathron plus®</label>
+            </value>
+            <value>
+                <fullName>Go-On®</fullName>
+                <default>false</default>
+                <label>Go-On®</label>
+            </value>
+            <value>
+                <fullName>Go-On Mini®</fullName>
+                <default>false</default>
+                <label>Go-On Mini®</label>
+            </value>
+            <value>
+                <fullName>Go-On matrix®</fullName>
+                <default>false</default>
+                <label>Go-On matrix®</label>
+            </value>
+            <value>
+                <fullName>Hyalart®</fullName>
+                <default>false</default>
+                <label>Hyalart®</label>
+            </value>
+            <value>
+                <fullName>Hyalgan®</fullName>
+                <default>false</default>
+                <label>Hyalgan®</label>
+            </value>
+            <value>
+                <fullName>Hyalubrix®</fullName>
+                <default>false</default>
+                <label>Hyalubrix®</label>
+            </value>
+            <value>
+                <fullName>Hyalubrix® 60/Hyalone®</fullName>
+                <default>false</default>
+                <label>Hyalubrix® 60/Hyalone®</label>
+            </value>
+            <value>
+                <fullName>Hymovis®</fullName>
+                <default>false</default>
+                <label>Hymovis®</label>
+            </value>
+            <value>
+                <fullName>Inartral®</fullName>
+                <default>false</default>
+                <label>Inartral®</label>
+            </value>
+            <value>
+                <fullName>Intragel® 0.8%</fullName>
+                <default>false</default>
+                <label>Intragel® 0.8%</label>
+            </value>
+            <value>
+                <fullName>Intragel® 1.6%</fullName>
+                <default>false</default>
+                <label>Intragel® 1.6%</label>
+            </value>
+            <value>
+                <fullName>Intragel® Mini</fullName>
+                <default>false</default>
+                <label>Intragel® Mini</label>
+            </value>
+            <value>
+                <fullName>Jointex®</fullName>
+                <default>false</default>
+                <label>Jointex®</label>
+            </value>
+            <value>
+                <fullName>Jointex® Starter</fullName>
+                <default>false</default>
+                <label>Jointex® Starter</label>
+            </value>
+            <value>
+                <fullName>Jointex® Mini</fullName>
+                <default>false</default>
+                <label>Jointex® Mini</label>
+            </value>
+            <value>
+                <fullName>Jonexa®</fullName>
+                <default>false</default>
+                <label>Jonexa®</label>
+            </value>
+            <value>
+                <fullName>Kartilage®</fullName>
+                <default>false</default>
+                <label>Kartilage®</label>
+            </value>
+            <value>
+                <fullName>Kartilage cross®</fullName>
+                <default>false</default>
+                <label>Kartilage cross®</label>
+            </value>
+            <value>
+                <fullName>MonoVisc®</fullName>
+                <default>false</default>
+                <label>MonoVisc®</label>
+            </value>
+            <value>
+                <fullName>Orthovisc®</fullName>
+                <default>false</default>
+                <label>Orthovisc®</label>
+            </value>
+            <value>
+                <fullName>Orthovisc® mini</fullName>
+                <default>false</default>
+                <label>Orthovisc® mini</label>
+            </value>
+            <value>
+                <fullName>Cingal®</fullName>
+                <default>false</default>
+                <label>Cingal®</label>
+            </value>
+            <value>
+                <fullName>Ostenil®</fullName>
+                <default>false</default>
+                <label>Ostenil®</label>
+            </value>
+            <value>
+                <fullName>Ostenil® Plus</fullName>
+                <default>false</default>
+                <label>Ostenil® Plus</label>
+            </value>
+            <value>
+                <fullName>Ostenil® mini</fullName>
+                <default>false</default>
+                <label>Ostenil® mini</label>
+            </value>
+            <value>
+                <fullName>Proial®</fullName>
+                <default>false</default>
+                <label>Proial®</label>
+            </value>
+            <value>
+                <fullName>Promovia®</fullName>
+                <default>false</default>
+                <label>Promovia®</label>
+            </value>
+            <value>
+                <fullName>RenehaVis®</fullName>
+                <default>false</default>
+                <label>RenehaVis®</label>
+            </value>
+            <value>
+                <fullName>Rhizarthrum®</fullName>
+                <default>false</default>
+                <label>Rhizarthrum®</label>
+            </value>
+            <value>
+                <fullName>Sinovial®</fullName>
+                <default>false</default>
+                <label>Sinovial®</label>
+            </value>
+            <value>
+                <fullName>Sinovial® Forte</fullName>
+                <default>false</default>
+                <label>Sinovial® Forte</label>
+            </value>
+            <value>
+                <fullName>Sinovial® Mini</fullName>
+                <default>false</default>
+                <label>Sinovial® Mini</label>
+            </value>
+            <value>
+                <fullName>Sinovial® One</fullName>
+                <default>false</default>
+                <label>Sinovial® One</label>
+            </value>
+            <value>
+                <fullName>SportVis®</fullName>
+                <default>false</default>
+                <label>SportVis®</label>
+            </value>
+            <value>
+                <fullName>Structovial®</fullName>
+                <default>false</default>
+                <label>Structovial®</label>
+            </value>
+            <value>
+                <fullName>Synocrom®</fullName>
+                <default>false</default>
+                <label>Synocrom®</label>
+            </value>
+            <value>
+                <fullName>Synocrom® mini</fullName>
+                <default>false</default>
+                <label>Synocrom® mini</label>
+            </value>
+            <value>
+                <fullName>Synocrom® Forte</fullName>
+                <default>false</default>
+                <label>Synocrom® Forte</label>
+            </value>
+            <value>
+                <fullName>Synocrom® Forte One</fullName>
+                <default>false</default>
+                <label>Synocrom® Forte One</label>
+            </value>
+            <value>
+                <fullName>Synolis® V-A</fullName>
+                <default>false</default>
+                <label>Synolis® V-A</label>
+            </value>
+            <value>
+                <fullName>Synvisc®</fullName>
+                <default>false</default>
+                <label>Synvisc®</label>
+            </value>
+            <value>
+                <fullName>Synvisc® One</fullName>
+                <default>false</default>
+                <label>Synvisc® One</label>
+            </value>
+            <value>
+                <fullName>Yaral®</fullName>
+                <default>false</default>
+                <label>Yaral®</label>
+            </value>
+            <value>
+                <fullName>Yaral® Forte</fullName>
+                <default>false</default>
+                <label>Yaral® Forte</label>
+            </value>
+            <value>
+                <fullName>Yaral® Mini</fullName>
+                <default>false</default>
+                <label>Yaral® Mini</label>
+            </value>
+            <value>
+                <fullName>Viscoplus®</fullName>
+                <default>false</default>
+                <label>Viscoplus®</label>
+            </value>
+            <value>
+                <fullName>Viscoplus gel®</fullName>
+                <default>false</default>
+                <label>Viscoplus gel®</label>
+            </value>
+            <value>
+                <fullName>CRESPINE Gel</fullName>
+                <default>false</default>
+                <label>CRESPINE Gel</label>
+            </value>
+            <value>
+                <fullName>CRESPINE Gel  +</fullName>
+                <default>false</default>
+                <label>CRESPINE Gel  +</label>
+            </value>
+            <value>
+                <fullName>KD Intra-Articular®</fullName>
+                <default>false</default>
+                <label>KD Intra-Articular®</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

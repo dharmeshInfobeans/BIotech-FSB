@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Payment Terms --></label>
+    <name>Payment_Terms_options__c</name>
+    <picklistValues>
+        <masterLabel>100% Advance before Shipment</masterLabel>
+        <translation><!-- 100% Advance before Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Advance payment  time of placing an order</masterLabel>
+        <translation><!-- 100% Advance payment  time of placing an order --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment against LC in 90 days from Invoice</masterLabel>
+        <translation><!-- 100% Payment against LC in 90 days from Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 100 days from Invoice Date</masterLabel>
+        <translation><!-- 100% Payment in 100 days from Invoice Date --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 120 Days from Invoice</masterLabel>
+        <translation><!-- 100% Payment in 120 Days from Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 270 Days from date of shipment</masterLabel>
+        <translation><!-- 100% Payment in 270 Days from date of shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 30 Days of Invoice</masterLabel>
+        <translation><!-- 100% Payment in 30 Days of Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 45 Days from Invoice</masterLabel>
+        <translation><!-- 100% Payment in 45 Days from Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 60 Days from invoice</masterLabel>
+        <translation><!-- 100% Payment in 60 Days from invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 75 Days from invoice</masterLabel>
+        <translation><!-- 100% Payment in 75 Days from invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment in 90 days from Invoice Date</masterLabel>
+        <translation><!-- 100% Payment in 90 days from Invoice Date --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% Payment via Letter of Credit</masterLabel>
+        <translation><!-- 100% Payment via Letter of Credit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% payment in 15 Days from Invoice</masterLabel>
+        <translation><!-- 100% payment in 15 Days from Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% payment in 180 Days from  Invoice</masterLabel>
+        <translation><!-- 100% payment in 180 Days from  Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100% payment in 6 equal instalments after2nd month</masterLabel>
+        <translation><!-- 100% payment in 6 equal instalments after2nd month --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>100%pymnt in 1stday of subsequnt mon for Pre monin</masterLabel>
+        <translation><!-- 100%pymnt in 1stday of subsequnt mon for Pre monin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>10th of Subsequent month for previous month invoic</masterLabel>
+        <translation><!-- 10th of Subsequent month for previous month invoic --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>25% Advance &amp; 75% in 60 Days from Invoice Date</masterLabel>
+        <translation><!-- 25% Advance &amp; 75% in 60 Days from Invoice Date --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30% Adv. 70% in 7 equal instalment from  Inv date</masterLabel>
+        <translation><!-- 30% Adv. 70% in 7 equal instalment from  Inv date --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30% advance 70% in 9 equal instalments from Inv date</masterLabel>
+        <translation><!-- 30% advance 70% in 9 equal instalments from Inv date --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30% advance at the time of placing order and 70% 6 equal instalments</masterLabel>
+        <translation><!-- 30% advance at the time of placing order and 70% 6 equal instalments --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>30% advance with order &amp; 70% in 60 days from Inv</masterLabel>
+        <translation><!-- 30% advance with order &amp; 70% in 60 days from Inv --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% Advance before Shipment &amp; 50% in 90 D From INV</masterLabel>
+        <translation><!-- 50% Advance before Shipment &amp; 50% in 90 D From INV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% Advance with Order &amp; 50% before Shipment</masterLabel>
+        <translation><!-- 50% Advance with Order &amp; 50% before Shipment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% advance &amp; 50% in 15 days from Invoice</masterLabel>
+        <translation><!-- 50% advance &amp; 50% in 15 days from Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% advance order and 50% in 30days From INV.</masterLabel>
+        <translation><!-- 50% advance order and 50% in 30days From INV. --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% after 90 days &amp; 50% after 180 D from INV</masterLabel>
+        <translation><!-- 50% after 90 days &amp; 50% after 180 D from INV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% before shipment &amp; 50% in 45 Days from Invoice</masterLabel>
+        <translation><!-- 50% before shipment &amp; 50% in 45 Days from Invoice --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>50% placing order and 50% in 60 days from INV Date</masterLabel>
+        <translation><!-- 50% placing order and 50% in 60 days from INV Date --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

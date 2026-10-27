@@ -1,0 +1,960 @@
+<template>
+    <template if:true={isModalOpen}>
+        <div class="modal-overlay" onclick={handleOverlayClick}></div>
+
+        <section class="modal-wrapper" role="dialog" aria-modal="true" aria-labelledby="modal-heading">
+            <div class="custom-modal">
+
+                <!-- ══ HEADER ══════════════════════════════════════════════════ -->
+                <header class="modal-header">
+                    <button class="x-close-btn" type="button" title="Close" onclick={handleClose}>x</button>
+
+                    <div class="header-content">
+                        <div class="header-icon">
+                            <lightning-icon icon-name="standard:opportunity" size="medium"></lightning-icon>
+                        </div>
+                        <div>
+                            <!-- <h2 id="modal-heading" class="modal-title">New Opportunity</h2> -->
+                            <h2 id="modal-heading" class="modal-title">{labels.New_Opportunity__c}</h2>
+                            <p class="modal-subtitle">{modalSubtitle}</p>
+                        </div>
+                    </div>
+
+                    <!-- Progress steps -->
+                    <div class="progress-steps">
+                        <template for:each={progressSteps} for:item="step">
+                            <div key={step.key} class={step.itemClass}>
+                                <span class="step-circle">
+                                    <template if:true={step.showCheck}>&#10003;</template>
+                                    <template if:false={step.showCheck}>{step.number}</template>
+                                </span>
+                                <span class="step-label">{step.label}</span>
+                            </div>
+                            <template if:true={step.showLine}>
+                                <div key={step.lineKey} class="progress-line">
+                                    <div class={step.lineFillClass}></div>
+                                </div>
+                            </template>
+                        </template>
+                    </div>
+                </header>
+
+                <!-- ══ BODY ════════════════════════════════════════════════════ -->
+                <main class={modalBodyClass}>
+
+                    <!-- Step transition spinner -->
+                    <div class="your-component-container">
+                    <template if:true={stepSpinner}>
+                        <div class="loading-overlay your-component-container">
+                            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                        </div>
+                    </template>
+                   </div>
+                    <!-- ── STEP 1: Select Type ──────────────────────────────── -->
+                    <template if:true={isStep1}>
+                        <section class="step-content">
+                            <p class="step-desc">{labels.Select_the_opportunity_type_Solo__c}</p>
+
+                            <div class="type-cards-grid">
+                                <template for:each={radioOptions} for:item="opt">
+                                    <div
+                                        key={opt.value}
+                                        class={opt.cardClass}
+                                        role="button"
+                                        tabindex="0"
+                                        data-value={opt.value}
+                                        onclick={handleCardClick}
+                                        onkeydown={handleCardKeydown}>
+                                        <div class="tc-top">
+                                            <lightning-icon icon-name={opt.icon} size="small"></lightning-icon>
+                                            <span class="tc-check">&#10003;</span>
+                                        </div>
+                                        <div class="tc-label">{opt.label}</div>
+                                        <div class="tc-desc">{opt.description}</div>
+                                    </div>
+                                </template>
+                            </div>
+
+                            <template if:true={showValidationError}>
+                                <div class="alert-error" role="alert">{validationMessage}</div>
+                            </template>
+                        </section>
+                    </template>
+
+                    <!-- ── STEP 2: Fill Details (Solo / Bundle) ────────────── -->
+                    <template if:true={isSoloOrBundleStep2}>
+                        <section class="step-content">
+                            <div class="type-badge-row">
+                                <div class="type-badge">
+                                    <lightning-icon icon-name={selectedTypeIcon} size="x-small"></lightning-icon>
+                                    <span>{selectedTypeLabel}</span>
+                                </div>
+                                <span class="badge-hint">{labels.Fill_in_the_details_below_Equipment__c}</span>
+                            </div>
+
+                            <template if:true={showSpinner}>
+                                <div class="spinner-container">
+                                    <lightning-spinner alternative-text="Loading form" size="medium"></lightning-spinner>
+                                    <p>Loading tailored fields...</p>
+                                </div>
+                            </template>
+
+                            <template if:false={showSpinner}>
+                                <lightning-record-edit-form
+                                    object-api-name="Opportunity__c"
+                                    record-type-id={currentRecordTypeId}
+                                    onsubmit={handleFormSubmit}
+                                    onsuccess={handleFormSuccess}
+                                    onerror={handleFormError}>
+                                    <lightning-messages></lightning-messages>
+
+                                    <div class="form-section">
+                                        <div class="section-header">{labels.Basic_Information__c}</div>
+                                        <div class="fields-grid">
+                                            <!-- <template for:each={basicFields} for:item="field">
+                                                <lightning-input-field
+                                                    key={field.apiName}
+                                                    field-name={field.apiName}
+                                                    required={field.required}
+                                                    value={field.defaultValue}
+                                                    data-field={field.apiName}
+                                                    onchange={handleFieldChange}>
+                                                </lightning-input-field>
+                                            </template> -->
+                                           <template for:each={basicFields} for:item="field">
+    <div key={field.apiName}>
+        <template if:true={field.isReadOnly}>
+            <div class="deal-field-contact">
+                <label class="deal-label">{field.label}</label>
+                <div class="lookup-input-wrap lookup-input-disabled">
+                    <lightning-icon icon-name="utility:lock" size="xx-small" class="lookup-search-icon"></lightning-icon>
+                    <span class="readonly-value-text">{field.defaultValue}</span>
+                </div>
+            </div>
+        </template>
+
+        <template if:false={field.isReadOnly}>
+            <lightning-input-field
+                field-name={field.apiName}
+                required={field.required}
+                value={field.defaultValue}
+                data-field={field.apiName}
+                onchange={handleFieldChange}>
+            </lightning-input-field>
+        </template>
+    </div>
+</template>
+
+                                            <!-- Contact custom lookup (same as Consumable) -->
+                        <div class="deal-field-contact">
+                            <label class="deal-label">
+                                <span class="req-star">*</span> {labels.Contact__c}
+                            </label>
+
+                            <template if:false={selectedAccountId}>
+                                <div class="lookup-input-wrap lookup-input-disabled">
+                                    <lightning-icon icon-name="utility:search" size="x-small" class="lookup-search-icon"></lightning-icon>
+                                    <input type="text" class="lookup-input" placeholder="Search Contacts..." disabled />
+                                </div>
+                            </template>
+
+                            <template if:true={selectedAccountId}>
+                                <template if:true={isLoadingContacts}>
+                                    <div class="lookup-input-wrap">
+                                        <lightning-spinner alternative-text="Loading contacts" size="x-small"></lightning-spinner>
+                                    </div>
+                                </template>
+
+                                <template if:false={isLoadingContacts}>
+                                    <template if:true={selectedContactId}>
+                                        <div class="lookup-pill">
+                                            <lightning-icon icon-name="standard:contact" size="x-small"></lightning-icon>
+                                            <span class="lookup-pill-label">{selectedContactName}</span>
+                                            <button class="lookup-pill-clear" type="button" onclick={handleContactClear}>&#x2715;</button>
+                                        </div>
+                                    </template>
+
+                                    <template if:false={selectedContactId}>
+                                        <template if:true={hasAccountContacts}>
+                                            <div class="custom-lookup-wrap">
+                                                <div class="lookup-input-wrap">
+                                                    <lightning-icon icon-name="utility:search" size="x-small" class="lookup-search-icon"></lightning-icon>
+                                                    <input
+                                                        type="text"
+                                                        class="lookup-input"
+                                                        placeholder="Search Contacts..."
+                                                        value={contactSearchTerm}
+                                                        oninput={handleContactSearchInput}
+                                                        onfocus={handleContactSearchFocus}
+                                                        onblur={handleContactBlur}
+                                                    />
+                                                </div>
+                                                <template if:true={showContactDropdown}>
+                                                    <div class="lookup-dropdown">
+                                                        <template for:each={filteredContactOptions} for:item="contact">
+                                                            <div
+                                                                key={contact.Id}
+                                                                class="lookup-option"
+                                                                data-id={contact.Id}
+                                                                data-name={contact.Name}
+                                                                onmousedown={handleContactOptionClick}>
+                                                                <lightning-icon icon-name="standard:contact" size="x-small"></lightning-icon>
+                                                                <span>{contact.Name}</span>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                            </div>
+                                        </template>
+
+                                        <template if:false={hasAccountContacts}>
+                                            <div class="lookup-input-wrap lookup-input-disabled">
+                                                <lightning-icon icon-name="utility:search" size="x-small" class="lookup-search-icon"></lightning-icon>
+                                                <input type="text" class="lookup-input" placeholder="No contacts found..." disabled />
+                                            </div>
+                                        </template>
+                                    </template>
+                                </template>
+                            </template>
+
+                            <template if:true={contactHasError}>
+                                <div class="contact-error-msg">Complete this field.</div>
+                            </template>
+                        </div>
+                        <!-- END Contact field -->
+                        
+                                        </div>
+                                    </div>
+
+                                    <template if:true={hasAdditionalFields}>
+                                        <div class="form-section">
+                                            <div class="section-header">Additional Details</div>
+                                            <div class="fields-grid">
+                                                <template for:each={additionalFields} for:item="field">
+                                                    <lightning-input-field
+                                                        key={field.apiName}
+                                                        field-name={field.apiName}
+                                                        required={field.required}
+                                                        value={field.defaultValue}
+                                                        data-field={field.apiName}
+                                                        onchange={handleFieldChange}>
+                                                    </lightning-input-field>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    <button type="submit" class="hidden-submit" data-id="hiddenSubmit"></button>
+                                </lightning-record-edit-form>
+
+                                <template if:true={hasSaveError}>
+                                    <div class="alert-error" role="alert">{saveErrorMessage}</div>
+                                </template>
+                            </template>
+                        </section>
+                    </template>
+
+                    <!-- ── STEP 2: Fill Details (Consumable) ───────────────── -->
+                    <template if:true={isConsumableStep2}>
+                        <section class="step-content">
+                            <div class="type-badge-row">
+                                <div class="type-badge">
+                                    <lightning-icon icon-name={selectedTypeIcon} size="x-small"></lightning-icon>
+                                    <span>{selectedTypeLabel}</span>
+                                </div>
+                                <span class="badge-hint">{labels.Fill_in_the_details_below_then_continue__c}</span>
+                            </div>
+
+                            <template if:true={showSpinner}>
+                                <div class="spinner-container">
+                                    <lightning-spinner alternative-text="Loading form" size="medium"></lightning-spinner>
+                                    <p>Loading tailored fields...</p>
+                                </div>
+                            </template>
+
+                            <template if:false={showSpinner}>
+                                <lightning-record-edit-form
+                                    object-api-name="Opportunity__c"
+                                    record-type-id={currentRecordTypeId}
+                                    onsubmit={handleFormSubmit}
+                                    onsuccess={handleFormSuccess}
+                                    onerror={handleFormError}>
+                                    <lightning-messages></lightning-messages>
+
+                                    <div class="form-section">
+                                        <div class="section-header">{labels.Basic_Information__c}</div>
+
+                                        <div class="fields-grid">
+
+                                            <template for:each={basicFields} for:item="field">
+                                                <lightning-input-field
+                                                    key={field.apiName}
+                                                    field-name={field.apiName}
+                                                    required={field.required}
+                                                    value={field.defaultValue}
+                                                    data-field={field.apiName}
+                                                    onchange={handleFieldChange}>
+                                                </lightning-input-field>
+                                            </template>
+
+                                            <!-- Contact custom lookup -->
+                                            <div class="deal-field-contact">
+                                                <label class="deal-label">
+                                                    <span class="req-star">*</span> {labels.Contact__c}
+                                                </label>
+
+                                                <!-- Account not yet selected → disabled box -->
+                                                <template if:false={selectedAccountId}>
+                                                    <div class="lookup-input-wrap lookup-input-disabled">
+                                                        <lightning-icon icon-name="utility:search" size="x-small" class="lookup-search-icon"></lightning-icon>
+                                                        <input type="text" class="lookup-input" placeholder="Search Contacts..." disabled />
+                                                    </div>
+                                                </template>
+
+                                                <!-- Account selected → live lookup -->
+                                                <template if:true={selectedAccountId}>
+                                                    <template if:true={isLoadingContacts}>
+                                                        <div class="lookup-input-wrap">
+                                                            <lightning-spinner alternative-text="Loading contacts" size="x-small"></lightning-spinner>
+                                                        </div>
+                                                    </template>
+
+                                                    <template if:false={isLoadingContacts}>
+                                                        <!-- Contact chosen → pill -->
+                                                        <template if:true={selectedContactId}>
+                                                            <div class="lookup-pill">
+                                                                <lightning-icon icon-name="standard:contact" size="x-small"></lightning-icon>
+                                                                <span class="lookup-pill-label">{selectedContactName}</span>
+                                                                <button class="lookup-pill-clear" type="button" onclick={handleContactClear}>&#x2715;</button>
+                                                            </div>
+                                                        </template>
+
+                                                        <!-- No contact → search box -->
+                                                        <template if:false={selectedContactId}>
+                                                            <template if:true={hasAccountContacts}>
+                                                                <div class="custom-lookup-wrap">
+                                                                    <div class="lookup-input-wrap">
+                                                                        <lightning-icon icon-name="utility:search" size="x-small" class="lookup-search-icon"></lightning-icon>
+                                                                        <input
+                                                                            type="text"
+                                                                            class="lookup-input"
+                                                                            placeholder="Search Contacts..."
+                                                                            value={contactSearchTerm}
+                                                                            oninput={handleContactSearchInput}
+                                                                            onfocus={handleContactSearchFocus}
+                                                                            onblur={handleContactBlur}
+                                                                        />
+                                                                    </div>
+                                                                    <template if:true={showContactDropdown}>
+                                                                        <div class="lookup-dropdown">
+                                                                            <template for:each={filteredContactOptions} for:item="contact">
+                                                                                <div
+                                                                                    key={contact.Id}
+                                                                                    class="lookup-option"
+                                                                                    data-id={contact.Id}
+                                                                                    data-name={contact.Name}
+                                                                                    onmousedown={handleContactOptionClick}>
+                                                                                    <lightning-icon icon-name="standard:contact" size="x-small"></lightning-icon>
+                                                                                    <span>{contact.Name}</span>
+                                                                                </div>
+                                                                            </template>
+                                                                        </div>
+                                                                    </template>
+                                                                </div>
+                                                            </template>
+
+                                                            <template if:false={hasAccountContacts}>
+                                                                <div class="lookup-input-wrap lookup-input-disabled">
+                                                                    <lightning-icon icon-name="utility:search" size="x-small" class="lookup-search-icon"></lightning-icon>
+                                                                    <input type="text" class="lookup-input" placeholder="No contacts found..." disabled />
+                                                                </div>
+                                                            </template>
+                                                        </template>
+                                                    </template>
+                                                </template>
+
+                                                <!-- Contact required-field error message -->
+                                                <template if:true={contactHasError}>
+                                                    <div class="contact-error-msg">Complete this field.</div>
+                                                </template>
+                                            </div>
+                                            <!-- END Contact field -->
+<!-- END Contact field -->
+
+                                       <div class="deal-field-family">
+    <label class="deal-label">
+        <span class="req-star">*</span> {labels.Product_Family__c}
+    </label>
+
+    <template if:true={isLoadingProductFamily}>
+        <div class="lookup-input-wrap">
+            <lightning-spinner alternative-text="Loading product families" size="x-small"></lightning-spinner>
+        </div>
+    </template>
+
+    <template if:false={isLoadingProductFamily}>
+        <div class="custom-lookup-wrap">
+            <div class="lookup-input-wrap">
+                <input
+                    type="text"
+                    class="lookup-input"
+                    placeholder="Search Product Family..."
+                    value={productFamilySearchTerm}
+                    oninput={handleProductFamilySearchInput}
+                    onfocus={handleProductFamilySearchFocus}
+                    onblur={handleProductFamilyBlur}
+                />
+            </div>
+            <template if:true={showProductFamilyDropdown}>
+                <div class="lookup-dropdown">
+                    <template for:each={filteredProductFamilyOptions} for:item="opt">
+                        <div
+                            key={opt.value}
+                            class="lookup-option"
+                            data-value={opt.value}
+                            data-label={opt.label}
+                            onmousedown={handleProductFamilyOptionClick}>
+                            <span>{opt.label}</span>
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+    </template>
+
+    <template if:true={productFamilyHasError}>
+        <div class="contact-error-msg">Complete this field.</div>
+    </template>
+</div>
+<!-- END Product Family field -->
+                                            <!-- END Product Family field -->
+                                        </div><!-- end fields-grid -->
+                                    </div><!-- end form-section Basic Information -->
+
+                                    <template if:true={hasAdditionalFields}>
+                                        <div class="form-section">
+                                            <div class="section-header">Additional Details</div>
+                                            <div class="fields-grid">
+                                                <template for:each={additionalFields} for:item="field">
+                                                    <lightning-input-field
+                                                        key={field.apiName}
+                                                        field-name={field.apiName}
+                                                        required={field.required}
+                                                        value={field.defaultValue}
+                                                        data-field={field.apiName}
+                                                        onchange={handleFieldChange}>
+                                                    </lightning-input-field>
+                                                </template>
+                                            </div>
+                                        </div>
+                                    </template>
+
+                                    <button type="submit" class="hidden-submit" data-id="hiddenSubmit"></button>
+                                </lightning-record-edit-form>
+
+                                <template if:true={hasSaveError}>
+                                    <div class="alert-error" role="alert">{saveErrorMessage}</div>
+                                </template>
+                            </template>
+                        </section>
+                    </template>
+
+                    <!-- ── CONSUMABLE PRODUCTS STEP ────────────── -->
+                    <template if:true={isConsumableProductsStep}>
+                        <section class="step-content">
+
+                            <div class="cp-stats-bar">
+                                <div class="cp-stat-card">
+                                    <div class="cp-stat-label">{labels.TOTAL_PRODUCTS__c}</div>
+                                    <div class="cp-stat-val">{simpleTotalProducts}</div>
+                                </div>
+                                <div class="cp-stat-card">
+                                    <div class="cp-stat-label">{labels.Product_Family__c}</div>
+                                    <div class="cp-stat-val cp-stat-val-blue">{consumableFamilyDisplay}</div>
+                                </div>
+                                <div class="cp-stat-card">
+                                    <div class="cp-stat-label">{labels.Product_Description__c}</div>
+                                    <div class="cp-stat-val cp-stat-val-blue">{consumableFamilyDisplay}</div>
+                                </div>
+                            </div>
+
+                            <div class="cp-section">
+                                <div class="cp-toolbar">
+                                    <span class="cp-section-title">{labels.Products_Quantities__c}</span>
+                                    <button class="eq-btn-add" type="button" onclick={handleAddSimpleRow}>{labels.Add_Row__c}</button>
+                                </div>
+
+                                <div class="cp-table-head">
+                                    <div class="cp-num">#</div>
+                                    <div class="cp-cell">{labels.PRODUCT_NAME__c}</div>
+                                    <div class="cp-cell">{labels.ASP__c} ({userCurrencyCode})</div>
+                                    <div class="cp-qty">{labels.QTY__c}</div>
+                                    <div class="cp-del"></div>
+                                </div>
+
+                                <template if:true={hasSimpleRows}>
+                                    <template for:each={displaySimpleRows} for:item="row">
+                                        <div key={row.id} class="cp-table-row">
+                                            <div class="cp-num">{row.seq}</div>
+                                            <div class="cp-cell">
+                                                <select class="ap-select" data-id={row.id} onchange={handleSimpleProductChange}>
+                                                    <option value="">Select Product</option>
+                                                    <template for:each={row.productOptions} for:item="opt">
+                                                        <option key={opt.value} value={opt.value} data-asp={opt.asp} data-msp={opt.msp} selected={opt.isSelected}>{opt.label}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                            <div class="cp-cell">
+                                                <input class="ap-input ap-input-readonly" type="text" value={row.aspFormatted} readonly />
+                                            </div>
+                                            <div class="cp-qty">
+                                                <input class="ap-input ap-input-number" type="number" value={row.qty} min="0" data-id={row.id} onchange={handleSimpleQtyChange} oninput={handleSimpleQtyChange} />
+                                            </div>
+                                            <div class="cp-del">
+                                                <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteSimpleRow} title="Remove row">
+                                                    <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small"></lightning-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+
+                                <template if:false={hasSimpleRows}>
+                                    <div class="ap-empty-state">No products yet. Click "+ Add Row" to begin.</div>
+                                </template>
+
+                                <div class="cp-footer-row">
+                                    <span class="cp-row-count">{simpleRowCountText}</span>
+                                    <span class="cp-ready-badge">
+                                        <lightning-icon icon-name="utility:check" size="xx-small"></lightning-icon>
+                                        {simpleReadyText}
+                                    </span>
+                                </div>
+                            </div>
+                        </section>
+                    </template>
+
+                    <!-- ── STEP 3: Equipment & Company ─────────────────────── -->
+                    <template if:true={isEquipmentStep1}>
+                        <section class="step-content">
+                            <div class="type-badge-row">
+                                <div class="type-badge">
+                                    <lightning-icon icon-name={selectedTypeIcon} size="x-small"></lightning-icon>
+                                    <span>{selectedTypeLabel}</span>
+                                </div>
+                                <span class="badge-hint">{labels.Add_equipment_rows_Choose_Others_to_e__c}</span>
+                            </div>
+
+                            <!-- SECTION A: Normal rows -->
+                            <div class="eq-section-card" style="margin-bottom: 16px;">
+                                <div class="eq-toolbar">
+                                    <div class="eq-toolbar-left">
+                                        <span class="eq-section-label">{labels.Equipment_Product_Groups__c}</span>
+                                        <span class="eq-badge">{normalRowCount} {labels.row_s__c}</span>
+                                    </div>
+                                    <button class="eq-btn-add" type="button" onclick={handleAddEquipmentRow}>{labels.Add_Row__c}</button>
+                                </div>
+
+                                <div class="eq-col-head eq-grid-normal">
+                                    <div>#</div>
+                                    <div>{labels.EQUIPMENT_NAME__c} <span class="eq-req">*</span></div>
+                                    <div>{labels.EQUIPMENT_COMPANY__c} <span class="eq-req">*</span></div>
+                                    <div></div>
+                                </div>
+                            <div class="eq-rows-scroll">
+                                <template if:true={hasNormalRows}>
+                                    <template for:each={normalEquipmentRows} for:item="row">
+                                        <div key={row.id} class="eq-row-data eq-grid-normal">
+                                            <div class="eq-row-num">{row.displayIndex}</div>
+                                            <div>
+                                                <select class="eq-cell-select" data-id={row.id} onchange={handleEquipmentProductChange}>
+                                                    <option value="">-- {labels.Select_Equipment__c} --</option>
+                                                    <template for:each={row.normalProductOptions} for:item="opt">
+                                                        <option key={opt.value} value={opt.value} selected={opt.isSelected}>{opt.label}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <select class="eq-cell-select" data-id={row.id} onchange={handleEquipmentCompanyChange}>
+                                                    <option value="">-- {labels.Select_Company__c} --</option>
+                                                    <template for:each={row.companyOptions} for:item="opt">
+                                                        <option key={opt.value} value={opt.value} selected={opt.isSelected}>{opt.label}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                            <div class="sr-del">
+                                                <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteEquipmentRow} title="Remove row">
+                                                    <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small"></lightning-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+                             
+                                <template if:false={hasNormalRows}>
+                                    <div class="eq-empty-state">{labels.No_equipment_added_yet_Click_Add_Row__c}</div>
+                                </template>
+                                </div>
+                            </div>
+
+                            <!-- SECTION B: Other rows -->
+                            <div class="eq-section-card">
+                                <div class="eq-toolbar eq-toolbar-other">
+                                    <div class="eq-toolbar-left">
+                                        <span class="eq-section-label">{labels.Other_Equipment__c}</span>
+                                        <span class="eq-badge eq-badge-other">{otherRowCount} {labels.row_s__c}</span>
+                                    </div>
+                                    <button class="eq-btn-add eq-btn-add-others" type="button" onclick={handleAddOthersRow}>{labels.Add_Row__c}</button>
+                                </div>
+
+                                <div class="eq-other-header eq-grid-other">
+                                    <div>#</div>
+                                    <div>{labels.EQUIPMENT_NAME__c} <span class="eq-req">*</span></div>
+                                    <div>{labels.OTHER_EQUIPMENT_NAME__c} <span class="eq-req">*</span></div>
+                                    <div>{labels.OTHER_EQUIPMENT_COMPANY__c} <span class="eq-req">*</span></div>
+                                    <div></div>
+                                </div>
+                              <div class="eq-rows-scroll">
+                                <template if:true={hasOtherRows}>
+                                    <template for:each={otherEquipmentRows} for:item="row">
+                                        <div key={row.id} class="eq-row-data eq-grid-other">
+                                            <div class="eq-row-num">{row.displayIndex}</div>
+                                            <div>
+                                                <select class="eq-cell-select" data-id={row.id} onchange={handleEquipmentProductChange}>
+                                                    <option value="">-- {labels.Select_Equipment__c} --</option>
+                                                    <template for:each={row.otherProductOptions} for:item="opt">
+                                                        <option key={opt.value} value={opt.value} selected={opt.isSelected}>{opt.label}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    class="eq-cell-other"
+                                                    placeholder="Enter equipment name"
+                                                    value={row.otherEquipmentName}
+                                                    data-id={row.id}
+                                                    onchange={handleOtherEquipmentNameChange}
+                                                />
+                                            </div>
+                                            <div>
+                                                <input
+                                                    type="text"
+                                                    class="eq-cell-other"
+                                                    placeholder="Enter company name"
+                                                    value={row.otherCompanyName}
+                                                    data-id={row.id}
+                                                    onchange={handleOtherCompanyNameChange}
+                                                />
+                                            </div>
+                                            <div class="sr-del">
+                                                <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteEquipmentRow} title="Remove row">
+                                                    <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small"></lightning-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+
+                                <template if:false={hasOtherRows}>
+                                    <div class="eq-empty-state">{labels.No_custom_equipment_added_yet_Click__c}</div>
+                                </template>
+                            </div>
+                            </div>
+
+                            <div class="eq-summary-standalone">
+                                <div class="eq-sc">
+                                    <div class="eq-sc-icon">&#128101;</div>
+                                    <div class="eq-sc-lbl">{labels.Total_Equipment_Groups__c}</div>
+                                    <div class="eq-sc-val">{equipmentRowCount}</div>
+                                </div>
+                            </div>
+
+                            <template if:true={showEquipmentStepError}>
+                                <div class="alert-error" role="alert">{equipmentStepErrorMsg}</div>
+                            </template>
+                        </section>
+                    </template>
+
+                    <!-- ── STEP 4: Quantities & Dates ───────────────────────── -->
+                    <template if:true={isEquipmentStep2}>
+                        <section class="step-content">
+                            <div class="type-badge-row">
+                                <div class="type-badge">
+                                    <lightning-icon icon-name={selectedTypeIcon} size="x-small"></lightning-icon>
+                                    <span>{selectedTypeLabel}</span>
+                                </div>
+                                <span class="badge-hint">{labels.Enter_quantities_values_deal_period_an__c}</span>
+                            </div>
+
+                            <h3 class="section-title">{labels.Quantity_Per_Equipment_Deal_Details__c}</h3>
+
+                            <div class="equip-type-flags"></div>
+
+                            <div class="eq-table-wrap">
+                                <table class="eq-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Equipment Name</th>
+                                            <th>{labels.Equipment_Companys__c}</th>
+                                            <th>{labels.Yearly_Quantity__c}</th>
+                                            <th>{labels.Value_inc_GST_unit__c}</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <template for:each={selectedEquipments} for:item="eq">
+                                            <tr key={eq.id}>
+                                                <td data-label="Equipment Name">{eq.name}</td>
+                                                <td data-label="Equipment Company">{eq.selectedCompany}</td>
+                                                <td data-label="Quantity">
+                                                    <div class="qty-control">
+                                                        <button class="qty-btn" type="button" data-id={eq.id} onclick={decrementQty}>-</button>
+                                                        <span class="qty-value">{eq.quantity}</span>
+                                                        <button class="qty-btn" type="button" data-id={eq.id} onclick={incrementQty}>+</button>
+                                                    </div>
+                                                </td>
+                                                <td data-label="Value incl. GST">
+                                                    <div class="line-value-wrap">
+                                                        <span class="line-currency">({userCurrencyCode})</span>
+                                                        <input
+                                                            type="number"
+                                                            class="line-value-input"
+                                                            placeholder="0.00"
+                                                            value={eq.equipmentValue}
+                                                            min="0"
+                                                            step="0.01"
+                                                            data-id={eq.id}
+                                                            onchange={handleEquipmentValueChange}
+                                                        />
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </template>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="total-row">
+                                            <td colspan="3">{labels.Total_Equipment_Value__c}</td>
+                                            <td>{computedTotalValueFormatted}</td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                            <div class="deal-section">
+                                <h3 class="deal-title">{labels.Deal_information__c}</h3>
+                                <div class="deal-grid deal-grid-2">
+                                    <template if:true={isBundle}>
+                                        <div class="deal-field">
+                                            <label class="deal-label">{labels.Down_payment__c}</label>
+                                            <input
+                                                type="number"
+                                                class="deal-input"
+                                                value={downPayment}
+                                                min="0"
+                                                step="0.01"
+                                                onchange={handleDownPaymentChange}
+                                            />
+                                        </div>
+                                    </template>
+                                    <div class="deal-field">
+                                        <label class="deal-label">{labels.Total_deal_period__c} <span class="req-star">*</span></label>
+                                        <select class="deal-select" onchange={handleDealPeriodChange}>
+                                            <option value="">Select period</option>
+                                            <template for:each={dealPeriodOptions} for:item="opt">
+                                                <option key={opt.value} value={opt.value} selected={opt.isSelected}>{opt.label}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </template>
+
+                    <!-- ── STEP 5: Add Products (Bundle only) ──────────────── -->
+                    <template if:true={isAddProductsStep}>
+                        <section class="step-content">
+                            <div class="type-badge-row">
+                                <div class="type-badge">
+                                    <lightning-icon icon-name={selectedTypeIcon} size="x-small"></lightning-icon>
+                                    <span>{selectedTypeLabel}</span>
+                                </div>
+                                <span class="badge-hint">{labels.Add_one_row_per_product__c}</span>
+                            </div>
+
+                            <div class="ap-table-wrapper">
+                                <div class="ap-table-header-bar">
+                                    <span class="ap-section-title">{labels.Products_Quantities__c}</span>
+                                </div>
+
+                                <div class="ap-col-headers">
+                                    <div></div>
+                                    <div>{labels.PRODUCT_FAMILYs__c}</div>
+                                    <div>{labels.PRODUCT_NAME__c}</div>
+                                    <div>{labels.MSP__c}</div>
+                                    <div>{labels.MONTHLY_QTY__c}</div>
+                                    <div>{labels.TOTAL_QTY__c}</div>
+                                    <div>{labels.MONTHLY_VALUE__c}</div>
+                                    <div>{labels.TOTAL_VALUE__c}</div>
+                                </div>
+
+                                <template if:true={hasProductRows}>
+                                    <template for:each={productRows} for:item="row">
+                                        <div key={row.id} class="ap-row">
+                                            <div class="sr-del">
+                                                <button class="btn-delete" type="button" data-id={row.id} onclick={handleDeleteRow} title="Remove row">
+                                                    <lightning-icon icon-name="utility:delete" alternative-text="Delete" size="x-small"></lightning-icon>
+                                                </button>
+                                            </div>
+                                            <div>
+                                                <select class="ap-select" data-id={row.id} onchange={handleFamilySelect}>
+                                                    <option value="">{labels.Select_Family__c}</option>
+                                                    <template for:each={row.familyOptions} for:item="opt">
+                                                        <option key={opt.value} value={opt.value} selected={opt.isSelected}>{opt.label}</option>
+                                                    </template>
+                                                </select>
+                                            </div>
+                                            <div>
+                                                <template if:true={row.productFamily}>
+                                                    <select class="ap-select" data-id={row.id} onchange={handleProductSelect}>
+                                                        <option value="">Select Product</option>
+                                                        <template for:each={row.productOptions} for:item="opt">
+                                                            <option key={opt.value} value={opt.value} data-msp={opt.msp} selected={opt.isSelected}>{opt.label}</option>
+                                                        </template>
+                                                    </select>
+                                                </template>
+                                                <template if:false={row.productFamily}>
+                                                    <input class="ap-input ap-input-disabled" value="Pick Family First" disabled />
+                                                </template>
+                                            </div>
+                                            <div><input class="ap-input ap-input-readonly" value={row.mspFormatted} readonly /></div>
+                                            <div>
+                                                <input
+                                                    type="number"
+                                                    class="ap-input ap-input-number"
+                                                    value={row.monthlyQty}
+                                                    min="0"
+                                                    data-id={row.id}
+                                                    onchange={handleProductQtyChange}
+                                                    oninput={handleProductQtyChange}
+                                                />
+                                            </div>
+                                            <div><input class="ap-input ap-input-readonly" value={row.totalDealQtyDisplay} readonly /></div>
+                                            <div><input class="ap-input ap-input-readonly" value={row.monthlyDealValueFormatted} readonly /></div>
+                                            <div><input class="ap-input ap-input-readonly ap-deal" value={row.totalDealValueFormatted} readonly /></div>
+                                        </div>
+                                    </template>
+                                </template>
+
+                                <template if:false={hasProductRows}>
+                                    <div class="ap-empty-state">No products added yet.</div>
+                                </template>
+
+                                <div class="ap-add-row-bar">
+                                    <button class="btn-add-row" type="button" onclick={handleAddRow}>{labels.Add_Row__c}</button>
+                                </div>
+                            </div>
+
+                            <div class="ap-summary-cards">
+                                <div class="ap-card">
+                                    <div class="ap-card-label">{labels.Products__c}</div>
+                                    <div class="ap-card-value">{totalProducts}</div>
+                                </div>
+                                <div class="ap-card ap-card-highlight">
+                                    <div class="ap-card-label">{labels.Total_Deal_Value__c}</div>
+                                    <div class="ap-card-value">{grandTotalFormatted}</div>
+                                </div>
+                                <div class="ap-card">
+                                    <div class="ap-card-label">{labels.Net_Equipment_Funding_Value__c}</div>
+                                    <div class="ap-card-value">{netEquipmentFundingValueFormatted}</div>
+                                </div>
+                                <div class="ap-card">
+                                    <div class="ap-card-label">{labels.Deal_Factor__c}</div>
+                                    <div class="ap-card-value">{dealFactorFormatted}</div>
+                                </div>
+                            </div>
+                        </section>
+                    </template>
+
+                    <!-- Full-screen working overlay -->
+                    <div class="your-component-container">
+                     <template if:true={isWorking}>
+                        <template if:false={stepSpinner}>
+                            <div class="loading-overlay">
+                                <lightning-spinner alternative-text="Working" size="medium"></lightning-spinner>
+                            </div>
+                        </template>
+                    </template>
+                   </div>
+                </main>
+
+                <!-- ══ FOOTER ════════════════════════════════════════════════════ -->
+                <footer class="modal-footer">
+
+                    <template if:true={isStep1}>
+                        <span class="footer-hint">Step 1 of {totalSteps}</span>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose}>{labels.Cancel__c}</button>
+                            <button class="btn-next" type="button" onclick={handleNext} disabled={isWorking}>{labels.Continue__c}</button>
+                        </div>
+                    </template>
+
+                    <!-- Solo / Bundle Step 2 footer -->
+                    <template if:true={isSoloOrBundleStep2}>
+                        <template if:false={createdRecordId}>
+                            <button class="btn-back" type="button" onclick={handleBack} disabled={isWorking}>{labels.Back__c}</button>
+                        </template>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                            <button class="btn-save" type="button" onclick={handleSave} disabled={isWorking}>{labels.Save_Continue__c}</button>
+                        </div>
+                    </template>
+
+                    <!-- Consumable Step 2 footer -->
+                    <template if:true={isConsumableStep2}>
+                        <template if:true={canGoBackToTypeSelection}>
+                            <button class="btn-back" type="button" onclick={handleBack} disabled={isWorking}>{labels.Back__c}</button>
+                        </template>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                            <button class="btn-save" type="button" onclick={handleSave} disabled={isWorking}>{labels.Next_Add_Products__c}</button>
+                        </div>
+                    </template>
+
+                    <!-- Consumable products step footer -->
+                    <template if:true={isConsumableProductsStep}>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                            <button class="btn-save" type="button" onclick={handleSaveProductsConsumable} disabled={isSimpleSaveDisabled}>{labels.Save__c}</button>
+                        </div>
+                    </template>
+
+                    <template if:true={isEquipmentStep1}>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                            <button class="btn-next" type="button" onclick={handleNext} disabled={isNextDisabled}>{labels.Next_Quantities__c}</button>
+                        </div>
+                    </template>
+
+                    <!-- FIX: Removed nested <template> inside <button> — moved label to JS getter -->
+                    <template if:true={isEquipmentStep2}>
+                        <button class="btn-back" type="button" onclick={handleBack} disabled={isWorking}>{labels.Back__c}</button>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                            <button class="btn-next" type="button" onclick={handleSaveEquipment} disabled={isSaveDisabled}>
+                                {saveEquipmentButtonLabel}
+                            </button>
+                        </div>
+                    </template>
+
+                    <template if:true={isAddProductsStep}>
+                        <button class="btn-back" type="button" onclick={handleBack} disabled={isWorking}>{labels.Back__c}</button>
+                        <div class="footer-actions">
+                            <button class="btn-cancel" type="button" onclick={handleClose} disabled={isWorking}>{labels.Cancel__c}</button>
+                            <button class="btn-save" type="button" onclick={handleSaveProducts} disabled={isWorking}>{labels.Save_Products__c}</button>
+                        </div>
+                    </template>
+                </footer>
+            </div>
+        </section>
+    </template>
+</template>

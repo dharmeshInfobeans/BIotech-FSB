@@ -1,0 +1,111 @@
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    padding: 15px;
+}
+
+.card {
+    border-radius: 12px;
+    padding: 14px 10px;
+    text-align: center;
+    color: white;
+    min-height: 90px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.12);
+    transition: transform .2s;
+}
+
+.card:hover{
+    transform: translateY(-3px);
+}
+
+.card h2{
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.card p{
+    font-size:13px;
+    margin:0;
+}
+
+.blue{
+    background: linear-gradient(135deg,#1565C0,#42A5F5);
+}
+
+.green{
+    background: linear-gradient(135deg,#2E7D32,#66BB6A);
+}
+
+.success{
+    background: linear-gradient(135deg,#00897B,#26A69A);
+}
+
+.red{
+    background: linear-gradient(135deg,#C62828,#EF5350);
+}
+
+.gray{
+    background: linear-gradient(135deg,#5E35B1,#9575CD);
+}
+
+@media(max-width:900px){
+
+.dashboard{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.dashboard{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+.customTable{
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.customTable thead{
+    background:#eef3fb;
+}
+
+.customTable th{
+    font-weight:700;
+    font-size:14px;
+    text-align:center;
+    padding:14px;
+}
+
+.customTable td{
+    padding:16px;
+    font-size:12px;
+}
+
+.center{
+    text-align:center;
+}
+
+.failed{
+    color:#c23934;
+    font-weight:700;
+}
+
+tbody tr:hover{
+    background:#f7f9fc;
+}
+
+.card.orange {
+    background-color: #ff8c00;
+    color: #ffffff;
+}

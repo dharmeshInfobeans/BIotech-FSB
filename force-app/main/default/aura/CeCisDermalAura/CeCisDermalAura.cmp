@@ -1,0 +1,11 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionwithoutheader,force:hasSObjectName" access="global">
+
+<aura:html tag="style">
+.slds-modal__container{
+max-width: 90rem !important;
+width:90% !important;
+}
+</aura:html>
+    
+<c:ceCisDermal recordId="{!v.recordId}" onclose="{!c.closeqa}" ></c:ceCisDermal>
+</aura:component>

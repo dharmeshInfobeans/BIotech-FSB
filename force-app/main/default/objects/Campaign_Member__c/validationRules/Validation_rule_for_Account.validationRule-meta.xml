@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_rule_for_Account</fullName>
+    <active>false</active>
+    <errorConditionFormula>IF(AND(RecordType.Name ==&apos;Existing member&apos;, OR(ISBLANK( Account__c ),ISBLANK( Contact__c ))),true,false)</errorConditionFormula>
+    <errorMessage>Please fill the Account name. and the Contact Name</errorMessage>
+</ValidationRule>

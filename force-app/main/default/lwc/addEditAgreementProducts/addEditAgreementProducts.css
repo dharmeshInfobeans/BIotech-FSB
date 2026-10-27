@@ -1,0 +1,64 @@
+.slds-modal {
+    width: 50%;
+    max-width: 700px;
+}
+
+.amended-row {
+    background-color: lightyellow !important;
+}
+
+.default-row {
+    background-color: rgba(181, 219, 239, 0.957) !important;
+}
+
+.canceled-row,.canceled-row:hover {
+    background-color: lightcoral !important;
+}
+
+.slds-table:not(.slds-no-row-hover) tbody tr.canceled-row:hover>td{
+    background-color: lightcoral !important;
+}
+.slds-table:not(.slds-no-row-hover) tbody tr.amended-row:hover>td{
+    background-color: lightyellow !important;
+}
+.addRowButtom {
+    text-align: center;
+    margin: 30px 0 20px 0;
+}
+
+.addRowButtom lightning-button {
+    display: inline-flex; /* Ensures proper alignment */
+    justify-content: center;
+    align-items: center;
+    width: auto; /* Prevents stretching */
+    min-width: 150px; /* Optional: Ensures button has a reasonable width */
+}
+
+.addRowButtom lightning-button button {
+    width: 100%; /* Ensures inner button fills the component */
+}
+
+
+.custom-input-cell {
+    display: table-cell; /* Ensure alignment with other table cells */
+    vertical-align: middle; /* Vertically align content */
+}
+
+.custom-margin-wrapper {
+    margin-bottom: 23px; /* Add margin to align input field */
+}
+
+/* Adjust internal alignment of the lightning-input */
+lightning-input::part(input-container) {
+    margin-bottom: 0px; /* Remove any bottom margin inside the shadow DOM */
+}
+
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px; /* Adjust spacing */
+}
+
+.custom-button-spacing {
+    margin-left: 5px; /* Adjust spacing */
+}

@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Equipment_Brand__c</fullName>
+    <label>Equipment Brand</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Equipment_Name__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Alcon</fullName>
+                <default>false</default>
+                <label>Alcon</label>
+            </value>
+            <value>
+                <fullName>Appasamy</fullName>
+                <default>false</default>
+                <label>Appasamy</label>
+            </value>
+            <value>
+                <fullName>B&amp;L</fullName>
+                <default>false</default>
+                <label>B&amp;L</label>
+            </value>
+            <value>
+                <fullName>Biomedix</fullName>
+                <default>false</default>
+                <label>Biomedix</label>
+            </value>
+            <value>
+                <fullName>CSO Sirius</fullName>
+                <default>false</default>
+                <label>CSO Sirius</label>
+            </value>
+            <value>
+                <fullName>Enbio</fullName>
+                <default>false</default>
+                <label>Enbio</label>
+            </value>
+            <value>
+                <fullName>Haag - Streit</fullName>
+                <default>false</default>
+                <label>Haag - Streit</label>
+            </value>
+            <value>
+                <fullName>Heidelberg</fullName>
+                <default>false</default>
+                <label>Heidelberg</label>
+            </value>
+            <value>
+                <fullName>Huvitz</fullName>
+                <default>false</default>
+                <label>Huvitz</label>
+            </value>
+            <value>
+                <fullName>Huwitz</fullName>
+                <default>false</default>
+                <label>Huwitz</label>
+            </value>
+            <value>
+                <fullName>I Care</fullName>
+                <default>false</default>
+                <label>I Care</label>
+            </value>
+            <value>
+                <fullName>I Optik</fullName>
+                <default>false</default>
+                <label>I Optik</label>
+            </value>
+            <value>
+                <fullName>Keeler</fullName>
+                <default>false</default>
+                <label>Keeler</label>
+            </value>
+            <value>
+                <fullName>Labomed</fullName>
+                <default>false</default>
+                <label>Labomed</label>
+            </value>
+            <value>
+                <fullName>Leica</fullName>
+                <default>false</default>
+                <label>Leica</label>
+            </value>
+            <value>
+                <fullName>Matronix</fullName>
+                <default>false</default>
+                <label>Matronix</label>
+            </value>
+            <value>
+                <fullName>MMD</fullName>
+                <default>false</default>
+                <label>MMD</label>
+            </value>
+            <value>
+                <fullName>Nidek</fullName>
+                <default>false</default>
+                <label>Nidek</label>
+            </value>
+            <value>
+                <fullName>Oculus Pentacam</fullName>
+                <default>false</default>
+                <label>Oculus Pentacam</label>
+            </value>
+            <value>
+                <fullName>Oertli</fullName>
+                <default>false</default>
+                <label>Oertli</label>
+            </value>
+            <value>
+                <fullName>Optopol</fullName>
+                <default>false</default>
+                <label>Optopol</label>
+            </value>
+            <value>
+                <fullName>Optos</fullName>
+                <default>false</default>
+                <label>Optos</label>
+            </value>
+            <value>
+                <fullName>Others</fullName>
+                <default>false</default>
+                <label>Others</label>
+            </value>
+            <value>
+                <fullName>Quantel</fullName>
+                <default>false</default>
+                <label>Quantel</label>
+            </value>
+            <value>
+                <fullName>Remidio</fullName>
+                <default>false</default>
+                <label>Remidio</label>
+            </value>
+            <value>
+                <fullName>Sonomed</fullName>
+                <default>false</default>
+                <label>Sonomed</label>
+            </value>
+            <value>
+                <fullName>Statim</fullName>
+                <default>false</default>
+                <label>Statim</label>
+            </value>
+            <value>
+                <fullName>Takagi</fullName>
+                <default>false</default>
+                <label>Takagi</label>
+            </value>
+            <value>
+                <fullName>Tomey</fullName>
+                <default>false</default>
+                <label>Tomey</label>
+            </value>
+            <value>
+                <fullName>Topcon</fullName>
+                <default>false</default>
+                <label>Topcon</label>
+            </value>
+            <value>
+                <fullName>Tuttnauer</fullName>
+                <default>false</default>
+                <label>Tuttnauer</label>
+            </value>
+            <value>
+                <fullName>Zeiss</fullName>
+                <default>false</default>
+                <label>Zeiss</label>
+            </value>
+            <value>
+                <fullName>Ziemer</fullName>
+                <default>false</default>
+                <label>Ziemer</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Others</controllingFieldValue>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <controllingFieldValue>Scheimpflug</controllingFieldValue>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <controllingFieldValue>A Scan</controllingFieldValue>
+            <controllingFieldValue>Autoclaves</controllingFieldValue>
+            <controllingFieldValue>Autoref Keratometer</controllingFieldValue>
+            <controllingFieldValue>Autorefractometer</controllingFieldValue>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <controllingFieldValue>Lensmeter</controllingFieldValue>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <controllingFieldValue>Optical Biometer</controllingFieldValue>
+            <valueName>Others</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <valueName>Alcon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <valueName>Appasamy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <controllingFieldValue>Scheimpflug</controllingFieldValue>
+            <valueName>B&amp;L</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <controllingFieldValue>Autoref Keratometer</controllingFieldValue>
+            <controllingFieldValue>Autorefractometer</controllingFieldValue>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <controllingFieldValue>Lensmeter</controllingFieldValue>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <controllingFieldValue>Optical Biometer</controllingFieldValue>
+            <valueName>Nidek</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <valueName>Oertli</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Phaco</controllingFieldValue>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <controllingFieldValue>Optical Biometer</controllingFieldValue>
+            <valueName>Zeiss</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheimpflug</controllingFieldValue>
+            <valueName>CSO Sirius</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheimpflug</controllingFieldValue>
+            <valueName>Oculus Pentacam</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheimpflug</controllingFieldValue>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <controllingFieldValue>Optical Biometer</controllingFieldValue>
+            <valueName>Tomey</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Scheimpflug</controllingFieldValue>
+            <valueName>Ziemer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <valueName>Haag - Streit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <valueName>I Care</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <controllingFieldValue>A Scan</controllingFieldValue>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <valueName>Keeler</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <valueName>Takagi</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tonometer</controllingFieldValue>
+            <controllingFieldValue>Autoref Keratometer</controllingFieldValue>
+            <controllingFieldValue>Autorefractometer</controllingFieldValue>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <controllingFieldValue>Lensmeter</controllingFieldValue>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <controllingFieldValue>Optical Biometer</controllingFieldValue>
+            <valueName>Topcon</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>A Scan</controllingFieldValue>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <valueName>Biomedix</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>A Scan</controllingFieldValue>
+            <valueName>Matronix</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>A Scan</controllingFieldValue>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <valueName>MMD</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>A Scan</controllingFieldValue>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <valueName>Sonomed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autoclaves</controllingFieldValue>
+            <valueName>Enbio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autoclaves</controllingFieldValue>
+            <valueName>Statim</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autoclaves</controllingFieldValue>
+            <valueName>Tuttnauer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Autoref Keratometer</controllingFieldValue>
+            <controllingFieldValue>Autorefractometer</controllingFieldValue>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <controllingFieldValue>Optical Biometer</controllingFieldValue>
+            <valueName>Huvitz</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>B Scan</controllingFieldValue>
+            <valueName>Quantel</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <valueName>Heidelberg</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <valueName>Optos</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fundus Camera</controllingFieldValue>
+            <valueName>Remidio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lensmeter</controllingFieldValue>
+            <valueName>Huwitz</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lensmeter</controllingFieldValue>
+            <valueName>I Optik</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <valueName>Labomed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microscope</controllingFieldValue>
+            <valueName>Leica</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OCT</controllingFieldValue>
+            <valueName>Optopol</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

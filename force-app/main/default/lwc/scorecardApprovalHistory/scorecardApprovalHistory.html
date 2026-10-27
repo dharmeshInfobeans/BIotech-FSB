@@ -1,0 +1,191 @@
+<template>
+    <lightning-card title="Approval History" icon-name="utility:approval">
+        <template if:true={isLoading}>
+            <div class="slds-align_absolute-center slds-p-around_large">
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </div>
+        </template>
+        
+        <template if:false={isLoading}>
+            <!-- Current Status -->
+            <div class="current-status-section slds-m-bottom_medium">
+                <div class="slds-text-heading_small slds-m-bottom_small">Current Status</div>
+                <lightning-badge 
+                    label={currentStatus} 
+                    class={statusBadgeClass}>
+                </lightning-badge>
+            </div>
+            
+            <!-- Approval History - Rounds -->
+            <template if:true={hasRounds}>
+                <div class="approval-container">
+                    <template for:each={rounds} for:item="round">
+                        <div key={round.roundNumber} class="round-section slds-m-bottom_large">
+                            <div class="slds-text-heading_medium slds-m-bottom_medium round-header">
+                                <lightning-icon icon-name="utility:approval" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                Round {round.roundNumber}
+                                <template if:true={round.isCurrentRound}>
+                                    <lightning-badge label="Current" variant="warning" class="slds-m-left_small"></lightning-badge>
+                                </template>
+                            </div>
+                            
+                            <!-- Approver 1 in Round -->
+                            <template if:true={round.approver1}>
+                                <div class="approver-section slds-m-bottom_medium">
+                                    <div class="slds-text-heading_small slds-m-bottom_small">
+                                        <lightning-icon icon-name="utility:user" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                        Approver 1
+                                    </div>
+                                    <div class="approval-details">
+                                        <div class="detail-row">
+                                            <span class="detail-label">Status:</span>
+                                            <lightning-badge 
+                                                label={round.approver1.status} 
+                                                class={round.approver1.badgeClass}>
+                                            </lightning-badge>
+                                        </div>
+                                        <template if:true={round.approver1.comment}>
+                                            <div class="detail-row">
+                                                <span class="detail-label">Comment:</span>
+                                                <span class="detail-value">{round.approver1.comment}</span>
+                                            </div>
+                                        </template>
+                                        <template if:true={round.approver1.formattedDate}>
+                                            <div class="detail-row">
+                                                <span class="detail-label">Date:</span>
+                                                <span class="detail-value">{round.approver1.formattedDate}</span>
+                                            </div>
+                                        </template>
+                                        <div class="detail-row">
+                                            <span class="detail-label">Approver:</span>
+                                            <span class="detail-value">{round.approver1.displayName}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                            
+                            <!-- Approver 2 in Round -->
+                            <template if:true={round.approver2}>
+                                <div class="approver-section slds-m-bottom_medium">
+                                    <div class="slds-text-heading_small slds-m-bottom_small">
+                                        <lightning-icon icon-name="utility:user" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                        Approver 2
+                                    </div>
+                                    <div class="approval-details">
+                                        <div class="detail-row">
+                                            <span class="detail-label">Status:</span>
+                                            <lightning-badge 
+                                                label={round.approver2.status} 
+                                                class={round.approver2.badgeClass}>
+                                            </lightning-badge>
+                                        </div>
+                                        <template if:true={round.approver2.comment}>
+                                            <div class="detail-row">
+                                                <span class="detail-label">Comment:</span>
+                                                <span class="detail-value">{round.approver2.comment}</span>
+                                            </div>
+                                        </template>
+                                        <template if:true={round.approver2.formattedDate}>
+                                            <div class="detail-row">
+                                                <span class="detail-label">Date:</span>
+                                                <span class="detail-value">{round.approver2.formattedDate}</span>
+                                            </div>
+                                        </template>
+                                        <div class="detail-row">
+                                            <span class="detail-label">Approver:</span>
+                                            <span class="detail-value">{round.approver2.displayName}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            
+            <!-- Backward Compatibility: Show current approvers if no rounds yet -->
+            <template if:false={hasRounds}>
+                <div class="approval-container">
+                    <!-- Approver 1 Section -->
+                    <template if:true={showApprover1}>
+                        <div class="approver-section slds-m-bottom_medium">
+                            <div class="slds-text-heading_small slds-m-bottom_small">
+                                <lightning-icon icon-name="utility:user" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                Approver 1
+                            </div>
+                            <div class="approval-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">Status:</span>
+                                    <lightning-badge 
+                                        label={approver1Status} 
+                                        class={approver1BadgeClass}>
+                                    </lightning-badge>
+                                </div>
+                                <template if:true={hasApprover1Comment}>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Comment:</span>
+                                        <span class="detail-value">{approver1Comment}</span>
+                                    </div>
+                                </template>
+                                <template if:true={hasApprover1Date}>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Date:</span>
+                                        <span class="detail-value">{approver1Date}</span>
+                                    </div>
+                                </template>
+                                <div class="detail-row">
+                                    <span class="detail-label">Approver:</span>
+                                    <span class="detail-value">{approver1Name}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                    
+                    <!-- Approver 2 Section -->
+                    <template if:true={showApprover2}>
+                        <div class="approver-section">
+                            <div class="slds-text-heading_small slds-m-bottom_small">
+                                <lightning-icon icon-name="utility:user" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                                Approver 2
+                            </div>
+                            <div class="approval-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">Status:</span>
+                                    <lightning-badge 
+                                        label={approver2Status} 
+                                        class={approver2BadgeClass}>
+                                    </lightning-badge>
+                                </div>
+                                <template if:true={hasApprover2Comment}>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Comment:</span>
+                                        <span class="detail-value">{approver2Comment}</span>
+                                    </div>
+                                </template>
+                                <template if:true={hasApprover2Date}>
+                                    <div class="detail-row">
+                                        <span class="detail-label">Date:</span>
+                                        <span class="detail-value">{approver2Date}</span>
+                                    </div>
+                                </template>
+                                <div class="detail-row">
+                                    <span class="detail-label">Approver:</span>
+                                    <span class="detail-value">{approver2Name}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            
+            <!-- No Approval History Message -->
+            <template if:false={hasApprovalHistory}>
+                <div class="slds-text-align_center slds-p-around_medium">
+                    <lightning-icon icon-name="utility:info" size="small" class="slds-m-right_x-small"></lightning-icon>
+                    <span>No approval history available yet.</span>
+                </div>
+            </template>
+            
+        </template>
+    </lightning-card>
+</template>

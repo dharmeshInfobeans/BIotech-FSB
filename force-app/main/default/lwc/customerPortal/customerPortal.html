@@ -1,0 +1,92 @@
+<template>
+    <div class="portal-container">
+        <!-- Modern Header -->
+        <header class="portal-header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <span class="portal-icon">
+                        <img src={logoUrl} alt="Portal" class="portal-logo-img" />
+                    </span>
+                    <div class="brand-details">
+                        <h1>Customer Ledger Balance</h1>
+                        <p class="brand-subtitle">Manage accounts, statements, and sign requests in real-time.</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation & Content Container -->
+        <div class="portal-content-wrapper">
+            <!-- Custom Tabs Navigation -->
+            <nav class="portal-navbar">
+                <div class="tab-list">
+                    <template for:each={tabList} for:item="tab">
+                        <div key={tab.id} class={tab.className} data-tab={tab.id} onclick={handleTabClick}>
+                            <lightning-icon icon-name={tab.iconName} size="xx-small" class="tab-icon"></lightning-icon>
+                            <span class="tab-label">{tab.label}</span>
+                        </div>
+                    </template>
+                </div>
+            </nav>
+
+            <!-- Content Area with slide/fade container -->
+            <main class="portal-main">
+                <div class="content-card">
+                    <!-- Home Tab -->
+                    <template if:true={isHome}>
+                        <div class="tab-pane fade-in">
+                            <c-sap-zoho-dashboard></c-sap-zoho-dashboard>
+                        </div>
+                    </template>
+                  <!-- Fetch Ledger Tab -->
+                    <template if:true={isFetchLedger}>
+                        <div class="tab-pane fade-in active-pane">
+                            <!-- <c-rp-fetch-customer-ledger></c-rp-fetch-customer-ledger> -->
+                            <c-rp-fetch-customer-ledger
+                              onnavigatetopending={handleNavigateToPending}>
+                            </c-rp-fetch-customer-ledger>
+                        </div>
+                    </template>
+
+                    <!-- Pending Request Tab -->
+                    <template if:true={isPendingRequest}>
+                        <div class="tab-pane fade-in active-pane">
+                            <c-pending-requests></c-pending-requests>
+                        </div>
+                    </template>
+
+                    <!-- Signed Request Tab -->
+                    <template if:true={isSignedRequest}>
+                        <div class="tab-pane fade-in">
+                             <div class="tab-pane fade-in active-pane">
+                            <c-signed-requests></c-signed-requests>
+                        </div>
+                            
+                        </div>
+                    </template>
+
+                      <!-- failed Tab Tab -->
+                    <template if:true={isFutureTab}>
+                    <div class="tab-pane fade-in">
+                        <div class="tab-pane fade-in active-pane">
+                        <c-failed-ledger-logs-zoho
+                          onnavigatetopending={handleNavigateToPending}>
+                        </c-failed-ledger-logs-zoho>
+                        </div>
+                    </div>
+                    </template>
+
+                    <!-- Admin Tab -->
+                    <template if:true={isAdmin}>
+                        <div class="tab-pane fade-in">
+                           <div class="tab-pane fade-in active-pane">
+                            <c-admin-ledger-view></c-admin-ledger-view>
+                        </div>
+                        </div>
+                    </template>
+        
+                </div>
+            </main>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,73 @@
+/* Page background */
+:host {
+    display: block;
+    background: #f4f6fb;
+    padding: 30px;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: #1f1f1f;
+    margin-left: 5px;
+}
+
+/* Lightning card styling */
+.slds-card {
+    border-radius: 24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+.slds-card__header-title {
+    color: #1b66ff;
+    font-weight: 700;
+}
+/* Month dropdown width */
+.month-filter {
+    width: 120px;
+}
+
+/* Table container */
+.table-wrapper {
+    border: 1px solid #d8dde6;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+/* Table rows */
+.slds-table tbody tr {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Table spacing */
+.slds-table th,
+.slds-table td {
+    padding: 12px 16px;
+}
+
+/* Pagination center */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Approve button alignment */
+.approve-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 25px;
+}
+
+/* Approve button style */
+.approve-btn {
+    border-radius: 8px;
+    padding: 8px 20px;
+}
+
+/* Status blue */
+.status-blue {
+    color: #1b66ff !important;
+    font-weight: 600;
+}

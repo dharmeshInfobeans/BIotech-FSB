@@ -1,0 +1,756 @@
+<template>
+    <a class="cert-blob-anchor" style="display:none" aria-hidden="true"></a>
+    <div class="detail-container">
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <template lwc:if={hasError}>
+            <div class="error-box">
+                <lightning-icon icon-name="utility:error" size="small" variant="error"></lightning-icon>
+                <span class="error-msg">{errorMessage}</span>
+            </div>
+        </template>
+
+        <template lwc:if={detail}>
+            <!-- Back + Header -->
+            <div class="page-header">
+                <button class="back-btn" onclick={handleBack}>
+                    <lightning-icon icon-name="utility:chevronleft" size="x-small"></lightning-icon>
+                    Back to Queue
+                </button>
+                <div class="header-right">
+                    <h1 class="req-title">{detail.name}</h1>
+                    <span class={statusClass}>{detail.status}</span>
+                </div>
+            </div>
+
+            <!-- Info Grid -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">Distributor</div>
+                    <div class="info-value">{detail.distributorName}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">CRM Email</div>
+                    <div class="info-value">{detail.crmEmail}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">RSM Email</div>
+                    <div class="info-value">{detail.rsmEmail}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Country</div>
+                    <div class="info-value">{detail.country}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Region</div>
+                    <div class="info-value">{detail.region}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Product(s)</div>
+                    <div class="info-value">{detail.allProductNames}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Request Type</div>
+                    <div class="info-value">{detail.requestType}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Current Stage</div>
+                    <div class="info-value">{detail.currentStage}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Submitted Date</div>
+                    <div class="info-value">{formattedSubmittedDate}</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-label">Days Pending</div>
+                    <div class="info-value">{detail.daysPending}</div>
+                </div>
+                <!-- Forecast Week — view mode -->
+                <template lwc:if={notEditingForecast}>
+                    <div class="info-card">
+                        <div class="info-label">
+                            Forecast Week
+                            <button class="date-edit-btn" onclick={handleEditForecast} title="Edit forecast week">&#9998;</button>
+                        </div>
+                        <div class="info-value">{forecastWeekLabel}</div>
+                    </div>
+                </template>
+
+                <!-- Forecast Week — edit mode -->
+                <template lwc:if={editingForecast}>
+                    <div class="info-card date-edit-card">
+                        <div class="info-label">Forecast Week</div>
+                        <div class="date-picker-row">
+                            <lightning-combobox value={_editForecastWeek} options={weekOptions} placeholder="Week" onchange={handleForecastWeekChange}></lightning-combobox>
+                            <lightning-combobox value={_editForecastYear} options={forecastYearOptions} placeholder="Year" onchange={handleForecastYearChange}></lightning-combobox>
+                        </div>
+                        <template lwc:if={forecastPreviewDate}>
+                            <div class="forecast-preview">{forecastPreviewDate}</div>
+                        </template>
+                    </div>
+                    <div class="date-edit-actions">
+                        <button class="date-save-btn" onclick={handleSaveForecast} disabled={_isSavingForecast}>Save</button>
+                        <button class="date-cancel-btn" onclick={handleCancelForecast} disabled={_isSavingForecast}>Cancel</button>
+                    </div>
+                </template>
+
+                <!-- Actual Completion Week — read-only, shown when completed -->
+                <template lwc:if={isRequestCompleted}>
+                    <div class="info-card">
+                        <div class="info-label">Actual Completion Week</div>
+                        <div class="info-value">{actualCompletionLabel}</div>
+                    </div>
+                </template>
+
+            </div>
+
+            <!-- Product Details & FG Codes (read-only for RA Team) -->
+            <template lwc:if={hasProductDetails}>
+                <div class="section-card">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:product_consumed" size="small"></lightning-icon>
+                        <span class="section-title">Product Details &amp; FG Codes</span>
+                    </div>
+                    <div class="ra-table-wrapper">
+                        <table class="ra-prod-table">
+                            <thead>
+                                <tr>
+                                    <th>Product Name</th>
+                                    <th>Dummy Product Code</th>
+                                    <th>Dummy Product Description</th>
+                                    <th>FG Code</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={productDetails} for:item="prod">
+                                    <tr key={prod.id}>
+                                        <td class="ra-prod-name">{prod.productName}</td>
+                                        <td>{prod.dummyCode}</td>
+                                        <td>{prod.dummyDescription}</td>
+                                        <td>
+                                            <template lwc:if={prod.fgCode}>
+                                                <span class="ra-fgcode-badge">{prod.fgCode}</span>
+                                            </template>
+                                            <template lwc:else>
+                                                <span class="ra-fgcode-empty">—</span>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Distributor Comments -->
+            <template lwc:if={detail.remarks}>
+                <div class="section-card remarks-card">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:chat" size="small"></lightning-icon>
+                        <span class="section-title">Distributor Comments</span>
+                    </div>
+                    <p class="remarks-text">{detail.remarks}</p>
+                </div>
+            </template>
+
+            <!-- Parent Request Linkage -->
+            <template lwc:if={detail.parentRequestName}>
+                <div class="section-card parent-link-card">
+                    <lightning-icon icon-name="utility:hierarchy" size="x-small"></lightning-icon>
+                    <span class="info-label">Parent Request:</span>
+                    <span class="info-value">{detail.parentRequestName}</span>
+                </div>
+            </template>
+
+            <!-- Rejection Comments -->
+            <template lwc:if={detail.rejectionComments}>
+                <div class="section-card rejection-card">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:error" size="small" variant="error"></lightning-icon>
+                        <span class="section-title">Rejection Comments</span>
+                    </div>
+                    <p class="rejection-text">{detail.rejectionComments}</p>
+                </div>
+            </template>
+
+            <!-- RA Actions Panel -->
+            <div class="section-card">
+                <div class="section-header">
+                    <lightning-icon icon-name="utility:apex" size="small"></lightning-icon>
+                    <span class="section-title">RA Actions</span>
+                </div>
+                <div class="action-bar">
+                    <template lwc:if={canStartReview}>
+                        <button class="action-btn primary" onclick={handleStartReview} disabled={actionInProgress}>
+                            Start Review
+                        </button>
+                    </template>
+                    <template lwc:if={canResumeReview}>
+                        <button class="action-btn primary" onclick={handleResumeReview} disabled={actionInProgress}>
+                            Resume Review
+                        </button>
+                    </template>
+                    <template lwc:if={canMarkCompleted}>
+                        <button class="action-btn success" onclick={handleOpenMarkCompleted} disabled={actionInProgress}>
+                            Mark Completed
+                        </button>
+                    </template>
+                    <template lwc:if={canReturnRequest}>
+                        <button class="action-btn warning" onclick={handleOpenMainReturn} disabled={actionInProgress}>
+                            Return Request
+                        </button>
+                    </template>
+                    <template lwc:if={canRejectRequest}>
+                        <button class="action-btn danger" onclick={handleOpenReject} disabled={actionInProgress}>
+                            Reject
+                        </button>
+                    </template>
+                    <template lwc:if={actionInProgress}>
+                        <lightning-spinner alternative-text="Processing" size="small"></lightning-spinner>
+                    </template>
+                </div>
+
+                <!-- Mark Completed inline form -->
+                <template lwc:if={showMarkCompletedForm}>
+                    <div class="inline-form">
+                        <label class="form-label">Completion Notes (optional)</label>
+                        <textarea class="form-textarea" value={actionComments} onchange={handleCommentsChange}
+                            placeholder="Add any final notes..."></textarea>
+                        <div class="form-actions">
+                            <button class="action-btn success" onclick={handleConfirmMarkCompleted} disabled={actionInProgress}>
+                                Confirm Completion
+                            </button>
+                            <button class="action-btn ghost" onclick={handleCancelForm}>Cancel</button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+
+            <!-- Document Basket -->
+            <template lwc:if={detail.basket}>
+                <div class="section-card basket-card">
+
+                    <!-- Basket Header -->
+                    <div class="basket-header">
+                        <div class="basket-header-left">
+                            <lightning-icon icon-name="utility:attach" size="small"></lightning-icon>
+                            <span class="section-title">Document Basket</span>
+                        </div>
+                        <span class={basketStatusClass}>{detail.basket.status}</span>
+                    </div>
+
+                    <!-- Meta Strip -->
+                    <div class="basket-meta-strip">
+                        <template lwc:if={detail.basket.submissionDate}>
+                            <div class="meta-chip">
+                                <span class="meta-chip-label">Submitted</span>
+                                <span class="meta-chip-value">{detail.basket.submissionDate}</span>
+                            </div>
+                        </template>
+                        <template lwc:if={detail.basket.dueDate}>
+                            <div class="meta-chip">
+                                <span class="meta-chip-label">Due Date</span>
+                                <span class="meta-chip-value">{detail.basket.dueDate}</span>
+                            </div>
+                        </template>
+                        <div class="meta-chip">
+                            <span class="meta-chip-label">Request Status</span>
+                            <span class="meta-chip-value">{detail.status}</span>
+                        </div>
+                        <template lwc:if={detail.currentStage}>
+                            <div class="meta-chip">
+                                <span class="meta-chip-label">Stage</span>
+                                <span class="meta-chip-value">{detail.currentStage}</span>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- Remarks display -->
+                    <template lwc:if={detail.basket.distributorRemarks}>
+                        <div class="remark-block remark-distributor">
+                            <lightning-icon icon-name="utility:chat" size="x-small"></lightning-icon>
+                            <div class="remark-body">
+                                <div class="remark-who">Distributor Remarks</div>
+                                <div class="remark-text">{detail.basket.distributorRemarks}</div>
+                            </div>
+                        </div>
+                    </template>
+                    <template lwc:if={detail.basket.raRemarks}>
+                        <div class="remark-block remark-ra">
+                            <lightning-icon icon-name="utility:note" size="x-small"></lightning-icon>
+                            <div class="remark-body">
+                                <div class="remark-who">RA Remarks</div>
+                                <div class="remark-text">{detail.basket.raRemarks}</div>
+                            </div>
+                        </div>
+                    </template>
+
+                    <!-- RA Remarks Editor -->
+                    <div class="remarks-editor-block">
+                        <label class="form-label">Update RA Remarks</label>
+                        <div class="remarks-row">
+                            <input type="text" class="form-input" value={remarksInput}
+                                onchange={handleRemarksChange} placeholder="Add remarks for the distributor..." />
+                            <button class="action-btn primary-sm" onclick={handleSaveRemarks} disabled={actionInProgress}>
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Per-Document-Type Upload Sections (grouped by product) -->
+                    <template lwc:if={hasDocumentsByProduct}>
+                        <div class="required-docs-section">
+                            <div class="required-docs-title">Required Documents</div>
+                            <template for:each={_docTypesByProduct} for:item="productGroup">
+                                <div key={productGroup.productName} class="upload-product-group">
+                                    <div class="upload-product-name">{productGroup.productName}</div>
+                                    <div class="doc-type-grid">
+                                        <template for:each={productGroup.docItems} for:item="dt">
+                                            <div key={dt.key} class="doc-type-card">
+                                                <div class="doc-type-card-header">
+                                                    <lightning-icon icon-name="doctype:attachment" size="x-small"></lightning-icon>
+                                                    <span class="doc-type-name">{dt.name}</span>
+                                                    <template lwc:if={dt.uploaded}>
+                                                        <span class="uploaded-badge">Uploaded</span>
+                                                    </template>
+                                                </div>
+                                                <template lwc:if={dt.uploaded}>
+                                                    <div class="type-uploaded-row">
+                                                        <lightning-icon icon-name="utility:file" size="x-small" variant="success"></lightning-icon>
+                                                        <span class="type-file-name">{dt.uploadedTitle}</span>
+                                                        <template lwc:if={dt.uploadedDocumentId}>
+                                                            <a class="cv-download-link" data-doc-id={dt.uploadedDocumentId} onclick={handlePreview}>Preview</a>
+                                                        </template>
+                                                        <template lwc:if={canUpload}>
+                                                            <button class="type-reupload-btn" data-uploadkey={dt.key} onclick={handleRemoveTypeFile}>
+                                                                Re-upload
+                                                            </button>
+                                                        </template>
+                                                    </div>
+                                                </template>
+                                                <template lwc:if={dt.notUploaded}>
+                                                    <template lwc:if={canUpload}>
+                                                        <lightning-file-upload
+                                                            label={dt.uploadLabel}
+                                                            name="basketUpload"
+                                                            data-uploadkey={dt.key}
+                                                            accept={acceptedFormats}
+                                                            record-id={detail.basket.id}
+                                                            onuploadfinished={handleUploadFinished}>
+                                                        </lightning-file-upload>
+                                                    </template>
+                                                    <template lwc:else>
+                                                        <p class="empty-docs">Upload locked after completion.</p>
+                                                    </template>
+                                                </template>
+                                            </div>
+                                        </template>
+                                    </div>
+                                </div>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:elseif={hasDocTypes}>
+                        <div class="required-docs-section">
+                            <div class="required-docs-title">Required Documents</div>
+                            <div class="doc-type-grid">
+                                <template for:each={docTypeList} for:item="dt">
+                                    <div key={dt.key} class="doc-type-card">
+                                        <div class="doc-type-card-header">
+                                            <lightning-icon icon-name="doctype:attachment" size="x-small"></lightning-icon>
+                                            <span class="doc-type-name">{dt.name}</span>
+                                            <template lwc:if={dt.uploaded}>
+                                                <span class="uploaded-badge">Uploaded</span>
+                                            </template>
+                                        </div>
+                                        <template lwc:if={dt.uploaded}>
+                                            <div class="type-uploaded-row">
+                                                <lightning-icon icon-name="utility:file" size="x-small" variant="success"></lightning-icon>
+                                                <span class="type-file-name">{dt.uploadedTitle}</span>
+                                                <template lwc:if={dt.uploadedDocumentId}>
+                                                    <a class="cv-download-link" data-doc-id={dt.uploadedDocumentId} onclick={handlePreview}>Preview</a>
+                                                </template>
+                                                <template lwc:if={canUpload}>
+                                                    <button class="type-reupload-btn" data-doctype={dt.key} onclick={handleRemoveTypeFile}>
+                                                        Re-upload
+                                                    </button>
+                                                </template>
+                                            </div>
+                                        </template>
+                                        <template lwc:if={dt.notUploaded}>
+                                            <template lwc:if={canUpload}>
+                                                <lightning-file-upload
+                                                    label={dt.uploadLabel}
+                                                    name="basketUpload"
+                                                    data-doctype={dt.key}
+                                                    accept={acceptedFormats}
+                                                    record-id={detail.basket.id}
+                                                    onuploadfinished={handleUploadFinished}>
+                                                </lightning-file-upload>
+                                            </template>
+                                            <template lwc:else>
+                                                <p class="empty-docs">Upload locked after completion.</p>
+                                            </template>
+                                        </template>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+
+
+                </div>
+            </template>
+
+            <!-- No basket yet -->
+            <template lwc:else>
+                <div class="section-card">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:attach" size="small"></lightning-icon>
+                        <span class="section-title">Document Basket</span>
+                    </div>
+                    <p class="empty-docs">Document basket will be created when the request is submitted to Regulatory.</p>
+                </div>
+            </template>
+
+            <!-- RA Document Package (ZIP Upload) -->
+            <template lwc:if={detail.basket}>
+                <div class="section-card zip-upload-card">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:package" size="small"></lightning-icon>
+                        <span class="section-title">RA Document Package</span>
+                    </div>
+                    <p class="zip-desc">Upload a single ZIP file containing all relevant documents for this registration.</p>
+                    <template lwc:if={hasZipUploaded}>
+                        <div class="zip-uploaded-row">
+                            <lightning-icon icon-name="doctype:zip" size="small" variant="success"></lightning-icon>
+                            <span class="zip-file-name">{zipFileName}</span>
+                            <a class="req-doc-download" href={zipDownloadUrl} target="_blank">Download</a>
+                            <template lwc:if={canUpload}>
+                                <button class="type-reupload-btn" onclick={handleRemoveZip}>Re-upload</button>
+                            </template>
+                        </div>
+                    </template>
+                    <template lwc:else>
+                        <template lwc:if={canUpload}>
+                            <lightning-file-upload
+                                label="Upload ZIP"
+                                name="raZipUpload"
+                                accept={zipAcceptedFormats}
+                                record-id={detail.basket.id}
+                                onuploadfinished={handleZipUploadFinished}>
+                            </lightning-file-upload>
+                        </template>
+                        <template lwc:else>
+                            <p class="empty-docs">Upload locked after completion.</p>
+                        </template>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Child Requests -->
+            <template lwc:if={hasChildRequests}>
+                <div class="section-card">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:connected_apps" size="small"></lightning-icon>
+                        <span class="section-title">Additional Document Requests ({childCount})</span>
+                    </div>
+                    <ul class="child-list">
+                        <template for:each={detail.childRequests} for:item="child">
+                            <li key={child.id} class="child-item">
+                                <div class="child-item-top">
+                                    <span class="child-name">{child.name}</span>
+                                    <span class={child.statusPill}>{child.status}</span>
+                                    <template lwc:if={child.documentTypes}>
+                                        <span class="child-docs">{child.documentTypes}</span>
+                                    </template>
+                                    <template lwc:if={child.submittedDate}>
+                                        <span class="child-date">{child.submittedDate}</span>
+                                    </template>
+                                    <template lwc:if={child.canReturn}>
+                                        <button class="child-return-btn" data-child-id={child.id} onclick={handleOpenReturn}>Return</button>
+                                    </template>
+                                </div>
+                            </li>
+                        </template>
+                    </ul>
+                </div>
+            </template>
+
+            <!-- Certificate Verification (post-completion) -->
+            <template lwc:if={isRequestCompleted}>
+                <div class="section-card cv-section">
+                    <div class="section-header">
+                        <lightning-icon icon-name="utility:ribbon" size="small"></lightning-icon>
+                        <span class="section-title">Certificate Verification</span>
+                    </div>
+                    <template lwc:if={certLoading}>
+                        <div class="cv-loading">
+                            <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+                        </div>
+                    </template>
+                    <template lwc:elseif={hasCertProducts}>
+                        <template for:each={certProductsWithValidity} for:item="prod">
+                            <div key={prod.productId} class="cv-product-block">
+                                <div class="cv-product-header">
+                                    <span class="cv-product-name">{prod.productName}</span>
+                                    <span class={prod.statusClass}>
+                                        <template lwc:if={prod.orderUnlocked}>Order Unlocked</template>
+                                        <template lwc:else>{prod.certificateStatus}</template>
+                                    </span>
+                                </div>
+
+                                <!-- RA/CRM Feedback -->
+                                <template lwc:if={prod.hasFeedback}>
+                                    <div class="cv-rejection-box">
+                                        <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                                        <div class="cv-feedback-body">
+                                            <span class="cv-feedback-label">RA/CRM Feedback:</span>
+                                            <span>{prod.rejectionComments}</span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Distributor Government Approval Note -->
+                                <template lwc:if={prod.hasDistributorComments}>
+                                    <div class="cv-distributor-comment">
+                                        <lightning-icon icon-name="utility:chat" size="x-small"></lightning-icon>
+                                        <div class="cv-comment-body">
+                                            <span class="cv-comment-label">Distributor Note (Government Approval):</span>
+                                            <span class="cv-comment-text">{prod.distributorComments}</span>
+                                        </div>
+                                    </div>
+                                </template>
+
+                                <!-- Certificate Validity (distributor-entered, RA can edit) -->
+                                <div class="cv-validity-section cv-ra-validity">
+                                    <div class="cv-validity-label">Certificate Validity:</div>
+                                    <template lwc:if={prod.isEditing}>
+                                        <div class="cv-pickers-row">
+                                            <lightning-combobox value={prod.raFromMonth} options={monthOptions} placeholder="From Month" label="From Month" variant="label-hidden" data-product-id={prod.productId} onchange={handleRaFromMonthChange}></lightning-combobox>
+                                            <lightning-combobox value={prod.raFromYear} options={yearOptions} placeholder="Year" label="From Year" variant="label-hidden" data-product-id={prod.productId} onchange={handleRaFromYearChange}></lightning-combobox>
+                                            <span class="cv-to-sep">to</span>
+                                            <lightning-combobox value={prod.raToMonth} options={monthOptions} placeholder="To Month" label="To Month" variant="label-hidden" data-product-id={prod.productId} onchange={handleRaToMonthChange}></lightning-combobox>
+                                            <lightning-combobox value={prod.raToYear} options={yearOptions} placeholder="Year" label="To Year" variant="label-hidden" data-product-id={prod.productId} onchange={handleRaToYearChange}></lightning-combobox>
+                                            <button class="cv-confirm-btn" data-product-id={prod.productId} onclick={handleConfirmProductValidity}>Confirm</button>
+                                        </div>
+                                    </template>
+                                    <template lwc:else>
+                                        <div class="cv-confirmed-readonly">
+                                            <span class="cv-confirmed-row">{prod.confirmedValidFromLabel} — {prod.confirmedValidToLabel}</span>
+                                            <button class="cv-edit-btn" data-product-id={prod.productId} onclick={handleEditProductValidity}>Edit</button>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- Certificates list (RA can view, download, remove) -->
+                                <template lwc:if={prod.hasCerts}>
+                                    <template for:each={prod.certificates} for:item="cert">
+                                        <div key={cert.certId} class="cv-cert-row">
+                                            <lightning-icon icon-name="doctype:pdf" size="x-small"></lightning-icon>
+                                            <span class="cv-cert-name">{cert.certName}</span>
+                                            <template lwc:if={cert.contentDocumentId}>
+                                                <a class="cv-download-link" data-doc-id={cert.contentDocumentId} onclick={handlePreview}>Preview</a>
+                                                <a class="cv-download-link" data-doc-id={cert.contentDocumentId} onclick={handleCertDownload}>Download</a>
+                                            </template>
+                                            <template lwc:if={cert.uploadedByName}>
+                                                <span class="cv-meta">by {cert.uploadedByName}</span>
+                                            </template>
+                                            <template lwc:if={prod.canRAAction}>
+                                                <button class="cv-remove-btn" data-cert-id={cert.certId} onclick={handleRaCertRemove} title="Remove certificate">Remove</button>
+                                            </template>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template lwc:else>
+                                    <p class="cv-no-certs">No certificates uploaded yet.</p>
+                                </template>
+
+                                <!-- Per-product RA action buttons (when status = Uploaded) -->
+                                <template lwc:if={prod.canRAAction}>
+                                    <div class="cv-action-row">
+                                        <lightning-button
+                                            label="Approve → CRM"
+                                            variant="brand"
+                                            icon-name="utility:forward"
+                                            data-product-id={prod.productId}
+                                            onclick={handleForwardProductToCRM}
+                                            disabled={actionInProgress}></lightning-button>
+                                        <lightning-button
+                                            label="Send Back"
+                                            variant="neutral"
+                                            icon-name="utility:redo"
+                                            data-product-id={prod.productId}
+                                            onclick={handleOpenCertSendBack}
+                                            disabled={actionInProgress}></lightning-button>
+                                        <lightning-button
+                                            label="Reject"
+                                            variant="destructive-text"
+                                            icon-name="utility:close"
+                                            data-product-id={prod.productId}
+                                            onclick={handleOpenCertReject}
+                                            disabled={actionInProgress}></lightning-button>
+                                    </div>
+                                </template>
+
+                                <!-- Unlock Order button (after CRM verification, or direct bypass) -->
+                                <template lwc:if={prod.canUnlock}>
+                                    <div class="cv-unlock-area">
+                                        <lightning-button
+                                            label="Unlock Order"
+                                            variant="success"
+                                            icon-name="utility:unlock"
+                                            data-product-id={prod.productId}
+                                            onclick={handleUnlockOrder}
+                                            disabled={actionInProgress}></lightning-button>
+                                    </div>
+                                </template>
+                            </div>
+                        </template>
+                    </template>
+                    <template lwc:else>
+                        <p class="cv-no-certs">No products found.</p>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Approval History Timeline -->
+            <div class="section-card">
+                <div class="section-header">
+                    <lightning-icon icon-name="utility:clock" size="small"></lightning-icon>
+                    <span class="section-title">Approval History</span>
+                </div>
+                <c-approval-history-timeline record-id={recordId}></c-approval-history-timeline>
+            </div>
+        </template>
+
+        <!-- Reject Registration Request Modal -->
+        <template lwc:if={showRejectModal}>
+            <section class="modal-backdrop" onclick={handleCancelReject}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Reject Request</h2>
+                    <p class="modal-warning">This action is permanent. The distributor will be notified of the rejection.</p>
+                    <lightning-textarea
+                        label="Reason for rejection (required)"
+                        value={_rejectComments}
+                        onchange={handleRejectCommentsChange}
+                        placeholder="Provide a clear reason for rejecting this registration request..."
+                        max-length="1000">
+                    </lightning-textarea>
+                    <div class="modal-actions">
+                        <button class="modal-cancel-btn" onclick={handleCancelReject}>Cancel</button>
+                        <button class="modal-confirm-btn danger" onclick={handleConfirmReject} disabled={rejectConfirmDisabled}>
+                            <template lwc:if={_isRejecting}>Rejecting...</template>
+                            <template lwc:else>Confirm Rejection</template>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Return Registration Request Modal -->
+        <template lwc:if={showMainReturnModal}>
+            <section class="modal-backdrop" onclick={handleCancelMainReturn}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Return Request to Distributor</h2>
+                    <lightning-textarea
+                        label="Reason for returning (required)"
+                        value={_mainReturnComments}
+                        onchange={handleMainReturnCommentsChange}
+                        placeholder="Explain what the distributor needs to correct or update..."
+                        max-length="1000">
+                    </lightning-textarea>
+                    <div class="modal-actions">
+                        <button class="modal-cancel-btn" onclick={handleCancelMainReturn}>Cancel</button>
+                        <button class="modal-confirm-btn" onclick={handleConfirmMainReturn} disabled={mainReturnConfirmDisabled}>
+                            <template lwc:if={_isMainReturning}>Returning...</template>
+                            <template lwc:else>Return to Distributor</template>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Return Additional Request Modal -->
+        <template lwc:if={showReturnModal}>
+            <section class="modal-backdrop" onclick={handleCancelReturn}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Return Request to Distributor</h2>
+                    <lightning-textarea
+                        label="Reason for returning (required)"
+                        value={_returnComments}
+                        onchange={handleReturnCommentsChange}
+                        placeholder="Explain what needs to be corrected or why this request is out of scope..."
+                        max-length="1000">
+                    </lightning-textarea>
+                    <div class="modal-actions">
+                        <button class="modal-cancel-btn" onclick={handleCancelReturn}>Cancel</button>
+                        <button class="modal-confirm-btn" onclick={handleConfirmReturn} disabled={returnConfirmDisabled}>
+                            <template lwc:if={_isReturning}>Returning...</template>
+                            <template lwc:else>Return to Distributor</template>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Send Back Modal (RA) -->
+        <template lwc:if={showCertSendBackForm}>
+            <section class="modal-backdrop" onclick={handleCancelCertSendBack}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Send Back Certificate</h2>
+                    <lightning-textarea
+                        label="Reason for sending back"
+                        value={certSendBackComments}
+                        onchange={handleCertSendBackChange}
+                        max-length="5000"
+                        placeholder="e.g., Certificate image is unclear / Wrong product certificate uploaded"></lightning-textarea>
+                    <div class="modal-actions">
+                        <lightning-button label="Cancel" onclick={handleCancelCertSendBack}></lightning-button>
+                        <lightning-button
+                            label="Confirm Send Back"
+                            variant="brand"
+                            onclick={handleConfirmCertSendBack}
+                            disabled={actionInProgress}></lightning-button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Reject Modal (RA) -->
+        <template lwc:if={showCertRejectForm}>
+            <section class="modal-backdrop" onclick={handleCancelCertReject}>
+                <div class="modal-content" onclick={_stopPropagation}>
+                    <h2 class="modal-title">Reject Certificate</h2>
+                    <lightning-textarea
+                        label="Reason for rejection"
+                        value={certRejectComments}
+                        onchange={handleCertRejectChange}
+                        max-length="5000"
+                        placeholder="e.g., Certificate not valid / Product registration not required"></lightning-textarea>
+                    <div class="modal-actions">
+                        <lightning-button label="Cancel" onclick={handleCancelCertReject}></lightning-button>
+                        <lightning-button
+                            label="Confirm Reject"
+                            variant="destructive"
+                            onclick={handleConfirmCertReject}
+                            disabled={actionInProgress}></lightning-button>
+                    </div>
+                </div>
+            </section>
+        </template>
+
+        <!-- Toast area (portal-safe) -->
+        <template lwc:if={toastMessage}>
+            <div class={toastClass}>
+                <span>{toastMessage}</span>
+                <button class="toast-close" onclick={dismissToast}>×</button>
+            </div>
+        </template>
+
+
+    </div>
+</template>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Event Type --></label>
+    <name>Event_Type__c</name>
+    <picklistValues>
+        <masterLabel>1/2AB+1/2PL</masterLabel>
+        <translation><!-- 1/2AB+1/2PL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1/2P+1/2PL</masterLabel>
+        <translation><!-- 1/2P+1/2PL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1/2PL+1/2AB</masterLabel>
+        <translation><!-- 1/2PL+1/2AB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>1/2PL+1/2P</masterLabel>
+        <translation><!-- 1/2PL+1/2P --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AB</masterLabel>
+        <translation><!-- AB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CO</masterLabel>
+        <translation><!-- CO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>H</masterLabel>
+        <translation><!-- H --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>P</masterLabel>
+        <translation><!-- P --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PL</masterLabel>
+        <translation><!-- PL --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

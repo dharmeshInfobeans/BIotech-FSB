@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Converted_Lead</fullName>
+        <description>Converted Lead</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Converted_Lead</template>
+    </alerts>
+    <alerts>
+        <fullName>For_Approved_Email_Alert</fullName>
+        <description>For Approved Email  Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Commercialized_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Lead_stage_Upgrade_Alert</fullName>
+        <description>Lead stage Upgrade Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_stage_Upgrage_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Lost_Lead</fullName>
+        <description>Lost Lead</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lost_Lead</template>
+    </alerts>
+    <alerts>
+        <fullName>Rejected_Email_alert</fullName>
+        <description>Rejected Email alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/AddressRejectionTemplate</template>
+    </alerts>
+    <alerts>
+        <fullName>Rejection_mail_alert</fullName>
+        <description>Rejection mail alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>creator</type>
+        </recipients>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/AddressRejectionTemplate</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approved_Email_Alert</fullName>
+        <description>Send Approved Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>User_Name__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Commercialized_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Approved_Email_Alert_s</fullName>
+        <description>Send Approved Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_stage_Upgrage_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email</fullName>
+        <description>Send Email</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Commercialized_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Email_alert_if_approver_approved_the_process</fullName>
+        <description>Send Email alert if approver approved the process</description>
+        <protected>false</protected>
+        <recipients>
+            <field>User_Name__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Commercialized_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_For_Approve_request</fullName>
+        <description>Send For Approve request</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Approval_user__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Commercialized_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_For_Approve_request_s</fullName>
+        <description>Send For Approve request</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_stage_Upgrage_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_reject_Email_Alert_s</fullName>
+        <description>Send reject Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_stage_Upgrage_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Unqualified_Lead</fullName>
+        <description>Unqualified Lead</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Unqualified_Lead</template>
+    </alerts>
+    <alerts>
+        <fullName>send_for_Commercialized_Lead_stage</fullName>
+        <description>send for Commercialized Lead stage</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Lead_Commercialized_template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Admin_Aprroved_field_update</fullName>
+        <field>Approved_by_Admin__c</field>
+        <literalValue>1</literalValue>
+        <name>Admin Aprroved field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_status_field_update</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Approval status field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_status_field_update1</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approval status field update1</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_status_field_update_s</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Approval status field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lead_Stage_update</fullName>
+        <field>Lead_Stage__c</field>
+        <literalValue>Won</literalValue>
+        <name>Lead Stage update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Lead_stage_Won</fullName>
+        <field>Lead_Stage__c</field>
+        <literalValue>Won</literalValue>
+        <name>Lead stage Won</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Staus_Update</fullName>
+        <field>Status__c</field>
+        <literalValue>1</literalValue>
+        <name>Staus Update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Upate_the_Rejected_status_field</fullName>
+        <field>Rejected_Status__c</field>
+        <literalValue>0</literalValue>
+        <name>Upate the Rejected status field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Rejected_Status</fullName>
+        <field>Rejected_Status__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Rejected Status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>manager_Approved_field_update</fullName>
+        <field>Aproved_By_Manager__c</field>
+        <literalValue>1</literalValue>
+        <name>manager Approved field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>manager_Approved_field_update_s</fullName>
+        <field>Aproved_By_Manager__c</field>
+        <literalValue>1</literalValue>
+        <name>manager Approved field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>manager_Approved_field_updates</fullName>
+        <field>Aproved_By_Manager__c</field>
+        <literalValue>1</literalValue>
+        <name>manager Approved field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Approved</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>update Field if Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Approved_s</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>update Field if Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Approveds</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>update Field if Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Approvedss</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>update Field if Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Reject</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Reject</literalValue>
+        <name>update Field if Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Reject_s</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Reject</literalValue>
+        <name>update Field if Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

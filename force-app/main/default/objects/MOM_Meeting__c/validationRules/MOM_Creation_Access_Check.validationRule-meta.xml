@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MOM_Creation_Access_Check</fullName>
+    <active>false</active>
+    <description>Prevents users without MOM Creation Access from creating MOM Meeting records.</description>
+    <errorConditionFormula>ISNEW() &amp;&amp; NOT($User.MOM_Creation_Access__c)</errorConditionFormula>
+    <errorMessage>You are not authorized to create MOM Meeting records. Please contact your System Administrator to request access.</errorMessage>
+</ValidationRule>

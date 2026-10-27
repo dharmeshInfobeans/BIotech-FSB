@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Kampanya Ürünü</label>
+    <name>Campaign_Product__c</name>
+    <picklistValues>
+        <masterLabel>ASHFY 600</masterLabel>
+        <translation><!-- ASHFY 600 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ASHFY600</masterLabel>
+        <translation><!-- ASHFY600 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BI-HYALUR DUO-(1.0 &amp; 2.4 ML)</masterLabel>
+        <translation><!-- BI-HYALUR DUO-(1.0 &amp; 2.4 ML) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BI-HYALUR DUO-(1.4 &amp; 2.4 ML)</masterLabel>
+        <translation><!-- BI-HYALUR DUO-(1.4 &amp; 2.4 ML) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLADE</masterLabel>
+        <translation><!-- BIO BLADE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLADES</masterLabel>
+        <translation><!-- BIO BLADES --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE</masterLabel>
+        <translation><!-- BIO BLUE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE 1ML VIAL</masterLabel>
+        <translation><!-- BIO BLUE 1ML VIAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE 1ML VIAL (MONO PACK)</masterLabel>
+        <translation><!-- BIO BLUE 1ML VIAL (MONO PACK) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE 90 0.5 ML PFS</masterLabel>
+        <translation><!-- BIO BLUE 90 0.5 ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE DUO 0.5ML PFS</masterLabel>
+        <translation><!-- BIO BLUE DUO 0.5ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO BLUE PLUS</masterLabel>
+        <translation><!-- BIO BLUE PLUS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO CTR</masterLabel>
+        <translation><!-- BIO CTR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO DECALIN 5ML VIAL</masterLabel>
+        <translation><!-- BIO DECALIN 5ML VIAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO DECALIN 7ML VIAL</masterLabel>
+        <translation><!-- BIO DECALIN 7ML VIAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO DECALIN PFS</masterLabel>
+        <translation><!-- BIO DECALIN PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO DECALIN VIAL</masterLabel>
+        <translation><!-- BIO DECALIN VIAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR 1%</masterLabel>
+        <translation><!-- BIO HYALUR 1% --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR 10 MG</masterLabel>
+        <translation><!-- BIO HYALUR 10 MG --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR 14 MG</masterLabel>
+        <translation><!-- BIO HYALUR 14 MG --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR 1ML PFS</masterLabel>
+        <translation><!-- BIO HYALUR 1ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR CS</masterLabel>
+        <translation><!-- BIO HYALUR CS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR DUO 1.0 % &amp; 2.4 %</masterLabel>
+        <translation><!-- BIO HYALUR DUO 1.0 % &amp; 2.4 % --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR EV 1.6ML PFS</masterLabel>
+        <translation><!-- BIO HYALUR EV 1.6ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR EV 1ML PFS</masterLabel>
+        <translation><!-- BIO HYALUR EV 1ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR HV 1 ML PFS</masterLabel>
+        <translation><!-- BIO HYALUR HV 1 ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR HV 2.4%</masterLabel>
+        <translation><!-- BIO HYALUR HV 2.4% --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR LVD</masterLabel>
+        <translation><!-- BIO HYALUR LVD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR PLUS</masterLabel>
+        <translation><!-- BIO HYALUR PLUS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR PLUS 1.4%</masterLabel>
+        <translation><!-- BIO HYALUR PLUS 1.4% --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR PLUS 1.6ML</masterLabel>
+        <translation><!-- BIO HYALUR PLUS 1.6ML --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR SV 1.6ML PFS</masterLabel>
+        <translation><!-- BIO HYALUR SV 1.6ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO HYALUR SV 3.0%</masterLabel>
+        <translation><!-- BIO HYALUR SV 3.0% --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO OCTANE</masterLabel>
+        <translation><!-- BIO OCTANE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO OCTANE PFS</masterLabel>
+        <translation><!-- BIO OCTANE PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO RING</masterLabel>
+        <translation><!-- BIO RING --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIO SPEARS</masterLabel>
+        <translation><!-- BIO SPEARS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOBLUE 90 PLUS 0.5 ML PFS</masterLabel>
+        <translation><!-- BIOBLUE 90 PLUS 0.5 ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOHYALUR 1% HA 1ML PFS</masterLabel>
+        <translation><!-- BIOHYALUR 1% HA 1ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOHYALUR HV 1ML PFS</masterLabel>
+        <translation><!-- BIOHYALUR HV 1ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOHYALUR PLUS 1.4% HA 1ML PFS</masterLabel>
+        <translation><!-- BIOHYALUR PLUS 1.4% HA 1ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOSIL 10 ML PFS</masterLabel>
+        <translation><!-- BIOSIL 10 ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOSIL 1000 CST</masterLabel>
+        <translation><!-- BIOSIL 1000 CST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOSIL 1300 CST</masterLabel>
+        <translation><!-- BIOSIL 1300 CST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOSIL 5000 CST</masterLabel>
+        <translation><!-- BIOSIL 5000 CST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIOVISION PMMA</masterLabel>
+        <translation><!-- BIOVISION PMMA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL 600</masterLabel>
+        <translation><!-- EYECRYL 600 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL 600 ROH</masterLabel>
+        <translation><!-- EYECRYL 600 ROH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL ACTV</masterLabel>
+        <translation><!-- EYECRYL ACTV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL ACTV TORIC</masterLabel>
+        <translation><!-- EYECRYL ACTV TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PHAKIC</masterLabel>
+        <translation><!-- EYECRYL PHAKIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PHAKIC TORIC</masterLabel>
+        <translation><!-- EYECRYL PHAKIC TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PHAKIC-TORIC</masterLabel>
+        <translation><!-- EYECRYL PHAKIC-TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PLUS</masterLabel>
+        <translation><!-- EYECRYL PLUS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PLUS 600</masterLabel>
+        <translation><!-- EYECRYL PLUS 600 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PLUS CLEAR</masterLabel>
+        <translation><!-- EYECRYL PLUS CLEAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PLUS NATURAL HD</masterLabel>
+        <translation><!-- EYECRYL PLUS NATURAL HD --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL PLUS S600MZ</masterLabel>
+        <translation><!-- EYECRYL PLUS S600MZ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL SERT EDOF</masterLabel>
+        <translation><!-- EYECRYL SERT EDOF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL SERT EDOF TORIC</masterLabel>
+        <translation><!-- EYECRYL SERT EDOF TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYECRYL TORIC</masterLabel>
+        <translation><!-- EYECRYL TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYEVISC 2%(2ML PFS)</masterLabel>
+        <translation><!-- EYEVISC 2%(2ML PFS) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYEVISC 2ML PFS</masterLabel>
+        <translation><!-- EYEVISC 2ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYEVISC 3ML PFS</masterLabel>
+        <translation><!-- EYEVISC 3ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYEVISC 5ML VIAL</masterLabel>
+        <translation><!-- EYEVISC 5ML VIAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EYEVISC HPMC</masterLabel>
+        <translation><!-- EYEVISC HPMC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FLUROCEIN STRIPS</masterLabel>
+        <translation><!-- FLUROCEIN STRIPS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GLODERM 30L 1ML PFS</masterLabel>
+        <translation><!-- GLODERM 30L 1ML PFS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>INJECTOR</masterLabel>
+        <translation><!-- INJECTOR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IRIS</masterLabel>
+        <translation><!-- IRIS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IRIS RETRACTOR</masterLabel>
+        <translation><!-- IRIS RETRACTOR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IRIS RETRACTORS</masterLabel>
+        <translation><!-- IRIS RETRACTORS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MF TORIC</masterLabel>
+        <translation><!-- MF TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX COMFORT NY</masterLabel>
+        <translation><!-- OPTIFLEX COMFORT NY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX GENESIS</masterLabel>
+        <translation><!-- OPTIFLEX GENESIS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX GENESIS COMFORT</masterLabel>
+        <translation><!-- OPTIFLEX GENESIS COMFORT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX GENESIS COMFORT NY</masterLabel>
+        <translation><!-- OPTIFLEX GENESIS COMFORT NY --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX INJ</masterLabel>
+        <translation><!-- OPTIFLEX INJ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX TRIO</masterLabel>
+        <translation><!-- OPTIFLEX TRIO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX TRIO TORIC</masterLabel>
+        <translation><!-- OPTIFLEX TRIO TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OPTIFLEX TRIO-TORIC</masterLabel>
+        <translation><!-- OPTIFLEX TRIO-TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OTIFLEX TRIO</masterLabel>
+        <translation><!-- OTIFLEX TRIO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PHAKIC-TORIC</masterLabel>
+        <translation><!-- PHAKIC-TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PMMA ESCLERAL</masterLabel>
+        <translation><!-- PMMA ESCLERAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RIBOFLAVIN</masterLabel>
+        <translation><!-- RIBOFLAVIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SCHIRMER STRIPS</masterLabel>
+        <translation><!-- SCHIRMER STRIPS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SODIUM HYALURONATE EV</masterLabel>
+        <translation><!-- SODIUM HYALURONATE EV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SODIUM HYALURONATE SV</masterLabel>
+        <translation><!-- SODIUM HYALURONATE SV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Schirmer Strip</masterLabel>
+        <translation><!-- Schirmer Strip --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TP6130</masterLabel>
+        <translation><!-- TP6130 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRIO-TORIC</masterLabel>
+        <translation><!-- TRIO-TORIC --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

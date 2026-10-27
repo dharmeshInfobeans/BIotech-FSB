@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Last Month CIS --></label>
+    <name>Last_Month_CIS__c</name>
+    <relationshipLabel><!-- CIS Headers --></relationshipLabel>
+</CustomFieldTranslation>

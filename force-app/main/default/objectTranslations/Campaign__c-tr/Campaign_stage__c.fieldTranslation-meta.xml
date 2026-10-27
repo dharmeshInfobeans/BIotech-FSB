@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Kampanya aşaması</label>
+    <name>Campaign_stage__c</name>
+    <picklistValues>
+        <masterLabel>CME</masterLabel>
+        <translation><!-- CME --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>High Impact CME</masterLabel>
+        <translation><!-- High Impact CME --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RTM</masterLabel>
+        <translation><!-- RTM --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>User Meeting</masterLabel>
+        <translation><!-- User Meeting --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Virtual exp. Lab</masterLabel>
+        <translation><!-- Virtual exp. Lab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wet Labs</masterLabel>
+        <translation><!-- Wet Labs --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

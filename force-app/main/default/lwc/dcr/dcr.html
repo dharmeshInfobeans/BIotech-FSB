@@ -1,0 +1,91 @@
+<template>
+    <div class="dcr-container">
+        <!-- Loading Spinner Overlay -->
+        <template if:true={isLoading}>
+            <div class="loading-overlay">
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- DCR Details Second View (shown after check-in) -->
+        <template if:true={showDcrSecondView}>
+            <c-dcr-details
+                event-id={checkedInEventId}
+                onback={handleBackFromDcr}>
+            </c-dcr-details>
+        </template>
+
+        <!-- Main Map View (default view) -->
+        <template if:false={showDcrSecondView}>
+        <!-- Mobile Header with Title, Day Actions, and Burger Menu -->
+        <header class="mobile-header">
+            <div class="header-title">
+                <lightning-icon icon-name="standard:event" size="small"></lightning-icon>
+                <span>Today's Activity</span>
+            </div>
+
+            <!-- Day Action Buttons - Removed as per requirements -->
+            <div class="header-actions">
+            </div>
+
+            <button class="burger-menu" onclick={toggleSidebar} aria-label="Open visits menu">
+                <lightning-icon
+                    icon-name="utility:rows"
+                    size="small"
+                    alternative-text="Menu">
+                </lightning-icon>
+                <span class="visit-badge">{visitCount}</span>
+            </button>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Map Section (100% on mobile, 70% on desktop) -->
+            <div class="map-section">
+                <c-dcr-google-map-component
+                    event-list={eventList}
+                    user-location={userLocation}
+                    selected-marker-value={selectedEventId}>
+                </c-dcr-google-map-component>
+            </div>
+
+            <!-- Visit List Sidebar (hidden on mobile by default) -->
+            <div class={sidebarClass}>
+                <!-- Mobile Sidebar Header -->
+                <div class="sidebar-header mobile-only">
+                    <span class="sidebar-title">Today's Visits</span>
+                    <button class="close-button" onclick={toggleSidebar} aria-label="Close visits menu">
+                        <lightning-icon
+                            icon-name="utility:close"
+                            size="small"
+                            alternative-text="Close">
+                        </lightning-icon>
+                    </button>
+                </div>
+                <c-dcr-visit-list-component
+                    event-list={eventList}
+                    is-day-started={isDayStarted}
+                    is-day-ended={isDayEnded}
+                    can-start-day={canStartDay}
+                    can-end-day={canEndDay}
+                    is-loading={isLoading}
+                    onselectevent={handleEventSelect}
+                    oncheckin={handleCheckIn}
+                    oncheckout={handleCheckOut}
+                    oncontinue={handleContinue}
+                    onstartday={handleStartMyDay}
+                    onendday={handleEndMyDay}
+                    is-button-disable={isButtonDisable}
+                    >
+                </c-dcr-visit-list-component>
+            </div>
+        </div>
+
+        <!-- Mobile Overlay -->
+        <template if:true={isSidebarOpen}>
+            <div class="sidebar-overlay" onclick={toggleSidebar}></div>
+        </template>
+        </template>
+        <!-- End of Main Map View -->
+    </div>
+</template>

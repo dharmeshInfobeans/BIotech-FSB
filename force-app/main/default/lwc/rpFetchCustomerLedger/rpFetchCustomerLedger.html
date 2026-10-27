@@ -1,0 +1,353 @@
+<template>
+    <div class="ledger-page">
+        <!-- Hero Section -->
+        <template if:false={showResultsPage}>
+            <div class="hero-section">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h2>Customer Ledger</h2>
+                        <p>Generate, download, and initiate signing workflows for customer ledger statements.</p>
+                    </div>
+                    <div class="hero-badge-container">
+                        <span class="hero-badge">SAP Integrated</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="control-card">
+                <!-- Filter Section Header -->
+                <div class="filter-section-header">
+                    <lightning-icon icon-name="utility:filterList" size="xx-small" class="filter-icon"></lightning-icon>
+                    <span class="filter-section-title">Filters</span>
+                </div>
+
+                <!-- Filter Inputs Row -->
+                <div class="control-grid">
+                    <!-- Statement Quarter -->
+                    <div class="input-wrapper">
+                        <lightning-combobox
+                            label="Statement Quarter"
+                            placeholder="Select Quarter"
+                            value={selectedQuarter}
+                            options={quarterOptions}
+                            onchange={handleQuarterChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <div class="input-wrapper">
+                        <lightning-input
+                            type="date"
+                            label="From Date"
+                            value={fromDate}
+                            class="custom-date-input"
+                            disabled>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Statement Date (auto-populated, read-only) -->
+                    <div class="input-wrapper">
+                        <lightning-input
+                            type="date"
+                            label="To Date"
+                            value={statementDate}
+                            class="custom-date-input"
+                            disabled>
+                        </lightning-input>
+                    </div>
+
+                    <!-- Account Name -->
+                    <div class="input-wrapper">
+                        <lightning-input
+                            type="text"
+                            label="Account Name"
+                            placeholder="Search by Account Name"
+                            value={accountName}
+                            onchange={handleAccountName}>
+                        </lightning-input>
+                    </div>
+
+                    <!-- SAP Code -->
+                    <div class="input-wrapper">
+                        <lightning-input
+                            type="text"
+                            label="SAP Code"
+                            placeholder="Search by SAP Code"
+                            value={sapCode}
+                            onchange={handleSapCode}>
+                        </lightning-input>
+                    </div>
+                </div>
+
+                <div class="filter-actions-row">
+                    <div class="left-actions">
+                        <button class="custom-btn secondary" onclick={handleResetFilters} title="Reset all filters" disabled={isLoading}>
+                            <lightning-icon icon-name="utility:undo" size="xx-small" class="btn-icon-left btn-icon-secondary"></lightning-icon>
+                            Reset
+                        </button>
+                        <button class="custom-btn" onclick={handleSearchAccount} disabled={isLoading}>
+                            <lightning-icon icon-name="utility:search" size="xx-small" variant="inverse" class="btn-icon-left"></lightning-icon>
+                            Search Account
+                        </button>
+                    </div>
+                    <div class="right-actions">
+                        <button class="custom-btn fetch-btn" onclick={handleFetchLedger} disabled={isFetchDisabled}>
+                            <lightning-icon icon-name="utility:refresh" size="xx-small" variant="inverse" class="btn-icon-left"></lightning-icon>
+                            Fetch Ledger ({selectedAccountIds.length})
+                        </button>
+                    </div>
+                </div>
+
+                <template if:true={hasActiveFilters}>
+                    <div class="active-filters-row">
+                        <span class="active-filters-label">Active:</span>
+                        <template if:true={selectedAccountIds.length}>
+                            <span class="filter-chip">
+                                <lightning-icon icon-name="utility:check" size="xx-small" class="chip-icon"></lightning-icon>
+                                Selected: {selectedAccountIds.length}/1
+                                <button class="chip-remove" data-filter="selectedAccounts" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                        <template if:true={accountName}>
+                            <span class="filter-chip">
+                                <lightning-icon icon-name="utility:record_lookup" size="xx-small" class="chip-icon"></lightning-icon>
+                                {accountName}
+                                <button class="chip-remove" data-filter="account" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                        <template if:true={sapCode}>
+                            <span class="filter-chip">
+                                <lightning-icon icon-name="utility:record_lookup" size="xx-small" class="chip-icon"></lightning-icon>
+                                {sapCode}
+                                <button class="chip-remove" data-filter="sap" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                        <template if:true={selectedQuarter}>
+                            <span class="filter-chip">
+                                <lightning-icon icon-name="utility:date_input" size="xx-small" class="chip-icon"></lightning-icon>
+                                {selectedQuarter}
+                                <button class="chip-remove" data-filter="date" onclick={handleRemoveFilter}>✕</button>
+                            </span>
+                        </template>
+                    </div>
+                </template>
+
+                <template if:true={accountList.length}>
+                    <div class="table-container search-table">
+                        <table class="premium-table">
+                            <thead>
+                                <tr>
+                                    <th class="col-checkbox">
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" checked={isAllAccountsSelected} onchange={handleAccountSelectAll} id="selectAllAccounts" />
+                                            <label for="selectAllAccounts" class="checkbox-label"></label>
+                                        </div>
+                                    </th>
+                                    <th>Account Name</th>
+                                    <th>Contact Name</th>
+                                    <th>Contact Email</th>
+                                    <th>SAP Code</th>
+                                    <th class="col-comp-code-th">Company Code</th>
+                                    <th>Region</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template for:each={pagedAccountList} for:item="acc">
+                                    <tr key={acc.accountId} class="table-row">
+                                        <td class="col-checkbox">
+                                            <div class="checkbox-container">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={acc.selected}
+                                                    data-id={acc.accountId}
+                                                    onchange={handleAccountRowSelect}
+                                                    id={acc.accountId} />
+                                                <label for={acc.accountId} class="checkbox-label"></label>
+                                            </div>
+                                        </td>
+                                        <td><span class="account-name">{acc.accountName}</span></td>
+                                        <td><span class="contact-name">{acc.contactName}</span></td>
+                                        <td><span class="contact-email">{acc.contactEmail}</span></td>
+                                        <td>{acc.sapCode}</td>
+                                        <td class="col-comp-code-td">
+                                            <div class="code-input-wrapper">
+                                                <input
+                                                    type="text"
+                                                    class={acc.inputClass}
+                                                    value={acc.companyCode}
+                                                    data-id={acc.accountId}
+                                                    oninput={handleCompanyCodeChange}
+                                                    placeholder="e.g. 1000"
+                                                    maxlength="10" />
+                                            </div>
+                                        </td>
+                                        <td>{acc.region}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+
+                        <!-- Account search pagination footer -->
+                        <div class="pagination-footer">
+                            <button class="pagination-btn" onclick={handleAccountPrevious} disabled={disableAccountPrevious}>
+                                <lightning-icon icon-name="utility:chevronleft" size="xx-small" class="page-arrow-left"></lightning-icon>
+                                Previous
+                            </button>
+                            <span class="page-indicator">
+                                Showing <strong>{accountPageStartRecord}</strong> to <strong>{accountPageEndRecord}</strong> of <strong>{totalAccountsCount}</strong> entries
+                            </span>
+                            <button class="pagination-btn" onclick={handleAccountNext} disabled={disableAccountNext}>
+                                Next
+                                <lightning-icon icon-name="utility:chevronright" size="xx-small" class="page-arrow-right"></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <!-- Spinner Popup Modal Overlay (Generating Ledgers) -->
+        <template if:true={isLoading}>
+            <div class="loading-modal-backdrop">
+                <div class="loading-modal-card">
+                    <div class="spinner-container">
+                        <lightning-spinner alternative-text="Loading" size="large" variant="brand"></lightning-spinner>
+                    </div>
+                    <h3 class="loading-title">Generating Ledgers...</h3>
+                    <!-- <p class="loading-subtitle">{batchProgressSubtitle}</p> -->
+                </div>
+            </div>
+        </template>
+
+        <!-- Spinner Popup Modal Overlay (Sending / Processing Actions) -->
+        <template if:true={isSending}>
+            <div class="loading-modal-backdrop">
+                <div class="loading-modal-card">
+                    <div class="spinner-container">
+                        <lightning-spinner alternative-text="Processing" size="large" variant="brand"></lightning-spinner>
+                    </div>
+                    <h3 class="loading-title">Sending Selected Statements...</h3>
+                    <p class="loading-subtitle">Initiating document signing workflows. Please do not close this window.</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Results Card -->
+        <template if:true={showResultsPage}>
+            <div class="results-page">
+                <button class="back-btn" onclick={handleBack}>
+                    <lightning-icon icon-name="utility:back" size="x-small" class="back-icon"></lightning-icon>
+                    Back
+                </button>
+
+                <template if:true={hasResults}>
+                    <div class="results-card fade-in">
+                        <div class="results-header">
+                            <div class="header-left">
+                                <h3>Generated Statements</h3>
+                                <p>{totalRecordsCount} statements found</p>
+                            </div>
+                            <div class="header-right">
+                                <button class="action-btn primary" onclick={handleSendSelected} disabled={isSendDisabled}>
+                                    <lightning-icon icon-name="utility:send" size="xx-small" variant="inverse" class="btn-icon-left"></lightning-icon>
+                                    Send Selected ({selectedRows.length})
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="table-container">
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-checkbox">
+                                            <div class="checkbox-container">
+                                                <input type="checkbox" checked={isAllSelected} onchange={handleResultSelectAll} id="selectAllCheckbox" />
+                                                <label for="selectAllCheckbox" class="checkbox-label"></label>
+                                            </div>
+                                        </th>
+                                        <th>Account Name</th>
+                                        <th>SAP Code</th> 
+                                        <th>Contact Name</th>
+                                        <th>Contact Email</th>
+                                        <th class="col-actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={pagedData} for:item="row">
+                                        <tr key={row.accountId} class="table-row">
+                                            <td class="col-checkbox">
+                                                <div class="checkbox-container">
+                                                    <input type="checkbox" checked={row.selected} data-id={row.accountId} onchange={handleResultRowSelect} id={row.accountId} />
+                                                    <label for={row.accountId} class="checkbox-label"></label>
+                                                </div>
+                                            </td>
+                                            <td><span class="account-name">{row.accountName}</span></td>
+                                            <td>{row.sapCode}</td>
+                                            <td><span class="contact-name">{row.contactName}</span></td>
+                                            <td><span class="contact-email">{row.contactEmail}</span></td>
+                                            <td class="col-actions">
+                                                <div class="action-button-group">
+                                                    <button class="row-btn view" onclick={handleViewAccount} data-id={row.ledgerId} data-name={row.accountName} title="Preview">
+                                                        <lightning-icon icon-name="utility:open" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                        <span>View</span>
+                                                    </button>
+                                                    <button class="row-btn download" onclick={handleDownloadPdf} data-version={row.versionId} title="Download PDF">
+                                                        <lightning-icon icon-name="utility:download" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                        <span>PDF</span>
+                                                    </button>
+                                                    <button class="row-btn send" onclick={handleSendForSignRow} data-id={row.accountId} title="Send for Sign" disabled={isSending}>
+                                                        <lightning-icon icon-name="utility:send" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                        <span>Send</span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Preview Modal -->
+                        <template if:true={showPreviewModal}>
+                            <div class="modal-backdrop">
+                                <div class="modal-box preview-modal">
+                                    <div class="modal-header">
+                                        <div class="preview-title-group">
+                                            <lightning-icon icon-name="utility:file" size="x-small" class="preview-file-icon"></lightning-icon>
+                                            <h3>{previewAccountName}</h3>
+                                        </div>
+                                        <button class="close-btn" onclick={handleClosePreview}>✕</button>
+                                    </div>
+                                    <div class="modal-body preview-body">
+                                        <iframe src={previewUrl} class="pdf-frame" title="Ledger Preview"></iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="custom-btn secondary" onclick={handleClosePreview}>Close</button>
+                                        <button class="custom-btn" onclick={handleDownloadFromPreview}>
+                                            <lightning-icon icon-name="utility:download" size="xx-small" variant="inverse" class="btn-icon-left"></lightning-icon>
+                                            Download
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </template>
+
+                        <!-- Enhanced Pagination Footer -->
+                        <div class="pagination-footer">
+                            <button class="pagination-btn" onclick={handlePrevious} disabled={disablePrevious}>
+                                <lightning-icon icon-name="utility:chevronleft" size="xx-small" class="page-arrow-left"></lightning-icon>
+                                Previous
+                            </button>
+                            <span class="page-indicator">
+                                Showing <strong>{pageStartRecord}</strong> to <strong>{pageEndRecord}</strong> of <strong>{totalRecordsCount}</strong> entries
+                            </span>
+                            <button class="pagination-btn" onclick={handleNext} disabled={disableNext}>
+                                Next
+                                <lightning-icon icon-name="utility:chevronright" size="xx-small" class="page-arrow-right"></lightning-icon>
+                            </button>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </div>
+</template>

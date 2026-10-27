@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Please check the Know Your Customer (KYC --></label>
+    <name>Please_check_the_Know_Your_Customer_KYC__c</name>
+</CustomFieldTranslation>

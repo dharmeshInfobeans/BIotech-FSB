@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SAP_List_View</fullName>
+    <columns>NAME</columns>
+    <columns>SAP_status__c</columns>
+    <columns>SAP_Order_Number__c</columns>
+    <columns>orderId__c</columns>
+    <columns>orderNumSAP__c</columns>
+    <columns>orderNumSF__c</columns>
+    <columns>Shiping_Status__c</columns>
+    <columns>Shipping_Partner__c</columns>
+    <columns>Shipping_No__c</columns>
+    <columns>invoiceNumber__c</columns>
+    <columns>Message__c</columns>
+    <columns>Tracking_Number__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>SAP List View</label>
+</ListView>

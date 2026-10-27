@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Product Display --></label>
+    <name>Product_Display__c</name>
+    <picklistValues>
+        <masterLabel>EDOF</masterLabel>
+        <translation><!-- EDOF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EDOF TORIC</masterLabel>
+        <translation><!-- EDOF TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophhobic preloaded</masterLabel>
+        <translation><!-- Hydrophhobic preloaded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophillic Aspheric</masterLabel>
+        <translation><!-- Hydrophillic Aspheric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophillic Spherical</masterLabel>
+        <translation><!-- Hydrophillic Spherical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic multipiece</masterLabel>
+        <translation><!-- Hydrophobic multipiece --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic single piece Aspheric</masterLabel>
+        <translation><!-- Hydrophobic single piece Aspheric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic single piece Spherical</masterLabel>
+        <translation><!-- Hydrophobic single piece Spherical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multifocal</masterLabel>
+        <translation><!-- Multifocal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multifocal Toric</masterLabel>
+        <translation><!-- Multifocal Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multiple Injection</masterLabel>
+        <translation><!-- Multiple Injection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic</masterLabel>
+        <translation><!-- Phakic --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic Toric</masterLabel>
+        <translation><!-- Phakic Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SECONDARY IOL</masterLabel>
+        <translation><!-- SECONDARY IOL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN BOOSTERS</masterLabel>
+        <translation><!-- SKIN BOOSTERS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN FILLERS</masterLabel>
+        <translation><!-- SKIN FILLERS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN FILLERS (W/O LIDOCAINE)</masterLabel>
+        <translation><!-- SKIN FILLERS (W/O LIDOCAINE) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN FILLERS (with LIDOCAINE)</masterLabel>
+        <translation><!-- SKIN FILLERS (with LIDOCAINE) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Single / Multiple Injection</masterLabel>
+        <translation><!-- Single / Multiple Injection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Single Injection</masterLabel>
+        <translation><!-- Single Injection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRIFOCAL</masterLabel>
+        <translation><!-- TRIFOCAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRIFOCAL TORIC</masterLabel>
+        <translation><!-- TRIFOCAL TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Toric</masterLabel>
+        <translation><!-- Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Xtense</masterLabel>
+        <translation><!-- Xtense --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

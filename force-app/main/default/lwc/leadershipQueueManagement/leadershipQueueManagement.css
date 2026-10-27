@@ -1,0 +1,238 @@
+/* Container */
+.queue-container {
+    padding: 1.25rem;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+    background: #f4f6f9;
+    min-height: 100%;
+}
+
+/* Header */
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+}
+.queue-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #032d60;
+    margin: 0;
+}
+
+/* Summary cards */
+.summary-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+}
+.summary-card {
+    flex: 1;
+    min-width: 120px;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.card-value {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+.card-label {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    opacity: 0.85;
+}
+.card-total    { background: #032d60; color: #fff; }
+.card-pending  { background: #0070d2; color: #fff; }
+.card-overdue  { background: #c23934; color: #fff; }
+.card-approval { background: #dd7a01; color: #fff; }
+
+/* Filter bar */
+.filter-bar {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-end;
+    margin-bottom: 0.875rem;
+    flex-wrap: wrap;
+    background: #fff;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+.filter-search { flex: 2; min-width: 220px; }
+.filter-select { flex: 1; min-width: 150px; }
+.filter-clear  { align-self: flex-end; }
+
+/* Results bar */
+.results-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    padding: 0 0.25rem;
+}
+.results-count {
+    font-size: 0.8rem;
+    color: #54698d;
+    font-weight: 600;
+}
+.legend {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.legend-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+.dot-overdue  { background: #fde8e8; border: 2px solid #c23934; }
+.dot-approval { background: #fef3e2; border: 2px solid #dd7a01; }
+.legend-text  { font-size: 0.72rem; color: #54698d; }
+
+/* Table wrapper */
+.table-wrapper {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    overflow-x: auto;
+}
+
+/* Table */
+.queue-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+.queue-table thead tr {
+    background: #f4f6f9;
+    border-bottom: 2px solid #dddbda;
+}
+.queue-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #54698d;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+}
+.th-priority { width: 90px; }
+.th-sortable {
+    cursor: pointer;
+    user-select: none;
+}
+.th-sortable:hover {
+    background: #eef1f6;
+    color: #032d60;
+}
+.sort-icon {
+    font-size: 0.65rem;
+    margin-left: 3px;
+    opacity: 0.6;
+}
+
+/* Rows */
+.queue-row {
+    border-bottom: 1px solid #e4e8ed;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+.queue-row:last-child { border-bottom: none; }
+.queue-row:hover { background: #f8f9fb; }
+
+.queue-table td {
+    padding: 0.75rem 1rem;
+    color: #3e3e3c;
+    vertical-align: middle;
+}
+
+/* Row states */
+.row-overdue {
+    border-left: 4px solid #c23934;
+    background: #fffafa;
+}
+.row-overdue:hover { background: #fde8e8 !important; }
+
+.row-pending-approval {
+    border-left: 4px solid #dd7a01;
+    background: #fffdf8;
+}
+.row-pending-approval:hover { background: #fef3e2 !important; }
+
+/* Request # link */
+.td-name { white-space: nowrap; }
+.request-link {
+    color: #0070d2;
+    font-weight: 600;
+}
+
+/* Priority badges */
+.priority-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.priority-high   { background: #fde8e8; color: #c23934; border: 1px solid #c23934; }
+.priority-medium { background: #fef3e2; color: #dd7a01; border: 1px solid #dd7a01; }
+.priority-normal { background: #e8f5e9; color: #2e7d32; border: 1px solid #2e7d32; }
+
+/* Status pills */
+.status-pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.status-submitted  { background: #e8f4fd; color: #0070d2; }
+.status-leadership { background: #fef3e2; color: #dd7a01; }
+.status-approved   { background: #e8f5e9; color: #2e7d32; }
+.status-regulatory { background: #f3e8fd; color: #6b21a8; }
+.status-completed  { background: #dff0d8; color: #1a5c1a; }
+.status-rejected   { background: #fde8e8; color: #c23934; }
+.status-sent-back  { background: #fef3e2; color: #dd7a01; }
+.status-on-hold    { background: #f4f6f9; color: #54698d; }
+.status-default    { background: #f4f6f9; color: #54698d; }
+
+/* Days pending */
+.days-overdue { color: #c23934; font-weight: 700; }
+.days-warning { color: #dd7a01; font-weight: 600; }
+
+/* Empty state */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+    color: #54698d;
+    font-size: 0.9rem;
+}
+
+/* Error */
+.error-box {
+    background: #fde8e8;
+    border: 1px solid #c23934;
+    color: #c23934;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}

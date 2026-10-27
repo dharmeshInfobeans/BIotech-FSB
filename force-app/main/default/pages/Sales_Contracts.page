@@ -1,0 +1,667 @@
+<apex:page renderAs="pdf" controller="Salescontracts" showHeader="false" sidebar="false" applyHtmlTag="false" applyBodyTag="false" standardStylesheets="false"   >
+    <html>
+        <head>
+            <style>
+                       .product_Model {
+                border: 2px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                text-align: center;
+                }
+                .cls_Top_logo {
+
+                    font-family: arial, sans-serif;
+                    width: 115%;
+                }
+
+                .cls_dat_con_logo {
+
+                text-align: left;
+                padding: 2px;
+                }
+
+
+                .cls_inspection {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                width: 110%;
+                }
+
+                .cls_insp_clm_th_td{
+
+                text-align: left;
+                padding: 3px;
+                    vertical-align: top;
+                }
+
+                .cls_Load{
+                margin-left: 70px;
+                }
+
+                .sell_rep_stmp {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                width: 100%;
+                }
+
+                .cls_repr {
+
+                text-align: left;
+                padding: 2px;
+                }
+                /*table EFFECT CONTRACT css*/
+                .cls_Effect_Con {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                width: 92%;
+                }
+
+                .cls_effect_con_th_td {
+
+                text-align: left;
+                    vertical-align: top;
+                padding: 3px;
+                }
+                /*table EFFECT CONTRACT css*/
+
+
+                /*table contract css*/
+                .cls_contract {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                width: 162%;
+                }
+
+                .cls_contr_th_td {
+
+                text-align: left;
+                padding: 2px;
+                    vertical-align: top;
+                }
+                /*table contract css*/
+
+                .cls_arb {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                width: 150%;
+                }
+
+                .cls_arbt_th_td {
+
+                text-align: left;
+                padding: 3px;
+                    vertical-align: top;
+                }
+
+                .cls_Breach {
+                font-family: arial, sans-serif;
+                width: 110%;
+                font-size: 12px;
+                }
+
+                .cls_brch_th_td {
+
+                text-align: left;
+                    vertical-align: top;
+
+                }
+
+                .cls_FORCE {
+                font-family: arial, sans-serif;
+                width: 136%;
+                font-size: 12px;
+                }
+
+                .cls_FORCE_th_td {
+
+                text-align: left;
+                padding: 2px;
+                vertical-align: top;
+                }
+
+                .cls_Bank {
+                font-family: arial, sans-serif;
+                width: 142%;
+                font-size: 12px;
+                }
+
+                .cls_Bank_th_td {
+                    text-align: left;
+                    padding: 2px;
+
+                }
+
+
+                .cls_term {
+                font-family: arial, sans-serif;
+                width: 80%;
+                font-size: 12px;
+                }
+
+                .cls_term_th_td {
+
+                text-align: left;
+                padding: 2px;
+                }
+
+                .cls_Packing {
+                font-family: arial, sans-serif;
+                width: 40%;
+                font-size: 12px;
+                }
+
+                .cls_pac_th_td {
+
+                text-align: left;
+                padding: 2px;
+                }
+
+
+                .cls_Doc {
+                font-family: arial, sans-serif;
+                width: 73%;
+                font-size: 12px;
+                }
+
+                .cls_Doc_th_td {
+
+                text-align: left;
+                vertical-align: top;
+
+                }
+                .cls_quality {
+                font-family: arial, sans-serif;
+                font-size: 12px;
+                width: 100%;
+                }
+
+                .cls_Qu_th_td {
+
+                text-align: left;
+                vertical-align: top;
+
+                }
+                /*table Origin css*/
+                .cls_Orgin {
+                font-family: arial, sans-serif;
+                width: 55%;
+                font-size: 12px;
+                }
+                .org_th {
+                text-align: left;
+                padding: 5px;
+                }
+                /*table Origin css*/
+                /*table border create*/
+                .product_table {
+                border: 2px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+                text-align: center;
+                }
+                /*table border create*/
+                .Buyer_consignee {
+                font-family: arial, sans-serif;
+                width: 100%;
+                margin-top: 30px;
+
+                }
+                .cls_th {
+                    text-align: left;
+                    padding: 3px;
+
+                }
+                .table_customer {
+                font-family: arial, sans-serif;
+                width: 42%;
+
+                }
+                .cls_customer{
+                text-align: left;
+                padding: 2px;
+
+                }
+                .notbold{
+                font-weight:normal
+                }
+                .table_seller {
+                font-family: arial, sans-serif;
+                width: 100%;
+                }
+                td, th {
+                text-align: left;
+                padding: 2px;
+                }
+                .paragraph{
+                font-weight: bold;
+                font-size: 15px;
+                }
+                @page {
+                    border:1px solid black;
+                   @bottom-left {
+                        content: element(footer);
+                    }
+                }
+                div.footer {
+                    position: running(footer);
+                    width: 100%;
+                }
+
+            </style>
+        </head>
+        <body style="font-size:12px">
+           <div style="border:2px solid red">
+               <table class="cls_Top_logo">
+                <tr>
+                  <!--  <th colspan="3" class="cls_dat_con_logo">DATED: {!dateStr}</th>  -->
+                  <th colspan="3" class="cls_dat_con_logo">DATED: <apex:outputText value="{0,date,MMM dd, yyyy}">
+                    <apex:param value="{!orderObj.Contract_Date__c}" />
+                 </apex:outputText> </th>
+
+                    <th colspan="3" class="cls_dat_con_logo">CONTRACT NO {!orderObj.CONTRACT_NO__c}</th>
+                     <th colspan="3" class="cls_dat_con_logo" style="display:{!If(bankDetails.Beneficiary_Name__c == 'MOSS VISION INC LIMITED' ,'','None')}">
+                       <!--blank--> <span style="height: 5vh;margin-left:50px"></span>
+                    </th>
+                    <th colspan="3" class="cls_dat_con_logo" style="display:{!If(bankDetails.Beneficiary_Name__c == 'MOSS VISION INC LIMITED' ,'None','')}">
+                        <img text-margin="right" src="{!$Resource.Biotech_logo}" style="height: 5vh; "/>
+                    </th>
+                </tr>
+            </table>
+            <br/>
+            <!-- ********************************Seller address "Table" start from here**************************************************************************  -->
+            <table class="table_seller" style="margin-top:0px">
+                <tr>
+                    <th style="width:20%">THE SELLER:</th>
+                    <th>{!bankDetails.Beneficiary_Name__c}</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><div style="width:40%">{!bankDetails.Address__c}</div></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th style="width:20%">Customer PO No.:</th>
+                    <td>{!orderObj.Customer_Po_No__c} </td>
+                </tr>
+            </table>
+            <!-- ***********************************customer PO table ******************************************************************  -->
+
+            <!--****************************************************** Buyer & consignee Table start******************************************** -->
+            <table class="Buyer_consignee">
+                <tr>
+                    <th class="cls_th" style="width:18%">THE BUYER:</th>
+                    <th class="cls_th" style="width:30%">{!orderObj.Buyer_Account__r.Name}</th>
+                    <th class="cls_th" style="width:21%">THE CONSIGNEE:</th>
+                    <th class="cls_th" style="width:40%">{!orderObj.Consignee_Name__c}</th>
+                </tr>
+                <tr>
+                    <td class="cls_th"></td>
+                    <td class="cls_th">{!orderObj.Account__r.BillingStreet},{!orderObj.Account__r.BillingCity},{!orderObj.Account__r.BillingState},{!orderObj.Account__r.BillingCountry},{!orderObj.Account__r.BillingPostalCode}</td>
+                    <td class="cls_th"></td>
+                    <td class="cls_th">{!orderObj.Consignee_Street__c},{!orderObj.Consignee_City__c},{!orderObj.Consignee_State_Province__c},{!orderObj.Consignee_Country__c},{!orderObj.Consignee_Zip_Postal_Code__c}</td>
+                </tr>
+               <tr>
+                    <td class="cls_th"></td>
+                    <td class="cls_th">Tel:{!orderObj.Account__r.First_mobile_telephone_no__c}</td>
+                    <td class="cls_th"></td>
+                    <td class="cls_th">Tel:{!orderObj.Telephone__c}</td>
+                </tr>
+                <tr>
+                    <td class="cls_th"></td>
+                    <td class="cls_th">Contact Person:{!orderObj.Account__r.Contact_Person__c}</td>
+                    <td class="cls_th"></td>
+                    <td class="cls_th">Contact Person:{!orderObj.Contact_Person__c}</td>
+                </tr>
+            </table>
+            <!--****************************************************** Buyer & consignee Table END******************************************** -->
+            <!--***************************** seller pragraph start *********************************************-->
+            <div class="paragraph" style="padding:5px;">
+              <apex:outputText escape="False" value="{!$Label.Seller_paragraph}"/>
+            </div>
+            <div>
+               <p3 style="font-size: 12px; padding:5px;">
+                1. The seller agrees to sell and the buyer agrees to buy the following products. The total contract amount is {!orderObj.CurrencyIsoCode} {!totalAmountInDecimal}. The details of products &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;and price are listed in the table here below:
+            </p3>
+            </div>
+
+            <!--********************************** seller pragraph END*********************************************-->
+            <br/>
+            <!--************************************************************ Product table start ************************************************************-->
+            <br/>
+            <table style="width:100%" class="product_table">
+                <tr>
+                    <th class="product_table">PARTICULAR</th>
+                  <!--  <th class="product_table">Pack/Model</th>   -->
+                  <th class="product_table"> Incoterms</th>
+                  <th class="product_table"> Payment Terms</th>
+                    <th class="product_table">Total QTY (In No.)</th>
+                    <th class="product_table">Commercial Quantity</th>
+                     <th class="product_table">FOC Quantity </th>
+                    <th class="product_table">RATE ({!orderObj.CurrencyIsoCode})</th>
+                    <th class="product_table">AMOUNT ({!orderObj.CurrencyIsoCode})</th>
+                </tr>
+                <apex:repeat value="{!proList}" var="prodOrder">
+                    <tr>
+
+                        <td class="product_table">{!prodOrder.Product__r.name}</td>
+                     <!--   <td class="product_table">{!prodOrder.Model_Txt__c}</td>   -->
+                     <td class="product_table">{!prodOrder.Agreement_Product__r.Incoterms__c}</td>
+                     <td class="product_table"><apex:outputField value="{!prodOrder.Agreement_Product__r.Payment_Terms_options__c}" /></td>
+                        <td class="product_table">{!prodOrder.Total_Quantities__c}</td>
+                        <td class="product_table">{!prodOrder.Quantity__c}</td>
+                        <td class="product_table">{!prodOrder.FOC_Quantity__c}</td>
+                        <td class="product_table">{!prodOrder.Unit_Price__c}</td>
+                         <td class="product_table">{!prodOrder.Total_Price__c}</td>
+                    </tr>
+                </apex:repeat>
+                  <tr>
+                    <td class="product_table">Freight</td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                     <td class="product_table"></td>
+                     <td class="product_table"></td>
+                     <td class="product_table"></td>
+<!--  this line has been comendet as new fright lwc component is introdued with new workflow    <td class="product_table">{!orderObj.Freight_Amount_Rollup__c}</td>-->
+					<td class="product_table">{!orderObj.Freight_Amount_SplitOrder_Based__c}</td>
+
+                </tr>
+                <tr>
+                    <td class="product_table">TOTAL</td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                    <td class="product_table"></td>
+                       <td class="product_table"></td>
+                       <td class="product_table"></td>
+                       <td class="product_table"></td>
+                    <td class="product_table">{!totalAmountInDecimal}</td>
+                </tr>
+            </table>
+            <br/>
+            <!--***************************************************************PRODUCT MODEL************************************************************************* -->
+              <table style="width:100%;display:{!display}" class="product_Model" >
+                <tr>
+                    <th class="product_Model">Product Name</th>
+                    <th class="product_Model">Model</th>
+                    <th class="product_Model"> Spherical Power</th>
+                    <th class="product_Model">Cylinder Power</th>
+                    <th class="product_Model">Axis Angle</th>
+                    <th class="product_Model">Quantity</th>
+                      <th class="product_table">FOC Quantity </th>
+
+                </tr>
+                <apex:repeat value="{!proList2}" var="model">
+                    <tr>
+
+                        <td class="product_Model">{!model.Product__r.name}</td>
+                        <td class="product_Model">{!model.Model_Txt__c}</td>
+                        <td class="product_Model">{!model.Spherical_Power__c}</td>
+                      <td class="product_Model">{!model.Cyindrical_Power__c}</td>
+                        <td class="product_Model">{!model.Axis_Angle__c}</td>
+                        <td class="product_Model">{!model.Quantity__c}</td>
+                        <td class="product_table">{!model.FOC_Quantity__c}</td>
+
+
+                    </tr>
+
+                </apex:repeat>
+                   <tr>
+                    <td class="product_Model">TOTAL</td>
+                    <td class="product_Model"></td>
+                    <td class="product_Model"></td>
+                    <td class="product_Model"></td>
+                    <td class="product_Model"></td>
+                    <td class="product_Model">{!orderObj.Total_Qty__c}</td>
+                    <td class="product_Model">{!orderObj.Total_Foc_Qty__c}</td>
+
+                </tr>
+
+            </table>
+            <!--ORIGIN table start here  -->
+               <table>
+                    <tr>
+                    <th class="cls_Bank_th_td" style="font-weight:normal;font-size:15px;">*&nbsp;&nbsp;&nbsp;Order Remarks:</th>
+                    <th class="cls_Bank_th_td" style="font-weight:normal;font-size:15px;">{!orderObj.Order_Remarks__c}</th>
+
+                </tr>
+               </table>
+            <br/>
+            <br/>
+
+            <!--*******************************************Quality Start from here ***********************************************-->
+
+            <table class="cls_quality">
+
+                <tr>
+                    <th class="cls_Qu_th_td">3.&nbsp;&nbsp;&nbsp;&nbsp;ORIGIN:</th>
+                    <!--<th class="cls_Qu_th_td" style=" font-weight:normal;" >{!orderObj.Plant__r.Orgin__c}</th>-->
+                    <th class="cls_Qu_th_td" style=" font-weight:normal;" >India / Ireland</th>
+                </tr>
+
+                <tr>
+                    <td class="cls_Qu_th_td" style="font-weight: bold;">4.&nbsp;&nbsp;&nbsp;&nbsp;QUALITY:</td>
+                    <td class="cls_Qu_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.QUALITY}"/>
+                    </td>
+                </tr>
+                <tr>
+                     <th class="cls_Doc_th_td"> 5.&nbsp;&nbsp;&nbsp;&nbsp;DOCUMENTS:</th>
+                     <th class="cls_Doc_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.DOCUMENTS}"/></th>
+                </tr>
+
+
+            <!--***************************** Documents start from here ****************************************-->
+
+
+
+            <!--**********************************Shipment start***************************************-->
+
+                <tr >
+                    <td><strong>6.&nbsp;&nbsp;&nbsp;&nbsp;SHIPMENT:</strong></td>
+                    <td>{!$Label.shipment1}</td>
+                </tr>
+                <tr >
+                    <td></td>
+                    <!-- <td>-Loading&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{!orderObj.PLANT__r.Port_of_Loading__c}</td> -->
+                    <td>-Loading&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;{!portOfLoadingString}</td>
+                </tr>
+                <tr >
+                    <td></td>
+                    <td>-Destination Port&nbsp;:&nbsp;&nbsp;{!orderObj.Destination__c}</td>
+                </tr>
+                <tr >
+                    <td></td>
+                    <td>-Partial Shipment:&nbsp;&nbsp;{!$Label.shipment2}</td>
+                </tr>
+                <tr >
+                    <td></td>
+                    <td>-Trans Shipment&nbsp;:&nbsp;&nbsp;{!$Label.shipment2}</td>
+                </tr>
+                <tr align="center">
+                    <td></td>
+                    <td>{!$Label.shipment3}</td>
+                </tr>
+
+
+
+            <!--*********************Shipment END****************************** --->
+
+            <!--************************************************ PAcking table start from here**************************************************************************** -->
+
+                <tr>
+                    <th class="cls_term_th_td">7.&nbsp;&nbsp;&nbsp;&nbsp;PACKING:</th>
+                    <th class="cls_term_th_td" style=" font-weight:normal;">
+                       {!$Label.Packing_text_for_Sales_Contract_PDF}</th>
+                </tr>
+
+
+            <!--********************term of payment****************** -->
+
+                <!-- <tr>
+                    <th class="cls_term_th_td">8.&nbsp;&nbsp;&nbsp;&nbsp;TERMS OF PAYMENT:</th>
+                    <th class="cls_term_th_td" style=" font-weight:normal;">{!MA.Manner_of_Payment__c}</th>
+                </tr> -->
+
+            <!-- **************************************Bank Detail table css********************************** -->
+
+
+                <tr>
+                    <th class="cls_Bank_th_td">8.&nbsp;&nbsp;&nbsp;&nbsp;Bank Details:</th>
+                    <th class="cls_Bank_th_td" style=" font-weight:normal;">Account Name :{!bankDetails.Beneficiary_Name__c}</th>
+
+                </tr>
+                <tr>
+                    <td class="cls_Bank_th_td"></td>
+                    <td class="cls_Bank_th_td">Account no. : {!bankDetails.Account_No__c}</td>
+
+                </tr>
+                <tr>
+                    <td class="cls_Bank_th_td"></td>
+                    <td class="cls_Bank_th_td">IBAN :{!bankDetails.IBAN__c}</td>
+                </tr>
+                <tr>
+                    <td class="cls_Bank_th_td"></td>
+                    <td class="cls_Bank_th_td">Bank Code :{!bankDetails.Bank_Code__c}</td>
+                </tr>
+                 <tr>
+                    <td class="cls_Bank_th_td"></td>
+                    <td class="cls_Bank_th_td">Bank :{!bankDetails.Bank__c}</td>
+                </tr>
+                <tr>
+                    <td class="cls_Bank_th_td"></td>
+                    <td class="cls_Bank_th_td">Bank Address :{!bankDetails.Bank_Address__c}</td>
+                </tr>
+                <tr>
+                    <td class="cls_Bank_th_td"></td>
+                    <td class="cls_Bank_th_td">BIC :{!bankDetails.Swift_Code__c}</td>
+                </tr>
+
+                <!--******************************sort code detail hide and show ***************************-->
+                  <td style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+
+             <tr style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+                   <td class="cls_Bank_th_td"></td>
+               <td class="cls_Bank_th_td">{!bankDetails.Bank_Sort1st__c}</td>
+            </tr>
+            <tr style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+                  <td class="cls_Bank_th_td"></td>
+               <td class="cls_Bank_th_td"> {!bankDetails.Bank_sort_name__c}</td>
+            </tr>
+            <tr style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+                  <td class="cls_Bank_th_td"></td>
+               <td class="cls_Bank_th_td">{!bankDetails.Bank_Sort_Street__c}</td>
+            </tr >
+            <tr style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+                  <td class="cls_Bank_th_td"></td>
+               <td class="cls_Bank_th_td">Swift Code: {!bankDetails.Bank_SWIFT_CODE__c}</td>
+            </tr>
+            <tr style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+                  <td class="cls_Bank_th_td"></td>
+               <td class="cls_Bank_th_td">Account No.:{!bankDetails.Bank_Account_no_sort__c}</td>
+            </tr>
+            <tr style="display:{!If(bankDetails.Sort_Code__c != null ,'None','')}">
+                  <td class="cls_Bank_th_td"></td>
+               <td  class="cls_Bank_th_td">Aba Routing No.: {!bankDetails.Bank_ROUTING_NO__c}</td>
+            </tr>
+           </td>
+
+
+                <tr>
+                    <th class="cls_FORCE_th_td">9.&nbsp;&nbsp;&nbsp;&nbsp;FORCE MAJEUR:</th>
+                    <th class="cls_FORCE_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.FORCE_MAJEUR}"/> </th>
+
+                </tr>
+
+                <tr>
+                    <th class="cls_insp_clm_th_td">10.&nbsp;&nbsp;INSPECTION And CLAIM:-</th>
+                    <th class="cls_insp_clm_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.INSPECTION_CLAIM1}"/> </th>
+                </tr>
+
+                <tr>
+                    <th class="cls_brch_th_td">11.&nbsp;&nbsp;BREACH OF CONTRACT:-</th>
+                    <th class="cls_brch_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.BREACH_OF_CONTRACT0}"/> </th>
+
+                </tr>
+
+
+
+                <tr>
+                    <th class="cls_arbt_th_td">12.&nbsp;&nbsp;ARBITRATION:</th>
+                    <th class="cls_arbt_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.ARBITRATION1}"/></th>
+
+                </tr>
+
+
+                <tr>
+                    <th class="cls_contr_th_td">13.&nbsp;&nbsp;CONTRACT:</th>
+                    <th class="cls_contr_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.CONTRACT1}"/></th>
+
+                </tr>
+
+
+                <tr>
+                    <th class="cls_effect_con_th_td">14.&nbsp;&nbsp;EFFECT OF THE CONTRACT:</th>
+                    <th class="cls_effect_con_th_td" style=" font-weight:normal;"><apex:outputText escape="False" value="{!$Label.EFFECT_OF_THE_CONTRACT1}"/></th>
+
+                </tr>
+            </table>
+            <table style="width: 104%;">
+
+
+                <tr>
+                    <th class="cls_repr">SELLER:{!bankDetails.Beneficiary_Name__c}</th>
+                    <th class="cls_repr"></th>
+                    <th class="cls_repr"> BUYER:{!orderObj.Account__r.Name}</th>
+                    <th class="cls_repr"> </th>
+                </tr>
+                <tr>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"></td>
+                </tr>
+                <tr>
+                    <td class="cls_repr">Representative:</td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr">Representative:</td>
+                </tr>
+                <tr>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"></td>
+                </tr>
+                <tr>
+                    <td class="cls_repr">Stamp:</td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr">Stamp:</td>
+                </tr>
+                <tr>
+                    <td class="cls_repr">Signature date:</td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr">Signature date:</td>
+                </tr>
+                <tr>
+                    <td class="cls_repr"><br/>Place:</td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"><br/>Place:</td>
+                </tr>
+                <tr>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"></td>
+                    <td class="cls_repr"></td>
+                </tr>
+
+            </table>
+            </div>
+            <!-- **************************************Date & contract and image table ***********************************************-->
+
+
+              <apex:outputText escape="False" value="{!$Label.LastDocument}"/>
+            <div class="footer">
+
+            </div>
+
+        </body>
+    </html>
+</apex:page>

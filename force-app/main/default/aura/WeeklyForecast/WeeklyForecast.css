@@ -1,0 +1,27 @@
+.THIS .slds-text-title_caps{
+    border-right:1px solid gainsboro;
+}
+.THIS .slds-text-title_caps1{
+    border-left:1px solid gainsboro;
+}
+.THIS .slds-text-week_caps{
+    background-color:#005693;
+    color:White;
+    border-top:1px solid white;
+}
+.THIS .slds-text-data_caps{
+    border-right:1px solid White;
+}
+.THIS .inputWidth{
+ margin-top:-40px;
+}
+.THIS .inputHeight{
+    height:41px;
+}
+.THIS .slds-text-border_caps{
+    border-right:1px solid cornflowerblue;
+}
+.THIS .slds-form-element__label{ display: none; visibility: hidden }
+.THIS .bgColor{
+    border-right:1px solid white;
+}

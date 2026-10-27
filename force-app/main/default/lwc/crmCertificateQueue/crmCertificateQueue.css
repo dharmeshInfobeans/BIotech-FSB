@@ -1,0 +1,156 @@
+.queue-container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+.queue-header {
+    margin-bottom: 1.5rem;
+}
+
+.queue-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.header-icon { color: #00897b; }
+
+.queue-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #032d60;
+    margin: 0;
+}
+
+.queue-count {
+    font-size: 0.8125rem;
+    color: #706e6b;
+    margin-left: 2rem;
+}
+
+.spinner-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 3rem;
+}
+
+.error-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: #fce4ec;
+    border-radius: 6px;
+    color: #c62828;
+    font-size: 0.875rem;
+}
+
+.empty-box {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.empty-icon { color: #2e7d32; }
+
+.empty-text {
+    font-size: 0.9375rem;
+    color: #706e6b;
+    margin-top: 0.75rem;
+}
+
+.queue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.queue-card {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: box-shadow 0.15s, border-color 0.15s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.queue-card:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    border-color: #00897b;
+}
+
+.card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.card-name {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #032d60;
+}
+
+.card-pending-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    background: #fff3e0;
+    color: #e65100;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.card-unlocked-badge {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    background: #e8f5e9;
+    color: #2e7d32;
+    padding: 0.15rem 0.6rem;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.card-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.card-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 80px;
+}
+
+.card-label {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    color: #706e6b;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.card-value {
+    font-size: 0.8125rem;
+    color: #3e3e3c;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card-arrow { color: #706e6b; }
+
+@media (max-width: 480px) {
+    .queue-container { padding: 1rem; }
+    .queue-grid { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Package_Range_Display_Turkey__c</fullName>
+    <description>Use For Tukey Only</description>
+    <label>Package Range Display Turkey</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>500 - 1000</fullName>
+                <default>false</default>
+                <label>500 - 1000</label>
+            </value>
+            <value>
+                <fullName>1000 - 1500</fullName>
+                <default>false</default>
+                <label>1000 - 1500</label>
+            </value>
+            <value>
+                <fullName>1500 - 2000</fullName>
+                <default>false</default>
+                <label>1500 - 2000</label>
+            </value>
+            <value>
+                <fullName>2000 - 4000</fullName>
+                <default>false</default>
+                <label>2000 - 4000</label>
+            </value>
+            <value>
+                <fullName>4000 - 8000</fullName>
+                <default>false</default>
+                <label>4000 - 8000</label>
+            </value>
+            <value>
+                <fullName>0-2k</fullName>
+                <default>false</default>
+                <label>0-2k</label>
+            </value>
+            <value>
+                <fullName>2k-4k</fullName>
+                <default>false</default>
+                <label>2k-4k</label>
+            </value>
+            <value>
+                <fullName>4k-6k</fullName>
+                <default>false</default>
+                <label>4k-6k</label>
+            </value>
+            <value>
+                <fullName>6k-8k</fullName>
+                <default>false</default>
+                <label>6k-8k</label>
+            </value>
+            <value>
+                <fullName>10k-12k</fullName>
+                <default>false</default>
+                <label>10k-12k</label>
+            </value>
+            <value>
+                <fullName>12k-14k</fullName>
+                <default>false</default>
+                <label>12k-14k</label>
+            </value>
+            <value>
+                <fullName>14k-16k</fullName>
+                <default>false</default>
+                <label>14k-16k</label>
+            </value>
+            <value>
+                <fullName>16k-20k</fullName>
+                <default>false</default>
+                <label>16k-20k</label>
+            </value>
+            <value>
+                <fullName>20k-25k</fullName>
+                <default>false</default>
+                <label>20k-25k</label>
+            </value>
+            <value>
+                <fullName>8k-10k</fullName>
+                <default>false</default>
+                <label>8k-10k</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

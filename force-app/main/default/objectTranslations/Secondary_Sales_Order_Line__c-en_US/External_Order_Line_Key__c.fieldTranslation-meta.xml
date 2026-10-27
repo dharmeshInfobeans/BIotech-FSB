@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- SAPOrderNumber_MaterialNumber --></help>
+    <label><!-- External Order Line Key --></label>
+    <name>External_Order_Line_Key__c</name>
+</CustomFieldTranslation>

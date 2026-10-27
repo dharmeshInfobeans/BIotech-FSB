@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Görev süresi</label>
+    <name>Tenure__c</name>
+    <picklistValues>
+        <masterLabel>12</masterLabel>
+        <translation><!-- 12 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>24</masterLabel>
+        <translation><!-- 24 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>36</masterLabel>
+        <translation><!-- 36 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>48</masterLabel>
+        <translation><!-- 48 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>60</masterLabel>
+        <translation><!-- 60 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

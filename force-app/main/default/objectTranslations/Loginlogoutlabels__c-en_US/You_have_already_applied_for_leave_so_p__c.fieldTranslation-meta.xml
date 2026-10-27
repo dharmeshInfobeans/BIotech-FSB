@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- You have already applied for leave, so p --></label>
+    <name>You_have_already_applied_for_leave_so_p__c</name>
+</CustomFieldTranslation>

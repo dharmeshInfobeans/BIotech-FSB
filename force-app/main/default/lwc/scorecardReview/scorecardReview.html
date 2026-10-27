@@ -1,0 +1,147 @@
+<template>
+    <lightning-card >
+        <!-- Loading State -->
+        <template if:true={isLoading}>
+            <div class="loading-container">
+                <lightning-spinner alternative-text="Loading submission details..." size="large"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Submission Details -->
+        <template if:false={isLoading}>
+            <template if:true={submissionData}>
+                <!-- Header Information -->
+                <div class="review-header slds-m-horizontal_medium slds-m-bottom_medium">
+                    <div class="header-info-grid">
+                        <div class="info-item">
+                            <div class="info-label">Submission Name</div>
+                            <div class="info-value">{submissionData.submissionName}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Lead Name</div>
+                            <div class="info-value">{submissionData.leadName}</div>
+                        </div>
+                        <template if:true={submissionData.city}>
+                            <div class="info-item">
+                                <div class="info-label">City</div>
+                                <div class="info-value">{submissionData.city}</div>
+                            </div>
+                        </template>
+                        <div class="info-item">
+                            <div class="info-label">Status</div>
+                            <div class="info-value">
+                                <lightning-badge label={submissionData.status} 
+                                    class={statusBadgeClass}>
+                                </lightning-badge>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Total Score</div>
+                            <div class="info-value score-value">{formattedTotalScore}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Created Date</div>
+                            <div class="info-value">{formattedCreatedDate}</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Created By</div>
+                            <div class="info-value">{submissionData.createdBy}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Answers by Section -->
+                <div class="answers-container">
+                    <!-- Fixed Table Header -->
+                    <div class="table-header-fixed">
+                        <div class="col-question-header">Question</div>
+                        <div class="col-answer-header">Answer</div>
+                        <div class="col-score-header">Score</div>
+                    </div>
+                    
+                    <template for:each={sectionList} for:item="section">
+                        <div key={section.sectionKey} class="section-container">
+                            <div class="section-header">
+                                <h3 class="section-title">{section.sectionLabel}</h3>
+                                <div class="section-meta">
+                                    <span class="weightage-badge slds-badge">Weightage: {section.sectionWeightage}%</span>
+                                    <span class="score-badge slds-badge">Section Score: {section.sectionScore}</span>
+                                    <span class="weighted-score-badge slds-badge">Weighted: {section.formattedWeightedScore}</span>
+                                </div>
+                            </div>
+
+                            <div class="questions-list">
+                                <template for:each={section.answers} for:item="answer">
+                                    <div key={answer.answerId} class="question-answer-row">
+                                        <div class="col-question">
+                                            <span class="question-text">{answer.displayQuestionText}</span>
+                                        </div>
+                                        <div class="col-answer">
+                                            <template for:each={answer.selectedOptionLabels} for:item="optionLabel">
+                                                <lightning-badge 
+                                                    key={optionLabel}
+                                                    label={optionLabel} 
+                                                    class="option-badge">
+                                                </lightning-badge>
+                                            </template>
+                                        </div>
+                                        <div class="col-score">
+                                            <span class="score-value-display">{answer.score}</span>
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+
+                <!-- Approval/Rejection Section -->
+                <template if:true={canApprove}>
+                    <div class="action-section">
+                        <div class="comment-section">
+                            <lightning-textarea
+                                label="Comment"
+                                value={comment}
+                                onchange={handleCommentChange}
+                                placeholder="Enter your comment here..."
+                                max-length="5000"
+                                class={commentErrorClass}
+                                message-when-value-missing="Comment is required for rejection">
+                            </lightning-textarea>
+                            <template if:true={showCommentError}>
+                                <div class="error-message">Comment is required for rejection</div>
+                            </template>
+                        </div>
+
+                        <div class="action-buttons">
+                            <lightning-button
+                                variant="brand"
+                                label="Approve"
+                                title="Approve Submission"
+                                onclick={handleApprove}
+                                disabled={isProcessing}
+                                class="approve-button">
+                            </lightning-button>
+                            <lightning-button
+                                variant="destructive"
+                                label="Reject"
+                                title="Reject Submission"
+                                onclick={handleReject}
+                                disabled={isProcessing}
+                                class="reject-button">
+                            </lightning-button>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Already Processed Message -->
+                <template if:false={canApprove}>
+                    <div class="processed-message">
+                        <lightning-icon icon-name="utility:info" size="small" class="info-icon"></lightning-icon>
+                        <span>This submission has already been processed.</span>
+                    </div>
+                </template>
+            </template>
+        </template>
+    </lightning-card>
+</template>

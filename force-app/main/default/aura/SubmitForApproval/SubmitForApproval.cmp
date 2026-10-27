@@ -1,0 +1,54 @@
+<aura:component controller="SubmitForApprovalController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+    <aura:attribute name="errorMessage" type="String" default="{!$Label.c.lex_Sub4App_ErrorMsg}" />
+    <aura:attribute name="showErrorNonDomestic" type="String" default="{!$Label.c.Non_Domestic_Error_Message}" />
+    <!--<aura:attribute name="errorMessage" type="String" default="'Please do following things before submitting for Approval:<br>
+                                                                1. Fill 'GSTN/PanCard/MedicalRegNo' field data.<br>
+                                                                2. Attach 'ERL' document.<br>'
+                                                                3. Get Customer Evaluation approved for this year.'" />-->
+    <aura:attribute name="showErrorNonDom" type="Boolean" default="false" />
+    <aura:attribute name="showError" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="showButtons" type="Boolean" default="false" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    
+    
+    
+    <div class="slds-modal_small">
+        <aura:if isTrue="{! v.showSpinner }">
+            <lightning:spinner />
+        </aura:if>
+        <!--NON Domestic ErrorMessage -->
+        <aura:if isTrue="{! v.showErrorNonDom }">
+            <div class="slds-align_absolute-center slds-text-heading_medium slds-text-color_error">
+                <b>{!v.showErrorNonDomestic}</b> <br/><br/><br/><br/>
+                <!--<ui:outputText value="{!v.errorMessage}" class="slds-text-color_error" /><br/><br/><br/>-->
+            </div>
+            <div class="slds-align_absolute-center ">
+                <lightning:button aura:id="btn2" label="{!$Label.c.lex_Sub4App_PopUpBtn2}" onclick="{!c.onCancel}" iconName="utility:approval" iconPosition="centre" variant="destructive"/>
+            </div>
+        </aura:if>
+        <!-- END -->
+        <aura:if isTrue="{! v.showError }">
+            <div class="slds-align_absolute-center slds-text-heading_medium slds-text-color_error">
+                <b>{!v.errorMessage}</b> <br/><br/><br/><br/>
+                <!--<ui:outputText value="{!v.errorMessage}" class="slds-text-color_error" /><br/><br/><br/>-->
+            </div>
+            <div class="slds-align_absolute-center ">
+                <lightning:button aura:id="btn2" label="{!$Label.c.lex_Sub4App_PopUpBtn2}" onclick="{!c.onCancel}" iconName="utility:approval" iconPosition="centre" variant="destructive"/>
+            </div>
+        </aura:if>
+        <aura:if isTrue="{! v.showButtons }">
+            <br/>
+            <div class="slds-align_absolute-center slds-text-heading_medium slds-text-color_error">
+                <b>{!$Label.c.lex_Sub4App_PopUpBody} </b>
+            </div>
+            <div class="slds-align_absolute-center ">
+                <br/><br/><br/>
+                
+                <lightning:button aura:id="btn1" label="{!$Label.c.lex_Sub4App_PopUpBtn1}" onclick="{!c.onSubmit}" iconName="utility:approval" iconPosition="centre" variant="brand"/>
+                <lightning:button aura:id="btn2" label="{!$Label.c.lex_Sub4App_PopUpBtn2}" onclick="{!c.onCancel}" iconName="utility:approval" iconPosition="centre" variant="destructive"/>
+            </div>
+        </aura:if>
+        
+    </div>    
+</aura:component>

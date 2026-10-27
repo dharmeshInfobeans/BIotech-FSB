@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Vertical --></label>
+    <name>Vertical__c</name>
+    <picklistValues>
+        <masterLabel>Dermal</masterLabel>
+        <translation><!-- Dermal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ophthalmic</masterLabel>
+        <translation><!-- Ophthalmic --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ortho</masterLabel>
+        <translation><!-- Ortho --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

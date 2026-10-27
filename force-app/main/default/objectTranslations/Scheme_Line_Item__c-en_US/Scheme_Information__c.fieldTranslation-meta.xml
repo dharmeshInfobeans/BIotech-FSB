@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Scheme Information --></label>
+    <name>Scheme_Information__c</name>
+    <relationshipLabel><!-- Scheme Line Items --></relationshipLabel>
+</CustomFieldTranslation>

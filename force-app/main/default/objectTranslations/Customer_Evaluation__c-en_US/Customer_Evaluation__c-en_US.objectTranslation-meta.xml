@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Customer Evaluation</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Customer Evaluation</value>
+    </caseValues>
+    <layouts>
+        <layout>Colambia</layout>
+        <sections>
+            <label><!-- Business Profile: --></label>
+            <section>Business Profile:</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- How are you planning to promote our products: --></label>
+            <section>How are you planning to promote our products:</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Colombia Doctor</layout>
+        <sections>
+            <label><!-- Annual Procedures --></label>
+            <section>Annual Procedures</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Distributer D</layout>
+        <sections>
+            <label><!-- Business Profile: --></label>
+            <section>Business Profile:</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- How are you planning to promote our products: --></label>
+            <section>How are you planning to promote our products:</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Doctor D &amp; T</layout>
+        <sections>
+            <label><!-- Annual Procedures --></label>
+            <section>Annual Procedures</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>International</layout>
+        <sections>
+            <label><!-- Business Profile: --></label>
+            <section>Business Profile:</section>
+        </sections>
+        <sections>
+            <label><!-- Country Specific Information --></label>
+            <section>Country Specific Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- How are you planning to promote our products: --></label>
+            <section>How are you planning to promote our products:</section>
+        </sections>
+        <sections>
+            <label><!-- Market Profile --></label>
+            <section>Market Profile</section>
+        </sections>
+        <sections>
+            <label><!-- Regulatory Protocols --></label>
+            <section>Regulatory Protocols</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>International - Ophthalmic &amp; Vision</layout>
+        <sections>
+            <label><!-- Annual Procedures --></label>
+            <section>Annual Procedures</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General Information --></label>
+            <section>General Information</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>International - Ortho</layout>
+        <sections>
+            <label><!-- Annual Procedures --></label>
+            <section>Annual Procedures</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- General Information --></label>
+            <section>General Information</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>International -Dermal</layout>
+        <sections>
+            <label><!-- Annual Procedures --></label>
+            <section>Annual Procedures</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Fields --></label>
+            <section>Fields</section>
+        </sections>
+        <sections>
+            <label><!-- General Information --></label>
+            <section>General Information</section>
+        </sections>
+        <sections>
+            <label><!-- Other Information --></label>
+            <section>Other Information</section>
+        </sections>
+    </layouts>
+    <recordTypes>
+        <label><!-- Brazil --></label>
+        <name>Brazil</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Colambia --></label>
+        <name>Colambia</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Colombia Doctor --></label>
+        <name>Colombia_Doctor</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Distributor D --></label>
+        <name>Distributor_D</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Doctor D and T --></label>
+        <name>Doctor_D_and_T</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- International --></label>
+        <name>International</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- For International Doctor --></description>
+        <label><!-- International -Dermal --></label>
+        <name>International_Dermal</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- International - Ophthalmic &amp; Vision --></label>
+        <name>International_Ophthalmic_Vision</name>
+    </recordTypes>
+    <recordTypes>
+        <description><!-- International_Ortho --></description>
+        <label><!-- International - Ortho --></label>
+        <name>International_Ortho</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

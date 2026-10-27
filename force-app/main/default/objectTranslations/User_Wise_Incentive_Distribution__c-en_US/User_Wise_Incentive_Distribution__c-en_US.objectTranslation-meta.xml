@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>User Wise Incentive Distribution</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>User Wise Incentive Distributions</value>
+    </caseValues>
+    <recordTypes>
+        <label><!-- International Monthly Incentive Distribution --></label>
+        <name>International_Monthly_Incentive_Distribution</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- International Yearly Incentive Distribution --></label>
+        <name>International_Yearly_Incentive_Distribution</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Monthly Incentive Distribution --></label>
+        <name>Monthly_Incentive_Distribution</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Quarterly Incentive Distribution --></label>
+        <name>Quarterly_Incentive_Distribution</name>
+    </recordTypes>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

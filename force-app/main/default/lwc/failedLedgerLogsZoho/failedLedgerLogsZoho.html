@@ -1,0 +1,387 @@
+<template>
+    <div class="failed-page">
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Failed Ledger Sync</h2>
+                    <p>SAP ledger sync failures — review and re-send to correct errors.</p>
+                </div>
+                <div class="hero-actions">
+                    <template if:true={hasSelectedRows}>
+                    <template if:false={isAllView}>
+                    <button
+                      class="action-btn primary"
+                      onclick={handleSendSelected}
+                      disabled={isSending}>
+                    <template if:false={isSending}>
+                         <lightning-icon icon-name="utility:send" size="xx-small" class="btn-icon-left"></lightning-icon>
+                         {sendSelectedLabel}
+                    </template>
+                    <template if:true={isSending}>
+                     <lightning-spinner size="x-small" alternative-text="Sending..." class="btn-spinner"></lightning-spinner>
+                     Sending…
+                    </template>
+                   </button>
+                </template>
+                </template>
+                    <button class="action-btn refresh" onclick={loadLogs}>
+                        <lightning-icon icon-name="utility:refresh" size="xx-small" class="btn-icon-refresh"></lightning-icon>
+                        Refresh
+                    </button>
+                    <span class="hero-badge">
+                        <lightning-icon icon-name="utility:warning" size="xx-small" class="badge-icon"></lightning-icon>
+                        Sync Failures
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <template if:true={isLoading}>
+            <div class="loading-container">
+                <div class="spinner-wrapper">
+                    <lightning-spinner alternative-text="Loading..." size="large" variant="brand"></lightning-spinner>
+                </div>
+                <h3>Fetching Ledger Logs…</h3>
+                <p>Please wait while we load the failed records.</p>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template if:true={hasError}>
+            <div class="alert-banner error">
+                <lightning-icon icon-name="utility:error" size="x-small" class="alert-icon"></lightning-icon>
+                <div class="alert-message">{errorMessage}</div>
+            </div>
+        </template>
+
+        <!-- Results Card -->
+        <template if:false={isLoading}>
+            <div class="results-card fade-in">
+
+                <!-- Search / Toolbar -->
+                <div class="filter-bar">
+                    <div class="filter-bar-inner">
+
+                        <!-- Search -->
+                        <div class="filter-bar-item search-item">
+                            <div class="search-wrap">
+                                <!-- <lightning-icon
+                                    icon-name="utility:search"
+                                    size="xx-small"
+                                    class="search-icon">
+                                </lightning-icon> -->
+
+                                <lightning-input
+                                    type="search"
+                                    label="Search"
+                                    variant="label-hidden"
+                                    placeholder="Search by account name or SAP code…"
+                                    class="search-input"
+                                    onchange={handleSearch}>
+                                </lightning-input>
+                            </div>
+                        </div>
+
+                        <!-- Triggered By Buttons (Segment Control) -->
+                        <div class="filter-bar-item segment-control-item">
+                            <span class="filter-label">Triggered By</span>
+                            <div class="segment-control">
+                                <button 
+                                    class={allBtnClass} 
+                                    data-value="" 
+                                    onclick={handleTriggerChange}>All</button>
+                                <button 
+                                    class={zohoBtnClass} 
+                                    data-value="Zoho" 
+                                    onclick={handleTriggerChange}>Zoho</button>
+                                <button 
+                                    class={sapBtnClass} 
+                                    data-value="SAP" 
+                                    onclick={handleTriggerChange}>SAP</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Table Header -->
+                <div class="results-header">
+                    <div class="header-left">
+                        <h3>Failed {viewTitle} Logs</h3>
+                        <p>Showing {rangeStart}–{rangeEnd} of {filteredCount} record(s)</p>
+                    </div>
+                    <template if:true={hasSelectedRows}>
+                        <div class="selection-info">
+                            <lightning-icon icon-name="utility:check" size="xx-small" class="selection-icon"></lightning-icon>
+                            {selectedRowIds.length} selected
+                        </div>
+                    </template>
+                </div>
+
+                <template if:true={hasRecords}>
+                    <!-- Table Container -->
+                    <div class="table-container">
+                        <!-- Zoho Table -->
+                        <template if:false={isSAPView}>
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-checkbox">
+                                            <!-- Select-All Checkbox -->
+                                            <div class="checkbox-container" title={selectAllTitle}>
+                                                <input
+                                                    type="checkbox"
+                                                    id="selectAllZoho"
+                                                    checked={isAllSelected}
+                                                    onchange={handleSelectAll} />
+                                                <label for="selectAllZoho" class="checkbox-label"></label>
+                                            </div>
+                                        </th>
+                                        <th>Account Name</th>
+                                        <th>SAP Code</th>
+                                        <th>HTTP Status Code</th>
+                                        <th>{statusColumnLabel}</th>
+                                        <th class="col-error">Error Details</th>
+                                        <th>Logged At</th>
+                                        <th class="col-actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={visibleLogs} for:item="row">
+                                        <tr key={row.Id} class={row.rowClass}>
+                                            <td class="col-checkbox">
+                                                <div class="checkbox-container">
+                                                    <input
+                                                        type="checkbox"
+                                                        data-id={row.Id}
+                                                        checked={row.isSelected}
+                                                        onchange={handleCheckboxChange}
+                                                        id={row.Id} />
+                                                    <label for={row.Id} class="checkbox-label"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href={row.AccountUrl} class="account-link">{row.AccountName}</a>
+                                            </td>
+                                            <td><span class="code-mono">{row.SAPCode}</span></td>
+                                            <td><span class="code-mono">{row.HTTP_Status_Code__c}</span></td>
+                                            <td><span class="status-badge error">{row.SAPStatusLabel}</span></td>
+                                            <td class="col-error">
+                                                <span class="error-text-full">{row.Error_Details__c}</span>
+                                            </td>
+                                            <td><span class="date-text">{row.LoggedAt}</span></td>
+                                            <td class="col-actions">
+                                                <div class="action-button-group">
+                                                    <button class="row-btn info" data-id={row.Id} onclick={handleViewDetails} title="View Details">
+                                                        <lightning-icon icon-name="utility:info" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                        Details
+                                                    </button>
+                                                    <template if:false={isAllView}>
+                                                    <button class="row-btn send" data-id={row.Id} onclick={handleSendRow} title="Re-send to SAP">
+                                                     <lightning-icon icon-name="utility:send" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                     Send
+                                                    </button>
+                                                   </template>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+
+                        <!-- SAP Table -->
+                        <template if:true={isSAPView}>
+                            <table class="premium-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-checkbox">
+                                            <!-- Select-All Checkbox -->
+                                            <div class="checkbox-container" title={selectAllTitle}>
+                                                <input
+                                                    type="checkbox"
+                                                    id="selectAllSAP"
+                                                    checked={isAllSelected}
+                                                    onchange={handleSelectAll} />
+                                                <label for="selectAllSAP" class="checkbox-label"></label>
+                                            </div>
+                                        </th>
+                                        <th>Account Name</th>
+                                        <th>Company Code</th>
+                                        <th>SAP Code</th>
+                                        <th>HTTP Status Code</th>
+                                        <th>SAP Status</th>
+                                        <th class="col-error">Error Details</th>
+                                        <th>Logged At</th>
+                                        <th class="col-actions">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <template for:each={visibleLogs} for:item="row">
+                                        <tr key={row.Id} class={row.rowClass}>
+                                            <td class="col-checkbox">
+                                                <div class="checkbox-container">
+                                                    <input
+                                                        type="checkbox"
+                                                        data-id={row.Id}
+                                                        checked={row.isSelected}
+                                                        onchange={handleCheckboxChange}
+                                                        id={row.Id} />
+                                                    <label for={row.Id} class="checkbox-label"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href={row.AccountUrl} class="account-link">{row.AccountName}</a>
+                                            </td>
+                                            <td class="col-comp-code-td">
+                                                <div class="code-input-wrapper">
+                                                    <input
+                                                        type="text"
+                                                        class={row.inputClass}
+                                                        value={row.CompanyCode}
+                                                        data-id={row.Id}
+                                                        oninput={handleCompanyCodeChange}
+                                                        placeholder="e.g. 1000"
+                                                        maxlength="10" />
+                                                </div>
+                                            </td>
+                                            <td><span class="code-mono">{row.SAPCode}</span></td>
+                                            <td><span class="code-mono">{row.HTTP_Status_Code__c}</span></td>
+                                            <td><span class="status-badge error">{row.SAPStatusLabel}</span></td>
+                                            <td class="col-error">
+                                                <span class="error-text-full">{row.Error_Details__c}</span>
+                                            </td>
+                                            <td><span class="date-text">{row.LoggedAt}</span></td>
+                                            <td class="col-actions">
+                                                <div class="action-button-group">
+                                                    <button class="row-btn info" data-id={row.Id} onclick={handleViewDetails} title="View Details">
+                                                        <lightning-icon icon-name="utility:info" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                        Details
+                                                    </button>
+                                                <template if:false={isAllView}>
+                                                <button class="row-btn send" data-id={row.Id} onclick={handleSendRow} title={sendRowTitle}>
+                                                <lightning-icon icon-name="utility:send" size="xx-small" class="row-btn-icon"></lightning-icon>
+                                                   {sendRowLabel}
+                                                </button>
+                                                </template>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </template>
+                                </tbody>
+                            </table>
+                        </template>
+                    </div>
+
+                    <!-- Pagination Footer -->
+                    <div class="pagination-footer">
+                        <button class="pagination-btn" onclick={handlePrevious} disabled={isPreviousDisabled}>
+                            <lightning-icon icon-name="utility:chevronleft" size="xx-small" class="page-arrow-left"></lightning-icon>
+                            Previous
+                        </button>
+                        <span class="page-indicator">{pageIndicator}</span>
+                        <button class="pagination-btn" onclick={handleNext} disabled={isNextDisabled}>
+                            Next
+                            <lightning-icon icon-name="utility:chevronright" size="xx-small" class="page-arrow-right"></lightning-icon>
+                        </button>
+                    </div>
+                </template>
+
+                <!-- Empty State -->
+                <template if:false={hasRecords}>
+                    <div class="empty-state">
+                        <div class="empty-icon-ring">
+                            <lightning-icon icon-name="utility:check" size="large" class="empty-icon"></lightning-icon>
+                        </div>
+                        <h3>All Clear!</h3>
+                        <p>No failed ledger logs found. Everything looks healthy.</p>
+                        <button class="action-btn refresh" onclick={loadLogs}>
+                            <lightning-icon icon-name="utility:refresh" size="xx-small" class="btn-icon-refresh"></lightning-icon>
+                            Refresh
+                        </button>
+                    </div>
+                </template>
+
+            </div>
+        </template>
+
+    </div>
+
+    <!-- Detail Modal -->
+    <template if:true={showModal}>
+        <div class="modal-overlay" onclick={handleOverlayClick}>
+            <div class="modal-box" role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-title">
+
+                <!-- Modal header -->
+                <div class="modal-header">
+                    <div class="modal-header-left">
+                        <div class="modal-hdr-icon">
+                            <lightning-icon icon-name="utility:info" size="x-small" class="modal-icon"></lightning-icon>
+                        </div>
+                        <div>
+                            <p class="modal-eyebrow">Ledger Log</p>
+                            <h2 class="modal-title" id="modal-title">{selectedLog.AccountName}</h2>
+                        </div>
+                    </div>
+                    <button class="modal-close" onclick={closeModal} title="Close">
+                        <lightning-icon icon-name="utility:close" size="x-small" class="modal-close-icon"></lightning-icon>
+                    </button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+
+                    <!-- Info grid -->
+                    <div class="detail-grid">
+                        <div class="detail-cell">
+                            <span class="detail-label">HTTP Status Code</span>
+                            <span class="detail-value mono">
+                                {selectedLog.HTTP_Status_Code__c}
+                            </span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">SAP Response Status</span>
+                            <span class="status-badge error modal-status">{selectedLog.SAPStatusLabel}</span>
+                        </div>
+                        <div class="detail-cell">
+                            <span class="detail-label">Logged At</span>
+                            <span class="detail-value">{selectedLog.LoggedAt}</span>
+                        </div>
+                    </div>
+
+                    <!-- Error callout -->
+                    <div>
+                        <p class="error-callout-title">Error Details</p>
+                        <p class="alert-message">{selectedLog.Error_Details__c}</p>
+                    </div>                  
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button class="modal-btn modal-btn--ghost" onclick={closeModal}>Close</button>
+                    <button class="modal-btn modal-btn--primary" onclick={navigateToLedger}>
+                        <lightning-icon icon-name="utility:new_window" size="xx-small" class="modal-btn-icon"></lightning-icon>
+                        View Ledger Record
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </template>
+
+    <!-- Spinner Popup Modal Overlay (Retrying / Fetching Ledgers from SAP) -->
+    <template if:true={isRetrying}>
+        <div class="loading-modal-backdrop">
+            <div class="loading-modal-card">
+                <div class="spinner-container">
+                    <lightning-spinner alternative-text="Fetching" size="large" variant="brand"></lightning-spinner>
+                </div>
+                <h3 class="loading-title">Fetching Ledger from SAP...</h3>
+               
+            </div>
+        </div>
+    </template>
+</template>

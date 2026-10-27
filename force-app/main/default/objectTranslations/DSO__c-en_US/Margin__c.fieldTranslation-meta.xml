@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Margin --></label>
+    <name>Margin__c</name>
+    <picklistValues>
+        <masterLabel>High Margin</masterLabel>
+        <translation><!-- High Margin --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Low Margin</masterLabel>
+        <translation><!-- Low Margin --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

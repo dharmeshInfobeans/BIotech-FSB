@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>NORTH</fullName>
+        <default>false</default>
+        <label>NORTH</label>
+    </customValue>
+    <customValue>
+        <fullName>SOUTH</fullName>
+        <default>false</default>
+        <label>SOUTH</label>
+    </customValue>
+    <customValue>
+        <fullName>EAST</fullName>
+        <default>false</default>
+        <label>EAST</label>
+    </customValue>
+    <customValue>
+        <fullName>WEST</fullName>
+        <default>false</default>
+        <label>WEST</label>
+    </customValue>
+    <customValue>
+        <fullName>CENTRAL</fullName>
+        <default>false</default>
+        <label>CENTRAL</label>
+    </customValue>
+    <customValue>
+        <fullName>ADANA REGION</fullName>
+        <default>false</default>
+        <label>ADANA REGION</label>
+    </customValue>
+    <customValue>
+        <fullName>ANKARA REGION</fullName>
+        <default>false</default>
+        <label>ANKARA REGION</label>
+    </customValue>
+    <customValue>
+        <fullName>ISTANBUL ASIA REGION</fullName>
+        <default>false</default>
+        <label>ISTANBUL ASIA REGION</label>
+    </customValue>
+    <customValue>
+        <fullName>ISTANBUL EUROPE REGI</fullName>
+        <default>false</default>
+        <label>ISTANBUL EUROPE REGI</label>
+    </customValue>
+    <customValue>
+        <fullName>IZMIR REGION</fullName>
+        <default>false</default>
+        <label>IZMIR REGION</label>
+    </customValue>
+    <customValue>
+        <fullName>ZX.Abroad REGION</fullName>
+        <default>false</default>
+        <label>ZX.Abroad REGION</label>
+    </customValue>
+    <customValue>
+        <fullName>GERMANY</fullName>
+        <default>false</default>
+        <label>GERMANY</label>
+    </customValue>
+    <customValue>
+        <fullName>BRAZIL</fullName>
+        <default>false</default>
+        <label>BRAZIL</label>
+    </customValue>
+    <customValue>
+        <fullName>COLOMBIA</fullName>
+        <default>false</default>
+        <label>COLOMBIA</label>
+    </customValue>
+    <customValue>
+        <fullName>IBERIA</fullName>
+        <default>false</default>
+        <label>IBERIA</label>
+    </customValue>
+    <customValue>
+        <fullName>EGYPT</fullName>
+        <default>false</default>
+        <label>EGYPT</label>
+    </customValue>
+    <customValue>
+        <fullName>Other</fullName>
+        <default>false</default>
+        <label>Other</label>
+    </customValue>
+    <masterLabel>Zone</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

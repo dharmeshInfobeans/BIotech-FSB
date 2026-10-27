@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Valor anual da projeção (em USD)</label>
+    <name>How_much_would_be_the_annual_projection__c</name>
+</CustomFieldTranslation>

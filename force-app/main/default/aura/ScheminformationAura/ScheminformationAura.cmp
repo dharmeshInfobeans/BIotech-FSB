@@ -1,0 +1,14 @@
+<aura:component
+	implements="force:lightningQuickAction,force:hasRecordId,force:lightningQuickActionwithoutheader"
+	access="global">
+
+	<aura:attribute name="recordId" type="Id" />
+    <aura:html tag="style">
+		.slds-modal__content,
+		.slds-modal__container {
+			padding: 2px !important;
+		}
+	</aura:html>
+	<c:schemeInformationComponent recordId="{!v.recordId}"  onclose="{!c.closeqa}"></c:schemeInformationComponent>
+
+</aura:component>

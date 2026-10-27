@@ -1,0 +1,7 @@
+<aura:component
+    implements="lightning:actionOverride,lightning:isUrlAddressable,flexipage:availableForAllPageTypes"
+    access="global">
+
+    <c:opptypeselector/>
+
+</aura:component>

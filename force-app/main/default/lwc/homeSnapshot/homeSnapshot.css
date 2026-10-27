@@ -1,0 +1,185 @@
+:host {
+    display: block;
+}
+
+.snapshot-root {
+    padding: 0.75rem;
+}
+
+/* KPI tiles - colored left border like the reference mockup */
+.tile {
+    border: 1px solid #d8dde6;
+    border-left-width: 4px;
+    border-radius: 0.25rem;
+    padding: 0.9rem 1rem;
+    background: #ffffff;
+    min-height: 5rem;
+    box-sizing: border-box;
+}
+
+.tile-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #3e3e3c;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+}
+
+.tile-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #16325c;
+}
+
+.tile-info {
+    border-left-color: #0176d3;
+}
+.tile-danger {
+    border-left-color: #c23934;
+}
+.tile-success {
+    border-left-color: #04844b;
+}
+.tile-warning {
+    border-left-color: #ff9f40;
+}
+.tile-total {
+    border-left-color: #706e6b;
+}
+
+/* Overview card */
+.overview-card {
+    border: 1px solid #d8dde6;
+    border-radius: 0.5rem;
+    background: #ffffff;
+}
+
+.overview-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
+.overview-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #16325c;
+    margin: 0;
+}
+
+.overview-subtitle {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0.2rem 0 0;
+}
+
+.quarter-filter {
+    display: flex;
+    gap: 0.5rem;
+    width: 14rem;
+    max-width: 100%;
+}
+
+.quarter-filter lightning-combobox {
+    flex: 1;
+}
+
+.chart-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #3e3e3c;
+    margin: 0 0 0.5rem;
+    text-align: center;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Dashboard link tiles */
+.dashboards-section {
+    border: 1px solid #d8dde6;
+    border-radius: 0.5rem;
+    background: #ffffff;
+    padding: 1rem 1.25rem;
+}
+
+.dashboards-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #16325c;
+    margin: 0;
+}
+
+.dashboards-subtitle {
+    font-size: 0.75rem;
+    color: #706e6b;
+    margin: 0.2rem 0 0;
+}
+
+.no-dashboards-message {
+    font-size: 0.85rem;
+    color: #706e6b;
+    padding: 1rem 0;
+}
+
+.dashboard-tile {
+    border: 1px solid #d8dde6;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    /* A fixed floor height, not just height:100% - a longer title (Campaign Metrics & Target
+       Tracking) wraps to 2 lines while the others stay on 1, and without a floor that tile ends up
+       taller than its siblings since flex-stretch only equalizes tiles that share the same row. */
+    min-height: 10rem;
+    height: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    background: #ffffff;
+    transition: box-shadow 0.15s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.dashboard-tile:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-color: #0176d3;
+}
+
+.dashboard-tile-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    background: #eaf4fd;
+    color: #0176d3;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.6rem;
+}
+
+.dashboard-tile-title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #16325c;
+    margin: 0 0 0.25rem;
+}
+
+.dashboard-tile-subtitle {
+    font-size: 0.72rem;
+    color: #706e6b;
+    margin: 0 0 0.6rem;
+}
+
+.dashboard-tile-link {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #0176d3;
+    margin: auto 0 0;
+}

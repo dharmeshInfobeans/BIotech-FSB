@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Maximum number of distributors MOH will allow for each manufacturer. --></help>
+    <label>Número máximo de distribuidores MOH</label>
+    <name>Maximum_number_of_distributors_MOH__c</name>
+</CustomFieldTranslation>

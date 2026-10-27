@@ -1,0 +1,370 @@
+<template>
+    <lightning-card>
+
+        <!-- Header -->
+        <div class="kyc-header slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <div class="slds-grid slds-grid_vertical-align-center">
+                <lightning-icon icon-name="standard:document" size="medium" class="slds-m-right_small header-icon">
+                </lightning-icon>
+
+                <div>
+                    <div class="header-title">KYC Upload Documents</div>
+                    <div class="header-subtitle">
+                        Upload and verify customer KYC documents
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= Account Form (Customer Details) ================= -->
+        <lightning-record-edit-form object-api-name="Account" record-id={accountRecordId} data-id="accountForm"
+            onsubmit={handleAccountSubmit} onsuccess={handleAccountSuccess} onerror={handleAccountError}>
+
+            <lightning-messages></lightning-messages>
+
+            <div class="customer-card">
+
+                <div class="customer-card-header">
+                    <lightning-icon icon-name="utility:user" size="small"></lightning-icon>
+                    <span class="customer-card-title">Customer Details</span>
+
+                    <!-- Saved indicator once the section is locked -->
+                    <template if:true={detailsSaved}>
+                        <span class="saved-badge">
+                            <lightning-icon icon-name="utility:lock" size="x-small"></lightning-icon>
+                            Saved
+                        </span>
+                    </template>
+                </div>
+
+                <!-- Missing-field toast banner -->
+                <template if:true={showMissingToast}>
+                    <div class="missing-field-toast" role="alert">
+                        <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                        <span>{missingToastMessage}</span>
+                    </div>
+                </template>
+
+                <div class="customer-card-body">
+                    <lightning-layout multiple-rows>
+
+                        <!-- Left Column -->
+                        <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+
+                            <lightning-record-edit-form object-api-name="Opportunity__c" record-id={recordId}
+                                onload={handleOpportunityLoad}>
+                                <lightning-input-field field-name="Account__c" required
+                                    disabled={fieldsDisabled}
+                                    onchange={handleAccountLookupChange}>
+                                </lightning-input-field>
+                            </lightning-record-edit-form>
+
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label">
+                                    <abbr class="slds-required" title="required">*</abbr>
+                                    Hospital Name
+                                </label>
+                                <lightning-input-field
+                                    field-name="Commercial_Account_Name__c"
+                                    variant="label-hidden"
+                                    required
+                                    disabled={fieldsDisabled}
+                                    data-field="Commercial_Account_Name__c"
+                                    data-label="Hospital Name"
+                                    onchange={handleCustomerFieldChange}>
+                                </lightning-input-field>
+                            </div>
+
+                            <lightning-input-field
+                                field-name="First_Name__c"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="First_Name__c"
+                                data-label="First Name"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                                field-name="Last_Name__c"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="Last_Name__c"
+                                data-label="Last Name"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                            field-name="Contact_Person__c"
+                            required
+                            disabled={fieldsDisabled}
+                            data-field="Contact_Person__c"
+                            data-label="Contact Person"
+                            onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                                field-name="E_Mail__c"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="E_Mail__c"
+                                data-label="Email"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-combobox label="Plant" options={plantList} value={plant}
+                                placeholder="Select Plant" onchange={handlePlantChange}
+                                disabled={fieldsDisabled} required={plantRequired}>
+                            </lightning-combobox>
+
+                        </lightning-layout-item>
+
+                        <!-- Right Column -->
+                        <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+
+                            <lightning-input-field
+                                field-name="BillingStreet"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="BillingStreet"
+                                data-label="Billing Street"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                                field-name="BillingCity"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="BillingCity"
+                                data-label="Billing City"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                                field-name="BillingState"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="BillingState"
+                                data-label="Billing State"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                                field-name="BillingPostalCode"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="BillingPostalCode"
+                                data-label="Billing Postal Code"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                            <lightning-input-field
+                                field-name="BillingCountry"
+                                required
+                                disabled={fieldsDisabled}
+                                data-field="BillingCountry"
+                                data-label="Billing Country"
+                                onchange={handleCustomerFieldChange}>
+                            </lightning-input-field>
+
+                        </lightning-layout-item>
+
+                    </lightning-layout>
+                </div>
+            </div>
+
+        </lightning-record-edit-form>
+        <!-- ================= END Customer Details / Account Form ================= -->
+
+        <!-- Initial page-load spinner (Opportunity/Account/Plant wires) -->
+        <template if:true={spinner}>
+            <lightning-spinner size="large" alternative-text="Loading..."></lightning-spinner>
+        </template>
+
+        <!-- Save Data footer: visible ONLY before the first successful save -->
+        <template if:true={showDetailsFooter}>
+            <div class="footer">
+                <lightning-button label="Cancel" onclick={handleCancel}>
+                </lightning-button>
+
+                <lightning-button variant="brand" label="Save Data" onclick={handleSaveData}
+                    disabled={saveDisabled}>
+                </lightning-button>
+            </div>
+        </template>
+
+        <!-- Spinner while fetching country-specific KYC requirements -->
+        <template if:true={docsLoading}>
+            <div class="instruction-banner">
+                <lightning-spinner size="small" alternative-text="Fetching documents..."></lightning-spinner>
+                <span>Checking required documents for the saved country...</span>
+            </div>
+        </template>
+
+        <!-- ==================== Documents required: upload table ==================== -->
+        <template if:true={showUploadTable}>
+
+            <div class="instruction-banner">
+                <lightning-icon icon-name="utility:info" size="x-small"></lightning-icon>
+                <span>Please enter document number before uploading files.</span>
+            </div>
+
+            <div class="kyc-card">
+
+                <div class="customer-card-header">
+                    <lightning-icon icon-name="utility:upload" size="small"></lightning-icon>
+                    <span class="customer-card-title">KYC Documents</span>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="slds-table slds-table_cell-buffer innerTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Document</th>
+                                <th>Required</th>
+                                <th>Document Number</th>
+                                <th>Uploaded</th>
+                                <th>Document Upload</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <template for:each={records} for:item="row">
+
+                                <!-- Required -->
+                                <template if:true={row.IsRequired}>
+                                    <tr key={row.Id} data-id={row.Id} class="required-row">
+                                        <td>{row.index}</td>
+                                        <td class="doc-name">{row.MasterLabel}</td>
+                                        <td><span class="badge required">Required</span></td>
+                                        <td>
+                                            <lightning-input type="text" placeholder="Enter document number" required
+                                                data-id={row.Id} data-filename={row.MasterLabel}
+                                                onchange={handleDocumentNumberChange}>
+                                            </lightning-input>
+                                        </td>
+                                        <td>
+                                            <lightning-input type="checkbox" checked={row.AlreadyUpdated} disabled>
+                                            </lightning-input>
+                                        </td>
+                                        <td>
+                                            <lightning-input type="file" accept=".jpg,.png,.pdf" data-record-id={row.Id}
+                                                data-filename={row.MasterLabel} onchange={openfileUpload}>
+                                            </lightning-input>
+
+                                            <template if:true={row.uploaded}>
+                                                <div class="success-container">
+                                                    <lightning-icon icon-name="utility:check" size="small"
+                                                        class="success-icon tick-animate">
+                                                    </lightning-icon>
+                                                    <span class="success-text">{row.uploadedFileName}</span>
+                                                </div>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+
+                                <!-- Optional -->
+                                <template if:false={row.IsRequired}>
+                                    <tr key={row.Id} data-id={row.Id}>
+                                        <td>{row.index}</td>
+                                        <td class="doc-name">{row.MasterLabel}</td>
+                                        <td><span class="badge optional">Optional</span></td>
+                                        <td>
+                                            <lightning-input type="text" placeholder="Enter document number"
+                                                data-id={row.Id} data-filename={row.MasterLabel}
+                                                onchange={handleDocumentNumberChange}>
+                                            </lightning-input>
+                                        </td>
+                                        <td>
+                                            <lightning-input type="checkbox" checked={row.AlreadyUpdated} disabled>
+                                            </lightning-input>
+                                        </td>
+                                        <td>
+                                            <lightning-input type="file" accept=".jpg,.png,.pdf" data-record-id={row.Id}
+                                                data-filename={row.MasterLabel} onchange={openfileUpload}>
+                                            </lightning-input>
+
+                                            <template if:true={row.uploaded}>
+                                                <div class="success-container">
+                                                    <lightning-icon icon-name="utility:check" size="small"
+                                                        class="success-icon">
+                                                    </lightning-icon>
+                                                    <span class="success-text">{row.uploadedFileName}</span>
+                                                </div>
+                                            </template>
+                                        </td>
+                                    </tr>
+                                </template>
+
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="footer">
+                <lightning-button label="Cancel" onclick={handleCancel}>
+                </lightning-button>
+
+                <lightning-button variant="brand" label="Upload & Submit for Approval"
+                    onclick={handleUploadAndSubmit} disabled={uploadDisabled}>
+                </lightning-button>
+            </div>
+        </template>
+        <!-- ==================== END: upload table ==================== -->
+
+        <!-- ==================== Morocco: number-only fields, no upload ==================== -->
+        <template if:true={showMoroccoSection}>
+            <div class="slds-box slds-m-top_small">
+                <div class="slds-box slds-theme_shade slds-m-bottom_small">
+                    <div class="slds-text-heading_small slds-text-color_default">
+                        Enter Your Document Numbers
+                    </div>
+                </div>
+
+                <lightning-record-edit-form object-api-name="Account" record-id={accountRecordId}
+                    data-id="moroccoForm" onsuccess={handleMoroccoSuccess} onerror={handleAccountError}>
+
+                    <lightning-layout multiple-rows>
+                        <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                            <lightning-input-field field-name="PAN_Card_Number__c"></lightning-input-field>
+                        </lightning-layout-item>
+                        <lightning-layout-item size="12" medium-device-size="6" padding="horizontal-small">
+                            <lightning-input-field field-name="Aadhaar_card_Number__c"></lightning-input-field>
+                        </lightning-layout-item>
+                    </lightning-layout>
+
+                    <div class="footer">
+                        <lightning-button label="Cancel" onclick={handleCancel}>
+                        </lightning-button>
+
+                        <lightning-button variant="brand" type="submit" label="Submit for Approval"
+                            disabled={submitting}>
+                        </lightning-button>
+                    </div>
+                </lightning-record-edit-form>
+            </div>
+        </template>
+        <!-- ==================== END: Morocco section ==================== -->
+
+        <!-- ==================== No documents needed for this country ==================== -->
+        <template if:true={showNoDocsSection}>
+            <div class="instruction-banner">
+                <lightning-icon icon-name="utility:info" size="x-small"></lightning-icon>
+                <span>{infoMessage}</span>
+            </div>
+
+            <div class="footer">
+                <lightning-button label="Cancel" onclick={handleCancel}>
+                </lightning-button>
+
+                <lightning-button variant="brand" label="Submit for Approval"
+                    onclick={handleSubmitNoDocuments} disabled={submitting}>
+                </lightning-button>
+            </div>
+        </template>
+        <!-- ==================== END: no documents needed ==================== -->
+
+    </lightning-card>
+</template>

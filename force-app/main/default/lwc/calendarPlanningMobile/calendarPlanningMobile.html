@@ -1,0 +1,141 @@
+<!--
+  @File Name          : eventTab.html
+  @Description        : 
+  @Author             : Jyoti Singh
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 11-19-2020
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    10/9/2019   Jyoti Singh     Initial Version
+-->
+<template>
+  <template if:false={spinner}>
+  <template if:true={labels}>
+<div class="slds-grid slds-wrap" style="height: 65px;padding-right: 12px;padding-top: 6px;background-color: black;">
+  <div class="slds-col slds-size_2-of-12" style="text-align: center;">
+    <template if:true={showAccount}>
+      <lightning-icon icon-name="action:back" alternative-text="Approved" title="Approved" size="xx-small"
+      onclick={clickBack} style="background:rgb(39, 174, 230);"></lightning-icon>
+    </template>
+  </div>
+  <div class="slds-col slds-size_8-of-12" style="font-size: 1rem;text-align: center;color: white;">
+    <span>
+        {labels.Header__c}
+        <template if:true={showCalendar}>
+          <p>{helpLable}</p>
+        </template>
+    </span>
+  </div>
+  <div class="slds-col slds-size_2-of-12" style="text-align: end;">
+    <template if:true={showCalendar}>
+      <lightning-icon icon-name="action:refresh" alternative-text="Approved" title="Approved" size="xx-small"
+      onclick={handleRefresh} style="background:rgb(39, 174, 230);"></lightning-icon>
+    </template>
+    
+  </div>
+</div>
+<template if:true={showAccount}>
+  <c-search-customer user-region-select-list={userRegionSelectList} user-zone-select-list={userZoneSelectList} labels={labels}></c-search-customer>
+</template>
+<template if:false={showAccount}>
+<template if:true={showCalendar}>
+  <div class="calenderContainer">
+    <div class="slds-grid slds-wrap" style="width: 100%;padding-right: 10px;padding-left: 10px;">
+      <div class="slds-col slds-size_10-of-12">
+         <span >
+           <lightning-combobox
+               name="user"
+               value={skey}
+               options={usersOptions}
+               onchange={handleChangeUser}>
+           </lightning-combobox>
+           <!-- <select class="slds-select" name="user" data-id="user" style="font-size: 10px;" onchange={handleChangeUser}>
+             <template for:each={usersOptions} for:item="option">
+               <option key={option.label} value={option.value}>{option.label}</option>
+             </template>
+           </select> -->
+         </span>
+       </div>
+       <div class="slds-col slds-size_2-of-12" style="text-align: end;">
+         <span>
+           <br>
+           <template if:true={showCalendar}>
+             <template if:true={isEventCrete}>
+               <!-- <lightning-icon class="newIcon slds-p-horizontal_x-small" icon-name="action:new" alternative-text="Approved" onclick={newEvent} size="xx-small" style="background: #2783e6;border: 1px solid white;" ></lightning-icon> -->
+               <lightning-icon class="newIcon slds-p-horizontal_x-small" icon-name="action:new" alternative-text="Approved" onclick={showAccountComponent} size="xx-small" style="background: #2783e6;border: 1px solid white;margin-left: -40px;position: absolute;" ></lightning-icon>
+             </template>
+             <template if:false={isEventCrete}>
+               <lightning-icon class="newIcon slds-p-horizontal_x-small" icon-name="action:new" alternative-text="Approved" size="xx-small" style="background: rgb(167 170 173);border: 1px solid white;margin-left: -40px;position: absolute;" ></lightning-icon>
+             </template>
+         </template>
+         </span>
+       </div>
+   </div>
+  </div>
+  <template if:true={eventsDateArray}>
+    <div class="slds-card__body"><c-show-calendar date-map={eventsDateArray}></c-show-calendar></div>
+  </template>
+  </template>
+    <br>
+
+<template if:true={dateHeader}>
+    <div class="slds-page-header" style="background: rgb(40, 131, 230); text-align: center;color: white; height: 50px;">
+        <div class="slds-page-header__row">
+          <div class="slds-page-header__col-title">
+            <div class="slds-media">
+              <div class="slds-media__figure">
+              </div>
+              <div class="slds-media__body">
+                <div class="slds-page-header__name">
+                  <div class="slds-page-header__name-title">  
+                    <h1>
+                      <template if:true={dateOnHeader}>
+                          <span class="slds-page-header__title slds-truncate" title="Rohde Corp - 80,000 Widgets">{dateOnHeader}</span>
+                      </template>
+                    </h1>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>  
+</template>
+      <template if:true={activeEvent}>
+          <!-- <c-show-todays-event evelists={todaysEvent} ></c-show-todays-event> -->
+          <c-show-event-list account-id={accountId} ownerid={skey} labels={labels} evelists={todaysEvent} oncancel={handleCancel}></c-show-event-list>
+      </template>
+      <template if:true={selectedDateEvents}>
+          <!-- <c-show-event evelists={selectedDateEvent} ></c-show-event> -->
+          <c-show-event-list account-id={accountId} ownerid={skey} labels={labels} evelists={selectedDateEvent} oncancel={handleCancel}></c-show-event-list>
+          <!-- <c-show-event evelists={selectedDateEvent}></c-show-event> -->
+      </template>
+
+      <template if:true={noActiveEvent}>
+        <div class="noEventContainer">
+            <div class="imgDiv">
+                <!-- <img src="http://pngimg.com/uploads/smiley/smiley_PNG132.png" class="noEventImg"/> -->
+            </div>
+            <div>
+              {labels.User_error__c}
+            </div>
+        </div>    
+      </template>
+    
+  <template if:true={createEvent}>
+    <c-create-event ownerid={skey} event-type={eventType} account-id={accountId} accountname={accountname} labels={labels} date={date} cisrating={cisrating} cerating={cerating} oncancel={handleCancel} creteevent={createEventShow} contactoption={contactoption} bdplanlist={bdplanlist} productdata={productData} contactname={customerName} customercheck={customerCheck}></c-create-event>
+  </template>
+  <!-- <template if:true={searchEventComponent}>
+    <c-search-event labels={labels}></c-search-event>
+  </template> -->
+  <!-- <template if:true={showDcr}>
+    <c-show-dcr-map></c-show-dcr-map>
+  </template> -->
+</template>
+</template>
+</template>
+<template if:true={spinner}>
+  <c-spinner></c-spinner>
+</template>
+</template>

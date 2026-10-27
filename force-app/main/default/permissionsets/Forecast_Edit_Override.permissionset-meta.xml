@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <classAccesses>
+        <apexClass>InternalForecastConsoleController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <customPermissions>
+        <enabled>true</enabled>
+        <name>Edit_Forecast_Override</name>
+    </customPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Forecast Edit Override</label>
+    <tabSettings>
+        <tab>Forecast_Console_Tab</tab>
+        <visibility>Visible</visibility>
+    </tabSettings>
+</PermissionSet>

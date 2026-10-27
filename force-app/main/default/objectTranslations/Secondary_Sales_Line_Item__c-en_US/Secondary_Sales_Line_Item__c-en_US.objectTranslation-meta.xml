@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Secondary Sales Line Item</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Secondary Sales Line Items</value>
+    </caseValues>
+    <layouts>
+        <layout>Secondary Sales Line Item Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Quantity Section --></label>
+            <section>Quantity Section</section>
+        </sections>
+        <sections>
+            <label><!-- SAP Mapped Fields --></label>
+            <section>SAP Mapped Fields</section>
+        </sections>
+        <sections>
+            <label><!-- Sales &amp; Stock Statement --></label>
+            <section>Sales &amp; Stock Statement</section>
+        </sections>
+    </layouts>
+    <startsWith>Consonant</startsWith>
+</CustomObjectTranslation>

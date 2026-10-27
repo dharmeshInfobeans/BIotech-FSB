@@ -1,0 +1,111 @@
+<aura:component controller="AOPDetailCompIntController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="accId" type="String"/>
+    <aura:attribute name="accName" type="String"/>
+    <aura:attribute name="prodId" type="String"/>
+    <aura:attribute name="mpId" type="String"/>
+    <aura:attribute name="aopId" type="String"/>
+    <aura:attribute name="aopName" type="String"/>
+    <aura:attribute name="fiscalYear" type="String"/>
+    <aura:attribute name="month" type="String"/>
+    <aura:attribute name="prodName" type="String"/>
+    <aura:attribute name="aopQty" type="String"/>
+    <aura:attribute name="remQty" type="String"/>
+    <aura:attribute name="aopDetails" type="Object"/>
+    <aura:attribute name="mppData" type="Object"/>
+    <aura:attribute name="initMessage" type="String" default="Please hover over AOP quantity to view details"/>
+    <aura:attribute name="showInitMessage" type="boolean" default="true"/>
+    <aura:attribute name="width" type="String"/>
+    <lightning:flexipageRegionInfo width="{!v.width}"/>
+    
+    <aura:handler event="c:AOPDetailAppEvt" action="{! c.handleApplicationEvent }"/>
+    
+    <lightning:card>
+        <aura:if isTrue="{! v.showInitMessage }">
+            <!--<ui:message title="Info" severity="confirm" closable="true">-->
+            <ui:message title="Info" severity="confirm" closable="false">                
+                {!v.initMessage}
+            </ui:message>
+            <aura:set attribute="else">
+                <div class="slds-clearfix slds-float_right slds-p-right_xxx-small">
+                    <a href="" onclick="{! c.onCloseIconClick }" title="Click to Close">
+                        <lightning:icon class="" iconName="action:close" alternativeText="Click to Close" size="xx-small"/>
+                    </a>
+                </div>
+                <lightning:tile label="{! v.accName }" href="{! '/'+v.accId }">
+                    <aura:set attribute="media">
+                        <lightning:icon iconName="standard:groups"/>
+                    </aura:set>
+                    <dl class="slds-dl_horizontal">
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Product">Product:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="Salesforce">{! v.prodName }</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Fiscal Year">Fiscal Year:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="salesforce-ux@salesforce.com">{! v.fiscalYear }</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="AOP Quantity">AOP Quantity:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <a href="" onclick="{! c.onAOPQtyClick }"> <p class="slds-truncate" title="salesforce-ux@salesforce.com">{! v.aopQty }</p></a>
+                        </dd>
+                             <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="AOP Quantity">AOP Number:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <a href="" onclick="{! c.onAOPQtyClick }"> <p class="slds-truncate" title="salesforce-ux@salesforce.com">{! v.aopName }</p></a>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Total Planned Quantity">Total Planned Qty:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="salesforce-ux@salesforce.com">{!  v.remQty }</p>
+                        </dd>
+                        <dt class="slds-dl_horizontal__label">
+                            <p class="slds-truncate" title="Remaining Quantity">Remaining Qty:</p>
+                        </dt>
+                        <dd class="slds-dl_horizontal__detail slds-tile__meta">
+                            <p class="slds-truncate" title="salesforce-ux@salesforce.com">{! v.aopQty - v.remQty }</p>
+                        </dd>
+                    </dl>
+                </lightning:tile>
+                <br/><br/>
+                <div  class="slds-align_absolute-center slds-scrollable_x slds-scrollable_y">
+                    <table id="myTable"
+                           class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered  " role="grid"
+                           >
+                        <thead>
+                            <tr class="slds-line-height_reset slds-text-heading--label">
+                                <th class="" scope="col">
+                                    <div class="slds-truncate">Month </div>
+                                </th>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate">Planned Quantity </div>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>		
+                            
+                            <aura:iteration items="{! v.mppData }" var="mpp" indexVar="index">
+                                <tr class="slds-hint-parent" >
+                                    <td data-label="Account Name" role="gridcell">
+                                        <div class="slds-truncate" ><a href="" onclick="{! c.onMppMonthClick }" data-mppid="{! mpp.Id }">{! mpp.Month__c}</a></div>
+                                    </td>
+                                    <td data-label="Account Name" role="gridcell">
+                                        <div class="slds-truncate" >{! mpp.Planned_Quantity__c}</div>
+                                    </td>
+                                </tr>
+                            </aura:iteration>
+                            
+                        </tbody>
+                    </table>
+                </div>			
+            </aura:set>
+        </aura:if>
+    </lightning:card>
+</aura:component>

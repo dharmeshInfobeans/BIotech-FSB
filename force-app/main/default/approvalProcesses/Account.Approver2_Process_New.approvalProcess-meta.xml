@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApprovalProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <allowRecall>false</allowRecall>
+    <allowedSubmitters>
+        <type>owner</type>
+    </allowedSubmitters>
+    <approvalPageFields>
+        <field>Name</field>
+        <field>Owner</field>
+        <field>Status__c</field>
+        <field>Sub_Status__c</field>
+        <field>CE_Rating__c</field>
+        <field>CIS_Rating__c</field>
+        <field>Country_Key__c</field>
+        <field>Branch__c</field>
+        <field>Temprary_Id__c</field>
+        <field>Account_Locked__c</field>
+        <field>Account_Locked_Reason__c</field>
+        <field>region__c</field>
+        <field>SOP_B_Account_Overdue__c</field>
+        <field>SOP_B_Collection_List__c</field>
+        <field>SOP_B_Customer_Type__c</field>
+        <field>SOP_B_GRN_Value__c</field>
+        <field>SOP_B_Gross_Sales__c</field>
+        <field>SOP_B_Overdue_Account_List__c</field>
+        <field>SOP_B_Percentage_Max_Limit__c</field>
+        <field>SOP_B_Percentage_Of_List_Overdue__c</field>
+        <field>SOP_B_Percentage_Of_Overdue__c</field>
+        <field>SOP_B_Total_Customer_Mapped__c</field>
+        <field>SOP_NB_Account_Overdue__c</field>
+        <field>SOP_NB_Collection_List__c</field>
+        <field>SOP_NB_Customer_Type__c</field>
+        <field>SOP_NB_GRN_Value__c</field>
+        <field>SOP_NB_Gross_Sales__c</field>
+        <field>SOP_NB_Overdue_Account_List__c</field>
+        <field>SOP_NB_Percentage_Max_Limit__c</field>
+        <field>SOP_NB_Percentage_Of_List_Overdue__c</field>
+        <field>SOP_NB_Percentage_Of_Overdue__c</field>
+        <field>SOP_NB_Total_Customer_Mapped__c</field>
+    </approvalPageFields>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Send_Email_Alert_to_Admin</name>
+                <type>Alert</type>
+            </action>
+            <action>
+                <name>Update_Sub_Status_To_Pending_For_Admin</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>Approver_2__c</name>
+                <type>relatedUserField</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>AND( OR( RecordType.DeveloperName == &apos;Distributor&apos;, 
+			      RecordType.DeveloperName == &apos;Doctor_D&apos; 
+	     	), 
+    ISPICKVAL(Sub_Status__c, &apos;Submitted To Approver 2&apos;),  
+	   NOT(ISNULL(Approver_2__c)), 
+	   ISPICKVAL(Status__c, &apos;Draft&apos;), 
+	   No_Of_CE_Records__c &gt;= 1,
+    isAccHavingERL__c = true	
+)</formula>
+        </entryCriteria>
+        <ifCriteriaNotMet>GotoNextStep</ifCriteriaNotMet>
+        <label>Approver 2</label>
+        <name>Approver_2</name>
+        <rejectionActions>
+            <action>
+                <name>Rejected_By_Approver2</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <approvalStep>
+        <allowDelegate>false</allowDelegate>
+        <approvalActions>
+            <action>
+                <name>Approved_By_Admin</name>
+                <type>FieldUpdate</type>
+            </action>
+        </approvalActions>
+        <assignedApprover>
+            <approver>
+                <name>nehal@biotechhealthcare.com</name>
+                <type>user</type>
+            </approver>
+            <whenMultipleApprovers>FirstResponse</whenMultipleApprovers>
+        </assignedApprover>
+        <entryCriteria>
+            <formula>AND( OR( RecordType.DeveloperName == &apos;Distributor&apos;, 
+         RecordType.DeveloperName == &apos;Doctor_D&apos; 
+     ), 
+ ISPICKVAL(Sub_Status__c, &apos;Pending For Admin&apos;), 
+ NOT(ISNULL(Approver_2__c)), 
+ ISPICKVAL(Status__c, &apos;Draft&apos;), 
+ No_Of_CE_Records__c &gt;= 1, 
+ isAccHavingERL__c = true	
+)</formula>
+        </entryCriteria>
+        <label>Admin Approval</label>
+        <name>Admin_Approval</name>
+        <rejectBehavior>
+            <type>RejectRequest</type>
+        </rejectBehavior>
+        <rejectionActions>
+            <action>
+                <name>Rejected_By_Admin</name>
+                <type>FieldUpdate</type>
+            </action>
+        </rejectionActions>
+    </approvalStep>
+    <emailTemplate>unfiled$public/Approver2_Template</emailTemplate>
+    <enableMobileDeviceAccess>false</enableMobileDeviceAccess>
+    <entryCriteria>
+        <formula>AND( OR( RecordType.DeveloperName == &apos;Distributor&apos;, 
+         RecordType.DeveloperName == &apos;Doctor_D&apos; 
+      ), 
+    OR( ISPICKVAL(Sub_Status__c, &apos;Submitted To Approver 2&apos;), 
+        ISPICKVAL(Sub_Status__c, &apos;Pending For Admin&apos;),
+        ISPICKVAL(Sub_Status__c, &apos;Rejected By Approver 2&apos;) 
+    ), 
+    NOT(ISNULL(Approver_2__c)), 
+    ISPICKVAL(Status__c, &apos;Draft&apos;), 
+    No_Of_CE_Records__c &gt;= 1,
+				isAccHavingERL__c = true
+)</formula>
+    </entryCriteria>
+    <finalApprovalRecordLock>false</finalApprovalRecordLock>
+    <finalRejectionRecordLock>false</finalRejectionRecordLock>
+    <initialSubmissionActions>
+        <action>
+            <name>Send_Approval_Email_To_Approver_2</name>
+            <type>Alert</type>
+        </action>
+        <action>
+            <name>Update_Account_Sub_Status_for_Approver2</name>
+            <type>FieldUpdate</type>
+        </action>
+    </initialSubmissionActions>
+    <label>Approver2 Process New</label>
+    <processOrder>4</processOrder>
+    <recordEditability>AdminOnly</recordEditability>
+    <showApprovalHistory>true</showApprovalHistory>
+</ApprovalProcess>

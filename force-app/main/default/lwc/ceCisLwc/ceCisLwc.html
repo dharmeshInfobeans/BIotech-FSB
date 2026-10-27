@@ -1,0 +1,522 @@
+<template>
+    <template if:true={isSave}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+    <div>
+        <!-- **************Desktop view****************** -->
+        <template if:true={isDesktop}>
+            <div>
+                <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem; align-items: center; width: 100%;">
+                    <label class="slds-form-element__label slds-p-left_xx-small" for="LVc-procedures"
+                        style="margin-top: 3px; font-weight: 600; padding-left: 1.5rem;">
+                        {label.LvcProcedure}
+                        <abbr class="slds-required" title="required">*</abbr>
+                    </label>
+
+                    <lightning-input id="LVc-procedures" type="number" label={label.LvcProcedure}
+                        title="No. of LVc procedures" onchange={handleLvc} value={lvcData}
+                        message-when-value-missing="Please enter the value" required style="width: 5rem;"
+                        variant="label-hidden">
+                    </lightning-input>
+
+                    <div style="flex: 1; text-align: center;">
+                        <h2 style="font-size: x-large; margin-right: 4rem;">{label.newCeCis}</h2>
+                    </div>
+
+                    <div if:true={formattedDate}
+                        style="font-size: 11px; padding: 2rem 1rem 0rem 0rem;font-weight: 300;">
+                        <p>Last Modified Date: {formattedDate}</p>
+                    </div>
+
+                    <div style="padding-right: 1rem; width: 8rem;">
+                        <lightning-combobox name="Currency" label="Currency" value={selectedCurrency}
+                            placeholder="Select Currency" options={currencyOptions} onchange={handleCurrencyChange}>
+                        </lightning-combobox>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+        <!-- **************Mobile View******************************** -->
+        <template if:true={isMobile}>
+            <!-- label={label.LvcProcedure} -->
+
+            <div class="slds-grid slds-wrap">
+                <div class="slds-col slds-medium-size_6-of-12 slds-small-size_6-of-12" style="margin-bottom:1%">
+                    <label for="username" style="display:block; margin-bottom:4px; margin-top:6px;">No of LVC Proc</label>
+                    <input type="number" style="width:50%; padding:1.5%" onchange={handleLvc} value={lvcData} required>
+                </div>
+                <br/>
+                <div class="slds-col slds-medium-size_6-of-12 slds-small-size_6-of-12">
+                    <lightning-combobox name="Currency" label="Currency" value={selectedCurrency}
+                        placeholder="Select Currency" options={currencyOptions} onchange={handleCurrencyChange}>
+                    </lightning-combobox>
+                </div>
+            </div>
+
+            <!-- <div>
+                <div class="slds-grid slds-wrap slds-p-horizontal_small slds-p-top_medium" style="row-gap: 1rem;">
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <label class="slds-form-element__label" for="LVc-procedures_1"
+                    style="font-weight: 600; display: inline-block;">
+                    {label.LvcProcedure}
+                    <abbr class="slds-required" title="required">*</abbr>
+                </label>
+                        <lightning-input id="LVc-procedures_1" type="number" label={label.LvcProcedure}
+                            title="No. of LVc procedures" onchange={handleLvc} value={lvcData}
+                            message-when-value-missing="Please enter the value" required variant="label-hidden"
+                            style="width: 166px; margin-top: -3px;">
+                        </lightning-input>
+                    </div>
+
+
+                    <div class="slds-col slds-size_1-of-2">
+                        <lightning-combobox name="Currency" label="Currency" value={selectedCurrency}
+                            placeholder="Select Currency" options={currencyOptions} onchange={handleCurrencyChange}>
+                        </lightning-combobox>
+                    </div>
+
+
+                    <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                        <h2 style="font-size: x-large; margin: 0;">{label.newCeCis}</h2>
+                    </div>
+
+
+                    <template if:true={formattedDate}>
+                        <div class="slds-col slds-size_1-of-1"
+                            style="text-align: center; font-size: 0.75rem; font-weight: 400;">
+                            <p>Last Modified Date: {formattedDate}</p>
+                        </div>
+                    </template>
+                </div>
+            </div> -->
+            <div>
+                <!-- <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12">
+                        <div>
+                        <label class="slds-form-element__label" for="LVc-procedures_1"
+                    style="font-weight: 600; display: inline-block;">
+                    {label.LvcProcedure}
+                    <abbr class="slds-required" title="required">*</abbr>
+                            </label>
+                            <lightning-input id="LVc-procedures_1" type="number" label={label.LvcProcedure}
+                                title="No. of LVc procedures" onchange={handleLvc} value={lvcData}
+                                message-when-value-missing="Please enter the value" required variant="label-hidden">
+                            </lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-large-size_6-of-12 slds-medium-size_6-of-12 slds-size_6-of-12 ">
+                        <lightning-combobox name="Currency" label="Currency" value={selectedCurrency}
+                            placeholder="Select Currency" options={currencyOptions} onchange={handleCurrencyChange}>
+                        </lightning-combobox>
+                    </div>
+                </div> -->
+
+
+
+
+
+
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
+                        <div class="slds-col slds-size_1-of-1" style="text-align: center;">
+                            <h2 style="font-size: x-large; margin: 0;">{label.newCeCis}</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="slds-grid slds-wrap">
+                    <div class="slds-col slds-large-size_12-of-12 slds-medium-size_12-of-12 slds-size_12-of-12">
+                        <template if:true={formattedDate}>
+                            <div class="slds-col slds-size_1-of-1"
+                                style="text-align: center; font-size: 0.75rem; font-weight: 400;">
+                                <p>Last Modified Date: {formattedDate}</p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+        </template>
+
+
+        <!-- Desktop View -->
+        <template if:true={isDesktop}>
+            <div>
+                <div class="slds-scrollable slds-m-around_medium table-scroll"
+                    style="min-height: 14rem; max-height: 14rem;">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered custom-table "
+                        aria-label="Example default base table of Opportunities">
+                        <thead>
+                            <tr class="">
+                                <th style="min-width: 50px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="Delete"></div>
+                                </th>
+                                <th style="min-width: 200px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="Company Name">{label.CisCategory}
+                                    </div>
+                                </th>
+                                <th style="min-width: 200px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="Categories Name">{label.CisCompany}
+                                    </div>
+                                </th>
+                                <th style="min-width: 150px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">{label.CisSurgeries}/Year</div>
+                                </th>
+                                <th style="min-width: 120px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">Price/Unit</div>
+                                </th>
+                                <th style="min-width: 120px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">Value</div>
+                                </th>
+                                <th style="min-width: 150px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">{label.CisType}</div>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={showDataList} for:item="item">
+                                <tr class="slds-hint-parent" key={item.key}>
+                                    <td data-label="">
+                                        <div class="slds-truncate" title="Cloudhub">
+                                            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+                                                class="slds-m-left_xx-small" title="Delete" data-val={item.key}
+                                                onclick={handleDelete} data-label={item.label}>
+                                            </lightning-button-icon>
+                                        </div>
+                                    </td>
+                                    <td data-label="company ">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-combobox name="Product" label="" placeholder="Select Product"
+                                                options={ProductList} onchange={handleDataChange} data-label="Product"
+                                                data-val={item.key} value={item.Product}></lightning-combobox>
+                                        </div>
+                                    </td>
+                                    <td data-label="Category ">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-combobox name="Company" label="" placeholder="Select Company"
+                                                options={item.CompanyList} onchange={handleDataChange}
+                                                data-label="Company" data-val={item.key} value={item.Company}>
+                                            </lightning-combobox>
+                                        </div>
+                                    </td>
+                                    <td data-label="Value">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-input type="text" title="Enter valid Number"
+                                                onchange={handleDataChange} data-label="Value" data-val={item.key}
+                                                value={item.Value}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="Price">
+                                        <div class="" title="Price">
+                                            <lightning-input type="text" title="Enter price" onchange={handleDataChange}
+                                                data-label="price" data-val={item.key} value={item.Price}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="priceValue">
+                                        <div class="" title="Value">
+                                            <lightning-input type="text" title="Value" onchange={handleDataChange}
+                                                data-label="priceValue" data-val={item.key} value={item.PriceValue}
+                                                disabled="true">
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="Type">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-input type="text" title="Type" disabled="true" value={item.Type}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+
+                </div>
+
+
+            </div>
+        </template>
+
+        <!-- Mobile View -->
+
+        <template if:true={isMobile}>
+            <div>
+                <div class="slds-scrollable slds-m-around_medium " style="min-height: 18rem; max-height: 20rem;">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered custom-table "
+                        aria-label="Example default base table of Opportunities">
+                        <thead>
+                            <tr class="">
+                                <th style="min-width: 50px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="Delete"></div>
+                                </th>
+                                <th style="min-width: 200px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="Company Name">{label.CisCategory}
+                                    </div>
+                                </th>
+                                <th style="min-width: 200px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="Categories Name">{label.CisCompany}
+                                    </div>
+                                </th>
+                                <th style="min-width: 150px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">{label.CisSurgeries}/Year</div>
+                                </th>
+                                <th style="min-width: 120px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">Price/Unit</div>
+                                </th>
+                                <th style="min-width: 120px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">Value</div>
+                                </th>
+                                <th style="min-width: 150px;" class="tableBody" scope="col">
+                                    <div class="slds-truncate tableHeader" title="value">{label.CisType}</div>
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={showDataList} for:item="item">
+                                <tr class="slds-hint-parent" key={item.key}>
+                                    <td data-label="">
+                                        <div style="margin-top: 1.1rem;" class="slds-truncate" title="Cloudhub">
+                                            <lightning-button-icon icon-name="utility:delete" alternative-text="Delete"
+                                                class="slds-m-left_xx-small " title="Delete" data-val={item.key}
+                                                onclick={handleDelete} data-label={item.label}>
+                                            </lightning-button-icon>
+                                        </div>
+                                    </td>
+                                    <td data-label="company ">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-combobox name="Product" label="" placeholder="Select Product"
+                                                options={ProductList} onchange={handleDataChange} data-label="Product"
+                                                data-val={item.key} value={item.Product}></lightning-combobox>
+                                        </div>
+                                    </td>
+                                    <td data-label="Category ">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-combobox name="Company" label="" placeholder="Select Company"
+                                                options={item.CompanyList} onchange={handleDataChange}
+                                                data-label="Company" data-val={item.key} value={item.Company}>
+                                            </lightning-combobox>
+                                        </div>
+                                    </td>
+                                    <td data-label="Value">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-input type="text" title="Enter valid Number"
+                                                onchange={handleDataChange} data-label="Value" data-val={item.key}
+                                                value={item.Value}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="Price">
+                                        <div class="" title="Price">
+                                            <lightning-input type="text" title="Enter price" onchange={handleDataChange}
+                                                data-label="price" data-val={item.key} value={item.Price}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="priceValue">
+                                        <div class="" title="Value">
+                                            <lightning-input type="text" title="Value" onchange={handleDataChange}
+                                                data-label="priceValue" data-val={item.key} value={item.PriceValue}
+                                                disabled="true">
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                    <td data-label="Type">
+                                        <div class="" title="Cloudhub">
+                                            <lightning-input type="text" title="Type" disabled="true" value={item.Type}>
+                                            </lightning-input>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </template>
+
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+
+                </div>
+
+
+            </div>
+        </template>
+
+        <!-- <div
+            style="background: var(--slds-c-modal-footer-color-background, var(--sds-c-modal-footer-color-background, var(--slds-c-modal-color-background, var(--sds-c-modal-color-background, var(--slds-g-color-neutral-base-95, var(--lwc-colorBackground,rgb(243, 243, 243)))))))"> -->
+        <div class="slds-modal__footer" style="display: flex; align-items: center;">
+            <!-- Left side -->
+            <div>
+                <lightning-button type="button" title="Add rows" label={label.CisAddRow} variant="brand"
+                    onclick={handleAddRow} disabled={saveButtonError}>
+                </lightning-button>
+            </div>
+
+            <!-- Right side -->
+            <!-- Desktop view -->
+            <template if:true={isDesktop}>
+                <div style="display: flex; margin-left: auto; padding-right: 38px; gap: 1rem; align-items: center;">
+                    <div>
+                        <p class="lastData">{label.Cisregular}:</p>
+                    </div>
+                    <div>
+                        <p>{regularData}</p>
+                    </div>
+                    <div>
+                        <p class="lastData">{label.CisPremium}:</p>
+                    </div>
+                    <div>
+                        <p>{premiumData}</p>
+                    </div>
+                    <div>
+                        <p style={label.CisFooterData}>{label.CisTotal}:</p>
+                    </div>
+                    <div>
+                        <p>{totalData}</p>
+                    </div>
+                    <div>
+                        <p style={label.CisFooterData}>Phakic</p>
+                    </div>
+                    <div>
+                        <p>{phakicTotal}</p>
+                    </div>
+                    <div>
+                        <p style={label.CisFooterData}>Premium(%)</p>
+                    </div>
+                    <div>
+                        <p>{premiumPercentage}%</p>
+                    </div>
+                    <div>
+                        <p style={label.CisFooterData}>Total Value</p>
+                    </div>
+                    <div>
+                        <p>{myValueTotal}</p>
+                    </div>
+                </div>
+            </template>
+
+            <!-- Mobile view -->
+            <template if:true={isMobile}>
+                <div style="display: flex; flex-wrap: wrap; gap: 1rem; padding: 1rem; justify-content: center;">
+
+                    <div style="flex: 1 1 45%; min-width: 140px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p class="lastData">{label.Cisregular}:</p>
+                            <p>{regularData}</p>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <p style={label.CisFooterData}>Phakic</p>
+                            <p>{phakicTotal}</p>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <p style={label.CisFooterData}>Premium(%)</p>
+                            <p>{premiumPercentage}%</p>
+                        </div>
+                    </div>
+
+                    <div style="flex: 1 1 45%; min-width: 140px;">
+                        <div style="display: flex; justify-content: space-between;">
+                            <p class="lastData">{label.CisPremium}:</p>
+                            <p>{premiumData}</p>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <p style={label.CisFooterData}>{label.CisTotal}:</p>
+                            <p>{totalData}</p>
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between;">
+                            <p style={label.CisFooterData}>Total Value:</p>
+                            <p>{myValueTotal}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </template>
+
+
+
+        </div>
+        <hr style="background-color: #857f7f; margin-top: 9px; margin-bottom: 9px;">
+
+        <!-- <div if:true={isLoading} style="position: relative; margin-top: 0.5rem; min-height: 9.3rem; max-height: 9.3rem;">
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+     </div>
+     <div if:false={isLoading} style="margin-top: 0.5rem; min-height: 10rem; max-height: 13rem; overflow-y: auto;padding-left: 1rem;padding-right: 1rem;">
+        <div if:true={isDataFound}>
+            <lightning-datatable key-field="id" data={data} columns={columns} hide-checkbox-column="true">
+            </lightning-datatable>
+        </div>
+        <div if:false={isDataFound} style="text-align: center;margin-top: 4rem;font-weight: 600;">
+            <p>No Record Found</p>
+        </div>
+     </div> -->
+
+        <!-- Desktop view -->
+        <template if:true={isDesktop}>
+            <div
+                style="margin-top: 0.5rem; min-height: 10rem; max-height: 13rem; overflow-y: auto;padding-left: 1rem;padding-right: 1rem;">
+                <template if:true={gridData}>
+                    <lightning-tree-grid key-field="Id" columns={columns} data={gridData} hide-checkbox-column
+                        hide-row-number-column>
+                    </lightning-tree-grid>
+                </template>
+                <template if:false={gridData}>
+                    <p style="text-align: center;margin-top: 4rem;font-weight: 600;" class="slds-p-around_medium">No
+                        data
+                        found</p>
+                </template>
+            </div>
+        </template>
+
+        <!-- Mobile view -->
+
+        <template if:true={isMobile}>
+            <div
+                style="margin-top: 0.5rem; min-height: 10rem; max-height: 13rem; overflow-y: auto; padding-left: 1rem; padding-right: 1rem;">
+
+                <template if:true={gridData}>
+                    <div style="overflow-x: auto; -webkit-overflow-scrolling: touch; width: 100%;">
+
+                        <div style="min-width: 75rem;">
+                            <lightning-tree-grid key-field="Id" columns={columns} data={gridData} hide-checkbox-column
+                                hide-row-number-column>
+                            </lightning-tree-grid>
+                        </div>
+                    </div>
+                </template>
+
+                <template if:false={gridData}>
+                    <p style="text-align: center; margin-top: 4rem; font-weight: 600;" class="slds-p-around_medium">No
+                        data found </p>
+                </template>
+            </div>
+        </template>
+
+
+        <div class="sticky-footer">
+            <!-- Right side -->
+            <div class="slds-grid slds-grid_align-end">
+                <div class="slds-col slds-p-left_small">
+                    <lightning-button type="button" label={label.CisCancel} onclick={handleCancel}>
+                    </lightning-button>
+                </div>
+                <div class="slds-col slds-p-left_small">
+                    <lightning-button type="button" label="Save and Submit" value="submit" onclick={handleSave}
+                        variant="brand">
+                    </lightning-button>
+                </div>
+            </div>
+            <!-- </div> -->
+        </div>
+    </div>
+    <!-- </div> -->
+</template>

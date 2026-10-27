@@ -1,0 +1,103 @@
+<aura:component controller="WeeklyForecastController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" 
+                access="global">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="isShowSpinner" type="boolean" default='false'/> 
+    <aura:attribute name="isShowRecords" type="boolean" default='false'/> 
+    <aura:attribute name="isShowData" type="boolean" default='false'/> 
+    <aura:attribute name="regionLst" type="List"/>
+    <aura:attribute type="Product__c[]" name="productList"/>
+    <aura:attribute name="branchMap" type="Map"/>
+    <aura:attribute name="selectedBranchMap" type="Map"/>
+    <aura:attribute name="currentDate" type="Date"/>
+    <aura:attribute name ="weeklyForecastWrapper" type='Object' />
+    <aura:attribute name="selectedMonthNumber" type="String"/>
+    <aura:attribute name="selectedMonthYear" type="String"/>
+    <aura:attribute name ="isDisabled" type='Boolean' />
+    <aura:attribute name ="message" type='String' />
+    <aura:attribute name="selectedBranchCode" type="Integer"/>
+    <aura:attribute name="selectedBranchName" type="String"/>
+    <aura:attribute name="selectedRegionCode" type="Integer"/>
+    <aura:attribute name="pageNumber"
+                    type="Integer"
+                    default="1"
+                    description="For pagination, which page of records to display."/>
+    
+    <aura:attribute name="pageSize"
+                    type="Integer"
+                    default="5"
+                    description="For pagination, how many records per page to display."/>
+    
+    <aura:handler name="refreshChildComponent" event="c:refreshChildComponent" action="{!c.onClickGoButton}"/>
+    
+    
+    <div >
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered" style="height:10%; width:100%;">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Region">Region</div>
+                    </th>
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Branch">Branch</div>
+                    </th>
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Month">Month</div>
+                    </th>
+                    <th scope="col" style="text-align:left;">
+                        <div class="slds-truncate" title="Year">Year</div>
+                    </th>                   
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="slds-hint-parent">
+                    <td data-label="Region" scope="row">
+                        <div class="slds-truncate" title="Region" >
+                            <ui:inputSelect aura:id="regionPickListValues" change="{!c.onChangeregionPicklist}"/>  
+                        </div>
+                    </td>
+                    
+                    <td data-label="Branch" scope="row">
+                        <div class="slds-truncate" title="Branch" >
+                            <ui:inputSelect   aura:id="branchPickListValues"/>  
+                        </div>
+                    </td>
+                    <td data-label="Month" scope="row">
+                        <div class="slds-truncate" title="Month" >
+                            <ui:inputSelect   aura:id="monthPickListValues"/>  
+                        </div>
+                    </td>
+                    <td data-label="Year" scope="row">
+                        <div class="slds-truncate" title="Year" >
+                            <ui:inputSelect  aura:id="yearPickListValues" />
+                        </div>
+                    </td>
+                    <td data-label="Go" scope="row">
+                        <lightning:button label="Go" iconName="utility:search" iconPosition="left" onclick="{!c.onClickGoButton}" variant="brand" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>       
+    </div>
+    <br/>
+    <aura:if isTrue="{!v.isShowRecords==false}">
+        <div style="height:410px; background-color:white; margin-top:-10px">
+            <p style="text-align:center; padding-top:15%;">No Records Found</p>
+        </div>
+    </aura:if>
+    <aura:if isTrue="{!v.isShowRecords}">
+        <c:ForecastWeeklyView aura:id='childWeeklyCmp'  
+                              weeklyForecastObj = "{!v.weeklyForecastWrapper}" 
+                              selectedMonthNumber = "{!v.selectedMonthNumber}"
+                              selectedMonthYear = "{!v.selectedMonthYear}"
+                              isDisabled = "{!v.isDisabled}"
+                              message = "{!v.message}"
+                              selectedBranchCode = "{!v.selectedBranchCode}"
+                              selectedBranchName = "{!v.selectedBranchName}"
+                              selectedRegionCode = "{!v.selectedRegionCode}"
+                              pageNumber = "{!v.pageNumber}"
+                              pageSize = "{!v.pageSize}"></c:ForecastWeeklyView>
+    </aura:if>
+    <aura:if isTrue="{!v.isShowSpinner}">
+        <lightning:spinner alternativeText="Loading" size="medium" />
+    </aura:if>
+</aura:component>

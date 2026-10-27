@@ -1,0 +1,155 @@
+<template>
+<lightning-quick-action-panel class="modal-container"  header="Get Approximate Freight" size="large">
+    <div class="slds-p-around_medium" style="position: relative;">
+
+        <!-- Loading Spinner -->
+        <template lwc:if={isLoading}>
+            <lightning-spinner alternative-text="Loading..." size="medium"></lightning-spinner>
+        </template>
+
+        
+
+<div class="table-scroll-container">
+                       <!-- Split Orders Table -->
+        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_fixed-layout">
+            <thead>
+                <tr class="slds-line-height_reset">
+                    <th scope="col" style="width: 8%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Split Order">Split Order</div></th>
+                    <th scope="col" style="width: 12; text-align: center;"><div class="slds-truncate footer-cell-color" title="Order Product">Order Product</div></th>
+                    <th scope="col" style="width: 10%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Order Qty">Order Qty</div></th>
+                                        <th scope="col" style="width: 5%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Ideal Qty">Incoterms</div></th>
+
+                    <th scope="col" style="width: 5%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Ideal Qty">Ideal Qty</div></th>
+                    <th scope="col" style="width: 7%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Weight">Weight</div></th>
+                    <th scope="col" style="width: 8%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Plant Code">Plant Code</div></th>
+                    <th scope="col" style="width: 10%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Transport Mode">Transport Mode</div></th>
+                    <th scope="col" style="width: 10%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Freight Forwarder">Freight Forwarder</div></th>
+                    <th scope="col" style="width: 12%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Box (CM)">Box (CM)</div></th>
+                    <th scope="col" style="width: 13%; text-align: center;"><div class="slds-truncate footer-cell-color" title="Approx. Freight">Approx. Freight</div></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <template for:each={splitOrders} for:item="split">
+                    <template for:each={split.products} for:item="product" for:index="index" >
+                        <tr key={product.id} class="rowBackGround" >
+                            <!-- Split Order Column (rowspan) -->
+                            <template lwc:if={product.isFirstInGroup}>
+                                    <td  rowspan={split.rowCount} class="slds-cell-wrap center-rowspan ">
+                                        <b>{split.splitOrderNumber}</b><br/>
+
+                                       
+                                            
+                                                <lightning-button 
+                                                    label="Get Freight" 
+                                                    onclick={handleGetFreight}
+                                                    data-split-id={split.id}
+                                                    data-product-id={product.id}
+                                                    disabled={split.isGetFreightButtonDisabled}
+                                                    variant="base"
+                                                    class="text-button"
+                                                    >
+                                                </lightning-button>
+
+                                    </td>
+                                </template>
+
+                            <!-- Product Columns -->
+                            <td class="center-rowspan" title={product.orderProductName}>{product.orderProduct}</td>
+                            <td class="center-rowspan">
+                                <lightning-input 
+                                    type="number"
+                                    variant="label-hidden"
+                                    value={product.orderQuantity}
+                                    title={product.orderQuantity}
+                                    placeholder="Enter Qty"
+                                    data-split-id={split.id}
+                                    data-product-id={product.id}
+                                    onchange={handleQuantityChange}
+                                    required
+                                    >
+                                </lightning-input>
+                            </td>
+                                                        <td class="center-rowspan" title={product.incoterm}>{product.incoterm}</td>
+
+                            <td class="center-rowspan" title={product.idealQuantity}>{product.idealQuantity}</td>
+                                                            <td class="center-rowspan">{product.netWeight}</td>
+
+
+                            <!-- Split-level columns (rowspan, first product only) -->
+                        <template lwc:if={product.isFirstInGroup}>
+                                        <template lwc:if={split.isSplitOrderMessageVisible}>
+                                                <td rowspan={split.rowCount} colspan="5" class="center-rowspan">{split.SplitOrderMessage}</td>
+                                        </template>
+
+                                        <!-- Else → clickable link -->
+                                        <template lwc:else>
+                                                <td rowspan={split.rowCount} class="center-rowspan">{split.plantCode}</td>
+                                                <td rowspan={split.rowCount} class="center-rowspan">
+                                                    <lightning-combobox
+                                                        variant="label-hidden"
+                                                        title={split.transactionMode}
+                                                        value={split.transactionMode}
+                                                        placeholder="Select..."
+                                                        options={split.availableTransports}
+                                                        data-split-id={split.id}
+                                                        onchange={handleTransportModeChange}
+                                                        disabled={split.transactionModeDisable}
+                                                        required>
+                                                    </lightning-combobox>
+                                                </td>
+                                                <td rowspan={split.rowCount} class="center-rowspan">{split.freightForwarderName}</td>
+                                                <td rowspan={split.rowCount} class="center-rowspan">
+                                                    <pre>{split.boxDimensions}</pre>
+                                                </td>
+
+                                                <!-- <td rowspan={split.rowCount} class="center-rowspan">{split.netWeight}</td> -->
+                                                <td rowspan={split.rowCount} class="center-rowspan">{split.approxFreight}</td>
+                                            
+                                                
+
+                                        </template>                    
+                                </template>
+                        </tr>
+
+                        
+                    </template>
+                </template>
+  
+                <tr  class="slds-text-heading_small ">
+                    <td class="footer-cell-color" colspan="2" ><b>Total</b></td>
+                    <td  class="footer-cell-color"><b>{totalOrderQuantity}</b></td>
+                    <td class="footer-cell-color"><b>{totalIdealQuantity}</b></td>
+                    <td class="footer-cell-color" colspan="4"></td>
+                    <td class="footer-cell-color"><b>{totalNetWeight}</b></td>
+                    <td class="footer-cell-color"></td>
+                </tr>                        
+            
+                
+            </tbody>
+
+            <!-- Totals Footer -->
+          
+        </table>
+         </div>
+
+        
+        <!-- <template lwc:else>  
+            <div style="text-align:center; background-color:#d8dde6; padding:1rem; border-radius:0.5rem; font-size:1rem; font-weight:500; color:#444;">
+                Freight is only generated for orders with products having Incoterms <b>Ex-works</b> or <b>FOB</b>.
+            </div>
+        </template>
+        -->
+        
+
+        
+    </div>
+
+    <!-- Footer Buttons -->
+<div class="slds-modal__footer" style="display: flex; justify-content: center;">
+        <lightning-button label="Cancel" onclick={handleCancel} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Save OP Quantity" variant="brand" onclick={handleSaveQuantity} disabled={isSaveDisabled} class="slds-m-left_x-small"></lightning-button>
+        <lightning-button label="Approve Freight" variant="brand" onclick={handleApproveFreight} disabled={isApproveDisabled} class="slds-m-left_x-small"></lightning-button>
+    </div>
+</lightning-quick-action-panel> 
+</template>

@@ -1,0 +1,372 @@
+<apex:page controller="EventApprovalController" showHeader="false"
+           sidebar="false"
+           standardStylesheets="false">
+    
+    <!-- YOUR ORIGINAL CSS (NOT CHANGED) -->
+    <style>
+        body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: #dcecfb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Segoe UI", Arial, sans-serif;
+        padding: 10px;
+        box-sizing: border-box;
+        }
+        
+        .mainForm {
+        width: 100%;
+        max-width: 950px;
+        padding: 15px;
+        box-sizing: border-box;
+        }
+        
+        .card {
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        padding: 15px;
+        
+        /* ✅ RESPONSIVE FIX */
+        width: 100%;
+        max-width: 950px;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        }
+        
+        .required-star {
+        color: red;
+        font-weight: bold;
+        margin-left: 2px;
+        }
+        
+        table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: fixed; /* ✅ Prevent overflow */
+        }
+        
+        table td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        vertical-align: top;
+        white-space: normal;
+        word-break: break-word;
+        }
+        
+        .section-title {
+        background: #f1f5f9;
+        font-weight: bold;
+        text-align: center;
+        font-size: 16px;
+        }
+        
+        .pageBlockContainer {
+        margin-top: 25px;
+        padding: 15px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background: #fafafa;
+        box-sizing: border-box;
+        }
+        
+        .pageBlockTitle {
+        font-weight: bold;
+        margin-bottom: 10px;
+        text-align: center;
+        }
+        
+        .text-area {
+        width: 100%;
+        padding: 8px;
+        height: 60px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-top: 8px;
+        box-sizing: border-box;
+        resize: none;
+        }
+        
+        .error-message {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+        display: none;
+        }
+        
+        .button-section {
+        margin-top: 15px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        }
+        
+        .approve-button, 
+        .reject-button {
+        padding: 10px 25px;
+        border-radius: 6px;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        }
+        
+        .approve-button {
+        background-color: #2e844a;
+        }
+        
+        .reject-button {
+        background-color: #c23934;
+        }
+        
+        /* ✅ Center button */
+        .button-center {
+        margin-top: 25px;
+        display: flex;
+        justify-content: center;
+        }
+        
+        /* ✅ Salesforce-style Blue Button */
+        .btn {
+        background-color: #0176d3;
+        color: #ffffff;
+        padding: 12px 32px;
+        border-radius: 6px;
+        border: none;
+        font-size: 15px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+        background-color: #014486;
+        }
+        
+        /* ✅ FILE INPUT RESPONSIVE */
+        input[type="file"] {
+        width: 100%;
+        box-sizing: border-box;
+        }
+        
+        /* ✅ MOBILE RESPONSIVE FIX */
+        @media (max-width: 600px) {
+        
+        body {
+        align-items: flex-start;
+        }
+        
+        .card {
+        padding: 12px;
+        }
+        
+        table td {
+        padding: 6px;
+        font-size: 13px;
+        }
+        
+        .btn {
+        width: 100%;
+        padding: 12px;
+        }
+        
+        .approve-button,
+        .reject-button {
+        margin-bottom: 10px;
+        }
+        
+        .text-area {
+        height: 70px;
+        }
+        }
+    </style>
+    <!-- JS SAME - NOT CHANGED -->
+    <script>
+    function validateInput() {
+        var ManagerComment = document.getElementById("ManagerComments").value;
+        var errorMessage = document.getElementById("errorMessage");
+        const regex = /^(?=.*[A-Za-z0-9]).*$/;      
+        if (!regex.test(ManagerComment.trim())) {
+            errorMessage.style.display = 'block';
+            return false;
+        } else {
+            errorMessage.style.display = 'none';
+            return true;
+        }
+    }
+    
+    function handleSubmit(action) {
+        if (!validateInput()) return;
+        
+        var approveBtn = document.getElementById("Approve");
+        var rejectBtn = document.getElementById("Reject");
+        
+        if (action === 'Approve') {
+            approveBtn.disabled = true;
+            approveBtn.style.backgroundColor = 'gray';
+        }
+        if (action === 'Reject') {
+            rejectBtn.disabled = true;
+            rejectBtn.style.backgroundColor = 'gray';
+        }
+        
+        var roleData = document.getElementById("Managerkey").value;
+        var ManagerComment = document.getElementById("ManagerComments").value;
+        var recordId = document.getElementById("recordId").value;
+        
+        EventApprovalController.ManagerApprovalMethod(action, ManagerComment, recordId, roleData, function(result, event) {
+            if (event.status) {
+                if (result.status == 'error') {
+                    alert(result.message);
+                    approveBtn.disabled = false;
+                    rejectBtn.disabled = false;
+                    rejectBtn.style.backgroundColor = '#eb3434';
+                    approveBtn.style.backgroundColor = '#26c326';
+                } else if(result.status == 'success') {
+                    window.location.href = "{!thanksurl}";
+                }
+            } else {
+                alert('Error: ' + event.message);
+            }
+        });
+    }
+    </script>
+    
+    
+    <div class="mainForm">
+        <apex:form enctype="multipart/form-data">
+            
+            <div class="card">
+                <table>
+                    
+                    
+                    
+                    <tbody>
+                        
+                        <tr>
+                            <td colspan="2" class="section-title"><b>Event Details</b></td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Marketing Person Name</td>
+                            
+                            <td colspan="1">{!eventData.Owner.FirstName} {!eventData.Owner.LastName}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Activity Date</td>
+                            
+                            <td colspan="1">{!activitydate}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>SAP Code (Lead / Account)</td>
+                            
+                            <td colspan="1">{!sapCode} - {!recordname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>CE-CIS / Phakic Rating</td>
+                            
+                            <td colspan="1">{!ceCisRating} / {!phakicRating}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Country</td>
+                            
+                            <td colspan="1">{!countryname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>State</td>
+                            
+                            <td colspan="1">{!statename}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>City</td>
+                            
+                            <td colspan="1">{!Cityname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Street</td>
+                            
+                            <td colspan="1">{!streetname}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Subject</td>
+                            
+                            <td colspan="1">{!subject}</td>
+                        </tr>
+                        <tr>
+                            <td>Activity Name</td>
+                            
+                            <td colspan="1">{!calltype}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Sub Header Name</td>
+                            
+                            <td colspan="1">{!subcalltype}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Description</td>
+                            
+                            <td colspan="1">{!Description}</td>
+                        </tr>
+                        <tr>
+                            <td>Approval / rejection / feedback comment</td>
+                            
+                            <td colspan="1">{!customercommnet}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Approving Manager’s Name</td>
+                            
+                            <td colspan="1">{!approverfirstname} {!approverLastname}</td>
+                        </tr> 
+                       
+                            
+                            <tr>
+                                <td colspan="2" class="section-title"><b>Documents Uploaded</b></td>
+                            </tr>
+                            <tr>
+                                <td>{!name}</td>
+                                
+                                <td colspan="1"><a href="{!publicurl}" target="_blank">View</a></td>
+                            </tr>
+                        
+                    </tbody>
+                </table>
+                
+            </div>
+            <center>
+                <div class="pageBlockContainer">
+                    
+                    <div class="pageBlockTitle">Manager Approval Comments</div>
+                    
+                    
+                    <input type="hidden" value="Manager" id="Managerkey"/>
+                    <input id="ManagerComments" class="text-area" placeholder="Please enter comment." oninput="validateInput()"/>
+                    <input type="hidden" value="{!recordId}" id="recordId"/>
+                    <div id="errorMessage" class="error-message">Please enter comment.</div>
+                    
+                    
+                    <div class="button-section">
+                        <button type="button" onclick="handleSubmit('Approve')" class="approve-button" id="Approve">Approve</button>
+                        &nbsp;&nbsp;&nbsp;
+                        <button type="button" onclick="handleSubmit('Reject')" class="reject-button" id="Reject">Reject</button>
+                    </div>
+                    
+                </div>
+            </center>
+            
+        </apex:form>
+    </div>
+    
+</apex:page>

@@ -1,0 +1,226 @@
+<template>
+    <!-- Header with back button -->
+    <div class="page-header">
+        <div class="slds-grid slds-wrap slds-grid_align-center">
+            <div class="slds-col slds-size_2-of-12" style="text-align: left;">
+                <div class="back-button-wrapper" onclick={handleBackClick} role="button" tabindex="0" aria-label="Back to Calendar">
+                    <lightning-icon
+                        icon-name="utility:back"
+                        alternative-text="Back"
+                        title="Back to Calendar"
+                        size="small"
+                        class="back-button"
+                        variant="inverse">
+                    </lightning-icon>
+                </div>
+            </div>
+            <div class="slds-col slds-size_8-of-12">
+                <div class="header-title">Visit Calendar</div>
+            </div>
+            <div class="slds-col slds-size_2-of-12"></div>
+        </div>
+    </div>
+
+    <div class="lookup-container">
+        <!-- Filters Section -->
+        <div class="filters-section slds-m-around_medium">
+
+            <!-- Object Type Radio Group -->
+            <lightning-radio-group
+                name="objectTypeFilter"
+                label="Filter By"
+                options={objectTypeOptions}
+                value={objectType}
+                onchange={handleObjectTypeChange}
+                type="button"
+                class="slds-m-bottom_small">
+            </lightning-radio-group>
+
+            <!-- Region/Zone Filters (conditional) -->
+            <template if:true={showRegionZoneFilters}>
+                <div class="slds-grid slds-gutters slds-wrap">
+                    <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+                        <lightning-combobox
+                            name="region"
+                            label="Region"
+                            value={regionValue}
+                            placeholder="Select Region"
+                            options={regionOptions}
+                            onchange={handleRegionChange}>
+                        </lightning-combobox>
+                    </div>
+
+                    <template if:true={showZoneDropdown}>
+                        <div class="slds-col slds-size_12-of-12 slds-medium-size_6-of-12">
+                            <lightning-combobox
+                                name="zone"
+                                label="Zone"
+                                value={zoneValue}
+                                placeholder="Select Zone"
+                                options={zoneOptions}
+                                onchange={handleZoneChange}
+                                required>
+                            </lightning-combobox>
+                        </div>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Search Input -->
+            <lightning-input
+                type="search"
+                label={searchLabel}
+                placeholder={searchPlaceholder}
+                field-level-help={searchHelpText}
+                value={searchInputValue}
+                onchange={handleSearchChange}
+                class="slds-m-top_small">
+            </lightning-input>
+        </div>
+
+        <!-- Loading State -->
+        <template if:true={isLoading}>
+            <div class="loading-container">
+                <lightning-spinner
+                    alternative-text="Loading accounts..."
+                    size="medium">
+                </lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error State -->
+        <template if:true={hasError}>
+            <div class="error-container">
+                <lightning-icon
+                    icon-name="utility:error"
+                    size="medium"
+                    variant="error">
+                </lightning-icon>
+                <p class="slds-text-heading_small">
+                    Error Loading Accounts
+                </p>
+                <p class="slds-text-body_small slds-text-color_weak">
+                    {errorMessage}
+                </p>
+                <lightning-button
+                    label="Retry"
+                    variant="brand"
+                    onclick={handleRetry}
+                    class="slds-m-top_small">
+                </lightning-button>
+            </div>
+        </template>
+
+        <!-- Content (when not loading/error) -->
+        <template if:false={isLoading}>
+            <template if:false={hasError}>
+
+                <!-- Static Cards -->
+                <div class="static-cards">
+                    <div class="static-cards-centered">
+                        <div
+                            class="card-container card-static card-pill"
+                            role="button"
+                            tabindex="0"
+                            data-card-type="Leave"
+                            aria-label={labels.Leave__c}
+                            onclick={handleStaticCardClick}
+                            onkeydown={handleStaticCardKeydown}>
+                            <div class="card-content">
+                                <p class="card-title">{labels.Leave__c}</p>
+                            </div>
+                        </div>
+
+                        <div
+                            class="card-container card-static card-pill"
+                            role="button"
+                            tabindex="0"
+                            data-card-type="Holiday"
+                            aria-label={labels.Holiday__c}
+                            onclick={handleStaticCardClick}
+                            onkeydown={handleStaticCardKeydown}>
+                            <div class="card-content">
+                                <p class="card-title">{labels.Holiday__c}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Legend Section (Only shown when "All" filter is selected) -->
+                <template if:true={showLegend}>
+                    <div class="legend-container">
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <lightning-icon
+                                    icon-name="standard:lead"
+                                    alternative-text="Prospect"
+                                    size="small">
+                                </lightning-icon>
+                                <span class="legend-label">Prospect</span>
+                            </div>
+                            <div class="legend-item">
+                                <lightning-icon
+                                    icon-name="standard:opportunity"
+                                    alternative-text="Opportunity"
+                                    size="small">
+                                </lightning-icon>
+                                <span class="legend-label">Opportunity</span>
+                            </div>
+                            <div class="legend-item">
+                                <lightning-icon
+                                    icon-name="standard:account"
+                                    alternative-text="Account"
+                                    size="small">
+                                </lightning-icon>
+                                <span class="legend-label">Account</span>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Customer Cards -->
+                <template if:true={hasAccounts}>
+                    <div class="customer-cards">
+                        <lightning-layout multiple-rows="true">
+                            <template for:each={accounts} for:item="account">
+                                <lightning-layout-item
+                                    key={account.Id}
+                                    size="12"
+                                    small-device-size="6"
+                                    medium-device-size="4"
+                                    large-device-size="3"
+                                    padding="around-small">
+                                    <c-event-planner-customer-card
+                                        account={account}
+                                        labels={labels}
+                                        region={regionValue}>
+                                    </c-event-planner-customer-card>
+                                </lightning-layout-item>
+                            </template>
+                        </lightning-layout>
+                    </div>
+                </template>
+
+                <!-- No Results State -->
+                <template if:true={noResults}>
+                    <div class="no-results">
+                        <lightning-icon
+                            icon-name="utility:search"
+                            size="large"
+                            class="no-results-icon">
+                        </lightning-icon>
+                        <p class="slds-text-heading_small">
+                            No records found
+                        </p>
+                        <template if:true={searchKey}>
+                            <p class="slds-text-body_small slds-text-color_weak">
+                                for "{searchKey}"
+                            </p>
+                        </template>
+                    </div>
+                </template>
+
+            </template>
+        </template>
+    </div>
+</template>

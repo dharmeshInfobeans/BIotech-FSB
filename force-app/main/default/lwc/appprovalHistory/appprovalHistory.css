@@ -1,0 +1,137 @@
+.approval-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+.timeline-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.timeline-row {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.icon-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.connector-line {
+    width: 2px;
+    min-height: 24px;
+    flex: 1;
+    background-color: #dddbda;
+    margin-top: 4px;
+}
+
+.timeline-row:last-child .connector-line {
+    display: none;
+}
+
+.text-column {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1.25rem;
+}
+
+.step-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #080707;
+}
+
+.step-status {
+    font-size: 0.8rem;
+    color: #706e6b;
+    margin-top: 2px;
+}
+
+.step-icon {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    flex-shrink: 0;
+}
+
+.no-action {
+    background-color: #a3a3a3;
+}
+
+.approved {
+    background-color: #2e844a;
+}
+
+.rejected {
+    background-color: #ba0517;
+}
+
+.pending {
+    background-color: #c9c7c5;
+}
+
+.legend-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 0.25rem;
+    min-width: 110px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/*Add the class name below to the lightning-icon element.*/
+.custom-icon-ban { 
+ --slds-c-icon-color-foreground-default: #a3a3a3;
+transform: scale(1.3);
+}
+
+.no-action-dot {
+    background-color: #a3a3a3;
+}
+
+.approved-dot {
+    background-color: rgb(6, 165, 154);
+}
+
+.rejected-dot {
+    background-color: rgb(255, 83, 138);
+}
+
+.pending-dot {
+    background-color: rgb(27, 150, 255);
+}
+
+.legend-text {
+    font-size: 0.8rem;
+    color: #3e3e3c;
+}
+
+.step-approved-by {
+    font-size: 0.75rem;
+    color: #2e844a;
+    font-weight: 500;
+    margin-top: 2px;
+}

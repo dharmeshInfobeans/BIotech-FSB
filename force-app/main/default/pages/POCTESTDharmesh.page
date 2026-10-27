@@ -1,0 +1,121 @@
+<apex:page applyHtmlTag="false"
+    showHeader="false"
+    renderAs="pdf"
+    standardController="Master_Agreement__c"
+    extensions="POCTESTDharmesh"
+    >
+<html lang="en">
+<head>
+
+    <title>Ordered List Numbering</title>
+    <style>
+        /* Scoped styling within .nested-list-container */
+        .nested-list-container {
+            counter-reset: main-counter;
+        }
+
+        .nested-list-container ol {
+            counter-reset: sub-counter;
+            margin-left: 20px; /* Consistent indentation for all levels */
+            padding-left: 0;
+        }
+
+        .nested-list-container ol > li {
+            counter-increment: main-counter;
+            list-style-type: none;
+            margin-top: 12px; /* Adjusted to match spacing between divs */
+            line-height: 1.5;
+        }
+
+        .nested-list-container ol > li::before {
+            content: counter(main-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Level 2 */
+        .nested-list-container ol ol {
+            counter-reset: sub-counter;
+        }
+
+        .nested-list-container ol ol > li {
+            counter-increment: sub-counter;
+            list-style-type: none;
+        }
+
+        .nested-list-container ol ol > li::before {
+            content: counter(main-counter) "." counter(sub-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Level 3 */
+        .nested-list-container ol ol ol {
+            counter-reset: sub-sub-counter;
+        }
+
+        .nested-list-container ol ol ol > li {
+            counter-increment: sub-sub-counter;
+            list-style-type: none;
+        }
+
+        .nested-list-container ol ol ol > li::before {
+            content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Level 4 */
+        .nested-list-container ol ol ol ol {
+            counter-reset: sub-sub-sub-counter;
+        }
+
+        .nested-list-container ol ol ol ol > li {
+            counter-increment: sub-sub-sub-counter;
+            list-style-type: none;
+        }
+
+        .nested-list-container ol ol ol ol > li::before {
+            content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) "." counter(sub-sub-sub-counter) ". ";
+            font-weight: bold;
+        }
+
+        /* Level 5 */
+        .nested-list-container ol ol ol ol ol {
+            counter-reset: sub-sub-sub-sub-counter;
+        }
+
+        .nested-list-container ol ol ol ol ol > li {
+            counter-increment: sub-sub-sub-sub-counter;
+            list-style-type: none;
+        }
+
+        .nested-list-container ol ol ol ol ol > li::before {
+            content: counter(main-counter) "." counter(sub-counter) "." counter(sub-sub-counter) "." counter(sub-sub-sub-counter) "." counter(sub-sub-sub-sub-counter) ". ";
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="rich-text-content nested-list-container" style="counter-reset: main-counter 7;">
+    <ol>
+        <li>dfsfxdvfxdc</li>
+        <li>Second item</li>
+        <ol>
+            <li>Nested item 1</li>
+            <li>Nested item 2</li>
+        </ol>
+    </ol>
+</div>
+
+<div class="rich-text-content nested-list-container" style="counter-reset: main-counter 8; counter-reset: sub-counter 7;">
+    <ol>
+        <li>Remark 1</li>
+        <ol>
+            <li>Nested item 8.7.1</li>
+            <li>Nested item 8.7.2</li>
+        </ol>
+    </ol>
+</div>
+
+</body>
+</html>
+</apex:page>

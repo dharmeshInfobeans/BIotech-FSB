@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- This field represents the delivery location/customer (Ship-To Party). It is available at the Sample Request line level. --></help>
+    <label>Código de envío</label>
+    <name>Ship_To_Code__c</name>
+</CustomFieldTranslation>

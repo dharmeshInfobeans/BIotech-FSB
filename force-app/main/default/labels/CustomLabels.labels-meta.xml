@@ -1,0 +1,4411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>A</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>A</shortDescription>
+        <value>A</value>
+    </labels>
+    <labels>
+        <fullName>ARBITRATION1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>ARBITRATION1</shortDescription>
+        <value>Any disputes related with the execution of this contract shall be&lt;br/&gt;
+        settled friendly through negotiation. In case no settlement can be&lt;br/&gt;
+      reached. the case may then be submitted for arbitration to the 
+         arbitration&lt;br/&gt;
+         committee in India. The arbitration fees shall be borne by the&lt;br/&gt;
+         losing party, unless specified otherwise by the decision of&lt;br/&gt;
+        the arbitration committee.</value>
+    </labels>
+    <labels>
+        <fullName>Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account</shortDescription>
+        <value>Account</value>
+    </labels>
+    <labels>
+        <fullName>Account_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Code</shortDescription>
+        <value>Account Code</value>
+    </labels>
+    <labels>
+        <fullName>Account_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Name</shortDescription>
+        <value>Account Name</value>
+    </labels>
+    <labels>
+        <fullName>Account_and_Contact_are_not_matched</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;Account and Contact are not matched.&quot;</shortDescription>
+        <value>&quot;Account and Contact are not matched.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Account_and_product_with_contact_has_been_planned_already</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account and product with contact has been planned already.</shortDescription>
+        <value>Account and product with contact has been planned already.</value>
+    </labels>
+    <labels>
+        <fullName>Account_name_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account name is required.</shortDescription>
+        <value>Account name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Accounts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accounts</shortDescription>
+        <value>Accounts</value>
+    </labels>
+    <labels>
+        <fullName>Actual_Order_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Actual Order Quantity</shortDescription>
+        <value>Actual Order Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Actual_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Actual Quantity</shortDescription>
+        <value>Actual Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Actual_sales_value_can_not_be_blank_for_product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Actual sales value can not be blank for product</shortDescription>
+        <value>Actual sales value can not be blank for product</value>
+    </labels>
+    <labels>
+        <fullName>Add</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add</shortDescription>
+        <value>Add</value>
+    </labels>
+    <labels>
+        <fullName>Add_Order_Products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Order Products</shortDescription>
+        <value>Add Order Products</value>
+    </labels>
+    <labels>
+        <fullName>Add_Products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Add Products</shortDescription>
+        <value>Add Products</value>
+    </labels>
+    <labels>
+        <fullName>Address_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address 1</shortDescription>
+        <value>Address 1</value>
+    </labels>
+    <labels>
+        <fullName>Address_2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Address 2</shortDescription>
+        <value>Address 2</value>
+    </labels>
+    <labels>
+        <fullName>Admin_Customer_Creation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Admin Customer Creation</shortDescription>
+        <value>crmhelpdesk@biotechhealthcare.com,sfadoption@biotechhealthcare.com,crmhelpdesk@biotechhealthcare.com,varish@creatiquetech.com, dhrumil@creatiquetech.com</value>
+    </labels>
+    <labels>
+        <fullName>Age_ratio</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Age ratio</shortDescription>
+        <value>Age ratio</value>
+    </labels>
+    <labels>
+        <fullName>Agreement</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement</shortDescription>
+        <value>Agreement</value>
+    </labels>
+    <labels>
+        <fullName>Agreement_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Agreement Value</shortDescription>
+        <value>Agreement Value</value>
+    </labels>
+    <labels>
+        <fullName>Already_there_is_one_order_with_draft_status_Do_you_want_to_continue_with_same</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Already there is one order with draft status. Do you want to continue with same?</shortDescription>
+        <value>Already there is one order with draft status. Do you want to continue with same?</value>
+    </labels>
+    <labels>
+        <fullName>Annual_Procedures</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual Procedures</shortDescription>
+        <value>Annual Procedures</value>
+    </labels>
+    <labels>
+        <fullName>Annual_Sales_Qty</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual Sales in Qty (approx)</shortDescription>
+        <value>Annual Sales in Qty (approx)</value>
+    </labels>
+    <labels>
+        <fullName>Annual_Turn_over_in_INR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual Turn over (in INR)</shortDescription>
+        <value>Annual Turn over (in INR)</value>
+    </labels>
+    <labels>
+        <fullName>Annual_Turn_over_in_USD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual Turn over (in USD)</shortDescription>
+        <value>Annual Turn over (in USD)</value>
+    </labels>
+    <labels>
+        <fullName>Annual_projection_value_in_USD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Annual projection value (in USD)</shortDescription>
+        <value>Annual projection value (in USD)</value>
+    </labels>
+    <labels>
+        <fullName>Any_other_Charges_Cost_if_any</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Any other Charges/Cost (if any)</shortDescription>
+        <value>Any other Charges/Cost (if any)</value>
+    </labels>
+    <labels>
+        <fullName>Approve</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approve</shortDescription>
+        <value>Approve</value>
+    </labels>
+    <labels>
+        <fullName>Approve_To_Inward_Stock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Approve To Inward Stock</shortDescription>
+        <value>Approve To Inward Stock</value>
+    </labels>
+    <labels>
+        <fullName>April</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>April</shortDescription>
+        <value>April</value>
+    </labels>
+    <labels>
+        <fullName>Are_you_already_handling_any_Ophthalmic_related_products_and_are_in_contact_with</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Are you already handling any Ophthalmic related products and are in contact with</shortDescription>
+        <value>Are you already handling any Ophthalmic related products and are in contact with Ophthalmologists</value>
+    </labels>
+    <labels>
+        <fullName>Areas_covered</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Areas covered</shortDescription>
+        <value>Areas covered</value>
+    </labels>
+    <labels>
+        <fullName>Arrow_left</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Arrow left</shortDescription>
+        <value>Arrow left</value>
+    </labels>
+    <labels>
+        <fullName>Arrow_right</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Arrow right</shortDescription>
+        <value>Arrow right</value>
+    </labels>
+    <labels>
+        <fullName>Atleast_one_sub_product_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Atleast one sub-product is required</shortDescription>
+        <value>Atleast one sub-product is required</value>
+    </labels>
+    <labels>
+        <fullName>August</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>August</shortDescription>
+        <value>August</value>
+    </labels>
+    <labels>
+        <fullName>Average_Age_of_Population</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Average Age of Population</shortDescription>
+        <value>Average Age of Population</value>
+    </labels>
+    <labels>
+        <fullName>BD_Plan_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BD Plan Status</shortDescription>
+        <value>BD Plan Status</value>
+    </labels>
+    <labels>
+        <fullName>BD_Plan_Submitter_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BD Plan Submitter Name</shortDescription>
+        <value>BD Plan Submitter Name</value>
+    </labels>
+    <labels>
+        <fullName>BD_Tracker_Pending_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BD Tracker Pending Approval</shortDescription>
+        <value>BD Tracker Pending Approval</value>
+    </labels>
+    <labels>
+        <fullName>BD_Tracker_has_been_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BD Tracker has been Submitted</shortDescription>
+        <value>BD Tracker has been Submitted</value>
+    </labels>
+    <labels>
+        <fullName>BD_Tracker_has_been_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;BD Tracker has been saved.&quot;</shortDescription>
+        <value>&quot;BD Tracker has been saved.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>BD_plan_has_been_deleted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BD plan has been deleted.</shortDescription>
+        <value>BD plan has been deleted.</value>
+    </labels>
+    <labels>
+        <fullName>BREACH_OF_CONTRACT0</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>BREACH OF CONTRACT0</shortDescription>
+        <value>If the seller cannot deliver the products, the buyer has the right to&lt;br/&gt;
+terminate the contract.
+&lt;br/&gt;&lt;br/&gt;
+-If the seller delays the delivery of product more than 91 Days, the buyer &lt;br/&gt;
+has the right to require the seller to pay a penalty on the basis of 1.0%  &lt;br/&gt;
+of the value of overdue products per week. &lt;br/&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Back</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Back</shortDescription>
+        <value>Back</value>
+    </labels>
+    <labels>
+        <fullName>Biotech_Product_Range</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Biotech Product Range</shortDescription>
+        <value>Biotech Product Range</value>
+    </labels>
+    <labels>
+        <fullName>Branch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Branch</shortDescription>
+        <value>Branch</value>
+    </labels>
+    <labels>
+        <fullName>Branch_Customer_Creation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Branch Customer Creation</shortDescription>
+        <value>Gyadeen@plus91labs.com,crmhelpdesk@biotechhealthcare.com</value>
+    </labels>
+    <labels>
+        <fullName>Brand_Name</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Brand Name</shortDescription>
+        <value>Brand Name</value>
+    </labels>
+    <labels>
+        <fullName>Business_Development_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Business Development Planning</shortDescription>
+        <value>Business Development Planning</value>
+    </labels>
+    <labels>
+        <fullName>Business_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Business Profile</shortDescription>
+        <value>Business Profile</value>
+    </labels>
+    <labels>
+        <fullName>Button_will_be_available_till</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button will be available till</shortDescription>
+        <value>Button will be available till</value>
+    </labels>
+    <labels>
+        <fullName>Button_will_be_enabled_between</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button will be enabled between</shortDescription>
+        <value>Button will be enabled between</value>
+    </labels>
+    <labels>
+        <fullName>Button_will_be_enabled_when_selected_month_is_current_month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Button will be enabled when selected month is current month.</shortDescription>
+        <value>Button will be enabled when selected month is current month.</value>
+    </labels>
+    <labels>
+        <fullName>Buyer_Account_Not_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Buyer Account Not Found</shortDescription>
+        <value>Please select buyer account before adding products to the order.</value>
+    </labels>
+    <labels>
+        <fullName>By_Hospital_Supplies</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>By Hospital Supplies</shortDescription>
+        <value>By Hospital Supplies</value>
+    </labels>
+    <labels>
+        <fullName>By_Tender_Business</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>By Tender Business</shortDescription>
+        <value>By Tender Business</value>
+    </labels>
+    <labels>
+        <fullName>CE</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE</shortDescription>
+        <value>CE</value>
+    </labels>
+    <labels>
+        <fullName>CEO_Employee_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEO Employee Code</shortDescription>
+        <value>D00001</value>
+    </labels>
+    <labels>
+        <fullName>CE_No_proc_cmp_glaucoma</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE No proc cmp glaucoma</shortDescription>
+        <value>Prosedürlerin sayısı Glokom</value>
+    </labels>
+    <labels>
+        <fullName>CE_Product_Field</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE How do u Garner the products</shortDescription>
+        <value>How do you think you can garner extra volumes in business for our products(what is the Unique Selling Proposition) as you would have already studied the market</value>
+    </labels>
+    <labels>
+        <fullName>CE_Rating</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE Rating</shortDescription>
+        <value>CE Rating</value>
+    </labels>
+    <labels>
+        <fullName>CE_Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE Success</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_acc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp acc</shortDescription>
+        <value>hesap</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_address1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp address1</shortDescription>
+        <value>Adres 1</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_address2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp address2</shortDescription>
+        <value>Adres 2</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_annual_proc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp annual proc</shortDescription>
+        <value>Yıllık İşlemler</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_annual_turnover</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp annual turnover</shortDescription>
+        <value>Yıllık ciro</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_area_covered</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp area covered</shortDescription>
+        <value>Kapladığı alan</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_buz_profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp buz profile</shortDescription>
+        <value>İş Profili</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp country</shortDescription>
+        <value>Ülke</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_cust_eval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp cust eval</shortDescription>
+        <value>Son Müşteri Değerlendirmesi</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_cust_rating</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp cust rating</shortDescription>
+        <value>Müşteri Değerlendirme</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_ditr_details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp ditr details</shortDescription>
+        <value>Güncel Distribütör detayları- Şirketlerin adı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_full_name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp full name</shortDescription>
+        <value>Şirketin Tam Adı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_gen_info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp gen info</shortDescription>
+        <value>Genel bilgi</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_hospital_supply</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp hosital supply</shortDescription>
+        <value>Hastane tedarikçileri ile</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_manufacturer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CEcmp  manufacturer</shortDescription>
+        <value>Pazardaki rakip firmaların adları( diğer üreticiler)</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_name_of_owner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp name of owner</shortDescription>
+        <value>Şirket Sahibinin Adı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_new_ce</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp new ce</shortDescription>
+        <value>Yeni Müşteri Değerlendirmesi</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_counselors</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no counselors</shortDescription>
+        <value>Danışman sayısı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_distribution</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no distribution enters</shortDescription>
+        <value>Distirbütör / Şube sayısı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_doctors</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no doctors</shortDescription>
+        <value>Doktor sayısı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_employees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no employees</shortDescription>
+        <value>Çalışan sayısı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_of_prod</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no of prod</shortDescription>
+        <value>Şirket adı ile satılan ürün miktarı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_proc_cataract</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no proc cataract</shortDescription>
+        <value>Prosedürlerin sayısı Katarakt</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_no_staff</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp no staff</shortDescription>
+        <value>Satış personel sayısı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_other_info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp other info</shortDescription>
+        <value>Diğer bilgiler</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_others</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp others</shortDescription>
+        <value>Diğerleri</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_pediatric</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp pediatric</shortDescription>
+        <value>Prosedürlerin sayısı Pediatri</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_prod_promotion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp prod_promotion</shortDescription>
+        <value>Ürünlerimizi nasıl tanıtmayı planlıyorsunuz</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_projection</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp projection</shortDescription>
+        <value>Yıllık  satış miktarı ne kadar</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_refractive</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp refractive</shortDescription>
+        <value>Prosedürlerin sayısı Refraktif hastalığı</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_retail_shops</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp retail shops</shortDescription>
+        <value>Kendi perakende mağazaları ile</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_retina</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp retina</shortDescription>
+        <value>Prosedürlerin sayısı Retina</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_state</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp state</shortDescription>
+        <value>Şehir</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_tender</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp tender</shortDescription>
+        <value>İhale  ile</value>
+    </labels>
+    <labels>
+        <fullName>CE_cmp_yoe</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE cmp yoe</shortDescription>
+        <value>Kuruluş Tarihi</value>
+    </labels>
+    <labels>
+        <fullName>CE_comp_status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE comp status</shortDescription>
+        <value>durum</value>
+    </labels>
+    <labels>
+        <fullName>CE_comp_year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE comp year</shortDescription>
+        <value>Yıl</value>
+    </labels>
+    <labels>
+        <fullName>CE_help_Record</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE help Record</shortDescription>
+        <value>Record Saved Successfully</value>
+    </labels>
+    <labels>
+        <fullName>CE_help_record_saved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CE help record saved</shortDescription>
+        <value>Kayıt başarıyla tamamlandı</value>
+    </labels>
+    <labels>
+        <fullName>CE_helper_success</fullName>
+        <language>tr</language>
+        <protected>false</protected>
+        <shortDescription>CE helper success</shortDescription>
+        <value>başarı</value>
+    </labels>
+    <labels>
+        <fullName>CIS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS</shortDescription>
+        <value>CIS</value>
+    </labels>
+    <labels>
+        <fullName>CISLIst_cmp</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISLIst cmp company</shortDescription>
+        <value>şirket</value>
+    </labels>
+    <labels>
+        <fullName>CISList_cmp_avg_price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISList cmp avg price</shortDescription>
+        <value>Ortalama Alış Fiyatı</value>
+    </labels>
+    <labels>
+        <fullName>CISList_cmp_cat</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISList cmp cat</shortDescription>
+        <value>Kategoriler</value>
+    </labels>
+    <labels>
+        <fullName>CISList_cmp_surgery</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISList cmp surgery</shortDescription>
+        <value>Ameliyat Sayısı</value>
+    </labels>
+    <labels>
+        <fullName>CISList_cmp_value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISList cmp value</shortDescription>
+        <value>değer</value>
+    </labels>
+    <labels>
+        <fullName>CISList_comp_add_row</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISList comp add row</shortDescription>
+        <value>Satır ekle</value>
+    </labels>
+    <labels>
+        <fullName>CISProcedure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CISProcedure</shortDescription>
+        <value>No. of LVC Procedure</value>
+    </labels>
+    <labels>
+        <fullName>CIS_Rating</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS Rating</shortDescription>
+        <value>CIS Rating</value>
+    </labels>
+    <labels>
+        <fullName>CIS_apex_ce_not_submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS apex ce not submitted</shortDescription>
+        <value>Customer Evaluation is not submitted for this year.</value>
+    </labels>
+    <labels>
+        <fullName>CIS_apex_cis_locked</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS apex cis locked</shortDescription>
+        <value>CIS is locked because approval is pending.</value>
+    </labels>
+    <labels>
+        <fullName>CIS_apex_unable_to_submit_CIS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS apex unable to submit CIS</shortDescription>
+        <value>You can not submit CIS. Please contact your system admin.</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_appr</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp appr</shortDescription>
+        <value>Onay</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_appr_rej</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp appr rej</shortDescription>
+        <value>BDT’yi Onayla / Reddet</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp cancel</shortDescription>
+        <value>İptal Et</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp close</shortDescription>
+        <value>Kapat</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_grand</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp grand</shortDescription>
+        <value>büyük</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_rej</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp rej</shortDescription>
+        <value>Reddet</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp save</shortDescription>
+        <value>Kayıt Et</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp submit</shortDescription>
+        <value>Gönder</value>
+    </labels>
+    <labels>
+        <fullName>CIS_cmp_total</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS cmp total</shortDescription>
+        <value>Genel Toplam</value>
+    </labels>
+    <labels>
+        <fullName>CIS_ctrl_atleast</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS ctrl atleast one</shortDescription>
+        <value>Lütfen en az bir MBS satırı doldurun.</value>
+    </labels>
+    <labels>
+        <fullName>CIS_ctrl_record_updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS ctrl record updated</shortDescription>
+        <value>Kayıt başarıyla güncellendi.</value>
+    </labels>
+    <labels>
+        <fullName>CIS_ctrl_require_column</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS ctrl require column</shortDescription>
+        <value>Tüm sütunlar BDT Hattı için gereklidir.</value>
+    </labels>
+    <labels>
+        <fullName>CIS_new_CIS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CIS new CIS</shortDescription>
+        <value>Yeni MBS</value>
+    </labels>
+    <labels>
+        <fullName>CNF_ERROR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CNF ERROR</shortDescription>
+        <value>Please check with your CRM team for freight value</value>
+    </labels>
+    <labels>
+        <fullName>CONTRACT1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CONTRACT1</shortDescription>
+        <value>This contract is written in English in duplicate. Both the Buyer and &lt;br/&gt;
+the Seller has one copy with the same legal effect.</value>
+    </labels>
+    <labels>
+        <fullName>Can_not_save_orders_add_product_with_zero_quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;Can not save orders add product with zero quantity.&quot;</shortDescription>
+        <value>&quot;Can not save orders add product with zero quantity.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Cancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>Cannout_check_out_Out_of_Check_Out_zone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannout check-out. Out of Check-Out zone</shortDescription>
+        <value>Cannout check-out. Out of Check-Out zone</value>
+    </labels>
+    <labels>
+        <fullName>Cataract_IOLs_Implanted_year</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cataract IOLs Implanted / year</shortDescription>
+        <value>Cataract IOLs Implanted / year</value>
+    </labels>
+    <labels>
+        <fullName>Category</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Category</shortDescription>
+        <value>Category</value>
+    </labels>
+    <labels>
+        <fullName>Category_wise_Competition_Price_Landscape</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Section B :-  Category wise - Competition Price Landscape</shortDescription>
+        <value>Section B :-  Category wise - Competition Price Landscape</value>
+    </labels>
+    <labels>
+        <fullName>CeCis</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CeCis</shortDescription>
+        <value>New CE-CIS</value>
+    </labels>
+    <labels>
+        <fullName>CisAddRow</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisAddRow</shortDescription>
+        <value>Add Row</value>
+    </labels>
+    <labels>
+        <fullName>CisCancel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisCancel</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>CisCategory</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisCategory</shortDescription>
+        <value>Product Category</value>
+    </labels>
+    <labels>
+        <fullName>CisCompany</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisCompany</shortDescription>
+        <value>Company</value>
+    </labels>
+    <labels>
+        <fullName>CisFooter</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisFooter</shortDescription>
+        <value>border-bottom: 1px solid black;</value>
+    </labels>
+    <labels>
+        <fullName>CisFooterData</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisFooterData</shortDescription>
+        <value>font-weight:bold;</value>
+    </labels>
+    <labels>
+        <fullName>CisHeaderError</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisHeaderError</shortDescription>
+        <value>You can not create records because there is one existing CIS record that is not approved yet.</value>
+    </labels>
+    <labels>
+        <fullName>CisPremium</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisPremium</shortDescription>
+        <value>Premium</value>
+    </labels>
+    <labels>
+        <fullName>CisSave</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisSave</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>CisSurgeries</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisSurgeries</shortDescription>
+        <value>No. of Procedure</value>
+    </labels>
+    <labels>
+        <fullName>CisTotal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisTotal</shortDescription>
+        <value>Total</value>
+    </labels>
+    <labels>
+        <fullName>CisType</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>CisType</shortDescription>
+        <value>Type</value>
+    </labels>
+    <labels>
+        <fullName>Cisregular</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cisregular</shortDescription>
+        <value>Regular</value>
+    </labels>
+    <labels>
+        <fullName>Close</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close</shortDescription>
+        <value>Close</value>
+    </labels>
+    <labels>
+        <fullName>Close_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close Date</shortDescription>
+        <value>Close Date</value>
+    </labels>
+    <labels>
+        <fullName>Close_the_popup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Close the popup</shortDescription>
+        <value>Close the popup</value>
+    </labels>
+    <labels>
+        <fullName>Closed_Lost</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Closed Lost</shortDescription>
+        <value>Closed Lost</value>
+    </labels>
+    <labels>
+        <fullName>Commercialization</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Commercialization</shortDescription>
+        <value>Commercialization</value>
+    </labels>
+    <labels>
+        <fullName>Commercialization_plan_year_and_plan_week_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Commercialization plan year and plan week must be provided.</shortDescription>
+        <value>Commercialization plan year and plan week must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Common_Diseases</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Common Diseases</shortDescription>
+        <value>Common Diseases</value>
+    </labels>
+    <labels>
+        <fullName>Contact</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact</shortDescription>
+        <value>Contact</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Person</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Person</shortDescription>
+        <value>Contact Person</value>
+    </labels>
+    <labels>
+        <fullName>Contact_name_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact name is required.</shortDescription>
+        <value>Contact name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country</shortDescription>
+        <value>Country</value>
+    </labels>
+    <labels>
+        <fullName>Country_Specific_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country Specific Information</shortDescription>
+        <value>Country Specific Information</value>
+    </labels>
+    <labels>
+        <fullName>Country_wise_Customer_creation_module</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country wise Customer creation module</shortDescription>
+        <value>INDIA</value>
+    </labels>
+    <labels>
+        <fullName>Country_wise_Login_logout_module</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Country wise Login logout module</shortDescription>
+        <value>INDIA,SPAIN,BRAZIL,MOROCCO,NEPAL,EGYPT,GERMANY,NEPAL</value>
+    </labels>
+    <labels>
+        <fullName>Create_New_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Create New Order</shortDescription>
+        <value>Create New Order</value>
+    </labels>
+    <labels>
+        <fullName>Currency</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Currency</shortDescription>
+        <value>Currency</value>
+    </labels>
+    <labels>
+        <fullName>Current_Distribution_Details_Name_of_Companies</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Current Distribution Details - Name of Companies</shortDescription>
+        <value>Current Distribution Details - Name of Companies</value>
+    </labels>
+    <labels>
+        <fullName>Customer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer</shortDescription>
+        <value>Customer</value>
+    </labels>
+    <labels>
+        <fullName>Customer_Evaluation_Rating</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Customer Evaluation Rating</shortDescription>
+        <value>Customer Evaluation Rating</value>
+    </labels>
+    <labels>
+        <fullName>DCRBatchEmails</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DCRBatchEmails</shortDescription>
+        <value>jibranjafri@kpmg.com,mohitgupta5@kpmg.com</value>
+    </labels>
+    <labels>
+        <fullName>DCR_API_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DCR API URL</shortDescription>
+        <value>http://biotech.archisys.biz/sfendpoint</value>
+    </labels>
+    <labels>
+        <fullName>DCR_HelpDesk</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DCR HelpDesk</shortDescription>
+        <value>You can only create event up to</value>
+    </labels>
+    <labels>
+        <fullName>DCR_past_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DCR past date</shortDescription>
+        <value>-30</value>
+    </labels>
+    <labels>
+        <fullName>DOCUMENTS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DOCUMENTS</shortDescription>
+        <value>Commercial Invoice
+&lt;br/&gt;Packing List
+&lt;br/&gt;Air Way Bill</value>
+    </labels>
+    <labels>
+        <fullName>DSM_April</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM April</shortDescription>
+        <value>APR</value>
+    </labels>
+    <labels>
+        <fullName>DSM_August</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM August</shortDescription>
+        <value>AUG</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Avg_Quantity_till_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Avg Quantity till Date</shortDescription>
+        <value>Avg qty till date</value>
+    </labels>
+    <labels>
+        <fullName>DSM_December</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM December</shortDescription>
+        <value>DEC</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Differenc_Tittle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Differenc Tittle</shortDescription>
+        <value>Difference</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Difference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Difference</shortDescription>
+        <value>Diff</value>
+    </labels>
+    <labels>
+        <fullName>DSM_February</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM February</shortDescription>
+        <value>FEB</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Ideal_stock_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Ideal stock required</shortDescription>
+        <value>Ideal stock req</value>
+    </labels>
+    <labels>
+        <fullName>DSM_January</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM January</shortDescription>
+        <value>JAN</value>
+    </labels>
+    <labels>
+        <fullName>DSM_July</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM July</shortDescription>
+        <value>July</value>
+    </labels>
+    <labels>
+        <fullName>DSM_June</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM June</shortDescription>
+        <value>JUN</value>
+    </labels>
+    <labels>
+        <fullName>DSM_March</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM March</shortDescription>
+        <value>MAR</value>
+    </labels>
+    <labels>
+        <fullName>DSM_May</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM May</shortDescription>
+        <value>May</value>
+    </labels>
+    <labels>
+        <fullName>DSM_No_records_to_Display</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM No records to Display</shortDescription>
+        <value>No records to Display</value>
+    </labels>
+    <labels>
+        <fullName>DSM_November</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM November</shortDescription>
+        <value>NOV</value>
+    </labels>
+    <labels>
+        <fullName>DSM_October</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM October</shortDescription>
+        <value>OCT</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Open_orders_with_Biotech</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Open orders with Biotech</shortDescription>
+        <value>Open orders</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Open_orders_with_Biotech_tittle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Open orders with Biotech tittle</shortDescription>
+        <value>DSM Open orders with Biotech</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Opening_Stock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Opening Stock</shortDescription>
+        <value>Opening Stock</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Place_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Place Order</shortDescription>
+        <value>Place Order</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>DSM_September</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM September</shortDescription>
+        <value>SEP</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Stock_in_transit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Stock in transit</shortDescription>
+        <value>Stock in transit</value>
+    </labels>
+    <labels>
+        <fullName>DSM_Total_In_country_sales_till_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>DSM Total In country sales till date</shortDescription>
+        <value>Total Sale Till Date</value>
+    </labels>
+    <labels>
+        <fullName>Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Date</shortDescription>
+        <value>Date</value>
+    </labels>
+    <labels>
+        <fullName>Day</fullName>
+        <categories>VAR(F-M)</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Day</shortDescription>
+        <value>dia</value>
+    </labels>
+    <labels>
+        <fullName>December</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>December</shortDescription>
+        <value>December</value>
+    </labels>
+    <labels>
+        <fullName>Delay_Reason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delay Reason</shortDescription>
+        <value>Delay Reason</value>
+    </labels>
+    <labels>
+        <fullName>Delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete</shortDescription>
+        <value>Delete</value>
+    </labels>
+    <labels>
+        <fullName>Delete_Icon</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delete Icon</shortDescription>
+        <value>Delete Icon</value>
+    </labels>
+    <labels>
+        <fullName>Delivery1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Delivery1</shortDescription>
+        <value>Promise date shall be sent separately via Auto Email</value>
+    </labels>
+    <labels>
+        <fullName>Description_for_first_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Description for first label</shortDescription>
+        <value>Description for first label</value>
+    </labels>
+    <labels>
+        <fullName>Description_for_second_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Description for second label</shortDescription>
+        <value>Description for second label</value>
+    </labels>
+    <labels>
+        <fullName>Difference</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Difference</shortDescription>
+        <value>Difference</value>
+    </labels>
+    <labels>
+        <fullName>Discount</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Discount</shortDescription>
+        <value>Discount</value>
+    </labels>
+    <labels>
+        <fullName>Distributor</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Distributor</shortDescription>
+        <value>Distributor</value>
+    </labels>
+    <labels>
+        <fullName>Distributor_Agreement_Price_A</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Distributor Agreement Price (A)</shortDescription>
+        <value>Distributor Agreement Price (A)</value>
+    </labels>
+    <labels>
+        <fullName>Division</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Division</shortDescription>
+        <value>Division</value>
+    </labels>
+    <labels>
+        <fullName>Division1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Division</shortDescription>
+        <value>Division of the Product</value>
+    </labels>
+    <labels>
+        <fullName>Do_You_Sell_products_inside_the_country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do You Sell products inside the country</shortDescription>
+        <value>Do You Sell products inside the country</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_any_Expert_Specific_Division_to_engage_Ophthalmologist_in_your_Organ</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have any Expert/Specific Division to engage Ophthalmologist in your Organ</shortDescription>
+        <value>Do you have any Expert/Specific Division to engage Ophthalmologist in your Organization</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_have_any_brands_of_your_company_registered_for_Ophthalmic_products_with_M</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you have any brands of your company registered for Ophthalmic products with M</shortDescription>
+        <value>Do you have any brands of your company registered for Ophthalmic products with MOH</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_want_to_delete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you want to delete?</shortDescription>
+        <value>Do you want to delete?</value>
+    </labels>
+    <labels>
+        <fullName>Do_you_want_to_make_request_for_Re_Submission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Do you want to make request for Re-Submission?</shortDescription>
+        <value>Do you want to make request for Re-Submission?</value>
+    </labels>
+    <labels>
+        <fullName>Domestic</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Domestic</shortDescription>
+        <value>Domestic</value>
+    </labels>
+    <labels>
+        <fullName>Draft</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Draft</shortDescription>
+        <value>Draft</value>
+    </labels>
+    <labels>
+        <fullName>Dynamic_Contact_Query</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Dynamic Contact Query</shortDescription>
+        <value>SELECT FirstName, LastName, Email, Phone 
+FROM Contact 
+WHERE AccountId = &apos;{ACCOUNT_ID}&apos; 
+LIMIT 200</value>
+    </labels>
+    <labels>
+        <fullName>EFFECT_OF_THE_CONTRACT1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EFFECT OF THE CONTRACT1</shortDescription>
+        <value>This contract will take effect after being signed by both parties.&lt;br/&gt;
+     If the signing dates are different , the latest one shall be the&lt;br/&gt;
+      effective date of this Contract.</value>
+    </labels>
+    <labels>
+        <fullName>Either_you_are_offline_or_No_response_from_server</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Either you are offline or No response from server.</shortDescription>
+        <value>Either you are offline or No response from server.</value>
+    </labels>
+    <labels>
+        <fullName>End_User_Price_by_Distributor_to_Doctor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>End User Price by Distributor to Doctor</shortDescription>
+        <value>End User Price by Distributor to Doctor</value>
+    </labels>
+    <labels>
+        <fullName>Enter_Milestone_Delay_Reason_Here</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter Milestone Delay Reason Here..</shortDescription>
+        <value>Enter Milestone Delay Reason Here..</value>
+    </labels>
+    <labels>
+        <fullName>Enter_Remark_Here</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Enter Remark Here..</shortDescription>
+        <value>Enter Remark Here..</value>
+    </labels>
+    <labels>
+        <fullName>Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error</shortDescription>
+        <value>Error</value>
+    </labels>
+    <labels>
+        <fullName>Error_in_saving_Subproducts_are_missing_for</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error in saving.  Subproducts are missing for</shortDescription>
+        <value>Error in saving.  Subproducts are missing for</value>
+    </labels>
+    <labels>
+        <fullName>Error_occurred_while_creating_dynamic_component</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error occurred while creating dynamic component.</shortDescription>
+        <value>Error occurred while creating dynamic component.</value>
+    </labels>
+    <labels>
+        <fullName>Error_occurred_while_saving_record</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Error occurred while saving record..</shortDescription>
+        <value>Error occurred while saving record..</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation</shortDescription>
+        <value>Evaluation</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_Skip_Reason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation Skip Reason</shortDescription>
+        <value>Evaluation Skip Reason</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_Week_should_not_be_more_than_Commercialization_week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation Week should not be more than Commercialization week.</shortDescription>
+        <value>Evaluation Week should not be more than Commercialization week.</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_Week_should_not_be_previous_month_week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation Week should not be previous month week.</shortDescription>
+        <value>Evaluation Week should not be previous month week.</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_plan_year_and_plan_week_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation plan year and plan week must be provided.</shortDescription>
+        <value>Evaluation plan year and plan week must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_week_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation week must be provided.</shortDescription>
+        <value>Evaluation week must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_year_can_not_be_more_than_commercialization_year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation year can not be more than commercialization year.</shortDescription>
+        <value>Evaluation year can not be more than commercialization year.</value>
+    </labels>
+    <labels>
+        <fullName>Evaluation_year_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Evaluation year must be provided.</shortDescription>
+        <value>Evaluation year must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>EvenDate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>EvenDate</shortDescription>
+        <value>-6</value>
+    </labels>
+    <labels>
+        <fullName>F</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>F</shortDescription>
+        <value>F</value>
+    </labels>
+    <labels>
+        <fullName>FOC</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FOC(%)</shortDescription>
+        <value>FOC(%)</value>
+    </labels>
+    <labels>
+        <fullName>FOC_If_any_B</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FOC If any (B)</shortDescription>
+        <value>FOC, if any (B)</value>
+    </labels>
+    <labels>
+        <fullName>FOC_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FOC Quantity</shortDescription>
+        <value>FOC Quantity</value>
+    </labels>
+    <labels>
+        <fullName>FORCE_MAJEUR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FORCE MAJEUR1</shortDescription>
+        <value>Strike, sabotage, war and any natural calamities that occur in the&lt;br/&gt;
+seller&apos;s country should be considered the force majeur.</value>
+    </labels>
+    <labels>
+        <fullName>February</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>February</shortDescription>
+        <value>February</value>
+    </labels>
+    <labels>
+        <fullName>First_3_brands_with_highest_market_share_Monofocals</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First 3 brands with highest market share — Monofocals</shortDescription>
+        <value>First 3 brands with highest market share — Monofocals</value>
+    </labels>
+    <labels>
+        <fullName>First_3_brands_with_highest_market_share_Presbyopia_correcting_IOLs</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First 3 brands with highest market share — Presbyopia-correcting IOLs</shortDescription>
+        <value>First 3 brands with highest market share — Presbyopia-correcting IOLs</value>
+    </labels>
+    <labels>
+        <fullName>First_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Label</shortDescription>
+        <value>First Label</value>
+    </labels>
+    <labels>
+        <fullName>For_Active_Order_Customer_Po_No_can_not_be_changed</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For Active Order &quot;Customer Po No&quot; can not be changed.</shortDescription>
+        <value>For Active Order &quot;Customer Po No&quot; can not be changed.</value>
+    </labels>
+    <labels>
+        <fullName>For_Monofocal</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For Monofocal</shortDescription>
+        <value>For Monofocal</value>
+    </labels>
+    <labels>
+        <fullName>For_Presbyopia_Correcting</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>For Presbyopia Correcting</shortDescription>
+        <value>For Presbyopia Correcting</value>
+    </labels>
+    <labels>
+        <fullName>Forecast_MOP_Variance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Forecast MOP Variance</shortDescription>
+        <value>Forecast MOP Variance</value>
+    </labels>
+    <labels>
+        <fullName>FreightRequesteSuccessfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>FreightRequesteSuccessfully</shortDescription>
+        <value>Your Request has been generated for freight to your CRM representative, They shall inform back to you soon.</value>
+    </labels>
+    <labels>
+        <fullName>From_India_IOLs</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From India — IOLs %</shortDescription>
+        <value>From India — IOLs %</value>
+    </labels>
+    <labels>
+        <fullName>From_India_Pharma</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From India — Pharma %</shortDescription>
+        <value>From India — Pharma %</value>
+    </labels>
+    <labels>
+        <fullName>From_India_Solutions</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From India — Solutions %</shortDescription>
+        <value>From India — Solutions %</value>
+    </labels>
+    <labels>
+        <fullName>From_Ireland_IOLs</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From Ireland — IOLs %</shortDescription>
+        <value>From Ireland — IOLs %</value>
+    </labels>
+    <labels>
+        <fullName>From_Ireland_Pharma</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From Ireland — Pharma %</shortDescription>
+        <value>From Ireland — Pharma %</value>
+    </labels>
+    <labels>
+        <fullName>From_Ireland_Solutions</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>From Ireland — Solutions %</shortDescription>
+        <value>From Ireland — Solutions %</value>
+    </labels>
+    <labels>
+        <fullName>Full_Name_of_the_Company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Full Name of the Company</shortDescription>
+        <value>Full Name of the Company</value>
+    </labels>
+    <labels>
+        <fullName>GDP_Per_capita_in_USD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GDP Per capita (in USD)</shortDescription>
+        <value>GDP Per capita (in USD)</value>
+    </labels>
+    <labels>
+        <fullName>GDP_in_USD</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GDP ( in USD )</shortDescription>
+        <value>GDP ( in USD )</value>
+    </labels>
+    <labels>
+        <fullName>Gap</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Gap</shortDescription>
+        <value>Gap</value>
+    </labels>
+    <labels>
+        <fullName>General_information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>General information</shortDescription>
+        <value>General information</value>
+    </labels>
+    <labels>
+        <fullName>Go</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go</shortDescription>
+        <value>Go</value>
+    </labels>
+    <labels>
+        <fullName>Go_To_Plan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go To Plan</shortDescription>
+        <value>Go To Plan</value>
+    </labels>
+    <labels>
+        <fullName>Go_To_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Go To Report</shortDescription>
+        <value>Go To Report</value>
+    </labels>
+    <labels>
+        <fullName>Got_To_Plan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Got To Plan</shortDescription>
+        <value>Got To Plan</value>
+    </labels>
+    <labels>
+        <fullName>Govt_Health_Policy_Tender_Facility</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Govt. Health Policy :Tender Facility</shortDescription>
+        <value>Govt. Health Policy :Tender Facility</value>
+    </labels>
+    <labels>
+        <fullName>How_are_you_planning_to_promote_our_products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>How are you planning to promote our products:</shortDescription>
+        <value>How are you planning to promote our products:</value>
+    </labels>
+    <labels>
+        <fullName>How_much_would_be_the_annual_projection_in_Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>How much would be the annual projection in Value</shortDescription>
+        <value>How much would be the annual projection in Value</value>
+    </labels>
+    <labels>
+        <fullName>INSPECTION_CLAIM1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>INSPECTION &amp; CLAIM1</shortDescription>
+        <value>Upon receipt of the products, the Buyer should perform incoming&lt;br/&gt;
+inspection and notify the seller of the results.
+&lt;br/&gt;&lt;br/&gt;
+-If the buyer finds some discrepancies in specification, quantity and&lt;br/&gt;
+quality, the buyer should isolate related products and notify the seller in&lt;br/&gt;
+written words and give its own suggestions for solving the problem within 10&lt;br/&gt;
+working days. if there is no complaint with 30 working Days, the products&lt;br/&gt;
+will be considered to be accepted by the buyer
+&lt;br/&gt;&lt;br/&gt;
+-After receiving the complaint and suggestion for solving the problem&lt;br/&gt;
+from the buyer, the seller should give a written reply within 5 working days</value>
+    </labels>
+    <labels>
+        <fullName>Ideal_Stock_Required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Ideal Stock Required</shortDescription>
+        <value>Ideal Stock Required</value>
+    </labels>
+    <labels>
+        <fullName>Importation_Customs_Clearance_Charges_C</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Importation / Customs Clearance Charges {C}</shortDescription>
+        <value>Importation / Customs Clearance Charges {C}</value>
+    </labels>
+    <labels>
+        <fullName>InCartProductsPresent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>InCartProductsPresent</shortDescription>
+        <value>Some Order Products are in Cart. Please Save the Order Products before requesting Freight.</value>
+    </labels>
+    <labels>
+        <fullName>In_Transit_Stocks</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>In-Transit Stocks</shortDescription>
+        <value>In-Transit Stocks</value>
+    </labels>
+    <labels>
+        <fullName>In_Transit_Stocks_SS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>In-Transit Stocks</shortDescription>
+        <value>In-Transit Stocks</value>
+    </labels>
+    <labels>
+        <fullName>Incoterm_erro_msg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Incoterm erro msg</shortDescription>
+        <value>Your Incoterms are</value>
+    </labels>
+    <labels>
+        <fullName>Initial_Stock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Initial Stock</shortDescription>
+        <value>Initial Stock</value>
+    </labels>
+    <labels>
+        <fullName>Initial_Stock_Setup</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Initial Stock Setup</shortDescription>
+        <value>Initial Stock Setup</value>
+    </labels>
+    <labels>
+        <fullName>Item_s_Selected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Item(s) Selected</shortDescription>
+        <value>Item(s) Selected</value>
+    </labels>
+    <labels>
+        <fullName>JAN_to_DEC_are_the_monthwise_actual_sales</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>JAN to DEC are the monthwise actual sales.</shortDescription>
+        <value>JAN to DEC are the monthwise actual sales.</value>
+    </labels>
+    <labels>
+        <fullName>January</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>January</shortDescription>
+        <value>January</value>
+    </labels>
+    <labels>
+        <fullName>July</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>July</shortDescription>
+        <value>July</value>
+    </labels>
+    <labels>
+        <fullName>June</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>June</shortDescription>
+        <value>June</value>
+    </labels>
+    <labels>
+        <fullName>Landing_Cost_to_Distributor_A_B_C</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Landing Cost to Distributor (A-B+C)</shortDescription>
+        <value>Landing Cost to Distributor (A-B+C)</value>
+    </labels>
+    <labels>
+        <fullName>LastDocument</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>LastDocument</shortDescription>
+        <value>&lt;p style=&quot;font-size: 15px;margin: 3px;&quot;&gt;
+This document is system generated and does not require signature from any of the parties or the Company&apos;s stamp in order to be considered valid &lt;/p&gt;&lt;br/&gt;&lt;br/&gt;
+
+ 
+&lt;p  style=&quot;margin: 3px;&quot;&gt;
+Disclaimer:
+&lt;br/&gt;
+The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it. It may contain confidential or legally privileged information. If you are not the intended recipient you are hereby notified that any disclosure, copying, distribution or taking any action in reliance on the contents of this information is strictly prohibited and may be unlawful. If you have received this communication in error, please notify us immediately by responding to this email and then delete it from your system.
+&lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Last_Customer_Evaluation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Last Customer Evaluation</shortDescription>
+        <value>Last Customer Evaluation</value>
+    </labels>
+    <labels>
+        <fullName>Lead_Lost_Level</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lead Lost Level</shortDescription>
+        <value>180</value>
+    </labels>
+    <labels>
+        <fullName>Lead_PDF_Name2_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Lead_PDF_Name2_Label</shortDescription>
+        <value>Name 2</value>
+    </labels>
+    <labels>
+        <fullName>Link_BD_Plan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Link BD Plan</shortDescription>
+        <value>Link BD Plan</value>
+    </labels>
+    <labels>
+        <fullName>List_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>List Price</shortDescription>
+        <value>List Price</value>
+    </labels>
+    <labels>
+        <fullName>Loading</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading</shortDescription>
+        <value>Loading</value>
+    </labels>
+    <labels>
+        <fullName>Loading_Accounts</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loading Accounts...</shortDescription>
+        <value>Loading Accounts</value>
+    </labels>
+    <labels>
+        <fullName>Loction_not_found_or_you_are_not_in_1km_range_of_destination_please_try_again</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Loction not found or you are not in 1km range of destination, please try again</shortDescription>
+        <value>Loction not found or you are not in 1km range of destination, please try again</value>
+    </labels>
+    <labels>
+        <fullName>M</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>M</shortDescription>
+        <value>M</value>
+    </labels>
+    <labels>
+        <fullName>MOP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MOP</shortDescription>
+        <value>MOP</value>
+    </labels>
+    <labels>
+        <fullName>MOPQty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MOPQty</shortDescription>
+        <value>MOPQty</value>
+    </labels>
+    <labels>
+        <fullName>Mar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mar</shortDescription>
+        <value>Mar</value>
+    </labels>
+    <labels>
+        <fullName>March</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>March</shortDescription>
+        <value>March</value>
+    </labels>
+    <labels>
+        <fullName>Market_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Market Profile</shortDescription>
+        <value>Market Profile</value>
+    </labels>
+    <labels>
+        <fullName>MasterAgreementTriggerIsActiveLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MasterAgreementTriggerIsActiveLabel</shortDescription>
+        <value>True</value>
+    </labels>
+    <labels>
+        <fullName>Maximum_number_of_distributors_MOH_will_allow_for_each_manufacturer</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Maximum number of distributors MOH will allow for each manufacturer</shortDescription>
+        <value>Maximum number of distributors MOH will allow for each manufacturer</value>
+    </labels>
+    <labels>
+        <fullName>May</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>May</shortDescription>
+        <value>May</value>
+    </labels>
+    <labels>
+        <fullName>MileStone_Stage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>MileStone Stage</shortDescription>
+        <value>MileStone Stage</value>
+    </labels>
+    <labels>
+        <fullName>Minimum_Order_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Minimum Order Quantity</shortDescription>
+        <value>Minimum Order Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Model</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Model</shortDescription>
+        <value>Model</value>
+    </labels>
+    <labels>
+        <fullName>Month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Month</shortDescription>
+        <value>Month</value>
+    </labels>
+    <labels>
+        <fullName>Month_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Month</shortDescription>
+        <value>Month</value>
+    </labels>
+    <labels>
+        <fullName>Monthly_Sales_Entry</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Monthly Sales Entry</shortDescription>
+        <value>Monthly Sales Entry</value>
+    </labels>
+    <labels>
+        <fullName>Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name</shortDescription>
+        <value>Name</value>
+    </labels>
+    <labels>
+        <fullName>Name_of_the_owner</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name of the owner</shortDescription>
+        <value>Name of the owner</value>
+    </labels>
+    <labels>
+        <fullName>Name_the_competitors_other_Manufacturers_in_your_Market</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name the competitors (other Manufacturers) in your Market</shortDescription>
+        <value>Name the competitors (other Manufacturers) in your Market</value>
+    </labels>
+    <labels>
+        <fullName>Name_the_products_that_you_are_interested_to_import_from_us</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Name the products that you are interested to import from us</shortDescription>
+        <value>Name the products that you are interested to import from us</value>
+    </labels>
+    <labels>
+        <fullName>New</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New</shortDescription>
+        <value>New</value>
+    </labels>
+    <labels>
+        <fullName>New_Customer_Evaluation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New Customer Evaluation</shortDescription>
+        <value>New Customer Evaluation</value>
+    </labels>
+    <labels>
+        <fullName>New_DCR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>New DCR</shortDescription>
+        <value>New DCR</value>
+    </labels>
+    <labels>
+        <fullName>No</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No</shortDescription>
+        <value>No</value>
+    </labels>
+    <labels>
+        <fullName>NoFreightRequestPresent</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>NoFreightRequestPresent</shortDescription>
+        <value>Freight request can&apos;t be initiated since your Incoterm in not CIF/C&amp;F</value>
+    </labels>
+    <labels>
+        <fullName>No_AOP_Product_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No AOP/Product found.</shortDescription>
+        <value>No AOP/Product found.</value>
+    </labels>
+    <labels>
+        <fullName>No_AOP_s_for_any_product_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No AOP&apos;s for any product found.</shortDescription>
+        <value>No AOP&apos;s for any product found.</value>
+    </labels>
+    <labels>
+        <fullName>No_Active_Agreement_Available</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Active Agreement Available</shortDescription>
+        <value>There are currently no active agreements for the selected vertical.</value>
+    </labels>
+    <labels>
+        <fullName>No_Active_account_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Active account found.</shortDescription>
+        <value>No Active account found.</value>
+    </labels>
+    <labels>
+        <fullName>No_Records_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No_Records_Found</shortDescription>
+        <value>No Records Found</value>
+    </labels>
+    <labels>
+        <fullName>No_Records_To_Display</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records To Display</shortDescription>
+        <value>No Records To Display</value>
+    </labels>
+    <labels>
+        <fullName>No_Records_to_save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records to save.</shortDescription>
+        <value>No Records to save.</value>
+    </labels>
+    <labels>
+        <fullName>No_Records_to_submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No Records to submit.</shortDescription>
+        <value>No Records to submit.</value>
+    </labels>
+    <labels>
+        <fullName>No_item_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No item found</shortDescription>
+        <value>No item found</value>
+    </labels>
+    <labels>
+        <fullName>No_items_to_display</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No items to display</shortDescription>
+        <value>No items to display</value>
+    </labels>
+    <labels>
+        <fullName>No_monthly_plan_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No monthly plan found.</shortDescription>
+        <value>No monthly plan found.</value>
+    </labels>
+    <labels>
+        <fullName>No_more_items_to_display</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No more items to display</shortDescription>
+        <value>No more items to display</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Cataract_surgery_annum</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Cataract surgery / annum</shortDescription>
+        <value>No of Cataract surgery / annum</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Counselors</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Counselors</shortDescription>
+        <value>No. of Counselors</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Distribution_centers_Branch</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Distribution centers / Branch</shortDescription>
+        <value>No of Distribution centers / Branch</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Doctors</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Doctors</shortDescription>
+        <value>No. of Doctors</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Employees</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Employees</shortDescription>
+        <value>No of Employees</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Eye_hospital</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Eye hospital</shortDescription>
+        <value>No of Eye hospital</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Eye_surgeons</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Eye surgeons</shortDescription>
+        <value>No of Eye surgeons</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Pharmacies</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of Pharmacies</shortDescription>
+        <value>No of Pharmacies</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Procedures_Cataract</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Procedures Cataract</shortDescription>
+        <value>No. of Procedures Cataract</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Procedures_Glaucoma</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Procedures Glaucoma</shortDescription>
+        <value>No. of Procedures Glaucoma</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Procedures_Phakic</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Procedures Phakic</shortDescription>
+        <value>No. of Procedures Phakic</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Procedures_Refractive_Lasik</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Procedures Refractive/Lasik</shortDescription>
+        <value>No. of Procedures Refractive/Lasik</value>
+    </labels>
+    <labels>
+        <fullName>No_of_Procedures_Retina</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No. of Procedures Retina</shortDescription>
+        <value>No. of Procedures Retina</value>
+    </labels>
+    <labels>
+        <fullName>No_of_wholesalers</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No of wholesalers</shortDescription>
+        <value>No of wholesalers</value>
+    </labels>
+    <labels>
+        <fullName>No_plan_details_found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No plan details found</shortDescription>
+        <value>No plan details found</value>
+    </labels>
+    <labels>
+        <fullName>No_products_available_for_this_distributor</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>No products available for this distributor.</shortDescription>
+        <value>No products available for this distributor.</value>
+    </labels>
+    <labels>
+        <fullName>Non_Domestic_Error_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Non Domestic Error Message</shortDescription>
+        <value>Please check ERL Document.</value>
+    </labels>
+    <labels>
+        <fullName>None</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>None</shortDescription>
+        <value>None</value>
+    </labels>
+    <labels>
+        <fullName>Not_Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Submitted</shortDescription>
+        <value>Not Submitted</value>
+    </labels>
+    <labels>
+        <fullName>Note</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Note</shortDescription>
+        <value>Note</value>
+    </labels>
+    <labels>
+        <fullName>November</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>November</shortDescription>
+        <value>November</value>
+    </labels>
+    <labels>
+        <fullName>Number_of_Cataract_Surgeons</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Number of Cataract Surgeons</shortDescription>
+        <value>Number of Cataract Surgeons</value>
+    </labels>
+    <labels>
+        <fullName>Number_of_Products_Handled_with_company_information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Number of Products Handled with company information</shortDescription>
+        <value>Number of Products Handled with company information</value>
+    </labels>
+    <labels>
+        <fullName>Number_of_Sales_Staff</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Number of Sales Staff</shortDescription>
+        <value>Number of Sales Staff</value>
+    </labels>
+    <labels>
+        <fullName>OK</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>OK</shortDescription>
+        <value>OK</value>
+    </labels>
+    <labels>
+        <fullName>October</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>October</shortDescription>
+        <value>October</value>
+    </labels>
+    <labels>
+        <fullName>On_order_activation_you_can_not_add_modify_order_products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>On order activation, you can not add/modify order products</shortDescription>
+        <value>On order activation, you can not add/modify order products</value>
+    </labels>
+    <labels>
+        <fullName>Once_order_is_active_you_can_not_make_any_change_to_it</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Once order is active you can not make any change to it</shortDescription>
+        <value>Once order is active you can not make any change to it</value>
+    </labels>
+    <labels>
+        <fullName>Once_submitted_you_can_not_edit_but_delete_the_BD_plans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Once submitted, you can not edit but delete the BD plans.</shortDescription>
+        <value>Once submitted, you can not edit but delete the BD plans.</value>
+    </labels>
+    <labels>
+        <fullName>Oops</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oops</shortDescription>
+        <value>Oops</value>
+    </labels>
+    <labels>
+        <fullName>Oops_Something_went_wrong</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Oops!, Something went wrong...</shortDescription>
+        <value>Oops!, Something went wrong...</value>
+    </labels>
+    <labels>
+        <fullName>Open_MOU_Scheme_Country_Mapping</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Open MOU Scheme Country Mapping</shortDescription>
+        <value>INDIA</value>
+    </labels>
+    <labels>
+        <fullName>Opportunity_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Opportunity Name</shortDescription>
+        <value>Opportunity Name</value>
+    </labels>
+    <labels>
+        <fullName>Order_No</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order No</shortDescription>
+        <value>Order No</value>
+    </labels>
+    <labels>
+        <fullName>Order_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Quantity</shortDescription>
+        <value>Order Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Order_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order Status</shortDescription>
+        <value>Order Status</value>
+    </labels>
+    <labels>
+        <fullName>Order_can_be_activated_only_after_freight_is_entered</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order can be activated only after freight is entered</shortDescription>
+        <value>To activate the order please make sure freight amount is entered for all related freight requests.</value>
+    </labels>
+    <labels>
+        <fullName>Order_can_only_be_activated_from_draft_Stage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order can only be activated from draft Stage</shortDescription>
+        <value>Please check the status as order can only be activated from the draft stage or the freight has been submitted</value>
+    </labels>
+    <labels>
+        <fullName>Order_has_been_Activated_and_send_for_approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order has been Activated and send for approval</shortDescription>
+        <value>Order is activated, sent for CRM Approval Please Proceed for Advance Payment if any.</value>
+    </labels>
+    <labels>
+        <fullName>Order_is_already_activated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order is already activated</shortDescription>
+        <value>Order is activated. Please generate PFI/Sales Contract.</value>
+    </labels>
+    <labels>
+        <fullName>Order_product_quantity_should_be_higher_than_sub_product_quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Order product quantity should be higher than sub product quantity</shortDescription>
+        <value>Order product quantity should be higher than sub product quantity</value>
+    </labels>
+    <labels>
+        <fullName>Other</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Other</shortDescription>
+        <value>Other</value>
+    </labels>
+    <labels>
+        <fullName>Other_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Other Information</shortDescription>
+        <value>Other Information</value>
+    </labels>
+    <labels>
+        <fullName>Others</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Others</shortDescription>
+        <value>Others</value>
+    </labels>
+    <labels>
+        <fullName>PFIEMAILS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PFIEMAILS</shortDescription>
+        <value>shivam.kumar@biotechhealthcare.com</value>
+    </labels>
+    <labels>
+        <fullName>Packing_text_for_Sales_Contract_PDF</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Packing text for Sales Contract PDF</shortDescription>
+        <value>In case the order is placed as per MOQ than the variation of (+/-10% - 25%) in the final quantities is acceptable.</value>
+    </labels>
+    <labels>
+        <fullName>Past_date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Past date</shortDescription>
+        <value>Past date</value>
+    </labels>
+    <labels>
+        <fullName>Pending_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pending Approval</shortDescription>
+        <value>There is no pending approval !!!</value>
+    </labels>
+    <labels>
+        <fullName>Pending_for_submission_Please_contact_administrator_to_submit_the_report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Pending for submission.Please contact administrator to submit the report.</shortDescription>
+        <value>Pending for submission.Please contact administrator to submit the report.</value>
+    </labels>
+    <labels>
+        <fullName>Per_Capita_Health_Expenditure</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Per Capita Health Expenditure</shortDescription>
+        <value>Per Capita Health Expenditure</value>
+    </labels>
+    <labels>
+        <fullName>Perform</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Perform.%</shortDescription>
+        <value>Perform.%</value>
+    </labels>
+    <labels>
+        <fullName>Performance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Performance %</shortDescription>
+        <value>Performance %</value>
+    </labels>
+    <labels>
+        <fullName>Phakic_IOLs_Implanted_year</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Phakic IOLs Implanted / year</shortDescription>
+        <value>Phakic IOLs Implanted / year</value>
+    </labels>
+    <labels>
+        <fullName>Place_Order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Place Order</shortDescription>
+        <value>Place Order</value>
+    </labels>
+    <labels>
+        <fullName>Plan_Week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Plan Week</shortDescription>
+        <value>Plan Week</value>
+    </labels>
+    <labels>
+        <fullName>Plan_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Plan Year</shortDescription>
+        <value>Plan Year</value>
+    </labels>
+    <labels>
+        <fullName>Planning_required_for_week_Range</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Planning required for week Range</shortDescription>
+        <value>Planning required for week Range</value>
+    </labels>
+    <labels>
+        <fullName>Plant_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Plant Error</shortDescription>
+        <value>Please select a plant before adding product to order</value>
+    </labels>
+    <labels>
+        <fullName>Please_Select_Product_Discussion_First</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please Select Product Discussion First</shortDescription>
+        <value>Please Select Product Discussion First</value>
+    </labels>
+    <labels>
+        <fullName>Please_add_products_before_activating_the_order</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please add products before activating the order</shortDescription>
+        <value>Please add products before activating the order</value>
+    </labels>
+    <labels>
+        <fullName>Please_enter_the_comments_for_reject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please enter the comments for reject.</shortDescription>
+        <value>Please enter the comments for reject.</value>
+    </labels>
+    <labels>
+        <fullName>Please_enter_the_remarks_for_deletion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please enter the remarks for deletion.</shortDescription>
+        <value>Please enter the remarks for deletion.</value>
+    </labels>
+    <labels>
+        <fullName>Please_save_calendar_before_changing_the_Region_Zone_On_change_of_Region_Zone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please save calendar before changing the Region/Zone. On change of Region/Zone,</shortDescription>
+        <value>Please save calendar before changing the Region/Zone. On change of Region/Zone, it will refresh the page and remove the all unsaved calendar event. Do you want to continue with the Region/Zone change?</value>
+    </labels>
+    <labels>
+        <fullName>Please_select</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select</shortDescription>
+        <value>Please select</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Commercialization_Week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select Commercialization Week.</shortDescription>
+        <value>Please select Commercialization Week.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Commercialization_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select Commercialization Year.</shortDescription>
+        <value>Please select Commercialization Year.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Evaluation_Week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;Please select Evaluation Week.&quot;</shortDescription>
+        <value>&quot;Please select Evaluation Week.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Evaluation_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select Evaluation Year.</shortDescription>
+        <value>Please select Evaluation Year.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Product_Discussion_Week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select Product Discussion Week.</shortDescription>
+        <value>Please select Product Discussion Week.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Product_Discussion_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select Product Discussion Year.</shortDescription>
+        <value>Please select Product Discussion Year.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_Product_Discussion_with_respective_Evaluation_and_Commercializatio</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select Product Discussion with respective Evaluation and Commercializatio</shortDescription>
+        <value>Please select Product Discussion with respective Evaluation and Commercialization Plan</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_account_first</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select account first.</shortDescription>
+        <value>Please select account first.</value>
+    </labels>
+    <labels>
+        <fullName>Please_select_year_and_Week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Please select year and Week.</shortDescription>
+        <value>Please select year and Week.</value>
+    </labels>
+    <labels>
+        <fullName>Plesae_select_branch_for_submission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Plesae select branch for submission</shortDescription>
+        <value>Plesae select branch for submission</value>
+    </labels>
+    <labels>
+        <fullName>Population_In_Millions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Population (In Millions)</shortDescription>
+        <value>Population (In Millions)</value>
+    </labels>
+    <labels>
+        <fullName>Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price</shortDescription>
+        <value>Price</value>
+    </labels>
+    <labels>
+        <fullName>Price_KeyAccounts</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price KeyAccounts</shortDescription>
+        <value>Price KeyAccounts</value>
+    </labels>
+    <labels>
+        <fullName>Price_for_Retail</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Price for Retail</shortDescription>
+        <value>Price for Retail</value>
+    </labels>
+    <labels>
+        <fullName>Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product</shortDescription>
+        <value>Product</value>
+    </labels>
+    <labels>
+        <fullName>Product_Code</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Code</shortDescription>
+        <value>Product Code</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion</shortDescription>
+        <value>Product Discussion</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_Week_should_not_be_more_than_Commercialization_week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion Week should not be more than Commercialization week.</shortDescription>
+        <value>Product Discussion Week should not be more than Commercialization week.</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_Week_should_not_be_more_than_Evaluation_week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion Week should not be more than Evaluation week.</shortDescription>
+        <value>Product Discussion Week should not be more than Evaluation week.</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_and_Evaluation_week_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion and Evaluation week must be provided.</shortDescription>
+        <value>Product Discussion and Evaluation week must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_plan_year_and_plan_week_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion plan year and plan week must be provided.</shortDescription>
+        <value>Product Discussion plan year and plan week must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_year_can_not_be_more_than_Evaluation_year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;Product Discussion year can not be more than Evaluation year.&quot;</shortDescription>
+        <value>&quot;Product Discussion year can not be more than Evaluation year.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_year_can_not_be_more_than_commercialization_year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion year can not be more than commercialization year.</shortDescription>
+        <value>Product Discussion year can not be more than commercialization year.</value>
+    </labels>
+    <labels>
+        <fullName>Product_Discussion_year_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Discussion year must be provided.</shortDescription>
+        <value>Product Discussion year must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Product_Error</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product_Error</shortDescription>
+        <value>Please select a plant according to your agreement</value>
+    </labels>
+    <labels>
+        <fullName>Product_Model</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Model</shortDescription>
+        <value>Product Model</value>
+    </labels>
+    <labels>
+        <fullName>Product_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Name</shortDescription>
+        <value>Product Name</value>
+    </labels>
+    <labels>
+        <fullName>Product_Name_Secondary_sales</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product Name-Secondary-sales</shortDescription>
+        <value>Product Name</value>
+    </labels>
+    <labels>
+        <fullName>Product_Product_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product: Product Name</shortDescription>
+        <value>Product: Product Name</value>
+    </labels>
+    <labels>
+        <fullName>Product_discussion_week_must_be_provided</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product discussion week must be provided.</shortDescription>
+        <value>Product discussion week must be provided.</value>
+    </labels>
+    <labels>
+        <fullName>Product_name_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Product name is required.</shortDescription>
+        <value>Product name is required.</value>
+    </labels>
+    <labels>
+        <fullName>Proforma_last_doc</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Proforma last doc</shortDescription>
+        <value>&lt;p style=&quot;margin: 3px;&quot;&gt;
+This document is system generated and does not require signature from any of the parties or the Company&apos;s stamp in order to be considered valid &lt;/p&gt;&lt;br/&gt;&lt;br/&gt;
+
+ 
+&lt;p  style=&quot;  font-size: 0.875em;;margin: 3px;&quot;&gt;
+Disclaimer:
+&lt;br/&gt;
+The information contained in this communication is intended solely for the use of the individual or entity to whom it is addressed and others authorized to receive it. It may contain confidential or legally privileged information. If you are not the intended recipient you are hereby notified that any disclosure, copying, distribution or taking any action in reliance on the contents of this information is strictly prohibited and may be unlawful. If you have received this communication in error, please notify us immediately by responding to this email and then delete it from your system.
+&lt;/p&gt;</value>
+    </labels>
+    <labels>
+        <fullName>Prospecting</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Prospecting</shortDescription>
+        <value>Prospecting</value>
+    </labels>
+    <labels>
+        <fullName>Province_Country</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Province/Country</shortDescription>
+        <value>Province/Country</value>
+    </labels>
+    <labels>
+        <fullName>QActualOrderQuantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QActualOrderQuantity</shortDescription>
+        <value>Actual Order Quantity</value>
+    </labels>
+    <labels>
+        <fullName>QForProduct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QForProduct</shortDescription>
+        <value>For Product</value>
+    </labels>
+    <labels>
+        <fullName>QUALITY</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QUALITY</shortDescription>
+        <value>-According to manufacturer&apos;s specifications. &lt;br/&gt;
+-consent with ISO 13485:2016 and CE Certification (if applicable)&lt;br/&gt;
+-Shelf life for Vision products &amp; Ophthalmic products at least 12 months.&lt;br/&gt;And Shelf life for Phakic Toric at least 6 months.
+&lt;br/&gt;
+Shelf life for Ortho products/Dermal products at least 12 months.</value>
+    </labels>
+    <labels>
+        <fullName>QisLessThanMinimumOrderQuantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QisLessThanMinimumOrderQuantity</shortDescription>
+        <value>is less than minimum order quantity</value>
+    </labels>
+    <labels>
+        <fullName>QtobePlaced</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>QtobePlaced</shortDescription>
+        <value>to be placed. Do you want to still proceed?</value>
+    </labels>
+    <labels>
+        <fullName>Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Qty</shortDescription>
+        <value>Qty</value>
+    </labels>
+    <labels>
+        <fullName>Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Quantity</shortDescription>
+        <value>Commercial Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Reason</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reason</shortDescription>
+        <value>Reason</value>
+    </labels>
+    <labels>
+        <fullName>Reason_for_deletion_is_required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reason for deletion is required.</shortDescription>
+        <value>Reason for deletion is required.</value>
+    </labels>
+    <labels>
+        <fullName>Records_Updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Records Updated</shortDescription>
+        <value>Records Updated</value>
+    </labels>
+    <labels>
+        <fullName>Refresh</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Refresh</shortDescription>
+        <value>Refresh</value>
+    </labels>
+    <labels>
+        <fullName>Region</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Region</shortDescription>
+        <value>Region</value>
+    </labels>
+    <labels>
+        <fullName>Registration_Protocols</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Registration Protocols</shortDescription>
+        <value>Registration Protocols</value>
+    </labels>
+    <labels>
+        <fullName>Regulatory_Protocols</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Regulatory Protocols</shortDescription>
+        <value>Regulatory Protocols</value>
+    </labels>
+    <labels>
+        <fullName>Reimbursement_Situation_Value</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reimbursement Situation &amp; Value</shortDescription>
+        <value>Reimbursement Situation &amp; Value</value>
+    </labels>
+    <labels>
+        <fullName>Reject</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Reject</shortDescription>
+        <value>Reject</value>
+    </labels>
+    <labels>
+        <fullName>Remark</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Remark</shortDescription>
+        <value>Remark</value>
+    </labels>
+    <labels>
+        <fullName>Replanning_Request_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Replanning Request Status</shortDescription>
+        <value>Replanning Request Status</value>
+    </labels>
+    <labels>
+        <fullName>Report_for_selected_month_is_already_submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Report for selected month is already submitted.</shortDescription>
+        <value>Report for selected month is already submitted.</value>
+    </labels>
+    <labels>
+        <fullName>Report_is_submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Report is submitted</shortDescription>
+        <value>Report is submitted</value>
+    </labels>
+    <labels>
+        <fullName>Request</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request</shortDescription>
+        <value>Request</value>
+    </labels>
+    <labels>
+        <fullName>RequestFreightForDraftOrder</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>RequestFreightForDraftOrder</shortDescription>
+        <value>Freight can be requested only for a draft order!</value>
+    </labels>
+    <labels>
+        <fullName>Request_For_Re_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request For Re-Planning</shortDescription>
+        <value>Request For Re-Planning</value>
+    </labels>
+    <labels>
+        <fullName>Request_has_been_approved</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request has been approved.</shortDescription>
+        <value>Request has been approved.</value>
+    </labels>
+    <labels>
+        <fullName>Request_has_been_rejected</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Request has been rejected.</shortDescription>
+        <value>Request has been rejected.</value>
+    </labels>
+    <labels>
+        <fullName>SAP_Customer_Creation</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>SAP Customer Creation</shortDescription>
+        <value>crmhelpdesk@biotechhealthcare.com,sfadoption@biotechhealthcare.com</value>
+    </labels>
+    <labels>
+        <fullName>Sales_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sales Price</shortDescription>
+        <value>Sales Price</value>
+    </labels>
+    <labels>
+        <fullName>Sample_Request_Module_Branch_Email_Allow</fullName>
+        <categories>this label use in Sample Request Module Branch Email Allow emails</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sample Request Module Branch Email Allow</shortDescription>
+        <value>INDIA</value>
+    </labels>
+    <labels>
+        <fullName>Save</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save</shortDescription>
+        <value>Save</value>
+    </labels>
+    <labels>
+        <fullName>Save_Initial_Stock</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save Initial Stock</shortDescription>
+        <value>Save Initial Stock</value>
+    </labels>
+    <labels>
+        <fullName>Save_Monthly_Sales</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Save Monthly Sales</shortDescription>
+        <value>Save Monthly Sales</value>
+    </labels>
+    <labels>
+        <fullName>Search</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Search</shortDescription>
+        <value>Search</value>
+    </labels>
+    <labels>
+        <fullName>Second_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Second Label</shortDescription>
+        <value>Second Label</value>
+    </labels>
+    <labels>
+        <fullName>Secondary_Sales_Report</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Secondary Sales Report</shortDescription>
+        <value>Secondary Sales Report</value>
+    </labels>
+    <labels>
+        <fullName>Secondary_Sales_Return_Goods</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Secondary Sales Return Goods</shortDescription>
+        <value>Secondary Sales Return Goods</value>
+    </labels>
+    <labels>
+        <fullName>Section_A_Market_Insight</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Section A :- Market Insight</shortDescription>
+        <value>Section A — Market Insight</value>
+    </labels>
+    <labels>
+        <fullName>Section_B_Category_wise_Competition_Price_Landscape</fullName>
+        <categories>Section B</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Section B — Category-wise Competition Price Landscape</shortDescription>
+        <value>Section B — Category-wise Competition Price Landscape</value>
+    </labels>
+    <labels>
+        <fullName>Section_Title</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Section Title</shortDescription>
+        <value>Section Title</value>
+    </labels>
+    <labels>
+        <fullName>Select</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select</shortDescription>
+        <value>Select</value>
+    </labels>
+    <labels>
+        <fullName>Select_Account</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Account</shortDescription>
+        <value>Select Account</value>
+    </labels>
+    <labels>
+        <fullName>Select_BD_Plans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select BD Plans</shortDescription>
+        <value>Select BD Plans</value>
+    </labels>
+    <labels>
+        <fullName>Select_Products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Products</shortDescription>
+        <value>Select Products</value>
+    </labels>
+    <labels>
+        <fullName>Select_Region</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Region</shortDescription>
+        <value>Select Region</value>
+    </labels>
+    <labels>
+        <fullName>Select_Sub_Products</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Sub Products</shortDescription>
+        <value>Select Sub Products</value>
+    </labels>
+    <labels>
+        <fullName>Select_Week_Range</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Week Range</shortDescription>
+        <value>Select Week Range</value>
+    </labels>
+    <labels>
+        <fullName>Select_Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Year</shortDescription>
+        <value>Select Year</value>
+    </labels>
+    <labels>
+        <fullName>Select_Zone</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Select Zone</shortDescription>
+        <value>Select Zone</value>
+    </labels>
+    <labels>
+        <fullName>Selected_BD_Plans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Selected BD Plans:</shortDescription>
+        <value>Selected BD Plans:</value>
+    </labels>
+    <labels>
+        <fullName>Seller_paragraph</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Seller_paragraph</shortDescription>
+        <value>Both the Seller and the Buyer execute this contract on the basis of legality, equity and honesty after equal and voluntary negotiation.</value>
+    </labels>
+    <labels>
+        <fullName>September</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>September</shortDescription>
+        <value>September</value>
+    </labels>
+    <labels>
+        <fullName>Share</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>% Share</shortDescription>
+        <value>% Share</value>
+    </labels>
+    <labels>
+        <fullName>Some_Products_are_having_actual_order_quantity_less_than_the_minimum_order_quant</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Some Products are having actual order quantity less than the minimum order quant</shortDescription>
+        <value>Some Products are having actual order quantity less than the minimum order quantity</value>
+    </labels>
+    <labels>
+        <fullName>Something_went_wrong</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;Something went wrong.&quot;</shortDescription>
+        <value>&quot;Something went wrong.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Spherical_Power</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Spherical Power</shortDescription>
+        <value>Spherical Power</value>
+    </labels>
+    <labels>
+        <fullName>Sr</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sr.</shortDescription>
+        <value>Sr.</value>
+    </labels>
+    <labels>
+        <fullName>Sr_No</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sr. No.</shortDescription>
+        <value>Sr. No.</value>
+    </labels>
+    <labels>
+        <fullName>Stage</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stage</shortDescription>
+        <value>Stage</value>
+    </labels>
+    <labels>
+        <fullName>Stages</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Stages</shortDescription>
+        <value>Stages</value>
+    </labels>
+    <labels>
+        <fullName>State</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>State</shortDescription>
+        <value>State</value>
+    </labels>
+    <labels>
+        <fullName>Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>StatusSS</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Status</shortDescription>
+        <value>Status</value>
+    </labels>
+    <labels>
+        <fullName>Sub_Total</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sub Total</shortDescription>
+        <value>Sub Total</value>
+    </labels>
+    <labels>
+        <fullName>Submit</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit</shortDescription>
+        <value>Submit</value>
+    </labels>
+    <labels>
+        <fullName>Submit_For_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submit For Approval</shortDescription>
+        <value>Submit For Approval</value>
+    </labels>
+    <labels>
+        <fullName>Submitted</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Submitted</shortDescription>
+        <value>Submitted</value>
+    </labels>
+    <labels>
+        <fullName>Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Success</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>Success_Record_Updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Success!! Record Updated..</shortDescription>
+        <value>Success!! Record Updated..</value>
+    </labels>
+    <labels>
+        <fullName>Sum_Actual_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sum Actual Qty</shortDescription>
+        <value>Sum Actual Qty</value>
+    </labels>
+    <labels>
+        <fullName>Sum_Forecast_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sum Forecast Qty</shortDescription>
+        <value>Sum Forecast Qty</value>
+    </labels>
+    <labels>
+        <fullName>Sum_of_Actual_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sum of Actual Qty</shortDescription>
+        <value>Sum of Actual Qty</value>
+    </labels>
+    <labels>
+        <fullName>Sum_of_Forecast_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Sum of Forecast Qty</shortDescription>
+        <value>Sum of Forecast Qty</value>
+    </labels>
+    <labels>
+        <fullName>Target</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Target</shortDescription>
+        <value>Target</value>
+    </labels>
+    <labels>
+        <fullName>Target_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Target Qty</shortDescription>
+        <value>Target Qty</value>
+    </labels>
+    <labels>
+        <fullName>The_Product</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The Product</shortDescription>
+        <value>The product</value>
+    </labels>
+    <labels>
+        <fullName>The_reasons_why_you_chose_our_Company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The reasons why you chose our Company</shortDescription>
+        <value>The reasons why you chose our Company</value>
+    </labels>
+    <labels>
+        <fullName>The_record_has_been_deleted_successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The record has been deleted successfully</shortDescription>
+        <value>The record has been deleted successfully</value>
+    </labels>
+    <labels>
+        <fullName>The_record_has_been_saved_successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The record has been saved successfully</shortDescription>
+        <value>The record has been saved successfully</value>
+    </labels>
+    <labels>
+        <fullName>The_record_has_been_updated_successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The record has been updated successfully.</shortDescription>
+        <value>The record has been updated successfully.</value>
+    </labels>
+    <labels>
+        <fullName>The_records_has_been_submitted_successfully_and_email_has_been_sent_to_logistics</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>The records has been submitted successfully and email has been sent to logistics</shortDescription>
+        <value>The records has been submitted successfully and email has been sent to logistics team.</value>
+    </labels>
+    <labels>
+        <fullName>There_Is_No_Pending_Approval</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>There Is No Pending Approval</shortDescription>
+        <value>There Is No Pending Approval</value>
+    </labels>
+    <labels>
+        <fullName>There_is_already_anopen_order_in_the_system</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>There is already anopen order in the system.</shortDescription>
+        <value>There is already an open order in the system.</value>
+    </labels>
+    <labels>
+        <fullName>There_is_no_Manager_Or_RSM_User_has_been_set_on_your_Profile</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>There is no Manager Or RSM User has been set on your Profile.</shortDescription>
+        <value>There is no Manager Or RSM User has been set on your Profile.</value>
+    </labels>
+    <labels>
+        <fullName>Top_5_key_accounts_in_the_country</fullName>
+        <categories>Section A</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Top 5 key accounts in the country</shortDescription>
+        <value>Top 5 key accounts in the country</value>
+    </labels>
+    <labels>
+        <fullName>Total</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total</shortDescription>
+        <value>Total</value>
+    </labels>
+    <labels>
+        <fullName>Total_Actual_Qt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Actual Qt</shortDescription>
+        <value>Total Actual Qt</value>
+    </labels>
+    <labels>
+        <fullName>Total_Actual_Qty_Till_Date</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Actual Qty Till Date</shortDescription>
+        <value>Total Actual Qty Till Date</value>
+    </labels>
+    <labels>
+        <fullName>Total_Forecast_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Forecast Qty</shortDescription>
+        <value>Total Forecast Qty</value>
+    </labels>
+    <labels>
+        <fullName>Total_Package</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Package</shortDescription>
+        <value>Total Package</value>
+    </labels>
+    <labels>
+        <fullName>Total_Population_in_Millions</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Population (in Millions)</shortDescription>
+        <value>Total Population (in Millions)</value>
+    </labels>
+    <labels>
+        <fullName>Total_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Price</shortDescription>
+        <value>Total Price</value>
+    </labels>
+    <labels>
+        <fullName>Total_Sub_Product_Quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total Sub Product Quantity</shortDescription>
+        <value>Total Sub Product Quantity</value>
+    </labels>
+    <labels>
+        <fullName>Total_sub_product_quantity_is_equal_to_the_order_product_quantity</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Total sub product quantity is equal to the order product quantity</shortDescription>
+        <value>Total sub product quantity is equal to the order product quantity</value>
+    </labels>
+    <labels>
+        <fullName>Type_of_Planning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Type of Planning</shortDescription>
+        <value>Type of Planning</value>
+    </labels>
+    <labels>
+        <fullName>Unit_Price</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unit Price</shortDescription>
+        <value>Unit Price</value>
+    </labels>
+    <labels>
+        <fullName>Unit_Sold_This_Month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Unit Sold This Month</shortDescription>
+        <value>Unit Sold This Month</value>
+    </labels>
+    <labels>
+        <fullName>Units</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Units</shortDescription>
+        <value>Units</value>
+    </labels>
+    <labels>
+        <fullName>Up_on_new_order_creation_old_order_will_be_cancelled</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Up on new order creation old order will be cancelled.</shortDescription>
+        <value>Up on new order creation old order will be cancelled.</value>
+    </labels>
+    <labels>
+        <fullName>Update_BD_Plan</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Update BD Plan</shortDescription>
+        <value>Update BD Plan</value>
+    </labels>
+    <labels>
+        <fullName>UserLongitude</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>UserLongitude</shortDescription>
+        <value>UserLongitude</value>
+    </labels>
+    <labels>
+        <fullName>User_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>User Name</shortDescription>
+        <value>User Name</value>
+    </labels>
+    <labels>
+        <fullName>VAR</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VAR</shortDescription>
+        <value>VAR</value>
+    </labels>
+    <labels>
+        <fullName>VAR_F_M</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>VAR(F-M)</shortDescription>
+        <value>VAR(F-M)10</value>
+    </labels>
+    <labels>
+        <fullName>Value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Value</shortDescription>
+        <value>Value</value>
+    </labels>
+    <labels>
+        <fullName>Variance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Variance</shortDescription>
+        <value>Variance</value>
+    </labels>
+    <labels>
+        <fullName>Week</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Week</shortDescription>
+        <value>Week</value>
+    </labels>
+    <labels>
+        <fullName>Week_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Week Number</shortDescription>
+        <value>Week Number</value>
+    </labels>
+    <labels>
+        <fullName>Week_Range</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Week Range</shortDescription>
+        <value>Week Range</value>
+    </labels>
+    <labels>
+        <fullName>What_is_the_approximate_total_value_of_Ophthalmic_products_imported_during_year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>What is the approximate total value of Ophthalmic products imported during year</shortDescription>
+        <value>What is the approximate total value of Ophthalmic products imported during year</value>
+    </labels>
+    <labels>
+        <fullName>What_would_be_the_value_of_such_imports_by_your_company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>What would be the value of such imports by your company</shortDescription>
+        <value>What would be the value of such imports by your company</value>
+    </labels>
+    <labels>
+        <fullName>Which_company_s_product_has_a_easy_recall_in_the_minds_of_Doctors</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Which company&apos;s product has a easy recall in the minds of Doctors</shortDescription>
+        <value>Which company&apos;s product has a easy recall in the minds of Doctors</value>
+    </labels>
+    <labels>
+        <fullName>Won</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Won</shortDescription>
+        <value>Won</value>
+    </labels>
+    <labels>
+        <fullName>Year</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Year</shortDescription>
+        <value>Year</value>
+    </labels>
+    <labels>
+        <fullName>Year_Month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Year Month</shortDescription>
+        <value>Year Month</value>
+    </labels>
+    <labels>
+        <fullName>Year_of_Establishment</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Year of Establishment</shortDescription>
+        <value>Year of Establishment</value>
+    </labels>
+    <labels>
+        <fullName>Yes</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes</shortDescription>
+        <value>Yes</value>
+    </labels>
+    <labels>
+        <fullName>Yes_Continue</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Yes , Continue</shortDescription>
+        <value>Yes , Continue</value>
+    </labels>
+    <labels>
+        <fullName>You_can_do_max_15_plan_in_each_month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You can do max 15 plan in each month.</shortDescription>
+        <value>You can do max 15 plan in each month.</value>
+    </labels>
+    <labels>
+        <fullName>You_can_not_do_planning_for_same_customer_and_product_with_same_contact_person</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You can not do planning for same customer and product with same contact person.</shortDescription>
+        <value>You can not do planning for same customer and product with same contact person.</value>
+    </labels>
+    <labels>
+        <fullName>You_cannot_enter_negative_value</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You cannot enter negative value.</shortDescription>
+        <value>You cannot enter negative value.</value>
+    </labels>
+    <labels>
+        <fullName>You_have_already_requested_for_Re_Submission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You have already requested for Re-Submission</shortDescription>
+        <value>You have already requested for Re-Submission</value>
+    </labels>
+    <labels>
+        <fullName>You_have_not_linked_BD_Plans</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>You have not linked BD Plans</shortDescription>
+        <value>You have not linked BD Plans</value>
+    </labels>
+    <labels>
+        <fullName>You_have_reached_plan_limit_for_the_current_month</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;You have reached plan limit for the current month.&quot;</shortDescription>
+        <value>&quot;You have reached plan limit for the current month.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>You_have_requested_Re_Submission</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>&quot;You have requested Re-Submission.&quot;</shortDescription>
+        <value>&quot;You have requested Re-Submission.&quot;</value>
+    </labels>
+    <labels>
+        <fullName>Your_Retail_Shops</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Your Retail Shops</shortDescription>
+        <value>Your Retail Shops</value>
+    </labels>
+    <labels>
+        <fullName>Zoho_IdP_Initiated_Login_URL</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Zoho IdP-Initiated Login URL</shortDescription>
+        <value>https://biotechcrm--full.sandbox.my.salesforce.com/idp/login?app=0spSz000000001d&amp;RelayState=https://expense.zoho.in</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Cmp_NoProdAdded</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Cmp_NoProdAdded</shortDescription>
+        <value>Eklenen Ürün Yok</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_AddBtn</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_AddBtn</shortDescription>
+        <value>EKLEMEK</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_Descrip</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_Descrip</shortDescription>
+        <value>AÇIKLAMA</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_DummyCode</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_DummyCode</shortDescription>
+        <value>KUKLA KOD</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_LstPrice</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_LstPrice</shortDescription>
+        <value>LİSTE FİYATI</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_MSP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_MSP</shortDescription>
+        <value>MSP (PERİTE BAŞI)</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_OppVal</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_OppVal</shortDescription>
+        <value>FIRSAT DEĞERİ</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_ProdName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_ProdName</shortDescription>
+        <value>ÜRÜN ADI</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_ProposedMSP</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_ProposedMSP</shortDescription>
+        <value>ÖNERİLEN MSP (ÜNİTE BAŞINA)</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_Qty</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_Qty</shortDescription>
+        <value>MİKTARI</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_Remark</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_Remark</shortDescription>
+        <value>UYARILAR</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_SNo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_SNo</shortDescription>
+        <value>SERİ NUMARASI</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Col_SaveBtn</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Col_SaveBtn</shortDescription>
+        <value>KAYDET</value>
+    </labels>
+    <labels>
+        <fullName>addProd_Inp_SearchProd</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>addProd_Inp_SearchProd</shortDescription>
+        <value>Ürün Ara</value>
+    </labels>
+    <labels>
+        <fullName>apex_AccTeamTrigErrMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>apex_AccTeamTrigErrMsg</shortDescription>
+        <value>Please add only your team member.</value>
+    </labels>
+    <labels>
+        <fullName>apex_SysAdminProfLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>apex_SysAdminProfLabel</shortDescription>
+        <value>System Administrator</value>
+    </labels>
+    <labels>
+        <fullName>block</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>block</shortDescription>
+        <value>block</value>
+    </labels>
+    <labels>
+        <fullName>check_in_Distance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>check in Distance</shortDescription>
+        <value>10</value>
+    </labels>
+    <labels>
+        <fullName>check_in_Distance_Warning</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Check in Distance warning</shortDescription>
+        <value>500000</value>
+    </labels>
+    <labels>
+        <fullName>custLableMinimumDistance</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>custLableMinimumDistance</shortDescription>
+        <value>10000</value>
+    </labels>
+    <labels>
+        <fullName>demo</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>demo</shortDescription>
+        <value>demo</value>
+    </labels>
+    <labels>
+        <fullName>google_api_key</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>google_api_key</shortDescription>
+        <value>AIzaSyBRYqiA-p-B_zdWU5N4ac7DgEDWFWmZFlM</value>
+    </labels>
+    <labels>
+        <fullName>is_already_added</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>is already added</shortDescription>
+        <value>is already added</value>
+    </labels>
+    <labels>
+        <fullName>item</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>!item</shortDescription>
+        <value>!item</value>
+    </labels>
+    <labels>
+        <fullName>item_1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>!item+1</shortDescription>
+        <value>!item+1</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_ErrorMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_ErrorMsg</shortDescription>
+        <value>Please fill &apos;GSTN/PanCard/MedicalRegNo&apos; field data, attach ERL document and get Customer Evaluation approved for this year before submitting for approval.</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_PopUpBody</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_PopUpBody</shortDescription>
+        <value>Are you sure want to submit for Approval?</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_PopUpBtn1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_PopUpBtn1</shortDescription>
+        <value>Submit For Approval</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_PopUpBtn2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_PopUpBtn2</shortDescription>
+        <value>Cancel</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_toastErrMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_toastErrMsg</shortDescription>
+        <value>Oops, Error Occurred!</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_toastSucssMsg</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_toastSucssMsg</shortDescription>
+        <value>The record has been submitted for approval.</value>
+    </labels>
+    <labels>
+        <fullName>lex_Sub4App_toastSucssTle</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>lex_Sub4App_toastSucssTle</shortDescription>
+        <value>Success!!</value>
+    </labels>
+    <labels>
+        <fullName>marketing_Profiles</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>marketing Profiles</shortDescription>
+        <value>00e6F000003cIDQQA2</value>
+    </labels>
+    <labels>
+        <fullName>monthHeader</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>monthHeader</shortDescription>
+        <value>monthHeader</value>
+    </labels>
+    <labels>
+        <fullName>monthName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>monthName</shortDescription>
+        <value>monthName</value>
+    </labels>
+    <labels>
+        <fullName>monthShortname</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>monthShortname</shortDescription>
+        <value>monthShortname</value>
+    </labels>
+    <labels>
+        <fullName>my_D_label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>my D label</shortDescription>
+        <value>test</value>
+    </labels>
+    <labels>
+        <fullName>prodYear</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>prodYear</shortDescription>
+        <value>prodYear</value>
+    </labels>
+    <labels>
+        <fullName>promt</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>promt</shortDescription>
+        <value>promt</value>
+    </labels>
+    <labels>
+        <fullName>required</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>required</shortDescription>
+        <value>required</value>
+    </labels>
+    <labels>
+        <fullName>shipment1</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>shipment1</shortDescription>
+        <value>Promise date shall be sent separately via Auto Email</value>
+    </labels>
+    <labels>
+        <fullName>shipment2</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>shipment2</shortDescription>
+        <value>not allowed/ allowed</value>
+    </labels>
+    <labels>
+        <fullName>shipment3</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>shipment3</shortDescription>
+        <value>-Buyer is responsible for transportation cost and associated risks.</value>
+    </labels>
+    <labels>
+        <fullName>stageName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>stageName</shortDescription>
+        <value>stageName</value>
+    </labels>
+    <labels>
+        <fullName>turkAccountLabel</fullName>
+        <categories>Used in &quot;TargetAndPlanningTurkey&quot; Comp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkAccountLabel</shortDescription>
+        <value>Müşteriler</value>
+    </labels>
+    <labels>
+        <fullName>turkCERatingColLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkCERatingColLabel</shortDescription>
+        <value>Müşteri DEĞERLENDİRME Notu</value>
+    </labels>
+    <labels>
+        <fullName>turkCISRatingColLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkCISRatingColLabel</shortDescription>
+        <value>Müşteri Bilgi Sistemi DEĞERLENDİRME Notu</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthApr</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthApr</shortDescription>
+        <value>Nisan</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthAug</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthAug</shortDescription>
+        <value>Ağustos</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthDec</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthDec</shortDescription>
+        <value>Aralık</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthFeb</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthFeb</shortDescription>
+        <value>Şubat</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthJan</fullName>
+        <categories>Turkish Months Name</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthJan</shortDescription>
+        <value>Ocak</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthJul</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthJul</shortDescription>
+        <value>Temmuz</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthJun</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthJun</shortDescription>
+        <value>Haziran</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthMar</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthMar</shortDescription>
+        <value>Mart</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthMay</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthMay</shortDescription>
+        <value>Mayıs ayı</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthNov</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthNov</shortDescription>
+        <value>Kasım</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthOct</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthOct</shortDescription>
+        <value>Ekim</value>
+    </labels>
+    <labels>
+        <fullName>turkMonthSep</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkMonthSep</shortDescription>
+        <value>Eylül</value>
+    </labels>
+    <labels>
+        <fullName>turkRefreshBtnLabel</fullName>
+        <categories>Used in &quot;TargetAndPlanningTurkey&quot; Comp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkRefreshBtnLabel</shortDescription>
+        <value>Yenile</value>
+    </labels>
+    <labels>
+        <fullName>turkRemainingQtyLabel</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkRemainingQtyLabel</shortDescription>
+        <value>Kalan</value>
+    </labels>
+    <labels>
+        <fullName>turkSaveBtnLabel</fullName>
+        <categories>Used in &quot;TargetAndPlanningTurkey&quot; Comp</categories>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>turkSaveBtnLabel</shortDescription>
+        <value>kaydet</value>
+    </labels>
+    <labels>
+        <fullName>update</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>update</shortDescription>
+        <value>update</value>
+    </labels>
+</CustomLabels>

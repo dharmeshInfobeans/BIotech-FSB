@@ -1,0 +1,134 @@
+<template>
+    <div class="my-requests-container">
+
+        <!-- Header -->
+        <div class="page-header">
+            <div class="header-left">
+                <h1 class="page-title">My Registration Requests</h1>
+                <span class="record-count" lwc:if={hasRecords}>{filteredCount} Request(s)</span>
+            </div>
+            <div class="header-right">
+                <lightning-button
+                    variant="brand"
+                    label="New Registration"
+                    icon-name="utility:add"
+                    onclick={handleNewRegistration}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-bar">
+            <div class="search-box">
+                <lightning-icon icon-name="utility:search" size="x-small" class="search-icon"></lightning-icon>
+                <input
+                    type="text"
+                    class="search-input"
+                    placeholder="Search by RR# or Product..."
+                    value={searchTerm}
+                    oninput={handleSearch}
+                />
+            </div>
+            <div class="status-filter">
+                <lightning-combobox
+                    label="Status"
+                    variant="label-hidden"
+                    placeholder="Filter by Status"
+                    value={selectedStatus}
+                    options={statusOptions}
+                    onchange={handleStatusFilter}>
+                </lightning-combobox>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="spinner-container">
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={error}>
+            <div class="error-box">
+                <lightning-icon icon-name="utility:error" size="small" variant="error"></lightning-icon>
+                <span>{errorMessage}</span>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template lwc:if={isEmpty}>
+            <div class="empty-state">
+                <lightning-icon icon-name="utility:list" size="large" class="empty-icon"></lightning-icon>
+                <p class="empty-title">No Requests Found</p>
+                <p class="empty-sub">
+                    <template lwc:if={hasActiveFilter}>No requests match your current filters.</template>
+                    <template lwc:else>You have not submitted any registration requests yet.</template>
+                </p>
+                <template lwc:if={noActiveFilter}>
+                    <lightning-button
+                        variant="brand"
+                        label="Start Your First Registration"
+                        onclick={handleNewRegistration}>
+                    </lightning-button>
+                </template>
+            </div>
+        </template>
+
+        <!-- Request Cards -->
+        <template lwc:if={hasRecords}>
+            <div class="requests-grid">
+                <template for:each={filteredRequests} for:item="req">
+                    <div key={req.Id} class="request-card" data-id={req.Id} onclick={handleCardClick}>
+                        <div class="card-header">
+                            <div class="card-header-left">
+                                <span class="rr-number">{req.Name}</span>
+                                <template lwc:if={req.isAdditionalCert}>
+                                    <span class="type-badge-cert">Additional Cert</span>
+                                </template>
+                            </div>
+                            <span class={req.statusClass}>{req.Status__c}</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="card-row">
+                                <span class="card-label">Product</span>
+                                <span class="card-value">{req.productName}</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label">Country</span>
+                                <span class="card-value">{req.Country__c}</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label">Region</span>
+                                <span class="card-value">{req.Region__c}</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label">Stage</span>
+                                <span class="card-value">{req.Current_Stage__c}</span>
+                            </div>
+                            <div class="card-row">
+                                <span class="card-label">Submitted</span>
+                                <span class="card-value">{req.formattedDate}</span>
+                            </div>
+                        </div>
+                        <template lwc:if={req.Rejection_Comments__c}>
+                            <div class="rejection-banner">
+                                <lightning-icon icon-name="utility:warning" size="x-small" variant="warning"></lightning-icon>
+                                <span>{req.Rejection_Comments__c}</span>
+                            </div>
+                        </template>
+                        <div class="card-footer">
+                            <lightning-button-icon
+                                icon-name="utility:forward"
+                                variant="border-filled"
+                                size="small"
+                                alternative-text="View Details">
+                            </lightning-button-icon>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+    </div>
+</template>

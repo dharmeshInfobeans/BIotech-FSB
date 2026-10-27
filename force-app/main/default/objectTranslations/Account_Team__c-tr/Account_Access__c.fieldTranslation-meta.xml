@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Hesap Erişimi</label>
+    <name>Account_Access__c</name>
+    <picklistValues>
+        <masterLabel>Read</masterLabel>
+        <translation>okumak</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Read/Write</masterLabel>
+        <translation>Okuma yazma</translation>
+    </picklistValues>
+</CustomFieldTranslation>

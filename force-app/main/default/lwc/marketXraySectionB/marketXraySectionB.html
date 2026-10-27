@@ -1,0 +1,193 @@
+<template>
+    <lightning-card style="font-weight: 600;">
+        <div slot="title" class="slds-grid slds-wrap slds-grid_align-spread" style="font-weight: 600;">
+            <span>{label.SECTION_B_CATEGORY_WISE_COMPETITION_PRICE_LANDSCAPE}</span>
+            <span style="color: red; font-size: 0.9rem; margin-left: 42rem;">*</span><p style="font-size: 0.8rem;">All fields are required</p>
+        </div>
+        <div class="slds-p-around_medium">
+            <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                <h3 class="slds-text-heading_small slds-m-bottom_small" >
+                    Importation / Customs Clearance Charges
+                </h3>
+
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" label={label.FROM_INDIA_IOLS_LABEL} placeholder="e.g. 5%" onchange={handleOnchange}
+                            name='fromIndiaIOL' value={customClearance.fromIndiaIOL} disabled={isSaveDisabled}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" label={label.FROM_INDIA_SOLUTION_LABEL} placeholder="8.6%" onchange={handleOnchange}
+                            name='fromIndiaSolution' value={customClearance.fromIndiaSolution} disabled={isSaveDisabled}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" label={label.FROM_INDIA_PHARMA_LABEL} placeholder="1.56%" onchange={handleOnchange}
+                            name='fromIndiaPharma' value={customClearance.fromIndiaPharma} disabled={isSaveDisabled}></lightning-input>
+                    </div>
+                </div>
+
+                <div class="slds-grid slds-wrap slds-gutters slds-m-top_small">
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" label={label.FROM_IRELAND_IOLS_LABEL} placeholder="e.g. 8.9%" onchange={handleOnchange}
+                            name='fromIrelandIOL' value={customClearance.fromIrelandIOL} disabled={isSaveDisabled}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" label={label.FROM_IRELAND_SOLUTION_LABEL} placeholder="0.02%" onchange={handleOnchange}
+                            name='fromIrelandSolution' value={customClearance.fromIrelandSolution} disabled={isSaveDisabled}></lightning-input>
+                    </div>
+                    <div class="slds-col slds-size_1-of-3">
+                        <lightning-input type="number" formatter="percent-fixed" min="0" max="100" step="0.01" maximum-fraction-digits="2" format-style="decimal" label={label.FROM_IRELAND_PHARMA_LABEL} placeholder="0.66%" onchange={handleOnchange}
+                            name='fromIrelandPharma' value={customClearance.fromIrelandPharma} disabled={isSaveDisabled}></lightning-input>
+                    </div>
+                </div>
+
+                <div class="slds-m-top_medium">
+                    <lightning-input type="number" label={label.ANY_OTHER_CHARGES_LABEL} placeholder="Enter any other charges, if any..."
+                        onchange={handleOnchange} name='anyOtherCharges' value={customClearance.anyOtherCharges} disabled={isSaveDisabled}>
+                    </lightning-input>
+                </div>
+            
+                <div class="slds-m-bottom_medium button-row">
+                    <lightning-button label="−" title="Show Summary" onclick={handleHypenButtonClick}
+                        class="slds-m-right_small">
+                    </lightning-button>
+                    <lightning-button label="+" title="Competitor" onclick={handlePlusButtonClick}
+                        class="slds-m-right_small">
+                    </lightning-button>
+                </div>
+
+                <div class="slds-box slds-theme_default slds-m-bottom_medium">
+                    <template if:true={isMinusVisible}>
+                        <c-show-biotech-category-and-product-range userid={userid} ></c-show-biotech-category-and-product-range>
+                    </template>
+
+                    <c-market-competitor-price-comparison class={compClass} userid = {userid} get-distributor-data-to-parent={distributorData}></c-market-competitor-price-comparison>
+
+                </div>
+            </div>
+            
+        </div>
+    </lightning-card>
+
+
+    <template if:false={isSaveDisabled}>
+        <div class="action-buttons" style=" font-weight:600; text-align: end;padding: 1rem;margin-top: 0.7rem; border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+            <lightning-button label="Save Section B" variant="success" disabled={isFormDisabled} class="slds-m-right_small" onclick={handleSaveButtonSectionB}></lightning-button>
+            <template if:false={isFormDisabled}>
+                <lightning-button label="Submit Sections" variant="success" disabled={isFormDisabled} onclick={handleShowConfirmModel}></lightning-button>
+            </template>
+            <template if:true={isFormDisabled}>
+                <lightning-button label="Request to Change" variant="brand" disabled={isDisable} icon-name="utility:edit" onclick={handleRequestChange}></lightning-button>
+            </template>
+        </div>
+    </template>
+
+    <template if:true={isSaveDisabled}>
+        <div style=" font-weight:600; text-align: end;padding: 1rem;margin-top: 0.7rem; border: 1px solid white;border-radius: 1rem;box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);">
+            <div class="slds-text-color_weak">
+                    Read Only Access
+            </div>
+        </div>
+    </template>
+
+<template if:true={showRequestChangeModal}>
+    <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+        
+            <header class="slds-modal__header">
+                <h2 class="slds-text-heading_medium" id="modal-heading-02">
+                    Request to Change Form
+                </h2>
+            </header>
+
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-2">
+                <div class="slds-text-align_center">
+                    <lightning-icon 
+                        icon-name="utility:edit" 
+                        alternative-text="Edit" 
+                        size="large"
+                        variant="warning" 
+                        class="slds-m-bottom_small">
+                    </lightning-icon>
+                    <p class="slds-text-heading_small slds-m-bottom_medium">
+                        Do you want to request access to edit this form?
+                    </p>
+                    <div class="slds-text-align_left slds-box slds-theme_info slds-theme_alert-texture"
+                        style="background-color: #71beee; border-left: 4px solid #0176d3;">
+                        <p class="slds-text-body_regular slds-m-bottom_small">
+                            <strong>ℹ️ What happens next:</strong>
+                        </p>
+                        <p class="slds-text-body_small slds-m-bottom_x-small">
+                            • A notification will be sent to the <strong>Admin Team</strong>
+                        </p>
+                        <p class="slds-text-body_small slds-m-bottom_x-small">
+                            • An email will be sent with your request details
+                        </p>
+                        <p class="slds-text-body_small">
+                            • You will be notified once your request is <strong>approved</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="slds-modal__footer">
+                <lightning-button 
+                    label="Cancel" 
+                    onclick={handleCancelRequestChange} 
+                    class="slds-m-right_small">
+                </lightning-button>
+                <lightning-button 
+                    variant="brand" 
+                    label="Yes, Request Change" 
+                    onclick={handleConfirmRequestChange}>
+                </lightning-button>
+            </footer>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</template>
+    <template if:true={showConfirmModal}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+            
+                <header class="slds-modal__header">
+                    <h2 class="slds-text-heading_medium" id="modal-heading-01">
+                        Confirm Submission
+                    </h2>
+                </header>
+
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <div class="slds-text-align_center">
+                        <lightning-icon icon-name="utility:warning" alternative-text="Warning" size="large"
+                            variant="warning" class="slds-m-bottom_small">
+                        </lightning-icon>
+                        <p class="slds-text-heading_small slds-m-bottom_medium">
+                            Are you sure you want to submit this record?
+                        </p>
+                        <div class="slds-text-align_left slds-box slds-theme_warning slds-theme_alert-texture"
+                            style="background-color: #fef7e6; border-left: 4px solid #fe9339;">
+                            <p class="slds-text-body_regular slds-m-bottom_small">
+                                <strong>⚠️ Important Notice:</strong>
+                            </p>
+                            <p class="slds-text-body_small slds-m-bottom_x-small">
+                                • Once submitted, you will <strong>NOT be able to make any changes</strong> to this
+                                record.
+                            </p>
+                            <p class="slds-text-body_small">
+                                • If you need to modify the record after submission, you will need to
+                                <strong> contact the Admin Team</strong> for assistance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <lightning-button label="Cancel" onclick={handleCancelSubmit} class="slds-m-right_small">
+                    </lightning-button>
+                    <lightning-button variant="brand" label="Yes, Submit" onclick={handleSumbit}>
+                    </lightning-button>
+                </footer>
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+</template>

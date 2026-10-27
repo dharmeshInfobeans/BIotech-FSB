@@ -1,0 +1,289 @@
+<template>
+    <div style="background-color: #F3F3F3; padding:2px;">
+        <template if:true={Attendance}>
+
+            <!-- Profile Section -->
+            <div class="slds-box slds-theme_default slds-p-around_medium profile-section"
+                style="background-color: rgb(0, 161, 224); color: white; border-radius: 8px;">
+                <div class="slds-grid slds-align_absolute-center">
+                    <!-- User Avatar and Greeting -->
+                    <div class="slds-m-left_medium slds-grid slds-align_absolute-center">
+                        <img src={userPhotoUrl} alt="User Avatar" class="avatar" style="width: 50px; height: 50px; border-radius: 50%; margin-right: 12px;" />
+                        <div style="font-size: 16px;font-family: -webkit-body; font-weight: bold;">
+                            <p>{getloginlogoutlabel.Hi__c} {username}, {getloginlogoutlabel.Hi_user_Name_kindly_start_your_day_b__c}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- Start Day Section -->
+
+            <div class="slds-card slds-p-around_medium slds-text-align_left slds-m-top_medium"
+                style="border-radius: 10px; box-shadow: 0px 5px 7px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.16);">
+                <div style="font-size: 14px;margin-bottom: 8px;font-weight: bold; font-family: -webkit-body;">
+                    <!-- Show Login Time if Startday is false -->
+
+
+                    <!-- Show Logout Time if Endday is false -->
+
+
+
+                    <div class="slds-grid slds-grid_vertical-align-start loginleave">
+                        <div class="slds-col">
+                            <span><template if:true={loginday}>
+        <p>{getloginlogoutlabel.Login_Time__c}:&nbsp;&nbsp; {formattedLoginTime}</p>
+    </template></span>
+                        </div>
+                        <div class="slds-col">
+                            <span><template if:true={logoutday}>
+        <p>{getloginlogoutlabel.Logout_Time__c}:&nbsp;&nbsp; {formattedLogoutTime}</p>
+    </template></span>
+                        </div>
+                        <div class="slds-col">
+                            <span>
+                                <template if:true={leavedata}>
+        <div class="leave-details">
+            <p>{beatPlanStatus.Event_type_Name__c}: <span class="status-label" style={statusStyle}>{beatPlanStatus.Approval_status__c}</span>
+                            </p>
+
+                        </div>
+
+        </template></span>
+    </div>
+    </div>
+    </div>
+    <template if:true={Startday}>
+        <div class="slds-text-heading_medium slds-p-bottom_small" style="font-weight: bold; font-family: -webkit-body;">
+            {getloginlogoutlabel.Let_s_Start_Your_Day__c}
+        </div>
+        
+           <button  style="cursor: pointer;background-color: rgb(38 163 62);" class="slds-button slds-button_brand" onclick={handlestartday} data-name="Start">{getloginlogoutlabel.Start_My_Day__c}</button>
+        
+        <!--  <a href="#" class="slds-text-link" onclick={endMyDay}>End My Day!</a>-->
+    </template>
+    <template if:true={Endday}>
+        <div class="slds-text-heading_medium slds-p-bottom_small" style="font-weight: bold; font-family: -webkit-body;">
+            {getloginlogoutlabel.Let_s_End_Your_Day__c}
+        </div>
+       
+            <button  style="cursor: pointer;background-color: rgb(208 60 43);" class="slds-button slds-button_brand" onclick={handleendday} data-name="Endday">{getloginlogoutlabel.End_My_Day__c}</button>
+           
+    </template>
+    </div>
+
+
+
+
+
+
+    <!-- Action Buttons -->
+    <div class="action-buttons slds-m-top_large slds-grid slds-wrap slds-grid_pull-padded">
+        <div class="button slds-col slds-size_1-of-2 slds-p-horizontal_medium slds-m-bottom_medium">
+            <span style="color: rgb(0, 161, 224); cursor: pointer;" onclick={handleNavigateToCustomTab}>
+                <lightning-icon icon-name="utility:event" size="medium" class="EventIcon"></lightning-icon>
+                  </span>
+            <span style="font-size: 14px; font-weight: 500;font-family: -webkit-body;cursor: pointer;" onclick={handleNavigateToCustomTab}>{getloginlogoutlabel.Event_Planner__c}</span>
+        </div>
+        <div class="button slds-col slds-size_1-of-2 slds-p-horizontal_medium slds-m-bottom_medium">
+            <span style="color: #f53434;cursor: pointer;">
+
+                <lightning-icon icon-name="utility:leave_conference" size="medium" class="custom-icon-color" onclick={handleleave} disabled={Approvedreject}></lightning-icon>
+
+                    </span>
+
+
+            <span style="font-size: 14px; font-weight: 500;font-family: -webkit-body;">{getloginlogoutlabel.Leave__c}</span>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation (Optional) -->
+    <div class="bottom-nav slds-m-top_medium slds-text-align_center">
+        <!-- Add navigation icons here if needed -->
+    </div>
+
+    <template if:true={startmyday}>
+
+        <!-- Modal overlay -->
+        <!-- Modal overlay (clicking outside the modal closes it) -->
+        <template if:true={isModalOpen}>
+            <div class="modal-overlay" onclick={handleOverlayClick}>
+                <div class="modal" onclick={stopPropagation}>
+                    <!-- Display the current time -->
+                    <p style="font-size:24px;font-weight: bold;">{currentTime}</p>
+                    <p style="font-size:18px;font-weight: bold;">{currentDatenew}</p><br/>
+                    <lightning-button class="start-my-day-btn" variant="brand" label={getloginlogoutlabel.Log_In__c} onclick={logInActivity} disabled={disablelogin}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+    </template>
+    <template if:true={endmyday}>
+
+        <!-- Modal overlay -->
+        <!-- Modal overlay (clicking outside the modal closes it) -->
+        <template if:true={endModalOpen}>
+            <div class="modal-overlay" onclick={handleOverlayClick}>
+                <div class="modal" onclick={stopPropagation}>
+                    <!-- Display the current time -->
+                    <p style="font-size:24px;font-weight: bold;">{currentTime}</p>
+                    <p style="font-size:18px;font-weight: bold;">{currentDatenew}</p><br/>
+                    <lightning-button class="start-my-day-btn" variant="brand" label={getloginlogoutlabel.Log_Out__c} onclick={logOutActivity} disabled={disablelogin}>
+                    </lightning-button>
+                </div>
+            </div>
+        </template>
+    </template>
+
+</template>
+<template if:true={isLeave}>
+    <div class="slds-box slds-theme_default slds-m-around_medium">
+        <!-- Leave Details Header -->
+        <div class="slds-media slds-m-bottom_medium">
+            <div class="slds-media__figure">
+                <lightning-icon icon-name="utility:event" alternative-text="Leave Details" size="small">
+                </lightning-icon>
+            </div>
+            <div class="slds-media__body">
+                <h2 class="slds-text-heading_medium">{getloginlogoutlabel.Leave_Details__c}</h2>
+            </div>
+        </div>
+
+        <!-- Date Field (Read-Only) -->
+        <div class="slds-form-element slds-m-bottom_small">
+            <label class="slds-form-element__label">{getloginlogoutlabel.Date__c}</label>
+            <lightning-helptext content="The selected date cannot be in the past."></lightning-helptext>
+            <div class="slds-form-element__control"
+                style="border: 1px solid #c1c0bf;background: #ecebea;padding: 5px;border-radius: 5px;">
+                <lightning-input type="date" onchange={handleDateChange} value={currentDate}></lightning-input>
+                <p class="error-message" style="color: red; display: none;"></p>
+            </div>
+        </div>
+
+        <!-- Notes Field -->
+        <div class="slds-form-element slds-m-bottom_small">
+            <lightning-textarea name="Reason" label={getloginlogoutlabel.Reason__c} class="data" required onchange={handleChangeField}
+                style="width:100%;">
+            </lightning-textarea>
+        </div>
+
+        <!-- Leave Options Select -->
+        <div class="slds-form-element slds-m-bottom_small">
+            <label class="slds-form-element__label">
+                <span class="slds-required">&#42;</span> {getloginlogoutlabel.Leave__c}
+            </label>
+            <div class="slds-form-element__control">
+                <div class="slds-select_container">
+                    <select
+                        class="slds-select data"
+                        name="leaveOptions"
+                        label={getloginlogoutlabel.Leave__c}
+                        data-id="leaveOptions"
+                        onchange={handleChangeField}>
+                        <option value="">{getloginlogoutlabel.None__c}</option>
+                        <template for:each={leaveOptions} for:item="option">
+                            <option key={option.label} value={option.value}>{option.label}</option>
+                        </template>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="slds-m-top_medium" style="display: flex; justify-content: flex-end;">
+            <button type="button" class="slds-button slds-button_neutral" onclick={handleCancel} >{getloginlogoutlabel.Cancel__c}</button>
+        <template if:false={cofscreen}>
+        <button type="button" class="slds-button slds-button_brand" onclick={handleSubmit}  disabled={validdate}>{getloginlogoutlabel.Save__c}</button>
+      </template>
+      <template if:true={cofscreen}>
+        <button type="button" class="slds-button slds-button_brand" onclick={handlenext} disabled={saveButtonDisabled}>{getloginlogoutlabel.Next__c}</button>
+</template>
+        </div>
+    </div>
+</template>
+
+<template if:true={cofopenscreen}>
+    <div class="slds-grid slds-gutters" style="display: contents;">
+        <div class="slds-col">
+
+            <span >
+             <div class="center-text">
+                <lightning-input type='Date' label ={getloginlogoutlabel.Date__c} value={selectedDate} disabled='true' readonly></lightning-input>
+                <center>
+                  <h2><b>{getloginlogoutlabel.Compensation_off__c}</b></h2>
+                  </center>
+                        </div>
+                         <lightning-datatable 
+                            key-field="Id"
+                            data={holidaylist}
+                            columns={columns}
+                            onrowselection={handleRowSelection}
+                            selected-rows={selectedRowsData}
+                           max-row-selection="1">
+                           </lightning-datatable>
+
+                      </span>
+
+                    </div>
+                   <!-- Action Buttons -->
+        <div class="slds-m-top_medium" style="display: flex; justify-content: flex-end;">
+            <button type="button" class="slds-button slds-button_neutral" onclick={handleCancel} >{getloginlogoutlabel.Cancel__c}</button>
+        
+        <button type="button" class="slds-button slds-button_brand" disabled={saveButtonDisabled} onclick={handleSubmit}>{getloginlogoutlabel.Save__c}</button>
+        </div>
+                    </div>
+                   </template>
+
+                   <template if:true={beatPlans}>
+    <lightning-card title="Upcoming Leave" icon-name="standard:plan">
+        <div class="manager-info">
+            <p><strong>Manager:</strong> {managerName}</p>
+            <p><strong>Email:</strong> {managerEmail}</p>
+        </div>
+        <div class="table-container">
+
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+                <thead>
+                    <tr>
+                        <th scope="col">Beat Plan Name</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Request Date</th>
+                        <th scope="col">Request Type</th>
+                        <th scope="col">Approval Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={beatPlans} for:item="plan">
+                        <tr class={plan.rowStyle} key={plan.Id}>
+                            <td>{plan.Name}</td>
+                            <td>{plan.Beat_Date__c}</td>
+                            <td>{plan.CreatedDate}</td>
+                            <td>{plan.Event_type_Name__c}</td>
+                            <td>{plan.Approval_status__c}</td>
+                            <td>
+                                <lightning-button 
+                                    label="Cancel"
+                                    variant="destructive"
+                                    title="Cancel Leave"
+                                    class="slds-m-right_x-small"
+                                    data-id={plan.Id}
+                                    onclick={handleCancel}>
+                                </lightning-button>
+                            </td>
+                             
+                        </tr>
+                    </template>
+                </tbody>
+            </table>
+        </div>
+
+        <template if:true={error}>
+            <p class="slds-text-color_error">Error loading Beat Plans</p>
+        </template>
+    </lightning-card>
+</template>
+
+</div>
+</template>

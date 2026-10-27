@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_rule_for_Other_DIS</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND(ISPICKVAL( Operation__c,&quot;OTHER DISTRIBUTOR&quot;),ISPICKVAL(  Region__c ,&quot;APAC&quot;)),AND(! ISPICKVAL( Country__c ,&quot;JAPAN&quot;),! ISPICKVAL( Country__c ,&quot;PHILIPPINES&quot;),! ISPICKVAL( Country__c ,&quot;	Australia&quot;),! ISPICKVAL( Country__c ,&quot;CAMBODIA&quot;),! ISPICKVAL( Country__c ,&quot;CHINA&quot;),! ISPICKVAL( Country__c ,&quot;HONG KONG&quot;),! ISPICKVAL( Country__c ,&quot;MANGOLIA&quot;),! ISPICKVAL( Country__c ,&quot;NEW ZEALAND&quot;),! ISPICKVAL( Country__c ,&quot;SINGAPORE&quot;),! ISPICKVAL( Country__c ,&quot;SRI LANKA&quot;),! ISPICKVAL( Country__c ,&quot;TAIWAN&quot;)),
+
+
+
+IF(AND(ISPICKVAL( Operation__c,&quot;OTHER DISTRIBUTOR&quot;),ISPICKVAL(  Region__c ,&quot;EASTERN EUROPE&quot;)),
+AND(!ISPICKVAL( Country__c ,&quot;GREECE&quot;),! ISPICKVAL( Country__c ,&quot;JORDAN&quot;),! ISPICKVAL( Country__c ,&quot;ROMANIA&quot;),! ISPICKVAL( Country__c ,&quot;ALBANIA&quot;),! ISPICKVAL( Country__c ,&quot;AZERBAIJAN&quot;),! ISPICKVAL( Country__c ,&quot;BOSNIA-HERZ.&quot;),! ISPICKVAL( Country__c ,&quot;BULGARIA&quot;),! ISPICKVAL( Country__c ,&quot;CROATIA&quot;),! ISPICKVAL( Country__c ,&quot;CYPRUS&quot;),! ISPICKVAL( Country__c ,&quot;HUNGARY&quot;),! ISPICKVAL( Country__c ,&quot;ISRAEL&quot;),! ISPICKVAL( Country__c ,&quot;LITHUANIA&quot;),! ISPICKVAL( Country__c ,&quot;MACEDONIA&quot;),! ISPICKVAL( Country__c ,&quot;MALTA&quot;),! ISPICKVAL( Country__c ,&quot;MOLDOVA&quot;),! ISPICKVAL( Country__c ,&quot;ROMANIA&quot;),! ISPICKVAL( Country__c ,&quot;SIERRA LEONE&quot;),! ISPICKVAL( Country__c ,&quot;SLOVAKIA&quot;),! ISPICKVAL( Country__c ,&quot;SLOVENIA&quot;)),
+
+
+
+IF(AND(ISPICKVAL( Operation__c,&quot;OTHER DISTRIBUTOR&quot;),ISPICKVAL(  Region__c ,&quot;LATAM&quot;)),
+AND(! ISPICKVAL( Country__c ,&quot;ECUADOR&quot;),! ISPICKVAL( Country__c ,&quot;PERU&quot;),! ISPICKVAL( Country__c ,&quot;URUGUAY&quot;),! ISPICKVAL( Country__c ,&quot;VENEZUELA&quot;),! ISPICKVAL( Country__c ,&quot;COSTA RICA&quot;),! ISPICKVAL( Country__c ,&quot;DOMINICAN&quot;),! ISPICKVAL( Country__c ,&quot;GUATEMALA&quot;),! ISPICKVAL( Country__c ,&quot;MEXICO&quot;),! ISPICKVAL( Country__c ,&quot;NICARAGUA&quot;),! ISPICKVAL( Country__c ,&quot;PARAGUAY&quot;)),
+
+
+
+IF(AND(ISPICKVAL( Operation__c,&quot;OTHER DISTRIBUTOR&quot;),ISPICKVAL(  Region__c ,&quot;WESTERN EUROPE&quot;)),
+AND(! ISPICKVAL( Country__c ,&quot;BELGIUM&quot;),! ISPICKVAL( Country__c ,&quot;DENMARK&quot;),! ISPICKVAL( Country__c ,&quot;LATVIA&quot;),! ISPICKVAL( Country__c ,&quot;NETHERLANDS&quot;),! ISPICKVAL( Country__c ,&quot;NORWAY&quot;),! ISPICKVAL( Country__c ,&quot;PORTUGAL&quot;),! ISPICKVAL( Country__c ,&quot;RUSSIAN&quot;),! ISPICKVAL( Country__c ,&quot;SWITZERLAND&quot;))
+,
+
+
+
+IF(AND(ISPICKVAL( Operation__c,&quot;OTHER DISTRIBUTOR&quot;),ISPICKVAL(  Region__c ,&quot;NORTH AFRICA&quot;)),
+AND(! ISPICKVAL( Country__c ,&quot;ALGERIA&quot;),! ISPICKVAL( Country__c ,&quot;LIBYA&quot;),! ISPICKVAL( Country__c ,&quot;SUDAN&quot;),! ISPICKVAL( Country__c ,&quot;TUNISIA&quot;))
+,false)))))</errorConditionFormula>
+    <errorMessage>Please select the correct combination of Operation Region and Country</errorMessage>
+</ValidationRule>

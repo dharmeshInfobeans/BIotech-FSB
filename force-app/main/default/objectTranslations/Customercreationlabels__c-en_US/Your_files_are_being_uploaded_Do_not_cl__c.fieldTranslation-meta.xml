@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Your files are being uploaded. Do not cl --></label>
+    <name>Your_files_are_being_uploaded_Do_not_cl__c</name>
+</CustomFieldTranslation>

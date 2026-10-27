@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_Plan__c</fullName>
+    <label>Monthly Plan</label>
+    <referenceTo>Monthly_Plan__c</referenceTo>
+    <relationshipLabel>SAP Headers</relationshipLabel>
+    <relationshipName>SAP_Headers</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

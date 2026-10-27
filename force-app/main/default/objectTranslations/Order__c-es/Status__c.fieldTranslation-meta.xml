@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Estado</label>
+    <name>Status__c</name>
+    <picklistValues>
+        <masterLabel>Active</masterLabel>
+        <translation>Activa</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation><!-- Approved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cancel</masterLabel>
+        <translation>Cancelar</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delivered</masterLabel>
+        <translation><!-- Delivered --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Draft</masterLabel>
+        <translation>Sequía</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Freight Requested</masterLabel>
+        <translation><!-- Freight Requested --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Freight Submitted</masterLabel>
+        <translation><!-- Freight Submitted --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reject</masterLabel>
+        <translation><!-- Reject --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sent for Approval</masterLabel>
+        <translation><!-- Sent for Approval --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sync Failed</masterLabel>
+        <translation><!-- Sync Failed --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

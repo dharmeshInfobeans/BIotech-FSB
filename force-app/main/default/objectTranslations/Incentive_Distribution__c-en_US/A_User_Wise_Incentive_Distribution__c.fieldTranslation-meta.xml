@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- A - User Wise Incentive Distribution --></label>
+    <name>A_User_Wise_Incentive_Distribution__c</name>
+    <relationshipLabel><!-- Consumable Incentive Distributions (A - User Wise Incentive Distribution) --></relationshipLabel>
+</CustomFieldTranslation>

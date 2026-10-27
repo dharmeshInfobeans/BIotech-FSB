@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Replanning Request Status --></label>
+    <name>Replanning_Request_Status__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation>Aprobada</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Not Submitted</masterLabel>
+        <translation>No presentado</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rejected</masterLabel>
+        <translation>Rechazada</translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Submitted</masterLabel>
+        <translation>Presentada</translation>
+    </picklistValues>
+</CustomFieldTranslation>

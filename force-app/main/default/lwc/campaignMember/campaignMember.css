@@ -1,0 +1,129 @@
+/* ===== Base / Desktop First ===== */
+.wizard-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* mobile me top se */
+    padding: 1px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.loader-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.65);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-container {
+    position: sticky;
+    bottom: -18px;
+    background: #ffffff;
+    padding: 12px 0;
+    border-top: 1px solid #ddd;
+    z-index: 5;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+.content-box {
+    width: 100%;
+    max-width: 865px;              /* desktop width */
+    height: auto;
+    padding: 1.5px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+/* ===== Headings ===== */
+.heading {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    text-align: center;
+}
+
+.heading-line {
+    border: 0;
+    height: 2px;
+    background-color: #d8dde6;
+    margin: 0.2rem auto 0.5rem;
+    width: 100%;
+}
+
+/* ===== Separators ===== */
+.button-separator {
+    border-top: 1px solid #d8dde6;
+    margin: 1rem 0;
+    width: 100%;
+}
+
+/* ===== Text ===== */
+.sub-heading {
+    font-size: 1rem;
+    color: #5e6d77;
+    margin: 0;
+    text-align: center;
+    padding: 0;   /* ❌ fixed padding removed */
+}
+
+/* ===== Radio group ===== */
+.radio-group {
+    text-align: left;
+    margin-top: 0.5rem;
+    padding: 0;   /* ❌ fixed padding removed */
+}
+
+/* ===== Buttons ===== */
+.button-row {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+/* ===================================================== */
+/* =================== TABLET =========================== */
+/* ===================================================== */
+@media (max-width: 1024px) {
+
+    .content-box {
+        max-width: 95%;
+        padding: 1.25rem;
+    }
+
+    .heading {
+        font-size: 1.35rem;
+    }
+}
+
+/* ===================================================== */
+/* =================== MOBILE ============================ */
+/* ===================================================== */
+@media (max-width: 600px) {
+
+    .footer-container {
+        padding: 0.75rem;
+        bottom: -18px;
+    }
+
+    .footer-container .slds-grid {
+        flex-direction: column-reverse;
+        gap: 0.75rem;
+    }
+
+    .footer-container lightning-button {
+        width: 100%;
+    }
+}
+.loader-backdrop {
+    touch-action: none;
+}

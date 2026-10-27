@@ -1,0 +1,70 @@
+<template>
+    <div class="queue-container">
+
+        <!-- Header -->
+        <div class="queue-header">
+            <div class="queue-title-row">
+                <lightning-icon icon-name="utility:ribbon" size="small" class="header-icon"></lightning-icon>
+                <h1 class="queue-title">Certificate Verification Queue</h1>
+            </div>
+            <template lwc:if={hasPending}>
+                <span class="queue-count">{pendingCount} request(s) pending verification</span>
+            </template>
+        </div>
+
+        <!-- Loading -->
+        <template lwc:if={isLoading}>
+            <div class="spinner-wrap">
+                <lightning-spinner alternative-text="Loading" size="medium" variant="brand"></lightning-spinner>
+            </div>
+        </template>
+
+        <!-- Error -->
+        <template lwc:if={hasError}>
+            <div class="error-box">
+                <lightning-icon icon-name="utility:error" size="small" variant="error"></lightning-icon>
+                <span>Failed to load queue. Please refresh the page.</span>
+            </div>
+        </template>
+
+        <!-- Empty -->
+        <template lwc:if={noItems}>
+            <div class="empty-box">
+                <lightning-icon icon-name="utility:check" size="large" class="empty-icon"></lightning-icon>
+                <p class="empty-text">No certificates pending verification.</p>
+            </div>
+        </template>
+
+        <!-- Queue cards -->
+        <template lwc:if={hasItems}>
+            <div class="queue-grid">
+                <template for:each={items} for:item="item">
+                    <div key={item.requestId} class="queue-card" data-id={item.requestId} onclick={handleCardClick}>
+                        <div class="card-top">
+                            <span class="card-name">{item.requestName}</span>
+                            <span class={item.badgeClass}>{item.badgeLabel}</span>
+                        </div>
+                        <div class="card-details">
+                            <div class="card-field">
+                                <span class="card-label">Distributor</span>
+                                <span class="card-value">{item.distributorName}</span>
+                            </div>
+                            <div class="card-field">
+                                <span class="card-label">Country</span>
+                                <span class="card-value">{item.country}</span>
+                            </div>
+                            <div class="card-field">
+                                <span class="card-label">Submitted</span>
+                                <span class="card-value">{item.formattedDate}</span>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <lightning-icon icon-name="utility:forward" size="x-small" class="card-arrow"></lightning-icon>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+    </div>
+</template>

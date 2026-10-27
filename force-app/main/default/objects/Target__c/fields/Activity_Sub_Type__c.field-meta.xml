@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activity_Sub_Type__c</fullName>
+    <label>Activity Sub Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Activity_Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CONFERENCES</fullName>
+                <default>false</default>
+                <label>CONFERENCES</label>
+            </value>
+            <value>
+                <fullName>USER MEETING</fullName>
+                <default>false</default>
+                <label>USER MEETING</label>
+            </value>
+            <value>
+                <fullName>PRODUCT TRAINING</fullName>
+                <default>false</default>
+                <label>PRODUCT TRAINING</label>
+            </value>
+            <value>
+                <fullName>RTM</fullName>
+                <default>false</default>
+                <label>RTM</label>
+            </value>
+            <value>
+                <fullName>TRIO USER MEETING</fullName>
+                <default>false</default>
+                <label>TRIO USER MEETING</label>
+            </value>
+            <value>
+                <fullName>WETLAB</fullName>
+                <default>false</default>
+                <label>WETLAB</label>
+            </value>
+            <value>
+                <fullName>CME</fullName>
+                <default>false</default>
+                <label>CME</label>
+            </value>
+            <value>
+                <fullName>WEBINAR</fullName>
+                <default>false</default>
+                <label>WEBINAR</label>
+            </value>
+            <value>
+                <fullName>LIVE</fullName>
+                <default>false</default>
+                <label>LIVE</label>
+            </value>
+            <value>
+                <fullName>SURGERY</fullName>
+                <default>false</default>
+                <label>SURGERY</label>
+            </value>
+            <value>
+                <fullName>SYMPOSIUM</fullName>
+                <default>false</default>
+                <label>SYMPOSIUM</label>
+            </value>
+            <value>
+                <fullName>TRADE BOOTH</fullName>
+                <default>false</default>
+                <label>TRADE BOOTH</label>
+            </value>
+            <value>
+                <fullName>PAPER PRESENTATION</fullName>
+                <default>false</default>
+                <label>PAPER PRESENTATION</label>
+            </value>
+            <value>
+                <fullName>CTP</fullName>
+                <default>false</default>
+                <label>CTP</label>
+            </value>
+            <value>
+                <fullName>Focus</fullName>
+                <default>false</default>
+                <label>Focus</label>
+            </value>
+            <value>
+                <fullName>Decode</fullName>
+                <default>false</default>
+                <label>Decode</label>
+            </value>
+            <value>
+                <fullName>SEP</fullName>
+                <default>false</default>
+                <label>SEP</label>
+            </value>
+            <value>
+                <fullName>Testimonial</fullName>
+                <default>false</default>
+                <label>Testimonial</label>
+            </value>
+            <value>
+                <fullName>OT</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>OT</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

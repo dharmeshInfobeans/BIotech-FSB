@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Planlanan Wet Lab Haftaası numarası</label>
+    <name>Planned_Wet_Labs_Week_Number__c</name>
+</CustomFieldTranslation>

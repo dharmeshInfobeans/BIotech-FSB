@@ -1,0 +1,273 @@
+<aura:component
+    implements="force:appHostable,flexipage:availableForAllPageTypes,force:lightningQuickAction,force:hasRecordId,forceCommunity:availableForAllPageTypes,lightning:availableForFlowScreens"
+    access="global" controller='OrderProductSelectionController'>
+
+    <style>
+        .slds-modal__container {
+            width: 100% !important;
+            max-width: 100% !important;
+            padding: 10px;
+        }
+
+        .slds-modal__content {}
+    </style>
+
+    <aura:attribute name="cbaseURL" type="String" />
+    <aura:attribute name="recordId" type="string" />
+    <aura:attribute name="order" type="object" />
+    <aura:attribute name="accountId" type="Id" />
+    <aura:attribute name="agreementProducts" type="Agreement_Product__c[]" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="quoteLineItems" type="list" />
+    <aura:attribute name="qliTotalPrice" type="Decimal" default='0' />
+    <aura:attribute name="qliSubTotalPrice" type="Decimal" default='0' />
+    <aura:attribute name="frieght" type="Decimal" default='0' />
+    <aura:attribute name="showSelectModalPopup" type="Boolean" default='false' />
+    <aura:attribute name="showNonMSLModelPopup" type="Boolean" default="false"/>
+
+    <aura:handler name="orderProductRecordProviderEvent" event="c:OrderProductRecordProvider"
+        action="{!c.openSelectModelPopup}" />
+
+    <aura:attribute name="selectedProductid" type="String" />
+    <aura:attribute name="selectedItem" type="String" />
+    <aura:attribute name="selectedOrderProduct" type="Object" />
+
+    <aura:handler name="addSubProductEvt" event="c:OrderProductRecordProvider" action="{!c.handleAddSubProductEvt}" />
+    <!--
+    <aura:handler name="ProductIdProvider" event="c:ProductIdProvider" action="{!c.handleProductIdProvider}"/>
+    -->
+
+    <aura:handler name="removeQuoteItemEvent" event="c:QuoteItemEvent" action="{!c.removeSelectedQuoteItem}" />
+
+    <aura:handler name="change" value="{!v.agreementProducts}" action="{!c.onRenderPbeList}" />
+
+    <aura:handler name="addProductToQliEvent" event="c:ProductSelectionEvent" action="{!c.addProductToSelectedQli}" />
+
+    <aura:handler name="autoSaveQli" event="c:QuoteItemEvent" action="{!c.autoSaveQuoteLineItems}" />
+
+    <aura:handler name="calculateAllQliTotalPrices" event="c:QuoteItemEvent" action="{!c.calculateQliTotalPrices}" />
+    
+    <div class="demo-only">
+        <div class="slds-page-header slds-page-header_object-home">
+            <div class="slds-grid">
+                <div class="slds-col slds-has-flexi-truncate">
+                    <div class="slds-media slds-no-space slds-grow">
+                        <div class="slds-media__figure">
+                            <span class="slds-icon_container slds-icon-standard-lead">
+                                <lightning:icon iconName="standard:orders" size="small" />
+                            </span>
+                        </div>
+                        <div class="slds-media__body">
+                            <p class="slds-text-title_caps slds-line-height_reset">
+                                <!--  Add Order Products -->
+                                {!$Label.c.Add_Order_Products}
+                            </p>
+
+                            <h1 class="slds-page-header__title slds-p-right_x-small">
+                                <a href="{!v.cbaseURL+'/'+ v.order.Id}">
+                                    <span class="slds-grid slds-has-flexi-truncate slds-grid_vertical-align-center">
+                                        <span class="slds-truncate" title="{!v.order.Name}">
+                                            {!v.order.Name}
+                                        </span>
+                                    </span>
+                                </a>
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                </div>
+                <div class="slds-col slds-no-flex slds-grid slds-align-top slds-p-bottom_xx-small">
+                    <div class="slds-button-group" role="group">
+                        <b>
+                            <label>
+                                {!$Label.c.Total_Price} &nbsp;{!v.quoteLineItems[0].currencyCode}
+                                &nbsp;{!v.qliTotalPrice}
+                                <!-- <lightning:formattedNumber  value="{!v.qliTotalPrice}" style="currency" currencyCode="{!v.quoteLineItems[0].CurrencyCode}"/> -->
+
+                            </label>
+                        </b>&nbsp;&nbsp;
+                        <lightning:button label="{!$Label.c.Back}" onclick='{!c.redirectToOrder}' />
+                    </div>
+                </div>
+
+            </div>
+            <div class="slds-grid">
+                <div class="slds-col slds-align-bottom">
+                    <!-- <p class="slds-text-body_small">Account • <a href="{!'/'+ v.order.AccountId}">  {!v.order.Account.Name} </a></p> -->
+                    <!-- <p class="slds-text-body_small">Order No • {!v.order.Name}<a href="{!'/'+ v.order.Id}">   </a></p>  -->
+                    <p class="slds-text-body_small"> {!$Label.c.Order_Status}• {!v.order.Status__c}</p>
+                </div>
+            </div>
+        </div>
+
+        <table class="slds-table slds-table_bordered slds-tree slds-table_tree" role="treegrid" aria-readonly="true">
+            <thead>
+                <tr class="slds-line-height_reset slds-text-title_caps">
+
+                    <th scope="col" style="width:4.5rem;">&nbsp;</th>
+
+                    <th class="slds-cell-buffer_left" scope="col">
+
+                        <div class="slds-truncate" title="Product Name">{!$Label.c.Product_Name}</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Category">Category</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Model">{!$Label.c.Model}</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Code">{!$Label.c.Spherical_Power}</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Code">CYLINDRICAL POWER</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Code">AXIS ANGLE</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Sales Price">{!$Label.c.Sales_Price}</div>
+                    </th>
+                    <th scope="col">
+                        <div class="slds-truncate" title="Quantity">{!$Label.c.Quantity}</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="FOC Quantity">{!$Label.c.FOC_Quantity}</div>
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Total Quantity">Total Quantity</div><!--code added-->
+                    </th>
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Total">{!$Label.c.Sub_Total}</div>
+                    </th>
+                    <!--
+                    <th scope="col">
+                        <div class="slds-truncate" title="Total">{!$Label.c.Discount}</div>
+                    </th> -->
+
+                    <th scope="col">
+                        <div class="slds-truncate" title="Total">{!$Label.c.Total}</div>
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <aura:if isTrue="{!v.quoteLineItems.length > 0}">
+
+                    <aura:iteration items="{!v.quoteLineItems}" var="qli">
+                        <c:QuoteProductItem order="{!v.order}" orderProductRecord="{!qli}"
+                            aura:id="selectedQuoteItemsCmp" />
+                    </aura:iteration>
+
+
+                    <tr class="slds-hint-parent">
+                        <td scope="row" colSpan='7'>
+                        </td>
+
+                        <td role="gridcell" />
+                        <td role="gridcell" />
+                        <td role="gridcell" />
+                        <td role="gridcell" />
+                        <td role="gridcell">
+                            <td role="gridcell" />
+                            <td role="gridcell" />
+
+
+                            <b> {!v.quoteLineItems[0].currencyCode} &nbsp; {!v.qliTotalPrice}</b>
+                        </td>
+                    </tr>
+
+                    <!--<tr>
+                        <td scope="row" colSpan='6'><b>Freight : </b></td>
+                        <td role="gridcell" />
+                        <td role="gridcell" />
+                        <td role="gridcell" />
+                        <td role="gridcell"></td>
+                        <td role="gridcell" />
+                        <td role="gridcell">
+
+
+
+                            <aura:if isTrue="{!v.order.Status__c!='Active'}">
+                                <lightning:input type="number" min="0" style="margin-top:-10px"
+                                    value="{!v.order.Freight_Amount__c}" onchange="{!c.handleFrieght}">
+                                </lightning:input>
+                            </aura:if>
+                            <aura:if isTrue="{!v.order.Status__c=='Active'}">
+                                <b>{!v.quoteLineItems[0].currencyCode} &nbsp;{!v.order.Freight_Amount__c}</b>
+                            </aura:if>
+
+                        </td>
+                    </tr> -->
+
+
+
+                    <aura:set attribute="else">
+                        <tr>
+                            <td colspan="9" style="text-align:center">
+                                <p data-aura-rendered-by="323:c">{!$Label.c.No_items_to_display}</p>
+                            </td>
+                        </tr>
+                    </aura:set>
+
+                </aura:if>
+
+
+            </tbody>
+        </table>
+
+        <div style='padding-top: 10px;padding-right: 30px;' align='right'>
+            <aura:if isTrue="{!v.order.Status__c ne 'Active'}">
+                <button class="slds-button slds-button_brand" onclick='{!c.saveQuoteLineItems}'>{!$Label.c.Save}
+                </button>
+            </aura:if>
+            <button class="slds-button slds-button_brand" onclick='{!c.redirectToOrder}'>{!$Label.c.Cancel}</button>
+        </div>
+
+        <aura:if isTrue="{!v.showNonMSLModelPopup}">
+            <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <!-- Header with Close (X) icon -->
+                    <header class="slds-modal__header">
+                        <button class="slds-button slds-button_icon slds-modal__close" onclick="{!c.closeModal}" title="Close">
+                            <lightning:icon iconName="utility:close" size="small" alternativeText="close"/>
+                        </button>
+                        <h2 class="slds-text-heading_medium">NON-MSL Product Notice</h2>
+                    </header>
+    
+                    <!-- Body -->
+                    <div class="slds-modal__content slds-p-around_medium">
+                        <p>It looks like one or more products in your order are NON-MSL items. No worries — I’m here to guide you through the next steps:</p>
+                        <br/>
+                        <ul>
+                            <li>✅ Please check with our CRM team to confirm the availability of the NON-MSL product.</li>
+                            <li>📦 If it’s in stock, we’ll proceed with your order.</li>
+                            <li>🔄 If it's not available or stock is insufficient, the CRM team will offer a batch size option.</li>
+                            <li>📝 Kindly place your order based on the batch size provided.</li>
+                            <li>❗ If the batch size doesn't work for you, request an alternative solution from the CRM team. They’ll get back to you within 1–3 working days.</li>
+                            <li>🧾 The CRM team will check if a liquidation plan is possible. If so, your order can move forward.</li>
+                            <li>If not, the NON-MSL item will either need to be cancelled or ordered only in batch size.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <!-- Modal Backdrop -->
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+        <br />
+        <c:ProductPriceList recordId="{!v.recordId}" aura:id="productListItemCmp"
+            selectedOrderItems='{!v.quoteLineItems}' />
+        <aura:if isTrue="{!v.showSelectModalPopup}">
+            <c:SubProductSelection orderProduct='{!v.selectedOrderProduct}' />
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+    </div>
+
+</aura:component>

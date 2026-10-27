@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Kategorie</label>
+    <name>Category__c</name>
+    <picklistValues>
+        <masterLabel>IOL</masterLabel>
+        <translation><!-- IOL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MSL</masterLabel>
+        <translation><!-- MSL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Non-MSL</masterLabel>
+        <translation><!-- Non-MSL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pharma</masterLabel>
+        <translation><!-- Pharma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Solution</masterLabel>
+        <translation><!-- Solution --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

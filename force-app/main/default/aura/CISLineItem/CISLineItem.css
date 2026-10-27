@@ -1,0 +1,6 @@
+.THIS td label{
+    display:none;
+}
+.THIS .removeBtn svg{
+    fill:rgba(0, 68, 135, 1.0)!important;
+}

@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="SAP Sync">
+
+        <div class="customModal slds-p-around_medium">
+
+            <!-- Spinner -->
+            <template if:true={isLoading}>
+                <div class="slds-m-bottom_medium">
+                    <lightning-spinner alternative-text="Syncing..." size="large"></lightning-spinner>
+                </div>
+            </template>
+
+            <!-- Button 
+            <div class="slds-m-bottom_medium">
+                <lightning-button 
+                    label="Sync to SAP" 
+                    variant="brand" 
+                    onclick={handleSync}>
+                </lightning-button>
+            </div>
+            -->
+
+            <!-- Response Message -->
+          <template if:true={responseMessage}>
+    <div class="slds-m-top_large slds-box slds-theme_alert-texture slds-p-around_large message-container">
+
+        <template if:true={isSuccess}>
+            <div class="success-text slds-text-longform">
+                ✅ {responseMessage}
+            </div>
+        </template>
+
+        <template if:false={isSuccess}>
+            <div class="error-text slds-text-longform">
+                ❌ {responseMessage}
+            </div>
+        </template>
+
+    </div>
+</template>
+
+        </div>
+
+    </lightning-card>
+</template>

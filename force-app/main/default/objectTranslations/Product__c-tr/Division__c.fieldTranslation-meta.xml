@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Bölüm</label>
+    <name>Division__c</name>
+    <picklistValues>
+        <masterLabel>I</masterLabel>
+        <translation><!-- I --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>II</masterLabel>
+        <translation><!-- II --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>III</masterLabel>
+        <translation><!-- III --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IV</masterLabel>
+        <translation><!-- IV --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IX</masterLabel>
+        <translation><!-- IX --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>V</masterLabel>
+        <translation><!-- V --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VI</masterLabel>
+        <translation><!-- VI --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VII</masterLabel>
+        <translation><!-- VII --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VIII</masterLabel>
+        <translation><!-- VIII --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>X</masterLabel>
+        <translation><!-- X --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

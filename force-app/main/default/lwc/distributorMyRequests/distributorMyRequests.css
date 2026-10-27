@@ -1,0 +1,261 @@
+.my-requests-container {
+    padding: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: 'Salesforce Sans', Arial, sans-serif;
+}
+
+/* Header */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.page-title {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: #032d60;
+    margin: 0;
+}
+
+.record-count {
+    background: #e8f0fe;
+    color: #1a56db;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+}
+
+/* Filters */
+.filters-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #dddbda;
+    border-radius: 4px;
+    padding: 0 0.75rem;
+    flex: 1;
+    min-width: 220px;
+    max-width: 360px;
+    height: 2.25rem;
+}
+
+.search-icon {
+    margin-right: 0.5rem;
+    color: #706e6b;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 0.875rem;
+    color: #3e3e3c;
+    background: transparent;
+}
+
+.status-filter {
+    min-width: 200px;
+}
+
+/* Spinner */
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+/* Error */
+.error-box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fef0ef;
+    border: 1px solid #f97b6b;
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    color: #ba0517;
+    font-size: 0.875rem;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.empty-icon {
+    color: #dddbda;
+    margin-bottom: 1rem;
+}
+
+.empty-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #3e3e3c;
+    margin: 0 0 0.5rem;
+}
+
+.empty-sub {
+    font-size: 0.875rem;
+    color: #706e6b;
+    margin: 0 0 1.25rem;
+}
+
+/* Cards Grid */
+.requests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.request-card {
+    background: #fff;
+    border: 1px solid #dddbda;
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, border-color 0.15s ease;
+    position: relative;
+}
+
+.request-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: #0176d3;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.875rem;
+}
+
+.card-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.type-badge-cert {
+    font-size: 0.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #6a3d9a;
+    background: #f3e8ff;
+    border: 1px solid #c4b5fd;
+    padding: 0.1rem 0.45rem;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.rr-number {
+    font-size: 0.9375rem;
+    font-weight: 700;
+    color: #032d60;
+}
+
+/* Status Pills */
+.status-pill {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.pill-grey    { background: #f3f3f3; color: #444; }
+.pill-blue    { background: #e8f4fd; color: #0070d2; }
+.pill-orange  { background: #fff3e0; color: #c75300; }
+.pill-yellow  { background: #fef9e7; color: #806000; }
+.pill-green   { background: #e8f5e9; color: #2e7d32; }
+.pill-red     { background: #fdecea; color: #ba0517; }
+
+/* Card Body */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.card-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8125rem;
+}
+
+.card-label {
+    color: #706e6b;
+    font-weight: 500;
+    min-width: 80px;
+}
+
+.card-value {
+    color: #3e3e3c;
+    font-weight: 400;
+    text-align: right;
+    word-break: break-word;
+}
+
+/* Rejection Banner */
+.rejection-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.4rem;
+    background: #fef9e7;
+    border-left: 3px solid #ffb75d;
+    border-radius: 0 4px 4px 0;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    color: #5c4400;
+    margin-bottom: 0.75rem;
+    word-break: break-word;
+}
+
+/* Card Footer */
+.card-footer {
+    display: flex;
+    justify-content: flex-end;
+    border-top: 1px solid #f3f3f3;
+    padding-top: 0.625rem;
+    margin-top: 0.25rem;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .my-requests-container { padding: 1rem; }
+    .requests-grid { grid-template-columns: 1fr; }
+    .filters-bar { flex-direction: column; align-items: stretch; }
+    .search-box { max-width: 100%; }
+    .status-filter { min-width: 100%; }
+    .page-header { flex-direction: column; align-items: flex-start; }
+}

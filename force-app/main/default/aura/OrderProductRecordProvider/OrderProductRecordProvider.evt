@@ -1,0 +1,5 @@
+<aura:event type="COMPONENT" description="Event to open model on order product selection" >
+    <aura:attribute name="orderProduct" type="Object" description="When Order Product Is Selected on QuoteProductItem.cmp, pass it to QuoteProductSelection.cmp" />
+    <aura:attribute name="showSelectModalPopup" type="boolean" description="popup open boolean value provider attribute"/>
+    <aura:attribute name="isDelete" type="boolean"/>
+</aura:event>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Cliente potencial Fuente</label>
+    <name>Lead_Source__c</name>
+    <picklistValues>
+        <masterLabel>Digital Platforms</masterLabel>
+        <translation><!-- Digital Platforms --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Employee Referal</masterLabel>
+        <translation><!-- Employee Referal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IFOX</masterLabel>
+        <translation><!-- IFOX --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Social Media</masterLabel>
+        <translation><!-- Social Media --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Webinar</masterLabel>
+        <translation><!-- Webinar --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Website</masterLabel>
+        <translation><!-- Website --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

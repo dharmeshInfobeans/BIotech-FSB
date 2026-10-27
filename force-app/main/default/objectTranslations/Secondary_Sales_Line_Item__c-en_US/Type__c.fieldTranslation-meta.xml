@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>Approved</masterLabel>
+        <translation><!-- Approved --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>In Transit</masterLabel>
+        <translation><!-- In Transit --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Open</masterLabel>
+        <translation><!-- Open --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Return Goods</masterLabel>
+        <translation><!-- Return Goods --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sold</masterLabel>
+        <translation><!-- Sold --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

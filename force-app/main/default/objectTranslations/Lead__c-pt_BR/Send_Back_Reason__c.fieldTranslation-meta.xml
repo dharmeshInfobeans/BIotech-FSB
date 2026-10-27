@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Send Back Reason --></label>
+    <name>Send_Back_Reason__c</name>
+    <picklistValues>
+        <masterLabel>Other – Add Comment</masterLabel>
+        <translation><!-- Other – Add Comment --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Wrong Territory / Geography Allocation</masterLabel>
+        <translation><!-- Wrong Territory / Geography Allocation --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

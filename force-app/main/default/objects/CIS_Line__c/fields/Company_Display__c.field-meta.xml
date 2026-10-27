@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Company_Display__c</fullName>
+    <label>Company Display</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Biotech</fullName>
+                <default>false</default>
+                <label>Biotech</label>
+            </value>
+            <value>
+                <fullName>Alcon</fullName>
+                <default>false</default>
+                <label>Alcon</label>
+            </value>
+            <value>
+                <fullName>Amo</fullName>
+                <default>false</default>
+                <label>Amo</label>
+            </value>
+            <value>
+                <fullName>Zeiss</fullName>
+                <default>false</default>
+                <label>Zeiss</label>
+            </value>
+            <value>
+                <fullName>Hoya</fullName>
+                <default>false</default>
+                <label>Hoya</label>
+            </value>
+            <value>
+                <fullName>B &amp; L</fullName>
+                <default>false</default>
+                <label>B &amp; L</label>
+            </value>
+            <value>
+                <fullName>Staar</fullName>
+                <default>false</default>
+                <label>Staar</label>
+            </value>
+            <value>
+                <fullName>Rayner</fullName>
+                <default>false</default>
+                <label>Rayner</label>
+            </value>
+            <value>
+                <fullName>Hanita</fullName>
+                <default>false</default>
+                <label>Hanita</label>
+            </value>
+            <value>
+                <fullName>VSY</fullName>
+                <default>false</default>
+                <label>VSY</label>
+            </value>
+            <value>
+                <fullName>IOC</fullName>
+                <default>false</default>
+                <label>IOC</label>
+            </value>
+            <value>
+                <fullName>Aurolab</fullName>
+                <default>false</default>
+                <label>Aurolab</label>
+            </value>
+            <value>
+                <fullName>Appasamy</fullName>
+                <default>false</default>
+                <label>Appasamy</label>
+            </value>
+            <value>
+                <fullName>Omni Lens</fullName>
+                <default>false</default>
+                <label>Omni Lens</label>
+            </value>
+            <value>
+                <fullName>Allergan</fullName>
+                <default>false</default>
+                <label>Allergan</label>
+            </value>
+            <value>
+                <fullName>Galderma</fullName>
+                <default>false</default>
+                <label>Galderma</label>
+            </value>
+            <value>
+                <fullName>Mertz</fullName>
+                <default>false</default>
+                <label>Mertz</label>
+            </value>
+            <value>
+                <fullName>Teoksan</fullName>
+                <default>false</default>
+                <label>Teoksan</label>
+            </value>
+            <value>
+                <fullName>Vivacy Laboratories</fullName>
+                <default>false</default>
+                <label>Vivacy Laboratories</label>
+            </value>
+            <value>
+                <fullName>Q-Med</fullName>
+                <default>false</default>
+                <label>Q-Med</label>
+            </value>
+            <value>
+                <fullName>Caregen</fullName>
+                <default>false</default>
+                <label>Caregen</label>
+            </value>
+            <value>
+                <fullName>Md Skin Solutions</fullName>
+                <default>false</default>
+                <label>Md Skin Solutions</label>
+            </value>
+            <value>
+                <fullName>Sanofi</fullName>
+                <default>false</default>
+                <label>Sanofi</label>
+            </value>
+            <value>
+                <fullName>Dr. Reddy&apos;s</fullName>
+                <default>false</default>
+                <label>Dr. Reddy&apos;s</label>
+            </value>
+            <value>
+                <fullName>Lupin</fullName>
+                <default>false</default>
+                <label>Lupin</label>
+            </value>
+            <value>
+                <fullName>Alkem</fullName>
+                <default>false</default>
+                <label>Alkem</label>
+            </value>
+            <value>
+                <fullName>Cadila</fullName>
+                <default>false</default>
+                <label>Cadila</label>
+            </value>
+            <value>
+                <fullName>Zydus</fullName>
+                <default>false</default>
+                <label>Zydus</label>
+            </value>
+            <value>
+                <fullName>Intas</fullName>
+                <default>false</default>
+                <label>Intas</label>
+            </value>
+            <value>
+                <fullName>Modi Mundi</fullName>
+                <default>false</default>
+                <label>Modi Mundi</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

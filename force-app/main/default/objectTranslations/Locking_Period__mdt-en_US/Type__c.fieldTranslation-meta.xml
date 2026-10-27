@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Type --></label>
+    <name>Type__c</name>
+    <picklistValues>
+        <masterLabel>BD Tracker</masterLabel>
+        <translation><!-- BD Tracker --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Domestic Rolling Forecast</masterLabel>
+        <translation><!-- Domestic Rolling Forecast --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>International Rolling Forecast</masterLabel>
+        <translation><!-- International Rolling Forecast --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Turkey Rolling Forecast</masterLabel>
+        <translation><!-- Turkey Rolling Forecast --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

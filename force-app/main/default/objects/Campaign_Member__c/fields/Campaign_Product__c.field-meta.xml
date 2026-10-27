@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaign_Product__c</fullName>
+    <label>Campaign Product</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>EYECRYL PLUS CLEAR</fullName>
+                <default>false</default>
+                <label>EYECRYL PLUS CLEAR</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PHAKIC TORIC</fullName>
+                <default>false</default>
+                <label>EYECRYL PHAKIC TORIC</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PHAKIC</fullName>
+                <default>false</default>
+                <label>EYECRYL PHAKIC</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX GENESIS</fullName>
+                <default>false</default>
+                <label>OPTIFLEX GENESIS</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX TRIO</fullName>
+                <default>false</default>
+                <label>OPTIFLEX TRIO</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX TRIO TORIC</fullName>
+                <default>false</default>
+                <label>OPTIFLEX TRIO TORIC</label>
+            </value>
+            <value>
+                <fullName>EYECRYL SERT EDOF</fullName>
+                <default>false</default>
+                <label>EYECRYL SERT EDOF</label>
+            </value>
+            <value>
+                <fullName>EYECRYL TORIC</fullName>
+                <default>false</default>
+                <label>EYECRYL TORIC</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX COMFORT NY</fullName>
+                <default>false</default>
+                <label>OPTIFLEX COMFORT NY</label>
+            </value>
+            <value>
+                <fullName>EYECRYL ACTV TORIC</fullName>
+                <default>false</default>
+                <label>EYECRYL ACTV TORIC</label>
+            </value>
+            <value>
+                <fullName>EYECRYL ACTV</fullName>
+                <default>false</default>
+                <label>EYECRYL ACTV</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX TRIO-TORIC</fullName>
+                <default>false</default>
+                <label>OPTIFLEX TRIO-TORIC</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX GENESIS COMFORT</fullName>
+                <default>false</default>
+                <label>OPTIFLEX GENESIS COMFORT</label>
+            </value>
+            <value>
+                <fullName>ASHFY 600</fullName>
+                <default>false</default>
+                <label>ASHFY 600</label>
+            </value>
+            <value>
+                <fullName>EYECRYL 600</fullName>
+                <default>false</default>
+                <label>EYECRYL 600</label>
+            </value>
+            <value>
+                <fullName>BIOHYALUR 1% HA 1ML PFS</fullName>
+                <default>false</default>
+                <label>BIOHYALUR 1% HA 1ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIOHYALUR PLUS 1.4% HA 1ML PFS</fullName>
+                <default>false</default>
+                <label>BIOHYALUR PLUS 1.4% HA 1ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIOHYALUR HV 1ML PFS</fullName>
+                <default>false</default>
+                <label>BIOHYALUR HV 1ML PFS</label>
+            </value>
+            <value>
+                <fullName>EYEVISC HPMC</fullName>
+                <default>false</default>
+                <label>EYEVISC HPMC</label>
+            </value>
+            <value>
+                <fullName>BIO CTR</fullName>
+                <default>false</default>
+                <label>BIO CTR</label>
+            </value>
+            <value>
+                <fullName>IRIS RETRACTORS</fullName>
+                <default>false</default>
+                <label>IRIS RETRACTORS</label>
+            </value>
+            <value>
+                <fullName>TRIO-TORIC</fullName>
+                <default>false</default>
+                <label>TRIO-TORIC</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PLUS</fullName>
+                <default>false</default>
+                <label>EYECRYL PLUS</label>
+            </value>
+            <value>
+                <fullName>INJECTOR</fullName>
+                <default>false</default>
+                <label>INJECTOR</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX INJ</fullName>
+                <default>false</default>
+                <label>OPTIFLEX INJ</label>
+            </value>
+            <value>
+                <fullName>TP6130</fullName>
+                <default>false</default>
+                <label>TP6130</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR PLUS 1.6ML</fullName>
+                <default>false</default>
+                <label>BIO HYALUR PLUS 1.6ML</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PLUS NATURAL HD</fullName>
+                <default>false</default>
+                <label>EYECRYL PLUS NATURAL HD</label>
+            </value>
+            <value>
+                <fullName>BIOSIL 1000 CST</fullName>
+                <default>false</default>
+                <label>BIOSIL 1000 CST</label>
+            </value>
+            <value>
+                <fullName>BIO DECALIN 7ML VIAL</fullName>
+                <default>false</default>
+                <label>BIO DECALIN 7ML VIAL</label>
+            </value>
+            <value>
+                <fullName>GLODERM 30L 1ML PFS</fullName>
+                <default>false</default>
+                <label>GLODERM 30L 1ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE DUO 0.5ML PFS</fullName>
+                <default>false</default>
+                <label>BIO BLUE DUO 0.5ML PFS</label>
+            </value>
+            <value>
+                <fullName>Schirmer Strip</fullName>
+                <default>false</default>
+                <label>Schirmer Strip</label>
+            </value>
+            <value>
+                <fullName>EYEVISC 2ML PFS</fullName>
+                <default>false</default>
+                <label>EYEVISC 2ML PFS</label>
+            </value>
+            <value>
+                <fullName>IRIS</fullName>
+                <default>false</default>
+                <label>IRIS</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE 1ML VIAL (MONO PACK)</fullName>
+                <default>false</default>
+                <label>BIO BLUE 1ML VIAL (MONO PACK)</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR SV 1.6ML PFS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR SV 1.6ML PFS</label>
+            </value>
+            <value>
+                <fullName>PHAKIC-TORIC</fullName>
+                <default>false</default>
+                <label>PHAKIC-TORIC</label>
+            </value>
+            <value>
+                <fullName>FLUROCEIN STRIPS</fullName>
+                <default>false</default>
+                <label>FLUROCEIN STRIPS</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR 14 MG</fullName>
+                <default>false</default>
+                <label>BIO HYALUR 14 MG</label>
+            </value>
+            <value>
+                <fullName>BIOBLUE 90 PLUS 0.5 ML PFS</fullName>
+                <default>false</default>
+                <label>BIOBLUE 90 PLUS 0.5 ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIO SPEARS</fullName>
+                <default>false</default>
+                <label>BIO SPEARS</label>
+            </value>
+            <value>
+                <fullName>BIO BLADE</fullName>
+                <default>false</default>
+                <label>BIO BLADE</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR CS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR CS</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR HV 1 ML PFS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR HV 1 ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIO RING</fullName>
+                <default>false</default>
+                <label>BIO RING</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR EV 1.6ML PFS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR EV 1.6ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR EV 1ML PFS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR EV 1ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIOSIL 5000 CST</fullName>
+                <default>false</default>
+                <label>BIOSIL 5000 CST</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PLUS S600MZ</fullName>
+                <default>false</default>
+                <label>EYECRYL PLUS S600MZ</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR LVD</fullName>
+                <default>false</default>
+                <label>BIO HYALUR LVD</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE 90 0.5 ML PFS</fullName>
+                <default>false</default>
+                <label>BIO BLUE 90 0.5 ML PFS</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PLUS 600</fullName>
+                <default>false</default>
+                <label>EYECRYL PLUS 600</label>
+            </value>
+            <value>
+                <fullName>IRIS RETRACTOR</fullName>
+                <default>false</default>
+                <label>IRIS RETRACTOR</label>
+            </value>
+            <value>
+                <fullName>EYEVISC 5ML VIAL</fullName>
+                <default>false</default>
+                <label>EYEVISC 5ML VIAL</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE</fullName>
+                <default>false</default>
+                <label>BIO BLUE</label>
+            </value>
+            <value>
+                <fullName>EYEVISC 3ML PFS</fullName>
+                <default>false</default>
+                <label>EYEVISC 3ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIOSIL 1300 CST</fullName>
+                <default>false</default>
+                <label>BIOSIL 1300 CST</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR 10 MG</fullName>
+                <default>false</default>
+                <label>BIO HYALUR 10 MG</label>
+            </value>
+            <value>
+                <fullName>BIO OCTANE</fullName>
+                <default>false</default>
+                <label>BIO OCTANE</label>
+            </value>
+            <value>
+                <fullName>RIBOFLAVIN</fullName>
+                <default>false</default>
+                <label>RIBOFLAVIN</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PHAKIC-TORIC</fullName>
+                <default>false</default>
+                <label>EYECRYL PHAKIC-TORIC</label>
+            </value>
+            <value>
+                <fullName>BIOSIL 10 ML PFS</fullName>
+                <default>false</default>
+                <label>BIOSIL 10 ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR 1ML PFS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR 1ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR PLUS</fullName>
+                <default>false</default>
+                <label>BIO HYALUR PLUS</label>
+            </value>
+            <value>
+                <fullName>MF TORIC</fullName>
+                <default>false</default>
+                <label>MF TORIC</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE 1ML VIAL</fullName>
+                <default>false</default>
+                <label>BIO BLUE 1ML VIAL</label>
+            </value>
+            <value>
+                <fullName>BIO DECALIN 5ML VIAL</fullName>
+                <default>false</default>
+                <label>BIO DECALIN 5ML VIAL</label>
+            </value>
+            <value>
+                <fullName>BI-HYALUR DUO-(1.0 &amp; 2.4 ML)</fullName>
+                <default>false</default>
+                <label>BI-HYALUR DUO-(1.0 &amp; 2.4 ML)</label>
+            </value>
+            <value>
+                <fullName>BI-HYALUR DUO-(1.4 &amp; 2.4 ML)</fullName>
+                <default>false</default>
+                <label>BI-HYALUR DUO-(1.4 &amp; 2.4 ML)</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE PLUS</fullName>
+                <default>false</default>
+                <label>BIO BLUE PLUS</label>
+            </value>
+            <value>
+                <fullName>BIO DECALIN PFS</fullName>
+                <default>false</default>
+                <label>BIO DECALIN PFS</label>
+            </value>
+            <value>
+                <fullName>BIO DECALIN VIAL</fullName>
+                <default>false</default>
+                <label>BIO DECALIN VIAL</label>
+            </value>
+            <value>
+                <fullName>BIO OCTANE PFS</fullName>
+                <default>false</default>
+                <label>BIO OCTANE PFS</label>
+            </value>
+            <value>
+                <fullName>BIOVISION PMMA</fullName>
+                <default>false</default>
+                <label>BIOVISION PMMA</label>
+            </value>
+            <value>
+                <fullName>EYECRYL 600 ROH</fullName>
+                <default>false</default>
+                <label>EYECRYL 600 ROH</label>
+            </value>
+            <value>
+                <fullName>PMMA ESCLERAL</fullName>
+                <default>false</default>
+                <label>PMMA ESCLERAL</label>
+            </value>
+            <value>
+                <fullName>SCHIRMER STRIPS</fullName>
+                <default>false</default>
+                <label>SCHIRMER STRIPS</label>
+            </value>
+            <value>
+                <fullName>SODIUM HYALURONATE EV</fullName>
+                <default>false</default>
+                <label>SODIUM HYALURONATE EV</label>
+            </value>
+            <value>
+                <fullName>SODIUM HYALURONATE SV</fullName>
+                <default>false</default>
+                <label>SODIUM HYALURONATE SV</label>
+            </value>
+            <value>
+                <fullName>ASHFY600</fullName>
+                <default>false</default>
+                <label>ASHFY600</label>
+            </value>
+            <value>
+                <fullName>OTIFLEX TRIO</fullName>
+                <default>false</default>
+                <label>OTIFLEX TRIO</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX GENESIS COMFORT NY</fullName>
+                <default>false</default>
+                <label>OPTIFLEX GENESIS COMFORT NY</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR PLUS 1.4%</fullName>
+                <default>false</default>
+                <label>BIO HYALUR PLUS 1.4%</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR HV 2.4%</fullName>
+                <default>false</default>
+                <label>BIO HYALUR HV 2.4%</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR 1%</fullName>
+                <default>false</default>
+                <label>BIO HYALUR 1%</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR DUO 1.0 % &amp; 2.4 %</fullName>
+                <default>false</default>
+                <label>BIO HYALUR DUO 1.0 % &amp; 2.4 %</label>
+            </value>
+            <value>
+                <fullName>EYEVISC 2%(2ML PFS)</fullName>
+                <default>false</default>
+                <label>EYEVISC 2%(2ML PFS)</label>
+            </value>
+            <value>
+                <fullName>BIO BLADES</fullName>
+                <default>false</default>
+                <label>BIO BLADES</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR SV 3.0%</fullName>
+                <default>false</default>
+                <label>BIO HYALUR SV 3.0%</label>
+            </value>
+            <value>
+                <fullName>EYECRYL SERT EDOF TORIC</fullName>
+                <default>false</default>
+                <label>EYECRYL SERT EDOF TORIC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

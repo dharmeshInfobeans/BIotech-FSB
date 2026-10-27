@@ -1,0 +1,159 @@
+<aura:component controller="SubmitCISController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId" >
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="readOnly" type="Boolean" default="false" />
+    <aura:attribute name="approvalMode" type="Boolean" default="false" />
+    <aura:attribute name="headerId" type="String" default="" />
+    <aura:attribute name="lastHeaderId" type="String" default="" />
+    <aura:attribute name="grandTotal" type="Decimal" />
+    <aura:attribute name="CISWrapperList" type="List" />
+    
+    <aura:attribute name="approvalStatus" type="String" />
+    
+    <aura:attribute name="approvalComment" type="String" />
+    
+    
+    
+    
+    <aura:attribute name="companyPicklistValues" type="List" />
+    <aura:attribute name="productPicklistValues" type="List" />
+    
+    <aura:attribute name="isError" type="Boolean" default="false" />
+    <aura:attribute name="errorMessage" type="String" default="" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:handler name="CalculateTotal" event="c:CISEvent" action="{!c.calculateTotalValue}"/>
+    
+    <aura:if isTrue="{!$Browser.isPhone}">
+        <aura:html tag="style">
+            .slds-modal__content{
+            height: 100%;
+            }
+            .slds-modal__container {
+            justify-content: space-between;
+            }
+            .mobileScroller{
+            height:102%;
+            }
+        </aura:html>
+        <aura:set attribute="else">
+            <aura:html tag="style">
+                .modal-container{
+                width: 90%;
+                max-width: 90%;
+                }
+                .modal{
+                margin-bottom:50px;
+                }
+                .modalContainer{
+                margin-top:45px !important;
+                }
+                .priceCol,.surgeryCol,.valueCol{
+                width:200px;
+                }
+                
+            </aura:html>
+        </aura:set>
+    </aura:if>
+    
+    
+    <lightning:spinner aura:id="spinner" alternativeText="Loading" size="small" class="slds-hide" /> 
+    <section style="outline: none !important;" role="dialog" tabindex="-1"  aria-modal="true" aria-describedby="modal-content-id-1" class="modal slds-modal slds-fade-in-open">
+        <div class="slds-modal__container modalContainer" style="width:100%;margin:0px;padding:0px;max-width:100%;">
+            <header class="slds-modal__header">
+                <aura:if isTrue="{!!$Browser.isPhone}">
+                    <button onclick="{!c.closeModal}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                        <lightning:icon iconName="utility:close" variant="inverse" size="small" />
+                        <span class="slds-assistive-text">{!$Label.c.CIS_cmp_close}</span>
+                    </button>
+                </aura:if>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                    <aura:if isTrue="{!v.approvalMode}">
+                        {!$Label.c.CIS_cmp_appr_rej}
+                        <aura:set attribute="else">
+                            {!$Label.c.CIS_new_CIS}
+                        </aura:set>
+                    </aura:if>
+                    
+                </h2>
+            </header>
+            <div class="slds-modal__content" id="modal-content-id-1" style="overflow: auto;">
+                
+                <div class="mobileScroller">
+                    
+                    <lightning:tabset>
+                        <aura:iteration items="{!v.CISWrapperList}" var="CISWrapper">
+                            <lightning:tab label="{!CISWrapper.budget + CISWrapper.indicator}" class="redBtn"  >
+                                <c:CISListTurkey 
+                                           companyPicklistValues="{!v.companyPicklistValues}" 
+                                           productPicklistValues="{!v.productPicklistValues}"
+                                           CISWrapper="{!CISWrapper}"
+                                           readOnly="{!v.readOnly}"
+                                           />
+                            </lightning:tab>
+                        </aura:iteration>
+                    </lightning:tabset>
+                    
+                    <aura:if isTrue="{!v.approvalMode}">
+                        <div class="slds-grid slds-wrap">
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-large-size_4-of-12 slds-p-horizontal_large">
+                                <div class="slds-form">
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <lightning:select value="{!v.approvalStatus}" label="Approval Status" required="true">
+                                            <option value="Approve">{!$Label.c.CIS_cmp_appr}</option>
+                                            <option value="Reject">{!$Label.c.CIS_cmp_rej}</option>
+                                        </lightning:select>
+                                    </div>
+                                    <div class="slds-form-element slds-form-element_stacked">
+                                        <lightning:textarea value="{!v.approvalComment}"  label="Comments" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1 slds-medium-size_8-of-12 slds-large-size_8-of-12">
+                            </div>
+                        </div>
+                    </aura:if>
+                </div>
+            </div>
+            <footer class="slds-modal__footer" >
+                <div class="slds-grid slds-wrap">
+                    <aura:if isTrue="{!!$Browser.isPhone}">
+                        <div  class="slds-col slds-size_1-of-2 slds-medium-size_3-of-12 slds-large-size_3-of-12">
+                        </div>
+                    </aura:if>
+                    <div class="slds-col slds-align_absolute-center slds-size_1-of-2 slds-medium-size_5-of-12 slds-large-size_5-of-12">
+                        <span class="grandTotal">
+                            <aura:if isTrue="{!!$Browser.isPhone}">{!$Label.c.CIS_cmp_grand} </aura:if>{!$Label.c.CIS_cmp_total}: <lightning:formattedNumber value="{!v.grandTotal}" style="currency" minimumFractionDigits="0" />
+                        </span>
+                    </div>
+                    <div class="slds-col slds-text-align_right slds-size_1-of-2 slds-medium-size_4-of-12 slds-large-size_4-of-12" >
+                        <button class="slds-button slds-button_neutral" onclick="{!c.closeModal}">{!$Label.c.CIS_cmp_cancel}</button>
+                        <aura:if isTrue="{!!v.readOnly}">
+                            <button class="slds-button slds-button_brand" onclick="{!c.submitCIS}">{!$Label.c.CIS_cmp_save}</button>
+                        </aura:if>
+                        <aura:if isTrue="{!v.approvalMode}">
+                            <button class="slds-button slds-button_brand" onclick="{!c.approveCIS}">{!$Label.c.CIS_cmp_submit}</button>
+                        </aura:if>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </section>
+    
+    <aura:if isTrue="{!v.isError}">
+        <div class="slds-notify_container slds-is-relative">
+            <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                <lightning:icon variant="inverse" iconName="utility:error" size="small" class="slds-m-right_small slds-no-flex slds-align-top"/>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small">{!v.errorMessage}</h2>
+                </div>
+                <div class="slds-notify__close">
+                    <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick="{!c.hideToast}">
+                        <lightning:icon iconName="utility:close" size="small" variant="inverse" />
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+    
+</aura:component>

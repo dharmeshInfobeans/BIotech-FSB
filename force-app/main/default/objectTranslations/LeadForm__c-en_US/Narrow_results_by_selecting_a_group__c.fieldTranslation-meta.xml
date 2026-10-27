@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Narrow results by selecting a group --></label>
+    <name>Narrow_results_by_selecting_a_group__c</name>
+</CustomFieldTranslation>

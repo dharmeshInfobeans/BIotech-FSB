@@ -1,0 +1,48 @@
+/* Host element - absolute fill */
+:host {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    z-index: 1; /* Establish base stacking level - allows sibling buttons with higher z-index to stack above */
+    pointer-events: none; /* Allow clicks to pass through to sibling elements (My Location button) */
+}
+
+/* Map container - absolute fill */
+.map-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: auto; /* Re-enable pointer events for the map content */
+}
+
+/* Lightning map fills container */
+lightning-map {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: auto; /* Ensure map and native controls receive touch events */
+}
+
+/* Loading state */
+.loading-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #f3f2f2;
+}

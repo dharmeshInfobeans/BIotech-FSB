@@ -1,0 +1,149 @@
+<template>
+<lightning-quick-action-panel header="Add/Edit Agreement Products">
+    <table class="slds-table">
+    <thead>
+        <tr>
+        <th style="width: 20%;">Product</th>
+        <th style="width: 5%;">Is Backup</th>
+        <th style="width: 10%;">Price</th>
+        <th style="width: 20%;">FOC(%)</th>
+        <th style="width: 15%;">Plant</th>
+        <!-- <th style="width: 4%;">Currency</th>-->
+        <th style="width: 20%;">Payment Terms</th>
+        <th style="width: 5%;">Incoterms</th>
+        <th style="width: 5%;">Actions</th>
+    </tr>
+    
+    </thead>
+    <tbody>
+        <template for:each={agreementProducts} for:item="product" for:index="index">
+            <!-- lwc:if={product.NotIsCanceled} -->
+            <tr key={product.Id} class={product.cssClass}>
+    
+                                <td class="slds-p-around_x-small">
+                <lightning-record-picker data-index={index} data-field-name="Product__c"
+                    class="customLookup" label="Product" title={product.Name} placeholder="Search..." 
+                    object-api-name="Product__c" value={product.Product__c}
+                    matching-info={productMatchingInfo} display-info={productDisplayInfo}
+                    filter={productFilter} onchange={handleValueChange}
+                    disabled={product.isDisabled} variant="label-hidden" required>
+                </lightning-record-picker>
+                </td>
+                <td class="slds-p-around_x-small">
+                        <lightning-input data-index={index} data-field-name="Is_Backup__c" type="toggle"
+                                    checked={product.Is_Backup__c} 
+                            onchange={handleValueChange}
+                             variant="label-hidden" style="margin-top: 14px;" disabled="true">
+                        </lightning-input>
+                        
+                </td>
+                
+                
+                
+    
+                <td class="slds-p-around_x-small">
+                    <lightning-input data-index={index} data-field-name="Price__c" type="number"
+                        title={product.Price__c} step="0.01" value={product.Price__c} onchange={handleValueChange}
+                        disabled={product.isDisabled} variant="label-hidden" required>
+                    </lightning-input>
+                </td>
+    
+                <td class="slds-p-around_x-small">
+                    <lightning-input 
+                        data-index={index} 
+                        data-field-name="FOC_Text__c" 
+                        type="text" 
+                        title={product.FOC_Text__c} 
+                        value={product.FOC_Text__c} 
+                        onchange={handleValueChange} 
+                        disabled={product.isDisabled} 
+                        variant="label-hidden" 
+                        step="0.01">
+                    </lightning-input>
+                </td>
+                
+    
+                <td class="slds-p-around_x-small">
+                    <lightning-input data-index={index} data-field-name="Plant__c" type="text"
+                    title={product.Plant__c}
+                    value={product.Plant__c} onchange={handleValueChange}
+                        disabled="true" variant="label-hidden" required read-only>
+                    </lightning-input>
+                </td>
+    
+                <!--
+                    <td class="slds-p-around_x-small">
+                    <lightning-combobox data-index={index} data-field-name="CurrencyIsoCode"
+                        options={currencyOptions} 
+                        title={product.CurrencyIsoCode}
+                        value={product.CurrencyIsoCode}
+                        onchange={handleValueChange} disabled={product.isDisabled}
+                        variant="label-hidden" required>
+                    </lightning-combobox>
+                </td>
+                -->
+    
+                <td class="slds-p-around_x-small">
+                    <lightning-combobox data-index={index} data-field-name="Payment_Terms_options__c"
+                        options={paymentTermOptions} 
+                        title={product.Payment_Terms_options__c}
+                        value={product.Payment_Terms_options__c}
+                        onchange={handleValueChange} disabled={product.isDisabled}
+                        variant="label-hidden" required>
+                    </lightning-combobox>
+                </td>
+    
+                <td class="slds-p-around_x-small">
+                    <lightning-combobox data-index={index} data-field-name="Incoterms__c"
+                        options={incotermOptions}
+                        title={product.Incoterms__c}
+                            value={product.Incoterms__c}
+                        onchange={handleValueChange} disabled={product.isDisabled}
+                        variant="label-hidden" required>
+                    </lightning-combobox>
+                </td>
+    
+                <td class="slds-p-around_x-small">
+                    <lightning-button variant="base"  icon-position="right" title="Delete"
+                        data-index={index} onclick={handleDelete} icon-name="utility:delete"
+                        disabled={product.isDisabled}>
+                    </lightning-button>
+                </td>
+            </tr>
+        </template>
+    </tbody>  
+    
+    </table>  
+
+    
+    <div class="addRowButtom">
+    
+        <lightning-button class="slds-button slds-button_brand"
+        style="width: auto; display: inline-block;"
+        variant="brand"
+        label="+ Add Product"
+        onclick={handleAddRow}
+        disabled={lockComponent}>
+    </lightning-button>
+    
+    
+    </div>
+    <div slot="footer" class="button-container">
+        <lightning-button
+            variant="neutral"
+            label="Cancel"
+            onclick={closeAction}
+        ></lightning-button>
+    
+        <lightning-button
+            variant="brand"
+            label="Save"
+            disabled={lockComponent}
+            onclick={handleSave}
+            class="custom-button-spacing"
+        ></lightning-button>
+    </div>
+    
+    
+</lightning-quick-action-panel>
+</template>

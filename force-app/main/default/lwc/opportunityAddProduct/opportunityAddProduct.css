@@ -1,0 +1,428 @@
+/* ── Backdrop ── */
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(120, 120, 120, 0.5); /* increased from 0.3 to 0.5 */
+    z-index: 8000;
+    pointer-events: all;
+}
+
+/* ── Overlay (centers the modal) ── */
+.modal-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9000;
+    width: 100vw;        /* changed from 900px — covers full width */
+    max-width: 960px;    /* max cap so it doesn't go too wide */
+    box-sizing: border-box;
+    padding: 0 16px;     /* side breathing room */
+}
+
+/* ── Modal Container ── */
+.modal-container {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 90vh;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.22);
+    box-sizing: border-box;
+}
+
+/* ── Header ── */
+.modal-header {
+    background: linear-gradient(135deg, #0176d3 0%, #032d60 100%);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+.modal-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.modal-icon-box {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1.3;
+}
+.modal-subtitle {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 2px 0 0;
+}
+
+
+
+/* ── Progress Bar ── */
+.progress-bar-track {
+    height: 4px;
+    background: #e0e5ee;
+    width: 100%;
+    flex-shrink: 0;
+}
+.progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #0176d3, #032d60);
+    transition: width 0.4s ease;
+}
+
+/* ── Spinner ── */
+.spinner-wrapper {
+    position: relative;
+    height: 70px;
+    flex-shrink: 0;
+}
+
+/* ── Body ── */
+.modal-body {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+    min-height: 0;
+    background: #ffffff;
+}
+
+/* ── Field Section ── */
+.field-section {
+    margin-bottom: 6px;
+}
+.step-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+.step-dot {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.step-dot-active {
+    background: #0176d3;
+    color: #ffffff;
+}
+.step-dot-inactive {
+    background: #e0e5ee;
+    color: #8899a6;
+}
+.step-label {
+    font-size: 13px;
+    font-weight: 600;
+}
+.step-label-active   { color: #032d60; }
+.step-label-inactive { color: #8899a6; }
+.step-line {
+    flex: 1;
+    height: 1px;
+    background: #e0e5ee;
+    min-width: 10px;
+}
+.auto-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #0176d3;
+    background: #e8f4fd;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.required-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: #c23934;
+    background: #fdf2f2;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+.field-hint {
+    font-size: 12px;
+    color: #8899a6;
+    margin: 0 0 10px 34px;
+}
+
+/* ── Readonly Field ── */
+.readonly-field {
+    margin-left: 34px;
+    background: #f3f3f3;
+    border: 1px solid #dddbda;
+    border-radius: 6px;
+    padding: 9px 12px;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+}
+.readonly-value {
+    font-size: 13px;
+    color: #3e3e3c;
+    font-weight: 500;
+}
+
+/* ── Section Divider ── */
+.section-divider {
+    height: 1px;
+    background: #f0f2f5;
+    margin: 14px 0;
+}
+
+/* ── Datatable Wrapper ── */
+.table-wrapper {
+    margin-left: 34px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid #e0e5ee;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    position: relative;
+   /* clip-path: inset(0 round 8px);8*/
+    isolation: isolate;
+}
+
+/* ── Hide datatable stray cross/clear button ── */
+.table-wrapper .slds-button.slds-button_icon.slds-button_icon-small {
+    display: none !important;
+}
+.table-wrapper [data-key="clearSelection"] {
+    display: none !important;
+}
+.table-wrapper .slds-th__action-button {
+    display: none !important;
+}
+
+/* ── Pagination ── */
+.pagination-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+}
+.page-info {
+    font-size: 13px;
+    color: #3e3e3c;
+    font-weight: 500;
+}
+
+/* ── Selection Count ── */
+.selection-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 10px;
+    margin-left: 34px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #2e844a;
+    background: #eaf5ea;
+    padding: 5px 12px;
+    border-radius: 20px;
+}
+.check-icon {
+    --sds-c-icon-color-foreground-default: #2e844a;
+}
+
+/* ── Empty State ── */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px;
+}
+.empty-text {
+    font-size: 13px;
+    color: #8899a6;
+}
+
+/* ── Details Table ── */
+.details-table-wrapper {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #e0e5ee;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.details-table { width: 100%; }
+.table-th {
+    background: #f5f7fa !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: #032d60 !important;
+    padding: 11px 14px !important;
+}
+.table-tr:hover { background: #f8fafc; }
+.table-td {
+    font-size: 13px;
+    color: #3e3e3c;
+    padding: 9px 14px !important;
+    vertical-align: middle;
+}
+
+/* ── Summary Bar ── */
+.summary-bar {
+    display: flex;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #f8fafc;
+    border-top: 1px solid #e0e5ee;
+    flex-shrink: 0;
+}
+.summary-card {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 8px 10px;
+    text-align: center;
+    border: 1px solid #e0e5ee;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    min-width: 0;
+}
+.summary-label {
+    font-size: 9px;
+    color: #8899a6;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.summary-value {
+    font-size: 14px;
+    font-weight: 800;
+    color: #c9d3e0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.summary-value-active {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0176d3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* ── Footer ── */
+.modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    border-top: 1px solid #e0e5ee;
+    background: #ffffff;
+    flex-shrink: 0;
+}
+
+/* ── Pill Buttons ── 
+.pill-btn {
+    border: none;
+    padding: 10px 28px;
+    border-radius: 24px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #ffffff;
+    line-height: 1;
+}
+.pill-btn:disabled {
+    background: #c9d3e0 !important;
+    cursor: not-allowed;
+    transform: none !important;
+    opacity: 0.7;
+}
+.pill-btn-next {
+    background: #0176d3;
+}
+.pill-btn-next:hover:not(:disabled) {
+    background: #032d60;
+    transform: translateY(-1px);
+}
+.pill-btn-save {
+    background: #0176d3;
+}
+.pill-btn-save:hover {
+    background: #032d60;
+    transform: translateY(-1px);
+}
+.pill-btn-back {
+    background: transparent;
+    color: #0176d3;
+    border: 1.5px solid #0176d3;
+}
+.pill-btn-back:hover {
+    background: #e8f4fd;
+}
+
+Mobile / Responsive ── */
+@media (max-width: 480px) {
+    .modal-container {
+        max-width: 100%;
+        border-radius: 12px;
+        max-height: 95vh;
+    }
+    .modal-body {
+        padding: 14px;
+    }
+    .readonly-field {
+        margin-left: 0;
+    }
+    .table-wrapper {
+        margin-left: 0;
+    }
+    .field-hint {
+        margin-left: 0;
+    }
+    .selection-count {
+        margin-left: 0;
+    }
+    .step-label {
+        font-size: 11px;
+    }
+    .summary-bar {
+        gap: 6px;
+        padding: 8px 12px;
+    }
+    .modal-footer {
+        padding: 10px 14px;
+    }
+  /*  .pill-btn {
+        padding: 8px 18px;
+        font-size: 13px;
+    }*/
+}
+
+@media (max-width: 768px) {
+    .modal-container {
+        max-width: 96vw;
+        max-height: 92vh;
+    }
+}

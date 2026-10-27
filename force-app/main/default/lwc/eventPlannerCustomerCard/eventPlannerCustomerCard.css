@@ -1,0 +1,84 @@
+/**
+ * @file eventPlannerCustomerCard.css
+ * @description Card styling using SLDS design tokens
+ * @version 2.0
+ */
+
+/* Card Container - Primary Custom Styles */
+.customer-card {
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    border-radius: var(--slds-g-radius-border-2, 0.5rem);
+    box-shadow: var(--sds-c-card-shadow, 0 2px 2px 0 rgba(0, 0, 0, 0.1));
+    height: 100%;
+    min-height: 280px;
+}
+
+/* Card Hover Effect */
+.customer-card:hover {
+    box-shadow: var(--slds-c-card-shadow-hover, 0 4px 12px 0 rgba(0, 0, 0, 0.15));
+    transform: translateY(-4px);
+    border-color: var(--slds-g-color-brand-base-60, #0176d3);
+}
+
+/* Card Active/Focus State */
+.customer-card:active,
+.customer-card:focus {
+    outline: var(--slds-g-color-brand-base-60, #0176d3) solid var(--slds-g-border-width-thick, 2px);
+    outline-offset: var(--slds-g-spacing-xxx-small, 2px);
+}
+
+/* Avatar Icon Centering Fix */
+.avatar-wrapper {
+    position: relative;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.avatar-wrapper lightning-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Contact Info Icon Styling - Only for phone and location icons */
+.contact-info-section lightning-icon {
+    color: var(--slds-g-color-neutral-base-50, #706e6b);
+    display: inline-flex;
+}
+
+/* Title Styling - Bold and larger font */
+.customer-card h3 {
+    font-weight: var(--slds-g-font-weight-bold, 700);
+    font-size: var(--slds-g-font-size-6, 1.125rem);
+}
+
+/* Increase label text size */
+.customer-card .card-label-text {
+    font-size: var(--slds-g-font-size-3, 0.9375rem);
+}
+
+/* Contact info text size */
+.contact-info-section span {
+    font-size: var(--slds-g-font-size-3, 0.9375rem);
+}
+
+/* Add vertical spacing between contact info items */
+.contact-info-section > div:not(:last-child) {
+    margin-bottom: var(--slds-g-spacing-x-small, 0.5rem);
+}
+
+/* Add spacing to title section */
+.customer-card > div:nth-child(2) {
+    margin-bottom: var(--slds-g-spacing-small, 0.75rem);
+}
+
+/* Increase badge text size */
+.customer-card lightning-badge {
+    font-size: var(--slds-g-font-size-3, 0.9375rem);
+}

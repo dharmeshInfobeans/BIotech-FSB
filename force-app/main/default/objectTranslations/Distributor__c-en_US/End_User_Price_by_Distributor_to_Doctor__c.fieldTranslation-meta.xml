@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- End User Price by Distributor to Doctor --></label>
+    <name>End_User_Price_by_Distributor_to_Doctor__c</name>
+</CustomFieldTranslation>

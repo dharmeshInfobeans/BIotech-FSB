@@ -1,0 +1,174 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+        class="slds-modal slds-fade-in-open slds-modal_medium">
+        <div class="slds-modal__container">
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">Campaign Members</h1>
+                <lightning-icon icon-name='action:close' alternative-text='close' size='small' title='close'
+                    onclick={handleCancelPrompt} class="custom-icon-close">
+                </lightning-icon>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+
+                <!-- Record Type Selection -->
+                <template lwc:if={system_var_Boolean_1.isShowRecordTypePage}>
+                    <div class="slds-align_absolute-center">
+                        <lightning-radio-group name="recordType" label="Select a Record Type"
+                            options={recordTypeOptions} value={system_var_1.selectedRecordTypeId} type="radio"
+                            onchange={handleRecordTypeSelect}>
+                        </lightning-radio-group>
+                    </div>
+                </template>
+
+                <!-- Create Campaign Members -->
+                <template lwc:if={system_var_Boolean_1.isShowCreateRecord}>
+                    <lightning-record-edit-form object-api-name="Campaign_Member__c"
+                        onload={handleLoadCampaignMemberForm}>
+
+                        <template lwc:if={system_var_Boolean_1.isCampaignMemberFormLoaded}>
+                            <div class="spinner-allignment">
+                                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                            </div>
+                        </template>
+
+                        <template lwc:else>
+                            <div class="slds-grid slds-wrap">
+                                <template for:each={system_var_1.campaignMemberRecord} for:item="field">
+
+                                    <!-- Contact Dropdown (Existing Member only) -->
+                                    <template lwc:if={field.isContactLookup} key={field.fieldName}>
+                                        <template lwc:if={newcampaignMember}>
+                                            <div key={field.fieldName}
+                                                class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 slds-p-around_small">
+
+                                                <template lwc:if={isLoadingContacts}>
+                                                    <div class="contact-combo-loading">
+                                                        <lightning-spinner alternative-text="Loading contacts" size="small"></lightning-spinner>
+                                                    </div>
+                                                </template>
+
+                                                <template lwc:else>
+                                                    <lightning-combobox
+                                                        label="Contact Person/Dr. Name"
+                                                        placeholder={contactInputPlaceholder}
+                                                        options={contactComboOptions}
+                                                        value={system_var_1.selectedContactId}
+                                                        onchange={handleContactComboChange}
+                                                        disabled={disableContactFilter}
+                                                        variant="label-stacked"
+                                                        required>
+                                                    </lightning-combobox>
+                                                </template>
+
+                                            </div>
+                                        </template>
+                                        <!-- For New Member: contact field is intentionally not rendered -->
+                                    </template>
+
+                                    <!-- All other fields
+                                    <template lwc:else>
+                                        <div key={field.fieldName}
+                                            class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 slds-p-around_small">
+                                            <lightning-input-field
+                                                field-name={field.fieldName}
+                                                value={field.fieldValue}
+                                                required={field.isRequired}
+                                                onchange={handleCampaignChange}
+                                                variant="label-stacked"
+                                                disabled={field.isDisable}
+                                                data-field={field.fieldName}>
+                                            </lightning-input-field>
+                                        </div>
+                                    </template> -->
+                                    <!-- All other fields -->
+<template lwc:else>
+    <div key={field.fieldName}
+        class="slds-col slds-large-size_4-of-12 slds-medium-size_4-of-12 slds-size_12-of-12 slds-p-around_small">
+
+       <!-- Country cascade -->
+<template lwc:if={field.isCountryField}>
+    <lightning-combobox
+        label="Country"
+        placeholder="Select Country"
+        options={countryOptions}
+        value={selectedCountry}
+        onchange={handleCountryChange}
+        variant="label-stacked"
+        required={field.isRequired}
+        disabled={isCountryDisabled}>
+    </lightning-combobox>
+</template>
+
+<!-- State cascade -->
+<template lwc:elseif={field.isStateField}>
+    <lightning-combobox
+        label="State / Province"
+        placeholder="Select State"
+        options={stateOptions}
+        value={selectedState}
+        onchange={handleStateChange}
+        variant="label-stacked"
+        disabled={isStateDisabled}
+        required={field.isRequired}>
+    </lightning-combobox>
+</template>
+
+<!-- City cascade -->
+<template lwc:elseif={field.isCityField}>
+   
+    <lightning-combobox
+        label="City"
+        placeholder="Select City"
+        options={cityOptions}
+        value={selectedCity}
+        onchange={handleCityChange}
+        variant="label-stacked"
+        disabled={isCityDisabled}
+        required={field.isRequired}>
+    </lightning-combobox>
+</template>
+
+        <!-- All remaining fields -->
+        <template lwc:else>
+            <lightning-input-field
+                field-name={field.fieldName}
+                value={field.fieldValue}
+                required={field.isRequired}
+                onchange={handleCampaignChange}
+                variant="label-stacked"
+                disabled={field.isDisable}
+                data-field={field.fieldName}>
+            </lightning-input-field>
+        </template>
+
+    </div>
+</template>
+
+                                </template>
+                            </div>
+                        </template>
+
+                    </lightning-record-edit-form>
+                </template>
+
+            </div>
+            <div class="slds-modal__footer">
+                <template lwc:if={system_var_Boolean_1.isShowRecordTypePage}>
+                    <lightning-button label="Cancel" variant="neutral" onclick={handleCancelPrompt}>
+                    </lightning-button>
+                    <lightning-button label="Next" variant="brand" class="slds-m-left_small"
+                        onclick={handleGoToRecordCreateScreen} disabled={disableFirstScreenButton}>
+                    </lightning-button>
+                </template>
+                <template lwc:if={system_var_Boolean_1.isShowCreateRecord}>
+                    <lightning-button label="Previous" variant="neutral" onclick={handleGoBackToRecordTypeScreen}>
+                    </lightning-button>
+                    <lightning-button label="Save" variant="brand" class="slds-m-left_small"
+                        onclick={handleSaveCampaingMemberAndCampaignMemberProduct}>
+                    </lightning-button>
+                </template>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

@@ -1,0 +1,141 @@
+<template>
+    <div class="visit-list-container slds-card slds-is-relative">
+
+
+        <!-- Full panel loading overlay -->
+        <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <!-- SLDS 2 Page Header -->
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:event" size="small"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h2 class="slds-card__header-title">
+                        <span class="slds-text-heading_small">Today's Visits</span>
+                    </h2>
+                </div>
+                <!-- Visit Count Badge -->
+                <div class="slds-no-flex header-right-section">
+                    <template if:true={isLoading}>
+                    <lightning-spinner alternative-text="Loading" size="x-small" class="slds-var-m-right_small"></lightning-spinner>
+                    </template>
+                    <lightning-badge label={visitCount}></lightning-badge>
+                </div>
+            </header>
+        </div>
+
+        <!-- Visit Cards List -->
+        <div class="slds-card__body slds-card__body_inner visit-cards-container">
+            <template if:true={hasEvents}>
+                <template for:each={enhancedEventList} for:item="event">
+                    <!-- SLDS 2 Individual Visit Card -->
+                    <article key={event.Id} class={event.cardClass} data-id={event.Id} onclick={handleCardClick}>
+                        <div class="slds-card__header slds-grid">
+                            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                                <div class="slds-media__figure">
+                                    <!-- Visit Number Badge -->
+                                    <span class="slds-badge slds-badge_lightest slds-text-heading_small">
+                                        {event.visitNumber}
+                                    </span>
+                                </div>
+                                <div class="slds-media__body">
+                                    <!-- Account, Lead, or Opportunity Name -->
+                                    <h3 class="slds-card__header-title">
+                                        <span class="slds-text-heading_small slds-truncate" title={event.displayName}>
+                                            {event.displayName}
+                                        </span>
+                                    </h3>
+                                </div>
+                                <!-- Status Badge in Header -->
+                                <div class="slds-no-flex">
+                                    <span class={event.statusClass}>{event.statusLabel}</span>
+                                </div>
+                            </header>
+                        </div>
+
+                        <div class="slds-card__body slds-card__body_inner">
+                            <!-- Address with Icon -->
+                            <div class="slds-media slds-media_small slds-var-m-bottom_x-small">
+                                <div class="slds-media__figure">
+                                    <lightning-icon icon-name="utility:location" size="xx-small" alternative-text="Location"></lightning-icon>
+                                </div>
+                                <div class="slds-media__body">
+                                    <p class="slds-text-body_small slds-text-color_weak">
+                                        {event.displayAddress}
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Meeting Type and Lead/Opportunity Badge -->
+                            <div class="slds-grid slds-grid_align-spread slds-gutters_xx-small">
+                                <div class="slds-col slds-no-flex">
+                                    <lightning-badge
+                                        label={event.Meeting_Type__c}
+                                        class="slds-var-m-right_x-small">
+                                    </lightning-badge>
+                                </div>
+                                <!-- Opportunity Badge with Stage -->
+                                <template if:true={event.isOpportunity}>
+                                    <div class="slds-col slds-no-flex">
+                                        <lightning-badge label={event.opportunityStageLabel}></lightning-badge>
+                                    </div>
+                                </template>
+                                <!-- Lead Badge with Stage -->
+                                <template if:true={event.isLead}>
+                                    <div class="slds-col slds-no-flex">
+                                        <lightning-badge label={event.leadStageLabel}></lightning-badge>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Card Footer with Action Buttons -->
+                        <footer class="slds-card__footer visit-card-footer">
+                            <div class="slds-grid slds-grid_align-end">
+                                <!-- Action Buttons -->
+                                <div class="slds-button-group" role="group">
+                                    <!-- Check-In / Start Button -->
+                                        <template if:true={event.canCheckIn}>
+                                            <button class="slds-button slds-button_success action-btn"
+                                                    data-id={event.Id}
+                                                    data-meetingtype={event.Meeting_Type__c}
+                                                    onclick={handleCheckIn}
+                                                    disabled={getisButtonDisable}
+                                                    aria-label={event.checkInLabel}>
+                                                {event.checkInLabel}
+                                            </button>
+                                        </template>
+
+                                    <!-- Continue Button (when checked in but not submitted) -->
+                                    <template if:true={event.canContinue}>
+                                        <button class="slds-button slds-button_brand action-btn"
+                                                data-id={event.Id}
+                                                data-meetingtype={event.Meeting_Type__c}
+                                                onclick={handleContinue}
+                                                disabled={getisButtonDisable}
+                                                aria-label={event.continueLabel}>
+                                            {event.continueLabel}
+                                        </button>
+                                    </template>
+                                </div>
+                            </div>
+                        </footer>
+                    </article>
+                </template>
+            </template>
+
+            <!-- Empty State (SLDS 2 Illustration) -->
+            <template if:false={hasEvents}>
+                <div class="slds-illustration slds-illustration_small slds-text-align_center slds-var-p-around_large">
+                    <lightning-icon icon-name="utility:event" size="large" class="slds-illustration__svg"></lightning-icon>
+                    <h3 class="slds-text-heading_medium slds-var-m-top_medium">No visits scheduled</h3>
+                    <p class="slds-text-body_regular slds-var-m-top_x-small">You don't have any visits planned for today.</p>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

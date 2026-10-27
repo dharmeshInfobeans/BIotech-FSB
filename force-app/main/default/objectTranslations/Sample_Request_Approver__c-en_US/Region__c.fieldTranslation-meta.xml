@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Region --></label>
+    <name>Region__c</name>
+    <picklistValues>
+        <masterLabel>ANDHRA</masterLabel>
+        <translation><!-- ANDHRA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIHAR</masterLabel>
+        <translation><!-- BIHAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DELHI</masterLabel>
+        <translation><!-- DELHI --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DELHI-1</masterLabel>
+        <translation><!-- DELHI-1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DELHI-2</masterLabel>
+        <translation><!-- DELHI-2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EAST_UP_1</masterLabel>
+        <translation><!-- EAST_UP_1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EAST_UP_2</masterLabel>
+        <translation><!-- EAST_UP_2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>East UP1</masterLabel>
+        <translation><!-- East UP1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GUJARAT</masterLabel>
+        <translation><!-- GUJARAT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HARYANA</masterLabel>
+        <translation><!-- HARYANA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JHARKHAND</masterLabel>
+        <translation><!-- JHARKHAND --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>KARNATAKA</masterLabel>
+        <translation><!-- KARNATAKA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>KASHMIR</masterLabel>
+        <translation><!-- KASHMIR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>KERALA</masterLabel>
+        <translation><!-- KERALA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MADHYA PRADESH</masterLabel>
+        <translation><!-- MADHYA PRADESH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MUMBAI</masterLabel>
+        <translation><!-- MUMBAI --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NORTH EAST</masterLabel>
+        <translation><!-- NORTH EAST --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ORISSA</masterLabel>
+        <translation><!-- ORISSA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PUNJAB</masterLabel>
+        <translation><!-- PUNJAB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RAJASTHAN</masterLabel>
+        <translation><!-- RAJASTHAN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ROM 1</masterLabel>
+        <translation><!-- ROM 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ROM 2</masterLabel>
+        <translation><!-- ROM 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TAMIL NADU</masterLabel>
+        <translation><!-- TAMIL NADU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TAMILNADU</masterLabel>
+        <translation><!-- TAMILNADU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TELANGANA</masterLabel>
+        <translation><!-- TELANGANA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>UTTARAKHAND</masterLabel>
+        <translation><!-- UTTARAKHAND --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WEST BENGAL</masterLabel>
+        <translation><!-- WEST BENGAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>WEST_UP</masterLabel>
+        <translation><!-- WEST_UP --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

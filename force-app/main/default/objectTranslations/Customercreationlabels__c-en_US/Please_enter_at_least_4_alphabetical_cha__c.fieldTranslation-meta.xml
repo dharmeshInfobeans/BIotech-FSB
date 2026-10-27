@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Please enter at least 4 alphabetical cha --></label>
+    <name>Please_enter_at_least_4_alphabetical_cha__c</name>
+</CustomFieldTranslation>

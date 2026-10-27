@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- AGM – Marketing Execution &amp; PMT Employee Id --></help>
+    <label><!-- AGMMEPMT EMPID --></label>
+    <name>AGMMEPMT_EMPID__c</name>
+</CustomFieldTranslation>

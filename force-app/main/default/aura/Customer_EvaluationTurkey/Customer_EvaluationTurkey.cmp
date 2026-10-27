@@ -1,0 +1,638 @@
+<aura:component controller="CustomerEvaluationController" implements="force:lightningQuickActionWithoutHeader,force:hasRecordId"  access="global">
+    <aura:attribute name="isAdmin" type="Boolean" default="false"/>
+    <aura:attribute name="disableForm" type="Boolean" default="false"/>
+    
+    <aura:attribute name="custEvaluation" type="Object"/>
+    <aura:attribute name="statusPicklistValues" type="object[]"/>
+    <aura:attribute name="yearPicklistValues" type="object[]"/>
+    <aura:attribute name="languagePicklist" type="object[]" />
+    <aura:attribute name="lastCEName" type="String"/>
+    <aura:attribute name="account" type="Object"/>
+    <aura:attribute name="accountName" type="String"/>
+    
+    <aura:attribute name="recordType" type="String"/>
+    
+    <aura:attribute name="isError" type="Boolean" default="false" />
+    <aura:attribute name="errorMessage" type="String" default="" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <lightning:spinner aura:id="CESpinner" variant="brand" size="medium" class="slds-hide"/>
+    
+    <aura:if isTrue="{!$Browser.isPhone}">
+        <aura:html tag="style">
+            .slds-modal__content{
+            height: 100%;
+            }
+            .slds-modal__container {
+            justify-content: space-between;
+            }
+            .mobileScroller{
+            height:102%;
+            }
+        </aura:html>
+        <aura:set attribute="else">
+            <aura:html tag="style">
+                .modal-container{
+                width: 70%;
+                max-width: 70%;
+                }
+                .modal{
+                margin-bottom:50px;
+                }
+                .modalContainer{
+                margin-top:45px !important;
+                }
+            </aura:html>
+        </aura:set>
+    </aura:if>
+    
+    <section style="outline: none !important;" role="dialog" tabindex="-1"  aria-modal="true" aria-describedby="modal-content-id-1" class="modal slds-modal slds-fade-in-open">
+        <div class="slds-modal__container modalContainer" style="width:100%;margin:0px;padding:0px;max-width:100%;">
+            <header class="slds-modal__header">
+                <aura:if isTrue="{!!$Browser.isPhone}">
+                    <button onclick="{!c.closeModel}" class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close">
+                        <lightning:icon iconName="utility:close" variant="inverse" size="small" />
+                        <span class="slds-assistive-text">{!$Label.c.CIS_cmp_close}</span>
+                    </button>
+                </aura:if>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">
+                    {!$Label.c.CE_cmp_new_ce}
+                </h2>
+            </header>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1" style="overflow: auto;">
+                <!--- Doctor D and T Form -->
+                <aura:if isTrue="{!v.recordType == 'Doctor_D_and_T'}">
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate" >{!$Label.c.CE_cmp_gen_info}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">{!$Label.c.CE_cmp_acc}</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-combobox_container slds-has-selection">
+                                                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                                                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                                        <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" title="Account">
+                                                            <lightning:icon iconName="standard:account" alternativeText="account" />  
+                                                            <span class="slds-assistive-text">{!$Label.c.CE_cmp_acc}</span>
+                                                        </span>
+                                                        <input disabled="disabled" class="slds-input slds-combobox__input slds-combobox__input-value" id="combobox-id-5" aria-controls="listbox-id-5" autocomplete="off" role="textbox" type="text" placeholder="Select an Option" readonly="" value="{!v.accountName}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">{!$Label.c.CE_cmp_cust_eval}</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-combobox_container slds-has-selection">
+                                                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                                                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                                        <aura:if isTrue="{!!empty(v.lastCEName)}">
+                                                            <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" >
+                                                                <lightning:icon iconName="custom:custom90" alternativeText="Customer Evaluation" />  
+                                                                <span class="slds-assistive-text">{!$Label.c.CE_cmp_cust_eval}</span>
+                                                            </span>
+                                                        </aura:if>
+                                                        <input disabled="disabled" class="slds-input slds-combobox__input slds-combobox__input-value" type="text" readonly="" value="{!v.lastCEName}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <aura:if isTrue="{!!empty(v.yearPicklistValues)}">
+                                        <lightning:select disabled="{!or(!v.isAdmin,v.disableForm)}" aura:id="recField" value="{!v.custEvaluation.Year__c}" label='{!$Label.c.CE_comp_year}' required="true">
+                                            <aura:iteration items="{!v.yearPicklistValues}" var="item">
+                                                <option value="{!item}">{!item}</option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </aura:if>
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.custEvaluation.Customer_Evaluation_Rating__c}" label='{!$Label.c.CE_cmp_cust_rating}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <aura:if isTrue="{!!empty(v.statusPicklistValues)}">
+                                        <lightning:select disabled="{!or(!v.isAdmin,v.disableForm)}" aura:id="recField" value="{!v.custEvaluation.Status__c}" label='{!$Label.c.CE_comp_status}' required="true">
+                                            <aura:iteration items="{!v.statusPicklistValues}" var="item">
+                                                <option text="{!item}"></option>
+                                            </aura:iteration>
+                                        </lightning:select>
+                                    </aura:if>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Procedure section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate">{!$Label.c.CE_cmp_annual_proc}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Procedures_Cataract__c}" label='{!$Label.c.CE_cmp_no_proc_cataract}'/>
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Procedures_Glaucoma__c}" label='{!$Label.c.CE_No_proc_cmp_glaucoma}'/>
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Procedures_Pediatric__c}" label='{!$Label.c.CE_cmp_pediatric}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Procedures_Refractive__c}" label='{!$Label.c.CE_cmp_refractive}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Procedures_Retina__c}" label='{!$Label.c.CE_cmp_retina}' />
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Other section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate" >{!$Label.c.CE_cmp_other_info}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Counselors__c}"  label='{!$Label.c.CE_cmp_no_counselors}' required="true"/>
+                                </div> 
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Doctors__c}" label='{!$Label.c.CE_cmp_no_doctors}' required="true"/>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </aura:if>
+                
+                
+                <!--- Distributer D Form -->
+                <aura:if isTrue="{!v.recordType == 'Distributor_D'}">
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate" >{!$Label.c.CE_cmp_gen_info}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">{!$Label.c.CE_cmp_full_name}</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-combobox_container slds-has-selection">
+                                                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                                                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                                        <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" title="Account">
+                                                            <lightning:icon iconName="standard:account" alternativeText="account" />  
+                                                            <span class="slds-assistive-text">{!$Label.c.CE_cmp_acc}</span>
+                                                        </span>
+                                                        <input disabled="disabled" class="slds-input slds-combobox__input slds-combobox__input-value" id="combobox-id-5" aria-controls="listbox-id-5" autocomplete="off" role="textbox" type="text" placeholder="Select an Option" readonly="" value="{!v.accountName}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input  value="{!v.custEvaluation.Year_of_Establishment__c}" label='{!$Label.c.CE_cmp_yoe}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.Owner.Name}" label='{!$Label.c.CE_cmp_name_of_owner}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.BillingStreet}" label='{!$Label.c.CE_cmp_address1}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.Street_2__c}" label='{!$Label.c.CE_cmp_address2}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.BillingState}" label='{!$Label.c.CE_cmp_state}' />
+                                </div>
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.BillingCountry}" label='{!$Label.c.CE_cmp_country}' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Business Profile:	section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate">{!$Label.c.CE_cmp_buz_profile}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" formatter="currency" min="1" value="{!v.custEvaluation.Annual_Turn_over_in_INR__c}" label='{!$Label.c.CE_cmp_annual_turnover}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Employees__c}" label='{!$Label.c.CE_cmp_no_employees}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Distribution_centers_Branch__c}" label='{!$Label.c.CE_cmp_no_distribution}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Areas_covered__c}" label='{!$Label.c.CE_cmp_area_covered}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Sales_Staff__c}" label= '{!$Label.c.CE_cmp_no_staff}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="text" value="{!v.custEvaluation.Current_Distribution_Name_of_Companies__c}" label='{!$Label.c.CE_cmp_ditr_details}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Products_Handled_with_company__c}" label='{!$Label.c.CE_cmp_no_of_prod}' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- How are you planning to promote our products:	 section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate" >{!$Label.c.CE_cmp_prod_promotion}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="checkbox" checked="{!v.custEvaluation.By_Tender_Business__c}"  label='{!$Label.c.CE_cmp_tender}' />
+                                </div> 
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="checkbox" checked="{!v.custEvaluation.Your_Retail_Shops__c}" label='{!$Label.c.CE_cmp_retail_shops}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="checkbox" checked="{!v.custEvaluation.By_Hospital_Supplies__c}" label='{!$Label.c.CE_cmp_hospital_supply}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:textarea disabled="{!v.disableForm}" aura:id="recField"  value="{!v.custEvaluation.Others__c}" label='{!$Label.c.CE_cmp_others}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="text"  value="{!v.custEvaluation.Name_the_competitors_in_your_Market__c}" label='{!$Label.c.CE_cmp_manufacturer}' />
+                                </div>
+                                
+                                
+                                
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.How_much_would_be_the_annual_projection__c}" label='{!$Label.c.CE_cmp_projection}'/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:if>
+                
+                
+                <!-- International Form -->
+                <aura:if isTrue="{!v.recordType == 'International'}">
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate" >{!$Label.c.CE_cmp_gen_info}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <div class="slds-form-element">
+                                        <label class="slds-form-element__label">Full Name of the Company</label>
+                                        <div class="slds-form-element__control">
+                                            <div class="slds-combobox_container slds-has-selection">
+                                                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click" aria-expanded="false" aria-haspopup="listbox" role="combobox">
+                                                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_left-right" role="none">
+                                                        <span class="slds-icon_container slds-icon-standard-account slds-combobox__input-entity-icon" title="Account">
+                                                            <lightning:icon iconName="standard:account" alternativeText="account" />  
+                                                            <span class="slds-assistive-text">Account</span>
+                                                        </span>
+                                                        <input disabled="disabled" class="slds-input slds-combobox__input slds-combobox__input-value" id="combobox-id-5" aria-controls="listbox-id-5" autocomplete="off" role="textbox" type="text" placeholder="Select an Option" readonly="" value="{!v.accountName}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input aura:id="recField" required="true" value="{!v.custEvaluation.Year_of_Establishment__c}" label="Year of Establishment" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.Owner.Name}" label="Name of the owner" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.BillingStreet}" label="Address 1" />
+                                </div>
+                                <!--
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.Street_2__c}" label="Address 2" />
+                                </div>
+                                -->
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="true"  value="{!v.account.BillingCountry}" label="Province/Country" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Business Profile:	section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate">{!$Label.c.CE_cmp_buz_profile}</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Annual_Turn_over_in_USD__c}" label='{!$Label.c.CE_cmp_annual_turnover}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Employees__c}" label='{!$Label.c.CE_cmp_no_employees}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Distribution_centers_Branch__c}" label='{!$Label.c.CE_cmp_no_distribution}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Areas_covered__c}" label='{!$Label.c.CE_cmp_area_covered}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Sales_Staff__c}" label='{!$Label.c.CE_cmp_no_staff}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="text" value="{!v.custEvaluation.Current_Distribution_Name_of_Companies__c}" label='{!$Label.c.CE_cmp_no_distribution}' />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Number_of_Products_Handled_with_company__c}" label='{!$Label.c.CE_cmp_no_of_prod}' />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Country Specific Information section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate">Country Specific Information</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Population__c}" label="Population" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:select disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.Language_and_Currency__c}" label="Language and Currency" >
+                                        <option value="">---None---</option>
+                                        <aura:iteration items="{!v.languagePicklist}" var="item">
+                                            <option value="{!item}">{!item}</option>
+                                        </aura:iteration>
+                                    </lightning:select>
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="text" value="{!v.custEvaluation.Age_ratio__c}" label="Age ratio" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.GDP_in_USD__c}" label="GDP ( in USD )" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.GDP_Per_capita_in_USD__c}" label="GDP Per capita (in USD)" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Per_Capita_Health_Expenditure__c}" label="Per Capita Health Expenditure" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Eye_surgeons__c}" label="No of Eye surgeons" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Eye_hospitals__c}" label="No of Eye hospitals" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" required="true" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Cataract_surgery_annum__c}" label="No of Cataract surgery / annum" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:textarea disabled="{!v.disableForm}" aura:id="recField"  value="{!v.custEvaluation.Govt_Health_Policy_Tender_Facility__c}" label="Govt. Health Policy :Tender Facility" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:textarea disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.Common_Diseases__c}" label="Common Diseases" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_wholesalers__c}" label="No of wholesalers" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.No_of_Pharmacies__c}" label="No of Pharmacies" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Market Profile (Ophthalmic Products):		 section -->
+                        <div class="slds-section slds-is-open">
+                            <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                    <span class="slds-truncate" >Market Profile</span>
+                                </button>
+                            </h3>
+                            <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                                <div class="slds-grid slds-wrap slds-gutters">
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:textarea disabled="{!v.disableForm}" aura:id="recField"  value="{!v.custEvaluation.Products_to_import__c}" label="Name the products that you are interested to import from us" />
+                                    </div>
+                                    
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Value_of_imports_by_your_company__c}" label="What would be the value of such imports by your company" />
+                                    </div>
+                                    
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:select disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.Do_you_have_any_Expert_Specific_Division__c}" label="Do you have any Expert/Specific Division to engage Ophthalmologist in your Organization" >
+                                            <option value="">---None---</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </lightning:select>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:select disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.Are_you_handling_any_Ophthalmic_products__c}" label="Are you already handling any Ophthalmic related products and are in contact with Ophthalmologists" >
+                                            <option value="">---None---</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </lightning:select>
+                                    </div>
+                                    
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Ophthalmic_products_imported__c}" label="What is the approximate total value of Ophthalmic products imported during year" />
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <!-- How are you planning to promote our products:	 section -->
+                    <div class="slds-section slds-is-open">
+                        <h3 class="slds-section__title">
+                            <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                <span class="slds-truncate" >How are you planning to promote our products:</span>
+                            </button>
+                        </h3>
+                        <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="checkbox" checked="{!v.custEvaluation.By_Tender_Business__c}"  label="By Tender Business" />
+                                </div> 
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="checkbox" checked="{!v.custEvaluation.Your_Retail_Shops__c}" label="Your Retail Shops" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="checkbox" checked="{!v.custEvaluation.By_Hospital_Supplies__c}" label="By Hospital Supplies" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-1 slds-size_1-of-1">	
+                                    <lightning:textarea disabled="{!v.disableForm}" aura:id="recField"  value="{!v.custEvaluation.Others__c}" label="Others" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="text"  value="{!v.custEvaluation.Name_the_competitors_in_your_Market__c}" label="Name the competitors (other Manufacturers) in your Market" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.How_much_would_be_the_annual_projection__c}" label="How much would be the annual projection in Value" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="text" value="{!v.custEvaluation.Company_s_product_has_a_easy_recall__c}" label="Which company's product has a easy recall in the minds of Doctors (for our range of products)" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:textarea disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.The_reasons_why_you_chose_our_Company__c}" label="The reasons why you chose our Company" />
+                                </div>
+                                
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:textarea disabled="{!v.disableForm}" aura:id="recField"  value="{!v.custEvaluation.How_you_can_garner_extra_volumes__c}" label="How do you think you can garner extra volumes in business for our products(what is the Unique Selling Proposition) as you would have already studied the market" />
+                                </div>
+                                <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                    <lightning:select disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.Do_You_Sell_products_inside_Palestine__c}" label="Do you plan to sell our products only inside Palestine or any nearby markets" >
+                                        <option value="">---None---</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </lightning:select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- How are you planning to promote our products:	 section -->
+                        <div class="slds-section slds-is-open">
+                            <h3 class="slds-section__title">
+                                <button aria-controls="expando-unique-id" aria-expanded="true" class="slds-button slds-section__title-action">
+                                    <span class="slds-truncate" >Regulatory Protocols</span>
+                                </button>
+                            </h3>
+                            <div aria-hidden="false" class="slds-section__content" id="expando-unique-id">
+                                <div class="slds-grid slds-wrap slds-gutters">
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:textarea disabled="{!v.disableForm}" aura:id="recField"  value="{!v.custEvaluation.Registration_Protocols__c}" label="Registration Protocols" />
+                                    </div>
+                                    
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:input disabled="{!v.disableForm}" aura:id="recField" type="number" min="1" value="{!v.custEvaluation.Maximum_number_of_distributors_MOH__c}" label="Maximum number of distributors MOH will allow for each manufacturer" />
+                                    </div>
+                                    
+                                    <div class="slds-col slds-large-size_1-of-2 slds-size_1-of-1">	
+                                        <lightning:select disabled="{!v.disableForm}" aura:id="recField" value="{!v.custEvaluation.Any_brands_of_your_company_registered__c}" label="Do you have any brands of your company registered for Ophthalmic products with MOH" >
+                                            <option value="">---None---</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </lightning:select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aura:if>
+            </div>
+            <footer class="slds-modal__footer">
+                <button  class="slds-button slds-button_neutral" onclick="{!c.closeModel}">{!$Label.c.CIS_cmp_cancel}</button>
+                <aura:if isTrue="{!!v.disableForm}">
+                    <lightning:button variant="brand" label='{!$Label.c.CIS_cmp_save}' onclick="{!c.saveCE}"/>
+                </aura:if>
+            </footer>
+        </div>
+    </section>
+    
+    <aura:if isTrue="{!v.isError}">
+        <div class="slds-notify_container " >
+            <div class="slds-notify slds-notify_toast slds-theme_error" role="status">
+                <lightning:icon variant="inverse" iconName="utility:error" size="small" class="slds-m-right_small slds-no-flex slds-align-top"/>
+                <div class="slds-notify__content">
+                    <h2 class="slds-text-heading_small">{!v.errorMessage}</h2>
+                </div>
+                <div class="slds-notify__close">
+                    <button class="slds-button slds-button_icon slds-button_icon-inverse" title="Close" onclick="{!c.hideToast}">
+                        <lightning:icon iconName="utility:close" size="small" variant="inverse" />
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+</aura:component>

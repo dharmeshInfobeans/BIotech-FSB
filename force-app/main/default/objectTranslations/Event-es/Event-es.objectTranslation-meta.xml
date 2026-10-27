@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <layouts>
+        <layout>BD Tracker</layout>
+        <sections>
+            <label>Detalles de fase</label>
+            <section>Phase Details</section>
+        </sections>
+        <sections>
+            <label>Relacionada con</label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Event Layout</layout>
+        <sections>
+            <label>DCR Detalle doméstica</label>
+            <section>DCR Details Domestic</section>
+        </sections>
+        <sections>
+            <label>Detalle DCR Turquía</label>
+            <section>DCR Details Turkey</section>
+        </sections>
+        <sections>
+            <label>Relacionada con</label>
+            <section>Related To</section>
+        </sections>
+    </layouts>
+</CustomObjectTranslation>

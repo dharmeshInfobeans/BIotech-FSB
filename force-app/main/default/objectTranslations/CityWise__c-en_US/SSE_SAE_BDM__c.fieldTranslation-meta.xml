@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- SSE/SAE/BDM --></label>
+    <name>SSE_SAE_BDM__c</name>
+    <relationshipLabel><!-- CityWises (SSE/SAE/BDM) --></relationshipLabel>
+</CustomFieldTranslation>

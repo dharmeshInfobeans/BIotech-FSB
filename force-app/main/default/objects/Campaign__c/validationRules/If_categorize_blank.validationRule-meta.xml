@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>If_categorize_blank</fullName>
+    <active>false</active>
+    <errorConditionFormula>OR(
+   AND(
+        ISNEW(),
+        ISPICKVAL(Categorize__c, &quot;&quot;)
+    ),
+
+    AND(
+        NOT(ISNEW()),
+        ISPICKVAL(Categorize__c, &quot;&quot;),
+        DATEVALUE(CreatedDate) &gt; DATE(2024, 10, 11)
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Categorize__c</errorDisplayField>
+    <errorMessage>Please select Categorize.</errorMessage>
+</ValidationRule>

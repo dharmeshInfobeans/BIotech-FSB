@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Remark For Doctor --></label>
+    <name>Remark_For_Doctor__c</name>
+</CustomFieldTranslation>

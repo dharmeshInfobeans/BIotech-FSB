@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>SAP_status__c</columns>
+    <columns>Bill_To_Code__c</columns>
+    <columns>Ship_To_Code__c</columns>
+    <columns>Approval_Status__c</columns>
+    <columns>Leads__c</columns>
+    <columns>Customer__c</columns>
+    <columns>Date__c</columns>
+    <columns>Order_cancelled__c</columns>
+    <columns>Remarks__c</columns>
+    <columns>RSM_Approval__c</columns>
+    <columns>ZSM_Approval__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

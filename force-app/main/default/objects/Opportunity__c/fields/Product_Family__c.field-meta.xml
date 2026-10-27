@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Family__c</fullName>
+    <label>Product Family</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>EYECRYL TORIC</fullName>
+                <default>false</default>
+                <label>EYECRYL TORIC</label>
+            </value>
+            <value>
+                <fullName>EYECRYL ACTV FAMILY</fullName>
+                <default>false</default>
+                <label>EYECRYL ACTV FAMILY</label>
+            </value>
+            <value>
+                <fullName>EYECRYL PHAKIC FAMILY</fullName>
+                <default>false</default>
+                <label>EYECRYL PHAKIC FAMILY</label>
+            </value>
+            <value>
+                <fullName>BIO BLUE RANGE</fullName>
+                <default>false</default>
+                <label>BIO BLUE RANGE</label>
+            </value>
+            <value>
+                <fullName>BIO RING</fullName>
+                <default>false</default>
+                <label>BIO RING</label>
+            </value>
+            <value>
+                <fullName>BIO BLADES</fullName>
+                <default>false</default>
+                <label>BIO BLADES</label>
+            </value>
+            <value>
+                <fullName>BIO DECALIN</fullName>
+                <default>false</default>
+                <label>BIO DECALIN</label>
+            </value>
+            <value>
+                <fullName>BIO HYALUR RANGE - General</fullName>
+                <default>false</default>
+                <label>BIO HYALUR RANGE - General</label>
+            </value>
+            <value>
+                <fullName>BIO OCTANE</fullName>
+                <default>false</default>
+                <label>BIO OCTANE</label>
+            </value>
+            <value>
+                <fullName>BIO CTR</fullName>
+                <default>false</default>
+                <label>BIO CTR</label>
+            </value>
+            <value>
+                <fullName>SILICONE OILS</fullName>
+                <default>false</default>
+                <label>SILICONE OILS</label>
+            </value>
+            <value>
+                <fullName>EYECRYL SERT EDOF FAMILY</fullName>
+                <default>false</default>
+                <label>EYECRYL SERT EDOF FAMILY</label>
+            </value>
+            <value>
+                <fullName>HYDROPHILIC 600 / HSAS/ CLEAR</fullName>
+                <default>false</default>
+                <label>HYDROPHILIC 600 / HSAS/ CLEAR</label>
+            </value>
+            <value>
+                <fullName>HYDROPHOBIC ASHFY / HD</fullName>
+                <default>false</default>
+                <label>HYDROPHOBIC ASHFY / HD</label>
+            </value>
+            <value>
+                <fullName>EYEVISC HPMC</fullName>
+                <default>false</default>
+                <label>EYEVISC HPMC</label>
+            </value>
+            <value>
+                <fullName>RIBOFLAVIN</fullName>
+                <default>false</default>
+                <label>RIBOFLAVIN</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX GENESIS</fullName>
+                <default>false</default>
+                <label>OPTIFLEX GENESIS</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX TRIO FAMILY</fullName>
+                <default>false</default>
+                <label>OPTIFLEX TRIO FAMILY</label>
+            </value>
+            <value>
+                <fullName>Equipment</fullName>
+                <default>false</default>
+                <label>Equipment</label>
+            </value>
+            <value>
+                <fullName>BIOVISC FAMILY</fullName>
+                <default>false</default>
+                <label>BIOVISC FAMILY</label>
+            </value>
+            <value>
+                <fullName>BIOVISC ORTHO M 2ML PFS</fullName>
+                <default>false</default>
+                <label>BIOVISC ORTHO M 2ML PFS</label>
+            </value>
+            <value>
+                <fullName>BIOVISC</fullName>
+                <default>false</default>
+                <label>BIOVISC</label>
+            </value>
+            <value>
+                <fullName>BIOVISC ORTHO PLUS 2ML PFS(NB)</fullName>
+                <default>false</default>
+                <label>BIOVISC ORTHO PLUS 2ML PFS(NB)</label>
+            </value>
+            <value>
+                <fullName>OPTIVISC</fullName>
+                <default>false</default>
+                <label>OPTIVISC</label>
+            </value>
+            <value>
+                <fullName>SPEARS</fullName>
+                <default>false</default>
+                <label>SPEARS</label>
+            </value>
+            <value>
+                <fullName>BIO CHOL</fullName>
+                <default>false</default>
+                <label>BIO CHOL</label>
+            </value>
+            <value>
+                <fullName>OPTIFLEX XTENSE FAMILY</fullName>
+                <default>false</default>
+                <label>OPTIFLEX XTENSE FAMILY</label>
+            </value>
+            <value>
+                <fullName>STRIPS</fullName>
+                <default>false</default>
+                <label>STRIPS</label>
+            </value>
+            <value>
+                <fullName>POPULAR HYDROPHOBIC MONOFOCAL</fullName>
+                <default>false</default>
+                <label>POPULAR HYDROPHOBIC MONOFOCAL</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

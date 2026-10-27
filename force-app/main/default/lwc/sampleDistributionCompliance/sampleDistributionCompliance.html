@@ -1,0 +1,44 @@
+<template>
+    <article class="shell" aria-label="Sample Distribution and Feedback Compliance">
+        <div class="slds-p-around_medium">
+            <h1>Sample Distribution &amp; Feedback Compliance</h1>
+            <p class="slds-text-color_weak" aria-live="polite">{callout}</p>
+            <template lwc:if={error}>
+                <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">{error}</div>
+            </template>
+            <template lwc:else>
+                <section class="filters" aria-label="Compliance filters">
+                    <lightning-combobox name="zone" label="Zone" value={zone} options={zoneOptions} onchange={handleFilter}></lightning-combobox>
+                    <lightning-combobox name="division" label="Division" value={division} options={divisionOptions} onchange={handleFilter}></lightning-combobox>
+                    <lightning-combobox name="status" label="Feedback Status" value={status} options={statusOptions} onchange={handleFilter}></lightning-combobox>
+                    <lightning-input data-id="search" type="search" label="Search account or product" onchange={handleSearch}></lightning-input>
+                    <lightning-button label="Reset filters" onclick={resetFilters}></lightning-button>
+                </section>
+                <template lwc:if={hasRows}>
+                    <section class="kpis">
+                        <template for:each={kpis} for:item="kpi">
+                            <div key={kpi.label} class="kpi"><span>{kpi.label}</span><strong>{kpi.value}</strong></div>
+                        </template>
+                    </section>
+                    <section class="gauges">
+                        <template for:each={gauges} for:item="gauge">
+                            <div key={gauge.title} class="gauge-card"><div class="gauge" style={gauge.style} aria-label={gauge.title}><strong>{gauge.value}%</strong></div><div><h2>{gauge.title}</h2><p>{gauge.detail}</p></div></div>
+                        </template>
+                    </section>
+                    <section class="charts">
+                        <div class="chart"><h2>Samples by product</h2><template for:each={productBars} for:item="bar"><div key={bar.name} class="bar-row"><span>{bar.name}</span><i><b style={bar.style}></b></i><em>{bar.value}</em></div></template></div>
+                        <div class="chart"><h2>Samples by recipient</h2><template for:each={recipientBars} for:item="bar"><div key={bar.name} class="bar-row"><span>{bar.name}</span><i><b style={bar.style}></b></i><em>{bar.value}</em></div></template></div>
+                        <div class="chart donut-card"><h2>Feedback status mix</h2><div class="donut-layout"><div class="donut" style={feedbackMix.style} role="img" aria-label={feedbackMix.ariaLabel}><span>{feedbackMix.total}</span></div><ul class="donut-legend"><template for:each={feedbackMix.segments} for:item="segment"><li key={segment.key}><i style={segment.style}></i><span>{segment.name}</span><strong>{segment.value} ({segment.percentage}%)</strong></li></template></ul></div></div>
+                        <div class="chart donut-card"><h2>Division split</h2><div class="donut-layout"><div class="donut" style={divisionMix.style} role="img" aria-label={divisionMix.ariaLabel}><span>{divisionMix.total}</span></div><ul class="donut-legend"><template for:each={divisionMix.segments} for:item="segment"><li key={segment.key}><i style={segment.style}></i><span>{segment.name}</span><strong>{segment.value} ({segment.percentage}%)</strong></li></template></ul></div></div>
+                        <div class="chart"><h2>Zone coverage</h2><template for:each={zoneBars} for:item="bar"><div key={bar.name} class="bar-row"><span>{bar.name}</span><i><b style={bar.style}></b></i><em>{bar.value}</em></div></template></div>
+                    </section>
+                    <section class="tables">
+                        <div><h2>Feedback still outstanding</h2><div class="table-wrap"><table><thead><tr><th>Account</th><th>Product</th><th>Executed On</th><th>Order (SAP)</th><th>Status</th><th>Remarks</th><th>Record</th></tr></thead><tbody><template for:each={outstanding} for:item="row"><tr key={row.id}><td><template lwc:if={row.hasAccount}><lightning-button variant="base" label={row.accountName} data-record-id={row.accountId} data-object-api-name="Account" onclick={handleNavigate}></lightning-button></template><template lwc:else>{row.accountName}</template></td><td>{row.product}</td><td>{row.executedOn}</td><td>{row.sapOrder}</td><td>{row.displayStatus}</td><td>{row.remarks}</td><td><lightning-button variant="base" label={row.lineItemLabel} data-record-id={row.id} data-object-api-name="Sample_Request_Line_Item__c" onclick={handleNavigate}></lightning-button></td></tr></template></tbody></table></div></div>
+                        <div><h2>Traceability on file</h2><div class="table-wrap"><table><thead><tr><th>Account</th><th>Product</th><th>Batch Number</th><th>Serial Number</th><th>Feedback Status</th><th>Record</th></tr></thead><tbody><template for:each={traceable} for:item="row"><tr key={row.id}><td><template lwc:if={row.hasAccount}><lightning-button variant="base" label={row.accountName} data-record-id={row.accountId} data-object-api-name="Account" onclick={handleNavigate}></lightning-button></template><template lwc:else>{row.accountName}</template></td><td>{row.product}</td><td>{row.batchNumber}</td><td>{row.serialNumber}</td><td>{row.displayStatus}</td><td><lightning-button variant="base" label={row.lineItemLabel} data-record-id={row.id} data-object-api-name="Sample_Request_Line_Item__c" onclick={handleNavigate}></lightning-button></td></tr></template></tbody></table></div></div>
+                    </section>
+                </template>
+                <template lwc:else><p class="slds-text-align_center slds-p-around_large">{emptyMessage}</p></template>
+            </template>
+        </div>
+    </article>
+</template>

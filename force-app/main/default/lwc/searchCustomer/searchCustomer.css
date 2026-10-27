@@ -1,0 +1,158 @@
+/* @media only screen and (max-width: 600px) {
+.newIcon{
+    margin-top: 24px;
+    margin-left: -50px;
+    position: absolute;
+    height: 34px;
+    width: 33px;
+    color: #f3eded;
+    box-shadow: 5px 3px 4px 0 #5d5757;
+}
+.accountCards{
+    border-radius: 5%;
+}
+
+
+} */
+
+.newIcon{
+margin-top: 16px;
+margin-left: -50px;
+color: #f3eded;
+box-shadow: 5px 3px 4px 0 #5d5757;
+}
+.accountCards{
+border-radius: 5%;
+}
+ .searchBar{
+height: 40px;
+border-radius: 30px;
+width: 100%;
+padding: 10px;
+}
+
+.search-box,.close-icon,.search-wrapper {
+padding: 10px;
+}
+.search-wrapper {
+width: 500px;
+margin: auto;
+margin-top: 50px;
+}
+.search-box {
+width: 100%;
+margin-top: 14px;
+border: 1px solid #ccc;
+outline: 0;
+border-radius: 30px;
+white-space: pre;
+}
+.search-box:focus {
+box-shadow: 0 0 15px 5px #918a86;
+border: 2px solid #bebede;
+}
+.close-icon {
+border:1px solid transparent;
+background-color: transparent;
+display: inline-block;
+vertical-align: middle;
+outline: 0;
+cursor: pointer;
+}
+.close-icon:after {
+content: "X";
+display: block;
+width: 15px;
+height: 15px;
+position: absolute;
+background-color:gray;
+z-index:1;
+right: 35px;
+bottom: 0;
+right: 32px;
+top: 47%;
+border-radius: 50%;
+text-align: center;
+color: white;
+font-weight: normal;
+font-size: 12px;
+box-shadow: 3px 4px 7px 1px #1c1d1edb;
+cursor: pointer;
+}
+.search-box:not(:valid) ~ .close-icon {
+display: none;
+} 
+.customerCards{
+padding-bottom: 40px;
+    height: fit-content;
+    background-color: #ffffff;
+}
+
+.mainSearchCustomer{
+ background-color: #ffffff;
+}
+.circle {
+    margin-top: 10px;
+    margin-left: 10px;
+    padding-top: 6px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    /* font-size: 20px;
+    color: #ecebea;
+    line-height: 25px;
+    text-align: center; */
+    background: #f05e23;
+}
+.imgTag{
+    border-radius: 50%;
+    /* margin-left: 15px; */
+}
+
+.slds-media{
+    text-transform: capitalize;
+    text-align: center;
+    font-size: 12px;
+    width: 100%;
+    border-radius: 3%;
+    margin-top: 10px;
+}
+lightning-card {
+    cursor: pointer;
+    border-radius: .25rem;
+    display: block;
+    border-width: 2px;
+    width:450px;
+    
+    
+}
+.card {
+    background-color: black;
+    cursor: pointer;
+}
+.text {
+    padding: 10px 0px 10px 0px;
+    font-size: 12px;
+    color: #ecebea;
+}
+.cards{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    display: block;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    border-radius: 20px 20px 20px 20px;
+    font-size: 12px;
+    font-weight: 400;
+    box-shadow: 2px 6px 10px 0px #707375db;
+}
+.radioClass {
+  
+    text-align: center;
+}
+
+.radioButtonClass:hover {
+    cursor: pointer;
+}

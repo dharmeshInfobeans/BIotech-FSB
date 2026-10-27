@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Document Types --></label>
+    <name>Document_Types__c</name>
+    <picklistValues>
+        <masterLabel>Artwork</masterLabel>
+        <translation><!-- Artwork --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Compatibility Study</masterLabel>
+        <translation><!-- Bio Compatibility Study --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CE Certificate</masterLabel>
+        <translation><!-- CE Certificate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Clinical Evaluation Report</masterLabel>
+        <translation><!-- Clinical Evaluation Report --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Clinical Study</masterLabel>
+        <translation><!-- Clinical Study --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DOC</masterLabel>
+        <translation><!-- DOC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FSC</masterLabel>
+        <translation><!-- FSC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GMP</masterLabel>
+        <translation><!-- GMP --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IFU</masterLabel>
+        <translation><!-- IFU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ISO Certificate</masterLabel>
+        <translation><!-- ISO Certificate --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>LOA</masterLabel>
+        <translation><!-- LOA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Manufacturing License</masterLabel>
+        <translation><!-- Manufacturing License --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>POA</masterLabel>
+        <translation><!-- POA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Image</masterLabel>
+        <translation><!-- Product Image --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>QSD Registration</masterLabel>
+        <translation><!-- QSD Registration --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Toxicity Report</masterLabel>
+        <translation><!-- Toxicity Report --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

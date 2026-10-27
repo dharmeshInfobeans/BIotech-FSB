@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Secondary Sales Order  Status --></label>
+    <name>Secondary_Sales_Order_Status__c</name>
+    <picklistValues>
+        <masterLabel>Completed</masterLabel>
+        <translation><!-- Completed --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Open</masterLabel>
+        <translation><!-- Open --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Returned</masterLabel>
+        <translation><!-- Returned --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

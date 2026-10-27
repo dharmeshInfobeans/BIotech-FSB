@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Please enter a vaild Phone number .For example(1234567890) --></help>
+    <label>Móvel</label>
+    <name>Mobile__c</name>
+</CustomFieldTranslation>

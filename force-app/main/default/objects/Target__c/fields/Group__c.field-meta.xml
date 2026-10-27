@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Group__c</fullName>
+    <label>Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ACCESS TO INNOVATION SERIES</fullName>
+                <default>false</default>
+                <label>ACCESS TO INNOVATION SERIES</label>
+            </value>
+            <value>
+                <fullName>BIOTECH KNOWLEDGE SERIES</fullName>
+                <default>false</default>
+                <label>BIOTECH KNOWLEDGE SERIES</label>
+            </value>
+            <value>
+                <fullName>COFFEE CHAT SERIES</fullName>
+                <default>false</default>
+                <label>COFFEE CHAT SERIES</label>
+            </value>
+            <value>
+                <fullName>OTHER</fullName>
+                <default>false</default>
+                <label>OTHER</label>
+            </value>
+            <value>
+                <fullName>SALES SPECIALIST ROLE</fullName>
+                <default>false</default>
+                <label>SALES SPECIALIST ROLE</label>
+            </value>
+            <value>
+                <fullName>TAKE A BREAK SERIES</fullName>
+                <default>false</default>
+                <label>TAKE A BREAK SERIES</label>
+            </value>
+            <value>
+                <fullName>TRIO USER MEETING</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>TRIO USER MEETING</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

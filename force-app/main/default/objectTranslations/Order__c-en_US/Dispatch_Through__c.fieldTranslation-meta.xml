@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Dispatch Through --></label>
+    <name>Dispatch_Through__c</name>
+    <picklistValues>
+        <masterLabel>By Air</masterLabel>
+        <translation><!-- By Air --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>By Road</masterLabel>
+        <translation><!-- By Road --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>By Sea</masterLabel>
+        <translation><!-- By Sea --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

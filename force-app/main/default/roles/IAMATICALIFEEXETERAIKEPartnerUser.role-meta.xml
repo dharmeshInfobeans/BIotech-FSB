@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>None</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>IAMATICA LIFE-EXETERA IKE Partner User</description>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>IAMATICA LIFE-EXETERA IKE Partner User</name>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>IAMATICALIFEEXETERAIKEPartnerManager</parentRole>
+</Role>

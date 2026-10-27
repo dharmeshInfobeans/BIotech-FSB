@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Customer_Ledger_Status_Notification</name>
+        <label>Customer Ledger Status Notification</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>customNotificationAction</actionName>
+        <actionType>customNotificationAction</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>customNotifTypeId</name>
+            <value>
+                <elementReference>GetNotificationType.Id</elementReference>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>recipientIds</name>
+            <value>
+                <elementReference>recipientIds</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>title</name>
+            <value>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+                <stringValue>Customer Ledger Updated</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>body</name>
+            <value>
+                <elementReference>body</elementReference>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>targetId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+            </value>
+        </inputParameters>
+        <nameSegment>customNotificationAction</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Signed_Ledger_to_Finance</name>
+        <label>Send Signed Ledger to Finance</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>CustomerLedgerEmailService</actionName>
+        <actionType>apex</actionType>
+        <flowTransactionModel>Automatic</flowTransactionModel>
+        <inputParameters>
+            <name>ledgerIds</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+                <inputConfiguratorMode>Resource</inputConfiguratorMode>
+            </value>
+        </inputParameters>
+        <nameSegment>CustomerLedgerEmailService</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>67.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Owner</name>
+        <label>Assign Owner</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>recipientIds</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>$Record.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Customer_Ledger_Status_Notification</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Status_Changed</name>
+        <label>Status Changed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Ledger_Status_Is_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Sign_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>GetNotificationType</targetReference>
+            </connector>
+            <label>Ledger Status Is Changed</label>
+        </rules>
+        <rules>
+            <name>A_record_is_Signed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Signed_Document_Processed__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Signed_Ledger_to_Finance</targetReference>
+            </connector>
+            <label>A record is Signed</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Customer Ledger Status Notification {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Customer Ledger Status Notification</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>GetNotificationType</name>
+        <label>Get Notification Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Owner</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>DeveloperName</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Customer_Ledger_Status</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>CustomNotificationType</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Status_Changed</targetReference>
+        </connector>
+        <object>Customer_Ledger__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>body</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>The ledger statement for {!$Record.Customer_Name__c} has been updated to {!$Record.Status__c}.
+Account: {!$Record.Account__r.Name}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailBody</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot; /&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+  &lt;title&gt;Customer Ledger Signed &amp; Completed&lt;/title&gt;
+&lt;/head&gt;
+&lt;body style=&quot;margin:0;padding:0;background-color:#EBF3FA;font-family:&apos;Segoe UI&apos;,Roboto,Helvetica,Arial,sans-serif;&quot;&gt;
+
+  &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;background-color:#EBF3FA;padding:30px 12px;&quot;&gt;
+    &lt;tr&gt;
+      &lt;td align=&quot;center&quot;&gt;
+
+        &lt;!-- Main Card Container --&gt;
+        &lt;table width=&quot;620&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;max-width:620px;width:100%;background-color:#FFFFFF;border-radius:10px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,0.08);&quot;&gt;
+
+          &lt;!-- ── 1. LOGO HEADER ── --&gt;
+          &lt;tr&gt;
+            &lt;td align=&quot;center&quot; style=&quot;background-color:#FFFFFF;padding:24px 20px;text-align:center;&quot;&gt;
+              &lt;img src=&quot;https://biotechcrm--peribox.sandbox.my.salesforce.com/servlet/servlet.ImageServer?id=015C3000004xxbF&amp;oid=00DC3000002XslI&amp;lastMod=1786428539000&quot;
+                   alt=&quot;Biotech Logo&quot;
+                   width=&quot;150&quot;
+                   style=&quot;height:auto;width:150px;display:block;border:0;margin:0 auto;&quot; /&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+
+          &lt;!-- ── 2. DARK TEAL BANNER TITLE ── --&gt;
+          &lt;tr&gt;
+            &lt;td align=&quot;center&quot; style=&quot;background-color:#1E4D58;padding:16px 24px;text-align:center;&quot;&gt;
+              &lt;h1 style=&quot;margin:0;color:#FFFFFF;font-size:20px;font-weight:700;letter-spacing:0.3px;&quot;&gt;Customer Ledger - Signed&lt;/h1&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+
+          &lt;!-- ── 3. BODY SECTION ── --&gt;
+          &lt;tr&gt;
+            &lt;td style=&quot;background-color:#EBF3FA;padding:28px 24px;&quot;&gt;
+
+              &lt;!-- Greeting &amp; Intro --&gt;
+              &lt;p style=&quot;margin:0 0 10px;color:#1E293B;font-size:15px;font-weight:700;&quot;&gt;Hello Finance Team,&lt;/p&gt;
+              &lt;p style=&quot;margin:0 0 20px;color:#334155;font-size:14px;line-height:1.6;&quot;&gt;
+                The Customer Ledger statement for &lt;strong&gt;{!$Record.Account__r.Name}&lt;/strong&gt; (Quarter: &lt;strong&gt;{!$Record.Quarter__c}&lt;/strong&gt;) has been successfully signed and marked as &lt;strong&gt;Signed&lt;/strong&gt;. Please find the details below:
+              &lt;/p&gt;
+
+              &lt;!-- Key Account Information Card --&gt;
+              &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;background-color:#FFFFFF;border-radius:8px;border:1px solid #D5E3EE;overflow:hidden;margin-bottom:20px;&quot;&gt;
+                &lt;tr&gt;
+                  &lt;td width=&quot;35%&quot; style=&quot;padding:12px 18px;color:#1E4D58;font-size:13px;font-weight:700;border-bottom:1px solid #E2E8F0;&quot;&gt;Ledger Number&lt;/td&gt;
+                  &lt;td width=&quot;65%&quot; style=&quot;padding:12px 18px;color:#334155;font-size:13px;font-weight:600;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Name}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#1E4D58;font-size:13px;font-weight:700;border-bottom:1px solid #E2E8F0;&quot;&gt;Account Name&lt;/td&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#334155;font-size:13px;font-weight:600;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Account__r.Name}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#1E4D58;font-size:13px;font-weight:700;border-bottom:1px solid #E2E8F0;&quot;&gt;Customer Code / SAP Code&lt;/td&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#334155;font-size:13px;font-weight:600;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Customer_Code__c}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#1E4D58;font-size:13px;font-weight:700;border-bottom:1px solid #E2E8F0;&quot;&gt;Company Code&lt;/td&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#334155;font-size:13px;font-weight:600;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Company_Code__c}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#1E4D58;font-size:13px;font-weight:700;&quot;&gt;Signatory Contact&lt;/td&gt;
+                  &lt;td style=&quot;padding:12px 18px;color:#334155;font-size:13px;font-weight:600;&quot;&gt;{!$Record.Contact_Name__c}&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/table&gt;
+
+              &lt;!-- Statement &amp; Quarter Summary Table --&gt;
+              &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;background-color:#FFFFFF;border-radius:8px;border:1px solid #D5E3EE;overflow:hidden;margin-bottom:20px;&quot;&gt;
+                &lt;thead&gt;
+                  &lt;tr style=&quot;background-color:#1E4D58;color:#FFFFFF;&quot;&gt;
+                    &lt;th style=&quot;padding:11px 14px;font-size:13px;font-weight:700;text-align:left;&quot;&gt;Quarter&lt;/th&gt;
+                    &lt;th style=&quot;padding:11px 14px;font-size:13px;font-weight:700;text-align:left;&quot;&gt;From Date&lt;/th&gt;
+                    &lt;th style=&quot;padding:11px 14px;font-size:13px;font-weight:700;text-align:left;&quot;&gt;Statement Date&lt;/th&gt;
+                    &lt;th style=&quot;padding:11px 14px;font-size:13px;font-weight:700;text-align:center;&quot;&gt;Status&lt;/th&gt;
+                  &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr&gt;
+                    &lt;td style=&quot;padding:14px;color:#1E293B;font-size:13px;font-weight:600;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Quarter__c}&lt;/td&gt;
+                    &lt;td style=&quot;padding:14px;color:#475569;font-size:13px;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.From_Date__c}&lt;/td&gt;
+                    &lt;td style=&quot;padding:14px;color:#475569;font-size:13px;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Statement_Date__c}&lt;/td&gt;
+                    &lt;td style=&quot;padding:14px;text-align:center;border-bottom:1px solid #E2E8F0;&quot;&gt;
+                      &lt;span style=&quot;background-color:#D1FAE5;color:#065F46;font-size:12px;font-weight:700;padding:4px 10px;border-radius:12px;border:1px solid #A7F3D0;display:inline-block;&quot;&gt;Signed&lt;/span&gt;
+                    &lt;/td&gt;
+                  &lt;/tr&gt;
+                &lt;/tbody&gt;
+              &lt;/table&gt;
+
+              &lt;!-- ── SIGNING / ZOHO INFORMATION ── --&gt;
+              &lt;table width=&quot;100%&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; border=&quot;0&quot; style=&quot;background-color:#FFFFFF;border-radius:8px;border:1px solid #D5E3EE;overflow:hidden;margin-bottom:20px;&quot;&gt;
+                &lt;tr&gt;
+                  &lt;td colspan=&quot;2&quot; style=&quot;background-color:#1E4D58;padding:10px 16px;&quot;&gt;
+                    &lt;p style=&quot;margin:0;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:0.3px;&quot;&gt;Signing &amp; Confirmation Details&lt;/p&gt;
+                  &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr style=&quot;background-color:#F8FAFC;&quot;&gt;
+                  &lt;td width=&quot;35%&quot; style=&quot;padding:12px 16px;color:#1E4D58;font-size:13px;font-weight:700;border-bottom:1px solid #E2E8F0;&quot;&gt;Signed Date&lt;/td&gt;
+                  &lt;td width=&quot;65%&quot; style=&quot;padding:12px 16px;color:#334155;font-size:13px;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Signed_Date__c}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td style=&quot;padding:12px 16px;color:#1E4D58;font-size:13px;font-weight:700;border-bottom:1px solid #E2E8F0;&quot;&gt;Zoho Request ID&lt;/td&gt;
+                  &lt;td style=&quot;padding:12px 16px;color:#334155;font-size:13px;font-family:monospace;border-bottom:1px solid #E2E8F0;&quot;&gt;{!$Record.Zoho_Request_Id__c}&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr style=&quot;background-color:#F8FAFC;&quot;&gt;
+                  &lt;td style=&quot;padding:12px 16px;color:#1E4D58;font-size:13px;font-weight:700;&quot;&gt;Ledger Document Name&lt;/td&gt;
+                  &lt;td style=&quot;padding:12px 16px;color:#334155;font-size:13px;&quot;&gt;{!$Record.Customer_Name__c}&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/table&gt;
+
+              &lt;!-- Info Box --&gt;
+              &lt;div style=&quot;background-color:#FFFFFF;border:1px solid #D5E3EE;border-radius:8px;padding:14px 16px;color:#334155;font-size:13px;line-height:1.6;&quot;&gt;
+                &lt;strong&gt;Next Step:&lt;/strong&gt; The signed statement PDF has been attached to the Customer Ledger record in Salesforce and is ready for accounting review.
+              &lt;/div&gt;
+
+            &lt;/td&gt;
+          &lt;/tr&gt;
+
+          &lt;!-- ── 4. FOOTER ── --&gt;
+          &lt;tr&gt;
+            &lt;td align=&quot;center&quot; style=&quot;background-color:#FFFFFF;padding:18px 24px;border-top:1px solid #E2E8F0;text-align:center;&quot;&gt;
+              &lt;p style=&quot;margin:0;color:#94A3B8;font-size:11px;line-height:1.6;&quot;&gt;
+                This is an automated notification from Biotech Salesforce CRM.&lt;br/&gt;
+                Please do not reply directly to this email.
+              &lt;/p&gt;
+            &lt;/td&gt;
+          &lt;/tr&gt;
+
+        &lt;/table&gt;
+
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>recipientIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varContentDocIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

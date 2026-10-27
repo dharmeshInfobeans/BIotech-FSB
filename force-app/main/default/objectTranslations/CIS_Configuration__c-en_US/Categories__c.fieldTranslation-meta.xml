@@ -1,0 +1,637 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Product --></label>
+    <name>Categories__c</name>
+    <picklistValues>
+        <masterLabel>ARTHRO-PATCH</masterLabel>
+        <translation><!-- ARTHRO-PATCH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ARTOSYAL</masterLabel>
+        <translation><!-- ARTOSYAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Art Filler Fine Lines</masterLabel>
+        <translation><!-- Art Filler Fine Lines --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Art Filler LipsUniversal</masterLabel>
+        <translation><!-- Art Filler LipsUniversal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Arthrum 2,5%®</masterLabel>
+        <translation><!-- Arthrum 2,5%® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Arthrum®</masterLabel>
+        <translation><!-- Arthrum® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Avillion</masterLabel>
+        <translation><!-- Avillion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Belotero</masterLabel>
+        <translation><!-- Belotero --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Bio Visc</masterLabel>
+        <translation><!-- Bio Visc --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRESPINE Gel</masterLabel>
+        <translation><!-- CRESPINE Gel --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CRESPINE Gel  +</masterLabel>
+        <translation><!-- CRESPINE Gel  + --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chodreal</masterLabel>
+        <translation><!-- Chodreal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cientific Synovial</masterLabel>
+        <translation><!-- Cientific Synovial --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cingal</masterLabel>
+        <translation><!-- Cingal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cingal®</masterLabel>
+        <translation><!-- Cingal® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Croma Filler</masterLabel>
+        <translation><!-- Croma Filler --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Durolane</masterLabel>
+        <translation><!-- Durolane --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Durolane SJ®</masterLabel>
+        <translation><!-- Durolane SJ® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Durolane®</masterLabel>
+        <translation><!-- Durolane® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EDOF</masterLabel>
+        <translation><!-- EDOF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EDOF Family</masterLabel>
+        <translation><!-- EDOF Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>EDOF TORIC</masterLabel>
+        <translation><!-- EDOF TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Elasty</masterLabel>
+        <translation><!-- Elasty --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Euflexxa®</masterLabel>
+        <translation><!-- Euflexxa® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fermathron</masterLabel>
+        <translation><!-- Fermathron --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fermathron S®</masterLabel>
+        <translation><!-- Fermathron S® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fermathron plus®</masterLabel>
+        <translation><!-- Fermathron plus® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Field1</masterLabel>
+        <translation><!-- Field1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Field2</masterLabel>
+        <translation><!-- Field2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Field3</masterLabel>
+        <translation><!-- Field3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gloderm 20L</masterLabel>
+        <translation><!-- Gloderm 20L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gloderm 30L</masterLabel>
+        <translation><!-- Gloderm 30L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Go-On Mini®</masterLabel>
+        <translation><!-- Go-On Mini® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Go-On matrix®</masterLabel>
+        <translation><!-- Go-On matrix® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Go-On®</masterLabel>
+        <translation><!-- Go-On® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hakem</masterLabel>
+        <translation><!-- Hakem --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Harmonica</masterLabel>
+        <translation><!-- Harmonica --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hitas</masterLabel>
+        <translation><!-- Hitas --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyalart®</masterLabel>
+        <translation><!-- Hyalart® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyaldew</masterLabel>
+        <translation><!-- Hyaldew --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyalgan GF</masterLabel>
+        <translation><!-- Hyalgan GF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyalgan®</masterLabel>
+        <translation><!-- Hyalgan® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyalone</masterLabel>
+        <translation><!-- Hyalone --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyalubrix®</masterLabel>
+        <translation><!-- Hyalubrix® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyalubrix® 60/Hyalone®</masterLabel>
+        <translation><!-- Hyalubrix® 60/Hyalone® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hyaorth</masterLabel>
+        <translation><!-- Hyaorth --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophilic Aspheric</masterLabel>
+        <translation><!-- Hydrophilic Aspheric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophilic Spherical</masterLabel>
+        <translation><!-- Hydrophilic Spherical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophilic multipiece</masterLabel>
+        <translation><!-- Hydrophilic multipiece --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophilics</masterLabel>
+        <translation><!-- Hydrophilics --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic Monofocal</masterLabel>
+        <translation><!-- Hydrophobic Monofocal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic preloaded</masterLabel>
+        <translation><!-- Hydrophobic preloaded --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic single piece Aspheric</masterLabel>
+        <translation><!-- Hydrophobic single piece Aspheric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hydrophobic single piece Spherical</masterLabel>
+        <translation><!-- Hydrophobic single piece Spherical --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hylan</masterLabel>
+        <translation><!-- Hylan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hymax</masterLabel>
+        <translation><!-- Hymax --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Hymovis®</masterLabel>
+        <translation><!-- Hymovis® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Idea</masterLabel>
+        <translation><!-- Idea --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Inartral®</masterLabel>
+        <translation><!-- Inartral® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intragel® 0.8%</masterLabel>
+        <translation><!-- Intragel® 0.8% --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intragel® 1.6%</masterLabel>
+        <translation><!-- Intragel® 1.6% --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Intragel® Mini</masterLabel>
+        <translation><!-- Intragel® Mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jointex®</masterLabel>
+        <translation><!-- Jointex® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jointex® Mini</masterLabel>
+        <translation><!-- Jointex® Mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jointex® Starter</masterLabel>
+        <translation><!-- Jointex® Starter --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Jonexa®</masterLabel>
+        <translation><!-- Jonexa® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JoyFlex with nsn</masterLabel>
+        <translation><!-- JoyFlex with nsn --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>KD Intra-Articular®</masterLabel>
+        <translation><!-- KD Intra-Articular® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kartilage cross®</masterLabel>
+        <translation><!-- Kartilage cross® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kartilage®</masterLabel>
+        <translation><!-- Kartilage® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MF Family</masterLabel>
+        <translation><!-- MF Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MonoVisc®</masterLabel>
+        <translation><!-- MonoVisc® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Monovisc</masterLabel>
+        <translation><!-- Monovisc --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multifocal Toric</masterLabel>
+        <translation><!-- Multifocal Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Multiple Injection</masterLabel>
+        <translation><!-- Multiple Injection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Mutifocal</masterLabel>
+        <translation><!-- Mutifocal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Neuvia</masterLabel>
+        <translation><!-- Neuvia --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Novuma</masterLabel>
+        <translation><!-- Novuma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optivisc</masterLabel>
+        <translation><!-- Optivisc --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Orthovisc®</masterLabel>
+        <translation><!-- Orthovisc® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Orthovisc® mini</masterLabel>
+        <translation><!-- Orthovisc® mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ostenil®</masterLabel>
+        <translation><!-- Ostenil® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ostenil® Plus</masterLabel>
+        <translation><!-- Ostenil® Plus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ostenil® mini</masterLabel>
+        <translation><!-- Ostenil® mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Osteonil Plus</masterLabel>
+        <translation><!-- Osteonil Plus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Perfecta</masterLabel>
+        <translation><!-- Perfecta --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic Family</masterLabel>
+        <translation><!-- Phakic Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phakic Toric</masterLabel>
+        <translation><!-- Phakic Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Pluryal Filler</masterLabel>
+        <translation><!-- Pluryal Filler --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Popular Hydrophobic Monofocal</masterLabel>
+        <translation><!-- Popular Hydrophobic Monofocal --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Premium EDOF Family</masterLabel>
+        <translation><!-- Premium EDOF Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Proial®</masterLabel>
+        <translation><!-- Proial® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Promovia</masterLabel>
+        <translation><!-- Promovia --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Promovia®</masterLabel>
+        <translation><!-- Promovia® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Prostrolane</masterLabel>
+        <translation><!-- Prostrolane --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REDENSITY 1</masterLabel>
+        <translation><!-- REDENSITY 1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>REDENSITY 2</masterLabel>
+        <translation><!-- REDENSITY 2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RHA1</masterLabel>
+        <translation><!-- RHA1 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RHA2</masterLabel>
+        <translation><!-- RHA2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RegerFlex</masterLabel>
+        <translation><!-- RegerFlex --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rene</masterLabel>
+        <translation><!-- Rene --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RenehaVis®</masterLabel>
+        <translation><!-- RenehaVis® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Restylane</masterLabel>
+        <translation><!-- Restylane --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reviscon 20</masterLabel>
+        <translation><!-- Reviscon 20 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reviscon Mono</masterLabel>
+        <translation><!-- Reviscon Mono --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Reviscon Plus</masterLabel>
+        <translation><!-- Reviscon Plus --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rhizarthrum®</masterLabel>
+        <translation><!-- Rhizarthrum® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SECONDARY IOL</masterLabel>
+        <translation><!-- SECONDARY IOL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN BOOSTERS</masterLabel>
+        <translation><!-- SKIN BOOSTERS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN FILLERS</masterLabel>
+        <translation><!-- SKIN FILLERS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN FILLERS (W/O LIDOCAINE)</masterLabel>
+        <translation><!-- SKIN FILLERS (W/O LIDOCAINE) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SKIN FILLERS (with LIDOCAINE)</masterLabel>
+        <translation><!-- SKIN FILLERS (with LIDOCAINE) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>STAYLAGE- L</masterLabel>
+        <translation><!-- STAYLAGE- L --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>STAYLAGE- M</masterLabel>
+        <translation><!-- STAYLAGE- M --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SURLACIN</masterLabel>
+        <translation><!-- SURLACIN --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Single / Multiple Injection</masterLabel>
+        <translation><!-- Single / Multiple Injection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Single Injection</masterLabel>
+        <translation><!-- Single Injection --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sinovial®</masterLabel>
+        <translation><!-- Sinovial® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sinovial® Forte</masterLabel>
+        <translation><!-- Sinovial® Forte --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sinovial® Mini</masterLabel>
+        <translation><!-- Sinovial® Mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sinovial® One</masterLabel>
+        <translation><!-- Sinovial® One --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SportVis®</masterLabel>
+        <translation><!-- SportVis® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sportvis</masterLabel>
+        <translation><!-- Sportvis --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Staylage- X</masterLabel>
+        <translation><!-- Staylage- X --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Structovial®</masterLabel>
+        <translation><!-- Structovial® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Suprahyal Duo</masterLabel>
+        <translation><!-- Suprahyal Duo --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synocrom®</masterLabel>
+        <translation><!-- Synocrom® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synocrom® Forte</masterLabel>
+        <translation><!-- Synocrom® Forte --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synocrom® Forte One</masterLabel>
+        <translation><!-- Synocrom® Forte One --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synocrom® mini</masterLabel>
+        <translation><!-- Synocrom® mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synolis VA 40</masterLabel>
+        <translation><!-- Synolis VA 40 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synolis VA 80</masterLabel>
+        <translation><!-- Synolis VA 80 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synolis® V-A</masterLabel>
+        <translation><!-- Synolis® V-A --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synvisc</masterLabel>
+        <translation><!-- Synvisc --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synvisc One</masterLabel>
+        <translation><!-- Synvisc One --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synvisc®</masterLabel>
+        <translation><!-- Synvisc® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Synvisc® One</masterLabel>
+        <translation><!-- Synvisc® One --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRIFOCAL</masterLabel>
+        <translation><!-- TRIFOCAL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TRIFOCAL TORIC</masterLabel>
+        <translation><!-- TRIFOCAL TORIC --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tiramer</masterLabel>
+        <translation><!-- Tiramer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Toric</masterLabel>
+        <translation><!-- Toric --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Trifocal Family</masterLabel>
+        <translation><!-- Trifocal Family --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ultra2</masterLabel>
+        <translation><!-- Ultra2 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ultra3</masterLabel>
+        <translation><!-- Ultra3 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ultra4</masterLabel>
+        <translation><!-- Ultra4 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VJOINT hcc</masterLabel>
+        <translation><!-- VJOINT hcc --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ViJoint</masterLabel>
+        <translation><!-- ViJoint --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Viscoplus gel®</masterLabel>
+        <translation><!-- Viscoplus gel® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Viscoplus®</masterLabel>
+        <translation><!-- Viscoplus® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Volbella</masterLabel>
+        <translation><!-- Volbella --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Volift</masterLabel>
+        <translation><!-- Volift --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Voluma</masterLabel>
+        <translation><!-- Voluma --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Volume</masterLabel>
+        <translation><!-- Volume --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Volux</masterLabel>
+        <translation><!-- Volux --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yaral®</masterLabel>
+        <translation><!-- Yaral® --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yaral® Forte</masterLabel>
+        <translation><!-- Yaral® Forte --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Yaral® Mini</masterLabel>
+        <translation><!-- Yaral® Mini --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Youth Support</masterLabel>
+        <translation><!-- Youth Support --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

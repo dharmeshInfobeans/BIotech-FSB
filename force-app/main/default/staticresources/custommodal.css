@@ -1,0 +1,11 @@
+/* Custom Modal Styling Overrides */
+.slds-modal__container {
+    width: 90% !important;
+    max-width: 90% !important;
+    height: 80% !important;
+}
+
+.slds-modal__content {
+    max-height: 65vh !important;
+    overflow-y: auto !important;
+}

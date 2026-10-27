@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- How do you think you can garner extra volumes in business for our products(what is the Unique Selling Proposition) as you would have already studied the market --></help>
+    <label><!-- How you can garner extra volumes --></label>
+    <name>How_you_can_garner_extra_volumes__c</name>
+</CustomFieldTranslation>

@@ -1,0 +1,231 @@
+/* Card and Containers */
+.bg-card {
+    background-color: #f3f2f1;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.header-container {
+    background: linear-gradient(135deg, #1b4d8f, #0070d2);
+    color: white !important;
+    border-radius: 4px;
+    border: none;
+}
+
+.header-container lightning-icon {
+    --sds-c-icon-color-foreground: white;
+}
+
+.header-container .slds-page-header__title, 
+.header-container .slds-page-header__title-meta {
+    color: white !important;
+}
+
+/* Filter Panel */
+.filter-panel {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddbda;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.filter-input {
+    margin-bottom: 8px;
+}
+
+.go-btn {
+    margin-bottom: 8px;
+}
+
+/* Table Wrapper */
+.table-container {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddbda;
+    overflow: hidden;
+}
+
+.scroll-table-wrapper {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 500px; /* Limit height to freeze table header */
+}
+
+/* Forecast Table */
+.forecast-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+}
+
+/* Sticky Headers and Columns */
+.forecast-table thead tr th {
+    position: sticky;
+    top: 0;
+    z-index: 15;
+    text-align: center;
+    border-top: 1px solid #dddbda;
+    border-bottom: 2px solid #1b4d8f;
+}
+
+.forecast-table thead tr:first-child th {
+    top: 0;
+}
+
+.forecast-table thead tr:last-child th {
+    top: 2rem; /* Adjusted for double row header */
+}
+
+.forecast-table .sticky-col {
+    position: sticky;
+    z-index: 10;
+    background-color: #f3f2f1;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Specific column locations for sticky freeze */
+.first-header-col {
+    left: 0;
+    min-width: 15rem;
+    max-width: 15rem;
+    width: 15rem;
+    text-align: left !important;
+    border-right: 1px solid #dddbda;
+}
+
+.second-header-col {
+    left: 15rem;
+    min-width: 6rem;
+    max-width: 6rem;
+    width: 6rem;
+    border-right: 1px solid #dddbda;
+}
+
+.third-header-col {
+    left: 21rem;
+    min-width: 6rem;
+    max-width: 6rem;
+    width: 6rem;
+    border-right: 1px solid #dddbda;
+}
+
+.fourth-header-col {
+    left: 27rem;
+    min-width: 6rem;
+    max-width: 6rem;
+    width: 6rem;
+    border-right: 2px solid #b0adab;
+}
+
+/* Sticky Cells in Body */
+.bg-sticky-cell {
+    background-color: white !important;
+    z-index: 5;
+    border-right: 1px solid #dddbda;
+}
+
+.fourth-header-col.bg-sticky-cell {
+    border-right: 2px solid #b0adab !important;
+}
+
+/* Alignments */
+.text-center {
+    text-align: center !important;
+}
+
+/* Headings Background */
+.bg-header {
+    background-color: #f3f2f1 !important;
+    color: #1b4d8f;
+    font-weight: bold;
+}
+
+.bg-header-month {
+    background-color: #1b4d8f !important;
+    color: white !important;
+    font-weight: bold;
+    border-right: 1px solid #dddbda;
+    font-size: 0.85rem;
+    padding: 6px;
+}
+
+.bg-header-week {
+    background-color: #f3f2f1 !important;
+    color: #3e3e3c;
+    font-weight: bold;
+    border-right: 1px solid #dddbda;
+}
+
+/* Table Inputs */
+.table-input {
+    --sds-c-input-shadow: none;
+    text-align: center;
+}
+
+.cell-input-width {
+    min-width: 5.5rem;
+    width: 5.5rem;
+    padding: 4px !important;
+    border-right: 1px solid #dddbda;
+}
+
+.bg-month-total {
+    background-color: #eef4f9 !important;
+    border-right: 2px solid #1b4d8f;
+}
+
+.total-input {
+    font-weight: bold;
+}
+
+/* Row Height */
+.row-data-height {
+    height: 48px;
+}
+
+/* Footer Bar */
+.footer-bar {
+    background-color: #f3f2f1;
+    border-top: 1px solid #dddbda;
+    border-radius: 0 0 4px 4px;
+}
+
+/* Spinner Overlay */
+.spinner-container {
+    position: relative;
+    height: 200px;
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddbda;
+}
+
+/* No Records */
+.no-records-panel {
+    background-color: white;
+    border-radius: 4px;
+    border: 1px solid #dddbda;
+    padding: 60px;
+    text-align: center;
+}
+
+.no-records-text {
+    color: #706e6b;
+    font-size: 1.1rem;
+}
+
+.cell-link a {
+    color: #0070d2;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.cell-link a:hover {
+    text-decoration: underline;
+}
+
+.go-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem; /* adjust as needed */
+}

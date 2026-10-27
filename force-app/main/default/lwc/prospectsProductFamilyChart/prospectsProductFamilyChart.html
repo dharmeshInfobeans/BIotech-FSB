@@ -1,0 +1,20 @@
+<template>
+    <div class="chart-card">
+        <button
+            class="chart-download-btn"
+            title="Download this chart's full data as Excel"
+            onclick={handleDownloadChartExcel}
+            disabled={downloadChartDisabled}
+        >
+            <lightning-icon icon-name="utility:download" size="x-small"></lightning-icon>
+        </button>
+        <div class="chart-header">
+            <div class="title-box">
+                <h2 class="chart-title">Product Family — Prospects by Stage</h2>
+            </div>
+        </div>
+        <div class="chart-container slds-p-around_small">
+            <canvas></canvas>
+        </div>
+    </div>
+</template>

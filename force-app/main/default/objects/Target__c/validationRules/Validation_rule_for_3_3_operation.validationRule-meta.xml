@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validation_rule_for_3_3_operation</fullName>
+    <active>true</active>
+    <errorConditionFormula>IF( AND(ISPICKVAL( Operation__c ,&quot;DISTRIBUTOR3X3&quot;), ISPICKVAL( Region__c ,&quot;APAC&quot;) ),AND(!ISPICKVAL(   Country__c ,&quot;INDONESIA&quot;),!ISPICKVAL(  Country__c ,&quot;MALAYSIA&quot;),!ISPICKVAL(  Country__c ,&quot;VIETNAM&quot;),!ISPICKVAL(  Country__c ,&quot;SOUTH KOREA&quot;)),
+
+
+IF(
+  AND(ISPICKVAL( Operation__c ,&quot;DISTRIBUTOR3X3&quot;), ISPICKVAL( Region__c ,&quot;EASTERN EUROPE&quot;)),
+OR( ISPICKVAL(  Country__c ,&quot;TURKEY&quot;),ISPICKVAL(  Country__c ,&quot;ROMANIA&quot;),ISPICKVAL(  Country__c ,&quot;JORDAN&quot;),ISPICKVAL(  Country__c ,&quot;BULGARIA&quot;),ISPICKVAL(  Country__c ,&quot;GREECE&quot;),ISPICKVAL(  Country__c ,&quot;ALBANIA&quot;),ISPICKVAL(  Country__c ,&quot;AZERBAIJAN&quot;),ISPICKVAL(  Country__c ,&quot;BOSNIA-HERZ.&quot;),ISPICKVAL(  Country__c ,&quot;CROATIA&quot;),ISPICKVAL(  Country__c ,&quot;CYPRUS&quot;),ISPICKVAL(  Country__c ,&quot;HUNGARY&quot;),ISPICKVAL(  Country__c ,&quot;ISRAEL&quot;),ISPICKVAL(  Country__c ,&quot;LITHUANIA&quot;),ISPICKVAL(  Country__c ,&quot;MACEDONIA&quot;),ISPICKVAL(  Country__c ,&quot;MALTA&quot;),ISPICKVAL(  Country__c ,&quot;MOLDOVA&quot;),ISPICKVAL(  Country__c ,&quot;SERBIA&quot;),
+ISPICKVAL(  Country__c ,&quot;SIERRA LEONE&quot;)),
+
+
+
+
+
+
+IF(AND(ISPICKVAL( Operation__c ,&quot;DISTRIBUTOR3X3&quot;), ISPICKVAL( Region__c ,&quot;LATAM&quot;) ),AND(!ISPICKVAL(   Country__c ,&quot;ARGENTINA&quot;),!ISPICKVAL(  Country__c ,&quot;BOLIVIA&quot;),!ISPICKVAL(  Country__c ,&quot;CHILE&quot;)),
+
+
+IF(AND(ISPICKVAL( Operation__c ,&quot;DISTRIBUTOR3X3&quot;), ISPICKVAL( Region__c ,&quot;WESTERN EUROPE&quot;) ),AND(!ISPICKVAL(   Country__c ,&quot;ITALY&quot;),!ISPICKVAL(  Country__c ,&quot;FRANCE&quot;)),false))))</errorConditionFormula>
+    <errorMessage>Please select the correct combination for Operation region and country</errorMessage>
+</ValidationRule>

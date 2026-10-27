@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Upload Utility">
+        <div class="slds-p-around_medium">
+
+            <lightning-combobox label="Select Object" value={selectedValue} options={objectOptions}
+                onchange={handleObjectChange}>
+            </lightning-combobox>
+            <br/>
+            <lightning-button label="Download Sample CSV" variant="brand" onclick={downloadSample}
+                disabled={disableUpload}>
+            </lightning-button>
+
+            <br/><br/>
+
+            <lightning-input type="file" label="Upload CSV" accept=".csv" onchange={handleFileChange}>
+            </lightning-input>
+
+            <br/>
+
+            <lightning-button label="Import" variant="brand" onclick={handleUpload} disabled={disableUpload}>
+            </lightning-button>
+
+        </div>
+    </lightning-card>
+</template>

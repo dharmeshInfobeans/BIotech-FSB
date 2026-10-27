@@ -1,0 +1,58 @@
+/**
+ * EventPlannerCreateEvent Component Styles
+ * SLDS 2 compliant styles
+ */
+
+/* Date display styling */
+.date-display {
+    border: 1px solid rgb(221, 219, 218);
+    background-color: rgb(243, 242, 242);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+}
+
+/* Modal content scrolling */
+.slds-modal__content {
+    overflow-y: auto;
+    max-height: 60vh;
+}
+
+/* Ensure proper spacing in forms */
+.slds-form-element {
+    margin-bottom: 0.5rem;
+}
+
+/* Table responsiveness */
+.slds-table {
+    width: 100%;
+}
+
+.slds-table th,
+.slds-table td {
+    padding: 0.5rem;
+}
+
+/* Cell wrapping for long content */
+.slds-cell-wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Ensure multi-select components display as block for proper width */
+c-multi-select-picklist-with-search,
+c-multi-select-user-picklist-with-search {
+    display: block;
+    width: 100%;
+}
+
+/* Wrapper to constrain toggle clickable area */
+.toggle-wrapper {
+    display: inline-block;
+    width: auto;
+}
+
+/* Constrain toggle switch width */
+lightning-input[type="toggle"] {
+    display: inline-block;
+    max-width: fit-content;
+}

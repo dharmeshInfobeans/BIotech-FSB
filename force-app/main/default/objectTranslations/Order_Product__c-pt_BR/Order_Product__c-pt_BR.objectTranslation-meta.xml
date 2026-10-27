@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value><!-- Order Product --></value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value><!-- Order Product --></value>
+    </caseValues>
+    <gender><!-- Feminine --></gender>
+    <layouts>
+        <layout>Order Product Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Read Only Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Order Product Number --></nameFieldLabel>
+    <validationRules>
+        <errorMessage><!-- You can&apos;t change the Total Price,Unit Price And Discount values --></errorMessage>
+        <name>Validation_rule_for_Order_Product</name>
+    </validationRules>
+</CustomObjectTranslation>

@@ -1,0 +1,392 @@
+<template>
+    <template if:true={leadandaccountoption}>
+        <div class="Head">
+            <h1 class="slds-text-heading_medium slds-text-title_bold"
+                style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                {getsplrqstlabel.Sample_Request__c}
+            </h1>
+
+        </div>
+        <div style="height:auto;background-color:white;">
+            <div style="text-align: center;background-color: orange;padding: 5px;font-size: 20px;">
+                <h3>{getsplrqstlabel.Please_select_the_customer_type__c}</h3>
+            </div>
+
+            <div style="padding: 10px;display: flex;justify-content: center;align-items: center;margin-top: 4%;">
+
+
+                <lightning-button type="button" label={getsplrqstlabel.Lead__c} variant="brand" onclick={handlelead}>
+                </lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <lightning-button type="button" label={getsplrqstlabel.Account__c} onclick={handlAccount} variant="brand">
+                </lightning-button>
+
+
+            </div>
+            <div class="Foot"
+                style="padding: 10px;display: flex;justify-content: center;align-items: center;margin-top: 10px;">
+                <lightning-button type="button" label={getsplrqstlabel.Previous__c} onclick={handlepreviousfirstscreen} variant="brand">
+                </lightning-button>
+            </div>
+        </div>
+    </template>
+    <template if:true={showaccountdata}>
+        <div class="MainScreen">
+            <div class="Head">
+                <h1 class="slds-text-heading_medium slds-text-title_bold"
+                    style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                    {getsplrqstlabel.Sample_Request__c}
+                </h1>
+
+            </div>
+            <div class="search-container">
+                <div class="SearchBox">
+                    <lightning-input name="UserCountry" label={getsplrqstlabel.User_Country__c} placeholder="Search by Country"
+                        value={countryName} required="true" disabled="true">
+                    </lightning-input>
+                </div>
+                <div class="SearchBox">
+                    <lightning-input type="text" name="searchAccount" label={getsplrqstlabel.Search_Account__c}
+                        placeholder={formattedPlaceholder} value={searchTerm}
+                        onchange={handleSearch}>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <template if:true={countryName}>
+                <!-- Account Table -->
+                <div class="Body">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+
+                                <th scope="col" style="text-align: center;">{getsplrqstlabel.S_No__c}</th>
+                                <th scope="col" style="text-align: center;">
+                                    <lightning-input type="checkbox" onchange={handleSelectAll} checked={isAllSelected}>
+                                    </lightning-input>
+                                </th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Account_Name__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Email__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Phone_Number__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.CE_CIS_Rating__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Phakic_Rating__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.SAP_Code__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Zip_Code__c}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={paginatedAccounts} for:item="obj" for:index="index">
+                                <tr class="slds-hint-parent" key={obj.Id}>
+                                    <th scope="row" style="text-align:center;">{obj.rowIndex}</th>
+                                    <th scope="row" style="text-align:center;">
+                                        <lightning-input type="checkbox" onchange={handleClick} data-id={obj.Id}
+                                            checked={obj.isSelected}></lightning-input>
+                                    </th>
+                                    <th scope="row" style="text-align:center;">{obj.Name}</th>
+                                    <th scope="row" style="text-align:center;">{obj.E_Mail__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.Phone}</th>
+                                    <th scope="row" style="text-align:center;">{obj.CE_CIS_Rating__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.Phakic_Rating__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.SAP_Code__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.BillingPostalCode}</th>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <!-- Next Button -->
+            <div class="Foot">
+                <div class="left-section">
+                    <h3 style="margin-left: 10px;">{getsplrqstlabel.Selected_Accounts__c}<strong>{selectedAccountCount}</strong></h3>
+                </div>
+                <!-- Next Button (Aligned with Pagination) -->
+                <div style="padding:10px;background-color;">
+
+                    <lightning-button label={getsplrqstlabel.Previous__c} variant="brand" onclick={handlePreviousButton}>
+                    </lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <lightning-button type="button" label={getsplrqstlabel.Submit__c} onclick={handlesave} variant="brand"
+                        disabled={nextDisabled}>
+                    </lightning-button>
+
+
+                </div>
+                <div class="right-section">
+                    <!-- Pagination Controls -->
+                    <lightning-button icon-name="utility:back" variant="neutral" onclick={handlePreviousPage}
+                        disabled={isFirstPage}>
+                    </lightning-button>
+
+                    <span class="page-info">{getsplrqstlabel.Page__c} {currentPage} {getsplrqstlabel.of__c} {totalPages}</span>
+
+                    <lightning-button icon-name="utility:forward" variant="neutral" onclick={handleNextPage}
+                        disabled={isLastPage}>
+                    </lightning-button>
+                </div>
+            </div>
+
+        </div>
+    </template>
+    <template if:true={showleaddata}>
+        <div class="MainScreen">
+            <div class="Head">
+                <h1 class="slds-text-heading_medium slds-text-title_bold"
+                    style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                   {getsplrqstlabel.Sample_Request__c}
+                </h1>
+
+            </div>
+            <div class="search-container">
+                <div class="SearchBox">
+                    <lightning-input name="UserCountry" label={getsplrqstlabel.User_Country__c} placeholder="Search by Country"
+                        value={countryName} required="true" disabled="true">
+                    </lightning-input>
+                </div>
+                <div class="SearchBox">
+                    <lightning-input type="text" name="searchlead" label={getsplrqstlabel.Search_lead__c}
+                        placeholder={formattedPlaceholder} value={searchTermlead}
+                        onchange={handleSearchlead}>
+                    </lightning-input>
+                </div>
+            </div>
+
+            <template if:true={countryName}>
+                <!-- Account Table -->
+                <div class="Body">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+
+                                <th scope="col" style="text-align: center;">{getsplrqstlabel.S_No__c}</th>
+                                <th scope="col" style="text-align: center;">
+                                    <lightning-input type="checkbox" onchange={handleSelectAlllead}
+                                        checked={isAllSelectedlead}>
+                                    </lightning-input>
+                                </th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Lead_Name__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Email__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Phone_Number__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.CE_CIS_Rating__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Phakic_Rating__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.SAP_Code__c}</th>
+                                <th scope="col" style="text-align:center;">{getsplrqstlabel.Zip_Code__c}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={paginatedleads} for:item="obj" for:index="index">
+                                <tr class="slds-hint-parent" key={obj.Id}>
+                                    <th scope="row" style="text-align:center;">{obj.rowIndex}</th>
+                                    <th scope="row" style="text-align:center;">
+                                        <lightning-input type="checkbox" onchange={handleClicklead} data-id={obj.Id}
+                                            checked={obj.isSelectedlead}></lightning-input>
+                                    </th>
+                                    <th scope="row" style="text-align:center;">{obj.Name}</th>
+                                    <th scope="row" style="text-align:center;">{obj.Email__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.Mobile__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.CE_CIS_Rating__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.Phakic_Rating__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.SAP_Code__c}</th>
+                                    <th scope="row" style="text-align:center;">{obj.Billing_code__c}</th>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+
+            <!-- Next Button -->
+            <div class="Foot">
+                <div class="left-section">
+                    <h3 style="margin-left: 10px;">{getsplrqstlabel.Selected_Lead__c}<strong>{selectedleadCount}</strong></h3>
+                </div>
+                <!-- Next Button (Aligned with Pagination) -->
+                <div style="padding:10px;background-color;">
+
+                    <lightning-button label={getsplrqstlabel.Previous__c} variant="brand" onclick={handlePreviousButton}>
+                    </lightning-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <lightning-button type="button" label={getsplrqstlabel.Submit__c} onclick={handlesave} variant="brand"
+                        disabled={nextDisabledlead}>
+                    </lightning-button>
+
+
+                </div>
+                <div class="right-section">
+                    <!-- Pagination Controls -->
+                    <lightning-button icon-name="utility:back" variant="neutral" onclick={handlePreviousPagelead}
+                        disabled={leadisFirstPage}>
+                    </lightning-button>
+
+                    <span class="page-info">{getsplrqstlabel.Page__c} {leadcurrentPage} {getsplrqstlabel.of__c} {leadtotalPages}</span>
+
+                    <lightning-button icon-name="utility:forward" variant="neutral" onclick={handleNextPagelead}
+                        disabled={leadisLastPage}>
+                    </lightning-button>
+                </div>
+            </div>
+
+        </div>
+    </template>
+
+    <template if:true={showsamplerequesttale}>
+        <!-- Header Section -->
+        <div class="body" style="background-color: white;">
+            <div class="slds-col slds-size_12-of-12">
+                <div class="Head">
+                    <h1 class="slds-text-heading_medium slds-text-title_bold"
+                        style="text-decoration: underline; text-align: center; font-size: 21px; width: 100%;background-color: white;padding: 10px;">
+                       {getsplrqstlabel.Sample_Request__c}
+                    </h1>
+
+                </div>
+            </div>
+            <br>
+
+            <!-- Table for Single Row -->
+            <div class="TableData slds-scrollable" style="height:250px;">
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered"
+                    aria-label="Sample Request Product Table">
+                    <thead>
+                        <tr class="slds-line-height_reset">
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Product Name">{getsplrqstlabel.Product_Name__c}</div>
+                            </th>
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Product Model">{getsplrqstlabel.Product_Model__c}</div>
+                            </th>
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Spherical Power">{getsplrqstlabel.Spherical_Power__c}</div>
+                            </th>
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Cylindrical Power">{getsplrqstlabel.Cylindrical_Power__c}</div>
+                            </th>
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Axis Angle">{getsplrqstlabel.Axis_Angle__c}</div>
+                            </th>
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Diaptor">{getsplrqstlabel.Diaptor__c}</div>
+                            </th>
+                            <th scope="col" style="text-align:center;">
+                                <div class="slds-truncate tableHeader" title="Commercial Quantity">{getsplrqstlabel.Quantity__c}</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <!-- Product Name -->
+                            <td>
+                                <c-searchable-combobox name="productName" value={sampleRow.productName}
+                                    options={sampleRow.sampleRequestProductList} placeholder="Select Product Name"
+                                    onchange={handleDataChange}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Product Model -->
+                            <td>
+                                <c-searchable-combobox name="productModel" value={sampleRow.productModel}
+                                    options={sampleRow.productModellist} placeholder="Select Product Model"
+                                    onchange={handleDataChange} disabled={sampleRow.productModelShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Spherical Power -->
+                            <td>
+                                <c-searchable-combobox name="sphericalPower" value={sampleRow.sphericalPower}
+                                    options={sampleRow.sphericalPowerlist} placeholder="Select Spherical Power"
+                                    onchange={handleDataChange} disabled={sampleRow.sphericalPowerShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Cylindrical Power -->
+                            <td>
+                                <c-searchable-combobox name="cylindricalPower" value={sampleRow.cylindricalPower}
+                                    options={sampleRow.cylindricalPowerlist} placeholder="Select Cylindrical Power"
+                                    onchange={handleDataChange} disabled={sampleRow.cylindricalPowerShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Axis Angle -->
+                            <td>
+                                <c-searchable-combobox name="axisAngle" value={sampleRow.axisAngle}
+                                    options={sampleRow.axisAngleList} placeholder="Select Axis Angle"
+                                    onchange={handleDataChange} disabled={sampleRow.axisAngleShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Diaptor -->
+                            <td>
+                                <c-searchable-combobox name="diaptor" value={sampleRow.diaptor}
+                                    options={sampleRow.diaptorList} placeholder="Select Diaptor"
+                                    onchange={handleDataChange} disabled={sampleRow.diaptorShow}>
+                                </c-searchable-combobox>
+                            </td>
+
+                            <!-- Quantity Section -->
+                            <!-- Quantity Section -->
+                            <td>
+                                <!--<lightning-card variant="Narrow" hide-header="true" style="border: hidden;">-->
+                                    <div class="slds-card__body slds-card__body_inner"
+                                        style="background-color: rgb(243, 243, 243); margin-top: 30px;">
+                                        <div class="slds-grid slds-grid_align-end">
+                                            <!-- Decrease Button -->
+                                            <div class="slds-col slds-m-right_small">
+                                                <lightning-button-icon data-action="decrease" icon-name="utility:dash"
+                                                    alternative-text="Remove" title="Remove" onclick={changeQuantity}
+                                                    disabled={sampleRow.commercialQuantityshow}>
+                                                </lightning-button-icon>
+                                            </div>
+                                            <!-- Quantity Input -->
+                                            <div class="slds-col slds-m-right_small">
+                                                <div class="slds-form-element">
+                                                    <div class="slds-form-element__control">
+                                                        <input class="slds-input inputStyling"
+                                                    type="number"
+                                                    data-action="update"
+                                                    value={sampleRow.commercialQuantity}
+                                                    onkeyup={changeQuantity}
+                                                    disabled={sampleRow.commercialQuantityshow} style="width: 52px;"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- Increase Button -->
+                                            <div class="slds-col">
+                                                <lightning-button-icon data-action="increase" icon-name="utility:add"
+                                                    alternative-text="Add" title="Add" onclick={changeQuantity}
+                                                    disabled={sampleRow.commercialQuantityshow}>
+                                                </lightning-button-icon>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!--</lightning-card>-->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                 <div class="slds-p-around_medium" style="width: 25%;">
+               <!-- Remark Textarea -->
+        <lightning-textarea label={getsplrqstlabel.Enter_Remark__c}
+                            value={remark}
+                            required
+                            onchange={handleRemarkChange}>
+        </lightning-textarea>
+    </div>
+            </div>
+
+
+            <!-- Footer Section -->
+            <!-- Footer Section -->
+            <div class="Foot" style="justify-content: center;">
+                <div style="display: flex;padding: 10px;align-items: center;justify-content: center;">
+
+                    <!-- <lightning-button style="font-size: 18px;" type="button" label="Cancel" onclick={handleClose}></lightning-button> -->
+                    <!-- &nbsp;&nbsp;&nbsp;&nbsp; -->
+                    <lightning-button style="font-size: 18px;" variant="brand" type="button" label={getsplrqstlabel.Next__c}
+                        onclick={handlenextscreen} disabled={saveButtonError}></lightning-button>
+
+                </div>
+            </div>
+        </div>
+        <!-- Spinner -->
+        <template if:true={spinner}>
+            <c-spinner></c-spinner>
+        </template>
+    </template>

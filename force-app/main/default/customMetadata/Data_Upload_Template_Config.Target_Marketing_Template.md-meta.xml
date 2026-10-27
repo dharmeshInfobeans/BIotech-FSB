@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomMetadata xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <label>Target Marketing Template</label>
+    <protected>false</protected>
+    <values>
+        <field>Object_API_Name__c</field>
+        <value xsi:type="xsd:string">Target__c</value>
+    </values>
+    <values>
+        <field>Object_Columns_Visible__c</field>
+        <value xsi:type="xsd:string">[&quot;Owner_Designation__c&quot;,&quot;Reporting_Manager_1_Designation__c&quot;, &quot;Reporting_Manager_2_Designation__c&quot;, &quot;Reporting_Manager_3_Designation__c&quot;,&quot;Quater_No__c&quot;,&quot;Month__c&quot;,&quot;Year__c&quot;,&quot;Zone__c&quot;,&quot;Country__c&quot;,&quot;Region__c&quot;,&quot;Conference_Name__c&quot;,&quot;Activity_Type__c&quot;,&quot;Driven_By__c&quot;,&quot;City__c&quot;,&quot;CurrencyIsoCode&quot;,&quot;Amount__c&quot;,&quot;New_Prospects__c&quot;,&quot;Type__c&quot;]</value>
+    </values>
+    <values>
+        <field>Object_Name__c</field>
+        <value xsi:type="xsd:string">Target</value>
+    </values>
+    <values>
+        <field>Template_Type__c</field>
+        <value xsi:type="xsd:string">MARKETING</value>
+    </values>
+</CustomMetadata>

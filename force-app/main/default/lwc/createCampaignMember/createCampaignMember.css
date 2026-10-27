@@ -1,0 +1,33 @@
+.custom-container {
+    color: black;
+}
+
+.spinner-allignment {
+    height: 18rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-icon-close {
+    --slds-c-icon-color-foreground: #0a0a0a;
+    --slds-c-icon-color-background: #ffffff;
+    position: absolute !important;
+    top: -3rem !important;
+    right: 1rem !important;
+    cursor: pointer;
+    z-index: 100;
+}
+
+.slds-modal__header {
+    position: relative;
+    padding-right: 3.5rem;
+}
+
+.contact-combo-loading {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    position: relative;
+}

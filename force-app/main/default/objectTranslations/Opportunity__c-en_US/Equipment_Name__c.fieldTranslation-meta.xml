@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Equipment Name --></label>
+    <name>Equipment_Name__c</name>
+    <picklistValues>
+        <masterLabel>A Scan</masterLabel>
+        <translation><!-- A Scan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Autoclaves</masterLabel>
+        <translation><!-- Autoclaves --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Autoref Keratometer</masterLabel>
+        <translation><!-- Autoref Keratometer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Autorefractometer</masterLabel>
+        <translation><!-- Autorefractometer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>B Scan</masterLabel>
+        <translation><!-- B Scan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Fundus Camera</masterLabel>
+        <translation><!-- Fundus Camera --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Lensmeter</masterLabel>
+        <translation><!-- Lensmeter --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Microscope</masterLabel>
+        <translation><!-- Microscope --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OCT</masterLabel>
+        <translation><!-- OCT --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Optical Biometer</masterLabel>
+        <translation><!-- Optical Biometer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Others</masterLabel>
+        <translation><!-- Others --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Phaco</masterLabel>
+        <translation><!-- Phaco --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Scheimpflug</masterLabel>
+        <translation><!-- Scheimpflug --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tonometer</masterLabel>
+        <translation><!-- Tonometer --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

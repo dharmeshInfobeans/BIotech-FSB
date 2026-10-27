@@ -1,0 +1,171 @@
+<template>
+    <lightning-card title="Prospect Allocation" icon-name="standard:assigned_resource">
+        <div slot="actions" class="slds-grid slds-grid_vertical-align-center">
+            <span class="range-badge slds-p-right_small">{rangeLabel}</span>
+            <div class="slds-button-group" role="group">
+                <lightning-button label="Previous" icon-name="utility:chevronleft" disabled={isPreviousDisabled} onclick={handlePrevious}></lightning-button>
+                <lightning-button label="Next" icon-name="utility:chevronright" icon-position="right" disabled={isNextDisabled} onclick={handleNext}></lightning-button>
+            </div>
+        </div>
+
+        <template if:true={loading}>
+            <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+        </template>
+
+        <div class="filter-panel slds-m-horizontal_small slds-m-top_small">
+            <div class="filter-panel-header slds-grid slds-grid_vertical-align-center slds-p-around_small">
+                <lightning-icon icon-name="utility:filterList" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                <span class="slds-text-heading_small">Filters</span>
+            </div>
+            <div class="slds-p-horizontal_small slds-p-bottom_small slds-grid slds-gutters_small slds-wrap">
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="City" value={filterCity} options={cityOptions} onchange={handleFilterCityChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset City to All" title="Reset to All" size="small" data-field="city" onclick={handleClearField}></lightning-button-icon>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="State" value={filterState} options={stateOptions} onchange={handleFilterStateChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset State to All" title="Reset to All" size="small" data-field="state" onclick={handleClearField}></lightning-button-icon>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="Zone" value={filterZone} options={zoneOptions} onchange={handleFilterZoneChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset Zone to All" title="Reset to All" size="small" data-field="zone" onclick={handleClearField}></lightning-button-icon>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="Country" value={filterCountry} options={countryOptions} onchange={handleFilterCountryChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset Country to All" title="Reset to All" size="small" data-field="country" onclick={handleClearField}></lightning-button-icon>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="Vertical" value={filterVertical} options={verticalOptions} onchange={handleFilterVerticalChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset Vertical to All" title="Reset to All" size="small" data-field="vertical" onclick={handleClearField}></lightning-button-icon>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="Assignment Stage" value={filterAssignmentStage} options={assignmentStageOptions} onchange={handleFilterAssignmentStageChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset Assignment Stage to All" title="Reset to All" size="small" data-field="assignmentStage" onclick={handleClearField}></lightning-button-icon>
+                </div>
+                <div class="slds-col slds-size_1-of-2 slds-medium-size_1-of-3 slds-p-vertical_x-small slds-grid slds-grid_vertical-align-end filter-field">
+                    <c-searchable-combobox class="slds-grow" label="Campaign" value={filterCampaign} options={campaignOptions} onchange={handleFilterCampaignChange}></c-searchable-combobox>
+                    <lightning-button-icon icon-name="utility:close" alternative-text="Reset Campaign to All" title="Reset to All" size="small" data-field="campaign" onclick={handleClearField}></lightning-button-icon>
+                </div>
+            </div>
+            <div class="filter-panel-footer slds-p-horizontal_small slds-p-vertical_x-small slds-grid slds-grid_align-end">
+                <lightning-button variant="brand" label="Save Allocation" icon-name="utility:save" class="slds-p-right_x-small" onclick={handleSave}></lightning-button>
+                <lightning-button label="Clear" disabled={noActiveFilters} onclick={handleClearFilters}></lightning-button>
+            </div>
+        </div>
+
+        <div class="slds-p-around_small">
+            <template if:true={hasRows}>
+                <div class={tableWrapperClass}>
+                    <table class="slds-table slds-table_bordered slds-table_cell-buffer slds-table_striped">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col">Prospect Name</th>
+                                <th scope="col">Hospital / Clinic Name</th>
+                                <th scope="col">Product Family</th>
+                                <th scope="col">Current Owner</th>
+                                <th scope="col">City</th>
+                                <th scope="col" class="role-col">SAE/SSE/BDM/CM/SDE</th>
+                                <th scope="col">State / Province</th>
+                                <th scope="col" class="role-col">RSM/RM/TAM/KAM</th>
+                                <th scope="col">Zone</th>
+                                <th scope="col" class="role-col">ZSM</th>
+                                <th scope="col">Country</th>
+                                <th scope="col" class="role-col">NSM/GM</th>
+                                <th scope="col">Vertical</th>
+                                <th scope="col" class="role-col">GSRO</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={rows} for:item="row">
+                                <tr key={row.id} class="slds-hint-parent">
+                                    <td><a href={row.url}>{row.name}</a></td>
+                                    <td>{row.company}</td>
+                                    <td>{row.productFamily}</td>
+                                    <td class="current-owner-col">
+                                        <span>{row.currentOwnerLabel}</span>
+                                        <span if:true={row.currentOwnerChanged} class="owner-change-indicator" title={row.currentOwnerTooltip}>
+                                            <lightning-icon icon-name="utility:warning" size="xx-small" alternative-text={row.currentOwnerTooltip}></lightning-icon>
+                                        </span>
+                                    </td>
+                                    <td>{row.city}</td>
+                                    <td class="role-col">
+                                        <lightning-combobox
+                                            variant="label-hidden"
+                                            data-row-id={row.id}
+                                            data-field="owner"
+                                            value={row.ownerValue}
+                                            options={row.ownerOptions}
+                                            disabled={row.ownerDisabled}
+                                            placeholder={row.ownerPlaceholder}
+                                            onchange={handleComboChange}
+                                        ></lightning-combobox>
+                                    </td>
+                                    <td>{row.state}</td>
+                                    <td class="role-col">
+                                        <lightning-combobox
+                                            variant="label-hidden"
+                                            data-row-id={row.id}
+                                            data-field="rsm"
+                                            value={row.rsmValue}
+                                            options={row.rsmOptions}
+                                            disabled={row.rsmDisabled}
+                                            placeholder={row.rsmPlaceholder}
+                                            onchange={handleComboChange}
+                                        ></lightning-combobox>
+                                    </td>
+                                    <td>{row.zone}</td>
+                                    <td class="role-col">
+                                        <lightning-combobox
+                                            variant="label-hidden"
+                                            data-row-id={row.id}
+                                            data-field="zsm"
+                                            value={row.zsmValue}
+                                            options={row.zsmOptions}
+                                            disabled={row.zsmDisabled}
+                                            placeholder={row.zsmPlaceholder}
+                                            onchange={handleComboChange}
+                                        ></lightning-combobox>
+                                    </td>
+                                    <td>{row.country}</td>
+                                    <td class="role-col">
+                                        <lightning-combobox
+                                            variant="label-hidden"
+                                            data-row-id={row.id}
+                                            data-field="nsm"
+                                            value={row.nsmValue}
+                                            options={row.nsmOptions}
+                                            disabled={row.nsmDisabled}
+                                            placeholder={row.nsmPlaceholder}
+                                            onchange={handleComboChange}
+                                        ></lightning-combobox>
+                                    </td>
+                                    <td>{row.vertical}</td>
+                                    <td class="role-col">
+                                        <lightning-combobox
+                                            variant="label-hidden"
+                                            data-row-id={row.id}
+                                            data-field="gsro"
+                                            value={row.gsroValue}
+                                            options={row.gsroOptions}
+                                            disabled={row.gsroDisabled}
+                                            placeholder={row.gsroPlaceholder}
+                                            onchange={handleComboChange}
+                                        ></lightning-combobox>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+            <template if:false={hasRows}>
+                <template if:false={loading}>
+                    <div class="empty-state slds-p-around_large slds-text-align_center">
+                        <lightning-icon icon-name="utility:search" size="medium" class="slds-m-bottom_small"></lightning-icon>
+                        <p class="slds-text-color_weak">No Prospect records match the current filters.</p>
+                    </div>
+                </template>
+            </template>
+        </div>
+    </lightning-card>
+</template>

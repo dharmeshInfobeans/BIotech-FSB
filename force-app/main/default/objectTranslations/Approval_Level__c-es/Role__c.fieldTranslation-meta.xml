@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Rol</label>
+    <name>Role__c</name>
+    <picklistValues>
+        <masterLabel>Business Development Manager</masterLabel>
+        <translation><!-- Business Development Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Cluster Manager</masterLabel>
+        <translation><!-- Cluster Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Divisional Manager</masterLabel>
+        <translation><!-- Divisional Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>General Manager</masterLabel>
+        <translation><!-- General Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Global Sales Distribution Manager</masterLabel>
+        <translation><!-- Global Sales Distribution Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Global Sales Revenue Officer</masterLabel>
+        <translation><!-- Global Sales Revenue Officer --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Key Account Manager</masterLabel>
+        <translation><!-- Key Account Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>National Sales Manager</masterLabel>
+        <translation><!-- National Sales Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Product Manager</masterLabel>
+        <translation><!-- Product Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Refractive Manager</masterLabel>
+        <translation><!-- Refractive Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Regional Sales Manager</masterLabel>
+        <translation><!-- Regional Sales Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Account Executive</masterLabel>
+        <translation><!-- Sales Account Executive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sales Development Executive</masterLabel>
+        <translation><!-- Sales Development Executive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Senior Sales Executive</masterLabel>
+        <translation><!-- Senior Sales Executive --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tender Manager</masterLabel>
+        <translation><!-- Tender Manager --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Zonal Sales Manager</masterLabel>
+        <translation><!-- Zonal Sales Manager --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

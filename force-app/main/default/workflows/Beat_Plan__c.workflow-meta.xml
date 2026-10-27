@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <alerts>
+        <fullName>Send_Approved_Email_Alert</fullName>
+        <description>Send Approved Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Out_of_Office_for_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_For_Approve_request</fullName>
+        <description>Send For Approve request</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Leave_request_for_Approved</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Leave_request_Approval</fullName>
+        <description>Send Leave request Approval</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Leave_request_for_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_Leave_request_Approval_email_alert</fullName>
+        <description>Send Leave request Approval email alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Leave_request_for_Rejection</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_for_Approval_request</fullName>
+        <description>Send for Approval request</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Out_of_Office_Approval</template>
+    </alerts>
+    <alerts>
+        <fullName>Send_reject_Email_Alert</fullName>
+        <description>Send reject Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Out_of_Office_for_Rejection</template>
+    </alerts>
+    <alerts>
+        <fullName>Your_Approval_of_compensation_off_is_approved</fullName>
+        <description>Your Approval of compensation off is approved</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Compensation_off_template</template>
+    </alerts>
+    <alerts>
+        <fullName>Your_Approval_of_compensation_off_is_rejected1</fullName>
+        <description>Your Approval of compensation off is rejected</description>
+        <protected>false</protected>
+        <recipients>
+            <type>owner</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Compensation_off_template</template>
+    </alerts>
+    <alerts>
+        <fullName>companstion_off_Approved_Email_Alert</fullName>
+        <description>companstion off  Approved Email Alert</description>
+        <protected>false</protected>
+        <recipients>
+            <field>Assigned_To__c</field>
+            <type>userLookup</type>
+        </recipients>
+        <senderType>CurrentUser</senderType>
+        <template>unfiled$public/Compensation_off_template</template>
+    </alerts>
+    <fieldUpdates>
+        <fullName>Approval_status_field_update</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>Approval status field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_status_field_update_Approved</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>Approval status field update Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approval_status_field_update_Reject</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Reject</literalValue>
+        <name>Approval status field update Reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Approvasl_status_field_update</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>Approval status field update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Compansation_off_rejection_true</fullName>
+        <field>Conpansation_Off_rejection__c</field>
+        <literalValue>1</literalValue>
+        <name>Compansation off rejection true</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Leave_rejetion_true</fullName>
+        <field>Leave_rejection__c</field>
+        <literalValue>1</literalValue>
+        <name>Leave rejetion true</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Out_of_office_rejection_true</fullName>
+        <field>Out_of_office_rejection__c</field>
+        <literalValue>1</literalValue>
+        <name>Out of office rejection true</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Rejcted_Field</fullName>
+        <field>Rejected_COF__c</field>
+        <literalValue>0</literalValue>
+        <name>Update Rejcted Field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Rejected_Checkbox</fullName>
+        <field>Rejected_COF__c</field>
+        <literalValue>0</literalValue>
+        <name>Update Rejected Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Rejected_Checkbox1</fullName>
+        <field>Rejected_COF__c</field>
+        <literalValue>1</literalValue>
+        <name>Update Rejected Checkbox</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_no_reporting_field</fullName>
+        <field>No_reporting__c</field>
+        <literalValue>0</literalValue>
+        <name>Update no reporting field</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>beat_plan_type_update</fullName>
+        <field>Event_Type__c</field>
+        <literalValue>CO</literalValue>
+        <name>beat plan type  update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>final_Approved</fullName>
+        <field>Final_Approved__c</field>
+        <literalValue>1</literalValue>
+        <name>final Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>final_Approved_false</fullName>
+        <field>Final_Approved__c</field>
+        <literalValue>0</literalValue>
+        <name>final Approved false</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Approval_status</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>update Approval status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Approved</fullName>
+        <field>Event_Type__c</field>
+        <literalValue>P</literalValue>
+        <name>update Field if Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_Field_if_Approveds</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>update Field if Approved</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_status</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Pending</literalValue>
+        <name>update status</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_status_approve</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Approved</literalValue>
+        <name>update status approve</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>update_status_reject</fullName>
+        <field>Approval_status__c</field>
+        <literalValue>Rejected</literalValue>
+        <name>update status reject</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Literal</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+</Workflow>

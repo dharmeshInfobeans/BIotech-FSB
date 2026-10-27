@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Incoterms --></label>
+    <name>Incoterms__c</name>
+    <picklistValues>
+        <masterLabel>C&amp;F</masterLabel>
+        <translation><!-- C&amp;F --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>C&amp;F from India/EXW from Ireland</masterLabel>
+        <translation><!-- C&amp;F from India/EXW from Ireland --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>C&amp;F*</masterLabel>
+        <translation><!-- C&amp;F* --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CIF</masterLabel>
+        <translation><!-- CIF --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>DDU</masterLabel>
+        <translation><!-- DDU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Ex-Works</masterLabel>
+        <translation><!-- Ex-Works --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FCA</masterLabel>
+        <translation><!-- FCA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FOB</masterLabel>
+        <translation><!-- FOB --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FOB (Ophth)/Ex-Works (Ortho)</masterLabel>
+        <translation><!-- FOB (Ophth)/Ex-Works (Ortho) --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>FOB from India/Ex-Works from Ireland</masterLabel>
+        <translation><!-- FOB from India/Ex-Works from Ireland --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

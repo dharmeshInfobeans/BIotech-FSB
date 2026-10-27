@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <help><!-- Automatically kept in sync with Lead Created Quarter No. by the Lead_Sync_Created_Quarter flow, for dashboard use. --></help>
+    <label><!-- Lead Created Quarter Dashboard --></label>
+    <name>Lead_Created_Quarter_Dashboard__c</name>
+</CustomFieldTranslation>

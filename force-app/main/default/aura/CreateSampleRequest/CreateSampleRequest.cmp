@@ -1,0 +1,47 @@
+<aura:component controller="CreateSampleRequestController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <aura:attribute name="newSampleRequest" type="String[]" default="['Account__c','Description__c','Year__c','Month__c','Monthly_Plan__c']" />
+    <aura:attribute name="monthMap" type="Map" default="{ 0: 'Jan', 1: 'Feb',2: 'Mar',3: 'Apr',4: 'May',5: 'Jun',6: 'Jul',7: 'Aug',8: 'Sep',9: 'Oct',10: 'Nov',11: 'Dec' }" />
+    <aura:attribute name="showForm" type="Boolean" default="false" />
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="showMessage" type="Boolean" default="false" />
+    <aura:attribute name="initMessage" type="String" default="You can create sample request only for 'Activated Accounts'." />
+    <aura:handler name="init" value="{!this}" action="{! c.doInit }"/>
+     <lightning:navigation aura:id="navService"/>
+    <aura:if isTrue="{! v.showSpinner }">
+        <lightning:spinner size="medium" alternativeText="Loading...." />
+    </aura:if>
+    <!-- Not Submitted   // onsuccess="{!c.handleSuccess}" -->
+    <aura:if isTrue="{! v.showMessage }">
+    	<ui:message title="Error" severity="error" closable="false">                
+                {!v.initMessage}
+        </ui:message>
+    </aura:if>
+    
+    <aura:if isTrue="{! (v.showForm) }">
+        <lightning:recordEditForm aura:id="sampleRequestForm"
+                                  onload="{!c.handleLoad}"
+                                  onsubmit="{!c.handleSubmit}"
+                                  onsuccess="{!c.handleSuccess}"
+                                  onerror="{! c.onREFError }"
+                                  objectApiName="Sample_Request__c">
+            <!-- the messages component is for error messages -->
+            <lightning:messages />
+            <div class="slds-grid slds-wrap">
+                <lightning:inputField  class="slds-size_1-of-2 slds-p-around_x-small" aura:id="accId" disabled="true" fieldName="Account__c" />
+                <lightning:inputField  class="slds-size_1-of-2 slds-p-around_x-small" aura:id="year" fieldName="Year__c" />
+                <lightning:inputField  class="slds-size_1-of-2 slds-p-around_x-small" aura:id="month" fieldName="Month__c" />
+                <lightning:inputField class="slds-size_1-of-2 slds-p-around_x-small" aura:id="descrip" fieldName="Description__c" />
+                <lightning:inputField class="slds-hide" aura:id="status" disabled="true" fieldName="Status__c" />
+                <p class="slds-size_1-of-2 slds-p-around_x-small" ></p>
+                <p class="slds-size_1-of-2 slds-p-around_x-small" ></p>
+                <!--<lightning:inputField class="slds-size_1-of-2 slds-hide" aura:id="monthlyPlan" fieldName="Monthly_Plan__c" />-->
+                <div class="slds-align_absolute-center">
+                    <lightning:button  variant="brand" type="submit" name="save" label="Save" />
+                    <lightning:button variant="brand"  label="Cancel" onclick="{! c.onCancel }"/>
+                    
+                </div>
+            </div>
+        </lightning:recordEditForm>
+
+    </aura:if>
+</aura:component>

@@ -1,0 +1,11 @@
+<template>
+    <lightning-combobox
+        variant = "label-hidden"
+        name="languagePicker"
+        label="Select a Language"
+        placeholder="Select a Language"
+        value={selectedLanguage}
+        options={languageOptions}
+        onchange={handleLanguageChange}
+    ></lightning-combobox>
+</template>

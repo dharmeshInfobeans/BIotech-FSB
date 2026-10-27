@@ -1,0 +1,695 @@
+<aura:component implements="force:appHostable,forceCommunity:availableForAllPageTypes,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome" 
+                controller = "BDTrackerController" access="global" >
+     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+   
+    <aura:attribute Name = "lstStages" type = "List" access="global"/>
+    <aura:attribute Name = "objAccount" type = "Object" default = "'Name':'Test'" access="global"/>
+    <aura:attribute Name = "objProduct" type = "Object" access="global"/>
+    <aura:attribute Name = "objContact" type = "Object" access="global"/>
+    <aura:attribute Name = "lstBDTrackerWrapper" type = "List" access="global"/>
+    <aura:attribute name="SearchKey" type="String" access="global"></aura:attribute>
+    
+    <aura:attribute name="selectedLookUpRecord" type="Object"  access="global"/>
+    <aura:attribute name="selectedLookUpProduct" type="Object"  access="global"/>
+    <aura:attribute name="selectedLookUpContact" type="Object"  access="global"/>
+    <aura:attribute name="selectedAccountId" type="string" default='blank' access="global"/>
+    <aura:attribute name="selectedProductId" type="string" default='blank' access="global"/>
+    <aura:attribute name="selectedContactId" type="string" default='blank' access="global"/>
+    
+    <aura:attribute name="selectedAccountIdcheck" type="string"  access="global"/>
+    <aura:attribute name="selectedProductIdcheck" type="string"  access="global"/>
+    <aura:attribute name="selectedContactIdcheck" type="string"  access="global"/>
+    
+    <aura:attribute name="lstProdWeeks" type="list"  access="global"/>
+    <aura:attribute name="lstEvalWeeks" type="list"  access="global"/>
+    <aura:attribute name="lstCommWeeks" type="list"  access="global"/>
+    <aura:attribute name="lstProdYear" type="list"  access="global"/>
+    <aura:attribute name="lstEvalYear" type="list"  access="global"/>
+    <aura:attribute name="lstCommYear" type="list"  access="global"/>
+    
+    <aura:attribute name = "indexValue" type ="integer" access="global"/>
+    <aura:handler name="oSelectedRecordEvent" event="c:selectedsObjectRecordEvent" action="{!c.handleComponentEvent}" access="global"/>
+    <aura:registerEvent name="DeleteRowEvt" type="c:DeleteRowEvt" access="global"/>
+    <aura:handler name="DeleteRowEvt" event="c:DeleteRowEvt" action="{!c.removeDeletedRow}" access="global"/>
+    
+    <aura:attribute name="isModalOpen" type="boolean" default="false" access="global"/>
+    <aura:attribute name="isSubmit" type="boolean" default="false" access="global"/>
+    <aura:attribute name = "lstYears" type = "list" access="global" />
+    <aura:attribute name = "lstMonths" type = "list" access="global"/>
+    <aura:attribute name = "selectedYear" type = "integer" access="global"/>
+    <aura:attribute name = "selectedMonth" type = "string" access="global"/>
+    
+    <aura:attribute name = "isDisabled" type = "boolean" default ="false" access="global"/>
+    <aura:attribute name = "reasonForDelete" type="string" access="global"/>
+    <aura:attribute name = "isIdAvailable" type = "boolean" default = "false" access="global"/>
+    <aura:attribute name = "isOldMonth" type="boolean" default ="false" access="global"/>
+    <aura:attribute name = "isSubm" type="boolean" default ="false" access="global"/>
+   
+    <aura:attribute name = "isRSM" type = "boolean" access="global"/>
+    <aura:attribute name = "isRequestToSubmit" type = "boolean" default ="false" access="global"/>
+    <aura:attribute name = "currentWeek" type = "string" access="global"/>
+    <aura:attribute name = "isOpenRequest" type ="boolean" default ="true" access="global"/>
+    <aura:attribute name = "isFutureWeek" type="boolean" default ="true" access="global"/>
+    <aura:attribute name = "userInfo" type="user" access="global"/>
+    <aura:attribute name = "userId" type ="string" access="global"/>
+    <aura:attribute name = "adminVal" type="boolean" default="true" access="global"/>
+    <aura:attribute name = "nextYearWeeks" type="list" access="global"/>
+    <aura:attribute name = "currentYearWeeks" type="list" access="global"/>
+    <aura:attribute name = "isShowSpinner" type="boolean" default='false' access="global"/> 
+    <aura:attribute name = "isGoToPlan" type="boolean" default="false" access="global"/>
+    <aura:attribute name = "approveReject" type="boolean" default="true" access="global"/>
+    <aura:attribute name = "isRSMAdded" type="boolean" default="false" access="global"/>
+    <aura:attribute name = "isReject" type="boolean" default="false" access="global"/>
+    <aura:attribute name = "rejectComment" type = "string" access="global"/>
+    <aura:attribute name = "reOpenStatus" type="boolean" default="false" access="global"/>
+    <aura:attribute name = "isReplanRequest" type="boolean" default="true" access="global"/>
+    <aura:attribute name = "BDTHistory" type="Object" access="global"/>
+   
+    <div style = "height:360px;">
+        
+         <!--   Modal Start -->
+        <div>
+            <aura:if isTrue="{!v.isReject}">
+                <!-- Modal/Popup Box starts here-->
+                <section style = "height:600px;width:1000px;margin-left:200px;" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="bare-inverse"
+                                                  class="slds-modal__close"/>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"></h2>
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                           <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <center>   <p><b style = "font-size:15px;">
+                                    <lightning:textarea  value = "{!v.rejectComment}" label ="{!$Label.c.Please_enter_the_comments_for_reject}" required ="true"/>
+                                    </b>
+                                    </p>
+                                </center>
+                            </div>
+                           
+                       <!--Modal/Popup Box Footer Starts here-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                              label="{!$Label.c.Cancel}"
+                                              title="{!$Label.c.Cancel}"
+                                              onclick="{! c.closeModel }"/>
+                            <lightning:button variant="brand"
+                                              label="{!$Label.c.Save}"
+                                              title="{!$Label.c.Save}"
+                                              onclick="{!c.RejectRequest}"/>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!-- Start :Check RSM ANd Manager ID present at user profile level. -->
+        	   <div>
+            <aura:if isTrue="{!v.isRSMAdded}">
+                <!-- Modal/Popup Box starts here-->
+                <section style = "height:600px;width:1000px;margin-left:200px;" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="bare-inverse"
+                                                  class="slds-modal__close"/>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"></h2>
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                        
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <center>   <p><b style = "font-size:15px;">
+                              {!$Label.c.There_is_no_Manager_Or_RSM_User_has_been_set_on_your_Profile}
+                                </b>
+                                </p>
+                            </center>
+                        </div>
+                        
+                        <!--Modal/Popup Box Footer Starts here-->
+                        
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div> 	
+        	
+        <!-- END -->
+       <div>
+            <aura:if isTrue="{!v.isRequestToSubmit}">
+                <!-- Modal/Popup Box starts here-->
+                <section style = "height:600px;width:1000px;margin-left:200px;" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="bare-inverse"
+                                                  class="slds-modal__close"/>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"></h2>
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                        
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <center>   <p><b style = "font-size:15px;">
+                                {!$Label.c.Do_you_want_to_make_request_for_Re_Submission}
+                                </b>
+                                </p>
+                            </center>
+                        </div>
+                        
+                        <!--Modal/Popup Box Footer Starts here-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                              label="{!$Label.c.Cancel}"
+                                              title="{!$Label.c.Cancel}"
+                                              onclick="{! c.closeModel }"/>
+                            <lightning:button variant="brand"
+                                              label="{!$Label.c.Request}"
+                                              title="{!$Label.c.Request}"
+                                              onclick="{!c.requestForSubmit}"/>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>   
+        <!--   Modal Start -->
+        <div>
+            <aura:if isTrue="{!v.isModalOpen}">
+                <!-- Modal/Popup Box starts here-->
+                <section style = "height:600px;width:1000px;margin-left:200px;" role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="bare-inverse"
+                                                  class="slds-modal__close"/>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"></h2>
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                        <aura:if isTrue="{!v.isIdAvailable}">
+                            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                <center>   <p><b style = "font-size:15px;">
+                                    <lightning:textarea  value = "{!v.reasonForDelete}" label ="{!$Label.c.Please_enter_the_remarks_for_deletion}" required ="true"/>
+                                    </b>
+                                    </p>
+                                </center>
+                            </div>
+                            <aura:set attribute="else">
+                                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                                    <center>   <p><b style = "font-size:15px;">
+                                        {!$Label.c.Do_you_want_to_delete}
+                                        </b>
+                                        </p>
+                                    </center>
+                                </div>
+                            </aura:set>
+                        </aura:if>   
+                        <!--Modal/Popup Box Footer Starts here-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                              label="{!$Label.c.Cancel}"
+                                              title="{!$Label.c.Cancel}"
+                                              onclick="{! c.closeModel }"/>
+                            <lightning:button variant="brand"
+                                              label="{!$Label.c.Delete}"
+                                              title="{!$Label.c.Delete}"
+                                              onclick="{!c.removeDeletedRow}"/>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!--   Modal end  -->
+        <!--   Modal Start -->
+        <div>
+            <aura:if isTrue="{!v.isSubmit}">
+                <!-- Modal/Popup Box starts here-->
+                <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <!-- Modal/Popup Box Header Starts here-->
+                        <header class="slds-modal__header">
+                            <lightning:buttonIcon iconName="utility:close"
+                                                  onclick="{! c.closeModel }"
+                                                  alternativeText="close"
+                                                  variant="bare-inverse"
+                                                  class="slds-modal__close"/>
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate"></h2>
+                        </header>
+                        <!--Modal/Popup Box Body Starts here-->
+                        <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                            <center>   <p><b style = "font-size:15px;">
+                                {!$Label.c.Once_submitted_you_can_not_edit_but_delete_the_BD_plans}
+                                </b>
+                                </p>
+                            </center>
+                        </div>
+                        <!--Modal/Popup Box Footer Starts here-->
+                        <footer class="slds-modal__footer">
+                            <lightning:button variant="neutral"
+                                              label="{!$Label.c.Cancel}"
+                                              title="{!$Label.c.Cancel}"
+                                              onclick="{! c.closeModel }"/>
+                            <lightning:button variant="brand"
+                                              label="{!$Label.c.Submit}"
+                                              title="{!$Label.c.Submit}"
+                                              onclick="{!c.savePlan}"/>
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </aura:if>
+        </div>
+        
+        <!--   Modal end  -->
+        
+        <div class="slds-card" style = "height:80px;width:100%;">
+            <p style="margin-bottom:20px;"><center><b style = "font-size:20px;">{!$Label.c.Business_Development_Planning}</b> </center>
+                <!-- start  -->
+                <div class="slds-truncate" style = "width:15rem;margin-top:-20px;float:left;padding-left:50px" >
+                    
+                  
+                    <lightning:select label = "{!$Label.c.Select_Year}" value="{!v.selectedYear}" onchange="{!c.validateMonth}"> 
+                        
+                        <aura:iteration items = "{!v.lstYears}" var ="year" indexVar="indx">
+                            
+                            <option  value="{!year}" selected="{!year==v.selectedYear}"> {!year}</option>
+                        </aura:iteration>
+                    </lightning:select>
+                    
+                </div>
+                <div class="slds-truncate" style = "width:15rem;margin-top:-20px;float:left;padding-left:60px" >
+                    
+                    <lightning:select  label = "{!$Label.c.Select_Week_Range}" value="{!v.selectedMonth}" onchange="{!c.checkSelectedWeek}">
+                        
+                        <aura:iteration items = "{!v.lstMonths}" var ="month" indexVar="indx">
+                            <option text="{!month}" value="{!month}" selected="{!month==v.selectedMonth}"/>
+                        </aura:iteration>
+                    </lightning:select>
+                    
+                </div> 
+                
+                
+                <!--   end  -->
+                <div style="float:left">
+                    <lightning:button label = "{!$Label.c.Go}" onclick = "{!c.go}" variant="brand" class = "btnClass"/>
+                    
+                    <!-- <ui:outputText value = "{!v.userInfo.Name}"  /> -->
+                </div>
+                <aura:if isTrue="{!v.isRSM}">
+                    <div style="float:right;margin-left:10px;margin-top:-18px">
+                        <p style="float:left">{!$Label.c.User_Name} <lightning:input  label="{!$Label.c.User_Name}" variant="label-hidden" disabled="true" value = "{!v.userInfo.Name}"/>
+                        </p>
+                    </div>
+                    <aura:set attribute ="else">
+                        <div style="float:right;margin-left:10px;margin-top:-18px">
+                            <p style="float:left">{!$Label.c.User_Name} <lightning:input  label="{!$Label.c.User_Name}" variant="label-hidden" disabled="true" value = "{!v.userInfo.Name}"/>
+                            </p>
+                        </div>
+                    </aura:set>
+                </aura:if>
+                <p style = "float:right;">
+                    <aura:if isTrue="{!v.isGoToPlan}">
+                        <lightning:button label = "{!$Label.c.Approve}" onclick = "{!c.approveRequest}" variant="brand" class = "btnClass" disabled="{!v.approveReject}"/>
+                        <lightning:button label = "{!$Label.c.Reject}" onclick = "{!c.openRejectModal}" variant="destructive" class = "btnClass"  disabled="{!v.approveReject}"/>     
+                        <aura:set attribute ="else">    
+                            <lightning:button label = "{!$Label.c.Add}" onclick = "{!c.addRow}" variant="brand" class = "btnClass" iconName = "utility:add" disabled="{!or(v.isOldMonth,v.isGoToPlan)}"/>
+                        </aura:set> 
+                    </aura:if>
+                    
+                    <lightning:button label = "{!$Label.c.Go_To_Report}" onclick = "{!c.goToReport}" variant="brand" class = "btnClass"/>
+                </p>
+            </p>
+            
+            
+            
+        </div>
+        <center>
+            <div class=" slds-scrollable" style="width:100%;height:360px; background-color:rgb(243, 242, 242)">
+                
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered "  style="width:100%;" id="tbl">
+                    
+                    <thead>
+                        <tr class="">
+                            
+                            <th ><div>
+                                &nbsp; 
+                                </div>
+                            </th>
+                            <th >
+                                <div  title="{!$Label.c.Status}" style = "padding-top:10px;padding-left:5px;width:2rem;">Sr.<br/>No.</div>
+                            </th>
+                            
+                            <th >
+                                <div title="{!$Label.c.Status}" style = "padding-top:10px;padding-left:5px;width:4rem;">{!$Label.c.Status}</div>
+                            </th>
+                            <th >
+                                <div  title="{!$Label.c.Account_Name}" style = "padding-top:10px;padding-left:5px;width:7rem;">{!$Label.c.Account_Name}</div>
+                            </th>
+                            <th/>
+                            <th >
+                                <div  title="{!$Label.c.CE_Rating}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.CE}</div>
+                            </th>
+                            <th/>
+                            <th  >
+                                <div  title="{!$Label.c.CIS_Rating}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.CIS_Rating}</div>
+                            </th>
+                            <th/>
+                            <th >
+                                <div  title="{!$Label.c.Account_Code}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.Account_Code}</div>
+                            </th>
+                            <th/>
+                            <th >
+                                <div title="{!$Label.c.Contact_Person}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.Contact_Person}</div>
+                            </th>
+                            <th/>
+                            <th >
+                                <div  title="{!$Label.c.Product}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.Product}</div>
+                            </th>
+                            <th/>
+                            <th  >
+                                <div title="{!$Label.c.Stages}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.Stages}</div>
+                            </th>
+                            <th >
+                                <div  title="{!$Label.c.Plan_Year}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.Plan_Year}</div>
+                            </th>
+                            <th >
+                                <div  title="{!$Label.c.Plan_Week}" style = "padding-top:10px;padding-left:5px;">{!$Label.c.Plan_Week}</div>
+                            </th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody style ="height:70%">
+                        <aura:if isTrue='{!v.isShowSpinner}'>
+                            <lightning:spinner alternativeText="{!$Label.c.Loading}" size="small" />
+                       
+                        <aura:set attribute="else">
+                       
+                                   <aura:iteration items = "{!v.lstBDTrackerWrapper}" var = "itemVal" indexVar = "item">
+                                        <tr>
+                                            <td >
+                                                <aura:if isTrue="{!or(itemVal.Status=='Completed',v.isGoToPlan)}">
+                                                    &nbsp;
+                                                    <aura:set attribute ="else">
+                                                        <a onclick="{!c.openModel}" data-ind="{!item}">
+                                                            <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon" aura:id="{!item}"/>
+                                                            <span class="slds-assistive-text">{!$Label.c.Delete_Icon}</span>
+                                                        </a>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td data-ind="{!item}">
+                                                <div  style = "width:2rem;">
+                                                    {!item+1} 
+                                                </div>
+                                            </td>
+                                            <td data-ind="{!item}">
+                                                <div  style = "width:3rem;">
+                                                    {!itemVal.Status} 
+                                                </div>
+                                            </td>
+                                            
+                                            <td data-ind="{!item}" disabled="{!itemVal.isDisabled}">
+                                                <aura:if isTrue = "{!itemVal.isDisabled}">
+                                                    <div  style = "width:9rem;"> 
+                                                         <ui:outputText value="{!itemVal.objAccount.Name}" class="no-text-overflow"/>
+                                                        
+                                                    </div>
+                                                    <aura:set attribute="else">
+                                                        <div class = "slds-card" disabled="{!itemVal.isDisabled}" aura:id="{!itemVal}">
+                                                            <c:CustomLookup idVal="{!item}" aura:id="customLookupid" objectAPIName="Account" IconName="standard:account" selectedRecord="{!itemVal.objAccount}" label="{!$Label.c.Account_Name}" itemWrap="{!itemVal}"/>
+                                                        </div>  
+                                                    </aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td/>
+                                            
+                                            <td>
+                                                <div  style = "width:1rem;">
+                                                    
+                                                    <ui:outputText value = "{!itemVal.objAccount.CE_Rating__c}" />
+                                                </div>
+                                            </td>
+                                            <td/>
+                                            <td><div  style = "width:1rem;">
+                                                <ui:outputText value = "{!itemVal.objAccount.CIS_Rating__c}" />
+                                                </div></td>
+                                            <td/>
+                                            
+                                            <aura:if isTrue = "{!itemVal.objAccount.SAP_Code__c != null}">
+                                                <td>
+                                                    
+                                                    <div  style = "width:3rem;">
+                                                        <ui:outputText value = "{!itemVal.objAccount.SAP_Code__c}" />
+                                                    </div>
+                                                    
+                                                </td>
+                                                <aura:set attribute= "else">
+                                                    <td>
+                                                        <div  style = "width:4rem;">
+                                                            <ui:outputText value = "{!$Label.c.Draft}" />
+                                                        </div>
+                                                        
+                                                    </td>
+                                                </aura:set>
+                                            </aura:if>
+                                            
+                                            <td/>
+                                            <td>
+                                                <aura:if isTrue = "{!itemVal.isDisabled}">
+                                                    <div style = "width:9rem;">
+                                                        
+                                                        <ui:outputText value="{!itemVal.objcontact.Name}" class="no-text-overflow"/>
+                                                    </div>
+                                                    <aura:set attribute="else">
+                                                        <c:CustomLookup idVal="{!item}" aura:id="customLookupcontact" objectAPIName="contact" IconName="standard:contact" selectedRecord="{!itemVal.objcontact}" label="{!$Label.c.Contact_Person}" selectedAccountId ="{!v.selectedAccountId}" isObjDisabled = "{!itemVal.isDisabled}"/>
+                                                    </aura:set>
+                                                </aura:if>
+                                            </td>
+                                            <td/>
+                                            <td>
+                                                <aura:if isTrue = "{!itemVal.isDisabled}">
+                                                    <div style = "width:9rem;">
+                                                        
+                                                        <ui:outputText value="{!itemVal.objProduct.Name}" class="no-text-overflow"/>
+                                                    </div>
+                                                    <aura:set attribute="else">
+                                                        <c:CustomLookup idVal="{!item}" aura:id="customLookupproduct"   objectAPIName="Product__c" IconName="standard:Product__c" selectedRecord="{!itemVal.objProduct}" label="{!$Label.c.Product_Name}" selectedAccountId ="{!v.selectedAccountId}" conId = "{!itemVal.objcontact.Id}" isObjDisabled = "{!itemVal.isDisabled}"/>
+                                                    </aura:set>
+                                                </aura:if>
+                                                
+                                            </td>
+                                            <td/>
+                                            <td>
+                                                <aura:iteration items = "{!itemVal.lstStages}" var ="item" >
+                                                    <tr >
+                                                        <td class="rmBorder">
+                                                            <div  style = "width:8rem;margin-bottom:10px;">
+                                                                {!item.stageName}
+                                                            </div>
+                                                        </td>
+                                                        
+                                                    </tr>
+                                                    
+                                                </aura:iteration>
+                                            </td>
+                                            <td>
+                                                
+                                                <tr >
+                                                    <aura:if isTrue = "{! !(itemVal.isDisabled)}">
+                                                        <td class="rmBorder">
+                                                            <div style = "width:5rem;margin-top:-20px;">
+                                                                <lightning:select onchange = "{!c.getWeeks}"  variant="label-hidden" value ="{!itemVal.ProdYear}" aura:id="{!item}prodYear" label ="{!item +'prodYear'}" disabled="true">
+                                                                    <option style = "" >--{!$Label.c.None}--</option>  
+                                                                    <aura:iteration items = "{!v.lstProdYear}" var ="year" indexVar="indx">
+                                                                        <option > {!year}</option> 
+                                                                    </aura:iteration>
+                                                                </lightning:select>
+                                                                
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <aura:set attribute ="else">
+                                                            <td class="rmBorder">
+                                                                <div  style = "width:5rem;margin-top:-20px;">
+                                                                    <lightning:input value="{!itemVal.ProdYear}" disabled ="true"/>
+                                                                </div>
+                                                            </td>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </tr>
+                                                <aura:if isTrue = "{! !(itemVal.isDisabled)}">
+                                                    <tr >
+                                                        <td class="rmBorder">
+                                                            <div  style = "width:5rem;margin-top:-20px;">
+                                                                <lightning:select onchange = "{!c.getWeeks}"  variant="label-hidden" value ="{!itemVal.EvalYear}" aura:id="{!item}evalYear" label ="{!item +'evalYear'}" disabled ="{!v.isFutureWeek}">
+                                                                    <option style = "" >--None--</option>  
+                                                                    <aura:iteration items = "{!v.lstEvalYear}" var ="year" indexVar="indx">
+                                                                        <option > {!year}</option> 
+                                                                    </aura:iteration>
+                                                                </lightning:select>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                    </tr>
+                                                    <aura:set attribute ="else">
+                                                        <td class="rmBorder">
+                                                            <div  style = "width:5rem;margin-top:-20px;margin-left:16px;">
+                                                                <lightning:input value="{!itemVal.EvalYear}" disabled ="true"/>
+                                                            </div>
+                                                        </td>
+                                                    </aura:set>
+                                                </aura:if>
+                                                
+                                                <tr >
+                                                    <aura:if isTrue = "{! !(itemVal.isDisabled)}">
+                                                        <td class="rmBorder">
+                                                            <div class="slds-truncate" style = "width:5rem;margin-top:-20px;">
+                                                                <lightning:select onchange = "{!c.getWeeks}"  variant="label-hidden" value ="{!itemVal.CommYear}"  label ="{!item +'commYear'}" disabled="{!v.isFutureWeek}">
+                                                                    <option style = "" >--None--</option>  
+                                                                    <aura:iteration items = "{!v.lstCommYear}" var ="year" indexVar="indx">
+                                                                        <option > {!year}</option> 
+                                                                    </aura:iteration>
+                                                                </lightning:select>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <aura:set attribute ="else">
+                                                            <td class="rmBorder">
+                                                                <div class="slds-truncate" style = "width:5rem;margin-top:-20px;">
+                                                                    <lightning:input value="{!itemVal.CommYear}" disabled ="true"/>
+                                                                </div>
+                                                            </td>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </tr>
+                                                
+                                                
+                                            </td>
+                                            <td>
+                                                
+                                                <tr >
+                                                    <aura:if isTrue = "{! !(itemVal.isDisabled)}"> 
+                                                        <td class="rmBorder">
+                                                            <div class="slds-truncate" style = "width:5rem;margin-top:-20px;" >
+                                                                <Lightning:select  onchange = "{!c.checkWeeks}" value ="{!itemVal.ProdWeek}" aura:id="{!item}prodWeek" label ="{!item +'prodWeek'}" variant="label-hidden" disabled="{!itemVal.isDisabled}">
+                                                                    <option style = "" >--None--</option>   
+                                                                    <aura:iteration items = "{!v.lstProdWeeks}" var ="week" indexVar="indx">
+                                                                        
+                                                                        <option data-index="{!indx}"> {!week}</option> 
+                                                                    </aura:iteration>
+                                                                </Lightning:select>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <aura:set attribute ="else">
+                                                            <td class="rmBorder">
+                                                                <div class="slds-truncate" style = "width:5rem;margin-top:-20px;">
+                                                                    <lightning:input value="{!itemVal.ProdWeek}" disabled ="true"/>
+                                                                </div>
+                                                            </td>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </tr>
+                                                
+                                                
+                                                <tr >
+                                                    <aura:if isTrue = "{! !(itemVal.isDisabled)}">  
+                                                        <td class="rmBorder">
+                                                            <div class="slds-truncate" style = "width:5rem;margin-top:-20px;" >
+                                                                <Lightning:select  onchange = "{!c.checkWeeks}" value ="{!itemVal.EvalWeek}" aura:id="{!item}evalWeek" label ="{!item +'evalWeek'}" variant="label-hidden" disabled="{!itemVal.isDisabled}">
+                                                                    <option style = "" >--None--</option>   
+                                                                    <aura:iteration items = "{!v.lstEvalWeeks}" var ="week" indexVar="indx">
+                                                                        
+                                                                        <option data-index="{!indx}"> {!week}</option> 
+                                                                    </aura:iteration>
+                                                                </Lightning:select>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <aura:set attribute ="else">
+                                                            <td class="rmBorder">
+                                                                <div class="slds-truncate" style = "width:5rem;margin-top:-20px;">
+                                                                    <lightning:input value="{!itemVal.EvalWeek}" disabled ="true"/>
+                                                                </div>
+                                                            </td>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                    
+                                                </tr>
+                                                
+                                                
+                                                <tr >
+                                                    <aura:if isTrue = "{! !(itemVal.isDisabled)}">  
+                                                        <td class="rmBorder">
+                                                            <div class="slds-truncate" style = "width:5rem;margin-top:-20px;" >
+                                                                <Lightning:select  onchange = "{!c.checkWeeks}" value ="{!itemVal.CommWeek}" aura:id="{!item}commWeek" label ="{!item +'commWeek'}" variant="label-hidden" disabled="{!itemVal.isDisabled}">
+                                                                    <option style = "" >--None--</option>   
+                                                                    <aura:iteration items = "{!v.lstCommWeeks}" var ="week" indexVar="indx">
+                                                                        
+                                                                        <option data-index="{!indx}"> {!week}</option> 
+                                                                    </aura:iteration>
+                                                                </Lightning:select>
+                                                            </div>
+                                                            
+                                                        </td>
+                                                        <aura:set attribute ="else">
+                                                            <td class="rmBorder">
+                                                                <div class="slds-truncate" style = "width:5rem;margin-top:-20px;">
+                                                                    <lightning:input value="{!itemVal.CommWeek}" disabled ="true"/>
+                                                                </div>
+                                                            </td>
+                                                        </aura:set>
+                                                    </aura:if>
+                                                </tr>
+                                                
+                                                <!--    </aura:iteration> -->
+                                            </td>
+                                        </tr>
+                                        
+                                    </aura:iteration>
+                            
+                             </aura:set>
+                        </aura:if>
+                    </tbody>
+                        
+                </table>
+                <div class="slds-card slds-docked-form-footer" style = "height:50px;">
+                    <center> 
+                        
+                        <lightning:button label = "{!$Label.c.Save}" onclick = "{!c.savePlan}" iconName = "utility:save" variant="brand" disabled="{!or(v.isOldMonth,v.isGoToPlan)}"/>
+                        
+                        <lightning:button label = "{!$Label.c.Submit}" onclick = "{!c.openSubmitModel}" variant="brand" disabled="{! or(or(v.isSubm,v.isGoToPlan),v.isOldMonth)}"/>
+                        <aura:if isTrue="{! not(or(v.isGoToPlan,v.adminVal))}">
+                            <lightning:button label = "{!$Label.c.Request_For_Re_Planning}" onclick = "{!c.openRequestModel}" variant="brand" disabled="{!or(or(v.isOpenRequest,v.isGoToPlan),v.isOldMonth)}"/> 
+                            
+                                <aura:if isTrue="{!v.reOpenStatus}">
+                                    <b> <span style="margin-left:20px">{!$Label.c.Replanning_Request_Status} <lightning:input  variant="label-hidden" disabled="true" value = "{!$Label.c.Not_Submitted}" style="float:right;margin-left:5px;"/></span></b> 
+                                    <aura:set attribute ="else">
+                                        <b><span style="margin-left:20px"> {!$Label.c.Replanning_Request_Status} <lightning:input variant="label-hidden"  disabled="true" value = "{!v.BDTHistory.Replanning_Request_Status__c}" style="float:right;margin-left:5px;width:125px"/></span></b>
+                                    </aura:set>   
+                                </aura:if>	
+                            
+                        </aura:if>
+                        
+                    </center>
+                </div>
+            </div>
+            
+        </center>
+        
+    </div>     
+</aura:component>

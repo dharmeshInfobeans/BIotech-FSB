@@ -1,0 +1,78 @@
+<aura:component  access="global">
+    <aura:attribute name="pbeRec" type="Agreement_Product__c" />
+    <aura:attribute name="selectedPbeRecList" type="Agreement_Product__c[]" />
+    
+    <aura:registerEvent name="selectProductEvent" type="c:ProductSelectionEvent"/>
+    <aura:registerEvent name="removeProductEvent" type="c:ProductSelectionEvent"/>
+    
+    <aura:method name="deSelectProductItem" action="{!c.deSelectItem}" >
+        <aura:attribute name="selectedId" type="string"  />
+    </aura:method>
+    
+    
+    <tr class="slds-hint-parent" >
+        <td role="gridcell" tabindex="0" class="slds-text-align_right" style="width:3.75rem;">
+            <div class="slds-checkbox_add-button">
+                <input type="checkbox" class="slds-assistive-text" id="{!'chk_' + v.pbeRec.Id}" 
+                       onclick='{!c.selectItem}' />
+                <label for="{!'chk_' + v.pbeRec.Id}" class="slds-checkbox_faux">
+                    <span class="slds-assistive-text">{!v.pbeRec.Id}</span>
+                </label>
+            </div>
+        </td>
+        <th scope="row">
+            <div class="slds-truncate" title="{!v.pbeRec.Name}">{!v.pbeRec.Product__r.Name}</div>
+        </th>
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.pbeRec.Product__r.Category__c}">{!v.pbeRec.Product__r.Category__c}</div>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.pbeRec.Is_Backup__c}">
+                <aura:if isTrue='{!v.pbeRec.Is_Backup__c}'>
+                Yes
+                <aura:set attribute="else">
+                    No
+                </aura:set>
+                </aura:if>
+            </div>
+        </td>
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.pbeRec.Product__r.Dummy_Product_Code__c}">{!v.pbeRec.Product__r.Dummy_Product_Code__c}</div>
+        </td>
+        
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.pbeRec.Product__r.Division__c}">{!v.pbeRec.Product__r.Division__c}</div>
+        </td>
+        
+        <td role="gridcell">
+            
+            <div class="slds-truncate" title="{!v.pbeRec.UnitPrice__c}">{!v.pbeRec.Price__c}</div>
+        </td>
+     <!-- FOC Commented   
+        <td role="gridcell">
+            <div class="slds-truncate" title="{!v.pbeRec.FOC__c}">{!v.pbeRec.FOC__c}</div>
+        </td>
+     -->    
+        <td role="gridcell">
+            <aura:if isTrue='{!v.pbeRec!=null}'>
+                <div class="slds-truncate" title="{!v.pbeRec.Dealer_Stock_Managements__r[0].Ideal_Stock_Required__c}">{!v.pbeRec.Ideal_Stock_Required__c}</div>
+                <aura:set attribute="else">
+                    <div class="slds-truncate" title="{!v.pbeRec.Ideal_Stock_Required__c}">NA</div>
+                </aura:set>
+            </aura:if>
+        </td>
+        
+        
+        <td role="gridcell">
+            <aura:if isTrue='{!v.pbeRec!=null}'>
+                <div class="slds-truncate" title="{!v.pbeRec.Difference__c}">{!v.pbeRec.Difference__c}</div>
+                <aura:set attribute="else">
+                    <div class="slds-truncate" title="{!v.pbeRec.Difference__c}">NA</div>
+                </aura:set>
+            </aura:if>
+        </td>
+        
+      
+        
+    </tr>
+</aura:component>

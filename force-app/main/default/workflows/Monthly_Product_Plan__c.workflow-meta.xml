@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workflow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fieldUpdates>
+        <fullName>MPP_Ext_key_update</fullName>
+        <field>MPP_Mapping__c</field>
+        <formula>TEXT(Month__c)+TEXT(Year__c)+Product__r.Dummy_Product_Code__c+ Monthly_Plan__r.Account__r.SAP_Code__c</formula>
+        <name>MPP Ext key update</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <fieldUpdates>
+        <fullName>Update_Planned_Amount</fullName>
+        <field>Planned_Amount__c</field>
+        <formula>Planned_Quantity__c * Product__r.MSP__c</formula>
+        <name>Update Planned Amount</name>
+        <notifyAssignee>false</notifyAssignee>
+        <operation>Formula</operation>
+        <protected>false</protected>
+        <reevaluateOnChange>false</reevaluateOnChange>
+    </fieldUpdates>
+    <rules>
+        <fullName>Update planned amount</fullName>
+        <actions>
+            <name>Update_Planned_Amount</name>
+            <type>FieldUpdate</type>
+        </actions>
+        <active>true</active>
+        <formula>AND(NOT(ISNULL(  Planned_Quantity__c  )),NOT(ISNULL( Product__r.MSP__c )),NOT(ISNULL( Product__c )))</formula>
+        <triggerType>onAllChanges</triggerType>
+    </rules>
+</Workflow>

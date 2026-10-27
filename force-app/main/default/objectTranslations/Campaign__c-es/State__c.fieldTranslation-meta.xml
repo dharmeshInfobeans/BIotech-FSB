@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Provincia</label>
+    <name>State__c</name>
+    <picklistValues>
+        <masterLabel>ACRE</masterLabel>
+        <translation><!-- ACRE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ADANA REGION</masterLabel>
+        <translation><!-- ADANA REGION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ALAGOAS</masterLabel>
+        <translation><!-- ALAGOAS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AMAPÁ</masterLabel>
+        <translation><!-- AMAPÁ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>AMAZONAS</masterLabel>
+        <translation><!-- AMAZONAS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ANKARA REGION</masterLabel>
+        <translation><!-- ANKARA REGION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ANTIOQUIA</masterLabel>
+        <translation><!-- ANTIOQUIA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ATLANTICO</masterLabel>
+        <translation><!-- ATLANTICO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Andhra Pradesh</masterLabel>
+        <translation><!-- Andhra Pradesh --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BAHIA</masterLabel>
+        <translation><!-- BAHIA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BIHAR</masterLabel>
+        <translation><!-- BIHAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BOLIVAR</masterLabel>
+        <translation><!-- BOLIVAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>BOYACA</masterLabel>
+        <translation><!-- BOYACA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CALDAS</masterLabel>
+        <translation><!-- CALDAS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CAUCA</masterLabel>
+        <translation><!-- CAUCA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CEARÁ</masterLabel>
+        <translation><!-- CEARÁ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CESAR</masterLabel>
+        <translation><!-- CESAR --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CORDOBA</masterLabel>
+        <translation><!-- CORDOBA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>CUNDINAMARCA</masterLabel>
+        <translation><!-- CUNDINAMARCA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chhattisgarh</masterLabel>
+        <translation><!-- Chhattisgarh --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Delhi</masterLabel>
+        <translation><!-- Delhi --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ESPÍRITO SANTO</masterLabel>
+        <translation><!-- ESPÍRITO SANTO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>GOIÁS</masterLabel>
+        <translation><!-- GOIÁS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Gujarat</masterLabel>
+        <translation><!-- Gujarat --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>HUILA</masterLabel>
+        <translation><!-- HUILA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Haryana</masterLabel>
+        <translation><!-- Haryana --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ISTAMBUL REGION</masterLabel>
+        <translation><!-- ISTAMBUL REGION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ISTANBUL-1 REGION</masterLabel>
+        <translation><!-- ISTANBUL-1 REGION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>ISTANBUL-2 REGION</masterLabel>
+        <translation><!-- ISTANBUL-2 REGION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>IZMIR REGION</masterLabel>
+        <translation><!-- IZMIR REGION --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JAMMU</masterLabel>
+        <translation><!-- JAMMU --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>JHARKHAND</masterLabel>
+        <translation><!-- JHARKHAND --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Karnataka</masterLabel>
+        <translation><!-- Karnataka --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kashmir</masterLabel>
+        <translation><!-- Kashmir --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Kerala</masterLabel>
+        <translation><!-- Kerala --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MAGDALENA</masterLabel>
+        <translation><!-- MAGDALENA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MAHARASHTRA</masterLabel>
+        <translation><!-- MAHARASHTRA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MARANHÃO</masterLabel>
+        <translation><!-- MARANHÃO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MATO GROSSO</masterLabel>
+        <translation><!-- MATO GROSSO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MATO GROSSO DO SUL</masterLabel>
+        <translation><!-- MATO GROSSO DO SUL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>META</masterLabel>
+        <translation><!-- META --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MINAS GERAIS</masterLabel>
+        <translation><!-- MINAS GERAIS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Madhya Pradesh</masterLabel>
+        <translation><!-- Madhya Pradesh --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NARIÑO</masterLabel>
+        <translation><!-- NARIÑO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>NORTE DE SANTANDER</masterLabel>
+        <translation><!-- NORTE DE SANTANDER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>North_East</masterLabel>
+        <translation><!-- North_East --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>OCAÑA</masterLabel>
+        <translation><!-- OCAÑA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Odisha</masterLabel>
+        <translation><!-- Odisha --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PARANÁ</masterLabel>
+        <translation><!-- PARANÁ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PARAÍBA</masterLabel>
+        <translation><!-- PARAÍBA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PARÁ</masterLabel>
+        <translation><!-- PARÁ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PERNAMBUCO</masterLabel>
+        <translation><!-- PERNAMBUCO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>PIAUÍ</masterLabel>
+        <translation><!-- PIAUÍ --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Punjab</masterLabel>
+        <translation><!-- Punjab --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>QUINDIO</masterLabel>
+        <translation><!-- QUINDIO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RIO DE JANEIRO</masterLabel>
+        <translation><!-- RIO DE JANEIRO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RIO GRANDE DO NORTE</masterLabel>
+        <translation><!-- RIO GRANDE DO NORTE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RIO GRANDE DO SUL</masterLabel>
+        <translation><!-- RIO GRANDE DO SUL --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RISARALDA</masterLabel>
+        <translation><!-- RISARALDA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RONDÔNIA</masterLabel>
+        <translation><!-- RONDÔNIA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>RORAIMA</masterLabel>
+        <translation><!-- RORAIMA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Rajasthan</masterLabel>
+        <translation><!-- Rajasthan --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SANTA CATARINA</masterLabel>
+        <translation><!-- SANTA CATARINA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SANTANDER</masterLabel>
+        <translation><!-- SANTANDER --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SERGIPE</masterLabel>
+        <translation><!-- SERGIPE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SUCRE</masterLabel>
+        <translation><!-- SUCRE --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SÃO PAULO</masterLabel>
+        <translation><!-- SÃO PAULO --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TOCANTINS</masterLabel>
+        <translation><!-- TOCANTINS --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>TOLIMA</masterLabel>
+        <translation><!-- TOLIMA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Tamilnadu</masterLabel>
+        <translation><!-- Tamilnadu --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Telangana</masterLabel>
+        <translation><!-- Telangana --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>UTTAR PRADESH</masterLabel>
+        <translation><!-- UTTAR PRADESH --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Uttarakhand</masterLabel>
+        <translation><!-- Uttarakhand --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>VALLE DEL CAUCA</masterLabel>
+        <translation><!-- VALLE DEL CAUCA --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>West Bengal</masterLabel>
+        <translation><!-- West Bengal --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

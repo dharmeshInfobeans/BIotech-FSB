@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Request Type --></label>
+    <name>Request_Type__c</name>
+    <picklistValues>
+        <masterLabel>Additional Document Request</masterLabel>
+        <translation><!-- Additional Document Request --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>New Registration</masterLabel>
+        <translation><!-- New Registration --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

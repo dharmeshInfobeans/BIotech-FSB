@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- API Module Type --></label>
+    <name>API_Module_Type__c</name>
+    <picklistValues>
+        <masterLabel>Darwin Box</masterLabel>
+        <translation><!-- Darwin Box --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>MOU scheme</masterLabel>
+        <translation><!-- MOU scheme --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Sample request</masterLabel>
+        <translation><!-- Sample request --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

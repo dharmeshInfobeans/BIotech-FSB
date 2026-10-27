@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <label>Role</label>
+    <required>true</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Regional Sales Manager</fullName>
+                <default>false</default>
+                <label>Regional Sales Manager</label>
+            </value>
+            <value>
+                <fullName>Zonal Sales Manager</fullName>
+                <default>false</default>
+                <label>Zonal Sales Manager</label>
+            </value>
+            <value>
+                <fullName>National Sales Manager</fullName>
+                <default>false</default>
+                <label>National Sales Manager</label>
+            </value>
+            <value>
+                <fullName>General Manager</fullName>
+                <default>false</default>
+                <label>General Manager</label>
+            </value>
+            <value>
+                <fullName>Divisional Manager</fullName>
+                <default>false</default>
+                <label>Divisional Manager</label>
+            </value>
+            <value>
+                <fullName>Global Sales Revenue Officer</fullName>
+                <default>false</default>
+                <label>Global Sales Revenue Officer</label>
+            </value>
+            <value>
+                <fullName>Business Development Manager</fullName>
+                <default>false</default>
+                <label>Business Development Manager</label>
+            </value>
+            <value>
+                <fullName>Cluster Manager</fullName>
+                <default>false</default>
+                <label>Cluster Manager</label>
+            </value>
+            <value>
+                <fullName>Key Account Manager</fullName>
+                <default>false</default>
+                <label>Key Account Manager</label>
+            </value>
+            <value>
+                <fullName>Refractive Manager</fullName>
+                <default>false</default>
+                <label>Refractive Manager</label>
+            </value>
+            <value>
+                <fullName>Sales Account Executive</fullName>
+                <default>false</default>
+                <label>Sales Account Executive</label>
+            </value>
+            <value>
+                <fullName>Sales Development Executive</fullName>
+                <default>false</default>
+                <label>Sales Development Executive</label>
+            </value>
+            <value>
+                <fullName>Senior Sales Executive</fullName>
+                <default>false</default>
+                <label>Senior Sales Executive</label>
+            </value>
+            <value>
+                <fullName>Tender Manager</fullName>
+                <default>false</default>
+                <label>Tender Manager</label>
+            </value>
+            <value>
+                <fullName>Global Sales Distribution Manager</fullName>
+                <default>false</default>
+                <label>Global Sales Distribution Manager</label>
+            </value>
+            <value>
+                <fullName>Product Manager</fullName>
+                <default>false</default>
+                <label>Product Manager</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

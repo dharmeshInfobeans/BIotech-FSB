@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>case_closed_validation_rights</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND(
+NOT(
+OR(
+$User.Username = &apos;nehal@biotechhealthcare.com&apos;,
+$User.Username = &apos;makim.kuntal@biotechhealthcare.com&apos;
+)
+),
+ISCHANGED(Case_Status__c),
+ISPICKVAL(Case_Status__c, &apos;Closed&apos;)
+)</errorConditionFormula>
+    <errorMessage>You can not close the case !!</errorMessage>
+</ValidationRule>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Surgeries</fullName>
+                <default>false</default>
+                <label>Surgeries</label>
+            </value>
+            <value>
+                <fullName>Phakic</fullName>
+                <default>false</default>
+                <label>Phakic</label>
+            </value>
+            <value>
+                <fullName>Premium Phakic</fullName>
+                <default>false</default>
+                <label>Premium Phakic</label>
+            </value>
+            <value>
+                <fullName>Premium surgeries</fullName>
+                <default>false</default>
+                <label>Premium surgeries</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

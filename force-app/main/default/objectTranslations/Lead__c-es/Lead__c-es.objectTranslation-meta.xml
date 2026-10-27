@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>Clientes potenciale</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>Clientes potenciales</value>
+    </caseValues>
+    <gender>Feminine</gender>
+    <layouts>
+        <layout>Lead Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Marketing Team Layout</layout>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing team details --></label>
+            <section>Marketing team details</section>
+        </sections>
+        <sections>
+            <label><!-- Sales team details --></label>
+            <section>Sales team details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <layouts>
+        <layout>Sales Team Layout</layout>
+        <sections>
+            <label><!-- Billing Information --></label>
+            <section>Billing Information</section>
+        </sections>
+        <sections>
+            <label><!-- Custom Links --></label>
+            <section>Custom Links</section>
+        </sections>
+        <sections>
+            <label><!-- Information --></label>
+            <section>Information</section>
+        </sections>
+        <sections>
+            <label><!-- Marketing team details --></label>
+            <section>Marketing team details</section>
+        </sections>
+        <sections>
+            <label><!-- Sales team details --></label>
+            <section>Sales team details</section>
+        </sections>
+        <sections>
+            <label><!-- System Information --></label>
+            <section>System Information</section>
+        </sections>
+    </layouts>
+    <nameFieldLabel><!-- Lead Name --></nameFieldLabel>
+    <quickActions>
+        <label><!-- Add Product --></label>
+        <name>Add_Product</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Convert Prospect --></label>
+        <name>Convert_Prospect</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Edit Prospect --></label>
+        <name>Edit_Lead</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Initiate Customer --></label>
+        <name>Initiate_Customer</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- Sample Request --></label>
+        <name>Initiate_Sample_Request</name>
+    </quickActions>
+    <quickActions>
+        <label><!-- NewCeCis --></label>
+        <name>NewCeCis</name>
+    </quickActions>
+    <recordTypes>
+        <label><!-- Marketing --></label>
+        <name>Marketing</name>
+    </recordTypes>
+    <recordTypes>
+        <label><!-- Prospect --></label>
+        <name>Prospect</name>
+    </recordTypes>
+    <validationRules>
+        <errorMessage><!-- Lead Status cannot be changed to Converted unless CE-CIS Approval is checked. --></errorMessage>
+        <name>CE_CIS_Approval_Required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please mark the stage as commercialized --></errorMessage>
+        <name>Commercialization_Validation_SAP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the street --></errorMessage>
+        <name>Commercialization_Validation_Street</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Zip/Code --></errorMessage>
+        <name>Commercialization_Validation_ZIP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill in the reason for unqualified the lead --></errorMessage>
+        <name>Disqualified_reason_error</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Enter The Email --></errorMessage>
+        <name>Email_Field_Mandotary</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the valid mobile number --></errorMessage>
+        <name>Enter_valid_mobile_number</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Hospital/clinic name --></errorMessage>
+        <name>Hospital_Name_Mandatory_Rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Kindly fill the Hospital / Clinic Name --></errorMessage>
+        <name>Hospital_and_clinic_is_required</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Initiate Customer to Create SAP Code &amp; Mark Commercialization --></errorMessage>
+        <name>KYC_Upload_Document</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please get CE-CIS approved before proceeding to the next stage. --></errorMessage>
+        <name>Lead_CIS</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the SAP code before Lead convert --></errorMessage>
+        <name>Lead_SAP_code_Validation_rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- This Lead is marked as closed and cannot be edited. --></errorMessage>
+        <name>Lead_not_editable_due_to_Closed_mark</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please get address verified before moving to the next step. --></errorMessage>
+        <name>Lead_stage_changes</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You do not have permission to change the planned weeks. Only System Administrators can make these changes. --></errorMessage>
+        <name>Make_None_editable_Sales_team_Detail</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid Phone number --></errorMessage>
+        <name>Phone_number_validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter the valid date --></errorMessage>
+        <name>Planning_date_error</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- &quot;Error: SAP Code cannot be updated on the record. Please Connect With Admin !&quot; --></errorMessage>
+        <name>SAP_Code_Read_Only</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please enter a valid Sap code .Example(1234WE12WE) --></errorMessage>
+        <name>Sap_code_Validation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please add comments in &quot;Send Back Reason Comments&quot; when &quot;Other – Add Comment&quot; is selected as the Send Back Reason. --></errorMessage>
+        <name>Send_Back_Comment_Required_When_Other</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Send Back Reason is mandatory when Marketing Stage is set to &quot;Sent Back for Reallocation&quot;. --></errorMessage>
+        <name>Send_Back_Reason_Required_On_Reallocatio</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Street before convert the lead --></errorMessage>
+        <name>Street_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Mark the Stage as Upgrade --></errorMessage>
+        <name>Upgrade_Validation_Rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the SAP Code --></errorMessage>
+        <name>Upgrade_validation_SAP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the street --></errorMessage>
+        <name>Upgrade_validation_Street</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Zip/Postal Code --></errorMessage>
+        <name>Upgrade_validation_ZIP</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the lead because it has been lost --></errorMessage>
+        <name>Validation_for_lost_lead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the lead because it has been unuqalified --></errorMessage>
+        <name>Validation_for_unqualified_lead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please mark the Commercialized stage before Mark &quot;WON&quot; Stage --></errorMessage>
+        <name>Validation_rule</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- You can not edit the lead because it is already converted. --></errorMessage>
+        <name>Validation_to_restrict_user_to_edit_lead</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please fill the Zip/Postal code before convert the lead. --></errorMessage>
+        <name>Zip_Code_Mandatory</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lead has already been Commercialization, it cannot be marked as &apos;Unqualified or Lost&apos; --></errorMessage>
+        <name>if_leadstage_is_comm_then_not_unqualifi</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Lead has already been upgraded, it cannot be marked as &apos;Unqualified or Lost&apos; --></errorMessage>
+        <name>if_leadstage_is_upgr_then_Not_unqualifi</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please &apos;Planned Commercialization Week&apos; date before converting the lead. --></errorMessage>
+        <name>if_new_lead_is_won_but_commerciliazation</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please &apos;Plan Upgrade Week&apos; date before converting the lead. --></errorMessage>
+        <name>if_new_lead_is_won_but_upgrade_week</name>
+    </validationRules>
+    <validationRules>
+        <errorMessage><!-- Please Mark Upgrade Stage Before mark the &quot;WON&quot; Stage --></errorMessage>
+        <name>validation_for_upgrade_stage</name>
+    </validationRules>
+</CustomObjectTranslation>

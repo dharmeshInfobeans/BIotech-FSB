@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <inlineHelpText>Approver&apos;s Status</inlineHelpText>
+    <label>Approval Status</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sent To Approver</fullName>
+                <default>false</default>
+                <label>Sent To Approver</label>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <default>false</default>
+                <label>Rejected</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Not Submitted</fullName>
+                <default>true</default>
+                <label>Not Submitted</label>
+            </value>
+            <value>
+                <fullName>Approved By Approver1</fullName>
+                <default>false</default>
+                <label>Approved By Approver1</label>
+            </value>
+            <value>
+                <fullName>Sent To Approver1</fullName>
+                <default>false</default>
+                <label>Sent To Approver1</label>
+            </value>
+            <value>
+                <fullName>Sent To Approver2</fullName>
+                <default>false</default>
+                <label>Sent To Approver2</label>
+            </value>
+            <value>
+                <fullName>Approved By Approver2</fullName>
+                <default>false</default>
+                <label>Approved By Approver2</label>
+            </value>
+            <value>
+                <fullName>Rejected By Approver1</fullName>
+                <default>false</default>
+                <label>Rejected By Approver1</label>
+            </value>
+            <value>
+                <fullName>Rejected By Approver2</fullName>
+                <default>false</default>
+                <label>Rejected By Approver2</label>
+            </value>
+            <value>
+                <fullName>Approved By Approver3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Approved By Approver3</label>
+            </value>
+            <value>
+                <fullName>Rejected By Approver3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Rejected By Approver3</label>
+            </value>
+            <value>
+                <fullName>Sent To Approver3</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sent To Approver3</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,106 @@
+.custom-container{
+	color : black;
+}
+.container {
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal {
+    --modal-width: 40%;
+}
+
+.text {
+    margin-top: 12px;
+    color: #444;
+    font-size: 14px;
+}
+.exampleHolder {
+    position: relative;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+
+.uploadTopMargin{
+        position: relative;
+    top: -1rem;
+    margin-bottom: -9px;
+}
+
+
+/*Add the class name below to the lightning-icon element.*/
+.custom-icon-file { 
+ --slds-c-icon-color-foreground-default: #066afe;
+
+}
+
+.footer-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-top: 1px solid #e5e5e5;
+    background: #fff;
+    width: 100%;
+}
+
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    text-align: center;
+    background: #f8f9fb;
+    border: 1.5px dashed #d0d5dd;
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+}
+
+.empty-icon {
+    --sds-c-icon-color-foreground-default: #aab3c0;
+    margin-bottom: 0.75rem;
+    opacity: 0.6;
+}
+
+.empty-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #3e3e3c;
+    margin: 0 0 0.25rem 0;
+}
+
+.empty-subtitle {
+    font-size: 0.8rem;
+    color: #706e6b;
+    margin: 0;
+}
+
+.staged-file-list {
+    list-style: none;
+    margin: 0 0 0.5rem 0;
+    padding: 0;
+}
+
+.staged-file-item {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #e5e5e5;
+    border-radius: 0.5rem;
+    margin-bottom: 0.4rem;
+    background: #fff;
+}
+
+.staged-file-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 0.85rem;
+    color: #3e3e3c;
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Measurement Criteria --></label>
+    <name>Measurement_Criteria__c</name>
+    <picklistValues>
+        <masterLabel>Active Deals</masterLabel>
+        <translation><!-- Active Deals --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Growth over last year</masterLabel>
+        <translation><!-- Growth over last year --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No of Deals</masterLabel>
+        <translation><!-- No of Deals --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Per Quarter per Team Member</masterLabel>
+        <translation><!-- Per Quarter per Team Member --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Per Team Member</masterLabel>
+        <translation><!-- Per Team Member --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self</masterLabel>
+        <translation><!-- Self --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Self &amp; Team</masterLabel>
+        <translation><!-- Self &amp; Team --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>State</masterLabel>
+        <translation><!-- State --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Target vs Actuals</masterLabel>
+        <translation><!-- Target vs Actuals --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Team Targets</masterLabel>
+        <translation><!-- Team Targets --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Test Results</masterLabel>
+        <translation><!-- Test Results --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Total Customers</masterLabel>
+        <translation><!-- Total Customers --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

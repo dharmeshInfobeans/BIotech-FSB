@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Member Type --></label>
+    <name>Member_Type__c</name>
+    <picklistValues>
+        <masterLabel>Attendee</masterLabel>
+        <translation><!-- Attendee --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Chair Person</masterLabel>
+        <translation><!-- Chair Person --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Moderator</masterLabel>
+        <translation><!-- Moderator --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Speaker</masterLabel>
+        <translation><!-- Speaker --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Surgeon</masterLabel>
+        <translation><!-- Surgeon --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

@@ -1,0 +1,65 @@
+<!--
+ **********************************************************************************************
+ * Lightning Web Component Template : documentUploader.html
+ * Created Date    : 30th December, 2025
+ * @description    : Renders the document upload table with file uploaders and status icons
+ * Author          :Varish Patil
+ * 
+ * Modification Log:
+ * Ver   Date         Author        Modification
+ * 1.0   30-12-2025   Varish Patil    Initial Version
+ **********************************************************************************************
+-->
+<template>
+    <lightning-card title="Document Upload" icon-name="standard:document">
+        <div class="table-wrapper">
+        <table class="slds-table slds-table_bordered responsive-table">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Document Type</th>
+                    <th>Upload File</th>
+                    <th>Status</th>
+                    <th></th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <template for:each={documents} for:item="doc">
+                    <tr key={doc.Id}>
+                        <td>{doc.index}</td>
+                        <td>{doc.title}</td>
+                        <td>
+                            <lightning-file-upload
+                            label="Upload file"
+                            name={doc.title}
+                            record-id={recordId}
+                            accept={acceptedFormats}
+                            onuploadfinished={handleUploadFinished}
+                            data-title={doc.title}
+                            max-file-size="2097152"
+                            >
+                        </lightning-file-upload>
+                        </td>
+                        <td>
+                            <template if:true={doc.status}>
+                                 <lightning-icon icon-name="utility:check" alternative-text="Status" size="small"
+                            class='slds-icon-text-success'></lightning-icon>
+                            </template>
+                           
+                        </td>
+                        <td>
+                            <lightning-button disabled={doc.documentPreview}
+                             label="Preview" 
+                                              variant="brand"
+                                              data-id={doc.Id}
+                                              onclick={previewHandler}
+                       ></lightning-button>
+                        </td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+        </div>
+    </lightning-card>
+</template>

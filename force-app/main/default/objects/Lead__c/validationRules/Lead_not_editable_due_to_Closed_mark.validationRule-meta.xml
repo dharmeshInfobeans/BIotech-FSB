@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_not_editable_due_to_Closed_mark</fullName>
+    <active>true</active>
+    <errorConditionFormula>AND( 
+    NOT( ISCHANGED(Lead_Closed__c )) ,
+    Lead_Closed__c = true, 
+    $Profile.Name &lt;&gt; &quot;System Administrator&quot;
+)</errorConditionFormula>
+    <errorMessage>This Lead is marked as closed and cannot be edited.</errorMessage>
+</ValidationRule>

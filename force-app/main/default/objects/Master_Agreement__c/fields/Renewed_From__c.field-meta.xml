@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewed_From__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Renewed From</label>
+    <referenceTo>Master_Agreement__c</referenceTo>
+    <relationshipLabel>Master Agreements (Renewed From)</relationshipLabel>
+    <relationshipName>Master_Agreements1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

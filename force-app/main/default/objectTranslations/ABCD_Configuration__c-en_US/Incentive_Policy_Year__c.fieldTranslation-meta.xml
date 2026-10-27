@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Incentive Policy Year --></label>
+    <name>Incentive_Policy_Year__c</name>
+    <relationshipLabel><!-- ABCD Configurations --></relationshipLabel>
+</CustomFieldTranslation>

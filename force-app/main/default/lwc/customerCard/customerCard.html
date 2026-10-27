@@ -1,0 +1,92 @@
+<!--
+  @File Name          : customerCard.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 07-07-2020
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    2/2/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    
+    <lightning-layout-item size="12" small-device-size="6" medium-device-size="4" large-device-size="3" padding="around-small">
+        
+                <lightning-card key={account.Id} data-cerating={account.CERating}
+                    data-cisrating={account.CISRating} data-existing={account.Existing} data-stage={account.leadstage}  onclick={cardClick} data-show={account.show} data-product={account.Product} class="slds-truncate">
+                    <div class="slds-p-horizontal_small">
+                        <div class="slds-media">
+                            <div class="slds-media__figure">
+                                <div class="slds-m-bottom_small slds-m-top_none">
+                                    <!-- <lightning-avatar src="/bad/image/url.jpg" initials="" fallback-icon-name="standard:avatar"  alternative-text="Bob Wilson" class="slds-m-right_small" style="color: #faa14e"></lightning-avatar> -->
+                                    <lightning-icon icon-name="action:user" alternative-text="User" size="small"
+                                        style="background:rgb(39, 174, 230)"></lightning-icon>
+                                </div>
+                                <div class="showData">
+                                    <p>{account.show}</p>
+                                    
+                                </div>
+                                <div class="productData">
+                                    <p>{account.Product}</p>
+                                </div>
+                                <!-- <img class="imgTag" height="50px" width="50px" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnG8uihgYatl6emhnkAyY-6POfHC_GKEF23q0Uy-m0bQIG48-s"> -->
+                            </div>
+                            <div class="slds-media__body">
+                                <p style="font-size:larger;font-weight: 900; word-break: break-all;white-space: normal;">{account.Name}</p>
+                                <p>{account.Phone}</p>
+                                <p style="color: #006fd2;">{account.BillingCity},{account.BillingCountry}</p>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </lightning-card> 
+               
+   
+            </lightning-layout-item>
+
+
+
+            <template if:true={confirmation}>
+                <!-- <lightning-modal-header label="Confirmation"></lightning-modal-header>
+                <lightning-modal-body>
+                    <p>Ce-Cis Approval is Pending Do You Want To Continue?</p>
+                </lightning-modal-body>
+                <lightning-modal-footer>
+                    <lightning-button label="Cancel" onclick={handleCancel}></lightning-button>
+                    <lightning-button variant="brand" label="Continue" onclick={handleContinue}></lightning-button>
+                </lightning-modal-footer> -->
+
+
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+       <div class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+            
+             <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{confirmationmessage.Confirmation__c}</h2>
+          </header>
+      
+          <!-- modal body start -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+            <center>
+                <p>{confirmationmessage.Ce_Cis_Approval_is_Pending_Do_You_Want_T__c}</p>
+                <br/>
+                <p>{confirmationmessage.If_you_have_planned_Evaluation_or_Comme__c}</p>
+            </center>
+          </div>
+
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+             <button class="slds-button slds-button_neutral" onclick={handleCancel}>{confirmationmessage.Cancel__c}</button>
+             <button class="slds-button slds-button_neutral" onclick={handleContinue}>{confirmationmessage.Continue__c}</button>
+          </footer>
+       
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+            </template>
+
+            
+
+</template>

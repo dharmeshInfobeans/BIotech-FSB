@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Satış bölgesi</label>
+    <name>Sales_district__c</name>
+    <picklistValues>
+        <masterLabel>SRT111</masterLabel>
+        <translation><!-- SRT111 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SRT54</masterLabel>
+        <translation><!-- SRT54 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SRT66</masterLabel>
+        <translation><!-- SRT66 --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>SRT666</masterLabel>
+        <translation><!-- SRT666 --></translation>
+    </picklistValues>
+</CustomFieldTranslation>
